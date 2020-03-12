@@ -1,0 +1,191 @@
+<ion-content >
+    <div class="cs-main-container">
+        <div class="custome-head">
+            <div class="cs-ion-header">
+                <div class="cs-left">
+                    <ion-button (click) = "onGoToListPageHandler()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                    <ion-title *ngIf="routeTitleForView">{{routeTitleForView}} Detail</ion-title>
+                </div>
+                <div class="cs-right">
+                    <ion-button (click)="presentPopover($event)"><ion-icon name="more"></ion-icon></ion-button>
+                </div>
+            </div>
+            <div class="cs-ion-hf"></div>
+        </div>
+        
+        <div *ngIf="taskDetail && taskDetail.taskData" class="cs-ion-content pt0" padding>
+            <div class="complaints">
+                <div class="figure">
+                    <div class="top">
+                        <div class="cs-left">
+                            <h1>#COM- {{taskDetail.taskData.task_no}} <ion-text>({{taskDetail.taskData.days}})</ion-text></h1>
+                        </div>
+                        <div class="cs-right">
+                            <ion-text>{{taskDetail.taskData.dateCreated}}  |  {{taskDetail.taskData.timeCreated}}</ion-text>
+                        </div>
+                    </div>
+                    
+                    <div class="cnt-info" *ngIf="taskDetail.taskContactData.length >0">
+                        <div class="cs-left">
+                            <div class="f-alpha bg1">{{taskDetail.taskData.project_name[0]}}</div>
+                            <div class="names">
+                                <h1>{{taskDetail.taskData.project_name}}</h1>
+                                <ion-text *ngIf="taskDetail.taskContactData">{{taskDetail.taskContactData[0].name}}</ion-text>
+                            </div>
+                        </div>
+                        
+                        <div class="cs-right">
+                            <a *ngIf="taskDetail.taskContactData" href="tel: {{taskDetail.taskContactData[0].mobile}}"><i class="material-icons">call</i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="one-two-one three mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Created By</ion-text>
+                                <ion-text>{{taskDetail.taskData.created_by_name}}</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Service Type</ion-text>
+                                <ion-text>{{taskDetail.taskData.serviceType}}</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box close" style="background: #FFCC00;">
+                            <div>
+                                <ion-text>Priority</ion-text>
+                                <ion-text>{{taskDetail.taskData.priority}}</ion-text>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="one-two-one one mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Request Type & Complaint Title</ion-text>
+                                <ion-text>{{taskDetail.taskData.task_type}} / {{taskDetail.taskData.compaint_title}}</ion-text>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf= "taskDetail.taskData.task_description" class="one-two-one one mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Description <strong>{{taskDetail.taskData.task_description}}</strong></ion-text>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="one-two-one two mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Eng. Work Status</ion-text>
+                                <ion-text>{{taskDetail.taskData.workStatus ? taskDetail.taskData.workStatus : '--'}}</ion-text>
+                            </div>
+                        </div>
+                        <div [ngClass] = "(taskDetail && taskDetail.taskData) ? taskDetail.taskData.status.toLowerCase() : ''" class="cs-box">
+                            <div>
+                                <ion-text>Complaint Status</ion-text>
+                                <ion-text>{{taskDetail.taskData.status}}</ion-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="complaints product-list mt20">
+                <div class="cs-heading"><h1>Product Information</h1></div>
+                
+                <div  class="figure">
+                    
+                    <div [hidden]="index > 0" *ngFor="let fgRow of taskDetail.taskFGData; let index = index" class="cnt-info">
+                        <div class="cs-left">
+                            <div class="f-alpha">{{fgRow.sub_model ? fgRow.sub_model[0] : 'P'}}</div>
+                            <div class="names">
+                                <h1>{{fgRow.sub_model ? fgRow.sub_model : ''}}</h1>
+                                <ion-text>{{fgRow.brand ? fgRow.brand : ''}}, {{fgRow.model ? fgRow.model : ''}}</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-right">
+                            <a class="arrow"><i class="material-icons">keyboard_arrow_right</i></a>
+                        </div>
+                    </div>
+                    
+                    <div *ngFor="let fgRow of taskDetail.taskFGData" class="one-two-one three">
+                        
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>FG No.</ion-text>
+                                <ion-text>{{fgRow.fg_no}} </ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>So No.</ion-text>
+                                <ion-text>{{fgRow.so_no ? fgRow.so_no : ''}}</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Si No.</ion-text>
+                                <ion-text>{{fgRow.si_no ? fgRow.si_no : '--'}}</ion-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="complaints product-list mt20">
+                <div class="cs-heading"><h1>Customer Information</h1></div>
+                <div class="figure">
+                    <div class="cnt-info">
+                        <div class="cs-left">
+                            <div class="f-alpha bg1">{{taskDetail.taskData.customer_name[0]}}</div>
+                            <div class="names">
+                                <h1>{{taskDetail.taskData.customer_name}}</h1>
+                                <ion-text>{{taskDetail.taskData.customer_contact_name}} (#{{taskDetail.taskData.customer_code}})</ion-text>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cnt-person">
+                        <div class="css-heading"><h1>Contact Person(S)</h1></div>
+                        
+                        <div *ngFor = "let row of taskDetail.taskCustomerData.customerContactData" class="p-info">
+                            <div class="cs-left">
+                                <h1><i class="material-icons">person</i> {{row.name}} ({{row.designation}})</h1>
+                                <ion-text><i class="material-icons">mail</i>{{row.email}}</ion-text>
+                            </div>
+                            <div class="cs-right">
+                                <a href="tel: {{row.mobile}}"><i class="material-icons">call</i></a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="complaints product-list mt20">
+                <div class="cs-heading"><h1>Assign Subordinates</h1></div>
+                <div class="figure">
+                    
+                    <div [hidden] = "row.type == 'Primary'" *ngFor="let row of taskDetail.taskAssignData" class="cnt-person">
+                        <div class="p-info">
+                            <div class="cs-left">
+                                <h1><i class="material-icons">person</i>{{row.name}} ({{row.designation}})</h1>
+                                <ion-text><i class="material-icons">mail</i>{{row.email}}</ion-text>
+                            </div>
+                            <div class="cs-right">
+                                <a href="tel: {{row.mobile}}"><i class="material-icons">call</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</ion-content>

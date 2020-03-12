@@ -1,0 +1,44 @@
+<ion-content >
+    <div class="cs-main-container">
+        <div class="custome-head">
+            <div class="cs-ion-header">
+                <div class="cs-left">
+                    <ion-button (click)="GoComplaintDetail()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                    <ion-title>#COM-{{taskNo}} - <ion-text>Complaint Remarks</ion-text></ion-title>
+                </div>
+                <div class="cs-right">
+                    <ion-button (click)="presentPopover($event)"><ion-icon name="more"></ion-icon></ion-button>
+                </div>
+            </div>
+            <div class="cs-ion-hf"></div>
+        </div>
+        
+        <div class="cs-ion-content pt0" padding>
+            <div class="common_form inner_page">
+                <ion-item class="h110">
+                    <ion-textarea [(ngModel)] = "data.remark"  placeholder="Your Comment"></ion-textarea>
+                </ion-item>
+                
+                <div class="cs-btn mt16" text-right *ngIf = "taskStatus != 'Close'">
+                    <ion-button (click)="onSaveRemarkDataHandler()" class="success min w100">SAVE</ion-button>
+                </div>
+            </div>
+
+            <div *ngIf="remarkList && remarkList.length > 0" class="complaints product-list mt20">
+
+                <div class="cs-heading"><h1>Remark History</h1></div>
+
+                <div class="feedback pt10 pr10 pb10 pl10">
+
+                    <div *ngFor="let row of remarkList" class="figure mb10">
+                        <div class="cs-head"><ion-text>{{row.dateCreated}}</ion-text></div>     
+                        <div class="cs-description">
+                            <h1><ion-text>{{row.description}}</ion-text></h1>
+                        </div>               
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,273 @@
+<ion-content >
+    <div class="cs-main-container">
+        <div class="custome-head">
+            <div class="cs-ion-header">
+                <div class="cs-left">
+                    <ion-button [routerLink]="['/customer/request']"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                    <ion-title>Add Service Request</ion-title>
+                </div>
+            </div>
+            <div class="cs-ion-hf"></div>
+        </div>
+        
+        <form [formGroup]="registerForm1" (ngSubmit)="onSaveRequestHandler()">
+            
+            <div class="cs-ion-content pt0" padding>
+                <div class="custome-filter dlform">
+                    <div class="fiter-data">
+                        
+                        <div class="cs-right">
+                            <div class="common_form inner_page">
+                                <div class="heading"><h1>Request Information</h1></div>
+                                
+                                <ion-item [ngClass]="submitted && f1.requestType.errors && f1.requestType.errors.required ? 'has-error' : (f1.requestType.errors && !f1.requestType.errors.required ? 'has-text' : '')" class="cs-select">
+                                    
+                                    <ion-label>Request Type</ion-label>
+                                    
+                                    <ion-select formControlName="requestType" [(ngModel)]="data.requestType" placeholder="Select Type">
+                                        <ion-select-option value="service_request">Complaint</ion-select-option>
+                                        <ion-select-option value="commissioning">Commissioning</ion-select-option>
+                                    </ion-select>
+                                    
+                                </ion-item>
+                                
+                                <ion-item [ngClass]="submitted && f1.priority.errors && f1.priority.errors.required ? 'has-error' : (f1.priority.errors && !f1.priority.errors.required ? 'has-text' : '')" class="cs-select">
+                                    
+                                    <ion-label>Priority</ion-label>
+                                    <ion-select formControlName="priority" [(ngModel)]="data.priority" placeholder="Select Priority">
+                                        <ion-select-option *ngFor="let row of priorityList" [value]="row.name">{{row.name}}</ion-select-option>
+                                    </ion-select>
+                                    
+                                </ion-item>
+
+                                <ion-item [ngClass]="submitted && f1.complaintTitle.errors && f1.complaintTitle.errors.required ? 'has-error' : (f1.complaintTitle.errors && !f1.complaintTitle.errors.required ? 'has-text' : '')" class="cs-select">
+                                    
+                                    <ion-label>Complaint Title</ion-label>
+                                    
+                                    <ion-select formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type">
+                                        <ion-select-option *ngFor="let row of complaintTypeList" [value]="row.title">{{row.title}}</ion-select-option>
+                                    </ion-select>
+                                    
+                                </ion-item>
+                                
+                                <ion-item [ngClass]="submitted && f1.description.errors && f1.description.errors.required ? 'has-error' : (f1.description.errors && !f1.description.errors.required ? 'has-text' : '')" class="h70">
+                                    <ion-textarea formControlName="description" [(ngModel)]="data.description" placeholder="Description"></ion-textarea>
+                                </ion-item>
+                                
+                                
+                                <ion-item [ngClass]="submitted && f1.project.errors && f1.project.errors.required ? 'has-error' : (f1.project.errors && !f1.project.errors.required ? 'has-text' : '')" class="cs-select">
+                                    
+                                    <ion-label>Project</ion-label>
+                                    
+                                    <ionic-selectable
+                                    [(ngModel)]="data.project"
+                                    [items]="projectList"
+                                    itemValueField="id"
+                                    itemTextField="project_name"
+                                    formControlName="project"
+                                    [canSearch]="true"
+                                    (onChange)="onGetProjectFGListHandler()">
+                                    
+                                </ionic-selectable>
+                            </ion-item>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="data.project && data.project['project_name']" class="cs-right mt20">
+                        <div class="common_form inner_page">
+                            <div class="heading"><h1>Add Product Information</h1></div>
+                            
+                            <ion-item [ngClass]="submitted && f1.fgNo.errors && f1.fgNo.errors.required ? 'has-error' : (f1.fgNo.errors && !f1.fgNo.errors.required ? 'has-text' : '')" class="cs-select">
+                                
+                                <ion-label>FG No.</ion-label>
+                                <ionic-selectable
+                                [(ngModel)]="data.fgNo"
+                                [items]="fgList"
+                                itemValueField="fg_no"
+                                itemTextField="fg_no"
+                                formControlName="fgNo"
+                                [canSearch]="true">
+                                
+                            </ionic-selectable>
+                            
+                        </ion-item>
+                        <ion-item  class="cs-select" *ngIf = "registerForm1.value['requestType']  != 'commissioning'">
+                            
+                            <ion-label>Nature Probelm</ion-label>
+                            <ionic-selectable
+                            [(ngModel)]="data.natureProblem"
+                            [items]="natureList"
+                            itemValueField="nature"
+                            itemTextField="nature"
+                            formControlName="natureProblem"
+                            [canSearch]="true">
+                            
+                        </ionic-selectable>
+                        
+                    </ion-item>
+                    
+                    <div class="cs-btn mt16" text-right>
+                        <ion-button (click)="onAddProductToListHandler()" class="success min w100">Add to List</ion-button>
+                    </div>
+                    
+                </div>
+                
+                <div class="complaints list mt20">
+                    
+                    <div *ngFor="let row of productData; let index = index" class="figure">
+                        <div class="cnt-info">
+                            <div class="cs-left">
+                                <div class="f-alpha">{{row.fgNo[0]}}</div>
+                                <div class="names">
+                                    <h1>{{row.fgNo}}</h1>
+                                    <ion-text>{{row.model}}, {{row.subModel}}</ion-text>
+                                </div>
+                            </div>
+                            <div (click)="onDeleteProductHandler(index)" class="cm-right">
+                                <a class="delete"><i class="material-icons">delete_sweep</i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="one-two-one three">
+                            <div class="cs-box">
+                                <div>
+                                    <ion-text>Valid Upto</ion-text>
+                                    <ion-text>{{row.validUpToDate}}</ion-text>
+                                </div>
+                            </div>
+                            <div class="cs-box">
+                                <div>
+                                    <ion-text>Service Request</ion-text>
+                                    <ion-text>{{row.serviceRequestCount}}</ion-text>
+                                </div>
+                            </div>
+                            <div class="cs-box">
+                                <div>
+                                    <ion-text>Responsibility Center</ion-text>
+                                    <ion-text>{{row.serviceCenter}} </ion-text>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="one-two-one one" *ngIf = "registerForm1.value['requestType']  != 'commissioning'">
+                            <div class="cs-box">
+                                <div>
+                                    <ion-text>Nature Problem</ion-text>
+                                    <ion-text>{{row.natureProblem}}</ion-text>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div> 
+            </div>
+
+            <div class="cs-right mt20">
+                <div class="common_form inner_page">
+                    <div class="heading"><h1>Transaction Type</h1></div>
+                        <div class="dflex">
+
+                            <ion-item  class="cs-select">
+                                            
+                                <ion-label>Transaction Type</ion-label>
+                                <ionic-selectable
+                                [(ngModel)]="data.transaction_type"
+                                [items]="transactionTypeList"
+                                itemValueField="transaction_type"
+                                itemTextField="transaction_type"
+                                formControlName="transaction_type"
+                                [canSearch]="true">
+                                
+                                </ionic-selectable>
+            
+                            </ion-item>
+
+                        </div>
+                    </div>
+                </div>   
+
+            <div class="cs-right mt20">
+                <div class="common_form inner_page">
+                    <div class="heading"><h1>Engineer Visiting Date & Time</h1></div>
+                    <!-- <ion-text class="mt16 font12">Requires Engineer Visit Date & Time</ion-text> -->
+                    <div class="dflex">
+                        <ion-item [ngClass]="submitted && f1.visitDate.errors && f1.visitDate.errors.required ? 'has-error' : (f1.visitDate.errors && !f1.visitDate.errors.required ? 'has-text' : '')" class="date-time mb0 mr10">
+                            <ion-label>Date</ion-label>
+                            <ion-datetime formControlName="visitDate" [(ngModel)]="data.visitDate" displayFormat="DD-MMM-YYYY" min="{{minDate}}"></ion-datetime>
+                            
+                            <ion-text *ngIf="submitted && f1.visitDate.errors" class="cs-error">
+                                
+                            </ion-text>
+                            
+                        </ion-item>
+                        
+                        <ion-item [ngClass]="submitted && f1.visitTime.errors && f1.visitTime.errors.required ? 'has-error' : (f1.visitTime.errors && !f1.visitTime.errors.required ? 'has-text' : '')" class="date-time">
+                            <ion-label>Time</ion-label>
+                            <ion-datetime formControlName="visitTime" [(ngModel)]="data.visitTime" displayFormat="h:mm A"></ion-datetime>
+                            
+                            <ion-text *ngIf="submitted && f1.visitTime.errors" class="cs-error">
+                                
+                            </ion-text>
+                            
+                        </ion-item>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+              <div class="cs-right mt20">
+                <div class="common_form inner_page">
+                    <div class="heading"><h1>Expecting Closing Date & Time</h1></div>
+                    <!-- <ion-text class="mt16 font12">Requires Engineer Visit Date & Time</ion-text> -->
+                    <div class="dflex">
+                        <ion-item [ngClass]="submitted && f1.expectingClosingDate.errors && f1.expectingClosingDate.errors.required ? 'has-error' : (f1.expectingClosingDate.errors && !f1.expectingClosingDate.errors.required ? 'has-text' : '')" class="date-time mb0 mr10">
+                            <ion-label>Date</ion-label>
+                            <ion-datetime formControlName="expectingClosingDate" [(ngModel)]="data.expectingClosingDate" displayFormat="DD-MMM-YYYY" min="{{minDate}}"></ion-datetime>
+                            
+                            <ion-text *ngIf="submitted && f1.expectingClosingDate.errors" class="cs-error">
+                                
+                            </ion-text>
+                            
+                        </ion-item>
+                        
+                        <ion-item [ngClass]="submitted && f1.expectingClosingTime.errors && f1.expectingClosingTime.errors.required ? 'has-error' : (f1.expectingClosingTime.errors && !f1.expectingClosingTime.errors.required ? 'has-text' : '')" class="date-time">
+                            <ion-label>Time</ion-label>
+                            <ion-datetime formControlName="expectingClosingTime" [(ngModel)]="data.expectingClosingTime" displayFormat="h:mm A"></ion-datetime>
+                            
+                            <ion-text *ngIf="submitted && f1.expectingClosingTime.errors" class="cs-error">
+                                
+                            </ion-text>
+                            
+                        </ion-item>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="cs-right mt20">
+                <div class="common_form inner_page">
+                    <div class="heading"><h1>Contact Person Information</h1></div>
+                </div>
+                <div class="cs-checkbox">
+                    <ion-list>
+                        <ion-item *ngFor="let row of contactList">
+                            <ion-label>{{row.name}} ({{row.designation}})</ion-label>
+                            <ion-checkbox [(ngModel)]="row.checked" formControlName="contactName" slot="start" color="success"></ion-checkbox>
+                        </ion-item>
+                    </ion-list>
+                </div>
+            </div>
+            
+            <div class="cs-btn mt20">
+                <ion-button type="submit" class="success large" expand="full">SUBMIT</ion-button>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+</form>
+</div>
+</ion-content>

@@ -1,0 +1,158 @@
+<ion-content >
+    
+    <ion-refresher slot="fixed" 
+    (ionRefresh)="ionRefresh($event)">
+    <ion-refresher-content
+    pullingIcon="arrow-dropdown"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+</ion-refresher-content>
+</ion-refresher>
+
+<div class="cs-main-container">
+    
+    <div class="custome-head">
+        <div class="cs-ion-header">
+            
+            <div class="cs-left">
+                <ion-title class="pl0">My {{routeTitleForView}}</ion-title>
+            </div>
+            
+            <div class="cs-right">
+                <ion-button (click)="onSearchClickHandler()"><ion-icon name="search"></ion-icon></ion-button>
+                <ion-button (click)="presentModal()" id="bt"><ion-icon name="funnel"></ion-icon></ion-button>
+            </div>
+            
+            <div [ngClass]="isSearchOptionActive ? 'active' : ''" class="search-filetr">
+                
+                <ion-searchbar [(ngModel)]="data.inputSearch" (ngModelChange)="onUpdateCurrentPageHandler(); onGetComplaintListHandler(false, '')" id="inputSearch"></ion-searchbar>
+                
+                <a (click) = "data.inputSearch = ''; isSearchOptionActive = false; onUpdateCurrentPageHandler(); onGetComplaintListHandler(false, '')"  class="cancel">Cancel</a>
+                
+            </div>
+            
+        </div>
+        <div class="cs-ion-hf"></div>
+    </div>
+    
+    
+    
+    <div class="cs-ion-content pt0" padding>
+        <div class="complaints list">
+            
+            <div *ngFor="let row of complaintList" class="figure">
+                
+                <div (click)="GoComplaintDetail(row.id)" class="top">
+                    <div class="cs-left">
+                        <h1>#COM - {{row.task_no}} <ion-text>({{row.days}} Days)</ion-text></h1>
+                    </div>
+                    <div class="cs-right">
+                        <ion-text>{{row.dateCreated}}  |  {{row.timeCreated}}</ion-text>
+                    </div>
+                </div>
+                
+                <div class="cnt-info">
+                    
+                    <div (click)="GoComplaintDetail(row.id)" class="cs-left">
+                        <div class="f-alpha">{{row.customer_name[0]}}</div>
+                        <div class="names">
+                            <h1>{{row.customer_name}}</h1>
+                            <ion-text>{{row.customer_contact_name}}</ion-text>
+                        </div>
+                    </div>
+                    
+                    <div class="cs-right">
+                        <a href="tel: {{row.customer_contact_mobile}}" class="call"><i class="material-icons">call</i></a>
+                    </div>
+                </div>
+                
+                <div (click)="GoComplaintDetail(row.id)" class="one-one-one">
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>Project </ion-text>
+                            <ion-text>{{row.project_name}}</ion-text>
+                        </div>
+                    </div>
+                </div>
+                
+                <div (click)="GoComplaintDetail(row.id)" *ngFor="let fgRow of row.fgData"  class="one-two-one three">
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>FG No.</ion-text>
+                            <ion-text>{{fgRow.fg_no}}</ion-text>
+                        </div>
+                    </div>
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>Priority</ion-text>
+                            <ion-text [style.color]="row.priorityColor">{{row.priority}}</ion-text>
+                        </div>
+                    </div>
+                    <div class="cs-box close" style="background: #FFA200;">
+                        <div>
+                            <ion-text>Service Type</ion-text>
+                            <ion-text>{{fgRow.serviceType ? fgRow.serviceType : 'NA'}}</ion-text>
+                        </div>
+                    </div>
+                </div>
+                
+                <div (click)="GoComplaintDetail(row.id)" class="one-one-one">
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>Complaint Title </ion-text>
+                            <ion-text>{{row.compaint_title}}</ion-text>
+                        </div>
+                    </div>
+                </div>
+                
+                <div (click)="GoComplaintDetail(row.id)" class="one-two-one two">
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>Eng. Work Status</ion-text>
+                            <ion-text>{{row.workStatus ? row.workStatus : 'NA'}}</ion-text>
+                        </div>
+                    </div>
+                    <div [ngClass] = "(row.status) ? row.status.toLowerCase() : ''" class="cs-box">
+                        <div>
+                            <ion-text>Complaint Status</ion-text>
+                            <ion-text>{{row.status}}</ion-text>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lf-btns">
+                    <div class="cs-left">
+                        
+                        <ion-button (click)="GoComplaintDetailModulesHandler('statusListPage', row.id, row.task_no,row.status)" color="primary" fill="clear">Status History</ion-button>
+                        
+                        <ion-button (click)="GoComplaintDetailModulesHandler('dailyWorkReportPage', row.id, row.task_no,row.status)" color="primary" fill="clear">Daily Report</ion-button>
+                        
+                    </div>
+                    <div (click)="presentPopover($event, row.id, row.task_no,row.status)" class="cs-right">
+                        <ion-button color="primary" fill="clear"><ion-icon name="more"></ion-icon></ion-button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        
+        <div *ngIf="!isRequestInProcess && complaintList.length == 0" class="no-data">
+            <img src="assets/icon/no_found.svg">
+            <p>Data Not Found!</p>
+        </div>
+        
+    </div>
+</div>
+
+
+<ion-infinite-scroll threshold="100px" *ngIf="doCheckForMoreData" (ionInfinite)="onGetComplaintListHandler(false, $event)">
+    <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">
+</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+</ion-content>
+

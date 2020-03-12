@@ -1,0 +1,71 @@
+<ion-content >
+    <div class="cs-main-container">
+        <div class="custome-head">
+            
+            <div class="profile-big"><img *ngIf="profileData.image_url" src="{{dbService.userDocURL + profileData.image_url}}" alt=""></div>
+
+            <div class="cs-ion-header">
+
+                <div class="cs-left">
+                    <ion-button [routerLink]="['/technicians/menu']">
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </ion-button>
+                    <ion-title>My Profile</ion-title>
+                </div>
+
+                <div (click)="presentActionSheet()" class="cs-right">
+                    <ion-button><ion-icon name="camera"></ion-icon></ion-button>
+                </div>
+
+            </div>
+            
+            <div class="profile-segment detail">
+
+                <div class="pr-icon">
+
+                    <div *ngIf="!profileData.image_url" class="cs-icon"></div>
+
+                    <div (click)="onViewImageHandler()" *ngIf="profileData.image_url" class="cs-thumb">
+                        <img  src="{{dbService.userDocURL + profileData.image_url}}" alt="">
+                    </div>
+
+                </div>
+
+                <div class="info">
+
+                    <ion-text color="light">{{profileData.name}}<br>
+                        <span>{{profileData.mobile}}</span>
+                    </ion-text>
+
+                </div>
+            </div>
+            
+            
+            <div class="cs-ion-hf"></div>
+        </div>
+        
+        <div class="cs-ion-content pt0" padding>
+            <div class="my_profile" padding>
+                
+                <div class="information">
+
+                    <div class="figure">
+                        <img src="assets/icon/pr_call.svg" alt="">
+                        <h1>{{profileData.mobile}}</h1>
+                    </div>
+                    <div class="figure">
+                        <img src="assets/icon/pr_email.svg" alt="">
+                        <a>{{profileData.email}}</a>
+                    </div>
+                    <div class="figure">
+                        <img src="assets/icon/pr_address.svg" alt="">
+                        <h1>{{profileData.street}} {{profileData.state_name}}, {{profileData.district_name}}, {{profileData.city}}, {{profileData.pincode}}</h1>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</ion-content>

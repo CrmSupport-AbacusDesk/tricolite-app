@@ -1,0 +1,25 @@
+<ion-tabs #mainTabs>
+    
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="tabChanged('home')" tab="home">
+            <ion-icon name="home"></ion-icon>
+            <ion-label>HOME</ion-label>
+        </ion-tab-button>
+        
+        <ion-tab-button (click)="tabChanged('complaint')" tab="complaints">
+            <ion-icon name="alert"></ion-icon>
+            <ion-label>COMPLAINTS</ion-label>
+        </ion-tab-button>
+        
+        <ion-tab-button (click)="tabChanged('commissioning')" tab="commissioning">
+            <ion-icon name="flower"></ion-icon>
+            <ion-label>COMMISSIONING</ion-label>
+        </ion-tab-button>
+        
+        <ion-tab-button (click)="tabChanged('menu')" tab="menu">
+            <ion-icon name="menu"></ion-icon>
+            <ion-label>MENU</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+    
+</ion-tabs>

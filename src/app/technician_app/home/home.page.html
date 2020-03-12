@@ -1,0 +1,87 @@
+<ion-content>
+    <div class="dashboard_cnt">
+        <div class="cs-header" padding>
+            <div class="logo"><img src="assets/img/logo.jpg" alt=""></div>
+            
+            <div class="profile-segment mt16">
+                <div class="pr-icon">
+                    <div *ngIf="!profileData.image_url" class="cs-icon"></div>
+                    
+                    <div *ngIf="profileData.image_url" class="cs-thumb">
+                        <img  src="{{dbService.userDocURL + profileData.image_url}}" alt="">
+                    </div>
+                </div>
+                <div *ngIf="dashboardData && dashboardData['loginData']" class="info">
+                    <ion-text color="light">{{dashboardData['loginData']['name']}}<br><span>{{dashboardData['loginData']['mobile']}}</span></ion-text>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf="dashboardData" class="dashboard_container">
+        <div class="top-counters">
+            <div class="figure">
+                <div>
+                    <h1>{{dashboardData.typeTotalCount1}}</h1>
+                    <ion-text>< 5 Day</ion-text>
+                </div>
+            </div>
+            
+            <div class="figure">
+                <div>
+                    <h1>{{dashboardData.typeTotalCount2}}</h1>
+                    <ion-text>5 - 10 Day</ion-text>
+                </div>
+            </div>
+            
+            <div class="figure">
+                <div>
+                    <h1>{{dashboardData.typeTotalCount3}}</h1>
+                    <ion-text>> 10 Day</ion-text>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="midd-counters">
+            <ion-button routerLink="/technicians/complaints" fill="clear" class="free">
+                <div class="figure">
+                    <div class="count"><ion-text>{{dashboardData.freeServiceTask}}</ion-text> Complaint</div>
+                    <div class="pr-section">
+                        <h1>Free <ion-text>Service</ion-text></h1>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </div>
+                </div>
+            </ion-button>
+            <ion-button routerLink="/technicians/complaints" fill="clear" class="paid">
+                <div class="figure">
+                    <div class="count"><ion-text>{{dashboardData.paidServiceTask}}</ion-text> Complaint</div>
+                    <div class="pr-section">
+                        <h1>Paid <ion-text>Service</ion-text></h1>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </div>
+                </div>
+            </ion-button>
+            <ion-button routerLink="/technicians/commissioning" fill="clear" class="default">
+                <div class="figure">
+                    <div class="count"><ion-text>{{dashboardData.commissioningTask}}</ion-text> Task</div>
+                    <div class="pr-section">
+                        <h1>Commissioning</h1>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </div>
+                </div>
+            </ion-button>
+        </div>
+        
+        <!-- <div class="cs-btn give_feedback mt32">
+            <ion-button class="round large" fill="clear" expand="full">
+                <div class="figure">
+                    <h1>Give Your Feedback</h1>
+                    <i class="material-icons">arrow_right_alt</i>
+                </div>
+            </ion-button>
+        </div> -->
+    </div>
+    
+    
+</ion-content>

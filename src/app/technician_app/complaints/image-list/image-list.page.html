@@ -1,0 +1,33 @@
+<ion-content >
+  <div class="cs-main-container">
+      <div class="custome-head">
+          <div class="cs-ion-header">
+              <div class="cs-left">
+                  <ion-button (click)="GoComplaintDetail()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                  <ion-title>Documents</ion-title>
+              </div>
+          </div>
+          <div class="cs-ion-hf"></div>
+      </div>
+      
+      <div class="cs-ion-content">
+          <div class="m_documents" padding>
+              <div class="figure" (click)="GoToImageGalley()">
+                  <div class="thumb"><img src="assets/img/spare_parts.jpg" alt=""></div>
+                  <h1><ion-text>Subject #1</ion-text> <i class="material-icons">arrow_right_alt</i></h1>
+                  <span class="imagse-count">20</span>
+              </div>
+              <div class="figure">
+                  <div class="thumb"><img src="assets/img/spare_parts.jpg" alt=""></div>
+                  <h1><ion-text>Subject #1</ion-text> <i class="material-icons">arrow_right_alt</i></h1>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="h50"></div>
+  <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" style="bottom: 10px">
+    <ion-fab-button (click)="GoToImages()">
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
+</ion-content>

@@ -1,0 +1,110 @@
+<ion-content>
+    <div class="dashboard_cnt">
+        <div class="cs-header" padding>
+            <div class="logo">
+                <img src="assets/img/logo.jpg" alt="">
+                <ion-button (click)="onLogoutHandler()" color="danger" fill="clear" class="w45 h45 font14 mr5"><ion-icon name="power"></ion-icon></ion-button>
+            </div>
+            
+            <div class="profile-segment mt16" (click)="GoToProfile()">
+                <div class="pr-icon">
+                    <div *ngIf="!profileData.image_url" class="cs-icon"></div>
+                    
+                    <div *ngIf="profileData.image_url" class="cs-thumb">
+                        <img  src="{{dbService.customerDocURL + profileData.image_url}}" alt="">
+                    </div>
+                </div>
+                <div *ngIf="dashboardData && dashboardData['loginData']" class="info">
+                    <ion-text color="light">{{dashboardData['loginData']['company_name']}}<br><span>{{dashboardData['loginData']['cust_code']}}</span></ion-text>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dashboard_container">
+        
+        <div class="customer-dash">
+            <div class="cs-left pr0">
+                <button class="serv-req">
+                    <div routerLink = "/customer/request" class="figure">
+                        <div class="top">
+                            <img src="assets/icon/request_icon.svg" alt="">
+                            <i class="material-icons">arrow_right_alt</i>
+                        </div>
+                        <h1>Service Request</h1>
+                    </div>
+                </button>
+                <button class="serv-req mt20" (click)="GoToCallRequest()">
+                    <div class="figure">
+                        <div class="top">
+                            <img src="assets/icon/request_call_icon.svg" alt="">
+                        </div>
+                        <div class="pnrq">
+                            <ion-text>{{dashboardData['typeTotalCount1']}}</ion-text>
+                            <h1>Call Request<br>Pending</h1>
+                        </div>
+                        <h1>Send Call Request</h1>
+                    </div>
+                </button>
+                <!-- <button class="change-pass mt20" [routerLink]="['/changepassword']">
+                    <div class="figure">
+                        <div class="top">
+                            <i class="material-icons">arrow_right_alt</i>
+                            <img src="assets/icon/change_password.svg" alt="">
+                        </div>
+                        <h1>Change Password</h1>
+                    </div>
+                </button> -->
+            </div>
+            <!-- <div class="cs-right">
+                <button >
+                    <div class="figure">
+                        <div class="top">
+                            <img src="assets/icon/request_call_icon.svg" alt="">
+                        </div>
+                        <h1>Send<br>Call<br>Request</h1>
+                        <div class="pnrq">
+                            <ion-text>{{dashboardData['typeTotalCount1']}}</ion-text>
+                            <h1>Call<br>Request<br>Pending</h1>
+                        </div>
+                    </div>
+                </button>
+            </div> -->
+        </div>
+        
+        <!-- <div class="midd-counters mt20">
+            <ion-button fill="clear" class="csmp mb20 round">
+                <div class="figure">
+                    <div class="count"><ion-text>{{dashboardData['typeTotalCount2']}}</ion-text> Complaint</div>
+                    <div class="pr-section">
+                        <h1 class="font14">Feedback Pending</h1>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </div>
+                </div>
+            </ion-button>
+        </div> -->
+        
+        <div class="cs-btn view_document mt20">
+            <ion-button class="round large" fill="clear" expand="full" (click)="GoToDocuments()">
+                <div class="figure">
+                    <h1>View Documents</h1>
+                    <i class="material-icons">arrow_right_alt</i>
+                </div>
+            </ion-button>
+        </div>
+        
+        
+        <div class="cs-btn sos_contact mt20">
+            <a href="tel: {{dashboardData.customerEmergencyNumber}}">
+                <ion-button class="round large" fill="clear" expand="full">
+                    <div class="figure">
+                        <h1>Call Emergency Contact</h1>
+                    </div>
+                </ion-button>
+            </a>
+            
+        </div>
+    </div>
+    
+    
+</ion-content>

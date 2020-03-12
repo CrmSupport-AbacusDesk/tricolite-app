@@ -1,0 +1,224 @@
+<ion-content >
+    <div class="cs-main-container">
+        <div class="custome-head">
+            <div class="cs-ion-header">
+                <div class="cs-left">
+                    <ion-button [routerLink]="['/customer/projects']"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                    <ion-title>{{projectData.project_name}} - Detail</ion-title>
+                </div>
+            </div>
+            <div class="cs-ion-hf"></div>
+        </div>
+        
+        <div *ngIf="projectData && projectData.project_name" class="cs-ion-content pt0" padding>
+            
+            <div class="complaints">
+                <div class="figure">
+                    <div class="cnt-info pt0 pl0 pr0">
+                        <div class="cs-left">
+                            <div class="f-alpha">{{projectData.project_name[0]}}</div>
+                            <div class="names">
+                                <h1>{{projectData.project_name}}</h1>
+                                <ion-text>{{projectData.street}} {{projectData.state_name}}, {{projectData.district_name}}, {{projectData.city}}, {{projectData.pincode}}</ion-text>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="one-two-one three">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Contact Person</ion-text>
+                                <ion-text>{{projectData.contactData.length}}</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Total Products</ion-text>
+                                <ion-text>{{projectData.productData.length}}</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Service Request</ion-text>
+                                <ion-text>{{projectData.totalServiceRequest}} </ion-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="complaints product-list mt20">
+                <div class="cs-tabs">
+                    <ion-button (click)="activeTab=1" [ngClass]="activeTab==1 ? 'active' : ''">Products</ion-button>
+                    <ion-button (click) = "activeTab=2" [ngClass]="activeTab==2  || activeTab == 3 ? 'active' : ''">Contact Persons</ion-button>
+                </div>
+                
+                <div *ngIf="activeTab == 1" class="project_FG_data">
+                    
+                    <div *ngFor="let row of projectData.productData" class="figure">
+                        <div class="cnt-info">
+                            <div class="cs-left">
+                                <div class="names">
+                                    <h1>{{row.fg_no}}  | <span>{{row.warranty_type}}</span></h1>
+                                    <ion-text>{{row.service_center_name}}</ion-text>
+                                </div>
+                            </div>
+                            <div class="cs-right">
+                                <ion-text class="font10"><span class="font8">Warranty (Valid Upto)</span><br>{{row.warranty}} ({{row.warantyValidUpToInFormat}})</ion-text>
+                            </div>
+                        </div>
+
+                        
+                        <div class="cnt-info pt0">
+                            <div class="cs-left">
+                                <div class="names"> 
+                                    <h1><ion-text>Next Service :</ion-text> &nbsp; </h1>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="one-two-one merge">
+                            <div class="cs-box">
+                                <div>
+                                    <ion-text>Brand / Model / Sub Model</ion-text>
+                                    <ion-text>{{row.brand}} / {{row.model}} / {{row.sub_model}}</ion-text>
+                                </div>
+                            </div>
+                            <div class="cs-box">
+                                <div>
+                                    <ion-text>So / Si No.</ion-text>
+                                    <ion-text>{{row.so_no}} / {{row.si_no}}</ion-text>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="one-two-one three mt10">
+                            <div class="cs-box">
+                                <div>
+                                    <ion-text>Date Of Supply</ion-text>
+                                    <ion-text>{{row.dateSupplyInFormat}}</ion-text>
+                                </div>
+                            </div>
+                            <div class="cs-box">
+                                <div>
+                                    <ion-text>Installation Date</ion-text>
+                                    <ion-text>{{row.dateInstallationInFormat}}</ion-text>
+                                </div>
+                            </div>
+                            <div class="cs-box">
+                                <div>
+                                    <ion-text>Service Request</ion-text>
+                                    <ion-text>{{row.productServiceRquestCount}}</ion-text>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                
+                <div *ngIf="activeTab == 2" class="my_contact_persons">
+                    
+                    <div *ngFor= "let row of projectData.contactData" class="figure pb0">
+                        <div class="cnt-info">
+                            <div class="cs-left">
+                                <div class="f-alpha bg1">g</div>
+                                <div class="names">
+                                    <h1>{{row.name}} ({{row.designation}})</h1>
+                                    <a>{{row.email}}</a>
+                                </div>
+                            </div>
+                            <div class="cs-right">
+                                <a href="tel: {{row.mobile}}" class="call"><i class="material-icons">call</i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div (click)="activeTab = 3" class="cs-btn ion-padding" text-right>
+                        <ion-button class="w45 h45 round font16" ><ion-icon name="add"></ion-icon></ion-button>
+                    </div>
+                    
+                </div>
+                
+                <div *ngIf="activeTab == 3" class="add_new_contact_person">
+                    <div class="cnt-person">
+                        <div class="css-heading"><h1>Add New Contact Person</h1></div>
+                        
+                        <form [formGroup]="registerForm1" (ngSubmit)="onSaveContactDetailHandler()">
+                            
+                            <div class="common_form inner_page">
+                                
+                                <ion-item [ngClass]="submitted && f1.contactName.errors && f1.contactName.errors.required ? 'has-error' : (f1.contactName.errors && !f1.contactName.errors.required ? 'has-text' : '')">
+                                    
+                                    <ion-label position="floating">Contact Person Name</ion-label>
+                                    <ion-input formControlName="contactName" [(ngModel)]="data.contactName"></ion-input>
+                                    
+                                    <ion-text *ngIf="submitted && f1.contactName.errors" class="cs-error">
+                                        
+                                        <span *ngIf="f1.contactName.errors.minlength">Minimum 4 Letter Required</span>
+
+                                        <span *ngIf="f1.contactName.errors.maxlength">Minimum 50 Letter Required</span>
+                                        
+                                    </ion-text>
+                                    
+                                </ion-item>
+                                
+                                <ion-item [ngClass]="submitted && f1.contactMobile.errors && f1.contactMobile.errors.required ? 'has-error' : (f1.contactMobile.errors && !f1.contactMobile.errors.required ? 'has-text' : '')">
+                                    
+                                    <ion-label position="floating">Mobile No.</ion-label>
+                                    <ion-input type="tel" formControlName="contactMobile" [(ngModel)]="data.contactMobile" (keypress) = "dbService.numberOnly($event)"></ion-input>
+                                    
+                                    <ion-text *ngIf="submitted && f1.contactMobile.errors" class="cs-error">
+                                        
+                                        <span *ngIf="f1.contactMobile.errors.minlength">Minimum 10 Digit Required</span>
+                                        
+                                        <span *ngIf="f1.contactMobile.errors.maxlength">Maximum 10 Digit Required</span>
+                                        
+                                    </ion-text>
+                                    
+                                </ion-item>
+                                
+                                <ion-item [ngClass]="submitted && f1.contactEmail.errors && f1.contactEmail.errors.required ? 'has-error' : (f1.contactEmail.errors && !f1.contactEmail.errors.required ? 'has-text' : '')">
+                                    
+                                    <ion-label position="floating">Email ID</ion-label>
+                                    <ion-input formControlName="contactEmail" [(ngModel)]="data.contactEmail"></ion-input>
+                                    
+                                    <ion-text *ngIf="submitted && f1.contactEmail.errors" class="cs-error">
+                                        
+                                        <span *ngIf="!f1.contactEmail.errors.required">Email Invalid</span>
+                                        
+                                    </ion-text>
+                                    
+                                </ion-item>
+                                
+                                <ion-item [ngClass]="submitted && f1.designation.errors && f1.designation.errors.required ? 'has-error' : (f1.designation.errors && !f1.designation.errors.required ? 'has-text' : '')">
+
+                                    <ion-label position="floating">Designation</ion-label>
+                                    <ion-input formControlName="designation" [(ngModel)]="data.designation"></ion-input>
+                                    
+                                    <ion-text *ngIf="submitted && f1.designation.errors" class="cs-error">
+                                        
+                                        <span *ngIf="f1.designation.errors.minlength">Minimum 3 Letter Required</span>
+
+                                        <span *ngIf="f1.designation.errors.minlength">Maximum 50 Letter Allowed!</span>
+                                        
+                                    </ion-text>
+                                </ion-item>
+                                
+                            </div>
+                            
+                            <div class="cs-btn mt30 pb10 lr">
+                                
+                                <ion-button (click)="activeTab=2" class="dark min w100 clear border" fill="clear">CANCEL</ion-button>
+                                
+                                <ion-button type="submit" class="success min w100">SAVE</ion-button>
+                                
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

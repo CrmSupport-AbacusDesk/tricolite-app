@@ -1,0 +1,26 @@
+<ion-tabs>
+    
+  <ion-tab-bar slot="bottom">
+
+      <ion-tab-button [hidden]="loginData.loginStatus != 'Active'" (click)="tabChanged('home')" tab="home">
+          <ion-icon name="home"></ion-icon>
+          <ion-label>HOME</ion-label>
+      </ion-tab-button>
+      
+      <ion-tab-button [hidden]="loginData.loginStatus != 'Active'" (click)="tabChanged('request')" tab="request">
+          <ion-icon name="alert"></ion-icon>
+          <ion-label>REQUEST</ion-label>
+      </ion-tab-button>
+      
+      <ion-tab-button [hidden]="loginData.loginStatus != 'Active'" (click)="tabChanged('project')" tab="projects">
+          <ion-icon name="basket"></ion-icon>
+          <ion-label>PROJECT</ion-label>
+      </ion-tab-button>
+      
+      <ion-tab-button (click)="tabChanged('aboutUs')" tab="aboutus">
+          <ion-icon name="globe"></ion-icon>
+          <ion-label>ABOUT US</ion-label>
+      </ion-tab-button>
+  </ion-tab-bar>
+  
+</ion-tabs>

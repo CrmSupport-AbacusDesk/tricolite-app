@@ -1,0 +1,89 @@
+<ion-content >
+    
+    <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)">
+        <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+    </ion-refresher-content>
+</ion-refresher>
+
+<div class="cs-main-container">
+    <div class="custome-head">
+        <div class="cs-ion-header">
+            <div class="cs-left">
+                <ion-title class="pl0">My Project's</ion-title>
+            </div>
+            
+            <div class="cs-right">
+                <ion-button (click)="onSearchClickHandler()"><ion-icon name="search"></ion-icon></ion-button>
+            </div>
+            
+            <div [ngClass]="isSearchOptionActive ? 'active' : ''" class="search-filetr">
+                
+                <ion-searchbar [(ngModel)]="data.searchData" (ngModelChange)="onUpdateCurrentPageHandler(); onGetProjectListHandler(false, '')" id="searchData"></ion-searchbar>
+                
+                <a (click) = "data.searchData = ''; isSearchOptionActive = false; onUpdateCurrentPageHandler(); onGetProjectListHandler(false, '')"  class="cancel">Cancel</a>
+                
+            </div>
+        </div>
+        <div class="cs-ion-hf"></div>
+    </div>
+    
+    <div class="cs-ion-content pt0" padding>
+        
+        <div  (click)="GoToDetail(row.id)" *ngFor="let row of projectList" class="complaints product-list mt20">
+            
+            <div class="figure">
+                
+                <div class="cnt-info">
+                    <div class="cs-left">
+                        <div class="f-alpha">{{row.project_name[0]}}</div>
+                        <div class="names">
+                            <h1>{{row.project_name}}</h1>
+                            <ion-text>{{row.street}} {{row.state_name}}, {{row.district_name}}, {{row.city}}, {{row.pincode}}</ion-text>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="one-two-one three">
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>Contact Person</ion-text>
+                            <ion-text>{{row.contactData.length}}</ion-text>
+                        </div>
+                    </div>
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>Total Products</ion-text>
+                            <ion-text>{{row.productData.length}}</ion-text>
+                        </div>
+                    </div>
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>Service Request</ion-text>
+                            <ion-text>{{row.totalServiceRequest}} </ion-text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="!isRequestInProcess && projectList.length == 0" class="no-data">
+            <img src="assets/icon/no_found.svg">
+            <p>Data Not Found!</p>
+        </div>
+        
+    </div>
+</div>
+
+
+<ion-infinite-scroll threshold="100px" *ngIf="doCheckForMoreData" (ionInfinite)="onGetProjectListHandler(false, $event)">
+    <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">
+</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-content >
+    <div class="cs-main-container">
+        <div class="custome-head">
+            <div class="cs-ion-header">
+                <div class="cs-left">
+                    <ion-button  (click)="GoComplaintDetail()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                    <ion-title>#COM-{{taskNo}} - <ion-text>Images</ion-text></ion-title>
+                </div>
+                <div class="cs-right">
+                    <ion-button (click)="presentPopover($event)"><ion-icon name="more"></ion-icon></ion-button>
+                </div>
+            </div>
+            <div class="cs-ion-hf"></div>
+        </div>
+        
+        <div class="cs-ion-content pt0" padding>
+            <div class="gallery-container">
+                <div class="img-gallery">
+                    <div (click)="presentActionSheet()" class="figure upload"><i class="material-icons">add</i></div>
+                    <div *ngFor="let row of taskImageData; let index = index"  class="figure">
+                        <img (click) = "onViewImageHandler(index)" src="{{dbService.uploadURL}}{{row.image_url}}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

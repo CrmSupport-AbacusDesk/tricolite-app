@@ -1,0 +1,7 @@
+{
+  "name": "tricolite",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,157 @@
+<ion-content >
+    <div class="cs-main-container">
+        <div class="custome-head">
+            <div class="cs-ion-header">
+                <div class="cs-left">
+                    <ion-button [routerLink]="['/customer/request']"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                    <ion-title>Request Detail</ion-title>
+                </div>
+                <div class="cs-right">
+                    <ion-button (click)="presentcutomerPopover($event)"><ion-icon name="more"></ion-icon></ion-button>
+                </div>
+            </div>
+            <div class="cs-ion-hf"></div>
+        </div>
+        
+        <div class="cs-ion-content pt0" padding>
+            <div class="complaints">
+                <div class="figure">
+                    <div class="top">
+                        <div class="cs-left">
+                            <h1>#COM50421 <ion-text>(12 Days)</ion-text></h1>
+                            <ion-text>Sahibabad</ion-text>
+                        </div>
+                        <div class="cs-right">
+                            <ion-text>2 Dec 2019  |  11:05 am</ion-text>
+                        </div>
+                    </div>
+                    
+                    <div class="one-two-one three mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Created By</ion-text>
+                                <ion-text>Rahul Sharma</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Service Type</ion-text>
+                                <ion-text>Free</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box close" style="background: #FFCC00;">
+                            <div>
+                                <ion-text>Priority</ion-text>
+                                <ion-text>Medium</ion-text>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="one-two-one one mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Request Type & Complaint Title</ion-text>
+                                <ion-text>Complaint / Supervision Of Bus Duct Installation</ion-text>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="one-two-one one mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Description <strong>It Is A Long Established Fact That A Reader Will Be Distracted By The Readable Content.</strong></ion-text>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="one-two-one two mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Eng. Work Status</ion-text>
+                                <ion-text>Reached</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box" style="background: #FF0000;">
+                            <div>
+                                <ion-text>Complaint Status</ion-text>
+                                <ion-text>Open</ion-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="complaints product-list mt20">
+                <div class="cs-heading"><h1>Product Information</h1></div>
+                <div class="figure">
+                    <div class="cnt-info">
+                        <div class="cs-left">
+                            <div class="f-alpha">A</div>
+                            <div class="names">
+                                <h1>AXYZ Product #001</h1>
+                                <ion-text>XYZ Product Model #001</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-right">
+                            <a class="arrow"><i class="material-icons">keyboard_arrow_right</i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="one-two-one three">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>So No.</ion-text>
+                                <ion-text>SO/1718</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Si No.</ion-text>
+                                <ion-text>AUG/0023</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>FG No.</ion-text>
+                                <ion-text>FG19646 </ion-text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="complaints product-list mt20">
+                <div class="cs-heading"><h1>Assign Subordinates</h1></div>
+                <div class="figure">
+                    <div class="cnt-person">
+                        <div class="p-info">
+                            <div class="cs-left">
+                                <h1><i class="material-icons">person</i>Ram Kumar Mishra (HR Manager)</h1>
+                            </div>
+                            <div class="cs-right">
+                                <a><i class="material-icons">call</i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cnt-person">
+                        <div class="p-info">
+                            <div class="cs-left">
+                                <h1><i class="material-icons">person</i>Ram Kumar Mishra (HR Manager)</h1>
+                            </div>
+                            <div class="cs-right">
+                                <a><i class="material-icons">call</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" size="small">
+        <ion-fab-button>
+            <ion-icon name="chatbubbles"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

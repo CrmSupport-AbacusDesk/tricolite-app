@@ -1,0 +1,65 @@
+<ion-content >
+    <div class="cs-main-container">
+        <div class="custome-head">
+            <div class="cs-ion-header">
+                <div class="cs-left">
+                    <ion-button [routerLink]="['/customer/request']"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                    <ion-title>Give Your Feedback</ion-title>
+                </div>
+            </div>
+            <div class="cs-ion-hf"></div>
+        </div>
+        
+        <div class="cs-ion-content pt0" padding>
+            <div *ngIf="taskData && taskData.task_no" class="complaints">
+                <div class="figure">
+                    <div class="top">
+                        <div class="cs-left">
+                            <h1>#COM-{{taskData.task_no}} <ion-text>({{taskData.days}} Days)</ion-text></h1>
+                        </div>
+                        <div class="cs-right">
+                            <ion-text>{{taskData.dateCreated}}  |  {{taskData.timeCreated}}</ion-text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="gfeedback ion-padding">
+                <div *ngIf="userData && userData.name" class="cnt-info">
+                    <div class="cs-left">
+                        <div class="f-alpha">{{userData.name[0]}}</div>
+                        <div class="names">
+                            <h1>{{userData.name}}</h1>
+                            <ion-text>+91 {{userData.mobile}}</ion-text>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="common_form inner_page">
+                    <div class="stars">
+                        <ion-button  [ngClass]="selectedRating >= 1 ? 'fillColor' : ''" fill="clear" (click)="onStarClickHandler(1)" color="dark"><ion-icon name="star-outline"></ion-icon></ion-button>
+
+                        <ion-button [ngClass]="selectedRating >= 2 ? 'fillColor' : ''" fill="clear" (click)="onStarClickHandler(2)" color="dark"><ion-icon name="star-outline"></ion-icon></ion-button>
+
+                        <ion-button fill="clear" [ngClass]="selectedRating >= 3 ? 'fillColor' : ''" (click)="onStarClickHandler(3)" color="dark"><ion-icon name="star-outline"></ion-icon></ion-button>
+
+                        <ion-button fill="clear" [ngClass]="selectedRating >= 4 ? 'fillColor' : ''" (click)="onStarClickHandler(4)" color="dark"><ion-icon name="star-outline"></ion-icon></ion-button>
+
+                        <ion-button fill="clear" [ngClass]="selectedRating == 5 ? 'fillColor' : ''" (click)="onStarClickHandler(5)" color="dark"><ion-icon name="star-outline"></ion-icon></ion-button>
+                    </div>
+                    
+                    <ion-item class="h70">
+                        <ion-textarea [(ngModel)]="data.description" placeholder="Description"></ion-textarea>
+                    </ion-item>
+                    
+                    <div class="cs-btn mt32" text-right>
+                        <ion-button (click)="onSaveFeedbackHandler()" class="success min w90">SAVE</ion-button>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</ion-content>

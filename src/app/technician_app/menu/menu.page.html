@@ -1,0 +1,50 @@
+<ion-content>
+    <div class="dashboard_cnt">
+        <div class="cs-header" padding>            
+            <div class="profile-segment mt66">
+                
+                <div class="pr-icon">
+                    
+                    <div *ngIf="!profileData.image_url" class="cs-icon"></div>
+                    
+                    <div *ngIf="profileData.image_url" class="cs-thumb">
+                        <img  src="{{dbService.userDocURL + profileData.image_url}}" alt="">
+                    </div>
+                    
+                </div>
+                
+                <div class="info">
+                    <ion-text color="light">{{profileData.name}}<br><span>{{profileData.mobile}}</span></ion-text>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cs-navigations mt32">
+        <ion-button fill="clear" color="dark" (click)="GoToProfile()">
+            <div class="figure">
+                <ion-text><img src="assets/icon/my_profile.svg" alt="">My Profile</ion-text>
+                <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+        </ion-button>
+        <ion-button fill="clear" color="dark" (click)="GoToDocuments()">
+            <div class="figure">
+                <ion-text><img src="assets/icon/user_manual.svg" alt="">Documents</ion-text>
+                <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+        </ion-button>
+        <ion-button fill="clear" color="dark" [routerLink]="['/forgotpassword']">
+            <div class="figure">
+                <ion-text><img src="assets/icon/change_password.svg" alt="">Change Password</ion-text>
+                <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+        </ion-button>
+        <ion-button (click)="onLogoutHandler()" fill="clear" color="danger">
+            <div class="figure">
+                <ion-text><img src="assets/icon/logout.svg" alt="">LOG OUT</ion-text>
+                <i class="material-icons">keyboard_arrow_right</i>  
+            </div>
+        </ion-button>
+    </div>
+    
+</ion-content>

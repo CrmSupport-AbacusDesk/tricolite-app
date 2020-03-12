@@ -1,0 +1,114 @@
+<ion-content class="cs-modal-container">
+    <div class="modal-container full-modal-container">
+        <div class="main-figure">
+            <div class="cs-modal-body">
+               
+                    <div class="custome-filter">
+                            <div class="cs-header">
+
+                                <ion-button (click)="dismiss()"><i class="material-icons">keyboard_arrow_down</i></ion-button>
+                                <h1>filters</h1>
+
+                                <ion-text (click)="onRemoveAllFilterHandler()">Clear</ion-text>
+                            </div>
+                            
+                            <div class="fiter-data">
+
+                                <div class="cs-left">
+
+                                    <ion-button (click)="currentActiveTab = 1" [ngClass]="currentActiveTab==1 ? 'active' : ''" fill="clear" color="dark">Date & Days</ion-button>
+
+                                    <ion-button (click)="currentActiveTab = 2" fill="clear" color="dark" [ngClass]="currentActiveTab==2 ? 'active' : ''">Priority</ion-button>
+
+                                    <ion-button (click)="currentActiveTab = 3" fill="clear" color="dark" [ngClass]="currentActiveTab==3 ? 'active' : ''">Com. Type</ion-button>
+
+                                    <ion-button (click)="currentActiveTab = 4" fill="clear" color="dark" [ngClass]="currentActiveTab==4 ? 'active' : ''">Status</ion-button>
+
+                                </div>
+                                
+                                <div class="cs-right">
+
+                                 <div *ngIf="currentActiveTab==1" id="days">
+                                        <div class="common_form inner_page">
+                                                <ion-item class="date-time">
+                                                    <ion-label>Date From</ion-label>
+                                                    <ion-datetime [(ngModel)]="data.dateFrom" (ngModelChange)="onDateFromChangeHandler()" displayFormat="DD MMM YYYY" max="{{currentDate}}"></ion-datetime>
+                                                </ion-item>
+                                                <ion-item class="date-time">
+                                                    <ion-label>Date To</ion-label>
+                                                    <ion-datetime [(ngModel)]="data.dateTo" (ngModelChange)="data.range = 0"  displayFormat="DD MMM YYYY" min="{{minDate}}" max="{{currentDate}}"></ion-datetime>
+                                                </ion-item>
+                                            </div>
+
+                                            <div class="or-cnt or-cnt16">
+                                                <div>OR</div>
+                                            </div>
+                                            
+
+                                            <div class="cs-range">
+        
+                                                <h1>Days Range <span><ion-text>{{data.range}}</ion-text></span></h1>
+                                                <ion-item>
+        
+                                                    <ion-range [(ngModel)]="data.range" (ngModelChange) = "data.dateFrom = ''; data.dateTo = ''"  min="0" max="30" color="warning">
+        
+                                                        <ion-label slot="start">0 Days</ion-label>
+        
+                                                        <ion-label slot="end">30 Days</ion-label>
+        
+                                                    </ion-range>
+        
+                                                </ion-item>
+        
+                                            </div>
+                                 </div>
+
+                                    
+                                    
+                                    <div *ngIf="currentActiveTab==2" id="priority" class="cs-checkbox">
+                                        <ion-list>
+                                            <ion-item *ngFor="let row of priorityList">
+
+                                                <ion-label>{{row.name}}</ion-label>
+
+                                                <ion-checkbox [(ngModel)]="row.checked" slot="start" color="success"></ion-checkbox>
+
+                                            </ion-item>
+                                        </ion-list>
+                                    </div>
+
+                                    <div *ngIf="currentActiveTab==3" id="complaintTitle" class="cs-checkbox">
+                                            <ion-list>
+                                                <ion-item *ngFor="let row of complaintTypeList">
+                                                    <ion-label>{{row.title}}</ion-label>
+                                                    <ion-checkbox [(ngModel)]="row.checked" slot="start" color="success"></ion-checkbox>
+                                                </ion-item>
+                                            </ion-list>
+                                    </div>
+
+                                    <div *ngIf="currentActiveTab==4" id="complaintStatus" class="cs-checkbox">
+
+                                            <ion-list>
+
+                                                <ion-item *ngFor="let row of statusList">
+
+                                                    <ion-label>{{row.name}}</ion-label>
+
+                                                    <ion-checkbox [(ngModel)]="row.checked" slot="start" color="success"></ion-checkbox>
+
+                                                </ion-item>
+
+                                            </ion-list>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="cs-btn" padding>
+                                <ion-button (click)="onApplyFilterHandler()" class="success min" shape="round" expand="full">APPLY</ion-button>
+                            </div>
+                        </div>
+
+            </div>
+        </div>
+    </div>
+</ion-content>

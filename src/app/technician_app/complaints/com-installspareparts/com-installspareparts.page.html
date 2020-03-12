@@ -1,0 +1,73 @@
+<ion-content >
+    <div class="cs-main-container">
+        <div class="custome-head">
+            <div class="cs-ion-header">
+                <div class="cs-left">
+                    <ion-button  (click)="GoToSpareParts()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                    <ion-title>#COM-{{taskNo}} - <ion-text>Install Spare Parts</ion-text></ion-title>
+                </div>
+                <div class="cs-right">
+                    <ion-button (click)="presentPopover($event)"><ion-icon name="more"></ion-icon></ion-button>
+                </div>
+            </div>
+            <div class="cs-ion-hf"></div>
+        </div>
+        
+        <div class="cs-ion-content pt0" padding>
+            <div class="common_form inner_page">
+
+                <ion-item class="cs-select">
+                    <ion-label>Select Part Name</ion-label>
+                    <ionic-selectable
+                        [(ngModel)]="data.part"
+                        [items]="partList"
+                        itemValueField="part_id"
+                        itemTextField="partNameWithNo"
+                        [canSearch]="true"
+                        (onChange)="onItemSelectedHandler($event)">
+                    </ionic-selectable>
+                </ion-item>
+                
+                <div class="dflex">
+                    
+                    <ion-item class="mw95 ml10 mr10">
+                        <ion-label position="floating">QTY</ion-label>
+                        <ion-input type="number" [(ngModel)]="data.qty" (keypress)="dbService.numberOnly($event)"></ion-input>
+                    </ion-item>
+                    
+                    <div class="plus-icon">
+                        <ion-button (click)="onAddToCartHandler()" color="success"><ion-icon name="add"></ion-icon></ion-button>
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            <div *ngIf="partCartData && partCartData.length > 0" class="complaints product-list mt20">
+                <div class="cs-heading"><h1>Spare Parts</h1></div>
+
+                <div *ngFor="let row of partCartData; let index = index" class="figure pb0">
+                    <div class="cnt-info">
+                        <div class="cs-left">
+                            <div class="names">
+                                <h1>{{row.part_name}}</h1>
+                                <ion-text>Last Update : {{row.lastUpdated}}</ion-text>
+                            </div>
+                        </div>
+                        <div class="cs-right">
+                            <div class="count-delete">
+                                <div class="count">{{row.qty}}</div>
+                                <ion-button (click)="onItemDeleteHandler(index)" fill="clear" color="danger"><ion-icon name="trash"></ion-icon></ion-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="partCartData && partCartData.length > 0" class="cs-btn mt50" text-right>
+                <ion-button (click) = "onSaveInstalledPartHandler()" class="success round large w150" >SAVE</ion-button>
+            </div>
+
+        </div>
+    </div>
+</ion-content>
