@@ -1005,76 +1005,89 @@ class Task extends MY_Controller
 
 	public function onGetCheckList() {
 
-		 $inputData = json_decode(file_get_contents('php://input'), true);
-
-         if(isset($inputData['loginType']) && isset($inputData['loginId']) && $inputData['loginType'] && $inputData['loginId']) {
-
-         	    $taskId = $inputData['taskId'];
-
-
-			    $this->db->select('trc_customer_task_fg.*');
-			    $this->db->from('trc_customer_task_fg');
-			    $this->db->where('trc_customer_task_fg.del','0');
-			    $this->db->where('trc_customer_task_fg.task_id', $taskId);
-			    $taskFGList = $this->db->get()->result_array();
-
-                foreach ($taskFGList as $fgKey => $fgRow) {
-
-                	$this->db->select('trc_customer_project_fg.model');
-			        $this->db->from('trc_customer_project_fg');
-			        $this->db->where('trc_customer_project_fg.del','0');
-			        $this->db->where('trc_customer_project_fg.project_id', $fgRow['project_id']);
-			        $this->db->where('trc_customer_project_fg.fg_no', $fgRow['fg_no']);
-			        $modelData = $this->db->get()->row_array();
-
-                	$this->db->select('trc_checklist_master.*');
-				    $this->db->from('trc_checklist_master');
-				    $this->db->where('trc_checklist_master.del','0');
-				    $this->db->where('trc_checklist_master.model', $modelData['model']);
-				    $newCheckList = $this->db->get()->result_array();
-                  	   
-                    foreach ($newCheckList as $key => $row) {
-
-				  	      $this->db->select('trc_customer_task_commissioning_check_list.*');
-						  $this->db->from('trc_customer_task_commissioning_check_list');
-
-						  $this->db->where('trc_customer_task_commissioning_check_list.task_id',$taskId);
-
-						  $this->db->where('trc_customer_task_commissioning_check_list.fg_no', $fgRow['fg_no']);
-
-						  $this->db->where('trc_customer_task_commissioning_check_list.checklist_title', $row['check_list_point']);
-
-						  $this->db->where('trc_customer_task_commissioning_check_list.del','0');
-
-						  $checkRow = $this->db->get()->row_array();
-
-						  if(isset($checkRow['id']) && $checkRow['id'] && $checkRow['checklist_checked'] == 1) {
-
-						  	   $newCheckList[$key]['checked'] = true;
-
-						  } else {
-
-                               $newCheckList[$key]['checked'] = false;
-						  }
-		            }
-
-		            $taskFGList[$fgKey]['checkList'] = $newCheckList;
-
-                }
-
-			    $result = array(
-
-			  	   'taskFGCheckList' => $taskFGList
-			    );
-
-			    echo json_encode($result);
-
-         } else {
-
-         	  $this->onReturnErrorMessage();
-         }
-
-	}
+		$inputData = json_decode(file_get_contents('php://input'), true);
+		
+		if(isset($inputData['loginType']) && isset($inputData['loginId']) && $inputData['loginType'] && $inputData['loginId']) {
+		
+				$taskId = $inputData['taskId'];
+		
+		
+			   $this->db->select('trc_customer_task_fg.*');
+			   $this->db->from('trc_customer_task_fg');
+			   $this->db->where('trc_customer_task_fg.del','0');
+			   $this->db->where('trc_customer_task_fg.task_id', $taskId);
+			   $taskFGList = $this->db->get()->result_array();
+		
+			   foreach ($taskFGList as $fgKey => $fgRow) {
+		
+				   $this->db->select('trc_customer_project_fg.model');
+				   $this->db->from('trc_customer_project_fg');
+				   $this->db->where('trc_customer_project_fg.del','0');
+				   $this->db->where('trc_customer_project_fg.project_id', $fgRow['project_id']);
+				   $this->db->where('trc_customer_project_fg.fg_no', $fgRow['fg_no']);
+				   $modelData = $this->db->get()->row_array();
+				   
+				   $this->db->select('DISTINCT(trc_checklist_master.category)');
+				   $this->db->from('trc_checklist_master');
+				   $this->db->where('trc_checklist_master.del','0');
+				   $this->db->where('trc_checklist_master.model', $modelData['model']);
+				   $newCheckListCategory = $this->db->get()->result_array();
+				   
+				   foreach ($newCheckListCategory as $categoryKey => $categoryRow) {
+		
+						   $this->db->select('trc_checklist_master.*');
+						   $this->db->from('trc_checklist_master');
+						   $this->db->where('trc_checklist_master.del','0');
+						   $this->db->where('trc_checklist_master.category', $categoryRow['category']);
+						   $this->db->where('trc_checklist_master.model', $modelData['model']);
+						   $categoryCheckListData = $this->db->get()->result_array();
+		
+						   foreach ($categoryCheckListData as $listDataKey => $listDataRow) {
+		
+								
+							   $this->db->select('trc_customer_task_commissioning_check_list.*');
+							   $this->db->from('trc_customer_task_commissioning_check_list');
+		
+							   $this->db->where('trc_customer_task_commissioning_check_list.task_id',$taskId);
+		
+							   $this->db->where('trc_customer_task_commissioning_check_list.fg_no', $fgRow['fg_no']);
+		
+							   $this->db->where('trc_customer_task_commissioning_check_list.checklist_title', $listDataRow['check_list_point']);
+		
+							   $this->db->where('trc_customer_task_commissioning_check_list.del','0');
+		
+							   $checkRow = $this->db->get()->row_array();
+		
+							   if(isset($checkRow['id']) && $checkRow['id'] && $checkRow['checklist_checked'] == 1) {
+		
+									  $categoryCheckListData[$listDataKey]['checked'] = true;
+		
+							   } else {
+		
+									$categoryCheckListData[$listDataKey]['checked'] = false;
+							   }
+						   }
+		
+						   $newCheckListCategory[$categoryKey]['checkListData'] = $categoryCheckListData;
+				   }
+		
+				   $taskFGList[$fgKey]['newCheckListCategory'] = $newCheckListCategory;
+		
+			   }
+		
+			   $result = array(
+		
+					'taskFGCheckList' => $taskFGList
+			   );
+		
+			   echo json_encode($result);
+		
+		} else {
+		
+			  $this->onReturnErrorMessage();
+		}
+		
+		}
 
 	public function onGetTaskProjectAllContactList() {
 

@@ -154,6 +154,8 @@ class Report extends MY_Controller
 
           $inputData = json_decode(file_get_contents('php://input'), true);
 
+        //   print_r($inputData); 
+
           if(isset($inputData['loginType']) && isset($inputData['loginId']) && $inputData['loginType'] && $inputData['loginId']) {
 
           	    $taskId = $inputData['taskId'];
@@ -183,57 +185,66 @@ class Report extends MY_Controller
 
           	    foreach ($inputData['fgWisecheckList'] as $fgKey => $fgRow) {
 
-                   foreach ($fgRow['checkList'] as $key => $row) {
+                   foreach ($fgRow['newCheckListCategory'] as $categorykey => $categoryRow) {
 
-                        $this->db->select('trc_customer_task_commissioning_check_list.*');
-                        $this->db->from('trc_customer_task_commissioning_check_list');
-                        $this->db->where('trc_customer_task_commissioning_check_list.task_id', $taskId);
+                        foreach ($categoryRow['checkListData'] as $key => $row){
 
-                        $this->db->where('trc_customer_task_commissioning_check_list.fg_no', $fgRow['fg_no']);
+                            $this->db->select('trc_customer_task_commissioning_check_list.*');
+                            $this->db->from('trc_customer_task_commissioning_check_list');
+                            $this->db->where('trc_customer_task_commissioning_check_list.task_id', $taskId);
 
-                        $this->db->where('trc_customer_task_commissioning_check_list.checklist_title', $row['name']);
+                            $this->db->where('trc_customer_task_commissioning_check_list.fg_no', $fgRow['fg_no']);
 
-                        $this->db->where('trc_customer_task_commissioning_check_list.del','0');
-                        $taskCheckExist = $this->db->get()->row_array();
+                            $this->db->where('trc_customer_task_commissioning_check_list.checklist_title', $row['check_list_point']);
 
-
-                        $isChecked = $row['checked'] ? 1 : 0;
-
-                        if(isset($taskCheckExist['id']) && $taskCheckExist['id']) {
-
-                              $updatedData = array(
-                             
-                                 'checklist_checked' => $isChecked
-                             );
-
-                             $this->db->where('trc_customer_task_commissioning_check_list.id', $taskCheckExist['id']);
-
-                             $this->db->update('trc_customer_task_commissioning_check_list', $updatedData);
+                            $this->db->where('trc_customer_task_commissioning_check_list.del','0');
+                            $taskCheckExist = $this->db->get()->row_array();
 
 
-                        } else {
+                            $isChecked = $row['checked'] ? 1 : 0;
+
+                            if(isset($taskCheckExist['id']) && $taskCheckExist['id']) {
+
+                                $updatedData = array(
+                                
+                                    'checklist_checked' => $isChecked
+                                );
+
+                                $this->db->where('trc_customer_task_commissioning_check_list.id', $taskCheckExist['id']);
+
+                                $this->db->update('trc_customer_task_commissioning_check_list', $updatedData);
 
 
-                              $updatedData = array(
-                             
-                                 'date_created' => $this->dateData['dateCreated'],
-                                 'created_by' => $inputData['loginId'],
-                                 'created_by_name' => $inputData['loginName'],
-                                 'created_by_type' => $inputData['loginType'],
-                                 'customer_id' => $taskData['customer_id'],
-                                 'customer_name' => $taskData['customer_name'],
-                                 'project_id' => $taskData['project_id'],
-                                 'project_name' => $taskData['project_name'],
-                                 'task_id' => $taskId,
-                                 'task_no' => $taskData['task_no'],
-                                 'task_fg_id' => $fgRow['id'],
-                                 'fg_no' => $fgRow['fg_no'],
-                                 'checklist_title' => $row['name'],
-                                 'checklist_checked' => $isChecked
-                             );
+                            } else {
 
-                             $this->db->insert('trc_customer_task_commissioning_check_list', $updatedData);
+
+                                $updatedData = array(
+                                
+                                    'date_created' => $this->dateData['dateCreated'],
+                                    'created_by' => $inputData['loginId'],
+                                    'created_by_name' => $inputData['loginName'],
+                                    'created_by_type' => $inputData['loginType'],
+                                    'customer_id' => $taskData['customer_id'],
+                                    'customer_name' => $taskData['customer_name'],
+                                    'project_id' => $taskData['project_id'],
+                                    'project_name' => $taskData['project_name'],
+                                    'task_id' => $taskId,
+                                    'task_no' => $taskData['task_no'],
+                                    'task_fg_id' => $fgRow['id'],
+                                    'fg_no' => $fgRow['fg_no'],
+                                    'category' => $categoryRow['category'],
+                                    'checklist_title' => $row['check_list_point'],
+                                    'checklist_remark' => $row['remark'],
+                                    'checklist_checked' => $isChecked
+                                );
+
+                                $this->db->insert('trc_customer_task_commissioning_check_list', $updatedData);
+                            }
+
+
                         }
+
+                        
                    }
           	    }
 
@@ -252,7 +263,7 @@ class Report extends MY_Controller
                 $this->db->where('id', $taskId);
                 $this->db->update('trc_customer_task', $imageUpdatedData);
 
-                $uploadPath = $_SERVER["DOCUMENT_ROOT"] . 'api/uploads/Task_Doc/'. $imageName;
+                $uploadPath = $_SERVER["DOCUMENT_ROOT"] . '/api/uploads/Task_Doc/'. $imageName;
 
                 file_put_contents($uploadPath, base64_decode($inputData['signatureData']));
 
@@ -662,13 +673,13 @@ class Report extends MY_Controller
             
             ';
 
-            $mpdf = $this->m_pdf->load();
+            // $mpdf = $this->m_pdf->load();
 
-            $mpdf->WriteHTML($html,1);
+            // $mpdf->WriteHTML($html,1);
 
-            $mpdf->Output($_SERVER["DOCUMENT_ROOT"] . '/api/uploads/Report_Doc/'.'Service Report'.'.pdf', 'F') ;
+            // $mpdf->Output($_SERVER["DOCUMENT_ROOT"] . '/api/uploads/Report_Doc/'.'Service Report'.'.pdf', 'F') ;
 
-            $result = 'Service Report'. '.pdf';
+            echo json_encode($html);
 
          
 

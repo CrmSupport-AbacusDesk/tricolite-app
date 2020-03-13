@@ -95,7 +95,6 @@ class Customer extends MY_Controller
 					'task_type' => $inputData['requestType'],
 					'task_no' => $taskNo,
 					'visit_date_time' => $inputData['visitDateTime'],
-					'expectation_closing_date' => $inputData['expectingClosingTime'],
 					'compaint_title' => $inputData['complaintTitle'],
 					'task_description' => $inputData['description'],
 					'customer_street' => $customerData['street'],
@@ -108,7 +107,6 @@ class Customer extends MY_Controller
 					'project_district_name' => $projectData['district_name'],
 					'project_city' => $projectData['city'],
 					'project_pincode' => $projectData['pincode'],
-					'priority' => $inputData['priority'],	
 					'transaction_type' => $inputData['transactionType'],
 					'status' => 'Open',
 					'status_update_on' => $this->dateData['dateCreated'],
@@ -187,10 +185,6 @@ class Customer extends MY_Controller
 								'task_id' => $taskId,
 								'task_no' => $taskNo,
 								'fg_no' => $row['fgNo'],
-								'warranty_type' => $fgDetail['warranty_type'],
-								'valid_upto' => $fgDetail['warranty_valid_upto'],
-								'service_center' => $fgDetail['service_center_name'],
-								'nature_problem' => isset($row['natureProblem'])?$row['natureProblem']:'', 
 							);
 							
 						    $this->db->insert('trc_customer_task_fg', $fgRowData);
