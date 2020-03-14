@@ -24,11 +24,11 @@ class Login extends MY_Controller
 
 					if($inputData['loginType'] == 'Customer') {
 
-                          $this->db->select('trc_customer.*');
-						  $this->db->from('trc_customer');
-						  $this->db->where('trc_customer.del', '0');
-						  $this->db->where('trc_customer.username', $inputData['userName']);
-						  $this->db->where('trc_customer.password', $inputData['password']);
+                          $this->db->select('trc_customer_login_access.*');
+						  $this->db->from('trc_customer_login_access');
+						  $this->db->where('trc_customer_login_access.del', '0');
+						  $this->db->where('trc_customer_login_access.username', $inputData['userName']);
+						  $this->db->where('trc_customer_login_access.password', $inputData['password']);
 					      $resultData = $this->db->get()->row_array();
 
 					      $loginName = $resultData['company_name'];
@@ -90,71 +90,72 @@ class Login extends MY_Controller
 
 	public function onValidateLoginById() {
 
-	        $inputData = json_decode(file_get_contents('php://input'), true);
-		    
+			$inputData = json_decode(file_get_contents('php://input'), true);
+			
 			if(isset($inputData['loginType']) && isset($inputData['loginId']) &&  $inputData['loginType'] &&  $inputData['loginId'])  {
 
+				 
 					if($inputData['loginType'] == 'Customer') {
 
-                          $this->db->select('trc_customer.*');
-						  $this->db->from('trc_customer');
-						  $this->db->where('trc_customer.del', '0');
-						  $this->db->where('trc_customer.id', $inputData['loginId']);
-					      $resultData = $this->db->get()->row_array();
+						$this->db->select('trc_customer_login_access.*');
+						$this->db->from('trc_customer_login_access');
+						$this->db->where('trc_customer_login_access.del', '0');
+						$this->db->where('trc_customer_login_access.id', $inputData['loginId']);
+						$resultData = $this->db->get()->row_array();
 
-					      $loginName = $resultData['company_name'];
-				          $loginType = 'Customer';
-				          $status = $resultData['status'];
+						$loginName = $resultData['company_name'];
+						$loginType = 'Customer';
+						$status = $resultData['status'];
 					}
 
 					if($inputData['loginType'] == 'Technician') {
-                        
 
-                          $this->db->select('trc_user.*');
-						  $this->db->from('trc_user');
-						  $this->db->where('trc_user.del', '0');
-						  $this->db->where('trc_user.access_level', '5');
-						  $this->db->where('trc_user.id', $inputData['loginId']);
-					      $resultData = $this->db->get()->row_array();
+						$this->db->select('trc_user.*');
+						$this->db->from('trc_user');
+						$this->db->where('trc_user.del', '0');
+						$this->db->where('trc_user.access_level', '5');
+						$this->db->where('trc_user.id', $inputData['loginId']);
+						$resultData = $this->db->get()->row_array();
 
-					      $loginName = $resultData['name'];
-				          $loginType = 'Technician';
-				          $status = 'Active';
+						$loginName = $resultData['name'];
+						$loginType = 'Technician';
+						$status = 'Active';
 					}
 
 
-			        if(isset($resultData['id']) && $resultData['id']) {
+					if(isset($resultData['id']) && $resultData['id']) {
 
-			      	    $resultData['loginType'] = $inputData['loginType'];
+							$resultData['loginType'] = $inputData['loginType'];
 
-			      	    $outputData = array(
+							$outputData = array(
 
-			      	   	  'status' => 'success',
-			      	   	  'statusMessage' => '',
-			      	   	  'loginData' => $resultData,
-			      	   	  'loginId' => $resultData['id'],
-			      	   	  'loginName' => $loginName,
-	                      'loginType' => $loginType,
-	                      'loginStatus' => $status
-			      	    );
+								'status' => 'success',
+								'statusMessage' => '',
+								'loginData' => $resultData,
+								'loginId' => $resultData['id'],
+								'loginName' => $loginName,
+								'loginType' => $loginType,
+								'loginStatus' => $status
+							);
 
-			      } else {
+					} else {
 
-                        $outputData = array(
+						$outputData = array(
 
-			      	   	  'status' => 'error',
-			      	   	  'statusMessage' => 'Invalid Username and Password!',
-			      	   	  'loginData' => [],
-			      	   	 
-			      	   );
-			      }
+								'status' => 'error',
+								'statusMessage' => 'Invalid Username and Password!',
+								'loginData' => [],
+								
+						);
+					}
 
-			      echo json_encode($outputData);
 
-	        } else {
+					echo json_encode($outputData);
 
-                 $this->onReturnErrorMessage();
-	        }
+			} else {
+
+					$this->onReturnErrorMessage();
+			}
 	}
 
 
@@ -309,21 +310,36 @@ class Login extends MY_Controller
 
 			if($this->db->insert('trc_customer_login_access', $customerData)) {
 
-				$technicianId = $this->db->insert_id();
+				$customerId = $this->db->insert_id();
 
-				$status = 'success';
-				$statusMessage = '';
+				$this->db->select('trc_customer.*');
+				$this->db->from('trc_customer');
+				$this->db->where('trc_customer.del', '0');
+				$this->db->where('trc_customer.id', $customerId);
+				$resultData = $this->db->get()->row_array();
 
-			}else{
+				$loginData = $resultData;
 
-				$status = 'error';
-				$statusMessage = $this->db->error();
-				$statusMessage = str_replace("Duplicate entry","Already Exist In System,", $statusMessage['message']);
-			
-			}
+				$loginData['loginId'] = $resultData['id'];
+				$loginData['loginType'] = 'Customer';
+				$loginData['loginName'] = $resultData['company_name'];
+				$loginData['loginStatus'] = $resultData['status'];
 
-			$result = array('status' => $status, 'statusMessage' => $statusMessage);
-			echo json_encode($result);
+			   $status = 'success';
+			   $statusMessage = '';
+
+		   }else{
+
+			   $status = 'error';
+			   $statusMessage = $this->db->error();
+			   $statusMessage = str_replace("Duplicate entry","Already Exist In System,", $statusMessage['message']);
+
+			   $loginData = array();
+		   
+		   }
+
+		   $result = array('loginData' => $loginData, 'status' => $status, 'statusMessage' => $statusMessage);
+		   echo json_encode($result);
 
 		}else {
 
@@ -568,23 +584,25 @@ class Login extends MY_Controller
 
     public function onGetLoginUserCompleteDetail() {
 
-          $inputData = json_decode(file_get_contents('php://input'), true);
+		  $inputData = json_decode(file_get_contents('php://input'), true);
+		  
+		//   print_r($inputData); die;
 
     	  if(isset($inputData['loginType']) && isset($inputData['loginId']) && $inputData['loginType'] && $inputData['loginId']) {
 
     	  	    if($inputData['loginType'] == 'Customer') {
 
-                      $this->db->select('trc_customer.*');
-					  $this->db->from('trc_customer');
-					  $this->db->where('trc_customer.del', '0');
-					  $this->db->where('trc_customer.id', $inputData['loginId']);
+                      $this->db->select('trc_customer_login_access.*');
+					  $this->db->from('trc_customer_login_access');
+					  $this->db->where('trc_customer_login_access.del', '0');
+					  $this->db->where('trc_customer_login_access.id', $inputData['loginId']);
 					  $loginData = $this->db->get()->row_array();
 
 
-					  $this->db->select('trc_customer_contact.*');
-					  $this->db->from('trc_customer_contact');
-					  $this->db->where('trc_customer_contact.del', '0');
-					  $this->db->where('trc_customer_contact.customer_id', $inputData['loginId']);
+					  $this->db->select('trc_customer_project_contact.*');
+					  $this->db->from('trc_customer_project_contact');
+					  $this->db->where('trc_customer_project_contact.del', '0');
+					  $this->db->where('trc_customer_project_contact.project_id', $inputData['loginId']);
 					  $contactData = $this->db->get()->result_array();
 
 					  $result = array(

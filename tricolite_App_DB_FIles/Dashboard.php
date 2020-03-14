@@ -27,10 +27,10 @@ class Dashboard extends MY_Controller
 
 						  $customerEmergencyNumber = '';
 
-                          $this->db->select('trc_customer.id, trc_customer.company_name, trc_customer.mobile, trc_customer.cust_code');
-						  $this->db->from('trc_customer');
-						  $this->db->where('trc_customer.del', '0');
-						  $this->db->where('trc_customer.id', $inputData['loginId']);
+                          $this->db->select('trc_customer_login_access.id, trc_customer_login_access.company_name, trc_customer_login_access.contact_mobile, trc_customer_login_access.cust_code');
+						  $this->db->from('trc_customer_login_access');
+						  $this->db->where('trc_customer_login_access.del', '0');
+						  $this->db->where('trc_customer_login_access.id', $inputData['loginId']);
 					      $loginData = $this->db->get()->row_array();
 
 					      $loginData['name'] = $loginData['company_name'];

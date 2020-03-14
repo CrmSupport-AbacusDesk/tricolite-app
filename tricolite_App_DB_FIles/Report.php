@@ -13,7 +13,7 @@ class Report extends MY_Controller
   		$this->load->helper("url");
   		$this->load->library("pagination");
         $this->load->database();
-        $this->load->library('m_pdf');
+        // $this->load->library('m_pdf');
   	}
 
   	public function onSaveDailyReportData() {
@@ -234,7 +234,7 @@ class Report extends MY_Controller
                                     'fg_no' => $fgRow['fg_no'],
                                     'category' => $categoryRow['category'],
                                     'checklist_title' => $row['check_list_point'],
-                                    'checklist_remark' => $row['remark'],
+                                    'checklist_remark' => isset($row['remark']) && $row['remark'] ? $row['remark'] : '',
                                     'checklist_checked' => $isChecked
                                 );
 
