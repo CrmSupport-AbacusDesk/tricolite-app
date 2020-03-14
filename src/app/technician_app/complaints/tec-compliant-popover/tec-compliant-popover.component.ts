@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController, NavParams } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DbServiceService } from 'src/app/db-service.service';
+declare var cordova: any;
 
 
 @Component({
@@ -64,9 +65,9 @@ export class TecCompliantPopoverComponent implements OnInit {
     this.router.navigateByUrl('/technicians/'+ localStorage.getItem('routeType') +'/details/dailyreport/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
   }
 
-  GoToServiceReport(){
+  GoToServiceReport() {
 
-    console.log("hello");
+    console.log('hello');
     const inputData = {
       taskId: this.taskId
     };
@@ -74,6 +75,25 @@ export class TecCompliantPopoverComponent implements OnInit {
     this.dbService.onPostRequestHandler(inputData, 'Report/viewMobileServiceReport').subscribe((result) => {
 
       console.log(result);
+
+      const options = {
+          documentSize: 'A4',
+          type: 'share',
+          fileName: 'myFile.pdf'
+      };
+
+      cordova.plugins.pdf.htmlToPDF({
+        data: result,
+        documentSize: "A4",
+        type: "share",
+        fileName: 'my-pdf.pdf'
+        
+    },
+    (sucess) => console.log('sucess: ', sucess),
+    (error) => console.log('error:', error));
+       
+
+      
 
       // window.open(ReportDocURL, '_system', 'location=yes');
       

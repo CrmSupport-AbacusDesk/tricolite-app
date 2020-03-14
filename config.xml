@@ -107,4 +107,6 @@
     </plugin>
     <plugin name="com-badrit-base64" spec="^0.2.0" />
     <plugin name="com-sarriaroman-photoviewer" spec="^1.2.4" />
+    <plugin name="cordova-pdf-generator" spec="^2.0.8" />
+    <engine name="android" spec="6.4.0" />
 </widget>
