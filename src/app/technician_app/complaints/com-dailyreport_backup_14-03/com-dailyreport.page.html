@@ -77,7 +77,7 @@
                             </div>
                         </ion-button>
                         
-                        <ion-button (click)="currentActiveCheckTab = index" *ngFor = "let row of fgWisecheckList; let index = index" [hidden]="reportType != 'checkListReport'" (onclick)=" onCheckListFgWiseHandler();" [ngClass]="activeStage==5 && currentActiveCheckTab==index ? 'active' : ''" fill="clear" color="dark">
+                        <ion-button (click)="currentActiveCheckTab = index" *ngFor = "let row of fgWisecheckList; let index = index" [hidden]="reportType != 'checkListReport'" [ngClass]="activeStage==5 && currentActiveCheckTab==index ? 'active' : ''" fill="clear" color="dark">
                             <div class="figure">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24.784" height="20" viewBox="0 0 24.784 20">
                                     <g id="customer_sign" transform="translate(0 -39.824)">

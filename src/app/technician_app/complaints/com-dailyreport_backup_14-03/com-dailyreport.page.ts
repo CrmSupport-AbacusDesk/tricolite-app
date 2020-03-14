@@ -116,14 +116,6 @@ export class ComDailyreportPage implements OnInit {
                   expenseDetail: ['', [Validators.minLength(5)]],
             });
 
-            // this.registerForm4 = this.formBuilder.group({
-
-            //     remark: ['',[Validators.required,Validators.minLength(3)]],
-            //     signatureImage: ['',[Validators.required]],
-
-
-            // })
-
             this.registerForm3 = this.formBuilder.group({
 
                 actionPlanned: ['', [Validators.minLength(5)]],
@@ -170,11 +162,11 @@ export class ComDailyreportPage implements OnInit {
     this.selectedRating = rating;
  }
 
-  async onCheckListFgWiseHandler(){
+  // async onCheckListFgWiseHandler(){
 
-    alert("hello");
+  //   alert("hello");
     
-  }
+  // }
 
   async onSaveCheckListHandler() {
      
