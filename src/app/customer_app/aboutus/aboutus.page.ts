@@ -18,7 +18,7 @@ export class AboutusPage implements OnInit {
 
       console.log(loginData);
 
-      if (loginData && loginData.loginStatus && loginData.loginStatus !=  'Active') {
+      if (loginData && loginData.loginStatus && loginData.loginStatus !=  'Approved') {
            this.presentModal();
       }
   }
