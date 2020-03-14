@@ -18,7 +18,7 @@ export class CustomertabsPage implements OnInit {
 
       console.log(this.loginData);
 
-      if (this.loginData.loginStatus !=  'Active') {
+      if (this.loginData.loginStatus && this.loginData.loginStatus !=  'Approved') {
          this.route.navigateByUrl('/customer/aboutus');
       }
   }

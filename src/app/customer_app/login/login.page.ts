@@ -82,11 +82,11 @@ export class LoginPage implements OnInit {
 
                       console.log(JSON.parse(localStorage.getItem('loginData')));
 
-                      this.route.navigate(['/customer']);
+                      this.route.navigate(['/customer/home']);
 
                       setTimeout(() => {
                         this.dbService.onShowAlertMessage('Success', 'Login Successful!');
-                      this.route.navigate(['/customer']);
+                        this.route.navigate(['/customer/home']);
 
 
                       }, 1000);

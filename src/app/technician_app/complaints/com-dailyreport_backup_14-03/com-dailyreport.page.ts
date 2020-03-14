@@ -170,18 +170,11 @@ export class ComDailyreportPage implements OnInit {
     this.selectedRating = rating;
  }
 
-//  openPdf(){
-//    console.log("hello pdf");
-   
-//     const options: DocumentViewerOptions = {
-//       title: 'My PDF'
-//     }
-//     console.log(options);
-    
-    
-//     this.document.viewDocument('assets/pdf/myFile.pdf', 'application/pdf', options)
+  async onCheckListFgWiseHandler(){
 
-//  }
+    alert("hello");
+    
+  }
 
   async onSaveCheckListHandler() {
      
@@ -190,44 +183,32 @@ export class ComDailyreportPage implements OnInit {
 
      
       let count = 0;
-      for (let i = 0; i < this.fgWisecheckList.length; i++) {
+      for (let i = 0; i < this.fgWisecheckListCategory.length; i++) {
 
-            let isFgAnyCategoryChecked = false;
+            for (let j = 0; j < this.fgWisecheckListCategory[i].checkListData.length; j++) {
 
-            for (let j = 0; j < this.fgWisecheckList[i].newCheckListCategory.length; j++) { 
+                  if (this.fgWisecheckListCategory[i].checkListData[j].checked) {
+                    console.log(this.fgWisecheckListCategory[i].checkListData.length);
+                    
 
-              for (let k = 0; k < this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'].length; k++) { 
-            
-
-                  if (this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'][k].checked) {
-                    console.log(this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'].length);
-
-                      isFgAnyCategoryChecked = true;
+                      count++;
                   }
-
-                }
-            }
-
-            if(isFgAnyCategoryChecked===true) {
-                count++;
             }
       }
 
-      console.log(count);
-      console.log(this.fgWisecheckList);
-      
-      
 
-      if (count != this.fgWisecheckList.length) {
+      if (count != this.fgWisecheckListCategory.length) {
 
            if (count == 0) {
 
                this.dbService.onShowAlertMessage('Error', 'No Check List Selected!');
+          
 
-           } else {
+           } 
+          // else {
 
-               this.dbService.onShowAlertMessage('Error', 'Other FG check List Also Required !');
-           }
+          //      this.dbService.onShowAlertMessage('Error', 'Other FG check List Also Required !');
+          //  }
 
       } else {
 
