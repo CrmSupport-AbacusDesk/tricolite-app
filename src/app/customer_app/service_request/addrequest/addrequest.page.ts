@@ -52,9 +52,6 @@ export class AddrequestPage implements OnInit {
                 visitDate: ['', [Validators.required]],
                 visitTime: ['', [Validators.required]],
                 contactName: [''],
-                priority: [''],
-                expectingClosingDate:[''],
-                expectingClosingTime:[''],
                 transaction_type:[''],
             });
 
@@ -69,9 +66,6 @@ export class AddrequestPage implements OnInit {
                 visitDate: '',
                 visitTime: '',
                 contactName: '',
-                priority : '',
-                expectingClosingDate :'',
-                expectingClosingTime : '',
                 transaction_type : '',
             };
 
@@ -113,20 +107,17 @@ export class AddrequestPage implements OnInit {
               this.productData.push({
 
                   fgNo: this.data.fgNo[`fg_no`],
-                  natureProblem: this.data.natureProblem.nature
               });
 
            } else {
 
                this.productData[isFGExist].fgNo = this.data.fgNo[`fg_no`];
-               this.productData[isFGExist].natureProblem = this.data.fgNo[`natureProblem`];
 
            }
     console.log(this.productData);
 
 
            this.data.fgNo = {};
-           this.data.natureProblem = '';
 
            this.dbService.presentToast('Product Update To List!');
        }
@@ -139,11 +130,11 @@ export class AddrequestPage implements OnInit {
 
       let isCheckListSelected = false;
 
-      if (this.productData.length == 0) {
+      // if (this.productData.length == 0) {
 
-          this.dbService.onShowAlertMessage('Error', 'No Product Information Added!');
-          return;
-      }
+      //     this.dbService.onShowAlertMessage('Error', 'No Product Information Added!');
+      //     return;
+      // }
 
       let isContactSelected = false;
 
@@ -155,11 +146,11 @@ export class AddrequestPage implements OnInit {
             }
       }
 
-      if (!isContactSelected) {
+      // if (!isContactSelected) {
 
-          this.dbService.onShowAlertMessage('Error', 'No Contact Information Selected!');
-          return;
-      }
+      //     this.dbService.onShowAlertMessage('Error', 'No Contact Information Selected!');
+      //     return;
+      // }
 
       if (this.registerForm1.invalid) {
 
@@ -172,9 +163,6 @@ export class AddrequestPage implements OnInit {
           this.registerForm1.get('visitDate').markAsTouched();
           this.registerForm1.get('visitTime').markAsTouched();
           this.registerForm1.get('contactName').markAsTouched();
-          this.registerForm1.get('priority').markAsTouched();
-          this.registerForm1.get('expectingClosingDate').markAsTouched();
-          this.registerForm1.get('expectingClosingTime').markAsTouched();
           this.registerForm1.get('transaction_type').markAsTouched();
 
 
@@ -209,16 +197,7 @@ export class AddrequestPage implements OnInit {
 
                           inputData[`visitDateTime`] = inputData[`visitDate`] + ' ' + inputData[`visitTime`];
 
-
-                          inputData[`expectingClosingDate`] = moment(this.data.visitDate).format('YYYY-MM-DD');
-                          inputData[`expectingClosingTime`] = moment(this.data.visitTime).format('hh:mm');
-
-
-
-                          inputData[`expectingClosingTime`] = inputData[`expectingClosingDate`] + ' ' + inputData[`expectingClosingTime`];
-
                           inputData[`transactionType`] = this.data.transaction_type;
-                          inputData[`priority`] = this.data.priority;
 
                           this.dbService.presentLoader();
 
@@ -229,7 +208,7 @@ export class AddrequestPage implements OnInit {
                                 console.log(result);
                                 this.dbService.dismissLoader();
 
-                                const routeURL = '/customer/home';
+                                const routeURL = '/customer/request';
                                 this.route.navigate([routeURL]);
 
                                 this.dbService.presentToast('Request Saved Successfully!');
@@ -301,7 +280,7 @@ export class AddrequestPage implements OnInit {
 
       this.dbService.onPostRequestHandler(inputData, 'customer/getProjectList').subscribe((result) => {
             console.log(result);
-            this.projectList = result[`projectList`];
+            this.projectList = result[`projectContactList`];
       });
   }
 
