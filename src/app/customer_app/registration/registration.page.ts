@@ -170,19 +170,20 @@ export class RegistrationPage implements OnInit {
                                         loginName: result[`loginData`][`loginName`],
                                         loginStatus: result[`loginData`][`loginStatus`]
                                     };
+                                    
               
                                     localStorage.setItem('loginData', JSON.stringify(loginData));
               
                                     console.log(JSON.parse(localStorage.getItem('loginData')));
-                                    this.route.navigate(['/customer']);
-              
+                                    // this.route.navigate(['/customer']);
+                                    
                                     setTimeout(() => {
                                       this.dbService.onShowAlertMessage('Success', 'Registration Successful!');
-                                    this.route.navigate(['/customer']);
+                                    this.route.navigate(['/customer/aboutus']);
 
               
                                     }, 1000);
-                                }
+                                    }
                           });
                       }
                     }

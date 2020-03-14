@@ -12,7 +12,9 @@ import * as $ from 'jquery';
 })
 export class MyprojectsPage implements OnInit {
   
-  projectList: any = [];
+  projectContactList: any = [];
+
+  totalProjectCount: any = [];
   
   isSearchOptionActive: any = false;
   searchData: any = {};
@@ -75,7 +77,13 @@ export class MyprojectsPage implements OnInit {
            }, 2000);
         }
         
-        let resultData = result[`projectList`];
+        let resultData = result[`projectContactList`];
+        console.log(resultData);
+
+        this.totalProjectCount = result[`totalProjectCount`];
+        console.log(this.totalProjectCount);
+        
+        
         
         if (!resultData || resultData == null || resultData.length == 0) {
           resultData = [];
@@ -84,15 +92,15 @@ export class MyprojectsPage implements OnInit {
         
         if (this.currentPage == 1) {
           
-          this.projectList = resultData;
+          this.projectContactList = resultData;
           
         } else {
           
           for (let index = 0; index < resultData.length; index++) {
             
-            const isIndex = this.projectList.findIndex(row => row.id == resultData[index].id);
+            const isIndex = this.projectContactList.findIndex(row => row.id == resultData[index].id);
             if (isIndex === -1) {
-              this.projectList.push(resultData[index]);
+              this.projectContactList.push(resultData[index]);
             }
           }
         }
