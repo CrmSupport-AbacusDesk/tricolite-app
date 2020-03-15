@@ -77,7 +77,7 @@
                             </div>
                         </ion-button>
                         
-                        <ion-button (click)="currentActiveCheckTab = index" *ngFor = "let row of fgWisecheckList; let index = index" [hidden]="reportType != 'checkListReport'"  [ngClass]="activeStage==5 && currentActiveCheckTab==index ? 'active' : ''" fill="clear" color="dark">
+                        <ion-button (click)="onClickOnFgWiseCategoryHandler(index)" *ngFor = "let row of fgWisecheckList; let index = index" [hidden]="reportType != 'checkListReport'"  [ngClass]="activeStage==5 && currentActiveCheckTab==index ? 'active' : ''" fill="clear" color="dark">
                             <div class="figure">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24.784" height="20" viewBox="0 0 24.784 20">
                                     <g id="customer_sign" transform="translate(0 -39.824)">
@@ -415,85 +415,15 @@
                             
                         </div>
                         
-                        
-                        <!-- <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckList; let index = index" class="check_list">
-                            <div class="cs-checkbox">
-                                
-                                <ion-list>
-                                    
-                                    <ion-item *ngFor="let checkRow of row.checkList">
-                                        <ion-label>{{checkRow.check_list_point}}</ion-label>
-                                        <ion-checkbox [(ngModel)]="checkRow.checked" slot="start" color="success"></ion-checkbox>
-                                    </ion-item>
-                                    
-                                </ion-list>
-                                
-                            </div>
-                            
-                            
-                            <div class="common_form inner_page">
-                                
-                                <ion-item class="cs-select">
-                                    
-                                        <ion-label>Contact Person Name</ion-label>
-                                        
-                                        <ion-select  [(ngModel)]="data.checkContactName" (ngModelChange) = "onContactChangeHandler('checkReport')"  placeholder="Select">
-                                            
-                                            <ion-select-option *ngFor="let row of contactList" [value]="row.name">{{row.name}}</ion-select-option>
-                                            
-                                        </ion-select>
-                                        
-                                </ion-item>
-                            
-                                
-                                <ion-item *ngIf="data.checkContactName=='Other'">
-                                    
-                                    <ion-label position="floating">Name</ion-label>
-                                    <ion-input  [(ngModel)]="data.checkOtherContactName"></ion-input>
-                        
-                                    
-                                </ion-item>
-                                
-                                <ion-item *ngIf="data.checkContactName">
-                                    
-                                    <ion-label position="floating">Mobile No.</ion-label>
-                                    <ion-input type="tel"  [(ngModel)]="data.checkMobile" (keypress) = "dbService.numberOnly($event)"></ion-input>
-                                    
-                                    <ion-text class="cs-error">
-                                        
-                                        <span *ngIf="!data.checkMobile  || (data.checkMobile.length < 10) || data.checkMobile.length > 10">Mobile Must be 10 Digit!</span>
-                                        
-                                    </ion-text>
-                                    
-                                </ion-item>
-                                
-                                <ion-item>
-                                    
-                                    <ion-label position="floating">Add Signature</ion-label>
-                                    
-                                    <ion-input (click)="presentModal()"></ion-input>
-                                    
-                                    <div (click)="presentModal()"><img [src]="signatureImage" *ngIf="signatureImage" /></div>
-                                    
-                                </ion-item> 
-                            </div>
-                            
-                            <div class="cs-btn mt16 lr">
-                                
-                                <ion-button (click)="onSaveCheckListHandler()" class="success min w100">SAVE</ion-button>
-                                
-                            </div>
-                        </div> -->
-
                         <div class="custome-filter dlform mt15">
                             <div class="fiter-data">
                                 <div class="cs-right">
-                                    <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckListCategory; let index = index" class="check_list">
+                                    <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckList; let index = index" class="check_list">
                                         <div class="cs-checkbox">
                                             
                                             <ion-list>
                                                 
-                                                <div class="checklist" *ngFor = "let categoryList of fgWisecheckListCategory;">
+                                                <div class="checklist" *ngFor = "let categoryList of fgWisecheckListCategory;let index = index">
                                                     <p>{{categoryList.category}}</p>
                                                     <div *ngFor = "let categoryListPoint of categoryList.checkListData;">
                                                         <ion-item >

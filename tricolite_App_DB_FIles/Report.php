@@ -111,7 +111,7 @@ class Report extends MY_Controller
 
                           $uploadPath = $_SERVER["DOCUMENT_ROOT"] . '/api/uploads/Task_Doc/'. $imageName;
 
-                          file_put_contents($uploadPath, base64_decode($inputData['signatureData']));
+                        //   file_put_contents($uploadPath, base64_decode($inputData['signatureData']));
                          
 
                           $updatedData = array(
@@ -128,6 +128,9 @@ class Report extends MY_Controller
 
                           $status = 'success';
                           $statusMessage = '';
+                          if($inputData['workStatus']=='Pending' || $inputData['workStatus']=='Close'){
+                            $this->sendSmsForWorkStatus($inputData);
+                          }
 
              	    } else {
                           
@@ -147,7 +150,30 @@ class Report extends MY_Controller
 
                 $this->onReturnErrorMessage();
   	      }  
-  	}
+      }
+      
+      public function sendSmsForWorkStatus($inputData){
+
+        if($inputData['workStatus']=='Pending'){
+          $msg ='Pending';
+          }
+        if($inputData['workStatus']=='Close'){
+          $msg='Close';
+        }
+  
+          $msg =urlencode( $msg );
+  
+           $ch = curl_init();
+          
+         
+          curl_setopt($ch,CURLOPT_URL, 'https://www.smsjust.com/blank/sms/user/urlsms.php?username=tricolite12&pass=w5!7XB@r&senderid=CUSAIX&dest_mobileno='.$inputData['mobile'].'&msgtype=UNI&message='.$msg.'&response=Y');
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+          curl_setopt($ch, CURLOPT_POST, 1);
+              
+          $send_otp = curl_exec($ch);
+         
+          curl_close($ch);
+      }
 
 
 	  public function onSaveTaskCheckList() {
@@ -294,172 +320,173 @@ class Report extends MY_Controller
 
 		$inputData = json_decode(file_get_contents('php://input'), true);
 
-		// if(isset($inputData['taskId']) && $inputData['taskId'])  {
+		if(isset($inputData['taskId']) && $inputData['taskId'])  {
 
-		// 	$taskId = $this->my_simple_crypt($inputData['taskId'],"d");
+            // $taskId = $this->my_simple_crypt($inputData['taskId'],"d");
+            $taskId = $inputData['taskId'];
 
-        //     $this->db->select('trc_customer_task.*');
-		// 	$this->db->from('trc_customer_task');
-		// 	$this->db->where('trc_customer_task.id', $taskId);
-        //     $this->db->where('trc_customer_task.del','0');
-        //     $taskData = $this->db->get()->row_array();
+            $this->db->select('trc_customer_task.*');
+			$this->db->from('trc_customer_task');
+			$this->db->where('trc_customer_task.id', $taskId);
+            $this->db->where('trc_customer_task.del','0');
+            $taskData = $this->db->get()->row_array();
 
-            // if($taskData['status'] != 'Close') {
+            if($taskData['status'] != 'Close') {
 
-			// 	$dateCreatedFormat = date_create($taskData['date_created']);
-			// 	$dateCreated = date_format($dateCreatedFormat, 'Y-m-d');
+				$dateCreatedFormat = date_create($taskData['date_created']);
+				$dateCreated = date_format($dateCreatedFormat, 'Y-m-d');
 
-			// 	$diff = strtotime(date('Y-m-d')) - strtotime($dateCreated);  
+				$diff = strtotime(date('Y-m-d')) - strtotime($dateCreated);  
 
-            //     $taskData['days'] = abs(round($diff / 86400)) . ' Days';
+                $taskData['days'] = abs(round($diff / 86400)) . ' Days';
                 
 
-			// } else {
+			} else {
 
-			// 	$taskClosingFormat = date_create($taskData['status_update_on']);
-			// 	$taskClosingDate = date_format($taskClosingFormat, 'Y-m-d');
+				$taskClosingFormat = date_create($taskData['status_update_on']);
+				$taskClosingDate = date_format($taskClosingFormat, 'Y-m-d');
 
-			// 	$diff = strtotime(date('Y-m-d')) - strtotime($taskClosingDate);  
-            //     $taskData['days'] = abs(round($diff / 86400)) . ' Days';
+				$diff = strtotime(date('Y-m-d')) - strtotime($taskClosingDate);  
+                $taskData['days'] = abs(round($diff / 86400)) . ' Days';
                 
-            //     $taskData['taskCloseDate'] = $taskData['status_update_on'];
+                $taskData['taskCloseDate'] = $taskData['status_update_on'];
 
-            // }
+            }
             
 
-			// $dateCreated = date_create($taskData['date_created']);
-			// $taskData['dateCreated'] = date_format($dateCreated, 'd M Y');
+			$dateCreated = date_create($taskData['date_created']);
+			$taskData['dateCreated'] = date_format($dateCreated, 'd M Y');
 
-			// $taskData['timeCreated'] = date_format($dateCreated, 'H:i A');
+			$taskData['timeCreated'] = date_format($dateCreated, 'H:i A');
             
-            // $this->db->select('trc_customer_project.*');
-			// $this->db->from('trc_customer_project');
-			// $this->db->where('trc_customer_project.id', $taskData['project_id']);
-			// $this->db->where('trc_customer_project.del','0');
-			// $taskProjectData = $this->db->get()->row_array();
+            $this->db->select('trc_customer_project.*');
+			$this->db->from('trc_customer_project');
+			$this->db->where('trc_customer_project.id', $taskData['project_id']);
+			$this->db->where('trc_customer_project.del','0');
+			$taskProjectData = $this->db->get()->row_array();
 
-			// $this->db->select('trc_customer.*');
-			// $this->db->from('trc_customer');
-			// $this->db->where('trc_customer.id', $taskData['customer_id']);
-			// $this->db->where('trc_customer.del','0');
-            // $taskCustomerData = $this->db->get()->row_array();
+			$this->db->select('trc_customer.*');
+			$this->db->from('trc_customer');
+			$this->db->where('trc_customer.id', $taskData['customer_id']);
+			$this->db->where('trc_customer.del','0');
+            $taskCustomerData = $this->db->get()->row_array();
             
-            // $this->db->select('trc_customer_contact.*');
-			// $this->db->from('trc_customer_contact');
-			// $this->db->where('trc_customer_contact.customer_id', $taskData['customer_id']);
-			// $this->db->where('trc_customer_contact.del','0');
-            // $customerContactData = $this->db->get()->result_array();
+            $this->db->select('trc_customer_contact.*');
+			$this->db->from('trc_customer_contact');
+			$this->db->where('trc_customer_contact.customer_id', $taskData['customer_id']);
+			$this->db->where('trc_customer_contact.del','0');
+            $customerContactData = $this->db->get()->result_array();
 
-            // $this->db->select('trc_customer_task_fg.*');
-			// $this->db->from('trc_customer_task_fg');
-			// $this->db->where('trc_customer_task_fg.task_id', $taskId);
-			// $this->db->where('trc_customer_task_fg.project_id', $taskData['project_id']);
-			// $this->db->where('trc_customer_task_fg.customer_id', $taskData['customer_id']);
-			// $this->db->where('trc_customer_task_fg.del','0');
-			// $taskFGData = $this->db->get()->result_array();
+            $this->db->select('trc_customer_task_fg.*');
+			$this->db->from('trc_customer_task_fg');
+			$this->db->where('trc_customer_task_fg.task_id', $taskId);
+			$this->db->where('trc_customer_task_fg.project_id', $taskData['project_id']);
+			$this->db->where('trc_customer_task_fg.customer_id', $taskData['customer_id']);
+			$this->db->where('trc_customer_task_fg.del','0');
+			$taskFGData = $this->db->get()->result_array();
 
-			// foreach ($taskFGData as $key => $row) {
+			foreach ($taskFGData as $key => $row) {
 
-			// 	$validUpToDate = date_create($row['valid_upto']);
-			// 	$taskFGData[$key]['validUpToDate'] = date_format($validUpToDate, 'd M Y');
+				$validUpToDate = date_create($row['valid_upto']);
+				$taskFGData[$key]['validUpToDate'] = date_format($validUpToDate, 'd M Y');
 
-			// 	$this->db->select('COUNT(trc_customer_task_fg.id) as serviceRequestCount');
-			// 	$this->db->from('trc_customer_task_fg');
-			// 	$this->db->where('trc_customer_task_fg.fg_no', $row['fg_no']);
-			// 	$this->db->where('trc_customer_task_fg.del','0');
-			// 	$this->db->group_by('trc_customer_task_fg.task_no');
-			// 	$fgAllTaskData = $this->db->get()->row_array();
+				$this->db->select('COUNT(trc_customer_task_fg.id) as serviceRequestCount');
+				$this->db->from('trc_customer_task_fg');
+				$this->db->where('trc_customer_task_fg.fg_no', $row['fg_no']);
+				$this->db->where('trc_customer_task_fg.del','0');
+				$this->db->group_by('trc_customer_task_fg.task_no');
+				$fgAllTaskData = $this->db->get()->row_array();
 
-			// 	$taskFGData[$key]['serviceRequestCount'] = $fgAllTaskData['serviceRequestCount'];
+				$taskFGData[$key]['serviceRequestCount'] = $fgAllTaskData['serviceRequestCount'];
 
-			// 	$this->db->select('trc_customer_project_fg.model,trc_customer_project_fg.sub_model');
-			// 	$this->db->from('trc_customer_project_fg');
-			// 	$this->db->where('trc_customer_project_fg.fg_no',$row['fg_no']);
-			// 	$this->db->where('trc_customer_project_fg.del','0');
-			// 	$taskFgModel = $this->db->get()->row_array();
+				$this->db->select('trc_customer_project_fg.model,trc_customer_project_fg.sub_model');
+				$this->db->from('trc_customer_project_fg');
+				$this->db->where('trc_customer_project_fg.fg_no',$row['fg_no']);
+				$this->db->where('trc_customer_project_fg.del','0');
+				$taskFgModel = $this->db->get()->row_array();
 
-			// 	$taskFGData[$key]['model'] = $taskFgModel['model'];
-			// 	$taskFGData[$key]['sub_model'] = $taskFgModel['sub_model'];
+				$taskFGData[$key]['model'] = $taskFgModel['model'];
+				$taskFGData[$key]['sub_model'] = $taskFgModel['sub_model'];
 
-            // }
+            }
             
-            // $this->db->select('trc_customer_task_spare_part_assign.*');
-			// $this->db->from('trc_customer_task_spare_part_assign');
-			// $this->db->where('trc_customer_task_spare_part_assign.task_id', $taskId);
-			// $this->db->where('trc_customer_task_spare_part_assign.del','0');
-            // $taskAssignedPartData = $this->db->get()->result_array();
+            $this->db->select('trc_customer_task_spare_part_assign.*');
+			$this->db->from('trc_customer_task_spare_part_assign');
+			$this->db->where('trc_customer_task_spare_part_assign.task_id', $taskId);
+			$this->db->where('trc_customer_task_spare_part_assign.del','0');
+            $taskAssignedPartData = $this->db->get()->result_array();
             
-            // $this->db->select('trc_customer_task_assign.*');
-			// $this->db->from('trc_customer_task_assign');
-			// $this->db->where('trc_customer_task_assign.task_id', $taskId);
-			// $this->db->where('trc_customer_task_assign.del','0');
-            // $taskAssignData = $this->db->get()->result_array();
+            $this->db->select('trc_customer_task_assign.*');
+			$this->db->from('trc_customer_task_assign');
+			$this->db->where('trc_customer_task_assign.task_id', $taskId);
+			$this->db->where('trc_customer_task_assign.del','0');
+            $taskAssignData = $this->db->get()->result_array();
             
-			// $this->db->select('trc_customer_project_fg.*');
-			// $this->db->from('trc_customer_project_fg');
-			// $this->db->where('trc_customer_project_fg.project_id', $taskData['project_id']);
-			// $this->db->where('trc_customer_project_fg.customer_id', $taskData['customer_id']);
+			$this->db->select('trc_customer_project_fg.*');
+			$this->db->from('trc_customer_project_fg');
+			$this->db->where('trc_customer_project_fg.project_id', $taskData['project_id']);
+			$this->db->where('trc_customer_project_fg.customer_id', $taskData['customer_id']);
 
-			// $this->db->where('trc_customer_project_fg.del','0');
-			// $taskProjectFGData = $this->db->get()->result_array();
+			$this->db->where('trc_customer_project_fg.del','0');
+			$taskProjectFGData = $this->db->get()->result_array();
 
-			// foreach ($taskProjectFGData as $key => $row) {
+			foreach ($taskProjectFGData as $key => $row) {
 
-			// 	$validUpToDate = date_create($row['warranty_valid_upto']);
-			// 	$taskProjectFGData[$key]['validUpToDate'] = date_format($validUpToDate, 'd M Y');
+				$validUpToDate = date_create($row['warranty_valid_upto']);
+				$taskProjectFGData[$key]['validUpToDate'] = date_format($validUpToDate, 'd M Y');
 
-			// 	$this->db->select('COUNT(trc_customer_task_fg.id) as serviceRequestCount, trc_customer_task_fg.service_center');
-			// 	$this->db->from('trc_customer_task_fg');
-			// 	$this->db->where('trc_customer_task_fg.fg_no', $row['fg_no']);
-			// 	$this->db->where('trc_customer_task_fg.del','0');
-			// 	$this->db->group_by('trc_customer_task_fg.task_no');
-			// 	$fgAllTaskData = $this->db->get()->row_array();
+				$this->db->select('COUNT(trc_customer_task_fg.id) as serviceRequestCount, trc_customer_task_fg.service_center');
+				$this->db->from('trc_customer_task_fg');
+				$this->db->where('trc_customer_task_fg.fg_no', $row['fg_no']);
+				$this->db->where('trc_customer_task_fg.del','0');
+				$this->db->group_by('trc_customer_task_fg.task_no');
+				$fgAllTaskData = $this->db->get()->row_array();
 
-			// 	$taskProjectFGData[$key]['serviceRequestCount'] = $fgAllTaskData['serviceRequestCount'];
-			// 	$taskProjectFGData[$key]['service_center'] = $fgAllTaskData['service_center'];
-            // }
+				$taskProjectFGData[$key]['serviceRequestCount'] = $fgAllTaskData['serviceRequestCount'];
+				$taskProjectFGData[$key]['service_center'] = $fgAllTaskData['service_center'];
+            }
             
-            // $this->db->select('trc_customer_task_work_report.*');
-			// $this->db->from('trc_customer_task_work_report');
-			// $this->db->where('trc_customer_task_work_report.task_id', $taskId);
-			// $this->db->where('trc_customer_task_work_report.del','0');
-			// $taskWorkReport = $this->db->get()->result_array();
+            $this->db->select('trc_customer_task_work_report.*');
+			$this->db->from('trc_customer_task_work_report');
+			$this->db->where('trc_customer_task_work_report.task_id', $taskId);
+			$this->db->where('trc_customer_task_work_report.del','0');
+			$taskWorkReport = $this->db->get()->result_array();
 
-			// $this->db->select('trc_customer_task_spare_part_installed.*');
-			// $this->db->from('trc_customer_task_spare_part_installed');
-			// $this->db->where('trc_customer_task_spare_part_installed.task_id', $taskId);
-			// $this->db->where('trc_customer_task_spare_part_installed.del','0');
-			// $taskInstalledPartData = $this->db->get()->result_array();
+			$this->db->select('trc_customer_task_spare_part_installed.*');
+			$this->db->from('trc_customer_task_spare_part_installed');
+			$this->db->where('trc_customer_task_spare_part_installed.task_id', $taskId);
+			$this->db->where('trc_customer_task_spare_part_installed.del','0');
+			$taskInstalledPartData = $this->db->get()->result_array();
 
-			// $this->db->select('trc_customer_project_contact.id as proContactId,trc_customer_project_contact.name as proContactName, trc_customer_project_contact.email as proContactEmail');
-			// $this->db->from('trc_customer_project_contact');
-			// $this->db->where('trc_customer_project_contact.project_id', $taskData['project_id']);
-			// $this->db->where('trc_customer_project_contact.del','0');
-			// $projectContactData = $this->db->get()->result_array();
+			$this->db->select('trc_customer_project_contact.id as proContactId,trc_customer_project_contact.name as proContactName, trc_customer_project_contact.email as proContactEmail');
+			$this->db->from('trc_customer_project_contact');
+			$this->db->where('trc_customer_project_contact.project_id', $taskData['project_id']);
+			$this->db->where('trc_customer_project_contact.del','0');
+			$projectContactData = $this->db->get()->result_array();
 
-			// $this->db->select('trc_customer_task_commissioning_check_list.*');
-			// $this->db->from('trc_customer_task_commissioning_check_list');
-			// $this->db->where('trc_customer_task_commissioning_check_list.task_id', $taskId);
-			// $this->db->where('trc_customer_task_commissioning_check_list.del','0');
-			// $taskAssignedCommissioningData = $this->db->get()->result_array();
+			$this->db->select('trc_customer_task_commissioning_check_list.*');
+			$this->db->from('trc_customer_task_commissioning_check_list');
+			$this->db->where('trc_customer_task_commissioning_check_list.task_id', $taskId);
+			$this->db->where('trc_customer_task_commissioning_check_list.del','0');
+			$taskAssignedCommissioningData = $this->db->get()->result_array();
 			
-			// $this->db->select('trc_customer_task_remark.*');
-			// $this->db->from('trc_customer_task_remark');
-			// $this->db->where('trc_customer_task_remark.task_id', $taskId);
-			// $this->db->order_by('trc_customer_task_remark.id','DESC');
-			// $taskRemarkData = $this->db->get()->result_array();
+			$this->db->select('trc_customer_task_remark.*');
+			$this->db->from('trc_customer_task_remark');
+			$this->db->where('trc_customer_task_remark.task_id', $taskId);
+			$this->db->order_by('trc_customer_task_remark.id','DESC');
+			$taskRemarkData = $this->db->get()->result_array();
 
-			// foreach ($taskRemarkData as $key => $row) {
+			foreach ($taskRemarkData as $key => $row) {
 
-			// 	$dateCreated = date_create($row['date_created']);
-			// 	$taskRemarkData[$key]['dateCreated'] = date_format($dateCreated, 'd M Y');
-			// }
+				$dateCreated = date_create($row['date_created']);
+				$taskRemarkData[$key]['dateCreated'] = date_format($dateCreated, 'd M Y');
+			}
 
-			// $this->db->select('trc_customer_task_status_history.*');
-			// $this->db->from('trc_customer_task_status_history');
-			// $this->db->where('trc_customer_task_status_history.task_id', $taskId);
-			// $this->db->order_by('trc_customer_task_status_history.id','ASC');
-			// $taskEngineerStatus = $this->db->get()->result_array();		
+			$this->db->select('trc_customer_task_status_history.*');
+			$this->db->from('trc_customer_task_status_history');
+			$this->db->where('trc_customer_task_status_history.task_id', $taskId);
+			$this->db->order_by('trc_customer_task_status_history.id','ASC');
+			$taskEngineerStatus = $this->db->get()->result_array();		
 
             // $resultData = array(
 
@@ -479,38 +506,34 @@ class Report extends MY_Controller
 			// 	'taskEngineerStatus' => $taskEngineerStatus,
 
 				
-			// );
+            // );
 
-            // echo json_encode($resultData);
+            // print_r($taskData);
             
+        }
 
-            $html = '
-                
-            <div class="pdf-report">
-            <div class="company-info">
-                <div class="pdf-logo">
-                    <img src="assets/img/logo-pdf.png" alt="">
-                </div>
-                <p><strong>Unit 1</strong> : Plot No. 18/1A, Site IV , Industrial Area
-                    Sahibabad – 201010 ,UP, INDIA.
-                </p>
-                <p><strong>Unit 2</strong>: Plot No. 5, Sector-VI, IMT Manesar,
-                    Gurgaon, Haryana - 122050, INDIA
-                </p>
-                <p><strong>Ph</strong> : +91-120-4550400,  <strong>Email</strong>: customercare@tricolite.com</p>
-                <h6>CCC/QR/01/00</h6>
-            </div>
-            <div class="customer-info">
-                <table>
-                    <tr>
-                        <th class="w110">Report No</th>
+        $html ='                
+        <div class="pdf-report">
+        <div class="company-info">
+        <div class="pdf-logo">
+            <img src="http://tricolite.abacusdesk.com/assets/img/logo-pdf.png" alt="">
+        </div>
+        <p><strong>Unit 1</strong> : Plot No. 18/1A, Site IV , Industrial Area Sahibabad – 201010 ,UP, INDIA.</p>
+        <p><strong>Unit 2</strong>: Plot No. 5, Sector-VI, IMT Manesar,Gurgaon, Haryana - 122050, INDIA</p>
+        <p><strong>Ph</strong> : +91-120-4550400,  <strong>Email</strong>: customercare@tricolite.com</p>
+        <h6>CCC/QR/01/00</h6>
+        </div>
+        <div class="customer-info">
+        <table>
+        <tr>
+        <th class="w110">Report No</th>
                         <th class="w10">:</th>
-                        <th>1</th>
+                        <th>'.$taskData['id'].'</th>
                     </tr>
                     <tr>
                         <th class="w110">Customer</th>
                         <th class="w10">:</th>
-                        <th>2</th>
+                        <th>'.$taskCustomerData['company_name'].'</th>
                     </tr>
                     <tr>
                         <th class="w110">Contact Person</th>

@@ -10,11 +10,13 @@ export class DbServiceService {
     private loading: HTMLIonLoadingElement;
     private isShowing = false;
     private user = JSON.parse(localStorage.getItem('loginData')) || [];
+    
     // public serverURL: any = 'http://localhost/tricolite/api/index.php/app/';
     // public uploadURL: any = 'http://localhost/tricolite/api/uploads/Task_Doc/';
     // public masterDocURL: any = 'http://localhost/tricolite/api/uploads/Master_Doc/';
     // public customerDocURL: any = 'http://localhost/tricolite/api/uploads/Customer_Doc/';
     // public userDocURL: any = 'http://localhost/tricolite/api/uploads/User_Doc/';
+    
     public serverURL: any = 'http://tricolite.abacusdesk.com/api/index.php/app/';
     public uploadURL: any = 'http://tricolite.abacusdesk.com/uploads/Task_Doc/';
     public masterDocURL: any = 'http://tricolite.abacusdesk.com/uploads/Master_Doc/';
