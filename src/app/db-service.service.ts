@@ -24,6 +24,8 @@ export class DbServiceService {
     public customerDocURL: any = 'http://tricolite.abacusdesk.com/uploads/Customer_Doc/';
     public userDocURL: any = 'http://tricolite.abacusdesk.com/uploads/User_Doc/';
     public ReportDocURL: any = 'http://tricolite.abacusdesk.com/uploads/Report_Doc/';
+   
+    public upload_url: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
     
     public backButton = 0;
     
@@ -77,13 +79,11 @@ export class DbServiceService {
                         text: 'Ok',
                         handler: () => {
                             console.log('Ok Button Clicked!');
-                            this.route.navigate(['/customer']);
-                            
+                            // this.route.navigate(['/customer']);
                         }
                     }
                 ]
             });
-            
             await alert.present();
         }
         
