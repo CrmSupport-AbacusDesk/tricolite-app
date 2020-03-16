@@ -178,12 +178,12 @@ export class RegistrationPage implements OnInit {
                                     this.route.navigate(['/customer']);
                                     
                                     setTimeout(() => {
-                                      this.dbService.onShowAlertMessage('Success', 'Registration Successful!');
-                                    this.route.navigate(['/customer']);
+                                    this.dbService.onShowAlertMessage('Success', 'Registration Successful!');
 
-              
+                                    this.route.navigate(['/customerlogin']);
+                                      
                                     }, 1000);
-                                    }
+                                  }
                           });
                       }
                     }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController, NavParams } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DbServiceService } from 'src/app/db-service.service';
+import * as $ from 'jquery';
 
 declare var cordova: any;
 
@@ -18,6 +19,7 @@ export class TecCompliantPopoverComponent implements OnInit {
   taskNo: any = '';
   taskStatus: any = '';
   routeType: any = '';
+  taskAllData: any ='';
   
   constructor(public popoverController: PopoverController,
               private router: Router,
@@ -78,6 +80,12 @@ export class TecCompliantPopoverComponent implements OnInit {
 
       console.log(result);
 
+
+      const pdfData = document.getElementById( 'pdfComponentService' ).innerHTML;
+      ;
+      
+      console.log(pdfData);
+
       const options = {
           documentSize: 'A4',
           type: 'share',
@@ -85,7 +93,7 @@ export class TecCompliantPopoverComponent implements OnInit {
       };
 
       cordova.plugins.pdf.htmlToPDF({
-        data: result,
+        data: pdfData,
         documentSize: "A4",
         type: "share",
         fileName: 'my-pdf.pdf'
