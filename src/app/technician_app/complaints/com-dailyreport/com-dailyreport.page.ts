@@ -170,18 +170,15 @@ export class ComDailyreportPage implements OnInit {
     this.selectedRating = rating;
  }
 
-//  openPdf(){
-//    console.log("hello pdf");
-   
-//     const options: DocumentViewerOptions = {
-//       title: 'My PDF'
-//     }
-//     console.log(options);
-    
-    
-//     this.document.viewDocument('assets/pdf/myFile.pdf', 'application/pdf', options)
 
-//  }
+  async onClickOnFgWiseCategoryHandler(index){
+
+       this.currentActiveCheckTab = index;
+
+       console.log(this.fgWisecheckList);
+       this.fgWisecheckListCategory =  this.fgWisecheckList[index].newCheckListCategory;
+       console.log(this.fgWisecheckListCategory);
+  }
 
   async onSaveCheckListHandler() {
      
@@ -200,6 +197,7 @@ export class ComDailyreportPage implements OnInit {
             
 
                   if (this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'][k].checked) {
+
                     console.log(this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'].length);
 
                       isFgAnyCategoryChecked = true;
@@ -218,18 +216,12 @@ export class ComDailyreportPage implements OnInit {
       
       
 
-      if (count != this.fgWisecheckList.length) {
+        if (count == 0) {
 
-           if (count == 0) {
+            this.dbService.onShowAlertMessage('Error', 'No Check List Selected!');
+            return false;
 
-               this.dbService.onShowAlertMessage('Error', 'No Check List Selected!');
-
-           } else {
-
-               this.dbService.onShowAlertMessage('Error', 'Other FG check List Also Required !');
-           }
-
-      } else {
+        } 
 
           let isContactError = false;
           let errorMsg = '';
@@ -305,7 +297,7 @@ export class ComDailyreportPage implements OnInit {
 
           await alert.present();
 
-      }
+      
 
 
        

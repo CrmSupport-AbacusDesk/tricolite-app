@@ -327,6 +327,7 @@ class Login extends MY_Controller
 
 			   $status = 'success';
 			   $statusMessage = '';
+			   $this->sendMsgWhenRegistered();
 
 		   }else{
 
@@ -345,6 +346,24 @@ class Login extends MY_Controller
 
 			$this->db->onReturnErrorMessage();
 		}
+	}
+
+	public function sendMsgWhenRegistered(){
+		$msg ='New Registration';
+
+        $msg =urlencode( $msg );
+
+        
+         $ch = curl_init();
+        
+       
+        curl_setopt($ch,CURLOPT_URL, 'https://www.smsjust.com/blank/sms/user/urlsms.php?username=tricolite12&pass=w5!7XB@r&senderid=CUSAIX&dest_mobileno=9560882994&msgtype=UNI&message='.$msg.'&response=Y');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+            
+        $send_otp = curl_exec($ch);
+       
+        curl_close($ch);
 	}
 
 

@@ -946,6 +946,14 @@ class Task extends MY_Controller
 				 $this->db->where('trc_customer_task.del','0');
 				 $taskData = $this->db->get()->row_array();
 
+				 $taskNo=$taskData['task_no'];
+
+				 $this->db->select('trc_customer_task_contact.mobile');
+				 $this->db->from('trc_customer_task_contact');
+				 $this->db->where('trc_customer_task_contact.task_no',$taskNo);
+				 $this->db->where('trc_customer_task_contact.del','0');
+				 $task_contact_mobile=$this->db->get()->result_array();
+
 
          	     $updatedData = array(
 
@@ -981,7 +989,10 @@ class Task extends MY_Controller
 
 
                             $status = 'success';
-                            $statusMessage = '';
+							$statusMessage = '';
+							if($inputData['status']=='Reached'){
+                            	$this->sendMsgWhenReached($task_contact_mobile);
+                            }
          	     } else {
 
          	     	   $status = 'error';
@@ -999,6 +1010,26 @@ class Task extends MY_Controller
 
                $this->onReturnErrorMessage();
          }
+
+	}
+
+	public function sendMsgWhenReached($task_contact_mobile){
+		$msg ='Have Been Reached';
+
+        $msg =urlencode( $msg );
+
+        for($i=0;$i<sizeof($task_contact_mobile);$i++){
+			$ch = curl_init();
+			
+		
+			curl_setopt($ch,CURLOPT_URL, 'https://www.smsjust.com/blank/sms/user/urlsms.php?username=tricolite12&pass=w5!7XB@r&senderid=CUSAIX&dest_mobileno='.$task_contact_mobile[$i]['mobile'].'&msgtype=UNI&message='.$msg.'&response=Y');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+				
+			$send_otp = curl_exec($ch);
+		
+			curl_close($ch);
+    	}
 
 	}
 
@@ -1046,6 +1077,7 @@ class Task extends MY_Controller
 		
 								
 							   $this->db->select('trc_customer_task_commissioning_check_list.*');
+
 							   $this->db->from('trc_customer_task_commissioning_check_list');
 		
 							   $this->db->where('trc_customer_task_commissioning_check_list.task_id',$taskId);
@@ -1079,7 +1111,7 @@ class Task extends MY_Controller
 		
 					'taskFGCheckList' => $taskFGList
 			   );
-		
+			   
 			   echo json_encode($result);
 		
 		} else {

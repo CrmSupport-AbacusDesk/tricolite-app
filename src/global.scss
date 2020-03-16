@@ -2644,6 +2644,20 @@ ion-button
             margin-top: 0px;
         }
     }
+
+    &.ion-label-normal
+    {
+
+        ion-item
+        {
+            ion-label
+            {
+                white-space: normal !important;
+            }
+        }
+
+      
+    }
 }
 
 
