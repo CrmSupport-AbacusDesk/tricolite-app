@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "590596859248",
+    "firebase_url": "https://tricolite-74e5f.firebaseio.com",
+    "project_id": "tricolite-74e5f",
+    "storage_bucket": "tricolite-74e5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590596859248:android:8587ccafe445348d179bb5",
+        "android_client_info": {
+          "package_name": "com.abacus.tricolite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590596859248-1t647tjlb9o5san8ip38k53f0dfnl5p8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG4B-JICOwhZAxKDBrcR9SC52-TNUNO7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590596859248-1t647tjlb9o5san8ip38k53f0dfnl5p8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
