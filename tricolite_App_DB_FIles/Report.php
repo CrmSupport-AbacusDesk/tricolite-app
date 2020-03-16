@@ -488,221 +488,30 @@ class Report extends MY_Controller
 			$this->db->order_by('trc_customer_task_status_history.id','ASC');
 			$taskEngineerStatus = $this->db->get()->result_array();		
 
-            // $resultData = array(
+            $resultData = array(
 
-			// 	'taskData' => $taskData,
-			// 	'taskProjectData' => $taskProjectData,
-            //     'taskCustomerData' => $taskCustomerData,
-            //     'customerContactData' => $customerContactData,
-            //     'taskFGData' => $taskFGData,
-            //     'taskAssignedPartData' => $taskAssignedPartData,
-            //     'taskAssignData' => $taskAssignData,
-            //     'taskProjectFGData' => $taskProjectFGData,
-			// 	'taskWorkReport' => $taskWorkReport,
-			// 	'taskInstalledPartData' => $taskInstalledPartData,
-			// 	'projectContactData' => $projectContactData,
-			// 	'taskAssignedCommissioningData' => $taskAssignedCommissioningData,
-			// 	'taskRemarkData' => $taskRemarkData,
-			// 	'taskEngineerStatus' => $taskEngineerStatus,
+				'taskData' => $taskData,
+				'taskProjectData' => $taskProjectData,
+                'taskCustomerData' => $taskCustomerData,
+                'customerContactData' => $customerContactData,
+                'taskFGData' => $taskFGData,
+                'taskAssignedPartData' => $taskAssignedPartData,
+                'taskAssignData' => $taskAssignData,
+                'taskProjectFGData' => $taskProjectFGData,
+				'taskWorkReport' => $taskWorkReport,
+				'taskInstalledPartData' => $taskInstalledPartData,
+				'projectContactData' => $projectContactData,
+				'taskAssignedCommissioningData' => $taskAssignedCommissioningData,
+				'taskRemarkData' => $taskRemarkData,
+				'taskEngineerStatus' => $taskEngineerStatus,
 
 				
-            // );
+            );
 
-            // print_r($taskData);
             
         }
 
-        $html ='                
-        <div class="pdf-report">
-        <div class="company-info">
-        <div class="pdf-logo">
-            <img src="http://tricolite.abacusdesk.com/assets/img/logo-pdf.png" alt="">
-        </div>
-        <p><strong>Unit 1</strong> : Plot No. 18/1A, Site IV , Industrial Area Sahibabad – 201010 ,UP, INDIA.</p>
-        <p><strong>Unit 2</strong>: Plot No. 5, Sector-VI, IMT Manesar,Gurgaon, Haryana - 122050, INDIA</p>
-        <p><strong>Ph</strong> : +91-120-4550400,  <strong>Email</strong>: customercare@tricolite.com</p>
-        <h6>CCC/QR/01/00</h6>
-        </div>
-        <div class="customer-info">
-        <table>
-        <tr>
-        <th class="w110">Report No</th>
-                        <th class="w10">:</th>
-                        <th>'.$taskData['id'].'</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Customer</th>
-                        <th class="w10">:</th>
-                        <th>'.$taskCustomerData['company_name'].'</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Contact Person</th>
-                        <th class="w10">:</th>
-                        <th>Bhanu</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Project</th>
-                        <th class="w10">:</th>
-                        <th>Tricolite</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">So. Number</th>
-                        <th class="w10">:</th>
-                        <th>SO1229</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Product Model</th>
-                        <th class="w10">:</th>
-                        <th>MV /LV</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Product(FG No.)</th>
-                        <th class="w20">:</th>
-                        <th>Fg12345</th>
-                    </tr>
-                </table>
-            </div>
-            <div class="pdf-head">
-                <h2>Service Detail</h2>
-            </div>
-            <div class="customer-info wp100">
-                <table>
-                    <tr *ngFor="let row of taskAllData.taskFGData">
-                        <th class="w125">Request No.</th>
-                        <th class="w10">:</th>
-                        <td>123</td>
-                        <th class="w125">Complaint Type</th>
-                        <th class="w10">:</th>
-                        <td>Sale/Warranty</td>
-                        <th class="w125">Request Date & Time</th>
-                        <th class="w10">:</th>
-                        <td> 07-03-2020</td>
-                    </tr>
-                    <tr>
-                        <th>Nature of Complaint</th>
-                        <th class="w10">:</th>
-                        <td>Other</td>
-                        <th>Description </th>
-                        <th class="w10">:</th>
-                        <td>Test Description</td>
-                    </tr>
-                    <tr>
-                        <th class="w125">Service Engineer</th>
-                        <th class="w10">:</th>
-                        <td>Bhanu</td>
-                        <th class="w125">Sub. Engineer</th>
-                        <th class="w10">:</th>
-                        <td>Bhanu</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="clearfix">&nbsp;</div>
-            <div class="basic-table">
-                    <table>
-                        <tr>
-                            <th>Complaint Received Date & Time</th>     
-                            <th>Engineer Accepted Date & Time</th>                               
-                            <th>Engineer Reached Date & Time</th>   
-                            <th>Complaint Close Date & Time</th>
-                        </tr>
-                        <tr>                         
-                            <td>05-03-2020</td>   
-                            <td>Accepted / 06-03-2020</td>    
-                            <td>Reached / 06-03-2020</td>                                 
-                            <td>07-03-2020</td>
-                        </tr>
-                    </table>
-            </div>
-            <div class="pdf-head">
-                    <h2>Work Detail</h2>
-            </div>
-            <div class="clearfix">&nbsp;</div>
-            <div class="customer-info wp100">
-                    <table>
-                        <tr>
-                            <th>
-                                <div>
-                                    <p>Work Detail</p>
-                                    <span>Work Detail</span>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <div>
-                                    <p>Cause of Failure</p>
-                                    <span>Failure</span>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <div>
-                                    <p>Suggestion</p>
-                                    <span>Suggestion</span>
-                                </div>
-                            </th>
-                        </tr>
-                    </table>
-            </div>
-            <div class="customer-info mt15"></div>
-            <div class="clearfix">&nbsp;</div>
-            <div class="customer-info wp100">
-                    <table>
-                        <tr>
-                            <th>
-                                <div>
-                                    <p>Customer Remark</p>
-                                    <span>Customer Remark</span>
-                                </div>
-                            </th>
-                            <th>Customer Feedback</th>
-                            <td>
-                                    <div class="rating-start onestar" >
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                    </div>         
-                                                                                 
-                            </td>
-                        </tr>
-                    </table>
-            </div>
-            <div class="clearfix">&nbsp;</div>
-            <div class="pdf-head mt30">
-                        <h2>Authorized Signature Detail</h2>
-            </div>                            
-            <div class="customer-info wp100">
-                <table>
-                            <tr>
-                                <th class="text-right">
-                                    <div class="h70">
-                                        <p>Customer Signature </p>
-                                        <p>(Bhanu))</p>
-                                        <p>999999999</p>
-                                        <p>bhanu@abacusdesk.co.in</p>
-                                        <span><img class="w82" src="" alt="" style="width: 100px; height: 100px;"></span>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Sign Date :06-03-2020</th>
-                            </tr>
-                </table>
-            </div>
-        </div>
-            
-            ';
-
-            // $mpdf = $this->m_pdf->load();
-
-            // $mpdf->WriteHTML($html,1);
-
-            // $mpdf->Output($_SERVER["DOCUMENT_ROOT"] . '/api/uploads/Report_Doc/'.'Service Report'.'.pdf', 'F') ;
-
-            echo json_encode($html);
+            echo json_encode($resultData);
 
          
 

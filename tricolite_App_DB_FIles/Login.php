@@ -29,6 +29,7 @@ class Login extends MY_Controller
 						  $this->db->where('trc_customer_login_access.del', '0');
 						  $this->db->where('trc_customer_login_access.username', $inputData['userName']);
 						  $this->db->where('trc_customer_login_access.password', $inputData['password']);
+						  $this->db->where('trc_customer_login_access.status', 'Approved');
 					      $resultData = $this->db->get()->row_array();
 
 					      $loginName = $resultData['company_name'];
