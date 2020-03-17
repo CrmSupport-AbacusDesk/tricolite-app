@@ -77,7 +77,6 @@ export class DbServiceService {
                         text: 'Ok',
                         handler: () => {
                             console.log('Ok Button Clicked!');
-                            this.route.navigate(['/customer']);
                             
                         }
                     }

@@ -1,0 +1,171 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["logintype-logintype-module"],{
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/logintype/logintype.page.html":
+/*!*************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/logintype/logintype.page.html ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-content>\r\n    <div class=\"login-container\">\r\n        <div class=\"logo\"><img src=\"../../assets/img/logo.jpg\" alt=\"\"></div>\r\n        \r\n        <div class=\"form-container\">\r\n            <div class=\"head\">\r\n                <div class=\"heading\">\r\n                    <h1>Select User Type</h1>\r\n                </div>\r\n                <p>Please select login type<ion-text>Service Engineer</ion-text> OR <ion-text>Customer</ion-text>.</p>\r\n            </div>\r\n            \r\n            <div class=\"input-container\">\r\n                <div class=\"lgtype\">\r\n                    <ion-item (click)=\"onGoToLoginPageHandler('Technician')\">\r\n                        <div class=\"figure\">\r\n                            <ion-radio name=\"loginType\" [(ngModel)] = \"data.loginType\"  slot=\"start\" value=\"Technician\"></ion-radio>\r\n                            <div class=\"lg-icon\"><img src=\"assets/icon/service_eng.svg\" alt=\"\"></div>\r\n                            <h1>Service Engineer</h1>\r\n                        </div>\r\n                    </ion-item>\r\n                    <ion-item (click) = \"onGoToLoginPageHandler('Customer')\" >\r\n                        <div class=\"figure\">\r\n                            <ion-radio name=\"loginType\" [(ngModel)] = \"data.loginType\" slot=\"start\" value=\"Customer\"></ion-radio>\r\n                            <div class=\"lg-icon\"><img src=\"assets/icon/customer.svg\" alt=\"\"></div>\r\n                            <h1>Customer</h1>\r\n                        </div>\r\n                    </ion-item>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        \r\n        \r\n    </div>\r\n    \r\n</ion-content>"
+
+/***/ }),
+
+/***/ "./src/app/logintype/logintype-routing.module.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/logintype/logintype-routing.module.ts ***!
+  \*******************************************************/
+/*! exports provided: LogintypePageRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogintypePageRoutingModule", function() { return LogintypePageRoutingModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _logintype_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./logintype.page */ "./src/app/logintype/logintype.page.ts");
+
+
+
+
+var routes = [
+    {
+        path: '',
+        component: _logintype_page__WEBPACK_IMPORTED_MODULE_3__["LogintypePage"]
+    }
+];
+var LogintypePageRoutingModule = /** @class */ (function () {
+    function LogintypePageRoutingModule() {
+    }
+    LogintypePageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+            exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
+        })
+    ], LogintypePageRoutingModule);
+    return LogintypePageRoutingModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/logintype/logintype.module.ts":
+/*!***********************************************!*\
+  !*** ./src/app/logintype/logintype.module.ts ***!
+  \***********************************************/
+/*! exports provided: LogintypePageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogintypePageModule", function() { return LogintypePageModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _logintype_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./logintype-routing.module */ "./src/app/logintype/logintype-routing.module.ts");
+/* harmony import */ var _logintype_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./logintype.page */ "./src/app/logintype/logintype.page.ts");
+
+
+
+
+
+
+
+var LogintypePageModule = /** @class */ (function () {
+    function LogintypePageModule() {
+    }
+    LogintypePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
+                _logintype_routing_module__WEBPACK_IMPORTED_MODULE_5__["LogintypePageRoutingModule"]
+            ],
+            declarations: [_logintype_page__WEBPACK_IMPORTED_MODULE_6__["LogintypePage"]]
+        })
+    ], LogintypePageModule);
+    return LogintypePageModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/logintype/logintype.page.scss":
+/*!***********************************************!*\
+  !*** ./src/app/logintype/logintype.page.scss ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2ludHlwZS9sb2dpbnR5cGUucGFnZS5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/logintype/logintype.page.ts":
+/*!*********************************************!*\
+  !*** ./src/app/logintype/logintype.page.ts ***!
+  \*********************************************/
+/*! exports provided: LogintypePage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogintypePage", function() { return LogintypePage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+var LogintypePage = /** @class */ (function () {
+    function LogintypePage(route) {
+        this.route = route;
+        this.data = {};
+    }
+    LogintypePage.prototype.ngOnInit = function () {
+    };
+    LogintypePage.prototype.onGoToLoginPageHandler = function (targetedPage) {
+        var loginData = {
+            loginType: targetedPage,
+            loginId: '',
+            loginName: ''
+        };
+        localStorage.setItem('loginData', JSON.stringify(loginData));
+        console.log(JSON.parse(localStorage.getItem('loginData')));
+        if (targetedPage == 'Technician') {
+            this.route.navigate(['/techlogin']);
+        }
+        if (targetedPage == 'Customer') {
+            this.route.navigate(['/customerlogin']);
+        }
+    };
+    LogintypePage.prototype.ionViewDidEnter = function () {
+        console.log(this.data);
+        this.data.loginType = false;
+    };
+    LogintypePage.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+    ]; };
+    LogintypePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-logintype',
+            template: __webpack_require__(/*! raw-loader!./logintype.page.html */ "./node_modules/raw-loader/index.js!./src/app/logintype/logintype.page.html"),
+            styles: [__webpack_require__(/*! ./logintype.page.scss */ "./src/app/logintype/logintype.page.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], LogintypePage);
+    return LogintypePage;
+}());
+
+
+
+/***/ })
+
+}]);
+//# sourceMappingURL=logintype-logintype-module-es5.js.map
