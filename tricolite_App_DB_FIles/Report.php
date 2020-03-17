@@ -111,7 +111,7 @@ class Report extends MY_Controller
 
                           $uploadPath = $_SERVER["DOCUMENT_ROOT"] . '/api/uploads/Task_Doc/'. $imageName;
 
-                        //   file_put_contents($uploadPath, base64_decode($inputData['signatureData']));
+                          file_put_contents($uploadPath, base64_decode($inputData['signatureData']));
                          
 
                           $updatedData = array(
@@ -322,7 +322,6 @@ class Report extends MY_Controller
 
 		if(isset($inputData['taskId']) && $inputData['taskId'])  {
 
-            // $taskId = $this->my_simple_crypt($inputData['taskId'],"d");
             $taskId = $inputData['taskId'];
 
             $this->db->select('trc_customer_task.*');
@@ -486,226 +485,325 @@ class Report extends MY_Controller
 			$this->db->from('trc_customer_task_status_history');
 			$this->db->where('trc_customer_task_status_history.task_id', $taskId);
 			$this->db->order_by('trc_customer_task_status_history.id','ASC');
-			$taskEngineerStatus = $this->db->get()->result_array();		
-
-            // $resultData = array(
-
-			// 	'taskData' => $taskData,
-			// 	'taskProjectData' => $taskProjectData,
-            //     'taskCustomerData' => $taskCustomerData,
-            //     'customerContactData' => $customerContactData,
-            //     'taskFGData' => $taskFGData,
-            //     'taskAssignedPartData' => $taskAssignedPartData,
-            //     'taskAssignData' => $taskAssignData,
-            //     'taskProjectFGData' => $taskProjectFGData,
-			// 	'taskWorkReport' => $taskWorkReport,
-			// 	'taskInstalledPartData' => $taskInstalledPartData,
-			// 	'projectContactData' => $projectContactData,
-			// 	'taskAssignedCommissioningData' => $taskAssignedCommissioningData,
-			// 	'taskRemarkData' => $taskRemarkData,
-			// 	'taskEngineerStatus' => $taskEngineerStatus,
-
-				
-            // );
-
-            // print_r($taskData);
+            $taskEngineerStatus = $this->db->get()->result_array();	
             
+      
         }
 
-        $html ='                
-        <div class="pdf-report">
-        <div class="company-info">
-        <div class="pdf-logo">
-            <img src="http://tricolite.abacusdesk.com/assets/img/logo-pdf.png" alt="">
-        </div>
-        <p><strong>Unit 1</strong> : Plot No. 18/1A, Site IV , Industrial Area Sahibabad – 201010 ,UP, INDIA.</p>
-        <p><strong>Unit 2</strong>: Plot No. 5, Sector-VI, IMT Manesar,Gurgaon, Haryana - 122050, INDIA</p>
-        <p><strong>Ph</strong> : +91-120-4550400,  <strong>Email</strong>: customercare@tricolite.com</p>
-        <h6>CCC/QR/01/00</h6>
-        </div>
-        <div class="customer-info">
-        <table>
-        <tr>
-        <th class="w110">Report No</th>
-                        <th class="w10">:</th>
-                        <th>'.$taskData['id'].'</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Customer</th>
-                        <th class="w10">:</th>
-                        <th>'.$taskCustomerData['company_name'].'</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Contact Person</th>
-                        <th class="w10">:</th>
-                        <th>Bhanu</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Project</th>
-                        <th class="w10">:</th>
-                        <th>Tricolite</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">So. Number</th>
-                        <th class="w10">:</th>
-                        <th>SO1229</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Product Model</th>
-                        <th class="w10">:</th>
-                        <th>MV /LV</th>
-                    </tr>
-                    <tr>
-                        <th class="w110">Product(FG No.)</th>
-                        <th class="w20">:</th>
-                        <th>Fg12345</th>
-                    </tr>
-                </table>
-            </div>
-            <div class="pdf-head">
-                <h2>Service Detail</h2>
-            </div>
-            <div class="customer-info wp100">
-                <table>
-                    <tr *ngFor="let row of taskAllData.taskFGData">
-                        <th class="w125">Request No.</th>
-                        <th class="w10">:</th>
-                        <td>123</td>
-                        <th class="w125">Complaint Type</th>
-                        <th class="w10">:</th>
-                        <td>Sale/Warranty</td>
-                        <th class="w125">Request Date & Time</th>
-                        <th class="w10">:</th>
-                        <td> 07-03-2020</td>
-                    </tr>
-                    <tr>
-                        <th>Nature of Complaint</th>
-                        <th class="w10">:</th>
-                        <td>Other</td>
-                        <th>Description </th>
-                        <th class="w10">:</th>
-                        <td>Test Description</td>
-                    </tr>
-                    <tr>
-                        <th class="w125">Service Engineer</th>
-                        <th class="w10">:</th>
-                        <td>Bhanu</td>
-                        <th class="w125">Sub. Engineer</th>
-                        <th class="w10">:</th>
-                        <td>Bhanu</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="clearfix">&nbsp;</div>
-            <div class="basic-table">
-                    <table>
-                        <tr>
-                            <th>Complaint Received Date & Time</th>     
-                            <th>Engineer Accepted Date & Time</th>                               
-                            <th>Engineer Reached Date & Time</th>   
-                            <th>Complaint Close Date & Time</th>
-                        </tr>
-                        <tr>                         
-                            <td>05-03-2020</td>   
-                            <td>Accepted / 06-03-2020</td>    
-                            <td>Reached / 06-03-2020</td>                                 
-                            <td>07-03-2020</td>
-                        </tr>
-                    </table>
-            </div>
-            <div class="pdf-head">
-                    <h2>Work Detail</h2>
-            </div>
-            <div class="clearfix">&nbsp;</div>
-            <div class="customer-info wp100">
-                    <table>
-                        <tr>
-                            <th>
-                                <div>
-                                    <p>Work Detail</p>
-                                    <span>Work Detail</span>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <div>
-                                    <p>Cause of Failure</p>
-                                    <span>Failure</span>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <div>
-                                    <p>Suggestion</p>
-                                    <span>Suggestion</span>
-                                </div>
-                            </th>
-                        </tr>
-                    </table>
-            </div>
-            <div class="customer-info mt15"></div>
-            <div class="clearfix">&nbsp;</div>
-            <div class="customer-info wp100">
-                    <table>
-                        <tr>
-                            <th>
-                                <div>
-                                    <p>Customer Remark</p>
-                                    <span>Customer Remark</span>
-                                </div>
-                            </th>
-                            <th>Customer Feedback</th>
-                            <td>
-                                    <div class="rating-start onestar" >
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                    </div>         
-                                                                                 
-                            </td>
-                        </tr>
-                    </table>
-            </div>
-            <div class="clearfix">&nbsp;</div>
-            <div class="pdf-head mt30">
-                        <h2>Authorized Signature Detail</h2>
-            </div>                            
-            <div class="customer-info wp100">
-                <table>
+
+            $customerConData='';
+            foreach ($customerContactData as $customerContactkey => $customerContactValue) {
+
+                $customerConData .='
+                
+                <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Contact Person :</strong>'.$customerContactValue['name'].'</p>
+                <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Contact Mobile :</strong>'.$customerContactValue['mobile'].'</p>';
+
+                
+            }
+
+            $projectData='';
+            $natureData='';
+
+            foreach ($taskFGData as $fgkey => $fgvalue) {
+
+                $projectData .='
+
+                <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>So. Number :</strong>'.$fgvalue['so_no'].'</p>
+                <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Product Model :</strong>'.$fgvalue['model'].' - '.$fgvalue['sub_model'].'</p>
+                <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Product(FG No.) :</strong>'.$fgvalue['fg_no'].'</p>';
+
+                $natureData .='
+                <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;"><strong>Nature of Complaint :</strong> '.$fgvalue['nature_problem'].'</p>
+                <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;"><strong>Description :</strong> '.$fgvalue['description'].'</p>';
+
+
+            }
+
+          
+                
+
+            $assignedEngineer='';
+
+            foreach ($taskAssignData as $assignkey => $assignvalue) {
+
+                $assignedEngineer .='
+                
+                    <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Service Engineer :</strong>'.$assignvalue['user_name'].'</p>
+                   
+                    <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Sub Engineer :</strong>'.$assignvalue['user_name'].'</p>';
+
+            }
+
+            $engineerStatus='';
+
+            foreach ($taskEngineerStatus as $engiStatusKey => $engiStatus) {
+
+                $engineerStatus .='
+
+                <td style="font-size: 12px; border: 1px solid #000000; text-align: left; padding: 3px;">'.$engiStatus['status'].'-'.$engiStatus['date_created'].'</td>';
+
+            }
+
+            $workDetail='';
+            $workFailure='';
+            $workSuggestion='';
+            $customerRemark='';
+            $customerFeedback='';
+
+
+            foreach ($taskWorkReport as $workDetailkey => $workvalue) {
+
+                $workDetail .='
+
+                <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;">'.$workvalue['work_detail'].'</p>';
+
+                $workFailure .='
+                <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;">'.$workvalue['failure_cause'].'</p>';
+
+                $workSuggestion .='
+                <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;">'.$workvalue['suggestion'].'</p>';
+
+                $customerRemark .='
+                <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;">'.$workvalue['customer_remark'].'</p>
+                ';
+
+                $customerFeedback .='
+                    <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;">
+                    <i class="material-icons" style="color: #e48d0a; font-size: 18px;">'.$workvalue['customer_rating'].'</i>
+                    </p>';
+
+            }
+
+            $installedSparePart='';
+            $installedSparePartQty='';
+
+            foreach ($taskInstalledPartData as $installkey => $installvalue) {
+
+                $installedSparePart .='
+
+                <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;">'.$installvalue['part_name'].'</p>
+                
+                ';
+
+                $installedSparePartQty .='<p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;">'.$installvalue['installed_qty'].'</p>';
+
+
+            }
+
+            $customerSignatureData='';
+            $customerSign='';
+            $customerSignInfo='';
+
+            foreach ($taskWorkReport as $custmerSignkey => $custmerSignvalue) {
+
+                $customerSignatureData .='
+
+                <p style="font-size: 12px; margin: 0px; line-height: 16px; font-weight: 600;">('.$custmerSignvalue['contact_name'].')</p>
+                <p style="font-size: 12px; margin: 0px; line-height: 16x; font-weight: 600;">('.$custmerSignvalue['mobile'].')</p>
+                <p style="font-size: 12px; margin: 0px; line-height: 16px; font-weight: 600;">('.$custmerSignvalue['email'].')</p>';
+
+                $customerSign .='
+                <p style="font-size: 12px; margin: 0px; line-height: 16px; font-weight: 600;">Sign Date :'.$custmerSignvalue['date_created'].'</p>
+                ';
+
+                $customerSignInfo .='
+                <img class="w82" src=http://tricolite.abacusdesk.com/api/uploads/Task_Doc/'.$custmerSignvalue['customer_signature'].' alt="" style="width: 100px; height: 100px;">
+                ';
+
+            }
+
+        
+
+            $html = '
+
+            <div>
+    
+            <table style="width: 1024px; border: 1px solid #000000; margin: 0 auto; font-family: Arial, Helvetica, sans-serif;  table-layout: fixed; box-sizing: border-box;">
+                <tr>
+                    <td style="width: 612px; vertical-align: top; text-align: center; padding-top: 10px;">
+                        <img src="http://tricolite.abacusdesk.com/assets/img/logo-pdf.png" alt="" style="height: 15px;">
+                        <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Unit 1</strong> : Plot No. 18/1A, Site IV , Industrial Area Sahibabad – 201010 ,UP, INDIA.</p>
+                        <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Unit 2</strong>: Plot No. 5, Sector-VI, IMT Manesar,Gurgaon, Haryana - 122050, INDIA</p>
+                        <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Ph</strong> : +91-120-4550400,  <strong>Email</strong>: customercare@tricolite.com</p>
+                        <h6 style="font-size: 14px; margin: 0px; line-height: 24px; font-weight: 600;">CCC/QR/01/00</h6>
+                    </td>
+                    <td style="width: 412px; vertical-align: top;">
+                        <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Report No :</strong>'.$taskData['id'].'</p>
+                        <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Company Name :</strong>'.$taskCustomerData['company_name'].'</p>
+                        '.$customerConData.'
+                        <p style="font-size: 12px; margin: 0px; line-height: 20px;"><strong>Project :</strong>'.$taskProjectData['project_name'].'</p>
+                        '.$projectData.'
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2">
+                        <h2 style="font-size: 15px; font-weight: 600; margin: 0px; line-height: 20px; border-bottom: 1px solid #000000;">Service Detail</h2>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="width: 512px;">
+                        <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;"><strong>Request No. :</strong>'.$taskData['task_no'].'<strong>(Sale/Warranty)</strong></p>
+                        '.$natureData.'                       
+                    </td>
+                    <td style="width: 512px;">
+                        <p style="font-size: 12px; margin: 0px; margin-bottom: 5px; line-height: 20px;"><strong>Request Date :</strong> '.$taskData['dateCreated'].'-'.$taskData['timeCreated'].'</p>
+                        '.$assignedEngineer.'
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2" style="padding-top: 15px;"> 
+                        <table style="width: 100%; table-layout: fixed; box-sizing: border-box; border-collapse: collapse;">
                             <tr>
-                                <th class="text-right">
-                                    <div class="h70">
-                                        <p>Customer Signature </p>
-                                        <p>(Bhanu))</p>
-                                        <p>999999999</p>
-                                        <p>bhanu@abacusdesk.co.in</p>
-                                        <span><img class="w82" src="" alt="" style="width: 100px; height: 100px;"></span>
-                                    </div>
+                                <th style="font-size: 12px; border: 1px solid #000000; text-align: left; padding: 3px; padding: 3px; font-weight: 600; background: #cccccc;" >
+                                    Complaint Received Date & Time
+                                </th>
+                                <th style="font-size: 12px; border: 1px solid #000000; text-align: left; padding: 3px; padding: 3px; font-weight: 600; background: #cccccc;" >
+                                    Engineer Accepted Date & Time
+                                </th>
+                                <th style="font-size: 12px; border: 1px solid #000000; text-align: left; padding: 3px; padding: 3px; font-weight: 600; background: #cccccc;" >
+                                    Engineer Reached Date & Time
+                                </th>
+                                <th style="font-size: 12px; border: 1px solid #000000; text-align: left; padding: 3px; padding: 3px; font-weight: 600; background: #cccccc;" >
+                                    Complaint Closed Date & Time
                                 </th>
                             </tr>
                             <tr>
-                                <th>Sign Date :06-03-2020</th>
+                                <td style="font-size: 12px; border: 1px solid #000000; text-align: left; padding: 3px;">'.$taskData['dateCreated'].'-'.$taskData['timeCreated'].'</td>
+                              
+                                '.$engineerStatus.'
+
+                                <td style="font-size: 12px; border: 1px solid #000000; text-align: left; padding: 3px;">'.$taskData['taskCloseDate'].'
+                                </td>
                             </tr>
-                </table>
-            </div>
-        </div>
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2" style="padding-top: 15px;">
+                        <h2 style="font-size: 15px; font-weight: 600; margin: 0px; line-height: 20px; border-bottom: 1px solid #000000;">Spare Part Information</h2>
+                    </td>
+                </tr>             
+                
+                <tr>
+                    <td style="padding-top: 20px;" colspan="2" >
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 900px;">
+                                    <strong style="font-size: 12px; margin: 0px;">Part Name</strong>
+                                   
+                                   '.$installedSparePart.'
+                                </td>
+                                <td style="width: 124px; text-align: center;">
+                                    <strong style="font-size: 12px; margin: 0px;">QTY.</strong>
+                                   '.$installedSparePartQty.'
+                                </td>
+                            </tr>
+                        </table>
+                        
+                    </td>
+                    
+                </tr>
+                
+                <tr>
+                    <td colspan="2" style="padding-top: 15px;">
+                        <h2 style="font-size: 15px; font-weight: 600; margin: 0px; line-height: 20px; border-bottom: 1px solid #000000;">Work Detail</h2>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="padding-top: 20px;" colspan="2" >
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 100%;">
+                                    <strong style="font-size: 12px; margin: 0px;">Work Detail</strong>
+                                   '.$workDetail.'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+                                    <strong style="font-size: 12px; margin: 0px;">Cause of Failure</strong>
+                                    '.$workFailure.'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;">
+                                    <strong style="font-size: 12px; margin: 0px;">Suggestion</strong>
+                                   '.$workSuggestion.'
+                                </td>
+                            </tr>
+                        </table>
+                        
+                    </td>
+                    
+                </tr>
+                
+                <tr>
+                    <td colspan="2" >
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 800px">
+                                    <strong style="font-size: 12px; margin: 0px;">Customer Remark</strong>
+                                    '.$customerRemark.'
+                                </td>
+                                
+                                <td style="width: 224px">
+                                    <strong style="font-size: 12px; margin: 0px;">Customer Feedback</strong>
+                                   '.$customerFeedback.'
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        
+                    </td>
+                    
+                </tr>
+                
+                <tr>
+                    <td colspan="2" style="padding-top: 15px;">
+                        <h2 style="font-size: 15px; font-weight: 600; margin: 0px; line-height: 20px; border-bottom: 1px solid #000000;">Authorized Signature Detail</h2>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2" >
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 100%; text-align: right;">
+                                    <p style="font-size: 12px; margin: 0px; line-height: 20px; font-weight: 600;">
+                                        Customer Signature
+                                    </p>
+                                   '.$customerSignatureData.'
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    '.$customerSign.'
+                                </td>
+                                <td>
+                                    '.$customerSignInfo.'
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        
+                    </td>
+                    
+                </tr>
+            </table>
             
+        </div>
             ';
-
-            // $mpdf = $this->m_pdf->load();
-
-            // $mpdf->WriteHTML($html,1);
-
-            // $mpdf->Output($_SERVER["DOCUMENT_ROOT"] . '/api/uploads/Report_Doc/'.'Service Report'.'.pdf', 'F') ;
-
-            echo json_encode($html);
 
          
 
+            echo json_encode($html);
     
 
 	}
