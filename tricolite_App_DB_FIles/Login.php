@@ -281,67 +281,106 @@ class Login extends MY_Controller
 		if(isset($inputData['companyName']) && $inputData['companyName'] )  
 		{
 
-			$customerData = array(
+			$this->db->select('trc_customer_login_access.*');
+			$this->db->from('trc_customer_login_access');
+			$this->db->where('trc_customer_login_access.del', '0');
+			$this->db->where('trc_customer_login_access.contact_mobile', $inputData['contactData'][0]['contactMobile']);
+			$mobileExsists = $this->db->get()->row_array();
+
+			if(isset($mobileExsists['id']) && $mobileExsists['id']) {
+
+				$loginData = array();
+
+
+				if($mobileExsists['status'] == 'Pending'){
+
+					$status = 'error';
+					$statusMessage = 'Account Verification with this mobile already under process.';
+
+				}
+				if($mobileExsists['status'] == 'Approved'){
+
+
+					$status = 'error';
+					$statusMessage ='Account with this mobile has Already Active, Please Login.';
+
+				}
+				if($mobileExsists['status'] === 'Reject'){
+
+					$status = 'error';
+					$statusMessage = 'Account with this mobile has rejected.';
+
+				}
+
+			}else{
+
+				$customerData = array(
 					
-				'date_created' => $this->dateData['dateCreated'],
-				'created_by' => $_SESSION['uid'],
-				'created_by_name' => $_SESSION['uname'],
-				'created_by_type' => $_SESSION['utype'],
-				'company_name' => $inputData['companyName'],
-				'email' => $inputData['email'],
-				'landline_no' => $inputData['landlineNo'],
-				'username' => $inputData['username'],
-				'password' => $inputData['password'],
-				'project_name' => $inputData['projectName'],
-				'project_street' => $inputData['street'],
-				'project_state' => $inputData['state']['state_name'],
-				'project_district' => $inputData['district']['district_name'],
-				'project_city' => $inputData['city'],
-				'project_pincode' => $inputData['pincode'],
-				'contact_person_name' => $inputData['contactData'][0]['contactName'],
-				'contact_designation' => $inputData['contactData'][0]['designation'],
-				'contact_email' => $inputData['contactData'][0]['contactEmail'],
-				'contact_mobile' =>$inputData['contactData'][0]['contactMobile'],
-				'status' => 'Pending',
-				'last_updated_by' => $_SESSION['uid'],
-				'last_updated_by_name' => $_SESSION['uname'],
-				'last_updated_by_type' => $_SESSION['utype']
+					'date_created' => $this->dateData['dateCreated'],
+					'created_by' => $_SESSION['uid'],
+					'created_by_name' => $_SESSION['uname'],
+					'created_by_type' => $_SESSION['utype'],
+					'company_name' => $inputData['companyName'],
+					'email' => $inputData['email'],
+					'landline_no' => isset($inputData['landlineNo']) && $inputData['landlineNo'] ? $inputData['landlineNo'] : NULL,
+					'username' => $inputData['username'],
+					'password' => $inputData['password'],
+					'project_name' => $inputData['projectName'],
+					'project_street' => isset($inputData['street']) && $inputData['street'] ? $inputData['street'] : '',
+					'project_state' => $inputData['state']['state_name'],
+					'project_district' => isset($inputData['district']['district_name']) && $inputData['district']['district_name'] ? $inputData['district']['district_name'] : '',
+					'project_city' => $inputData['city'],
+					'project_pincode' => $inputData['pincode'],
+					'contact_person_name' => $inputData['contactData'][0]['contactName'],
+					'contact_designation' => $inputData['contactData'][0]['designation'],
+					'contact_email' => $inputData['contactData'][0]['contactEmail'],
+					'contact_mobile' =>$inputData['contactData'][0]['contactMobile'],
+					'status' => 'Pending',
+					'last_updated_by' => $_SESSION['uid'],
+					'last_updated_by_name' => $_SESSION['uname'],
+					'last_updated_by_type' => $_SESSION['utype']
+	
+				);
+	
+				if($this->db->insert('trc_customer_login_access', $customerData)) {
+	
+					$customerId = $this->db->insert_id();
+	
+					$this->db->select('trc_customer_login_access.*');
+					$this->db->from('trc_customer_login_access');
+					$this->db->where('trc_customer_login_access.del', '0');
+					$this->db->where('trc_customer_login_access.id', $customerId);
+					$resultData = $this->db->get()->row_array();
+	
+					$loginData = $resultData;
+	
+					$loginData['loginId'] = $resultData['id'];
+					$loginData['loginType'] = 'Customer';
+					$loginData['loginName'] = $resultData['company_name'];
+					$loginData['loginStatus'] = $resultData['status'];
+	
+				   $status = 'success';
+				   $statusMessage = '';
+				   $this->sendMsgWhenRegistered();
+	
+			   }else{
+	
+				   $status = 'error';
+				   $statusMessage = $this->db->error();
+				   $statusMessage = str_replace("Duplicate entry","Already Exist In System,", $statusMessage['message']);
+	
+				   $loginData = array();
+			   
+			   }
+	
+			}
 
-			);
+			$result = array('loginData' => $loginData, 'status' => $status, 'statusMessage' => $statusMessage);
+			echo json_encode($result);
 
-			if($this->db->insert('trc_customer_login_access', $customerData)) {
 
-				$customerId = $this->db->insert_id();
 
-				$this->db->select('trc_customer.*');
-				$this->db->from('trc_customer');
-				$this->db->where('trc_customer.del', '0');
-				$this->db->where('trc_customer.id', $customerId);
-				$resultData = $this->db->get()->row_array();
-
-				$loginData = $resultData;
-
-				$loginData['loginId'] = $resultData['id'];
-				$loginData['loginType'] = 'Customer';
-				$loginData['loginName'] = $resultData['company_name'];
-				$loginData['loginStatus'] = $resultData['status'];
-
-			   $status = 'success';
-			   $statusMessage = '';
-			   $this->sendMsgWhenRegistered();
-
-		   }else{
-
-			   $status = 'error';
-			   $statusMessage = $this->db->error();
-			   $statusMessage = str_replace("Duplicate entry","Already Exist In System,", $statusMessage['message']);
-
-			   $loginData = array();
-		   
-		   }
-
-		   $result = array('loginData' => $loginData, 'status' => $status, 'statusMessage' => $statusMessage);
-		   echo json_encode($result);
+			
 
 		}else {
 
@@ -350,7 +389,7 @@ class Login extends MY_Controller
 	}
 
 	public function sendMsgWhenRegistered(){
-		$msg ='New Registration';
+		$msg ='Your Registration Successfull.Your account has been under verification.';
 
         $msg =urlencode( $msg );
 
