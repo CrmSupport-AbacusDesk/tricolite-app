@@ -444,10 +444,12 @@ export class ComDailyreportPage implements OnInit {
                 if (target == 'dailyReport') {
                     this.data.mobile = this.contactList[isIndex].mobile;
                     this.data.email = this.contactList[isIndex].email;
+                    this.data.designation = this.contactList[isIndex].designation;
                 }
                 if(target == 'checkReport') {
                     console.log(this.contactList[isIndex].mobile);
                     this.data.checkMobile = this.contactList[isIndex].mobile;
+                    this.data.checkdesignation = this.contactList[isIndex].designation;
                 }
             }
         } else {
