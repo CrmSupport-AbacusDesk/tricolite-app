@@ -69,7 +69,7 @@ const routes = [
                 loadChildren: () => Promise.all(/*! import() | service_request-request-request-module */[__webpack_require__.e("default~complaints-complaintlist-complaintlist-module~myprojects-myprojects-module~service_request-r~738493b2"), __webpack_require__.e("service_request-request-request-module")]).then(__webpack_require__.bind(null, /*! ../service_request/request/request.module */ "./src/app/customer_app/service_request/request/request.module.ts")).then(m => m.RequestPageModule)
             },
             {
-                path: 'request/detail',
+                path: 'request/detail/:taskId',
                 loadChildren: () => __webpack_require__.e(/*! import() | service_request-request-details-request-details-module */ "service_request-request-details-request-details-module").then(__webpack_require__.bind(null, /*! ../service_request/request-details/request-details.module */ "./src/app/customer_app/service_request/request-details/request-details.module.ts")).then(m => m.RequestDetailsPageModule)
             },
             {
