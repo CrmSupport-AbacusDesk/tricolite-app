@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController,NavParams } from '@ionic/angular';
 import { RequestPopoverComponent } from '../request-popover/request-popover.component';
+import { DbServiceService } from 'src/app/db-service.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-request-details',
@@ -8,19 +10,68 @@ import { RequestPopoverComponent } from '../request-popover/request-popover.comp
   styleUrls: ['./request-details.page.scss'],
 })
 export class RequestDetailsPage implements OnInit {
+  
+  taskId:any = '';
+  taskAllData: any = {};
+  taskDataDetail:any={};
+  taskDataFgDetail:any=[];
+  taskAssignData:any=[]
 
-  constructor(public popoverController: PopoverController) { }
 
-  ngOnInit() {
+  constructor(public popoverController: PopoverController,
+    public dbService: DbServiceService,
+    public routeParams: ActivatedRoute,
+    
+    ) {
+    }
+    
+    ngOnInit() {
+      
+      this.routeParams.params.subscribe(params => {
+        
+        console.log(params);
+        this.taskId = params.taskId;
+        
+        console.log(this.taskId);
+        this.onGetComplaintDetailHandler();
+        
+      });
+      
+    }
+    
+    async presentcutomerPopover(ev: any) {
+      const popover = await this.popoverController.create({
+        component: RequestPopoverComponent,
+        event: ev,
+        translucent: true
+      });
+      return await popover.present();
+    }
+    
+    onGetComplaintDetailHandler(){
+      
+      const inputData = {
+        
+        taskId: this.taskId
+        
+      };
+      
+      
+      this.dbService.onPostRequestHandler(inputData, 'task/onTaskDetail').subscribe((result) => {
+        console.log(result);
+        this.taskDataDetail = Object.assign({},result['taskData']);
+        console.log('*** Task Data Detail ***');
+        console.log(this.taskDataDetail);
+        this.taskDataFgDetail = Object.assign([],result['taskFGData']);
+        console.log(this.taskDataFgDetail);
+        this.taskAssignData = Object.assign([],result['taskAssignData']);
+        console.log(this.taskAssignData);
+        
+      });
+      
+    }
+    
+    
+    
   }
-
-  async presentcutomerPopover(ev: any) {
-    const popover = await this.popoverController.create({
-      component: RequestPopoverComponent,
-      event: ev,
-      translucent: true
-    });
-    return await popover.present();
-  }
-
-}
+  

@@ -296,7 +296,7 @@
                                                     <div *ngFor = "let categoryListPoint of categoryList.checkListData;">
                                                         <ion-item>
                                                             <ion-label>{{categoryListPoint.check_list_point}}</ion-label>
-                                                            <ion-checkbox *ngIf="categoryList.category != 'Observations if any'" [(ngModel)]="categoryListPoint.checked" slot="start" color="success" (click)="select_checklist(categoryListPoint)"></ion-checkbox>
+                                                            <ion-checkbox *ngIf="categoryList.category != 'Observations If Any'" [(ngModel)]="categoryListPoint.checked" slot="start" color="success" (click)="select_checklist(categoryListPoint)"></ion-checkbox>
                                                         </ion-item>
                                                         <div class="common_form" *ngIf="categoryListPoint.checked">
                                                             <ion-item>
