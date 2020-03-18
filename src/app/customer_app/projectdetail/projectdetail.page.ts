@@ -63,7 +63,9 @@ export class ProjectdetailPage implements OnInit {
         this.dbService.onPostRequestHandler(inputData, 'customer/getProjectList').subscribe((result) => {
               console.log(result);
               this.dbService.dismissLoader();
-              this.projectData = result[`projectList`][0];
+              this.projectData = result[`projectContactList`][0];
+              console.log(this.projectData);
+              
         });
   }
 

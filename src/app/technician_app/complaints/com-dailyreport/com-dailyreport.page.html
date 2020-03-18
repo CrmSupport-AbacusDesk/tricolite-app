@@ -89,21 +89,23 @@
                             <form [formGroup]="registerForm1" (ngSubmit)="onNextStageHandler(1)">
                                 <div class="common_form inner_page">
                                     <ion-item [ngClass]="submitted && f1.workDetail.errors && f1.workDetail.errors.required ? 'has-error' : (f1.workDetail.errors && !f1.workDetail.errors.required ? 'has-text' : '')" class="h70">
-                                        <ion-textarea formControlName="workDetail" [(ngModel)]="data.workDetail" placeholder="Work Detail"></ion-textarea>
+                                        <ion-label position="floating">Work Detail</ion-label>
+                                        <ion-textarea formControlName="workDetail" [(ngModel)]="data.workDetail"></ion-textarea>
                                         <ion-text *ngIf="submitted && f1.workDetail.errors" class="cs-error">
                                             <span *ngIf="f1.workDetail.errors.minlength">Minimum 5 Letter Required</span>
                                         </ion-text>
                                     </ion-item>
                                     <ion-item [ngClass]="submitted && f1.causeFailure.errors && f1.causeFailure.errors.required ? 'has-error' : (f1.causeFailure.errors && !f1.causeFailure.errors.required ? 'has-text' : '')" class="h70">
-                                        
-                                        <ion-textarea formControlName="causeFailure" [(ngModel)]="data.causeFailure" placeholder="Cause Of Failure">
+                                        <ion-label position="floating">Cause Of Failure</ion-label>
+                                        <ion-textarea formControlName="causeFailure" [(ngModel)]="data.causeFailure">
                                             <ion-text *ngIf="submitted && f1.causeFailure.errors" class="cs-error">
                                                 <span *ngIf="f1.causeFailure.errors.minlength">Minimum 5 Letter Required</span>
                                             </ion-text>
                                         </ion-textarea>
                                     </ion-item>
                                     <ion-item [ngClass]="submitted && f1.suggestion.errors && f1.suggestion.errors.required ? 'has-error' : (f1.suggestion.errors && !f1.suggestion.errors.required ? 'has-text' : '')" class="h70">
-                                        <ion-textarea formControlName="suggestion" [(ngModel)]="data.suggestion" placeholder="Suggestion"></ion-textarea>
+                                        <ion-label position="floating">Suggestion</ion-label>
+                                        <ion-textarea formControlName="suggestion" [(ngModel)]="data.suggestion"></ion-textarea>
                                         <ion-text *ngIf="submitted && f1.suggestion.errors" class="cs-error">time
                                             <span *ngIf="f1.suggestion.errors.minlength">Minimum 5 Letter Required</span>
                                         </ion-text>

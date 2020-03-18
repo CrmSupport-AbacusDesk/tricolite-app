@@ -57,60 +57,11 @@ export class TecCompliantPopoverComponent implements OnInit {
     this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
   }
   
-
-  // GoToImagelist() {
-
-  //     this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/image-list/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-  // }
-
   GoToReport(type) {
 
     localStorage.setItem('reportType', type);
     this.router.navigateByUrl('/technicians/'+ localStorage.getItem('routeType') +'/details/dailyreport/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
   }
-
-  // GoToServiceReport() {
-
-  //   console.log('hello');
-  //   const inputData = {
-  //     taskId: this.taskId
-  //   };
-
-  //   this.dbService.onPostRequestHandler(inputData, 'Report/viewMobileServiceReport').subscribe((result) => {
-
-  //     console.log(result);
-
-
-  //     const pdfData = document.getElementById( 'pdfComponentService' ).innerHTML;
-  //     ;
-      
-  //     console.log(pdfData);
-
-  //     const options = {
-  //         documentSize: 'A4',
-  //         type: 'share',
-  //         fileName: 'myFile.pdf'
-  //     };
-
-  //     cordova.plugins.pdf.htmlToPDF({
-  //       data: pdfData,
-  //       documentSize: "A4",
-  //       type: "share",
-  //       fileName: 'my-pdf.pdf'
-        
-  //   },
-  //   (sucess) => console.log('sucess: ', sucess),
-  //   (error) => console.log('error:', error));
-       
-
-      
-
-  //     // window.open(ReportDocURL, '_system', 'location=yes');
-      
-
-  //   });
-    
-  // }
 
   GoToServiceReport() {
 

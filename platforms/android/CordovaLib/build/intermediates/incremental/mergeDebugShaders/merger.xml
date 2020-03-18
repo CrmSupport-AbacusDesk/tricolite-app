@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\Tricolite\tricolitAppLatest\tricolite-app\platforms\android\CordovaLib\src\main\shaders"/></dataSet><dataSet config="debug"><source path="E:\Tricolite\tricolitAppLatest\tricolite-app\platforms\android\CordovaLib\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\Tricolite\tricoliteAPP_17-03-2020\tricolite-app\platforms\android\CordovaLib\src\main\shaders"/></dataSet><dataSet config="debug"><source path="E:\Tricolite\tricoliteAPP_17-03-2020\tricolite-app\platforms\android\CordovaLib\src\debug\shaders"/></dataSet></merger>

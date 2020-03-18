@@ -22,7 +22,7 @@
                                     <div class="common_form inner_page">
                                         <ion-item [ngClass]="submitted && f1.companyName.errors && f1.companyName.errors.required ? 'has-error' : (f1.companyName.errors && !f1.companyName.errors.required ? 'has-text' : '')">
                                             <ion-label position="floating">Company Name</ion-label>
-                                            <ion-input formControlName="companyName" [(ngModel)]="data.companyName" autocomplete="off"></ion-input>
+                                            <ion-input formControlName="companyName" [(ngModel)]="data.companyName" autocomplete="nope"></ion-input>
 
                                             <ion-text *ngIf="submitted && f1.companyName.errors" class="cs-error">
     
@@ -35,7 +35,7 @@
 
                                         <ion-item [ngClass]="submitted && f1.email.errors && f1.email.errors.required ? 'has-error' : (f1.email.errors && !f1.email.errors.required ? 'has-text' : '')">
                                             <ion-label position="floating">Email ID</ion-label>
-                                            <ion-input formControlName="email" [(ngModel)]="data.email" autocomplete="off"></ion-input>
+                                            <ion-input formControlName="email" [(ngModel)]="data.email" autocomplete="nope"></ion-input>
 
                                             <ion-text *ngIf="submitted && f1.email.errors" class="cs-error">
     
@@ -47,7 +47,7 @@
 
                                         <ion-item [ngClass]="submitted && f1.landlineNo.errors && f1.landlineNo.errors.required ? 'has-error' : (f1.landlineNo.errors && !f1.landlineNo.errors.required ? 'has-text' : '')">
                                             <ion-label position="floating">Landline No.</ion-label>
-                                            <ion-input type="tel" formControlName="landlineNo" [(ngModel)]="data.landlineNo"   minlength = "6" maxlength="13" (keypress)="dbService.numberOnly($event)" autocomplete="off"></ion-input>
+                                            <ion-input type="tel" formControlName="landlineNo" [(ngModel)]="data.landlineNo"   minlength = "6" maxlength="13" (keypress)="dbService.numberOnly($event)" autocomplete="nope"></ion-input>
 
                                             <ion-text *ngIf="submitted && f1.landlineNo.errors" class="cs-error">
     
@@ -62,12 +62,12 @@
 
                                         <ion-item [ngClass]="submitted && f1.username.errors && f1.username.errors.required ? 'has-error' : (f1.username.errors && !f1.username.errors.required ? 'has-text' : '')">
                                             <ion-label position="floating">Username</ion-label>
-                                            <ion-input type="text" formControlName="username" [(ngModel)]="data.username" autocomplete="off"></ion-input>
+                                            <ion-input type="text" formControlName="username" [(ngModel)]="data.username" autocomplete="nope"></ion-input>
                                         </ion-item>
 
                                         <ion-item [ngClass]="submitted && f1.password.errors && f1.password.errors.required ? 'has-error' : (f1.password.errors && !f1.password.errors.required ? 'has-text' : '')">
                                             <ion-label position="floating">Password</ion-label>
-                                            <ion-input type="password" formControlName="password" [(ngModel)]="data.password" autocomplete="off"></ion-input>
+                                            <ion-input type="password" formControlName="password" [(ngModel)]="data.password" autocomplete="nope"></ion-input>
                                         </ion-item>
 
                                         <div class="heading">
@@ -76,7 +76,7 @@
 
                                         <ion-item [ngClass]="submitted && f1.projectName.errors && f1.projectName.errors.required ? 'has-error' : (f1.projectName.errors && !f1.projectName.errors.required ? 'has-text' : '')">
                                             <ion-label position="floating">Project Name</ion-label>
-                                            <ion-input formControlName="projectName" [(ngModel)]="data.projectName" autocomplete="off"></ion-input>
+                                            <ion-input formControlName="projectName" [(ngModel)]="data.projectName" autocomplete="nope"></ion-input>
 
                                             <ion-text *ngIf="submitted && f1.projectName.errors" class="cs-error">
     
@@ -183,7 +183,7 @@
 
                                     <ion-item [ngClass]="submitted && f3.contactName.errors && f3.contactName.errors.required ? 'has-error' : (f3.contactName.errors && !f3.contactName.errors.required ? 'has-text' : '')">
                                         <ion-label position="floating">Name</ion-label>
-                                        <ion-input formControlName="contactName" [(ngModel)]="data.contactName" autocomplete="off"></ion-input>
+                                        <ion-input formControlName="contactName" [(ngModel)]="data.contactName" autocomplete="nope"></ion-input>
 
                                         <ion-text *ngIf="submitted && f3.contactName.errors" class="cs-error">
     
@@ -198,7 +198,7 @@
 
                                     <ion-item [ngClass]="submitted && f3.designation.errors && f3.designation.errors.required ? 'has-error' : (f3.designation.errors && !f3.designation.errors.required ? 'has-text' : '')">
                                         <ion-label position="floating">Designation</ion-label>
-                                        <ion-input formControlName="designation" [(ngModel)]="data.designation" autocomplete="off"></ion-input>
+                                        <ion-input formControlName="designation" [(ngModel)]="data.designation" autocomplete="nope"></ion-input>
                                             <ion-text *ngIf="submitted && f3.designation.errors" class="cs-error">
         
                                                     <span *ngIf="f3.designation.errors.minlength">Minimum 3 Letter Required</span>
@@ -211,7 +211,7 @@
 
                                     <ion-item [ngClass]="submitted && f3.contactEmail.errors && f3.contactEmail.errors.required ? 'has-error' : (f3.contactEmail.errors && !f3.contactEmail.errors.required ? 'has-text' : '')">
                                         <ion-label position="floating">Email ID</ion-label>
-                                        <ion-input formControlName="contactEmail" [(ngModel)]="data.contactEmail" autocomplete="off"></ion-input>
+                                        <ion-input formControlName="contactEmail" [(ngModel)]="data.contactEmail" autocomplete="nope"></ion-input>
                                         <ion-text *ngIf="submitted && f3.contactEmail.errors" class="cs-error">
     
                                                 <span *ngIf="!f3.contactEmail.errors.required">Email Invalid!</span>
@@ -222,7 +222,7 @@
 
                                     <ion-item [ngClass]="submitted && f3.contactMobile.errors && f3.contactMobile.errors.required ? 'has-error' : (f3.contactMobile.errors && !f3.contactMobile.errors.required ? 'has-text' : '')">
                                         <ion-label position="floating">Mobile No.</ion-label>
-                                        <ion-input type="tel" formControlName="contactMobile" [(ngModel)]="data.contactMobile" minlength = 10 maxlength="10" (keypress)="dbService.numberOnly($event)" autocomplete="off"></ion-input>
+                                        <ion-input type="tel" formControlName="contactMobile" [(ngModel)]="data.contactMobile" minlength = 10 maxlength="10" (keypress)="dbService.numberOnly($event)" autocomplete="nope"></ion-input>
                                   
                                         <ion-text *ngIf="submitted && f3.contactMobile.errors" class="cs-error">
     
