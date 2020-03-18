@@ -18,7 +18,7 @@
                 <div class="img-gallery">
                     <div (click)="presentActionSheet()" class="figure upload"><i class="material-icons">add</i></div>
                     <div *ngFor="let row of taskImageData; let index = index"  class="figure">
-                        <img (click) = "onViewImageHandler(index)" src="{{dbService.uploadURL}}{{row.image_url}}" alt="">
+                        <img (click) = "onViewImageHandler(index)" [src]="dbService.uploadURL+row.image_url" alt="">
                     </div>
                 </div>
             </div>

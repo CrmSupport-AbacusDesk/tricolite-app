@@ -137,6 +137,7 @@ export class ComDailyreportPage implements OnInit {
     {
         this.onGetProjectContactHandler();
         this.onSetDateTimeOptionHandler();
+        // alert(this.reportType);
     }
     
     onStarClickHandler(rating) {

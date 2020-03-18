@@ -17,6 +17,7 @@
             <div class="custome-filter dlform">
                 <div class="fiter-data">
                     <div class="cs-left">
+
                         <ion-button *ngIf="reportType == 'dailyReport'"  [ngClass]="activeStage==1 ? 'active' : ''" fill="clear" color="dark">
                             <div class="figure">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.999" height="20" viewBox="0 0 19.999 20">
@@ -84,8 +85,11 @@
                             </div>
                         </ion-button> 
                     </div>
+
+
                     <div class="cs-right">
-                        <div [hidden]="activeStage!=1" class="work-info">
+
+                        <div class="work-info" [hidden]="activeStage != 1 ">
                             <form [formGroup]="registerForm1" (ngSubmit)="onNextStageHandler(1)">
                                 <div class="common_form inner_page">
                                     <ion-item [ngClass]="submitted && f1.workDetail.errors && f1.workDetail.errors.required ? 'has-error' : (f1.workDetail.errors && !f1.workDetail.errors.required ? 'has-text' : '')" class="h70">
@@ -116,7 +120,7 @@
                                     <ion-item [ngClass]="submitted && f1.workStatus.errors && f1.workStatus.errors.required ? 'has-error' : (f1.workStatus.errors && !f1.workStatus.errors.required ? 'has-text' : '')" class="cs-select">
                                         <ion-label>Select Status</ion-label>
                                         <ion-select formControlName="workStatus" [(ngModel)]="data.workStatus" (ngModelChange)="onChangeWorkStatusHandler()" placeholder="Select One">
-                                            <ion-select-option value="Inprocess">In-Process</ion-select-option>
+                                            <ion-select-option value="Running">In-Process</ion-select-option>
                                             <ion-select-option value="Pending">Pending</ion-select-option>
                                             <ion-select-option value="Close">Close</ion-select-option>
                                         </ion-select>
@@ -149,7 +153,7 @@
                             </form>
                         </div>
                         
-                        <div *ngIf="activeStage==2" class="auth_sign_info">
+                        <div class="auth_sign_info" *ngIf="activeStage == 2" >
                             
                             <form [formGroup]="registerForm3"  (ngSubmit)="onNextStageHandler(3)">
                                 
@@ -208,7 +212,7 @@
                             </form>
                         </div>
                         
-                        <div *ngIf="activeStage==3" class="auth_sign_info">
+                        <div class="auth_sign_info"  *ngIf="activeStage == 3" >
                             
                             <form [formGroup]="registerForm4"  (ngSubmit)="onNextStageHandler(4)">
                                 <div class="common_form inner_page ">
@@ -285,7 +289,9 @@
                             </form>
                         </div>
                         
-                        <div class="custome-filter dlform mt15">
+
+
+                        <div class="custome-filter dlform mt15" *ngIf="activeStage == 5">
                             <div class="fiter-data">
                                 <div class="cs-right">
                                     <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckList; let index = index" class="check_list">
@@ -312,7 +318,7 @@
                             </div>
                         </div>
                         
-                        <div class="custome-filter dlform mt15" >
+                        <div class="custome-filter dlform mt15" *ngIf="activeStage == 5">
                             <div class="fiter-data">
                                 <div class="cs-right">
                                     <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckListCategory; let index = index" class="check_list">
@@ -347,6 +353,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>

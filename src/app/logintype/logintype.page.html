@@ -12,20 +12,26 @@
             
             <div class="input-container">
                 <div class="lgtype">
-                    <ion-item (click)="onGoToLoginPageHandler('Technician')">
-                        <div class="figure">
-                            <ion-radio name="loginType" [(ngModel)] = "data.loginType"  slot="start" value="Technician"></ion-radio>
-                            <div class="lg-icon"><img src="assets/icon/service_eng.svg" alt=""></div>
-                            <h1>Service Engineer</h1>
-                        </div>
-                    </ion-item>
-                    <ion-item (click) = "onGoToLoginPageHandler('Customer')" >
-                        <div class="figure">
-                            <ion-radio name="loginType" [(ngModel)] = "data.loginType" slot="start" value="Customer"></ion-radio>
-                            <div class="lg-icon"><img src="assets/icon/customer.svg" alt=""></div>
-                            <h1>Customer</h1>
-                        </div>
-                    </ion-item>
+                    
+                    <ion-radio-group>
+                        
+                        <ion-item (click)="onGoToLoginPageHandler('Technician')">
+                            <div class="figure">
+                                <ion-radio slot="start" value="Technician"></ion-radio>
+                                <div class="lg-icon"><img src="assets/icon/service_eng.svg" alt=""></div>
+                                <h1>Service Engineer</h1>
+                            </div>
+                        </ion-item>
+                        <ion-item (click) = "onGoToLoginPageHandler('Customer')" >
+                            <div class="figure">
+                                <ion-radio slot="start" value="Customer"></ion-radio>
+                                <div class="lg-icon"><img src="assets/icon/customer.svg" alt=""></div>
+                                <h1>Customer</h1>
+                            </div>
+                        </ion-item>
+                    </ion-radio-group>
+                    
+                    
                 </div>
             </div>
         </div>
