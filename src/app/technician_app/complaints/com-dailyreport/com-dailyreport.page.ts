@@ -472,7 +472,7 @@ export class ComDailyreportPage implements OnInit {
             this.data = result['customer_data'];
             if(this.data.signature_image != '')
             {
-                this.signatureImage = this.dbService.uploadURL+this.data.signature_image;
+                this.signatureImage = this.dbService.upload_url+this.data.signature_image;
             }
             this.check_list_created = result[`taskFGCheckList`][0]['check_list_created'];
         });

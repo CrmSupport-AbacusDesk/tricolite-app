@@ -46,7 +46,7 @@ const routes: Routes = [
         loadChildren: () => import('../service_request/request/request.module').then(m => m.RequestPageModule)
       },
       {
-        path: 'request/detail',
+        path: 'request/detail/:taskId',
         loadChildren: () => import('../service_request/request-details/request-details.module').then(m => m.RequestDetailsPageModule)
       },
 

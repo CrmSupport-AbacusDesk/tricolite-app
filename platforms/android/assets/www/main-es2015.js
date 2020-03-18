@@ -1691,6 +1691,7 @@ let DbServiceService = class DbServiceService {
         this.customerDocURL = 'http://tricolite.abacusdesk.com/uploads/Customer_Doc/';
         this.userDocURL = 'http://tricolite.abacusdesk.com/uploads/User_Doc/';
         this.ReportDocURL = 'http://tricolite.abacusdesk.com/uploads/Report_Doc/';
+        this.upload_url = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
         this.backButton = 0;
     }
     presentLoader() {
