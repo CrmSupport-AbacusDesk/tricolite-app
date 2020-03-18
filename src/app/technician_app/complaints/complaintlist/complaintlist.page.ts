@@ -106,7 +106,7 @@ export class ComplaintlistPage implements OnInit {
             if (showLoading) {
                   setTimeout(() => {
                     this.dbService.dismissLoader();
-                  }, 2000);
+                  }, 1000);
             }
 
             let resultData = result[`taskList`];
