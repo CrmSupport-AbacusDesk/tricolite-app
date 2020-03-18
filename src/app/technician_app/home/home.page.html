@@ -21,27 +21,29 @@
     <div *ngIf="dashboardData" class="dashboard_container">
         <div class="top-counters">
             <div class="figure">
-                <div>
+                <div routerLink="/technicians/complaints">
                     <h1>{{dashboardData.typeTotalCount1}}</h1>
                     <ion-text>< 5 Day</ion-text>
                 </div>
             </div>
             
             <div class="figure">
-                <div>
+                <div routerLink="/technicians/complaints">
                     <h1>{{dashboardData.typeTotalCount2}}</h1>
                     <ion-text>5 - 10 Day</ion-text>
                 </div>
             </div>
             
             <div class="figure">
-                <div>
+                <div routerLink="/technicians/complaints">
                     <h1>{{dashboardData.typeTotalCount3}}</h1>
                     <ion-text>> 10 Day</ion-text>
                 </div>
             </div>
             
         </div>
+
+        
         
         <div class="midd-counters">
             <ion-button routerLink="/technicians/complaints" fill="clear" class="free">
