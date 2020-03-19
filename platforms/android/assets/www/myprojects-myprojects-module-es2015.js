@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["myprojects-myprojects-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/customer_app/myprojects/myprojects.page.html":
-/*!****************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/customer_app/myprojects/myprojects.page.html ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/myprojects/myprojects.page.html":
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/myprojects/myprojects.page.html ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content >\r\n    \r\n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"ionRefresh($event)\">\r\n        <ion-refresher-content\r\n        pullingIcon=\"arrow-dropdown\"\r\n        pullingText=\"Pull to refresh\"\r\n        refreshingSpinner=\"circles\"\r\n        refreshingText=\"Refreshing...\">\r\n    </ion-refresher-content>\r\n</ion-refresher>\r\n\r\n<div class=\"cs-main-container\">\r\n    <div class=\"custome-head\">\r\n        <div class=\"cs-ion-header\">\r\n            <div class=\"cs-left\">\r\n                <ion-title class=\"pl0\">My Project's</ion-title>\r\n            </div>\r\n            \r\n            <div class=\"cs-right\">\r\n                <ion-button (click)=\"onSearchClickHandler()\"><ion-icon name=\"search\"></ion-icon></ion-button>\r\n            </div>\r\n            \r\n            <div [ngClass]=\"isSearchOptionActive ? 'active' : ''\" class=\"search-filetr\">\r\n                \r\n                <ion-searchbar [(ngModel)]=\"data.searchData\" (ngModelChange)=\"onUpdateCurrentPageHandler(); onGetProjectListHandler(false, '')\" id=\"searchData\"></ion-searchbar>\r\n                \r\n                <a (click) = \"data.searchData = ''; isSearchOptionActive = false; onUpdateCurrentPageHandler(); onGetProjectListHandler(false, '')\"  class=\"cancel\">Cancel</a>\r\n                \r\n            </div>\r\n        </div>\r\n        <div class=\"cs-ion-hf\"></div>\r\n    </div>\r\n    \r\n    <div class=\"cs-ion-content pt0\" padding>\r\n        \r\n        <div  (click)=\"GoToDetail(row.id)\" *ngFor=\"let row of projectContactList\" class=\"complaints product-list mt20\">\r\n            \r\n            <div class=\"figure\">\r\n                \r\n                <div class=\"cnt-info\">\r\n                    <div class=\"cs-left\">\r\n                        <div class=\"f-alpha\">{{row.project_name[0]}}</div>\r\n                        <div class=\"names\">\r\n                            <h1>{{row.project_name}}</h1>\r\n                            <ion-text>{{row.street}} {{row.state_name}}, {{row.district_name}}, {{row.city}}, {{row.pincode}}</ion-text>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                \r\n                <div class=\"one-two-one three\">\r\n                    <div class=\"cs-box\">\r\n                        <div>\r\n                            <ion-text>Contact Person</ion-text>\r\n                            <ion-text>{{totalProjectCount}}</ion-text>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"cs-box\">\r\n                        <div>\r\n                            <ion-text>Total Products</ion-text>\r\n                            <ion-text>{{row.productData.length}}</ion-text>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"cs-box\">\r\n                        <div>\r\n                            <ion-text>Service Request</ion-text>\r\n                            <ion-text>{{row.totalServiceRequest}} </ion-text>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        \r\n        <div *ngIf=\"!isRequestInProcess && projectContactList.length == 0\" class=\"no-data\">\r\n            <img src=\"assets/icon/no_found.svg\">\r\n            <p>Data Not Found!</p>\r\n        </div>\r\n        \r\n    </div>\r\n</div>\r\n\r\n\r\n<ion-infinite-scroll threshold=\"100px\" *ngIf=\"doCheckForMoreData\" (ionInfinite)=\"onGetProjectListHandler(false, $event)\">\r\n    <ion-infinite-scroll-content\r\n    loadingSpinner=\"bubbles\"\r\n    loadingText=\"Loading more data...\">\r\n</ion-infinite-scroll-content>\r\n</ion-infinite-scroll>\r\n\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\n    \n    <ion-refresher slot=\"fixed\" (ionRefresh)=\"ionRefresh($event)\">\n        <ion-refresher-content\n        pullingIcon=\"arrow-dropdown\"\n        pullingText=\"Pull to refresh\"\n        refreshingSpinner=\"circles\"\n        refreshingText=\"Refreshing...\">\n    </ion-refresher-content>\n</ion-refresher>\n\n<div class=\"cs-main-container\">\n    <div class=\"custome-head\">\n        <div class=\"cs-ion-header\">\n            <div class=\"cs-left\">\n                <ion-title class=\"pl0\">My Project's</ion-title>\n            </div>\n            \n            <div class=\"cs-right\">\n                <ion-button (click)=\"onSearchClickHandler()\"><ion-icon name=\"search\"></ion-icon></ion-button>\n            </div>\n            \n            <div [ngClass]=\"isSearchOptionActive ? 'active' : ''\" class=\"search-filetr\">\n                \n                <ion-searchbar [(ngModel)]=\"data.searchData\" (ngModelChange)=\"onUpdateCurrentPageHandler(); onGetProjectListHandler(false, '')\" id=\"searchData\"></ion-searchbar>\n                \n                <a (click) = \"data.searchData = ''; isSearchOptionActive = false; onUpdateCurrentPageHandler(); onGetProjectListHandler(false, '')\"  class=\"cancel\">Cancel</a>\n                \n            </div>\n        </div>\n        <div class=\"cs-ion-hf\"></div>\n    </div>\n    \n    <div class=\"cs-ion-content pt0\" padding>\n        \n        <div  (click)=\"GoToDetail(row.id)\" *ngFor=\"let row of projectList\" class=\"complaints product-list mt20\">\n            \n            <div class=\"figure\">\n                \n                <div class=\"cnt-info\">\n                    <div class=\"cs-left\">\n                        <div class=\"f-alpha\">{{row.project_name[0]}}</div>\n                        <div class=\"names\">\n                            <h1>{{row.project_name}}</h1>\n                            <ion-text>{{row.street}} {{row.state_name}}, {{row.district_name}}, {{row.city}}, {{row.pincode}}</ion-text>\n                        </div>\n                    </div>\n                </div>\n                \n                <div class=\"one-two-one three\">\n                    <div class=\"cs-box\">\n                        <div>\n                            <ion-text>Contact Person</ion-text>\n                            <ion-text>{{row.contactData ? row.contactData.length : 0}}</ion-text>\n                        </div>\n                    </div>\n                    <div class=\"cs-box\">\n                        <div>\n                            <ion-text>Total Products</ion-text>\n                            <ion-text>{{row.productData.length}}</ion-text>\n                        </div>\n                    </div>\n                    <div class=\"cs-box\">\n                        <div>\n                            <ion-text>Service Request</ion-text>\n                            <ion-text>{{row.totalServiceRequest}} </ion-text>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        <div *ngIf=\"!isRequestInProcess && projectList.length == 0\" class=\"no-data\">\n            <img src=\"assets/icon/no_found.svg\">\n            <p>Data Not Found!</p>\n        </div>\n        \n    </div>\n</div>\n\n\n<ion-infinite-scroll threshold=\"100px\" *ngIf=\"doCheckForMoreData\" (ionInfinite)=\"onGetProjectListHandler(false, $event)\">\n    <ion-infinite-scroll-content\n    loadingSpinner=\"bubbles\"\n    loadingText=\"Loading more data...\">\n</ion-infinite-scroll-content>\n</ion-infinite-scroll>\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -94,10 +96,12 @@ MyprojectsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!**************************************************************!*\
   !*** ./src/app/customer_app/myprojects/myprojects.page.scss ***!
   \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9teXByb2plY3RzL215cHJvamVjdHMucGFnZS5zY3NzIn0= */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9teXByb2plY3RzL215cHJvamVjdHMucGFnZS5zY3NzIn0= */");
 
 /***/ }),
 
@@ -132,8 +136,7 @@ let MyprojectsPage = class MyprojectsPage {
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
         this.dbService = dbService;
-        this.projectContactList = [];
-        this.totalProjectCount = [];
+        this.projectList = [];
         this.isSearchOptionActive = false;
         this.searchData = {};
         this.data = {};
@@ -172,22 +175,20 @@ let MyprojectsPage = class MyprojectsPage {
                         this.dbService.dismissLoader();
                     }, 2000);
                 }
-                let resultData = result[`projectContactList`];
+                let resultData = result[`projectData`];
                 console.log(resultData);
-                this.totalProjectCount = result[`totalProjectCount`];
-                console.log(this.totalProjectCount);
                 if (!resultData || resultData == null || resultData.length == 0) {
                     resultData = [];
                     this.doCheckForMoreData = false;
                 }
                 if (this.currentPage == 1) {
-                    this.projectContactList = resultData;
+                    this.projectList = resultData;
                 }
                 else {
                     for (let index = 0; index < resultData.length; index++) {
-                        const isIndex = this.projectContactList.findIndex(row => row.id == resultData[index].id);
+                        const isIndex = this.projectList.findIndex(row => row.id == resultData[index].id);
                         if (isIndex === -1) {
-                            this.projectContactList.push(resultData[index]);
+                            this.projectList.push(resultData[index]);
                         }
                     }
                 }
@@ -233,8 +234,8 @@ MyprojectsPage.ctorParameters = () => [
 MyprojectsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-myprojects',
-        template: __webpack_require__(/*! raw-loader!./myprojects.page.html */ "./node_modules/raw-loader/index.js!./src/app/customer_app/myprojects/myprojects.page.html"),
-        styles: [__webpack_require__(/*! ./myprojects.page.scss */ "./src/app/customer_app/myprojects/myprojects.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./myprojects.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/myprojects/myprojects.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./myprojects.page.scss */ "./src/app/customer_app/myprojects/myprojects.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],

@@ -1,272 +1,570 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[49],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[49], {
+  /***/
+  "./node_modules/@ionic/core/dist/esm/ion-range-md.entry.js":
+  /*!*****************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-range-md.entry.js ***!
+    \*****************************************************************/
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-radio_2-md.entry.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-radio_2-md.entry.js ***!
-  \***********************************************************************/
-/*! exports provided: ion_radio, ion_radio_group */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+  /*! exports provided: ion_range */
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_radio", function() { return Radio; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_radio_group", function() { return RadioGroup; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-feeeff0d.js */ "./node_modules/@ionic/core/dist/esm-es5/core-feeeff0d.js");
-/* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm-es5/config-3c7f3790.js");
-/* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-46f4a262.js");
-/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-18cbe2cc.js");
-/* harmony import */ var _watch_options_2af96011_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./watch-options-2af96011.js */ "./node_modules/@ionic/core/dist/esm-es5/watch-options-2af96011.js");
+  /***/
+  function node_modulesIonicCoreDistEsmIonRangeMdEntryJs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
 
 
+    __webpack_require__.d(__webpack_exports__, "ion_range", function () {
+      return Range;
+    });
+    /* harmony import */
 
 
+    var _core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./core-feeeff0d.js */
+    "./node_modules/@ionic/core/dist/esm/core-feeeff0d.js");
+    /* harmony import */
 
 
-var Radio = /** @class */ (function () {
-    function Radio(hostRef) {
-        var _this = this;
-        Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.inputId = "ion-rb-" + radioButtonIds++;
+    var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./config-3c7f3790.js */
+    "./node_modules/@ionic/core/dist/esm/config-3c7f3790.js");
+    /* harmony import */
+
+
+    var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./helpers-46f4a262.js */
+    "./node_modules/@ionic/core/dist/esm/helpers-46f4a262.js");
+    /* harmony import */
+
+
+    var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./theme-18cbe2cc.js */
+    "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
+
+    const Range = class {
+      constructor(hostRef) {
+        Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.noUpdate = false;
+        this.hasFocus = false;
+        this.ratioA = 0;
+        this.ratioB = 0;
+        /**
+         * How long, in milliseconds, to wait to trigger the
+         * `ionChange` event after each change in the range value.
+         */
+
+        this.debounce = 0;
         /**
          * The name of the control, which is submitted with the form data.
          */
-        this.name = this.inputId;
+
+        this.name = '';
         /**
-         * If `true`, the user cannot interact with the radio.
+         * Show two knobs.
          */
+
+        this.dualKnobs = false;
+        /**
+         * Minimum integer value of the range.
+         */
+
+        this.min = 0;
+        /**
+         * Maximum integer value of the range.
+         */
+
+        this.max = 100;
+        /**
+         * If `true`, a pin with integer value is shown when the knob
+         * is pressed.
+         */
+
+        this.pin = false;
+        /**
+         * If `true`, the knob snaps to tick marks evenly spaced based
+         * on the step property value.
+         */
+
+        this.snaps = false;
+        /**
+         * Specifies the value granularity.
+         */
+
+        this.step = 1;
+        /**
+         * If `true`, tick marks are displayed based on the step value.
+         * Only applies when `snaps` is `true`.
+         */
+
+        this.ticks = true;
+        /**
+         * If `true`, the user cannot interact with the range.
+         */
+
         this.disabled = false;
         /**
-         * If `true`, the radio is selected.
+         * the value of the range.
          */
-        this.checked = false;
-        this.onFocus = function () {
-            _this.ionFocus.emit();
+
+        this.value = 0;
+
+        this.clampBounds = value => {
+          return Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.min, value, this.max);
         };
-        this.onBlur = function () {
-            _this.ionBlur.emit();
+
+        this.ensureValueInBounds = value => {
+          if (this.dualKnobs) {
+            return {
+              lower: this.clampBounds(value.lower),
+              upper: this.clampBounds(value.upper)
+            };
+          } else {
+            return this.clampBounds(value);
+          }
         };
-        this.onClick = function () {
-            if (_this.checked) {
-                _this.ionDeselect.emit();
-            }
-            else {
-                _this.checked = true;
-            }
+
+        this.handleKeyboard = (knob, isIncrease) => {
+          let step = this.step;
+          step = step > 0 ? step : 1;
+          step = step / (this.max - this.min);
+
+          if (!isIncrease) {
+            step *= -1;
+          }
+
+          if (knob === 'A') {
+            this.ratioA = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, this.ratioA + step, 1);
+          } else {
+            this.ratioB = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, this.ratioB + step, 1);
+          }
+
+          this.updateValue();
         };
-        this.ionStyle = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this, "ionStyle", 7);
-        this.ionSelect = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this, "ionSelect", 7);
-        this.ionDeselect = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this, "ionDeselect", 7);
-        this.ionFocus = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this, "ionFocus", 7);
-        this.ionBlur = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this, "ionBlur", 7);
-    }
-    Radio.prototype.colorChanged = function () {
-        this.emitStyle();
-    };
-    Radio.prototype.checkedChanged = function (isChecked) {
-        if (isChecked) {
-            this.ionSelect.emit({
-                checked: true,
-                value: this.value
-            });
+
+        this.onBlur = () => {
+          if (this.hasFocus) {
+            this.hasFocus = false;
+            this.ionBlur.emit();
+            this.emitStyle();
+          }
+        };
+
+        this.onFocus = () => {
+          if (!this.hasFocus) {
+            this.hasFocus = true;
+            this.ionFocus.emit();
+            this.emitStyle();
+          }
+        };
+
+        this.ionChange = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionChange", 7);
+        this.ionStyle = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionStyle", 7);
+        this.ionFocus = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionFocus", 7);
+        this.ionBlur = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionBlur", 7);
+      }
+
+      debounceChanged() {
+        this.ionChange = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this.ionChange, this.debounce);
+      }
+
+      minChanged() {
+        if (!this.noUpdate) {
+          this.updateRatio();
         }
-        this.emitStyle();
-    };
-    Radio.prototype.disabledChanged = function () {
-        this.emitStyle();
-    };
-    Radio.prototype.componentWillLoad = function () {
-        if (this.value === undefined) {
-            this.value = this.inputId;
+      }
+
+      maxChanged() {
+        if (!this.noUpdate) {
+          this.updateRatio();
         }
+      }
+
+      disabledChanged() {
+        if (this.gesture) {
+          this.gesture.setDisabled(this.disabled);
+        }
+
         this.emitStyle();
-    };
-    Radio.prototype.emitStyle = function () {
+      }
+
+      valueChanged(value) {
+        if (!this.noUpdate) {
+          this.updateRatio();
+        }
+
+        value = this.ensureValueInBounds(value);
+        this.ionChange.emit({
+          value
+        });
+      }
+
+      connectedCallback() {
+        this.updateRatio();
+        this.debounceChanged();
+        this.disabledChanged();
+      }
+
+      disconnectedCallback() {
+        if (this.gesture) {
+          this.gesture.destroy();
+          this.gesture = undefined;
+        }
+      }
+
+      async componentDidLoad() {
+        const rangeSlider = this.rangeSlider;
+
+        if (rangeSlider) {
+          this.gesture = (await Promise.resolve().then(__webpack_require__.bind(null,
+          /*! ./index-624eea58.js */
+          "./node_modules/@ionic/core/dist/esm/index-624eea58.js"))).createGesture({
+            el: rangeSlider,
+            gestureName: 'range',
+            gesturePriority: 100,
+            threshold: 0,
+            onStart: ev => this.onStart(ev),
+            onMove: ev => this.onMove(ev),
+            onEnd: ev => this.onEnd(ev)
+          });
+          this.gesture.setDisabled(this.disabled);
+        }
+      }
+
+      getValue() {
+        const value = this.value || 0;
+
+        if (this.dualKnobs) {
+          if (typeof value === 'object') {
+            return value;
+          }
+
+          return {
+            lower: 0,
+            upper: value
+          };
+        } else {
+          if (typeof value === 'object') {
+            return value.upper;
+          }
+
+          return value;
+        }
+      }
+
+      emitStyle() {
         this.ionStyle.emit({
-            'radio-checked': this.checked,
-            'interactive-disabled': this.disabled,
+          'interactive': true,
+          'interactive-disabled': this.disabled
         });
-    };
-    Radio.prototype.render = function () {
-        var _a;
-        var _b = this, inputId = _b.inputId, disabled = _b.disabled, checked = _b.checked, color = _b.color, el = _b.el;
-        var mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this);
-        var labelId = inputId + '-lbl';
-        var label = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["f"])(el);
-        if (label) {
-            label.id = labelId;
+      }
+
+      onStart(detail) {
+        const rect = this.rect = this.rangeSlider.getBoundingClientRect();
+        const currentX = detail.currentX; // figure out which knob they started closer to
+
+        let ratio = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, (currentX - rect.left) / rect.width, 1);
+
+        if (document.dir === 'rtl') {
+          ratio = 1 - ratio;
         }
-        return (Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, role: "radio", "aria-disabled": disabled ? 'true' : null, "aria-checked": "" + checked, "aria-labelledby": labelId, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_4__["c"])(color)), (_a = {}, _a[mode] = true, _a['in-item'] = Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_4__["h"])('ion-item', el), _a['interactive'] = true, _a['radio-checked'] = checked, _a['radio-disabled'] = disabled, _a)) }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "radio-icon" }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "radio-inner" })), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled })));
-    };
-    Object.defineProperty(Radio.prototype, "el", {
-        get: function () { return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Radio, "watchers", {
-        get: function () {
-            return {
-                "color": ["colorChanged"],
-                "checked": ["checkedChanged"],
-                "disabled": ["disabledChanged"]
-            };
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Radio, "style", {
-        get: function () { return ":host{display:inline-block;position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.radio-disabled){pointer-events:none}.radio-icon{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;contain:layout size style}.radio-icon,button{width:100%;height:100%}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.radio-icon,.radio-inner{-webkit-box-sizing:border-box;box-sizing:border-box}:host{--color:var(--ion-color-step-400,#999);--color-checked:var(--ion-color-primary,#3880ff);--border-width:2px;--border-style:solid;width:20px;height:20px}:host(.ion-color) .radio-inner{background:var(--ion-color-base)}:host(.ion-color.radio-checked) .radio-icon{border-color:var(--ion-color-base)}.radio-icon{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;border-radius:50%;border-width:var(--border-width);border-style:var(--border-style);border-color:var(--color)}.radio-inner{border-radius:50%;width:calc(50% + var(--border-width));height:calc(50% + var(--border-width));-webkit-transform:scale3d(0,0,0);transform:scale3d(0,0,0);-webkit-transition:-webkit-transform .28s cubic-bezier(.4,0,.2,1);transition:-webkit-transform .28s cubic-bezier(.4,0,.2,1);transition:transform .28s cubic-bezier(.4,0,.2,1);transition:transform .28s cubic-bezier(.4,0,.2,1),-webkit-transform .28s cubic-bezier(.4,0,.2,1);background:var(--color-checked)}:host(.radio-checked) .radio-icon{border-color:var(--color-checked)}:host(.radio-checked) .radio-inner{-webkit-transform:scaleX(1);transform:scaleX(1)}:host(.radio-disabled){opacity:.3}:host(.ion-focused) .radio-icon:after{border-radius:50%;left:-12px;top:-12px;display:block;position:absolute;width:36px;height:36px;background:var(--ion-color-primary-tint,#4c8dff);content:\"\";opacity:.2}:host-context([dir=rtl]).ion-focused .radio-icon:after,:host-context([dir=rtl]):host(.ion-focused) .radio-icon:after{left:unset;right:unset;right:-12px}:host(.in-item){margin-left:0;margin-right:0;margin-top:9px;margin-bottom:9px;display:block;position:static}:host(.in-item[slot=start]){margin-left:4px;margin-right:36px;margin-top:11px;margin-bottom:10px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot=start]){margin-left:unset;margin-right:unset;-webkit-margin-start:4px;margin-inline-start:4px;-webkit-margin-end:36px;margin-inline-end:36px}}"; },
-        enumerable: true,
-        configurable: true
-    });
-    return Radio;
-}());
-var radioButtonIds = 0;
-var RadioGroup = /** @class */ (function () {
-    function class_1(hostRef) {
-        var _this = this;
-        Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.inputId = "ion-rg-" + radioGroupIds++;
-        this.labelId = this.inputId + "-lbl";
-        /**
-         * If `true`, the radios can be deselected.
-         */
-        this.allowEmptySelection = false;
-        /**
-         * The name of the control, which is submitted with the form data.
-         */
-        this.name = this.inputId;
-        this.onSelect = function (ev) {
-            var selectedRadio = ev.target;
-            if (selectedRadio) {
-                _this.value = selectedRadio.value;
-            }
-        };
-        this.onDeselect = function (ev) {
-            var selectedRadio = ev.target;
-            if (selectedRadio) {
-                selectedRadio.checked = false;
-                _this.value = undefined;
-            }
-        };
-        this.ionChange = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this, "ionChange", 7);
-    }
-    class_1.prototype.valueChanged = function (value) {
-        this.updateRadios();
-        this.ionChange.emit({ value: value });
-    };
-    class_1.prototype.connectedCallback = function () {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var el, header, label, radio;
-            var _this = this;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        el = this.el;
-                        header = el.querySelector('ion-list-header') || el.querySelector('ion-item-divider');
-                        if (header) {
-                            label = header.querySelector('ion-label');
-                            if (label) {
-                                this.labelId = label.id = this.name + '-lbl';
-                            }
-                        }
-                        if (!(this.value === undefined)) return [3 /*break*/, 2];
-                        radio = Object(_watch_options_2af96011_js__WEBPACK_IMPORTED_MODULE_5__["f"])(el, 'ion-radio');
-                        if (!(radio !== undefined)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, radio.componentOnReady()];
-                    case 1:
-                        _a.sent();
-                        if (this.value === undefined) {
-                            this.value = radio.value;
-                        }
-                        _a.label = 2;
-                    case 2:
-                        this.mutationO = Object(_watch_options_2af96011_js__WEBPACK_IMPORTED_MODULE_5__["w"])(el, 'ion-radio', function (newOption) {
-                            if (newOption !== undefined) {
-                                newOption.componentOnReady().then(function () {
-                                    _this.value = newOption.value;
-                                });
-                            }
-                            else {
-                                _this.updateRadios();
-                            }
-                        });
-                        this.updateRadios();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    class_1.prototype.disconnectedCallback = function () {
-        if (this.mutationO) {
-            this.mutationO.disconnect();
-            this.mutationO = undefined;
+
+        this.pressedKnob = !this.dualKnobs || Math.abs(this.ratioA - ratio) < Math.abs(this.ratioB - ratio) ? 'A' : 'B';
+        this.setFocus(this.pressedKnob); // update the active knob's position
+
+        this.update(currentX);
+      }
+
+      onMove(detail) {
+        this.update(detail.currentX);
+      }
+
+      onEnd(detail) {
+        this.update(detail.currentX);
+        this.pressedKnob = undefined;
+      }
+
+      update(currentX) {
+        // figure out where the pointer is currently at
+        // update the knob being interacted with
+        const rect = this.rect;
+        let ratio = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, (currentX - rect.left) / rect.width, 1);
+
+        if (document.dir === 'rtl') {
+          ratio = 1 - ratio;
         }
-    };
-    class_1.prototype.updateRadios = function () {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var radios, value, hasChecked, _i, radios_1, radio;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getRadios()];
-                    case 1:
-                        radios = _a.sent();
-                        value = this.value;
-                        hasChecked = false;
-                        // Walk the DOM in reverse order, since the last selected one wins!
-                        for (_i = 0, radios_1 = radios; _i < radios_1.length; _i++) {
-                            radio = radios_1[_i];
-                            if (!hasChecked && radio.value === value) {
-                                // correct value for this radio
-                                // but this radio isn't checked yet
-                                // and we haven't found a checked yet
-                                hasChecked = true;
-                                radio.checked = true;
-                            }
-                            else {
-                                // this radio doesn't have the correct value
-                                // or the radio group has been already checked
-                                radio.checked = false;
-                            }
-                        }
-                        // Reset value if
-                        if (!hasChecked) {
-                            this.value = undefined;
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    class_1.prototype.getRadios = function () {
-        return Promise.all(Array
-            .from(this.el.querySelectorAll('ion-radio'))
-            .map(function (r) { return r.componentOnReady(); }));
-    };
-    class_1.prototype.render = function () {
-        return (Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["H"], { role: "radiogroup", "aria-labelledby": this.labelId, onIonSelect: this.onSelect, onIonDeselect: this.allowEmptySelection ? this.onDeselect : undefined, class: Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this) }));
-    };
-    Object.defineProperty(class_1.prototype, "el", {
-        get: function () { return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(class_1, "watchers", {
-        get: function () {
-            return {
-                "value": ["valueChanged"]
+
+        if (this.snaps) {
+          // snaps the ratio to the current value
+          ratio = valueToRatio(ratioToValue(ratio, this.min, this.max, this.step), this.min, this.max);
+        } // update which knob is pressed
+
+
+        if (this.pressedKnob === 'A') {
+          this.ratioA = ratio;
+        } else {
+          this.ratioB = ratio;
+        } // Update input value
+
+
+        this.updateValue();
+      }
+
+      get valA() {
+        return ratioToValue(this.ratioA, this.min, this.max, this.step);
+      }
+
+      get valB() {
+        return ratioToValue(this.ratioB, this.min, this.max, this.step);
+      }
+
+      get ratioLower() {
+        if (this.dualKnobs) {
+          return Math.min(this.ratioA, this.ratioB);
+        }
+
+        return 0;
+      }
+
+      get ratioUpper() {
+        if (this.dualKnobs) {
+          return Math.max(this.ratioA, this.ratioB);
+        }
+
+        return this.ratioA;
+      }
+
+      updateRatio() {
+        const value = this.getValue();
+        const {
+          min,
+          max
+        } = this;
+
+        if (this.dualKnobs) {
+          this.ratioA = valueToRatio(value.lower, min, max);
+          this.ratioB = valueToRatio(value.upper, min, max);
+        } else {
+          this.ratioA = valueToRatio(value, min, max);
+        }
+      }
+
+      updateValue() {
+        this.noUpdate = true;
+        const {
+          valA,
+          valB
+        } = this;
+        this.value = !this.dualKnobs ? valA : {
+          lower: Math.min(valA, valB),
+          upper: Math.max(valA, valB)
+        };
+        this.noUpdate = false;
+      }
+
+      setFocus(knob) {
+        if (this.el.shadowRoot) {
+          const knobEl = this.el.shadowRoot.querySelector(knob === 'A' ? '.range-knob-a' : '.range-knob-b');
+
+          if (knobEl) {
+            knobEl.focus();
+          }
+        }
+      }
+
+      render() {
+        const {
+          min,
+          max,
+          step,
+          el,
+          handleKeyboard,
+          pressedKnob,
+          disabled,
+          pin,
+          ratioLower,
+          ratioUpper
+        } = this;
+        const mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+        const barStart = "".concat(ratioLower * 100, "%");
+        const barEnd = "".concat(100 - ratioUpper * 100, "%");
+        const doc = document;
+        const isRTL = doc.dir === 'rtl';
+        const start = isRTL ? 'right' : 'left';
+        const end = isRTL ? 'left' : 'right';
+
+        const tickStyle = tick => {
+          return {
+            [start]: tick[start]
+          };
+        };
+
+        const barStyle = {
+          [start]: barStart,
+          [end]: barEnd
+        };
+        const ticks = [];
+
+        if (this.snaps && this.ticks) {
+          for (let value = min; value <= max; value += step) {
+            const ratio = valueToRatio(value, min, max);
+            const tick = {
+              ratio,
+              active: ratio >= ratioLower && ratio <= ratioUpper
             };
+            tick[start] = "".concat(ratio * 100, "%");
+            ticks.push(tick);
+          }
+        }
+
+        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["a"])(true, el, this.name, JSON.stringify(this.getValue()), disabled);
+        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+          onFocusin: this.onFocus,
+          onFocusout: this.onBlur,
+          class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color)), {
+            [mode]: true,
+            'in-item': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el),
+            'range-disabled': disabled,
+            'range-pressed': pressedKnob !== undefined,
+            'range-has-pin': pin
+          })
+        }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", {
+          name: "start"
+        }), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          class: "range-slider",
+          ref: rangeEl => this.rangeSlider = rangeEl
+        }, ticks.map(tick => Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          style: tickStyle(tick),
+          role: "presentation",
+          class: {
+            'range-tick': true,
+            'range-tick-active': tick.active
+          }
+        })), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          class: "range-bar",
+          role: "presentation"
+        }), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          class: "range-bar range-bar-active",
+          role: "presentation",
+          style: barStyle
+        }), renderKnob(isRTL, {
+          knob: 'A',
+          pressed: pressedKnob === 'A',
+          value: this.valA,
+          ratio: this.ratioA,
+          pin,
+          disabled,
+          handleKeyboard,
+          min,
+          max
+        }), this.dualKnobs && renderKnob(isRTL, {
+          knob: 'B',
+          pressed: pressedKnob === 'B',
+          value: this.valB,
+          ratio: this.ratioB,
+          pin,
+          disabled,
+          handleKeyboard,
+          min,
+          max
+        })), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", {
+          name: "end"
+        }));
+      }
+
+      get el() {
+        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
+      }
+
+      static get watchers() {
+        return {
+          "debounce": ["debounceChanged"],
+          "min": ["minChanged"],
+          "max": ["maxChanged"],
+          "disabled": ["disabledChanged"],
+          "value": ["valueChanged"]
+        };
+      }
+
+      static get style() {
+        return ":host{--knob-handle-size:calc(var(--knob-size) * 2);display:-ms-flexbox;display:flex;position:relative;-ms-flex:3;flex:3;-ms-flex-align:center;align-items:center;font-family:var(--ion-font-family,inherit);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.range-disabled){pointer-events:none}::slotted(ion-label){-ms-flex:initial;flex:initial}::slotted(ion-icon[slot]){font-size:24px}.range-slider{position:relative;-ms-flex:1;flex:1;width:100%;height:var(--height);contain:size layout style;cursor:-webkit-grab;cursor:grab;-ms-touch-action:pan-y;touch-action:pan-y}:host(.range-pressed) .range-slider{cursor:-webkit-grabbing;cursor:grabbing}.range-pin{position:absolute;background:var(--ion-color-base);color:var(--ion-color-contrast);-webkit-box-sizing:border-box;box-sizing:border-box}.range-knob-handle{left:0;top:calc((var(--height) - var(--knob-handle-size)) / 2);margin-left:calc(0px - var(--knob-handle-size) / 2);position:absolute;width:var(--knob-handle-size);height:var(--knob-handle-size);text-align:center}:host-context([dir=rtl]) .range-knob-handle,[dir=rtl] .range-knob-handle{right:unset;right:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.range-knob-handle{margin-left:unset;-webkit-margin-start:calc(0px - var(--knob-handle-size) / 2);margin-inline-start:calc(0px - var(--knob-handle-size) / 2)}}:host-context([dir=rtl]) .range-knob-handle,[dir=rtl] .range-knob-handle{left:unset}.range-knob-handle:active,.range-knob-handle:focus{outline:none}.range-bar{border-radius:var(--bar-border-radius);left:0;top:calc((var(--height) - var(--bar-height)) / 2);position:absolute;width:100%;height:var(--bar-height);background:var(--bar-background);pointer-events:none}:host-context([dir=rtl]) .range-bar,[dir=rtl] .range-bar{right:unset;right:0;left:unset}.range-knob{border-radius:var(--knob-border-radius);left:calc(50% - var(--knob-size) / 2);top:calc(50% - var(--knob-size) / 2);position:absolute;width:var(--knob-size);height:var(--knob-size);background:var(--knob-background);-webkit-box-shadow:var(--knob-box-shadow);box-shadow:var(--knob-box-shadow);pointer-events:none}:host-context([dir=rtl]) .range-knob,[dir=rtl] .range-knob{right:unset;right:calc(50% - var(--knob-size) / 2);left:unset}:host(.range-pressed) .range-bar-active{will-change:left,right}:host(.in-item){width:100%}:host(.in-item) ::slotted(ion-label){-ms-flex-item-align:center;align-self:center}:host{--knob-border-radius:50%;--knob-background:var(--bar-background-active);--knob-box-shadow:none;--knob-size:18px;--bar-height:2px;--bar-background:rgba(var(--ion-color-primary-rgb,56,128,255),0.26);--bar-background-active:var(--ion-color-primary,#3880ff);--bar-border-radius:0;--height:42px;--pin-background:var(--ion-color-primary,#3880ff);--pin-color:var(--ion-color-primary-contrast,#fff);padding-left:14px;padding-right:14px;padding-top:8px;padding-bottom:8px;font-size:12px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:14px;padding-inline-start:14px;-webkit-padding-end:14px;padding-inline-end:14px}}:host(.ion-color) .range-bar{background:rgba(var(--ion-color-base-rgb),.26)}:host(.ion-color) .range-bar-active,:host(.ion-color) .range-knob,:host(.ion-color) .range-pin,:host(.ion-color) .range-pin:before,:host(.ion-color) .range-tick{background:var(--ion-color-base);color:var(--ion-color-contrast)}::slotted([slot=start]){margin-left:0;margin-right:14px;margin-top:0;margin-bottom:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){::slotted([slot=start]){margin-left:unset;margin-right:unset;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:14px;margin-inline-end:14px}}::slotted([slot=end]){margin-left:14px;margin-right:0;margin-top:0;margin-bottom:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){::slotted([slot=end]){margin-left:unset;margin-right:unset;-webkit-margin-start:14px;margin-inline-start:14px;-webkit-margin-end:0;margin-inline-end:0}}:host(.range-has-pin){padding-top:28px}.range-bar-active{bottom:0;width:auto;background:var(--bar-background-active)}.range-knob{-webkit-transform:scale(.67);transform:scale(.67);-webkit-transition-duration:.12s;transition-duration:.12s;-webkit-transition-property:background-color,border,-webkit-transform;transition-property:background-color,border,-webkit-transform;transition-property:transform,background-color,border;transition-property:transform,background-color,border,-webkit-transform;-webkit-transition-timing-function:ease;transition-timing-function:ease;z-index:2}.range-tick{position:absolute;top:calc((var(--height) - var(--bar-height)) / 2);width:var(--bar-height);height:var(--bar-height);background:var(--bar-background-active);z-index:1;pointer-events:none}.range-tick-active{background:transparent}.range-pin{padding-left:0;padding-right:0;padding-top:8px;padding-bottom:8px;border-radius:50%;-webkit-transform:translateZ(0) scale(.01);transform:translateZ(0) scale(.01);display:inline-block;position:relative;min-width:28px;height:28px;-webkit-transition:background .12s ease,-webkit-transform .12s ease;transition:background .12s ease,-webkit-transform .12s ease;transition:transform .12s ease,background .12s ease;transition:transform .12s ease,background .12s ease,-webkit-transform .12s ease;color:var(--pin-color);text-align:center}.range-pin,.range-pin:before{background:var(--pin-background)}.range-pin:before{left:50%;top:3px;margin-left:-13px;border-radius:50% 50% 50% 0;position:absolute;width:26px;height:26px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transition:background .12s ease;transition:background .12s ease;content:\"\";z-index:-1}:host-context([dir=rtl]) .range-pin:before,[dir=rtl] .range-pin:before{right:unset;right:50%}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.range-pin:before{margin-left:unset;-webkit-margin-start:-13px;margin-inline-start:-13px}}:host-context([dir=rtl]) .range-pin:before,[dir=rtl] .range-pin:before{left:unset}.range-knob-pressed .range-pin{-webkit-transform:translate3d(0,-24px,0) scale(1);transform:translate3d(0,-24px,0) scale(1)}:host(:not(.range-has-pin)) .range-knob-pressed .range-knob{-webkit-transform:scale(1);transform:scale(1)}:host(.range-disabled) .range-bar,:host(.range-disabled) .range-bar-active,:host(.range-disabled) .range-knob,:host(.range-disabled) .range-tick{background-color:var(--ion-color-step-250,#bfbfbf)}:host(.range-disabled) .range-knob{-webkit-transform:scale(.55);transform:scale(.55);outline:5px solid #fff}";
+      }
+
+    };
+
+    const renderKnob = (isRTL, {
+      knob,
+      value,
+      ratio,
+      min,
+      max,
+      disabled,
+      pressed,
+      pin,
+      handleKeyboard
+    }) => {
+      const start = isRTL ? 'right' : 'left';
+
+      const knobStyle = () => {
+        const style = {};
+        style[start] = "".concat(ratio * 100, "%");
+        return style;
+      };
+
+      return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+        onKeyDown: ev => {
+          const key = ev.key;
+
+          if (key === 'ArrowLeft' || key === 'ArrowDown') {
+            handleKeyboard(knob, false);
+            ev.preventDefault();
+            ev.stopPropagation();
+          } else if (key === 'ArrowRight' || key === 'ArrowUp') {
+            handleKeyboard(knob, true);
+            ev.preventDefault();
+            ev.stopPropagation();
+          }
         },
-        enumerable: true,
-        configurable: true
-    });
-    return class_1;
-}());
-var radioGroupIds = 0;
+        class: {
+          'range-knob-handle': true,
+          'range-knob-a': knob === 'A',
+          'range-knob-b': knob === 'B',
+          'range-knob-pressed': pressed,
+          'range-knob-min': value === min,
+          'range-knob-max': value === max
+        },
+        style: knobStyle(),
+        role: "slider",
+        tabindex: disabled ? -1 : 0,
+        "aria-valuemin": min,
+        "aria-valuemax": max,
+        "aria-disabled": disabled ? 'true' : null,
+        "aria-valuenow": value
+      }, pin && Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+        class: "range-pin",
+        role: "presentation"
+      }, Math.round(value)), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+        class: "range-knob",
+        role: "presentation"
+      }));
+    };
 
+    const ratioToValue = (ratio, min, max, step) => {
+      let value = (max - min) * ratio;
 
+      if (step > 0) {
+        value = Math.round(value / step) * step + min;
+      }
 
-/***/ })
+      return Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(min, value, max);
+    };
 
+    const valueToRatio = (value, min, max) => {
+      return Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, (value - min) / (max - min), 1);
+    };
+    /***/
+
+  }
 }]);
 //# sourceMappingURL=49-es5.js.map

@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["complaints-image-list-image-list-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/image-list/image-list.page.html":
-/*!*****************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/technician_app/complaints/image-list/image-list.page.html ***!
-  \*****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/image-list/image-list.page.html":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/image-list/image-list.page.html ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content >\r\n  <div class=\"cs-main-container\">\r\n      <div class=\"custome-head\">\r\n          <div class=\"cs-ion-header\">\r\n              <div class=\"cs-left\">\r\n                  <ion-button (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                  <ion-title>Documents</ion-title>\r\n              </div>\r\n          </div>\r\n          <div class=\"cs-ion-hf\"></div>\r\n      </div>\r\n      \r\n      <div class=\"cs-ion-content\">\r\n          <div class=\"m_documents\" padding>\r\n              <div class=\"figure\" (click)=\"GoToImageGalley()\">\r\n                  <div class=\"thumb\"><img src=\"assets/img/spare_parts.jpg\" alt=\"\"></div>\r\n                  <h1><ion-text>Subject #1</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\r\n                  <span class=\"imagse-count\">20</span>\r\n              </div>\r\n              <div class=\"figure\">\r\n                  <div class=\"thumb\"><img src=\"assets/img/spare_parts.jpg\" alt=\"\"></div>\r\n                  <h1><ion-text>Subject #1</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </div>\r\n  <div class=\"h50\"></div>\r\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" edge slot=\"fixed\" style=\"bottom: 10px\">\r\n    <ion-fab-button (click)=\"GoToImages()\">\r\n        <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n</ion-fab>\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\n  <div class=\"cs-main-container\">\n      <div class=\"custome-head\">\n          <div class=\"cs-ion-header\">\n              <div class=\"cs-left\">\n                  <ion-button (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n                  <ion-title>Documents</ion-title>\n              </div>\n          </div>\n          <div class=\"cs-ion-hf\"></div>\n      </div>\n      \n      <div class=\"cs-ion-content\">\n          <div class=\"m_documents\" padding>\n              <div class=\"figure\" (click)=\"GoToImageGalley()\">\n                  <div class=\"thumb\"><img src=\"assets/img/spare_parts.jpg\" alt=\"\"></div>\n                  <h1><ion-text>Subject #1</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\n                  <span class=\"imagse-count\">20</span>\n              </div>\n              <div class=\"figure\">\n                  <div class=\"thumb\"><img src=\"assets/img/spare_parts.jpg\" alt=\"\"></div>\n                  <h1><ion-text>Subject #1</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\n              </div>\n          </div>\n      </div>\n  </div>\n  <div class=\"h50\"></div>\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" edge slot=\"fixed\" style=\"bottom: 10px\">\n    <ion-fab-button (click)=\"GoToImages()\">\n        <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n</ion-fab>\n</ion-content>\n");
 
 /***/ }),
 
@@ -94,10 +96,12 @@ ImageListPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!***************************************************************************!*\
   !*** ./src/app/technician_app/complaints/image-list/image-list.page.scss ***!
   \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvaW1hZ2UtbGlzdC9pbWFnZS1saXN0LnBhZ2Uuc2NzcyJ9 */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvaW1hZ2UtbGlzdC9pbWFnZS1saXN0LnBhZ2Uuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -157,8 +161,8 @@ ImageListPage.ctorParameters = () => [
 ImageListPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-image-list',
-        template: __webpack_require__(/*! raw-loader!./image-list.page.html */ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/image-list/image-list.page.html"),
-        styles: [__webpack_require__(/*! ./image-list.page.scss */ "./src/app/technician_app/complaints/image-list/image-list.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./image-list.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/image-list/image-list.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./image-list.page.scss */ "./src/app/technician_app/complaints/image-list/image-list.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
 ], ImageListPage);

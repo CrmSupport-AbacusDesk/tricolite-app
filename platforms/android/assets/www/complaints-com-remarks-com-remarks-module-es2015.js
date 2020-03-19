@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["complaints-com-remarks-com-remarks-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/com-remarks/com-remarks.page.html":
-/*!*******************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/technician_app/complaints/com-remarks/com-remarks.page.html ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-remarks/com-remarks.page.html":
+/*!*******************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-remarks/com-remarks.page.html ***!
+  \*******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>#COM-{{taskNo}} - <ion-text>Complaint Remarks</ion-text></ion-title>\r\n                </div>\r\n                <div class=\"cs-right\">\r\n                    <ion-button (click)=\"presentPopover($event)\"><ion-icon name=\"more\"></ion-icon></ion-button>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"common_form inner_page\">\r\n                <ion-item class=\"h110\">\r\n                    <ion-textarea [(ngModel)] = \"data.remark\"  placeholder=\"Your Comment\"></ion-textarea>\r\n                </ion-item>\r\n                \r\n                <div class=\"cs-btn mt16\" text-right *ngIf = \"taskStatus != 'Close'\">\r\n                    <ion-button (click)=\"onSaveRemarkDataHandler()\" class=\"success min w100\">SAVE</ion-button>\r\n                </div>\r\n            </div>\r\n\r\n            <div *ngIf=\"remarkList && remarkList.length > 0\" class=\"complaints product-list mt20\">\r\n\r\n                <div class=\"cs-heading\"><h1>Remark History</h1></div>\r\n\r\n                <div class=\"feedback pt10 pr10 pb10 pl10\">\r\n\r\n                    <div *ngFor=\"let row of remarkList\" class=\"figure mb10\">\r\n                        <div class=\"cs-head\"><ion-text>{{row.dateCreated}}</ion-text></div>     \r\n                        <div class=\"cs-description\">\r\n                            <h1><ion-text>{{row.description}}</ion-text></h1>\r\n                        </div>               \r\n                    </div>\r\n                    \r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\n    <div class=\"cs-main-container\">\n        <div class=\"custome-head\">\n            <div class=\"cs-ion-header\">\n                <div class=\"cs-left\">\n                    <ion-button (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n                    <ion-title>#COM-{{taskNo}} - <ion-text>Complaint Remarks</ion-text></ion-title>\n                </div>\n                <div class=\"cs-right\">\n                    <ion-button (click)=\"presentPopover($event)\"><ion-icon name=\"more\"></ion-icon></ion-button>\n                </div>\n            </div>\n            <div class=\"cs-ion-hf\"></div>\n        </div>\n        \n        <div class=\"cs-ion-content pt0\" padding>\n            <div class=\"common_form inner_page\">\n                <ion-item class=\"h110\">\n                    <ion-textarea [(ngModel)] = \"data.remark\"  placeholder=\"Your Comment\"></ion-textarea>\n                </ion-item>\n                \n                <div class=\"cs-btn mt16\" text-right *ngIf = \"taskStatus != 'Close'\">\n                    <ion-button (click)=\"onSaveRemarkDataHandler()\" class=\"success min w100\">SAVE</ion-button>\n                </div>\n            </div>\n\n            <div *ngIf=\"remarkList && remarkList.length > 0\" class=\"complaints product-list mt20\">\n\n                <div class=\"cs-heading\"><h1>Remark History</h1></div>\n\n                <div class=\"feedback pt10 pr10 pb10 pl10\">\n\n                    <div *ngFor=\"let row of remarkList\" class=\"figure mb10\">\n                        <div class=\"cs-head\"><ion-text>{{row.dateCreated}}</ion-text></div>     \n                        <div class=\"cs-description\">\n                            <h1><ion-text>{{row.description}}</ion-text></h1>\n                        </div>               \n                    </div>\n                    \n                </div>\n            </div>\n        </div>\n    </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -94,10 +96,12 @@ ComRemarksPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!*****************************************************************************!*\
   !*** ./src/app/technician_app/complaints/com-remarks/com-remarks.page.scss ***!
   \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvY29tLXJlbWFya3MvY29tLXJlbWFya3MucGFnZS5zY3NzIn0= */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvY29tLXJlbWFya3MvY29tLXJlbWFya3MucGFnZS5zY3NzIn0= */");
 
 /***/ }),
 
@@ -237,8 +241,8 @@ ComRemarksPage.ctorParameters = () => [
 ComRemarksPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-com-remarks',
-        template: __webpack_require__(/*! raw-loader!./com-remarks.page.html */ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/com-remarks/com-remarks.page.html"),
-        styles: [__webpack_require__(/*! ./com-remarks.page.scss */ "./src/app/technician_app/complaints/com-remarks/com-remarks.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./com-remarks.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-remarks/com-remarks.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./com-remarks.page.scss */ "./src/app/technician_app/complaints/com-remarks/com-remarks.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"],
         _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],

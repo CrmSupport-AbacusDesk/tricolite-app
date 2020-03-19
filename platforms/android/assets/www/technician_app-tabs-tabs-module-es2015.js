@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["technician_app-tabs-tabs-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/technician_app/tabs/tabs.page.html":
-/*!******************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/technician_app/tabs/tabs.page.html ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tabs/tabs.page.html":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tabs/tabs.page.html ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-tabs #mainTabs>\r\n    \r\n    <ion-tab-bar slot=\"bottom\">\r\n        <ion-tab-button (click)=\"tabChanged('home')\" tab=\"home\">\r\n            <ion-icon name=\"home\"></ion-icon>\r\n            <ion-label>HOME</ion-label>\r\n        </ion-tab-button>\r\n        \r\n        <ion-tab-button (click)=\"tabChanged('complaint')\" tab=\"complaints\">\r\n            <ion-icon name=\"alert\"></ion-icon>\r\n            <ion-label>COMPLAINTS</ion-label>\r\n        </ion-tab-button>\r\n        \r\n        <ion-tab-button (click)=\"tabChanged('commissioning')\" tab=\"commissioning\">\r\n            <ion-icon name=\"flower\"></ion-icon>\r\n            <ion-label>COMMISSIONING</ion-label>\r\n        </ion-tab-button>\r\n        \r\n        <ion-tab-button (click)=\"tabChanged('menu')\" tab=\"menu\">\r\n            <ion-icon name=\"menu\"></ion-icon>\r\n            <ion-label>MENU</ion-label>\r\n        </ion-tab-button>\r\n    </ion-tab-bar>\r\n    \r\n</ion-tabs>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-tabs #mainTabs>\n    \n    <ion-tab-bar slot=\"bottom\">\n        <ion-tab-button (click)=\"tabChanged('home')\" tab=\"home\">\n            <ion-icon name=\"home\"></ion-icon>\n            <ion-label>HOME</ion-label>\n        </ion-tab-button>\n        \n        <ion-tab-button (click)=\"tabChanged('complaint')\" tab=\"complaints\">\n            <ion-icon name=\"alert\"></ion-icon>\n            <ion-label>COMPLAINTS</ion-label>\n        </ion-tab-button>\n        \n        <ion-tab-button (click)=\"tabChanged('commissioning')\" tab=\"commissioning\">\n            <ion-icon name=\"flower\"></ion-icon>\n            <ion-label>COMMISSIONING</ion-label>\n        </ion-tab-button>\n        \n        <ion-tab-button (click)=\"tabChanged('menu')\" tab=\"menu\">\n            <ion-icon name=\"menu\"></ion-icon>\n            <ion-label>MENU</ion-label>\n        </ion-tab-button>\n    </ion-tab-bar>\n    \n</ion-tabs>\n");
 
 /***/ }),
 
@@ -238,10 +240,12 @@ TabsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!****************************************************!*\
   !*** ./src/app/technician_app/tabs/tabs.page.scss ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL3RhYnMvdGFicy5wYWdlLnNjc3MifQ== */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL3RhYnMvdGFicy5wYWdlLnNjc3MifQ== */");
 
 /***/ }),
 
@@ -287,8 +291,8 @@ TabsPage.ctorParameters = () => [
 TabsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-tabs',
-        template: __webpack_require__(/*! raw-loader!./tabs.page.html */ "./node_modules/raw-loader/index.js!./src/app/technician_app/tabs/tabs.page.html"),
-        styles: [__webpack_require__(/*! ./tabs.page.scss */ "./src/app/technician_app/tabs/tabs.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./tabs.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tabs/tabs.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./tabs.page.scss */ "./src/app/technician_app/tabs/tabs.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
 ], TabsPage);

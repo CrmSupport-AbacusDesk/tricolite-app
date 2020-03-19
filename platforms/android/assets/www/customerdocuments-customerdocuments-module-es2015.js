@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["customerdocuments-customerdocuments-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/customer_app/customerdocuments/customerdocuments.page.html":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/customer_app/customerdocuments/customerdocuments.page.html ***!
-  \******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customerdocuments/customerdocuments.page.html":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customerdocuments/customerdocuments.page.html ***!
+  \******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button [routerLink]=\"['/customer/home']\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>Documents</ion-title>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"m_documents\" padding>\r\n                <div *ngFor=\"let row of documentList\" routerLink=\"/customer/menu/documents/detail/{{row.id}}/{{row.subject}}\" class=\"figure\">\r\n                    <div class=\"thumb\"><img src=\"{{dbService.customerDocURL + row.document_url}}\" alt=\"\"></div>\r\n                    <h1><ion-text>{{row.subject}}</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\r\n                </div>\r\n            </div>\r\n\r\n            <div *ngIf=\"!isRequestInProcess && documentList.length == 0\" class=\"no-data\">\r\n                    <img src=\"assets/icon/no_found.svg\">\r\n                    <p>Data Not Found!</p>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\n    <div class=\"cs-main-container\">\n        <div class=\"custome-head\">\n            <div class=\"cs-ion-header\">\n                <div class=\"cs-left\">\n                    <ion-button [routerLink]=\"['/customer/home']\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n                    <ion-title>Documents</ion-title>\n                </div>\n            </div>\n            <div class=\"cs-ion-hf\"></div>\n        </div>\n        \n        <div class=\"cs-ion-content pt0\" padding>\n            <div class=\"m_documents\" padding>\n                <div *ngFor=\"let row of documentList\" routerLink=\"/customer/menu/documents/detail/{{row.id}}/{{row.subject}}\" class=\"figure\">\n                    <div class=\"thumb\"><img src=\"{{dbService.customerDocURL + row.document_url}}\" alt=\"\"></div>\n                    <h1><ion-text>{{row.subject}}</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\n                </div>\n            </div>\n\n            <div *ngIf=\"!isRequestInProcess && documentList.length == 0\" class=\"no-data\">\n                    <img src=\"assets/icon/no_found.svg\">\n                    <p>Data Not Found!</p>\n            </div>\n\n        </div>\n    </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -94,10 +96,12 @@ CustomerdocumentsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!****************************************************************************!*\
   !*** ./src/app/customer_app/customerdocuments/customerdocuments.page.scss ***!
   \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9jdXN0b21lcmRvY3VtZW50cy9jdXN0b21lcmRvY3VtZW50cy5wYWdlLnNjc3MifQ== */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9jdXN0b21lcmRvY3VtZW50cy9jdXN0b21lcmRvY3VtZW50cy5wYWdlLnNjc3MifQ== */");
 
 /***/ }),
 
@@ -161,8 +165,8 @@ CustomerdocumentsPage.ctorParameters = () => [
 CustomerdocumentsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-customerdocuments',
-        template: __webpack_require__(/*! raw-loader!./customerdocuments.page.html */ "./node_modules/raw-loader/index.js!./src/app/customer_app/customerdocuments/customerdocuments.page.html"),
-        styles: [__webpack_require__(/*! ./customerdocuments.page.scss */ "./src/app/customer_app/customerdocuments/customerdocuments.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./customerdocuments.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customerdocuments/customerdocuments.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./customerdocuments.page.scss */ "./src/app/customer_app/customerdocuments/customerdocuments.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],

@@ -92,8 +92,8 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "cordova-android-support-gradle-release/tricolite-cordova-android-support-gradle-release.gradle"
 apply from: "com-sarriaroman-photoviewer/tricolite-photoviewer.gradle"
+apply from: "cordova-android-support-gradle-release/tricolite-cordova-android-support-gradle-release.gradle"
 apply from: "phonegap-plugin-push/tricolite-push.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
@@ -256,9 +256,9 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: "CordovaLib"))
     compile "com.android.support:support-v4:27.+"
+    compile "com.android.support:support-annotations:27.+"
     compile "com.android.support:support-v4:28.+"
     compile "com.android.support:appcompat-v7:28.+"
-    compile "com.android.support:support-annotations:27.+"
     compile "com.android.support:support-v13:26.+"
     compile "me.leolin:ShortcutBadger:1.1.17@aar"
     compile "com.google.firebase:firebase-messaging:11.6.2"

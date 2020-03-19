@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["customer_app-customertabs-customertabs-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/customer_app/customertabs/customertabs.page.html":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/customer_app/customertabs/customertabs.page.html ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customertabs/customertabs.page.html":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customertabs/customertabs.page.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-tabs>\r\n    \r\n  <ion-tab-bar slot=\"bottom\">\r\n\r\n      <ion-tab-button [hidden]=\"loginData.loginStatus != 'Approved'\" (click)=\"tabChanged('home')\" tab=\"home\">\r\n          <ion-icon name=\"home\"></ion-icon>\r\n          <ion-label>HOME</ion-label>\r\n      </ion-tab-button>\r\n      \r\n      <ion-tab-button [hidden]=\"loginData.loginStatus != 'Approved'\" (click)=\"tabChanged('request')\" tab=\"request\">\r\n          <ion-icon name=\"alert\"></ion-icon>\r\n          <ion-label>REQUEST</ion-label>\r\n      </ion-tab-button>\r\n      \r\n      <ion-tab-button [hidden]=\"loginData.loginStatus != 'Approved'\" (click)=\"tabChanged('project')\" tab=\"projects\">\r\n          <ion-icon name=\"basket\"></ion-icon>\r\n          <ion-label>PROJECT</ion-label>\r\n      </ion-tab-button>\r\n      \r\n      <ion-tab-button (click)=\"tabChanged('aboutUs')\" tab=\"aboutus\">\r\n          <ion-icon name=\"globe\"></ion-icon>\r\n          <ion-label>ABOUT US</ion-label>\r\n      </ion-tab-button>\r\n  </ion-tab-bar>\r\n  \r\n</ion-tabs>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-tabs>\n    \n  <ion-tab-bar slot=\"bottom\">\n\n      <ion-tab-button [hidden]=\"loginData.loginStatus != 'Approved'\" (click)=\"tabChanged('home')\" tab=\"home\">\n          <ion-icon name=\"home\"></ion-icon>\n          <ion-label>HOME</ion-label>\n      </ion-tab-button>\n      \n      <ion-tab-button [hidden]=\"loginData.loginStatus != 'Approved'\" (click)=\"tabChanged('request')\" tab=\"request\">\n          <ion-icon name=\"alert\"></ion-icon>\n          <ion-label>REQUEST</ion-label>\n      </ion-tab-button>\n      \n      <ion-tab-button [hidden]=\"loginData.loginStatus != 'Approved'\" (click)=\"tabChanged('project')\" tab=\"projects\">\n          <ion-icon name=\"basket\"></ion-icon>\n          <ion-label>PROJECT</ion-label>\n      </ion-tab-button>\n      \n      <ion-tab-button (click)=\"tabChanged('aboutUs')\" tab=\"aboutus\">\n          <ion-icon name=\"globe\"></ion-icon>\n          <ion-label>ABOUT US</ion-label>\n      </ion-tab-button>\n  </ion-tab-bar>\n  \n</ion-tabs>\n");
 
 /***/ }),
 
@@ -73,8 +75,8 @@ const routes = [
                 loadChildren: () => __webpack_require__.e(/*! import() | service_request-request-details-request-details-module */ "service_request-request-details-request-details-module").then(__webpack_require__.bind(null, /*! ../service_request/request-details/request-details.module */ "./src/app/customer_app/service_request/request-details/request-details.module.ts")).then(m => m.RequestDetailsPageModule)
             },
             {
-                path: 'request/spareparts',
-                loadChildren: () => __webpack_require__.e(/*! import() | service_request-sparepart-sparepart-module */ "service_request-sparepart-sparepart-module").then(__webpack_require__.bind(null, /*! ../service_request/sparepart/sparepart.module */ "./src/app/customer_app/service_request/sparepart/sparepart.module.ts")).then(m => m.SparepartPageModule)
+                path: 'request/spareparts/:taskId/:taskNo/:taskStatus',
+                loadChildren: () => __webpack_require__.e(/*! import() | service_request-com-spareparts-com-spareparts-module */ "service_request-com-spareparts-com-spareparts-module").then(__webpack_require__.bind(null, /*! ../service_request/com-spareparts/com-spareparts.module */ "./src/app/customer_app/service_request/com-spareparts/com-spareparts.module.ts")).then(m => m.ComSparepartsPageModule)
             },
             {
                 path: 'request/addrequest',
@@ -168,10 +170,12 @@ CustomertabsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!******************************************************************!*\
   !*** ./src/app/customer_app/customertabs/customertabs.page.scss ***!
   \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9jdXN0b21lcnRhYnMvY3VzdG9tZXJ0YWJzLnBhZ2Uuc2NzcyJ9 */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9jdXN0b21lcnRhYnMvY3VzdG9tZXJ0YWJzLnBhZ2Uuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -225,8 +229,8 @@ CustomertabsPage.ctorParameters = () => [
 CustomertabsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-customertabs',
-        template: __webpack_require__(/*! raw-loader!./customertabs.page.html */ "./node_modules/raw-loader/index.js!./src/app/customer_app/customertabs/customertabs.page.html"),
-        styles: [__webpack_require__(/*! ./customertabs.page.scss */ "./src/app/customer_app/customertabs/customertabs.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./customertabs.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customertabs/customertabs.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./customertabs.page.scss */ "./src/app/customer_app/customertabs/customertabs.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
 ], CustomertabsPage);

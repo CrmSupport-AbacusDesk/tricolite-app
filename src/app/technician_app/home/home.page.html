@@ -28,14 +28,14 @@
             </div>
             
             <div class="figure">
-                <div routerLink="/technicians/complaints">
+                <div routerLink="{{dashboardData.typeTotalCount2 && dashboardData.typeTotalCount2 != '0' ? '/technicians/complaints' : ''}}">
                     <h1>{{dashboardData.typeTotalCount2}}</h1>
                     <ion-text>5 - 10 Day</ion-text>
                 </div>
             </div>
             
             <div class="figure">
-                <div routerLink="/technicians/complaints">
+                <div routerLink="{{dashboardData.typeTotalCount3 && dashboardData.typeTotalCount3 != '0' ? '/technicians/complaints' : ''}}">
                     <h1>{{dashboardData.typeTotalCount3}}</h1>
                     <ion-text>> 10 Day</ion-text>
                 </div>
@@ -46,7 +46,8 @@
         
         
         <div class="midd-counters">
-            <ion-button routerLink="/technicians/complaints" fill="clear" class="free">
+
+            <ion-button (click)= "onDashboardCountClickHandler('freeTask')" routerLink="{{dashboardData.freeServiceTask && dashboardData.freeServiceTask != '0' ? '/technicians/complaints' : ''}}" fill="clear" class="free">
                 <div class="figure">
                     <div class="count"><ion-text>{{dashboardData.freeServiceTask}}</ion-text> Complaint</div>
                     <div class="pr-section">
@@ -55,7 +56,9 @@
                     </div>
                 </div>
             </ion-button>
-            <ion-button routerLink="/technicians/complaints" fill="clear" class="paid">
+
+
+            <ion-button (click)= "onDashboardCountClickHandler('paidTask')" routerLink="{{dashboardData.paidServiceTask && dashboardData.paidServiceTask != '0' ? '/technicians/complaints' : ''}}" fill="clear" class="paid">
                 <div class="figure">
                     <div class="count"><ion-text>{{dashboardData.paidServiceTask}}</ion-text> Complaint</div>
                     <div class="pr-section">
@@ -64,7 +67,7 @@
                     </div>
                 </div>
             </ion-button>
-            <ion-button routerLink="/technicians/commissioning" fill="clear" class="default">
+            <ion-button routerLink="{{dashboardData.commissioningTask && dashboardData.commissioningTask != '0' ? '/technicians/commissioning' : ''}}" fill="clear" class="default">
                 <div class="figure">
                     <div class="count"><ion-text>{{dashboardData.commissioningTask}}</ion-text> Task</div>
                     <div class="pr-section">

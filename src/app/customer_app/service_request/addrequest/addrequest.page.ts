@@ -42,7 +42,7 @@ export class AddrequestPage implements OnInit {
               public modalController: ModalController,
               public dbService: DbServiceService) {
 
-
+            this.data = {};
             this.registerForm1 = this.formBuilder.group({
 
                 requestType: ['', [Validators.required]],
@@ -86,6 +86,23 @@ export class AddrequestPage implements OnInit {
       // this.defaultActiveTitle = 'service_request';
   }
 
+  async onRequestTypeChangeHandler(){
+
+
+        if (this.data.requestType == 'commissioning') {
+
+             this.data.transaction_type = {
+                transaction_type: 'commissioning'
+             };
+        } else {
+            this.data.transaction_type = '';
+        }
+
+        console.log(this.data.transaction_type);
+
+        
+  }
+
 
   async onAddProductToListHandler() {    
 
@@ -96,14 +113,16 @@ export class AddrequestPage implements OnInit {
                 this.dbService.onShowAlertMessage('Error', 'FG No Reuired');
             }
 
-            console.log(this.data.fg_no);
+            console.log(this.data.fgNo);
 
             return;
 
        } else {
 
+          console.log(this.fgList);
+          console.log(this.data.fgNo);
 
-           const isFGExist = this.fgList.findIndex(row=> row.fgNo == this.data.fgNo.fg_no);
+           const isFGExist = this.productData.findIndex(row => row.fgNo == this.data.fgNo.fg_no);
 
            if (isFGExist === -1) {
 
@@ -117,7 +136,8 @@ export class AddrequestPage implements OnInit {
                this.productData[isFGExist].fgNo = this.data.fgNo[`fg_no`];
 
            }
-    console.log(this.productData);
+
+           console.log(this.productData);
 
 
            this.data.fgNo = {};
@@ -130,8 +150,6 @@ export class AddrequestPage implements OnInit {
   async onSaveRequestHandler() {
      
       this.submitted = true;
-
-      let isCheckListSelected = false;
 
       // if (this.productData.length == 0) {
 
@@ -149,11 +167,11 @@ export class AddrequestPage implements OnInit {
             }
       }
 
-      // if (!isContactSelected) {
+      if (!isContactSelected) {
 
-      //     this.dbService.onShowAlertMessage('Error', 'No Contact Information Selected!');
-      //     return;
-      // }
+          this.dbService.onShowAlertMessage('Error', 'No Contact Information Selected!');
+          return;
+      }
 
       if (this.registerForm1.invalid) {
 
@@ -256,6 +274,8 @@ export class AddrequestPage implements OnInit {
     this.dbService.onPostRequestHandler(inputData, 'task/getTransactionTypeList').subscribe((result) => {
         console.log(result);
         this.transactionTypeList = result[`transactionTypeList`];
+
+
         console.log(this.transactionTypeList);
         
     });
@@ -271,9 +291,7 @@ export class AddrequestPage implements OnInit {
         console.log(result);
         this.priorityList = result[`priorityList`];
         console.log(this.priorityList);
-        
     });
-
   }
 
 
@@ -352,6 +370,11 @@ export class AddrequestPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  ionViewWillEnter() {
+
+      this.data = {};
   }
 
 

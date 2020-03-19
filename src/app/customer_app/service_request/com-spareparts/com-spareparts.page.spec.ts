@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SparepartPage } from './sparepart.page';
+import { ComSparepartsPage } from './com-spareparts.page';
 
-describe('SparepartPage', () => {
-  let component: SparepartPage;
-  let fixture: ComponentFixture<SparepartPage>;
+describe('ComSparepartsPage', () => {
+  let component: ComSparepartsPage;
+  let fixture: ComponentFixture<ComSparepartsPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SparepartPage ],
+      declarations: [ ComSparepartsPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SparepartPage);
+    fixture = TestBed.createComponent(ComSparepartsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

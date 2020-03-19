@@ -10,7 +10,7 @@ import { DbServiceService } from 'src/app/db-service.service';
 import * as moment from 'moment';
 import { Location } from '@angular/common';
 import { SignaturemodalPage } from '../signaturemodal/signaturemodal.page';
-import { IfStmt } from '@angular/compiler';
+import { IfStmt, InvokeFunctionExpr } from '@angular/compiler';
 // import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 
 @Component({
@@ -60,9 +60,10 @@ export class ComDailyreportPage implements OnInit {
         this.routeTitleForView = localStorage.getItem('routeTitleForView');
         
         if (this.reportType == 'dailyReport') {
-            
             this.activeStage = 1;
         }
+
+        console.log(this.reportType);
         
         if (this.reportType == 'checkListReport') {
             
@@ -75,8 +76,13 @@ export class ComDailyreportPage implements OnInit {
             console.log(params);
             this.taskId = params.taskId;
             this.taskNo = params.taskNo;
-            this.taskStatus = params.taskStatus,
-            this.onGetCheckListHandler();
+            this.taskStatus = params.taskStatus;
+
+            if(this.reportType == 'checkListReport') {
+
+                this.onGetCheckListHandler();
+            }
+           
             console.log(this.taskId);
             console.log(this.taskNo);
             console.log(this.taskStatus);
@@ -143,37 +149,16 @@ export class ComDailyreportPage implements OnInit {
     onStarClickHandler(rating) {
         this.selectedRating = rating;
     }
-    
-    check_list_created:any=false;
-    tmp_data:any={};
+
     async onClickOnFgWiseCategoryHandler(index)
     {
         console.log(this.data);
-        console.log(this.tmp_data);
 
         this.currentActiveCheckTab = index;
         console.log(this.fgWisecheckList);
         this.fgWisecheckListCategory =  this.fgWisecheckList[index].newCheckListCategory;
-        this.check_list_created = this.fgWisecheckList[index].check_list_created;
-
-        if(this.check_list_created)
-        {
-            if(this.tmp_data.checkContactName)
-            {
-                this.data = this.tmp_data;
-                this.signatureImage = this.tmp_data.signatureImage; 
-            }
-            this.tmp_data = {};
-        }
-        else
-        {
-            this.tmp_data = this.data; 
-            this.tmp_data.signatureImage = this.signatureImage; 
-            this.signatureImage = '';
-            this.data = {};
-        }
+       
         console.log(this.data);
-        console.log(this.tmp_data);
     }
     
     select_checklist(row)
@@ -193,9 +178,9 @@ export class ComDailyreportPage implements OnInit {
             
             for (let j = 0; j < this.fgWisecheckList[i].newCheckListCategory.length; j++)
             { 
-                for (let k = 0; k < this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'].length; k++)
+                for (let k = 0; k < this.fgWisecheckList[i][`newCheckListCategory`][j][`checkListData`].length; k++)
                 { 
-                    if (this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'][k].checked)
+                    if (this.fgWisecheckList[i][`newCheckListCategory`][j][`checkListData`][k].checked)
                     {
                         console.log(this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'].length);
                         isFgAnyCategoryChecked = true;
@@ -204,7 +189,7 @@ export class ComDailyreportPage implements OnInit {
                 }
             }
             
-            if(isFgAnyCategoryChecked===true) {
+            if (isFgAnyCategoryChecked===true) {
                 count++;
             }
         }
@@ -216,24 +201,23 @@ export class ComDailyreportPage implements OnInit {
         {
             this.dbService.onShowAlertMessage('Error', 'No Check List Selected!');
             return false;
-        } 
+        }
         
         let isContactError = false;
         let errorMsg = '';
         
-        if (!this.data.checkContactName)
+        if (!this.fgWisecheckList[this.currentActiveCheckTab].checkContactName)
         {
             isContactError = true;
             errorMsg = 'Contact Name Required!';
             
         }
-        else if(this.data.checkContactName == 'Other' && (!this.data.checkOtherContactName || !this.data.checkMobile || this.data.checkMobile.length < 10 || this.data.checkMobile.length > 10))
+        else if(this.fgWisecheckList[this.currentActiveCheckTab].checkContactName == 'Other' && (!this.fgWisecheckList[this.currentActiveCheckTab].checkOtherContactName || !this.fgWisecheckList[this.currentActiveCheckTab].checkMobile || this.fgWisecheckList[this.currentActiveCheckTab].checkMobile.length < 10 || this.fgWisecheckList[this.currentActiveCheckTab].checkMobile.length > 10))
         {
             isContactError = true;
             errorMsg = 'Contact Information Required!';
         }
-        else if
-        (!this.signatureImage)
+        else if (!this.fgWisecheckList[this.currentActiveCheckTab].signatureImage)
         {
             isContactError = true;
             errorMsg = 'Signature Required!';
@@ -263,13 +247,21 @@ export class ComDailyreportPage implements OnInit {
                         const inputData = JSON.parse(JSON.stringify(this.data));
                         inputData[`taskId`] = this.taskId;
                         inputData[`taskNo`] = this.taskNo;
+
                         inputData[`fgWisecheckList`] = this.fgWisecheckList;
-                        inputData[`contactName`] = this.data.checkContactName;
-                        inputData[`otherContactName`] = this.data.checkOtherContactName;
-                        inputData[`contactMobile`] = this.data.checkMobile;
-                        const binaryDataSplit = this.signatureImage.split('base64,');
+
+                        inputData[`contactName`] = this.fgWisecheckList[this.currentActiveCheckTab].checkContactName;
+
+                        inputData[`otherContactName`] = this.fgWisecheckList[this.currentActiveCheckTab].checkOtherContactName;
+
+                        inputData[`contactMobile`] = this.fgWisecheckList[this.currentActiveCheckTab].checkMobile;
+
+                        inputData[`fgSelectedIndex`] = this.currentActiveCheckTab;
+
+                        const binaryDataSplit = this.fgWisecheckList[this.currentActiveCheckTab].signatureImage.split('base64,');
+
                         inputData[`signatureData`] = binaryDataSplit[1];
-                        
+
                         this.dbService.presentLoader();
                         this.dbService.onPostRequestHandler(inputData, 'report/onSaveTaskCheckList')
                         .subscribe((result) => {
@@ -432,28 +424,50 @@ export class ComDailyreportPage implements OnInit {
     
     async onContactChangeHandler(target)
     {
+
+        console.log('hellosda');
+        console.log(this.data.contactName, this.data.checkContactName);
         if (this.data.contactName || this.data.checkContactName)
         {
+
+            console.log('hello111');
+            console.log(target);
+            
             let isIndex: any;
             if(target == 'dailyReport') {
                 isIndex = this.contactList.findIndex(row => row.name == this.data.contactName);
             }
+
             if (target == 'checkReport') {
                 isIndex = this.contactList.findIndex(row => row.name == this.data.checkContactName);
             }
+
             if (isIndex !== -1) {
                 if (target == 'dailyReport') {
-                    this.data.mobile = this.contactList[isIndex].mobile;
-                    this.data.email = this.contactList[isIndex].email;
-                    this.data.designation = this.contactList[isIndex].designation;
+
+                    if(this.contactList[isIndex].mobile) {
+
+                        this.data.mobile = this.contactList[isIndex].mobile;
+                        this.data.email = this.contactList[isIndex].email;
+                        this.data.designation = this.contactList[isIndex].designation;
+                    }
+
                 }
-                if(target == 'checkReport') {
+                if (target == 'checkReport') {
+
                     console.log(this.contactList[isIndex].mobile);
-                    this.data.checkMobile = this.contactList[isIndex].mobile;
-                    this.data.checkdesignation = this.contactList[isIndex].designation;
+
+                    if (this.contactList[isIndex].mobile) {
+
+                        this.data.checkMobile = this.contactList[isIndex].mobile;
+                        this.data.checkdesignation = this.contactList[isIndex].designation;
+                    }
+
                 }
-            }
+            } 
         } else {
+
+            console.log('hello123');
             this.data.mobile = 0;
             this.data.email = '';
             this.data.checkMobile = 0;
@@ -470,12 +484,25 @@ export class ComDailyreportPage implements OnInit {
             console.log(result);
             this.fgWisecheckList = result[`taskFGCheckList`];
             this.fgWisecheckListCategory = result[`taskFGCheckList`][0].newCheckListCategory;
-            this.data = result['customer_data'];
-            if(this.data.signature_image != '')
-            {
-                this.signatureImage = this.dbService.upload_url+this.data.signature_image;
+            this.data = result[`customer_data`];
+
+            for (let index = 0; index < this.fgWisecheckList.length; index++) {
+                
+                  if (this.fgWisecheckList[index].signatureImage) {
+
+                        if (this.fgWisecheckList[index].signature_type == 'Other') {
+
+                               this.fgWisecheckList[index].checkContactName = 'Other';
+                               this.fgWisecheckList[index].checkOtherContactName = this.fgWisecheckList[index].contactName;
+
+                        } else {
+
+                            this.fgWisecheckList[index].checkContactName = this.fgWisecheckList[index].contactName;
+                        }
+                     
+                        this.fgWisecheckList[index].signatureImage = this.dbService.uploadURL + this.fgWisecheckList[index].signatureImage;
+                  }
             }
-            this.check_list_created = result[`taskFGCheckList`][0]['check_list_created'];
         });
     }
     
@@ -595,7 +622,14 @@ export class ComDailyreportPage implements OnInit {
         .then((data) => {
             console.log(data);
             if (data[`data`] && data[`data`][`signatureImage`]) {
+
+                if (this.fgWisecheckList && this.fgWisecheckList[this.currentActiveCheckTab]) {
+
+                    this.fgWisecheckList[this.currentActiveCheckTab].signatureImage = data[`data`][`signatureImage`];
+                }
+
                 this.signatureImage = data[`data`][`signatureImage`];
+
             }
             console.log(this.signatureImage);
         });
@@ -604,6 +638,44 @@ export class ComDailyreportPage implements OnInit {
     
     GoComplaintDetail(){
         this.location.back();
+    }
+
+    ionViewWillEnter() {
+
+         
+        this.reportType = localStorage.getItem('reportType');
+        this.routeTitleForView = localStorage.getItem('routeTitleForView');
+        
+        console.log(this.reportType);
+        if (this.reportType == 'dailyReport') {
+            this.activeStage = 1;
+        }
+
+        console.log(this.reportType);
+        
+        if (this.reportType == 'checkListReport') {
+            
+            this.activeStage = 5;
+            console.log(this.reportType);
+            
+        }
+        
+        this.routeParams.params.subscribe(params =>{
+            console.log(params);
+            this.taskId = params.taskId;
+            this.taskNo = params.taskNo;
+            this.taskStatus = params.taskStatus;
+
+            if(this.reportType == 'checkListReport') {
+
+                this.onGetCheckListHandler();
+            }
+           
+            console.log(this.taskId);
+            console.log(this.taskNo);
+            console.log(this.taskStatus);
+        });
+        
     }
     
     

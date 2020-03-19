@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["complaints-com-spareparts-com-spareparts-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/com-spareparts/com-spareparts.page.html":
-/*!*************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/technician_app/complaints/com-spareparts/com-spareparts.page.html ***!
-  \*************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-spareparts/com-spareparts.page.html":
+/*!*************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-spareparts/com-spareparts.page.html ***!
+  \*************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>#COM-{{taskNo}} - <ion-text>Spare Parts</ion-text></ion-title>\r\n                </div>\r\n                <div class=\"cs-right\">\r\n                    <ion-button (click)=\"presentPopover($event)\"><ion-icon name=\"more\"></ion-icon></ion-button>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n\r\n            <div class=\"complaints product-list part-list\">\r\n                <div class=\"cs-heading\"><h1>Assign spare parts</h1></div>\r\n\r\n                <div *ngFor=\"let row of sparePartAssignedData\" class=\"figure\">\r\n                    <div class=\"cnt-info\">\r\n                        <div class=\"cs-left\">\r\n                            <div class=\"f-alpha\">{{row.assign_qty}}</div>\r\n                            <div class=\"names\">\r\n                                <h1>{{row.part_name}}</h1>\r\n                                <ion-text>Last Update : {{row.lastUpdated}}</ion-text>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"cs-right\">\r\n                            <ion-text>{{row.part_no}}</ion-text>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            \r\n            <div *ngIf=\"sparePartInstalledData && sparePartInstalledData.length > 0\" class=\"complaints product-list part-list mt20\">\r\n\r\n                <div class=\"cs-heading\"><h1>install spare parts</h1></div>\r\n\r\n                <div *ngFor=\"let row of sparePartInstalledData\" class=\"figure\">\r\n                    <div class=\"cnt-info\">\r\n                        <div class=\"cs-left\">\r\n                            <div class=\"f-alpha\">{{row.installed_qty}}</div>\r\n                            <div class=\"names\">\r\n                                <h1>{{row.part_name}}</h1>\r\n                                <ion-text>Last Update : {{row.lastUpdated}}</ion-text>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"cs-right\">\r\n                            <ion-text>{{row.part_no}}</ion-text>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" size=\"small\" (click)=\"GoToInstallSpareParts()\" *ngIf = \"taskStatus != 'Close'\">\r\n        <ion-fab-button>\r\n            <ion-icon name=\"add\"></ion-icon>\r\n        </ion-fab-button>\r\n    </ion-fab>\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\n    <div class=\"cs-main-container\">\n        <div class=\"custome-head\">\n            <div class=\"cs-ion-header\">\n                <div class=\"cs-left\">\n                    <ion-button (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n                    <ion-title>#COM-{{taskNo}} - <ion-text>Spare Parts</ion-text></ion-title>\n                </div>\n                <div class=\"cs-right\">\n                    <ion-button (click)=\"presentPopover($event)\"><ion-icon name=\"more\"></ion-icon></ion-button>\n                </div>\n            </div>\n            <div class=\"cs-ion-hf\"></div>\n        </div>\n        \n        <div class=\"cs-ion-content pt0\" padding>\n\n            <div class=\"complaints product-list part-list\">\n                <div class=\"cs-heading\"><h1>Assign spare parts</h1></div>\n\n                <div *ngFor=\"let row of sparePartAssignedData\" class=\"figure\">\n                    <div class=\"cnt-info\">\n                        <div class=\"cs-left\">\n                            <div class=\"f-alpha\">{{row.assign_qty}}</div>\n                            <div class=\"names\">\n                                <h1>{{row.part_name}}</h1>\n                                <ion-text>Last Update : {{row.lastUpdated}}</ion-text>\n                            </div>\n                        </div>\n                        <div class=\"cs-right\">\n                            <ion-text>{{row.part_no}}</ion-text>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            \n            <div *ngIf=\"sparePartInstalledData && sparePartInstalledData.length > 0\" class=\"complaints product-list part-list mt20\">\n\n                <div class=\"cs-heading\"><h1>install spare parts</h1></div>\n\n                <div *ngFor=\"let row of sparePartInstalledData\" class=\"figure\">\n                    <div class=\"cnt-info\">\n                        <div class=\"cs-left\">\n                            <div class=\"f-alpha\">{{row.installed_qty}}</div>\n                            <div class=\"names\">\n                                <h1>{{row.part_name}}</h1>\n                                <ion-text>Last Update : {{row.lastUpdated}}</ion-text>\n                            </div>\n                        </div>\n                        <div class=\"cs-right\">\n                            <ion-text>{{row.part_no}}</ion-text>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" size=\"small\" (click)=\"GoToInstallSpareParts()\" *ngIf = \"taskStatus != 'Close'\">\n        <ion-fab-button>\n            <ion-icon name=\"add\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab>\n</ion-content>\n");
 
 /***/ }),
 
@@ -97,10 +99,12 @@ ComSparepartsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!***********************************************************************************!*\
   !*** ./src/app/technician_app/complaints/com-spareparts/com-spareparts.page.scss ***!
   \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvY29tLXNwYXJlcGFydHMvY29tLXNwYXJlcGFydHMucGFnZS5zY3NzIn0= */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvY29tLXNwYXJlcGFydHMvY29tLXNwYXJlcGFydHMucGFnZS5zY3NzIn0= */");
 
 /***/ }),
 
@@ -200,8 +204,8 @@ ComSparepartsPage.ctorParameters = () => [
 ComSparepartsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-com-spareparts',
-        template: __webpack_require__(/*! raw-loader!./com-spareparts.page.html */ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/com-spareparts/com-spareparts.page.html"),
-        styles: [__webpack_require__(/*! ./com-spareparts.page.scss */ "./src/app/technician_app/complaints/com-spareparts/com-spareparts.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./com-spareparts.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-spareparts/com-spareparts.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./com-spareparts.page.scss */ "./src/app/technician_app/complaints/com-spareparts/com-spareparts.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"],
         _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],

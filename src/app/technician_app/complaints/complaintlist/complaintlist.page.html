@@ -86,13 +86,13 @@
                     <div class="cs-box">
                         <div>
                             <ion-text>Priority</ion-text>
-                            <ion-text [style.color]="row.priorityColor">{{row.priority}}</ion-text>
+                            <ion-text [style.color]="row.priorityColor">{{row.priority ? row.priority : 'NA'}}</ion-text>
                         </div>
                     </div>
                     <div class="cs-box close" style="background: #FFA200;">
                         <div>
                             <ion-text>Service Type</ion-text>
-                            <ion-text>{{fgRow.serviceType ? fgRow.serviceType : 'NA'}}</ion-text>
+                            <ion-text>{{(row.transaction_type == 'FOC' || row.transaction_type == 'Sale/Warranty' || row.transaction_type == 'Commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
                         </div>
                     </div>
                 </div>

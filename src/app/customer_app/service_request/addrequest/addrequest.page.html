@@ -24,27 +24,28 @@
                                     
                                     <ion-label>Request Type</ion-label>
                                     
-                                    <ion-select formControlName="requestType" [(ngModel)]="data.requestType" placeholder="Select Type">
+                                    <ion-select formControlName="requestType" [(ngModel)]="data.requestType" (ngModelChange)="onRequestTypeChangeHandler()" placeholder="Select Type">
                                         <ion-select-option value="service_request">Complaint</ion-select-option>
                                         <ion-select-option value="commissioning">Commissioning</ion-select-option>
                                     </ion-select>
                                     
                                 </ion-item>
 
-                                <ion-item [ngClass]="submitted && f1.complaintTitle.errors && f1.complaintTitle.errors.required ? 'has-error' : (f1.complaintTitle.errors && !f1.complaintTitle.errors.required ? 'has-text' : '')" class="cs-select">
+                                <ion-item  *ngIf = "registerForm1.value['requestType']"[ngClass]="submitted && f1.complaintTitle.errors && f1.complaintTitle.errors.required ? 'has-error' : (f1.complaintTitle.errors && !f1.complaintTitle.errors.required ? 'has-text' : '')" class="cs-select">
                                     
                                     <ion-label>Complaint Title</ion-label>
 
-                                    <ion-select formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type"  *ngIf = "registerForm1.value['requestType']  != 'commissioning'">
-                                        <ion-select-option *ngFor="let row of complaintTypeList" [value]="row.title">{{row.title}}</ion-select-option>
-                                      
+                                    <ion-select  *ngIf = "registerForm1.value['requestType']  != 'commissioning'" formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type">
+                                            <ion-select-option *ngFor="let row of complaintTypeList" [value]="row.title">{{row.title}}</ion-select-option>
+                                            
                                     </ion-select>
 
-                                    <ion-select formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type"  *ngIf = "registerForm1.value['requestType']  != 'service_request'">
-                                        <ion-select-option  [value]="commissioning">Commissioning</ion-select-option>
-                                      
+                                    <ion-select *ngIf = "registerForm1.value['requestType']  != 'service_request'" formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type">
+                                
+                                            <ion-select-option  [value]="commissioning">Commissioning</ion-select-option>
+                                            
                                     </ion-select>
-                                    
+                                               
                                     
                                 </ion-item>
 
@@ -106,10 +107,9 @@
                         </ion-item>
                        
                     
-                    <div class="cs-btn mt16" text-right>
+                    <div [hidden]="data.requestType == 'service_request' && productData.length > 0" class="cs-btn mt16" text-right>
                         <ion-button (click)="onAddProductToListHandler()" class="success min w100">Add to List</ion-button>
                     </div>
-                    
                 </div>
                 
                 <div class="complaints list mt20">
@@ -131,7 +131,7 @@
                 </div> 
             </div>
 
-            <div class="cs-right mt20">
+            <div [hidden] = "data.requestType == 'commissioning'" class="cs-right mt20">
                 <div class="common_form inner_page">
                     <div class="heading"><h1>Service Type</h1></div>
                         <div class="dflex">

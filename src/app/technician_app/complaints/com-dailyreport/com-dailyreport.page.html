@@ -177,14 +177,18 @@
                                         <ion-select formControlName="contactName" [(ngModel)]="data.contactName" (ngModelChange) = "onContactChangeHandler('dailyReport')"  placeholder="Select">
                                             <ion-select-option *ngFor="let row of contactList" [value]="row.name">{{row.name}}</ion-select-option>
                                         </ion-select>
+
                                     </ion-item>
                                     
                                     <ion-item *ngIf="data.contactName=='Other'" [ngClass]="submitted && f3.otherContactName.errors && f3.otherContactName.errors.required ? 'has-error' : (f3.otherContactName.errors && !f3.otherContactName.errors.required ? 'has-text' : '')">
+
                                         <ion-label position="floating">Name</ion-label>
                                         <ion-input formControlName="otherContactName" [(ngModel)]="data.otherContactName"></ion-input>
+
                                         <ion-text *ngIf="submitted && f3.otherContactName.errors" class="cs-error">
                                             <span *ngIf="f3.otherContactName.errors.minlength">Minimum 5 Letter Required</span>
                                         </ion-text>
+
                                     </ion-item>
                                     
                                     <ion-item *ngIf="data.contactName" [ngClass]="submitted && f3.mobile.errors && f3.mobile.errors.required ? 'has-error' : (f3.mobile.errors && !f3.mobile.errors.required ? 'has-text' : '')">
@@ -195,6 +199,7 @@
                                             <span *ngIf="f3.mobile.errors.maxlength">Maximum 10 Digit Required</span>
                                         </ion-text>
                                     </ion-item>
+
                                     
                                     <ion-item *ngIf="data.contactName" [ngClass]="submitted && f3.email.errors && f3.email.errors.required ? 'has-error' : (f3.email.errors && !f3.email.errors.required ? 'has-text' : '')">
                                         <ion-label position="floating">Email ID</ion-label>
@@ -321,32 +326,38 @@
                         <div class="custome-filter dlform mt15" *ngIf="activeStage == 5">
                             <div class="fiter-data">
                                 <div class="cs-right">
-                                    <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckListCategory; let index = index" class="check_list">
+
+                                    <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckList; let index = index" class="check_list">
+
                                         <div class="common_form inner_page">
                                             <ion-item class="cs-select">
                                                 <ion-label>Contact Person Name</ion-label>
-                                                <ion-select disabled="{{check_list_created}}" [(ngModel)]="data.checkContactName" (ngModelChange) = "onContactChangeHandler('checkReport')"  placeholder="Select">
+                                                <ion-select disabled="{{row.check_list_created}}" [(ngModel)]="row.checkContactName" (ngModelChange) = "onContactChangeHandler('checkReport')"  placeholder="Select">
                                                     <ion-select-option *ngFor="let row of contactList" [value]="row.name">{{row.name}}</ion-select-option>
                                                 </ion-select>
                                             </ion-item>
-                                            <ion-item *ngIf="data.checkContactName=='Other'">
+                                            <ion-item *ngIf="row.checkContactName=='Other'">
                                                 <ion-label position="floating">Name</ion-label>
-                                                <ion-input [(ngModel)]="data.checkOtherContactName"></ion-input>
+                                                <ion-input [(ngModel)]="row.checkOtherContactName"></ion-input>
                                             </ion-item>
-                                            <ion-item *ngIf="data.checkContactName">
+                                            <ion-item *ngIf="row.checkContactName">
                                                 <ion-label position="floating">Mobile No.</ion-label>
-                                                <ion-input type="tel" readonly="{{check_list_created}}" [(ngModel)]="data.checkMobile" (keypress) = "dbService.numberOnly($event)"></ion-input>
+                                                <ion-input type="tel" readonly="{{row.check_list_created}}" [(ngModel)]="row.checkMobile" (keypress) = "dbService.numberOnly($event)"></ion-input>
                                                 <ion-text class="cs-error">
-                                                    <span *ngIf="!data.checkMobile  || (data.checkMobile.length < 10) || data.checkMobile.length > 10">Mobile Must be 10 Digit!</span>
+                                                    <span *ngIf="!row.checkMobile  || (row.checkMobile.length < 10) || row.checkMobile.length > 10">Mobile Must be 10 Digit!</span>
                                                 </ion-text>
                                             </ion-item>
-                                            <ion-item (click)="!check_list_created ? presentModal() : ''">
-                                                <div><img [src]="signatureImage" *ngIf="signatureImage!=''" /></div>
+                                            
+                                            <ion-item (click)="!row.check_list_created ? presentModal() : ''">
+
+                                                <div><img [src]="row.signatureImage" *ngIf="row.signatureImage!=''" /></div>
+
                                                 <ion-label position="floating">Add Signature</ion-label>
+                                                
                                                 <ion-input ></ion-input>
                                             </ion-item> 
                                         </div>
-                                        <div class="cs-btn mt16 lr" *ngIf="!check_list_created">
+                                        <div class="cs-btn mt16 lr" *ngIf="!row.check_list_created">
                                             <ion-button (click)="onSaveCheckListHandler()" class="success min w100">SAVE</ion-button>
                                         </div>
                                     </div>

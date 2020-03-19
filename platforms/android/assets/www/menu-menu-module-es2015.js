@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["menu-menu-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/technician_app/menu/menu.page.html":
-/*!******************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/technician_app/menu/menu.page.html ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/menu/menu.page.html":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/menu/menu.page.html ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content>\r\n    <div class=\"dashboard_cnt\">\r\n        <div class=\"cs-header\" padding>            \r\n            <div class=\"profile-segment mt66\">\r\n                \r\n                <div class=\"pr-icon\">\r\n                    \r\n                    <div *ngIf=\"!profileData.image_url\" class=\"cs-icon\"></div>\r\n                    \r\n                    <div *ngIf=\"profileData.image_url\" class=\"cs-thumb\">\r\n                        <img  src=\"{{dbService.userDocURL + profileData.image_url}}\" alt=\"\">\r\n                    </div>\r\n                    \r\n                </div>\r\n                \r\n                <div class=\"info\">\r\n                    <ion-text color=\"light\">{{profileData.name}}<br><span>{{profileData.mobile}}</span></ion-text>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    \r\n    <div class=\"cs-navigations mt32\">\r\n        <ion-button fill=\"clear\" color=\"dark\" (click)=\"GoToProfile()\">\r\n            <div class=\"figure\">\r\n                <ion-text><img src=\"assets/icon/my_profile.svg\" alt=\"\">My Profile</ion-text>\r\n                <i class=\"material-icons\">keyboard_arrow_right</i>\r\n            </div>\r\n        </ion-button>\r\n        <ion-button fill=\"clear\" color=\"dark\" (click)=\"GoToDocuments()\">\r\n            <div class=\"figure\">\r\n                <ion-text><img src=\"assets/icon/user_manual.svg\" alt=\"\">Documents</ion-text>\r\n                <i class=\"material-icons\">keyboard_arrow_right</i>\r\n            </div>\r\n        </ion-button>\r\n        <ion-button fill=\"clear\" color=\"dark\" [routerLink]=\"['/forgotpassword']\">\r\n            <div class=\"figure\">\r\n                <ion-text><img src=\"assets/icon/change_password.svg\" alt=\"\">Change Password</ion-text>\r\n                <i class=\"material-icons\">keyboard_arrow_right</i>\r\n            </div>\r\n        </ion-button>\r\n        <ion-button (click)=\"onLogoutHandler()\" fill=\"clear\" color=\"danger\">\r\n            <div class=\"figure\">\r\n                <ion-text><img src=\"assets/icon/logout.svg\" alt=\"\">LOG OUT</ion-text>\r\n                <i class=\"material-icons\">keyboard_arrow_right</i>  \r\n            </div>\r\n        </ion-button>\r\n    </div>\r\n    \r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n    <div class=\"dashboard_cnt\">\n        <div class=\"cs-header\" padding>            \n            <div class=\"profile-segment mt66\">\n                \n                <div class=\"pr-icon\">\n                    \n                    <div *ngIf=\"!profileData.image_url\" class=\"cs-icon\"></div>\n                    \n                    <div *ngIf=\"profileData.image_url\" class=\"cs-thumb\">\n                        <img  src=\"{{dbService.userDocURL + profileData.image_url}}\" alt=\"\">\n                    </div>\n                    \n                </div>\n                \n                <div class=\"info\">\n                    <ion-text color=\"light\">{{profileData.name}}<br><span>{{profileData.mobile}}</span></ion-text>\n                </div>\n            </div>\n        </div>\n    </div>\n    \n    <div class=\"cs-navigations mt32\">\n        <ion-button fill=\"clear\" color=\"dark\" (click)=\"GoToProfile()\">\n            <div class=\"figure\">\n                <ion-text><img src=\"assets/icon/my_profile.svg\" alt=\"\">My Profile</ion-text>\n                <i class=\"material-icons\">keyboard_arrow_right</i>\n            </div>\n        </ion-button>\n        <ion-button fill=\"clear\" color=\"dark\" (click)=\"GoToDocuments()\">\n            <div class=\"figure\">\n                <ion-text><img src=\"assets/icon/user_manual.svg\" alt=\"\">Documents</ion-text>\n                <i class=\"material-icons\">keyboard_arrow_right</i>\n            </div>\n        </ion-button>\n        <ion-button fill=\"clear\" color=\"dark\" [routerLink]=\"['/forgotpassword']\">\n            <div class=\"figure\">\n                <ion-text><img src=\"assets/icon/change_password.svg\" alt=\"\">Change Password</ion-text>\n                <i class=\"material-icons\">keyboard_arrow_right</i>\n            </div>\n        </ion-button>\n        <ion-button (click)=\"onLogoutHandler()\" fill=\"clear\" color=\"danger\">\n            <div class=\"figure\">\n                <ion-text><img src=\"assets/icon/logout.svg\" alt=\"\">LOG OUT</ion-text>\n                <i class=\"material-icons\">keyboard_arrow_right</i>  \n            </div>\n        </ion-button>\n    </div>\n    \n</ion-content>\n");
 
 /***/ }),
 
@@ -94,10 +96,12 @@ MenuPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!****************************************************!*\
   !*** ./src/app/technician_app/menu/menu.page.scss ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL21lbnUvbWVudS5wYWdlLnNjc3MifQ== */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL21lbnUvbWVudS5wYWdlLnNjc3MifQ== */");
 
 /***/ }),
 
@@ -189,8 +193,8 @@ MenuPage.ctorParameters = () => [
 MenuPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-menu',
-        template: __webpack_require__(/*! raw-loader!./menu.page.html */ "./node_modules/raw-loader/index.js!./src/app/technician_app/menu/menu.page.html"),
-        styles: [__webpack_require__(/*! ./menu.page.scss */ "./src/app/technician_app/menu/menu.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./menu.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/menu/menu.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./menu.page.scss */ "./src/app/technician_app/menu/menu.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],

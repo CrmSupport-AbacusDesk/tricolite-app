@@ -33,7 +33,7 @@
     "angular2-signaturepad": "^2.9.0",
     "com-badrit-base64": "^0.2.0",
     "com-sarriaroman-photoviewer": "^1.2.4",
-    "cordova-android": "^6.4.0",
+    "cordova-android": "6.4.0",
     "cordova-android-support-gradle-release": "^3.0.1",
     "cordova-pdf-generator": "^2.0.8",
     "cordova-plugin-app-version": "^0.1.9",

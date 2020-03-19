@@ -109,6 +109,8 @@ export class RegistrationPage implements OnInit {
 
             if (this.data.contactName && this.data.contactEmail && this.data.designation && this.data.contactMobile) {
 
+                  this.contactData = [];
+
                   this.contactData.push({
                       contactName: this.data.contactName,
                       designation: this.data.designation,
@@ -116,12 +118,7 @@ export class RegistrationPage implements OnInit {
                       contactMobile: this.data.contactMobile
                   });
 
-                  this.data.contactName = '';
-                  this.data.designation = '';
-                  this.data.contactMobile = '';
-                  this.data.contactEmail = '';
                   this.submitted = false;
-
             }
 
             if (this.contactData.length == 0) {
@@ -166,13 +163,11 @@ export class RegistrationPage implements OnInit {
                                 if (result[`status`] == 'error') {
 
                                     this.dbService.onShowAlertMessage('Error', result[`statusMessage`]);
-                                    this.route.navigate(['/customerlogin']);
 
-        
                                 } else {
               
                                     const loginData = {
-                                        // loginType: result[`loginData`][`loginType`],
+                                        loginType: result[`loginData`][`loginType`],
                                         loginId: result[`loginData`][`loginId`],
                                         loginName: result[`loginData`][`loginName`],
                                         loginStatus: result[`loginData`][`loginStatus`]

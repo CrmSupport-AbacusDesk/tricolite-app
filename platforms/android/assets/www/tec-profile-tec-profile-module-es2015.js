@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["tec-profile-tec-profile-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/technician_app/tec-profile/tec-profile.page.html":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/technician_app/tec-profile/tec-profile.page.html ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tec-profile/tec-profile.page.html":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tec-profile/tec-profile.page.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            \r\n            <div class=\"profile-big\"><img *ngIf=\"profileData.image_url\" src=\"{{dbService.userDocURL + profileData.image_url}}\" alt=\"\"></div>\r\n\r\n            <div class=\"cs-ion-header\">\r\n\r\n                <div class=\"cs-left\">\r\n                    <ion-button [routerLink]=\"['/technicians/menu']\">\r\n                        <ion-icon name=\"arrow-back\"></ion-icon>\r\n                    </ion-button>\r\n                    <ion-title>My Profile</ion-title>\r\n                </div>\r\n\r\n                <div (click)=\"presentActionSheet()\" class=\"cs-right\">\r\n                    <ion-button><ion-icon name=\"camera\"></ion-icon></ion-button>\r\n                </div>\r\n\r\n            </div>\r\n            \r\n            <div class=\"profile-segment detail\">\r\n\r\n                <div class=\"pr-icon\">\r\n\r\n                    <div *ngIf=\"!profileData.image_url\" class=\"cs-icon\"></div>\r\n\r\n                    <div (click)=\"onViewImageHandler()\" *ngIf=\"profileData.image_url\" class=\"cs-thumb\">\r\n                        <img  src=\"{{dbService.userDocURL + profileData.image_url}}\" alt=\"\">\r\n                    </div>\r\n\r\n                </div>\r\n\r\n                <div class=\"info\">\r\n\r\n                    <ion-text color=\"light\">{{profileData.name}}<br>\r\n                        <span>{{profileData.mobile}}</span>\r\n                    </ion-text>\r\n\r\n                </div>\r\n            </div>\r\n            \r\n            \r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"my_profile\" padding>\r\n                \r\n                <div class=\"information\">\r\n\r\n                    <div class=\"figure\">\r\n                        <img src=\"assets/icon/pr_call.svg\" alt=\"\">\r\n                        <h1>{{profileData.mobile}}</h1>\r\n                    </div>\r\n                    <div class=\"figure\">\r\n                        <img src=\"assets/icon/pr_email.svg\" alt=\"\">\r\n                        <a>{{profileData.email}}</a>\r\n                    </div>\r\n                    <div class=\"figure\">\r\n                        <img src=\"assets/icon/pr_address.svg\" alt=\"\">\r\n                        <h1>{{profileData.street}} {{profileData.state_name}}, {{profileData.district_name}}, {{profileData.city}}, {{profileData.pincode}}</h1>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\n    <div class=\"cs-main-container\">\n        <div class=\"custome-head\">\n            \n            <div class=\"profile-big\"><img *ngIf=\"profileData.image_url\" src=\"{{dbService.userDocURL + profileData.image_url}}\" alt=\"\"></div>\n\n            <div class=\"cs-ion-header\">\n\n                <div class=\"cs-left\">\n                    <ion-button [routerLink]=\"['/technicians/menu']\">\n                        <ion-icon name=\"arrow-back\"></ion-icon>\n                    </ion-button>\n                    <ion-title>My Profile</ion-title>\n                </div>\n\n                <div (click)=\"presentActionSheet()\" class=\"cs-right\">\n                    <ion-button><ion-icon name=\"camera\"></ion-icon></ion-button>\n                </div>\n\n            </div>\n            \n            <div class=\"profile-segment detail\">\n\n                <div class=\"pr-icon\">\n\n                    <div *ngIf=\"!profileData.image_url\" class=\"cs-icon\"></div>\n\n                    <div (click)=\"onViewImageHandler()\" *ngIf=\"profileData.image_url\" class=\"cs-thumb\">\n                        <img  src=\"{{dbService.userDocURL + profileData.image_url}}\" alt=\"\">\n                    </div>\n\n                </div>\n\n                <div class=\"info\">\n\n                    <ion-text color=\"light\">{{profileData.name}}<br>\n                        <span>{{profileData.mobile}}</span>\n                    </ion-text>\n\n                </div>\n            </div>\n            \n            \n            <div class=\"cs-ion-hf\"></div>\n        </div>\n        \n        <div class=\"cs-ion-content pt0\" padding>\n            <div class=\"my_profile\" padding>\n                \n                <div class=\"information\">\n\n                    <div class=\"figure\">\n                        <img src=\"assets/icon/pr_call.svg\" alt=\"\">\n                        <h1>{{profileData.mobile}}</h1>\n                    </div>\n                    <div class=\"figure\">\n                        <img src=\"assets/icon/pr_email.svg\" alt=\"\">\n                        <a>{{profileData.email}}</a>\n                    </div>\n                    <div class=\"figure\">\n                        <img src=\"assets/icon/pr_address.svg\" alt=\"\">\n                        <h1>{{profileData.street}} {{profileData.state_name}}, {{profileData.district_name}}, {{profileData.city}}, {{profileData.pincode}}</h1>\n                    </div>\n\n                </div>\n\n            </div>\n        </div>\n    </div>\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -94,10 +96,12 @@ TecProfilePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!******************************************************************!*\
   !*** ./src/app/technician_app/tec-profile/tec-profile.page.scss ***!
   \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL3RlYy1wcm9maWxlL3RlYy1wcm9maWxlLnBhZ2Uuc2NzcyJ9 */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL3RlYy1wcm9maWxlL3RlYy1wcm9maWxlLnBhZ2Uuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -281,8 +285,8 @@ TecProfilePage.ctorParameters = () => [
 TecProfilePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-tec-profile',
-        template: __webpack_require__(/*! raw-loader!./tec-profile.page.html */ "./node_modules/raw-loader/index.js!./src/app/technician_app/tec-profile/tec-profile.page.html"),
-        styles: [__webpack_require__(/*! ./tec-profile.page.scss */ "./src/app/technician_app/tec-profile/tec-profile.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./tec-profile.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tec-profile/tec-profile.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./tec-profile.page.scss */ "./src/app/technician_app/tec-profile/tec-profile.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"],
         _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],

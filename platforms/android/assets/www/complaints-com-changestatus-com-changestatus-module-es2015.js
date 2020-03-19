@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["complaints-com-changestatus-com-changestatus-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/com-changestatus/com-changestatus.page.html":
-/*!*****************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/technician_app/complaints/com-changestatus/com-changestatus.page.html ***!
-  \*****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-changestatus/com-changestatus.page.html":
+/*!*****************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-changestatus/com-changestatus.page.html ***!
+  \*****************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>#COM-{{taskNo}} - <ion-text>Change Status</ion-text></ion-title>\r\n                </div>\r\n                <div class=\"cs-right\">\r\n                    <ion-button (click)=\"presentPopover($event)\"><ion-icon name=\"more\"></ion-icon></ion-button>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            \r\n            <div class=\"common_form inner_page\">\r\n                <ion-item class=\"cs-select\">\r\n                    <ion-label>Select Status</ion-label>\r\n                    \r\n                    <ion-select [(ngModel)] = \"data.status\" placeholder=\"Select One\">\r\n\r\n                        <ion-select-option *ngFor=\"let row of statusOptionList\" [value]=\"row.status\">{{row.status}}</ion-select-option>\r\n\r\n                    </ion-select>\r\n\r\n                </ion-item>\r\n                \r\n                <div class=\"cs-btn mt16\" text-right *ngIf = \"taskStatus != 'Close'\">\r\n                    <ion-button (click) = \"onSaveStatusDataHandler()\" class=\"success min w100\">SAVE</ion-button>\r\n                </div>\r\n            </div>\r\n            \r\n            <div *ngIf=\"taskStatusList && taskStatusList.length > 0\" class=\"complaints product-list part-list mt20\">\r\n                <div class=\"cs-heading\"><h1>Status History</h1></div>\r\n\r\n                <div *ngFor=\"let row of taskStatusList\" class=\"figure nicon\">\r\n                    <div class=\"cnt-info\">\r\n                        <div class=\"cs-left\">\r\n                            <div class=\"names\">\r\n                                <h1>{{row.status}}</h1>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"cs-right\">\r\n                            <ion-text><span>{{row.dateCreated}}</span> | {{row.timeCreated}}</ion-text>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\n    <div class=\"cs-main-container\">\n        <div class=\"custome-head\">\n            <div class=\"cs-ion-header\">\n                <div class=\"cs-left\">\n                    <ion-button (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\n                    <ion-title>#COM-{{taskNo}} - <ion-text>Change Status</ion-text></ion-title>\n                </div>\n                <div class=\"cs-right\">\n                    <ion-button (click)=\"presentPopover($event)\"><ion-icon name=\"more\"></ion-icon></ion-button>\n                </div>\n            </div>\n            <div class=\"cs-ion-hf\"></div>\n        </div>\n        \n        <div class=\"cs-ion-content pt0\" padding>\n            \n            <div class=\"common_form inner_page\">\n                <ion-item class=\"cs-select\">\n                    <ion-label>Select Status</ion-label>\n                    \n                    <ion-select [(ngModel)] = \"data.status\" placeholder=\"Select One\">\n\n                        <ion-select-option *ngFor=\"let row of statusOptionList\" [value]=\"row.status\">{{row.status}}</ion-select-option>\n\n                    </ion-select>\n\n                </ion-item>\n                \n                <div class=\"cs-btn mt16\" text-right *ngIf = \"taskStatus != 'Close'\">\n                    <ion-button (click) = \"onSaveStatusDataHandler()\" class=\"success min w100\">SAVE</ion-button>\n                </div>\n            </div>\n            \n            <div *ngIf=\"taskStatusList && taskStatusList.length > 0\" class=\"complaints product-list part-list mt20\">\n                <div class=\"cs-heading\"><h1>Status History</h1></div>\n\n                <div *ngFor=\"let row of taskStatusList\" class=\"figure nicon\">\n                    <div class=\"cnt-info\">\n                        <div class=\"cs-left\">\n                            <div class=\"names\">\n                                <h1>{{row.status}}</h1>\n                            </div>\n                        </div>\n                        <div class=\"cs-right\">\n                            <ion-text><span>{{row.dateCreated}}</span> | {{row.timeCreated}}</ion-text>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -94,10 +96,12 @@ ComChangestatusPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!***************************************************************************************!*\
   !*** ./src/app/technician_app/complaints/com-changestatus/com-changestatus.page.scss ***!
   \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvY29tLWNoYW5nZXN0YXR1cy9jb20tY2hhbmdlc3RhdHVzLnBhZ2Uuc2NzcyJ9 */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvY29tLWNoYW5nZXN0YXR1cy9jb20tY2hhbmdlc3RhdHVzLnBhZ2Uuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -258,8 +262,8 @@ ComChangestatusPage.ctorParameters = () => [
 ComChangestatusPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-com-changestatus',
-        template: __webpack_require__(/*! raw-loader!./com-changestatus.page.html */ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/com-changestatus/com-changestatus.page.html"),
-        styles: [__webpack_require__(/*! ./com-changestatus.page.scss */ "./src/app/technician_app/complaints/com-changestatus/com-changestatus.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./com-changestatus.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-changestatus/com-changestatus.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./com-changestatus.page.scss */ "./src/app/technician_app/complaints/com-changestatus/com-changestatus.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"],
         _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],

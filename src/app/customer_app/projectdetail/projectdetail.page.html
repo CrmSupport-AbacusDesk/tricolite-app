@@ -16,7 +16,7 @@
                 <div class="figure">
                     <div class="cnt-info pt0 pl0 pr0">
                         <div class="cs-left" >
-                            <div class="f-alpha">{{projectData.project_name}}</div>
+                            <div *ngIf="projectData && projectData.project_name" class="f-alpha">{{projectData.project_name[0]}}</div>
                             <div class="names">
                                 <h1>{{projectData.project_name}}</h1>
                                 <ion-text>{{projectData.street}} {{projectData.state_name}}, {{projectData.district_name}}, {{projectData.city}}, {{projectData.pincode}}</ion-text>
@@ -28,13 +28,13 @@
                         <div class="cs-box">
                             <div>
                                 <ion-text>Contact Person</ion-text>
-                                <ion-text>{{projectData.length}}</ion-text>
+                                <ion-text>{{projectData.contactData ? projectData.contactData.length : 0}}</ion-text>
                             </div>
                         </div>
                         <div class="cs-box">
                             <div>
                                 <ion-text>Total Products</ion-text>
-                                <ion-text>{{projectData.length}}</ion-text>
+                                <ion-text>{{projectData.productData.length}}</ion-text>
                             </div>
                         </div>
                         <div class="cs-box">
@@ -134,9 +134,9 @@
                         </div>
                     </div>
                     
-                    <div (click)="activeTab = 3" class="cs-btn ion-padding" text-right>
+                    <!-- <div (click)="activeTab = 3" class="cs-btn ion-padding" text-right>
                         <ion-button class="w45 h45 round font16" ><ion-icon name="add"></ion-icon></ion-button>
-                    </div>
+                    </div> -->
                     
                 </div>
                 

@@ -32,6 +32,14 @@ export class HomePage implements OnInit {
   }
 
 
+  async onDashboardCountClickHandler(targetType) {
+
+          const dashboardCountFilterData = {};
+          dashboardCountFilterData[`countFilter`] = targetType;
+          localStorage.setItem('dashboardCountFilterData', JSON.stringify(dashboardCountFilterData));
+  }
+
+
   async onGetDashboardDataHandler() {
 
          console.log('hello');

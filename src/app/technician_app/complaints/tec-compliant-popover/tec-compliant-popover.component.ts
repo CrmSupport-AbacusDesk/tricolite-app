@@ -20,6 +20,7 @@ export class TecCompliantPopoverComponent implements OnInit {
   taskStatus: any = '';
   routeType: any = '';
   taskAllData: any ='';
+  taskPopUpData: any;
   
   constructor(public popoverController: PopoverController,
               private router: Router,
@@ -33,6 +34,8 @@ export class TecCompliantPopoverComponent implements OnInit {
         console.log(this.taskStatus);
 
         this.routeType = localStorage.getItem('routeType');
+
+        this.taskPopUpData = JSON.parse(localStorage.getItem('taskPopUpData'));
   }
 
   ngOnInit() {}
@@ -63,11 +66,12 @@ export class TecCompliantPopoverComponent implements OnInit {
     this.router.navigateByUrl('/technicians/'+ localStorage.getItem('routeType') +'/details/dailyreport/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
   }
 
-  GoToServiceReport() {
+  GoToServiceReport(taskReportId) {
 
     console.log('hello');
     const inputData = {
-      taskId: this.taskId
+        taskId: this.taskId,
+        taskReportId: taskReportId
     };
 
     this.dbService.onPostRequestHandler(inputData, 'Report/viewMobileServiceReport').subscribe((result) => {

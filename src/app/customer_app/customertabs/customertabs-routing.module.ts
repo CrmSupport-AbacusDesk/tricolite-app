@@ -51,10 +51,9 @@ const routes: Routes = [
       },
 
       {
-        path: 'request/spareparts',
-        loadChildren: () => import('../service_request/sparepart/sparepart.module').then(m => m.SparepartPageModule)
+        path: 'request/spareparts/:taskId/:taskNo/:taskStatus',
+        loadChildren: () => import('../service_request/com-spareparts/com-spareparts.module').then(m => m.ComSparepartsPageModule)
       },
-
 
       {
         path: 'request/addrequest',

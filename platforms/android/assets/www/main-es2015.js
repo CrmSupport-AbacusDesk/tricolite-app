@@ -720,69 +720,310 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/app.component.html":
-/*!**************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/app.component.html ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html":
+/*!**************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-app>\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n"
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/index.js!./src/app/complaintfiltermodal/complaintfiltermodal.page.html":
-/*!***********************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/complaintfiltermodal/complaintfiltermodal.page.html ***!
-  \***********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<ion-content class=\"cs-modal-container\">\r\n    <div class=\"modal-container full-modal-container\">\r\n        <div class=\"main-figure\">\r\n            <div class=\"cs-modal-body\">\r\n               \r\n                    <div class=\"custome-filter\">\r\n                            <div class=\"cs-header\">\r\n\r\n                                <ion-button (click)=\"dismiss()\"><i class=\"material-icons\">keyboard_arrow_down</i></ion-button>\r\n                                <h1>filters</h1>\r\n\r\n                                <ion-text (click)=\"onRemoveAllFilterHandler()\">Clear</ion-text>\r\n                            </div>\r\n                            \r\n                            <div class=\"fiter-data\">\r\n\r\n                                <div class=\"cs-left\">\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 1\" [ngClass]=\"currentActiveTab==1 ? 'active' : ''\" fill=\"clear\" color=\"dark\">Date & Days</ion-button>\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 2\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==2 ? 'active' : ''\">Priority</ion-button>\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 3\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==3 ? 'active' : ''\">Com. Type</ion-button>\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 4\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==4 ? 'active' : ''\">Status</ion-button>\r\n\r\n                                </div>\r\n                                \r\n                                <div class=\"cs-right\">\r\n\r\n                                 <div *ngIf=\"currentActiveTab==1\" id=\"days\">\r\n                                        <div class=\"common_form inner_page\">\r\n                                                <ion-item class=\"date-time\">\r\n                                                    <ion-label>Date From</ion-label>\r\n                                                    <ion-datetime [(ngModel)]=\"data.dateFrom\" (ngModelChange)=\"onDateFromChangeHandler()\" displayFormat=\"DD MMM YYYY\" max=\"{{currentDate}}\"></ion-datetime>\r\n                                                </ion-item>\r\n                                                <ion-item class=\"date-time\">\r\n                                                    <ion-label>Date To</ion-label>\r\n                                                    <ion-datetime [(ngModel)]=\"data.dateTo\" (ngModelChange)=\"data.range = 0\"  displayFormat=\"DD MMM YYYY\" min=\"{{minDate}}\" max=\"{{currentDate}}\"></ion-datetime>\r\n                                                </ion-item>\r\n                                            </div>\r\n\r\n                                            <div class=\"or-cnt or-cnt16\">\r\n                                                <div>OR</div>\r\n                                            </div>\r\n                                            \r\n\r\n                                            <div class=\"cs-range\">\r\n        \r\n                                                <h1>Days Range <span><ion-text>{{data.range}}</ion-text></span></h1>\r\n                                                <ion-item>\r\n        \r\n                                                    <ion-range [(ngModel)]=\"data.range\" (ngModelChange) = \"data.dateFrom = ''; data.dateTo = ''\"  min=\"0\" max=\"30\" color=\"warning\">\r\n        \r\n                                                        <ion-label slot=\"start\">0 Days</ion-label>\r\n        \r\n                                                        <ion-label slot=\"end\">30 Days</ion-label>\r\n        \r\n                                                    </ion-range>\r\n        \r\n                                                </ion-item>\r\n        \r\n                                            </div>\r\n                                 </div>\r\n\r\n                                    \r\n                                    \r\n                                    <div *ngIf=\"currentActiveTab==2\" id=\"priority\" class=\"cs-checkbox\">\r\n                                        <ion-list>\r\n                                            <ion-item *ngFor=\"let row of priorityList\">\r\n\r\n                                                <ion-label>{{row.name}}</ion-label>\r\n\r\n                                                <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\r\n\r\n                                            </ion-item>\r\n                                        </ion-list>\r\n                                    </div>\r\n\r\n                                    <div *ngIf=\"currentActiveTab==3\" id=\"complaintTitle\" class=\"cs-checkbox\">\r\n                                            <ion-list>\r\n                                                <ion-item *ngFor=\"let row of complaintTypeList\">\r\n                                                    <ion-label>{{row.title}}</ion-label>\r\n                                                    <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\r\n                                                </ion-item>\r\n                                            </ion-list>\r\n                                    </div>\r\n\r\n                                    <div *ngIf=\"currentActiveTab==4\" id=\"complaintStatus\" class=\"cs-checkbox\">\r\n\r\n                                            <ion-list>\r\n\r\n                                                <ion-item *ngFor=\"let row of statusList\">\r\n\r\n                                                    <ion-label>{{row.name}}</ion-label>\r\n\r\n                                                    <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\r\n\r\n                                                </ion-item>\r\n\r\n                                            </ion-list>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            \r\n                            <div class=\"cs-btn\" padding>\r\n                                <ion-button (click)=\"onApplyFilterHandler()\" class=\"success min\" shape=\"round\" expand=\"full\">APPLY</ion-button>\r\n                            </div>\r\n                        </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n");
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/customer_app/confirmmodal/confirmmodal.page.html":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/customer_app/confirmmodal/confirmmodal.page.html ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/complaintfiltermodal/complaintfiltermodal.page.html":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/complaintfiltermodal/complaintfiltermodal.page.html ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content class=\"cs-modal-container\">\r\n    <div class=\"modal-container\">\r\n        <div class=\"main-figure\">\r\n            <div class=\"cs-modal-body\">\r\n                <div class=\"logo\">\r\n                    <img src=\"assets/img/logo.jpg\" alt=\"\">\r\n                </div>\r\n                <div class=\"modal-content\">\r\n                    <p>You registration has been successfull.Account has been under verification process. Your account will be Login after 24 hours.</p>                    \r\n                    <p>Meanwhile, you can contact us<br><a href=\"tel: 129 895745\">+129 895745</a> or mail us<br><a>support_tricolite@gmail.com</a> if you any question.</p>\r\n                </div>\r\n            </div>\r\n            <div class=\"modal-close\">\r\n                <ion-button color=\"danger\" (click)=\"dismiss()\"><ion-icon name=\"close\"></ion-icon></ion-button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n"
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/index.js!./src/app/customer_app/service_request/request-popover/request-popover.component.html":
-/*!***********************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/customer_app/service_request/request-popover/request-popover.component.html ***!
-  \***********************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\r\n<div class=\"cs-popover\">\r\n    <ion-button fill=\"clear\" (click)=\"GoToSpare()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/add_remark.svg\" alt=\"\">Spare Part</div></ion-button>\r\n    <ion-button fill=\"clear\"><div><img src=\"assets/icon/mail_service_report.svg\" alt=\"\">View Service Report</div></ion-button>\r\n    <ion-button fill=\"clear\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/cancel-complaint.svg\" alt=\"\">Cancel Complaint</div></ion-button>\r\n</div>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content class=\"cs-modal-container\">\n    <div class=\"modal-container full-modal-container\">\n        <div class=\"main-figure\">\n            <div class=\"cs-modal-body\">\n               \n                    <div class=\"custome-filter\">\n                            <div class=\"cs-header\">\n\n                                <ion-button (click)=\"dismiss()\"><i class=\"material-icons\">keyboard_arrow_down</i></ion-button>\n                                <h1>filters</h1>\n\n                                <ion-text (click)=\"onRemoveAllFilterHandler()\">Clear</ion-text>\n                            </div>\n                            \n                            <div class=\"fiter-data\">\n\n                                <div class=\"cs-left\">\n\n                                    <ion-button (click)=\"currentActiveTab = 1\" [ngClass]=\"currentActiveTab==1 ? 'active' : ''\" fill=\"clear\" color=\"dark\">Date & Days</ion-button>\n\n                                    <ion-button (click)=\"currentActiveTab = 2\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==2 ? 'active' : ''\">Priority</ion-button>\n\n                                    <ion-button (click)=\"currentActiveTab = 3\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==3 ? 'active' : ''\">Com. Type</ion-button>\n\n                                    <ion-button (click)=\"currentActiveTab = 4\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==4 ? 'active' : ''\">Status</ion-button>\n\n                                </div>\n                                \n                                <div class=\"cs-right\">\n\n                                 <div *ngIf=\"currentActiveTab==1\" id=\"days\">\n                                        <div class=\"common_form inner_page\">\n                                                <ion-item class=\"date-time\">\n                                                    <ion-label>Date From</ion-label>\n                                                    <ion-datetime [(ngModel)]=\"data.dateFrom\" (ngModelChange)=\"onDateFromChangeHandler()\" displayFormat=\"DD MMM YYYY\" max=\"{{currentDate}}\"></ion-datetime>\n                                                </ion-item>\n                                                <ion-item class=\"date-time\">\n                                                    <ion-label>Date To</ion-label>\n                                                    <ion-datetime [(ngModel)]=\"data.dateTo\" (ngModelChange)=\"data.range = 0\"  displayFormat=\"DD MMM YYYY\" min=\"{{minDate}}\" max=\"{{currentDate}}\"></ion-datetime>\n                                                </ion-item>\n                                            </div>\n\n                                            <div class=\"or-cnt or-cnt16\">\n                                                <div>OR</div>\n                                            </div>\n                                            \n\n                                            <div class=\"cs-range\">\n        \n                                                <h1>Days Range <span><ion-text>{{data.range}}</ion-text></span></h1>\n                                                <ion-item>\n        \n                                                    <ion-range [(ngModel)]=\"data.range\" (ngModelChange) = \"data.dateFrom = ''; data.dateTo = ''\"  min=\"0\" max=\"30\" color=\"warning\">\n        \n                                                        <ion-label slot=\"start\">0 Days</ion-label>\n        \n                                                        <ion-label slot=\"end\">30 Days</ion-label>\n        \n                                                    </ion-range>\n        \n                                                </ion-item>\n        \n                                            </div>\n                                 </div>\n\n                                    \n                                    \n                                    <div *ngIf=\"currentActiveTab==2\" id=\"priority\" class=\"cs-checkbox\">\n                                        <ion-list>\n                                            <ion-item *ngFor=\"let row of priorityList\">\n\n                                                <ion-label>{{row.name}}</ion-label>\n\n                                                <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\n\n                                            </ion-item>\n                                        </ion-list>\n                                    </div>\n\n                                    <div *ngIf=\"currentActiveTab==3\" id=\"complaintTitle\" class=\"cs-checkbox\">\n                                            <ion-list>\n                                                <ion-item *ngFor=\"let row of complaintTypeList\">\n                                                    <ion-label>{{row.title}}</ion-label>\n                                                    <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\n                                                </ion-item>\n                                            </ion-list>\n                                    </div>\n\n                                    <div *ngIf=\"currentActiveTab==4\" id=\"complaintStatus\" class=\"cs-checkbox\">\n\n                                            <ion-list>\n\n                                                <ion-item *ngFor=\"let row of statusList\">\n\n                                                    <ion-label>{{row.name}}</ion-label>\n\n                                                    <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\n\n                                                </ion-item>\n\n                                            </ion-list>\n                                    </div>\n                                </div>\n                            </div>\n                            \n                            <div class=\"cs-btn\" padding>\n                                <ion-button (click)=\"onApplyFilterHandler()\" class=\"success min\" shape=\"round\" expand=\"full\">APPLY</ion-button>\n                            </div>\n                        </div>\n\n            </div>\n        </div>\n    </div>\n</ion-content>\n");
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.html":
-/*!*************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.html ***!
-  \*************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/confirmmodal/confirmmodal.page.html":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/confirmmodal/confirmmodal.page.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content class=\"cs-modal-container\">\r\n    <div class=\"modal-container\">\r\n        <div class=\"main-figure\">\r\n            <div class=\"cs-modal-body\">\r\n                    <signature-pad [options]=\"signaturePadOptions\"  id=\"signatureCanvas\"></signature-pad>\r\n\r\n                    <div class=\"cs-btn mt16 lr\">\r\n\r\n                        <ion-button (click)=\"drawClear()\" class=\"dark min w100 clear border\" fill=\"clear\">Clear</ion-button>\r\n\r\n                        <ion-button (click)=\"drawComplete()\" class=\"success min w100\">Apply</ion-button>\r\n\r\n                    </div>\r\n            </div>\r\n            <div class=\"modal-close\">\r\n                <ion-button color=\"danger\" (click)=\"dismiss()\"><ion-icon name=\"close\"></ion-icon></ion-button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content class=\"cs-modal-container\">\n    <div class=\"modal-container\">\n        <div class=\"main-figure\">\n            <div class=\"cs-modal-body\">\n                <div class=\"logo\">\n                    <img src=\"assets/img/logo.jpg\" alt=\"\">\n                </div>\n                <div class=\"modal-content\">\n                    <p>You registration has been successfull.Account has been under verification process. Your account will be Login after 24 hours.</p>                    \n                    <p>Meanwhile, you can contact us<br><a href=\"tel: 129 895745\">+129 895745</a> or mail us<br><a>support_tricolite@gmail.com</a> if you any question.</p>\n                </div>\n            </div>\n            <div class=\"modal-close\">\n                <ion-button color=\"danger\" (click)=\"dismiss()\"><ion-icon name=\"close\"></ion-icon></ion-button>\n            </div>\n        </div>\n    </div>\n</ion-content>\n");
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.html":
-/*!********************************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.html ***!
-  \********************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request-popover/request-popover.component.html":
+/*!***********************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request-popover/request-popover.component.html ***!
+  \***********************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\r\n<div class=\"cs-popover\">\r\n    \r\n    <ion-button fill=\"clear\" (click)=\"GoToRemarks()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/spare_parts.svg\" alt=\"\"> Remark</div></ion-button>\r\n    \r\n    <ion-button fill=\"clear\" (click)=\"GoToStatus()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/change_status.svg\" alt=\"\">Status</div></ion-button>\r\n    \r\n    <ion-button fill=\"clear\" (click)=\"GoToSpareParts()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/add_remark.svg\" alt=\"\">Spare Part</div></ion-button>\r\n    \r\n    <ion-button fill=\"clear\"  (click)=\"GoToImages()\"   (click)=\"DismissClick()\"><div><img src=\"assets/icon/view_service_report.svg\" alt=\"\">Images</div></ion-button>\r\n    \r\n    <ion-button fill=\"clear\" (click)=\"GoToReport('dailyReport')\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/export_service_report.svg\" alt=\"\">Daily Report</div></ion-button>\r\n    \r\n    <ion-button fill=\"clear\" (click)=\"GoToServiceReport()\"><div><img src=\"assets/icon/report.svg\" alt=\"\" class=\"h20\">View Service Report</div></ion-button>\r\n    \r\n    <ion-button (click)=\"GoToReport('checkListReport')\" *ngIf=\"routeType == 'commissioning'\" (click)=\"DismissClick()\" fill=\"clear\"><div><img src=\"assets/icon/checkmark.svg\" alt=\"\" class=\"h20\">Check List</div></ion-button>\r\n    \r\n</div>"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"cs-popover\">\n\n    <ion-button *ngIf=\"taskPopUpData && taskPopUpData.taskInstalledPartCount && taskPopUpData.taskInstalledPartCount != 0\" fill=\"clear\" (click)=\"GoToSpare()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/add_remark.svg\" alt=\"\">Spare Part</div></ion-button>\n\n    <ion-button *ngIf=\"taskPopUpData && taskPopUpData.taskReportCount && taskPopUpData.taskReportCount != 0\" fill=\"clear\"><div><img src=\"assets/icon/mail_service_report.svg\" alt=\"\">View Service Report</div></ion-button>\n\n    <ion-button fill=\"clear\" *ngIf=\"taskPopUpData && taskPopUpData.status && taskPopUpData.status != 'Cancel'\" (click)=\"onCancelComplaintHandler()\"><div><img src=\"assets/icon/cancel-complaint.svg\" alt=\"\">Cancel Complaint</div></ion-button>\n\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.html":
+/*!*************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.html ***!
+  \*************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content class=\"cs-modal-container\">\n    <div class=\"modal-container\">\n        <div class=\"main-figure\">\n            <div class=\"cs-modal-body\">\n                    <signature-pad [options]=\"signaturePadOptions\"  id=\"signatureCanvas\"></signature-pad>\n\n                    <div class=\"cs-btn mt16 lr\">\n\n                        <ion-button (click)=\"drawClear()\" class=\"dark min w100 clear border\" fill=\"clear\">Clear</ion-button>\n\n                        <ion-button (click)=\"drawComplete()\" class=\"success min w100\">Apply</ion-button>\n\n                    </div>\n            </div>\n            <div class=\"modal-close\">\n                <ion-button color=\"danger\" (click)=\"dismiss()\"><ion-icon name=\"close\"></ion-icon></ion-button>\n            </div>\n        </div>\n    </div>\n</ion-content>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.html":
+/*!********************************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.html ***!
+  \********************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"cs-popover\">\n    \n    <ion-button fill=\"clear\" (click)=\"GoToRemarks()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/spare_parts.svg\" alt=\"\"> Remark</div></ion-button>\n    \n    <ion-button fill=\"clear\" (click)=\"GoToStatus()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/change_status.svg\" alt=\"\">Status</div></ion-button>\n    \n    <ion-button fill=\"clear\" (click)=\"GoToSpareParts()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/add_remark.svg\" alt=\"\">Spare Part</div></ion-button>\n    \n    <ion-button fill=\"clear\"  (click)=\"GoToImages()\"   (click)=\"DismissClick()\"><div><img src=\"assets/icon/view_service_report.svg\" alt=\"\">Images</div></ion-button>\n    \n    <ion-button fill=\"clear\" (click)=\"GoToReport('dailyReport')\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/export_service_report.svg\" alt=\"\">Daily Report</div></ion-button>\n    \n    <ion-button  *ngFor=\"let row of taskPopUpData.taskWorkReport\" fill=\"clear\" [hidden]=\"!taskPopUpData || !taskPopUpData.taskReportCount || taskPopUpData.taskReportCount  == 0\" (click)=\"GoToServiceReport(row.id)\"><div><img src=\"assets/icon/report.svg\" alt=\"\" class=\"h20\">Service Report ({{row.date_created | date: 'dd MMM yyyy'}})</div></ion-button>\n    \n    <ion-button (click)=\"GoToReport('checkListReport')\" *ngIf=\"routeType == 'commissioning'\" (click)=\"DismissClick()\" fill=\"clear\"><div><img src=\"assets/icon/checkmark.svg\" alt=\"\" class=\"h20\">Check List</div></ion-button>\n    \n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/tslib/tslib.es6.js":
+/*!*****************************************!*\
+  !*** ./node_modules/tslib/tslib.es6.js ***!
+  \*****************************************/
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__extends", function() { return __extends; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__assign", function() { return __assign; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__rest", function() { return __rest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__decorate", function() { return __decorate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__param", function() { return __param; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__metadata", function() { return __metadata; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__awaiter", function() { return __awaiter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__generator", function() { return __generator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__exportStar", function() { return __exportStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__values", function() { return __values; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__read", function() { return __read; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spread", function() { return __spread; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spreadArrays", function() { return __spreadArrays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__await", function() { return __await; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncGenerator", function() { return __asyncGenerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncDelegator", function() { return __asyncDelegator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncValues", function() { return __asyncValues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+function __exportStar(m, exports) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+
+function __values(o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result.default = mod;
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
 
 /***/ }),
 
@@ -884,10 +1125,12 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!************************************!*\
   !*** ./src/app/app.component.scss ***!
   \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -1080,8 +1323,8 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-root',
-        template: __webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/index.js!./src/app/app.component.html"),
-        styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
         _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
@@ -1287,10 +1530,12 @@ ComplaintfiltermodalPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"
 /*!*********************************************************************!*\
   !*** ./src/app/complaintfiltermodal/complaintfiltermodal.page.scss ***!
   \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBsYWludGZpbHRlcm1vZGFsL2NvbXBsYWludGZpbHRlcm1vZGFsLnBhZ2Uuc2NzcyJ9 */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBsYWludGZpbHRlcm1vZGFsL2NvbXBsYWludGZpbHRlcm1vZGFsLnBhZ2Uuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -1443,8 +1688,8 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 ComplaintfiltermodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-complaintfiltermodal',
-        template: __webpack_require__(/*! raw-loader!./complaintfiltermodal.page.html */ "./node_modules/raw-loader/index.js!./src/app/complaintfiltermodal/complaintfiltermodal.page.html"),
-        styles: [__webpack_require__(/*! ./complaintfiltermodal.page.scss */ "./src/app/complaintfiltermodal/complaintfiltermodal.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./complaintfiltermodal.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/complaintfiltermodal/complaintfiltermodal.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./complaintfiltermodal.page.scss */ "./src/app/complaintfiltermodal/complaintfiltermodal.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"],
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
@@ -1542,10 +1787,12 @@ ConfirmmodalPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!******************************************************************!*\
   !*** ./src/app/customer_app/confirmmodal/confirmmodal.page.scss ***!
   \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9jb25maXJtbW9kYWwvY29uZmlybW1vZGFsLnBhZ2Uuc2NzcyJ9 */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9jb25maXJtbW9kYWwvY29uZmlybW1vZGFsLnBhZ2Uuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -1585,8 +1832,8 @@ ConfirmmodalPage.ctorParameters = () => [
 ConfirmmodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-confirmmodal',
-        template: __webpack_require__(/*! raw-loader!./confirmmodal.page.html */ "./node_modules/raw-loader/index.js!./src/app/customer_app/confirmmodal/confirmmodal.page.html"),
-        styles: [__webpack_require__(/*! ./confirmmodal.page.scss */ "./src/app/customer_app/confirmmodal/confirmmodal.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./confirmmodal.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/confirmmodal/confirmmodal.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./confirmmodal.page.scss */ "./src/app/customer_app/confirmmodal/confirmmodal.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]])
 ], ConfirmmodalPage);
@@ -1599,10 +1846,12 @@ ConfirmmodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!*********************************************************************************************!*\
   !*** ./src/app/customer_app/service_request/request-popover/request-popover.component.scss ***!
   \*********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9zZXJ2aWNlX3JlcXVlc3QvcmVxdWVzdC1wb3BvdmVyL3JlcXVlc3QtcG9wb3Zlci5jb21wb25lbnQuc2NzcyJ9 */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9zZXJ2aWNlX3JlcXVlc3QvcmVxdWVzdC1wb3BvdmVyL3JlcXVlc3QtcG9wb3Zlci5jb21wb25lbnQuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -1620,36 +1869,96 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/db-service.service */ "./src/app/db-service.service.ts");
+
 
 
 
 
 let RequestPopoverComponent = class RequestPopoverComponent {
-    constructor(popoverController, router) {
+    constructor(popoverController, router, navParams, alertCtrl, dbService) {
         this.popoverController = popoverController;
         this.router = router;
+        this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
+        this.dbService = dbService;
+        this.taskId = '';
+        this.taskNo = '';
+        this.taskStatus = '';
+        this.taskReportCount = '';
+        this.taskId = navParams.get('taskId');
+        this.taskNo = navParams.get('taskNo');
+        this.taskStatus = navParams.get('taskStatus');
+        this.taskPopUpData = JSON.parse(localStorage.getItem('taskPopUpData'));
+        console.log(this.taskStatus);
+        console.log(this.taskReportCount);
+        console.log(this.taskNo);
+        console.log(this.taskId);
     }
     ngOnInit() { }
+    onCancelComplaintHandler() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const alert = yield this.alertCtrl.create({
+                header: 'Confirm',
+                message: 'Are You Sure, You Want To Cancel Complaint ?',
+                buttons: [
+                    {
+                        text: 'No',
+                        role: 'cancel',
+                        handler: () => {
+                            console.log('No clicked');
+                            this.popoverController.dismiss();
+                        }
+                    },
+                    {
+                        text: 'Yes',
+                        handler: () => {
+                            console.log('Yes clicked');
+                            const inputData = {};
+                            inputData[`taskId`] = this.taskId;
+                            this.dbService.presentLoader();
+                            console.log(inputData);
+                            this.dbService.onPostRequestHandler(inputData, 'task/onCancelComplaintHandler').subscribe((result) => {
+                                console.log(result);
+                                this.dbService.dismissLoader();
+                                this.popoverController.dismiss();
+                                this.dbService.presentToast('Complaint Cancel Successfully!');
+                            });
+                        }
+                    }
+                ]
+            });
+            yield alert.present();
+        });
+    }
     DismissClick() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             yield this.popoverController.dismiss();
         });
     }
     GoToSpare() {
-        this.router.navigateByUrl('/customer/request/spareparts');
+        console.log(JSON.parse(localStorage.getItem('taskPopUpData')));
+        this.router.navigateByUrl('/customer/request/spareparts/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
     }
 };
 RequestPopoverComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
+    { type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"] }
 ];
 RequestPopoverComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-request-popover',
-        template: __webpack_require__(/*! raw-loader!./request-popover.component.html */ "./node_modules/raw-loader/index.js!./src/app/customer_app/service_request/request-popover/request-popover.component.html"),
-        styles: [__webpack_require__(/*! ./request-popover.component.scss */ "./src/app/customer_app/service_request/request-popover/request-popover.component.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./request-popover.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request-popover/request-popover.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./request-popover.component.scss */ "./src/app/customer_app/service_request/request-popover/request-popover.component.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
+        src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]])
 ], RequestPopoverComponent);
 
 
@@ -1686,11 +1995,11 @@ let DbServiceService = class DbServiceService {
         this.isShowing = false;
         this.user = JSON.parse(localStorage.getItem('loginData')) || [];
         this.serverURL = 'http://tricolite.abacusdesk.com/api/index.php/app/';
-        this.uploadURL = 'http://tricolite.abacusdesk.com/uploads/Task_Doc/';
-        this.masterDocURL = 'http://tricolite.abacusdesk.com/uploads/Master_Doc/';
-        this.customerDocURL = 'http://tricolite.abacusdesk.com/uploads/Customer_Doc/';
-        this.userDocURL = 'http://tricolite.abacusdesk.com/uploads/User_Doc/';
-        this.ReportDocURL = 'http://tricolite.abacusdesk.com/uploads/Report_Doc/';
+        this.uploadURL = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
+        this.masterDocURL = 'http://tricolite.abacusdesk.com/api/uploads/Master_Doc/';
+        this.customerDocURL = 'http://tricolite.abacusdesk.com/api/uploads/Customer_Doc/';
+        this.userDocURL = 'http://tricolite.abacusdesk.com/api/uploads/User_Doc/';
+        this.ReportDocURL = 'http://tricolite.abacusdesk.com/api/uploads/Report_Doc/';
         this.upload_url = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
         this.backButton = 0;
     }
@@ -1877,10 +2186,12 @@ SignaturemodalPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!***********************************************************************************!*\
   !*** ./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.scss ***!
   \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvc2lnbmF0dXJlbW9kYWwvc2lnbmF0dXJlbW9kYWwucGFnZS5zY3NzIn0= */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvc2lnbmF0dXJlbW9kYWwvc2lnbmF0dXJlbW9kYWwucGFnZS5zY3NzIn0= */");
 
 /***/ }),
 
@@ -1967,8 +2278,8 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 SignaturemodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-signaturemodal',
-        template: __webpack_require__(/*! raw-loader!./signaturemodal.page.html */ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.html"),
-        styles: [__webpack_require__(/*! ./signaturemodal.page.scss */ "./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./signaturemodal.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./signaturemodal.page.scss */ "./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]])
 ], SignaturemodalPage);
@@ -1981,10 +2292,12 @@ SignaturemodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!******************************************************************************************************!*\
   !*** ./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.scss ***!
   \******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvdGVjLWNvbXBsaWFudC1wb3BvdmVyL3RlYy1jb21wbGlhbnQtcG9wb3Zlci5jb21wb25lbnQuc2NzcyJ9 */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RlY2huaWNpYW5fYXBwL2NvbXBsYWludHMvdGVjLWNvbXBsaWFudC1wb3BvdmVyL3RlYy1jb21wbGlhbnQtcG9wb3Zlci5jb21wb25lbnQuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -2024,6 +2337,7 @@ let TecCompliantPopoverComponent = class TecCompliantPopoverComponent {
         this.taskStatus = navParams.get('taskStatus');
         console.log(this.taskStatus);
         this.routeType = localStorage.getItem('routeType');
+        this.taskPopUpData = JSON.parse(localStorage.getItem('taskPopUpData'));
     }
     ngOnInit() { }
     DismissClick() {
@@ -2047,10 +2361,11 @@ let TecCompliantPopoverComponent = class TecCompliantPopoverComponent {
         localStorage.setItem('reportType', type);
         this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/dailyreport/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
     }
-    GoToServiceReport() {
+    GoToServiceReport(taskReportId) {
         console.log('hello');
         const inputData = {
-            taskId: this.taskId
+            taskId: this.taskId,
+            taskReportId: taskReportId
         };
         this.dbService.onPostRequestHandler(inputData, 'Report/viewMobileServiceReport').subscribe((result) => {
             console.log(result);
@@ -2077,8 +2392,8 @@ TecCompliantPopoverComponent.ctorParameters = () => [
 TecCompliantPopoverComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-tec-compliant-popover',
-        template: __webpack_require__(/*! raw-loader!./tec-compliant-popover.component.html */ "./node_modules/raw-loader/index.js!./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.html"),
-        styles: [__webpack_require__(/*! ./tec-compliant-popover.component.scss */ "./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./tec-compliant-popover.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./tec-compliant-popover.component.scss */ "./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"],
         _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
@@ -2100,9 +2415,11 @@ TecCompliantPopoverComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"](
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+
 const environment = {
     production: false
 };
@@ -2127,18 +2444,20 @@ const environment = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm2015/platform-browser-dynamic.js");
-/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm2015/platform-browser-dynamic.js");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 
 
 
 
-if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
 }
-Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])
     .catch(err => console.log(err));
 
 
@@ -2151,7 +2470,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\Tricolite\tricoliteAPP_17-03-2020\tricolite-app\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /var/www/html/tricolite/tricolite-app/src/main.ts */"./src/main.ts");
 
 
 /***/ })

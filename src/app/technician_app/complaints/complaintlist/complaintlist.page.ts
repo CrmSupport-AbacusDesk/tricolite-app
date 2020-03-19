@@ -26,6 +26,7 @@ export class ComplaintlistPage implements OnInit {
   searchData: any = {};
   data: any = {};
 
+  dashboardCountFilterData: any;
   doCheckForMoreData: any = true;
   isRequestInProcess: any = true;
 
@@ -40,7 +41,7 @@ export class ComplaintlistPage implements OnInit {
               public modalController: ModalController,
               public dbService: DbServiceService) {
 
-
+    
   }
 
   ngOnInit() {
@@ -90,6 +91,17 @@ export class ComplaintlistPage implements OnInit {
          localStorage.setItem('routeType', 'commissioning');
       }
 
+      if (localStorage.getItem('dashboardCountFilterData')) {
+
+            this.dashboardCountFilterData = JSON.parse(localStorage.getItem('dashboardCountFilterData'));
+            console.log(this.dashboardCountFilterData);
+      } else {
+          
+           this.dashboardCountFilterData = '';
+      }
+
+      this.searchData[`dashboardCountFilterData`] = this.dashboardCountFilterData;
+
       inputData[`searchData`] = this.searchData;
       inputData[`inputSearch`] = this.data.inputSearch;
 
@@ -110,6 +122,9 @@ export class ComplaintlistPage implements OnInit {
             }
 
             let resultData = result[`taskList`];
+
+            this.dashboardCountFilterData = '';
+            localStorage.setItem('dashboardCountFilterData', '');
 
             if (!resultData || resultData == null || resultData.length == 0) {
                 resultData = [];
@@ -222,6 +237,16 @@ export class ComplaintlistPage implements OnInit {
 
 
    async presentPopover(ev: any, taskId, taskNo,taskStatus) {
+
+      const taskIndex = this.complaintList.findIndex(row => row.id == taskId);
+
+      const taskPopUpData = {
+            taskWorkReport: this.complaintList[taskIndex].taskWorkReport,
+            taskReportCount: this.complaintList[taskIndex].taskReportCount,
+            taskInstalledPartCount: this.complaintList[taskIndex].taskInstalledPartCount
+      };
+
+      localStorage.setItem('taskPopUpData', JSON.stringify(taskPopUpData));
 
       const taskData ={
           taskId: taskId,

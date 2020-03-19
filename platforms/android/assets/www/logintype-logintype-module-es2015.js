@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["logintype-logintype-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/logintype/logintype.page.html":
-/*!*************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/logintype/logintype.page.html ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/logintype/logintype.page.html":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/logintype/logintype.page.html ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content>\r\n    <div class=\"login-container\">\r\n        <div class=\"logo\"><img src=\"../../assets/img/logo.jpg\" alt=\"\"></div>\r\n        \r\n        <div class=\"form-container\">\r\n            <div class=\"head\">\r\n                <div class=\"heading\">\r\n                    <h1>Select User Type</h1>\r\n                </div>\r\n                <p>Please select login type<ion-text>Service Engineer</ion-text> OR <ion-text>Customer</ion-text>.</p>\r\n            </div>\r\n            \r\n            <div class=\"input-container\">\r\n                <div class=\"lgtype\">\r\n                    <ion-item (click)=\"onGoToLoginPageHandler('Technician')\">\r\n                        <div class=\"figure\">\r\n                            <ion-radio name=\"loginType\" [(ngModel)] = \"data.loginType\"  slot=\"start\" value=\"Technician\"></ion-radio>\r\n                            <div class=\"lg-icon\"><img src=\"assets/icon/service_eng.svg\" alt=\"\"></div>\r\n                            <h1>Service Engineer</h1>\r\n                        </div>\r\n                    </ion-item>\r\n                    <ion-item (click) = \"onGoToLoginPageHandler('Customer')\" >\r\n                        <div class=\"figure\">\r\n                            <ion-radio name=\"loginType\" [(ngModel)] = \"data.loginType\" slot=\"start\" value=\"Customer\"></ion-radio>\r\n                            <div class=\"lg-icon\"><img src=\"assets/icon/customer.svg\" alt=\"\"></div>\r\n                            <h1>Customer</h1>\r\n                        </div>\r\n                    </ion-item>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        \r\n        \r\n    </div>\r\n    \r\n</ion-content>"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n    <div class=\"login-container\">\n        <div class=\"logo\"><img src=\"../../assets/img/logo.jpg\" alt=\"\"></div>\n        \n        <div class=\"form-container\">\n            <div class=\"head\">\n                <div class=\"heading\">\n                    <h1>Select User Type</h1>\n                </div>\n                <p>Please Select Login Type <ion-text> Service Engineer </ion-text> OR <ion-text>Customer</ion-text>.</p>\n            </div>\n            \n            <div class=\"input-container\">\n                <div class=\"lgtype\">\n                    \n                    <ion-radio-group>\n                        \n                        <ion-item (click)=\"onGoToLoginPageHandler('Technician')\">\n                            <div class=\"figure\">\n                                <ion-radio slot=\"start\" value=\"Technician\"></ion-radio>\n                                <div class=\"lg-icon\"><img src=\"assets/icon/service_eng.svg\" alt=\"\"></div>\n                                <h1>Service Engineer</h1>\n                            </div>\n                        </ion-item>\n                        <ion-item (click) = \"onGoToLoginPageHandler('Customer')\" >\n                            <div class=\"figure\">\n                                <ion-radio slot=\"start\" value=\"Customer\"></ion-radio>\n                                <div class=\"lg-icon\"><img src=\"assets/icon/customer.svg\" alt=\"\"></div>\n                                <h1>Customer</h1>\n                            </div>\n                        </ion-item>\n                    </ion-radio-group>\n                    \n                    \n                </div>\n            </div>\n        </div>\n        \n        \n    </div>\n    \n</ion-content>");
 
 /***/ }),
 
@@ -94,10 +96,12 @@ LogintypePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!***********************************************!*\
   !*** ./src/app/logintype/logintype.page.scss ***!
   \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2ludHlwZS9sb2dpbnR5cGUucGFnZS5zY3NzIn0= */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2ludHlwZS9sb2dpbnR5cGUucGFnZS5zY3NzIn0= */");
 
 /***/ }),
 
@@ -124,7 +128,10 @@ let LogintypePage = class LogintypePage {
     }
     ngOnInit() {
     }
-    onGoToLoginPageHandler(targetedPage) {
+    onGoToLoginPageHandler(targetedPage = '') {
+        console.log('**** DATA ****');
+        console.log(this.data);
+        console.log(targetedPage);
         const loginData = {
             loginType: targetedPage,
             loginId: '',
@@ -143,6 +150,9 @@ let LogintypePage = class LogintypePage {
         console.log(this.data);
         this.data.loginType = false;
     }
+    test(event) {
+        console.log(event);
+    }
 };
 LogintypePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
@@ -150,8 +160,8 @@ LogintypePage.ctorParameters = () => [
 LogintypePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-logintype',
-        template: __webpack_require__(/*! raw-loader!./logintype.page.html */ "./node_modules/raw-loader/index.js!./src/app/logintype/logintype.page.html"),
-        styles: [__webpack_require__(/*! ./logintype.page.scss */ "./src/app/logintype/logintype.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./logintype.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/logintype/logintype.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./logintype.page.scss */ "./src/app/logintype/logintype.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
 ], LogintypePage);

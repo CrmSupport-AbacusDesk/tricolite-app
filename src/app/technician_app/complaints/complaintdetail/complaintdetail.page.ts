@@ -66,6 +66,16 @@ export class ComplaintdetailPage implements OnInit {
 
     console.log(this.taskDetail.taskData);
 
+    const taskPopUpData = {
+        taskWorkReport: this.taskDetail.taskWorkReport,
+        taskReportCount: this.taskDetail.taskReportCount,
+        taskInstalledPartCount: this.taskDetail.taskInstalledPartCount
+    };
+
+    localStorage.setItem('taskPopUpData', JSON.stringify(taskPopUpData));
+
+    console.log(this.taskDetail.taskData);
+
     const taskData = {
         taskId: this.taskId,
         taskNo: this.taskDetail.taskData.task_no,
@@ -83,8 +93,8 @@ export class ComplaintdetailPage implements OnInit {
   }
 
   async onGoToListPageHandler() {
-
-    this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType'));
+    
+      this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType'));
   }
 
 }

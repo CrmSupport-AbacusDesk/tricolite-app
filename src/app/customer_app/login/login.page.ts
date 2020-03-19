@@ -85,10 +85,7 @@ export class LoginPage implements OnInit {
                       this.route.navigate(['/customer/home']);
 
                       setTimeout(() => {
-                        this.dbService.onShowAlertMessage('Success', 'Login Successful!');
                         this.route.navigate(['/customer/home']);
-
-
                       }, 1000);
                   }
            });

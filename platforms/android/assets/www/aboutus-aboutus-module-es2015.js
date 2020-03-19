@@ -1,13 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["aboutus-aboutus-module"],{
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/customer_app/aboutus/aboutus.page.html":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/customer_app/aboutus/aboutus.page.html ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/aboutus/aboutus.page.html":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/aboutus/aboutus.page.html ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-title class=\"pl0\">About Tricolite</ion-title>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"common_form inner_page\">\r\n                <div class=\"ion-padding\">\r\n                    <div class=\"cnt-content mb32\">\r\n                        <p class=\"mb32\">A closely held organization, its has its presence across segments and geographies. Its built its brand with great toil and commitment to the values of delivering total quality and customer centric approach. Over 4 decades of experience in manufacturing has guaranteed in-depth knowledge of the products and their varied applications. It has always had a vision to us the best technology and machinery to deliver a premium product. Teams across all functions are continuously being trained on the new trends in the market and how they can add value to our customers.</p>\r\n                        <p class=\"mb32\">What distinguishes Tricolite from its peers is the culture of continuous learning, high responsibility and full freedom that’s given to the empowered employees to achieve their maximum potential and take full ownership of the organization. Its decentralized management style and been the back bone of building one of the best teams available in the industry pan India.</p>\r\n                        <p>Tricolite aims to be the first choice of their customers as mentioned in our vision statement. We work towards customer exultation such that we are always present to fulfill their future requirements. All prestigious brands across segments choose to work with Trciolite given its history of performance and commitment.</p>\r\n                    </div>\r\n                </div>\r\n                \r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\n    <div class=\"cs-main-container\">\n        <div class=\"custome-head\">\n            <div class=\"cs-ion-header\">\n                <div class=\"cs-left\">\n                    <ion-title class=\"pl0\">About Tricolite</ion-title>\n                </div>\n            </div>\n            <div class=\"cs-ion-hf\"></div>\n        </div>\n        \n        <div class=\"cs-ion-content pt0\" padding>\n            <div class=\"common_form inner_page\">\n                <div class=\"ion-padding\">\n                    <div class=\"cnt-content mb32\">\n                        <p class=\"mb32\">A closely held organization, its has its presence across segments and geographies. Its built its brand with great toil and commitment to the values of delivering total quality and customer centric approach. Over 4 decades of experience in manufacturing has guaranteed in-depth knowledge of the products and their varied applications. It has always had a vision to us the best technology and machinery to deliver a premium product. Teams across all functions are continuously being trained on the new trends in the market and how they can add value to our customers.</p>\n                        <p class=\"mb32\">What distinguishes Tricolite from its peers is the culture of continuous learning, high responsibility and full freedom that’s given to the empowered employees to achieve their maximum potential and take full ownership of the organization. Its decentralized management style and been the back bone of building one of the best teams available in the industry pan India.</p>\n                        <p>Tricolite aims to be the first choice of their customers as mentioned in our vision statement. We work towards customer exultation such that we are always present to fulfill their future requirements. All prestigious brands across segments choose to work with Trciolite given its history of performance and commitment.</p>\n                    </div>\n                </div>\n                \n            </div>\n        </div>\n    </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -94,10 +96,12 @@ AboutusPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!********************************************************!*\
   !*** ./src/app/customer_app/aboutus/aboutus.page.scss ***!
   \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9hYm91dHVzL2Fib3V0dXMucGFnZS5zY3NzIn0= */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9hYm91dHVzL2Fib3V0dXMucGFnZS5zY3NzIn0= */");
 
 /***/ }),
 
@@ -145,8 +149,8 @@ AboutusPage.ctorParameters = () => [
 AboutusPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-aboutus',
-        template: __webpack_require__(/*! raw-loader!./aboutus.page.html */ "./node_modules/raw-loader/index.js!./src/app/customer_app/aboutus/aboutus.page.html"),
-        styles: [__webpack_require__(/*! ./aboutus.page.scss */ "./src/app/customer_app/aboutus/aboutus.page.scss")]
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./aboutus.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/aboutus/aboutus.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./aboutus.page.scss */ "./src/app/customer_app/aboutus/aboutus.page.scss")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]])
 ], AboutusPage);
