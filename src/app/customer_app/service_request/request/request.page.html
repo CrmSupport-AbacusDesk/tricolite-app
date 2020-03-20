@@ -115,7 +115,7 @@
 
                 </div>
                 
-                <div class="one-one-one" (click)="GoComplaintDetail(row.id)">
+                <div *ngIf="row.task_type != 'commissioning'" class="one-one-one" (click)="GoComplaintDetail(row.id)">
                     <div class="cs-box">
                         <div>
                             <ion-text>Complaint Title </ion-text>
