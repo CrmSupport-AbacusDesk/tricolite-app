@@ -59,11 +59,17 @@ class Dashboard extends MY_Controller
 						  $this->db->where('trc_emergency_master.del', '0');
 					      $emergencyResultData = $this->db->get()->result_array();
 
-					      $currentTime = date('H:i:s');
+					      $currentDateTime = date('Y-m-d H:i:s');
 
 					      foreach ($emergencyResultData as $key => $row) {
-					      	
-					      	     if($currentTime > $row['emergency_from'] && $currentTime < $row['emergency_to']) {
+
+					      	     $currentDate = date('Y-m-d');
+
+					      	     $emergencyFrom = $currentDate . ' ' . $row['emergency_from'];
+					      	     $emergencyTo = $currentDate . ' ' . $row['emergency_to'];
+
+
+					      	     if( strtotime($currentDateTime) > strtotime($emergencyFrom) && strtotime($currentDateTime) < strtotime($emergencyTo)) {
 
                                        $customerEmergencyNumber = $row['emergency_number'];
 					      	     }
@@ -125,27 +131,36 @@ class Dashboard extends MY_Controller
 
 						  $this->db->select('trc_customer_task.id');
 						  $this->db->from('trc_customer_task');
-						  $this->db->join('trc_customer_task_fg', 'trc_customer_task_fg.task_id = trc_customer_task.id');
 						  $this->db->where('trc_customer_task.del','0');
 						  $this->db->where('trc_customer_task.assign_to', $inputData['loginId']);
 
 						  $this->db->where('trc_customer_task.task_type','service_request');
-						  $this->db->where('trc_customer_task_fg.warranty_type','Under Warranty');
-						  $this->db->where('trc_customer_task.status != "Close"');
-                          $this->db->group_by('trc_customer_task.id');
 
+						  $this->db->group_start();
+
+						     $this->db->where('trc_customer_task.transaction_type','FOC');
+						     $this->db->or_where('trc_customer_task.transaction_type','Sale/Warranty');
+
+						  $this->db->group_end();
+
+						  $this->db->where('trc_customer_task.status != "Close" AND trc_customer_task.status != "Cancel"');
 						  $freeServiceTask = $this->db->get()->num_rows();
 
 
 						  $this->db->select('trc_customer_task.id');
 						  $this->db->from('trc_customer_task');
-						  $this->db->join('trc_customer_task_fg', 'trc_customer_task_fg.task_id = trc_customer_task.id');
 						  $this->db->where('trc_customer_task.del','0');
 						  $this->db->where('trc_customer_task.assign_to', $inputData['loginId']);
 						  $this->db->where('trc_customer_task.task_type','service_request');
-						  $this->db->where('trc_customer_task_fg.warranty_type','Expire Warranty');
-						  $this->db->where('trc_customer_task.status != "Close"');
-                          $this->db->group_by('trc_customer_task.id');
+
+						  $this->db->group_start();
+
+						     $this->db->where('trc_customer_task.transaction_type','Paid');
+						     $this->db->or_where('trc_customer_task.transaction_type','AMC');
+
+						  $this->db->group_end();
+
+						  $this->db->where('trc_customer_task.status != "Close" AND trc_customer_task.status != "Cancel"');
 
 						  $paidServiceTask = $this->db->get()->num_rows();
 
@@ -154,7 +169,7 @@ class Dashboard extends MY_Controller
 						  $this->db->where('trc_customer_task.del','0');
 						  $this->db->where('trc_customer_task.assign_to', $inputData['loginId']);
 						  $this->db->where('trc_customer_task.task_type','commissioning');
-						  $this->db->where('trc_customer_task.status != "Close"');
+						  $this->db->where('trc_customer_task.status != "Close"  AND trc_customer_task.status != "Cancel"');
                           $this->db->group_by('trc_customer_task.id');
 
 						  $commissioningTask = $this->db->get()->num_rows();

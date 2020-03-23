@@ -63,10 +63,17 @@ class Customer extends MY_Controller
 		                $taskNo =  1001;
                 }
 
+
+                $this->db->select('trc_customer_login_access.cust_code');
+			    $this->db->from('trc_customer_login_access');
+			    $this->db->where('trc_customer_login_access.del','0');
+			    $this->db->where('trc_customer_login_access.id', $inputData['loginId']);
+			    $loginData = $this->db->get()->row_array();
+
                 $this->db->select('trc_customer.*');
 			    $this->db->from('trc_customer');
 			    $this->db->where('trc_customer.del','0');
-			    $this->db->where('trc_customer.id', $inputData['loginId']);
+			    $this->db->where('trc_customer.cust_code', $loginData['cust_code']);
 			    $customerData = $this->db->get()->row_array();
 
 			    $this->db->select('trc_customer_project.*');
@@ -87,7 +94,7 @@ class Customer extends MY_Controller
 					'created_by' => $inputData['loginId'],
 					'created_by_name' => $inputData['loginName'],
 					'created_by_type' => $inputData['loginType'],
-					'customer_id' => $inputData['loginId'],
+					'customer_id' => $customerData['id'],
 					'customer_name' => $inputData['loginName'],
 					'customer_code' => $customerData['cust_code'],
 					'project_id' => $inputData['projectId'],
@@ -168,7 +175,6 @@ class Customer extends MY_Controller
 						    $this->db->where('trc_customer_project_fg.fg_no', $row['fgNo']);
 						    $fgDetail = $this->db->get()->row_array();
 
- 
 
                     	    $fgRowData = array(
 
@@ -183,6 +189,8 @@ class Customer extends MY_Controller
 								'task_id' => $taskId,
 								'task_no' => $taskNo,
 								'fg_no' => $row['fgNo'],
+								'nature_problem' => isset($row['natureProblem']) && $row['natureProblem'] ? $row['natureProblem'] : '',
+								'description' => isset($row['description']) && $row['description'] ? $row['description'] : '',
 							);
 							
 						    $this->db->insert('trc_customer_task_fg', $fgRowData);
@@ -236,7 +244,10 @@ class Customer extends MY_Controller
 
 
 				    $status = 'success';
-				    $statusMessage = '';
+					$statusMessage = '';
+					$this->send_mail($inputData['contactList'],$taskNo);
+					$this->send_otp($inputData,$taskNo);
+					
 
 				} else {
 
@@ -254,7 +265,55 @@ class Customer extends MY_Controller
              $this->onReturnErrorMessage();
 
 		}
-    }
+	}
+	
+	public function send_otp($inputData,$taskNo){
+
+		$msg = 'Your Request(#trc'.$taskNo.') has been registered.We will soon Assign an Engineer for the same';
+		 $msg =urlencode( $msg );
+
+
+		for($i=0;$i<sizeof($inputData['contactList']);$i++){
+	
+		 $ch = curl_init();
+	
+		 curl_setopt($ch,CURLOPT_URL, 'https://www.smsjust.com/blank/sms/user/urlsms.php?username=tricolite12&pass=w5!7XB@r&senderid=CUSAIX&dest_mobileno='.$inputData['contactList'][$i]['mobile'].'&msgtype=UNI&message='.$msg.'&response=Y');
+		 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		 curl_setopt($ch, CURLOPT_POST, 1);
+		 
+		 $send_otp = curl_exec($ch);
+	
+		 curl_close($ch);
+		}
+
+ 
+	}
+	public function send_mail($contact_list,$taskNo){
+		$config = Array(
+		 'protocol' => 'smtp',
+		   'smtp_host' => 'ssl://smtp.googlemail.com',
+		   'smtp_port' => 465,
+		   'smtp_user' => 'cw2861997@gmail.com',
+		   'smtp_pass' => '7015729653',
+		   'mailtype' => 'html',
+		   'charset' => 'iso-8859-1',
+		   'wordwrap' => TRUE); 
+
+
+
+		$this->load->library('email', $config);
+	 $this->email->set_newline("\r\n");
+		$this->email->from('cw2861997@gmail.com');
+		
+		for($i=0;$i<sizeof($contact_list);$i++){
+		 $this->email->to($contact_list[$i]['email']);
+		 $this->email->subject('subject12345');
+		 $this->email->message('Your Request(#trc'.$taskNo.') has been registered.We will soon Assign an Engineer for the same');
+		 $this->email->send();
+	 }
+
+
+	}
 
 
     public function saveFeedbackData() {
@@ -328,91 +387,92 @@ class Customer extends MY_Controller
 
 		if(isset($inputData['loginType']) && isset($inputData['loginId']) && $inputData['loginType'] && $inputData['loginId'] )  {
 
-			$proContactId = $inputData['loginId'];
+			if(isset($inputData['projectId']) && $inputData['projectId']) {
 
-			$this->db->select('trc_customer_project.*, trc_customer_project.id as project_id, trc_customer_project_contact.name,trc_customer_project_contact.email,mobile');
+				    $projectMappingData = array();
+				    $projectMappingData['projectId'] = $inputData['projectId'];
 
+			} else {
+
+				  	$proContactId = $inputData['loginId'];
+
+					$this->db->select('trc_customer_login_access.project_mapping as projectId');
+					$this->db->from('trc_customer_login_access');
+					$this->db->where('trc_customer_login_access.id', $proContactId);
+					$this->db->where('trc_customer_login_access.del','0');	
+					$projectMappingData = $this->db->get()->row_array();
+			}
+
+
+			$this->db->select('trc_customer_project.*');
+			$this->db->from('trc_customer_project');
+			$this->db->where('trc_customer_project.id', $projectMappingData['projectId']);
+			$this->db->where('trc_customer_project.del','0');	
+			$projectData = $this->db->get()->result_array();
+
+			$this->db->select('trc_customer_project_contact.*');
 			$this->db->from('trc_customer_project_contact');
-
-			$this->db->join('trc_customer_project', 'trc_customer_project.id = trc_customer_project_contact.project_id');
-
-			$this->db->where('trc_customer_project_contact.login_request_id', $proContactId);
-
-			$this->db->where('trc_customer_project_contact.del','0');	
-
-			$this->db->group_by('trc_customer_project_contact.id');
-	
-			$newDB = clone $this->db;
-		
-			$totalProjectCount = $newDB->get()->num_rows();
-
+			$this->db->where('trc_customer_project_contact.project_id', $projectMappingData['projectId']);
+			$this->db->where('trc_customer_project_contact.del','0');
 			$projectContactList = $this->db->get()->result_array();
 
-			  	foreach ($projectContactList as $key => $row) {
+			$projectData[0]['contactData'] = $projectContactList;
 
-					$dateCreated = date_create($row['date_created']);
-			   
-			  		$projectContactList[$key]['dateCreated'] = date_format($dateCreated, 'd M Y');
+		  	foreach ($projectData as $key => $row) {
 
-					// $this->db->select('trc_customer_project.*');
-					// $this->db->from('trc_customer_project');
-					// $this->db->where('trc_customer_project.id', $row['project_id']);
-					// $this->db->where('trc_customer_project.del','0');
-					// $projectList = $this->db->get()->result_array(); 
+				$dateCreated = date_create($row['date_created']);
+		  		$projectData[$key]['dateCreated'] = date_format($dateCreated, 'd M Y');
 
-					// $projectContactList[$key]['projectList'] = $projectList;
+				$this->db->select('trc_customer_project_fg.*');
+				$this->db->from('trc_customer_project_fg');
+				$this->db->where('trc_customer_project_fg.project_id', $projectMappingData['projectId']);
+				$this->db->where('trc_customer_project_fg.del','0');
+				$productData = $this->db->get()->result_array(); 
 
+				foreach ($productData as $productKey => $productRow) {
 
-					$this->db->select('trc_customer_project_fg.*');
-					$this->db->from('trc_customer_project_fg');
-					$this->db->where('trc_customer_project_fg.project_id', $row['project_id']);
-					$this->db->where('trc_customer_project_fg.del','0');
-					$productData = $this->db->get()->result_array(); 
+					$dateSupplyCreate = date_create($productRow['date_of_supply']);
+					$productData[$key]['dateSupplyInFormat'] = date_format($dateSupplyCreate, 'd M Y');
 
-					foreach ($productData as $productKey => $productRow) {
-
-						$dateSupplyCreate = date_create($productRow['date_of_supply']);
-						$productData[$key]['dateSupplyInFormat'] = date_format($dateSupplyCreate, 'd M Y');
-
-						$dateInstallationCreate = date_create($productRow['date_of_installation']);
-						$productData[$key]['dateInstallationInFormat'] = date_format($dateInstallationCreate, 'd M Y');
+					$dateInstallationCreate = date_create($productRow['date_of_installation']);
+					$productData[$key]['dateInstallationInFormat'] = date_format($dateInstallationCreate, 'd M Y');
 
 
-						$warrantyValidUpToCreate = date_create($productRow['warranty_valid_upto']);
-						$productData[$key]['warantyValidUpToInFormat'] = date_format($warrantyValidUpToCreate, 'd M Y');
+					$warrantyValidUpToCreate = date_create($productRow['warranty_valid_upto']);
+					$productData[$key]['warantyValidUpToInFormat'] = date_format($warrantyValidUpToCreate, 'd M Y');
 
 
-							$this->db->select('trc_customer_task_fg.id');
-							$this->db->from('trc_customer_task_fg');
+						$this->db->select('trc_customer_task_fg.id');
+						$this->db->from('trc_customer_task_fg');
 
-							$this->db->join('trc_customer_task', 'trc_customer_task.id = trc_customer_task_fg.task_id and trc_customer_task.task_type = "service_request"');
+						$this->db->join('trc_customer_task', 'trc_customer_task.id = trc_customer_task_fg.task_id and trc_customer_task.task_type = "service_request"');
 
-							$this->db->where('trc_customer_task_fg.project_id', $row['project_id']);
-							$this->db->where('trc_customer_task_fg.fg_no', $productRow['fg_no']);
-							$this->db->where('trc_customer_task_fg.del','0');
-							$this->db->group_by('trc_customer_task_fg.task_id');
-							$totalServiceRequest = $this->db->get()->num_rows(); 
+						$this->db->where('trc_customer_task_fg.project_id', $projectMappingData['projectId']);
+						$this->db->where('trc_customer_task_fg.fg_no', $productRow['fg_no']);
+						$this->db->where('trc_customer_task_fg.del','0');
+						$this->db->group_by('trc_customer_task_fg.task_id');
+						$totalServiceRequest = $this->db->get()->num_rows(); 
 
-							$productData[$key]['productServiceRquestCount']=$totalServiceRequest;
-					}
+						$productData[$key]['productServiceRquestCount']=$totalServiceRequest;
+				  }
 
-							$projectContactList[$key]['productData'] = $productData;
-
-
-							$this->db->select('trc_customer_task.id');
-							$this->db->from('trc_customer_task');
-							$this->db->where('trc_customer_task.project_id', $row['project_id']);
-							$this->db->where('trc_customer_task.task_type', 'service_request');
-							$this->db->where('trc_customer_task.del','0');
-							$totalServiceRequest = $this->db->get()->num_rows(); 
-
-			  				$projectContactList[$key]['totalServiceRequest'] = $totalServiceRequest;
-	   			}
+						$projectData[$key]['productData'] = $productData;
 
 
-					$result = array('projectContactList' => $projectContactList, 'totalProjectCount' => $totalProjectCount);
+						$this->db->select('trc_customer_task.id');
+						$this->db->from('trc_customer_task');
+						$this->db->where('trc_customer_task.project_id', $projectMappingData['projectId']);
+						$this->db->where('trc_customer_task.task_type', 'service_request');
+						$this->db->where('trc_customer_task.del','0');
+						$totalServiceRequest = $this->db->get()->num_rows(); 
 
-					echo json_encode($result);
+		  				$projectData[$key]['totalServiceRequest'] = $totalServiceRequest;
+   			}
+
+
+			$result = array('projectContactList' => $projectData, 'projectData' => $projectData);
+
+			echo json_encode($result);
 
 
 	    } else {

@@ -276,43 +276,70 @@ class Login extends MY_Controller
           
 		$inputData = json_decode(file_get_contents('php://input'), true);
 
-		// print_r($inputData); exit;
-		
 		if(isset($inputData['companyName']) && $inputData['companyName'] )  
 		{
+
+			$this->db->select('trc_customer_project_contact.*');
+			$this->db->from('trc_customer_project_contact');
+			$this->db->where('trc_customer_project_contact.del', '0');
+			$this->db->where('trc_customer_project_contact.mobile', $inputData['contactData'][0]['contactMobile']);
+
+			$mobileExistProject = $this->db->get()->row_array();
+
+			$this->db->select('trc_customer_login_access.id');
+			$this->db->from('trc_customer_login_access');
+			$this->db->where('trc_customer_login_access.del', '0');
+			$this->db->where('trc_customer_login_access.username', $inputData['username']);
+			
+			$userNameData = $this->db->get()->row_array();
+
 
 			$this->db->select('trc_customer_login_access.*');
 			$this->db->from('trc_customer_login_access');
 			$this->db->where('trc_customer_login_access.del', '0');
 			$this->db->where('trc_customer_login_access.contact_mobile', $inputData['contactData'][0]['contactMobile']);
-			$mobileExsists = $this->db->get()->row_array();
+			
+			$mobileExist = $this->db->get()->row_array();
 
-			if(isset($mobileExsists['id']) && $mobileExsists['id']) {
+		    $loginData = array();
 
-				$loginData = array();
+			if((isset($mobileExist['id']) && $mobileExist['id']) || (isset($mobileExistProject['id']) && $mobileExistProject['id'])) {
 
 
-				if($mobileExsists['status'] == 'Pending'){
+				if($mobileExist['status'] == 'Pending'){
 
 					$status = 'error';
 					$statusMessage = 'Account Verification with this mobile already under process.';
 
 				}
-				if($mobileExsists['status'] == 'Approved'){
+				if($mobileExist['status'] == 'Approved'){
 
 
 					$status = 'error';
-					$statusMessage ='Account with this mobile has Already Active, Please Login.';
+					$statusMessage ='Account with this mobile has Already Active';
 
 				}
-				if($mobileExsists['status'] === 'Reject'){
+
+				if($mobileExist['status'] == 'Reject') {
 
 					$status = 'error';
 					$statusMessage = 'Account with this mobile has rejected.';
 
 				}
 
-			}else{
+				if($mobileExist['status'] == '') {
+
+					$status = 'error';
+					$statusMessage = 'Account with this mobile has Already Active, Please Login.';
+
+				}
+
+			} else if(isset($userNameData['id']) && $userNameData['id']) {
+
+				    $status  = 'error';
+				    $statusMessage = 'Username not available';
+
+			}  else {
 
 				$customerData = array(
 					
@@ -361,7 +388,7 @@ class Login extends MY_Controller
 	
 				   $status = 'success';
 				   $statusMessage = '';
-				   $this->sendMsgWhenRegistered();
+				   $this->sendMsgWhenRegistered($inputData['contactData'][0]['contactMobile']);
 	
 			   }else{
 	
@@ -378,18 +405,15 @@ class Login extends MY_Controller
 			$result = array('loginData' => $loginData, 'status' => $status, 'statusMessage' => $statusMessage);
 			echo json_encode($result);
 
-
-
-			
-
 		}else {
 
 			$this->db->onReturnErrorMessage();
 		}
 	}
 
-	public function sendMsgWhenRegistered(){
-		$msg ='Your Registration Successfull.Your account has been under verification.';
+	public function sendMsgWhenRegistered($cust_mobile) {
+
+		$msg ='Thanks For the Registration, Your Account Approval is in Under Process!';
 
         $msg =urlencode( $msg );
 
@@ -404,6 +428,26 @@ class Login extends MY_Controller
         $send_otp = curl_exec($ch);
        
         curl_close($ch);
+
+
+
+
+
+        $msg1 ='Your acoount have been Registered Successfully.We will soon verify it.';
+
+        $msg1 =urlencode( $msg1 );
+
+        
+         $ch1 = curl_init();
+        
+       
+        curl_setopt($ch1,CURLOPT_URL, 'https://www.smsjust.com/blank/sms/user/urlsms.php?username=tricolite12&pass=w5!7XB@r&senderid=CUSAIX&dest_mobileno='.$cust_mobile.'&msgtype=UNI&message='.$msg1.'&response=Y');
+        curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch1, CURLOPT_POST, 1);
+            
+        $send_otp = curl_exec($ch1);
+       
+        curl_close($ch1);
 	}
 
 
