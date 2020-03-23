@@ -159,7 +159,7 @@ public class CordovaWebViewImpl implements CordovaWebView {
                 } catch (JSONException e) {
                     // Will never happen.
                 }
-                pluginManager.postMessage("onReceivedError", data);
+                // pluginManager.postMessage("onReceivedError", data);
             }
         };
 

@@ -288,6 +288,11 @@ export class ComDailyreportPage implements OnInit {
             this.dbService.onShowAlertMessage('Error', 'Rating Required!');
             return;
         }
+
+        if (!this.signatureImage) {
+            this.dbService.onShowAlertMessage('Error', 'Signature Required!');
+            return;
+        }
         
         
         if (!this.data.travelExpense || !this.data.otherExpense) {

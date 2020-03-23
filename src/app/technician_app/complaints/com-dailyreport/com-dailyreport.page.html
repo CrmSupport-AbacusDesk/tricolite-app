@@ -243,7 +243,7 @@
                                         </div>
                                     </div>
                                     
-                                    <ion-item>
+                                    <ion-item *ngIf="selectedRating">
                                         <ion-label position="floating">Add Signature</ion-label>
                                         <ion-input (click)="presentModal()"></ion-input>
                                         <div (click)="presentModal()"><img [src]="signatureImage" *ngIf="signatureImage" /></div>

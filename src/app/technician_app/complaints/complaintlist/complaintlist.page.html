@@ -85,18 +85,18 @@
                     </div>
                 </div>
 
-                <div class="one-two-one three" (click)="GoComplaintDetail(row.id)">
+                <div class="one-one-one" (click)="GoComplaintDetail(row.id)">
 
-                    <div class="cs-box close" style="background: #FFCC00;">
+                    <div class="cs-box" >
                             <div>
                                 <ion-text>Priority</ion-text>
-                                <ion-text>{{row.priority ? row.priority : 'NA'}}</ion-text>
+                                <ion-text class="prty">{{row.priority ? row.priority : 'NA'}}</ion-text>
                             </div>
                     </div>
 
                 </div>
                 
-                <div (click)="GoComplaintDetail(row.id)" *ngFor="let fgRow of row.fgData"  class="one-two-one three">
+                <div (click)="GoComplaintDetail(row.id)" *ngFor="let fgRow of row.fgData"  class="one-two-one merge">
                     <div class="cs-box">
                         <div>
                             <ion-text>FG No.</ion-text>

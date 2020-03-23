@@ -1624,6 +1624,14 @@ ion-button
             
             &:nth-child(1){@extend.regular;}
             &:nth-child(2){@extend.medium;}
+
+            &.prty
+            {
+                background: #ffcc00;
+                color: #000;
+                padding: 2px 5px;
+                margin-left: 5px;
+            }
         }
         
         &.open, &.close, &.paid{ion-text{color: var(--ion-color-white);}}
