@@ -17,6 +17,7 @@
             <div class="custome-filter dlform">
                 <div class="fiter-data">
                     <div class="cs-left">
+
                         <ion-button *ngIf="reportType == 'dailyReport'"  [ngClass]="activeStage==1 ? 'active' : ''" fill="clear" color="dark">
                             <div class="figure">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.999" height="20" viewBox="0 0 19.999 20">
@@ -56,7 +57,7 @@
                                 <ion-text>Customer Sign</ion-text>
                             </div>
                         </ion-button>
-
+                        
                         <ion-button  *ngIf="reportType == 'dailyReport'"  [ngClass]="activeStage==4 ? 'active' : ''" fill="clear" color="dark">
                             <div class="figure">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.998" height="20" viewBox="0 0 19.998 20">
@@ -77,149 +78,82 @@
                             </div>
                         </ion-button>
                         
-                        <ion-button (click)="currentActiveCheckTab = index" *ngFor = "let row of fgWisecheckList; let index = index" [hidden]="reportType != 'checkListReport'"  [ngClass]="activeStage==5 && currentActiveCheckTab==index ? 'active' : ''" fill="clear" color="dark">
+                        <ion-button (click)="onClickOnFgWiseCategoryHandler(index)" *ngFor = "let row of fgWisecheckList; let index = index" [hidden]="reportType != 'checkListReport'"  [ngClass]="activeStage==5 && currentActiveCheckTab==index ? 'active' : ''" fill="clear" color="dark">
                             <div class="figure">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24.784" height="20" viewBox="0 0 24.784 20">
-                                    <g id="customer_sign" transform="translate(0 -39.824)">
-                                        <g id="Layer_5_64_" transform="translate(0 39.824)">
-                                            <g id="Group_3553" data-name="Group 3553" transform="translate(0 0)">
-                                                <g id="Group_3550" data-name="Group 3550" transform="translate(13.301 0.321)">
-                                                    <path id="Path_1026" data-name="Path 1026" d="M290.314,52.431l2.912-3.714a2.107,2.107,0,1,0-3.3-2.59l-2.945,3.757s-.063.08,0,.131l3.1,2.427C290.166,52.514,290.217,52.554,290.314,52.431Z" transform="translate(-283.016 -45.17)" fill="#002341"/>
-                                                    <path id="Path_1027" data-name="Path 1027" d="M225.121,140.616a.065.065,0,0,0-.107.016c-.321.454-2.245,3.177-2.971,4.1a2.918,2.918,0,0,0-.311,2.266c.006.02.027.046,0,.088-.089.114-.14.194-.192.259a.341.341,0,0,0,.067.487.359.359,0,0,0,.505-.038c.052-.066.117-.135.207-.249a.075.075,0,0,1,.074-.026,2.924,2.924,0,0,0,2.136-.841c.732-.934,2.934-3.47,3.269-3.856.028-.032.055-.07-.005-.118Z" transform="translate(-221.461 -134.863)" fill="#002341"/>
-                                                    <path id="Path_1028" data-name="Path 1028" d="M365.555,117.418a.419.419,0,0,1-.588.071h0a.419.419,0,0,1-.071-.588l2.036-2.6a.419.419,0,0,1,.588-.071h0a.419.419,0,0,1,.071.588Z" transform="translate(-356.198 -110.001)" fill="#002341"/>
-                                                </g>
-                                                <g id="Group_3551" data-name="Group 3551" transform="translate(2.519 6.894)">
-                                                    <path id="Path_1029" data-name="Path 1029" d="M53.37,155.262a.321.321,0,0,1-.32.32H42.257a.321.321,0,0,1-.32-.32v-.333a.321.321,0,0,1,.32-.32H53.05a.321.321,0,0,1,.32.32v.333Z" transform="translate(-41.937 -154.609)" fill="#002341"/>
-                                                </g>
-                                                <path id="Path_1030" data-name="Path 1030" d="M156.649,270.105a.321.321,0,0,1-.32.32h-4.194a.321.321,0,0,1-.32-.32v-.273a.321.321,0,0,1,.32-.32h4.194a.321.321,0,0,1,.32.32Z" transform="translate(-142.697 -255.717)" fill="#002341"/>
-                                                <g id="Group_3552" data-name="Group 3552" transform="translate(2.519 3.941)">
-                                                    <path id="Path_1031" data-name="Path 1031" d="M53.37,106.089a.321.321,0,0,1-.32.32H42.257a.321.321,0,0,1-.32-.32v-.333a.321.321,0,0,1,.32-.32H53.05a.321.321,0,0,1,.32.32v.333Z" transform="translate(-41.937 -105.436)" fill="#002341"/>
-                                                </g>
-                                                <path id="Path_1032" data-name="Path 1032" d="M15.294,54.192v3.345a1.114,1.114,0,0,1-1.111,1.111H2.288a1.114,1.114,0,0,1-1.111-1.111V42.112A1.114,1.114,0,0,1,2.288,41h11.9a1.114,1.114,0,0,1,1.111,1.111v3.553c0,.34.168.171.246.069.2-.259.573-.688.724-.849a.666.666,0,0,0,.207-.506V40.935a1.114,1.114,0,0,0-1.111-1.111H1.111A1.114,1.114,0,0,0,0,40.935V58.713a1.114,1.114,0,0,0,1.111,1.111H15.359a1.114,1.114,0,0,0,1.111-1.111V53.728c0-.29-.169-.245-.254-.2a4.418,4.418,0,0,1-.679.262C15.453,53.812,15.294,53.848,15.294,54.192Z" transform="translate(0 -39.824)" fill="#002341"/>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>                                
+                                <img src="assets/img/check-list.svg" alt="">
                                 <ion-text>Check List - {{row.fg_no}}</ion-text>
                             </div>
                         </ion-button> 
-                        
                     </div>
-                    
-                    <div class="cs-right">
-                        
-                        <div [hidden]="activeStage!=1" class="work-info">
-                            
-                            <form [formGroup]="registerForm1" (ngSubmit)="onNextStageHandler(1)">
-                                
-                                <div class="common_form inner_page">
-                                    
-                                    <ion-item [ngClass]="submitted && f1.workDetail.errors && f1.workDetail.errors.required ? 'has-error' : (f1.workDetail.errors && !f1.workDetail.errors.required ? 'has-text' : '')" class="h70">
-                                        
-                                        <ion-textarea formControlName="workDetail" [(ngModel)]="data.workDetail" placeholder="Work Detail"></ion-textarea>
-                                        
-                                        <ion-text *ngIf="submitted && f1.workDetail.errors" class="cs-error">
-                                            
-                                            <span *ngIf="f1.workDetail.errors.minlength">Minimum 5 Letter Required</span>
-                                            
-                                        </ion-text>
-                                        
-                                    </ion-item>
-                                    
-                                   
-                                    <ion-item [ngClass]="submitted && f1.causeFailure.errors && f1.causeFailure.errors.required ? 'has-error' : (f1.causeFailure.errors && !f1.causeFailure.errors.required ? 'has-text' : '')" class="h70">
-                                        
-                                        <ion-textarea formControlName="causeFailure" [(ngModel)]="data.causeFailure" placeholder="Cause Of Failure">
-                                            
-                                            <ion-text *ngIf="submitted && f1.causeFailure.errors" class="cs-error">
-                                                
-                                                <span *ngIf="f1.causeFailure.errors.minlength">Minimum 5 Letter Required</span>
-                                                
-                                            </ion-text>
-                                            
-                                        </ion-textarea>
-                                        
-                                    </ion-item>
 
-                                    <ion-item [ngClass]="submitted && f1.suggestion.errors && f1.suggestion.errors.required ? 'has-error' : (f1.suggestion.errors && !f1.suggestion.errors.required ? 'has-text' : '')" class="h70">
-                                        <ion-textarea formControlName="suggestion" [(ngModel)]="data.suggestion" placeholder="Suggestion"></ion-textarea>
-                                        
-                                        <ion-text *ngIf="submitted && f1.suggestion.errors" class="cs-error">time
-                                            
-                                            <span *ngIf="f1.suggestion.errors.minlength">Minimum 5 Letter Required</span>
-                                            
+
+                    <div class="cs-right">
+
+                        <div class="work-info" [hidden]="activeStage != 1 ">
+                            <form [formGroup]="registerForm1" (ngSubmit)="onNextStageHandler(1)">
+                                <div class="common_form inner_page">
+                                    <ion-item [ngClass]="submitted && f1.workDetail.errors && f1.workDetail.errors.required ? 'has-error' : (f1.workDetail.errors && !f1.workDetail.errors.required ? 'has-text' : '')" class="h70">
+                                        <ion-label position="floating">Work Detail</ion-label>
+                                        <ion-textarea formControlName="workDetail" [(ngModel)]="data.workDetail"></ion-textarea>
+                                        <ion-text *ngIf="submitted && f1.workDetail.errors" class="cs-error">
+                                            <span *ngIf="f1.workDetail.errors.minlength">Minimum 5 Letter Required</span>
                                         </ion-text>
-                                        
                                     </ion-item>
-                                    
-                                    
+                                    <ion-item [ngClass]="submitted && f1.causeFailure.errors && f1.causeFailure.errors.required ? 'has-error' : (f1.causeFailure.errors && !f1.causeFailure.errors.required ? 'has-text' : '')" class="h70">
+                                        <ion-label position="floating">Cause Of Failure</ion-label>
+                                        <ion-textarea formControlName="causeFailure" [(ngModel)]="data.causeFailure">
+                                            <ion-text *ngIf="submitted && f1.causeFailure.errors" class="cs-error">
+                                                <span *ngIf="f1.causeFailure.errors.minlength">Minimum 5 Letter Required</span>
+                                            </ion-text>
+                                        </ion-textarea>
+                                    </ion-item>
+                                    <ion-item [ngClass]="submitted && f1.suggestion.errors && f1.suggestion.errors.required ? 'has-error' : (f1.suggestion.errors && !f1.suggestion.errors.required ? 'has-text' : '')" class="h70">
+                                        <ion-label position="floating">Suggestion</ion-label>
+                                        <ion-textarea formControlName="suggestion" [(ngModel)]="data.suggestion"></ion-textarea>
+                                        <ion-text *ngIf="submitted && f1.suggestion.errors" class="cs-error">time
+                                            <span *ngIf="f1.suggestion.errors.minlength">Minimum 5 Letter Required</span>
+                                        </ion-text>
+                                    </ion-item>
                                 </div>
-                                
                                 <div class="common_form inner_page mt20">
-                                    
                                     <div class="heading"><h1>Work Status</h1></div>
-                                    
                                     <ion-item [ngClass]="submitted && f1.workStatus.errors && f1.workStatus.errors.required ? 'has-error' : (f1.workStatus.errors && !f1.workStatus.errors.required ? 'has-text' : '')" class="cs-select">
-                                        
                                         <ion-label>Select Status</ion-label>
-                                        
                                         <ion-select formControlName="workStatus" [(ngModel)]="data.workStatus" (ngModelChange)="onChangeWorkStatusHandler()" placeholder="Select One">
-                                            
-                                            <ion-select-option value="Inprocess">In-Process</ion-select-option>
-                                            
+                                            <ion-select-option value="Running">In-Process</ion-select-option>
                                             <ion-select-option value="Pending">Pending</ion-select-option>
-                                            
                                             <ion-select-option value="Close">Close</ion-select-option>
-                                            
                                         </ion-select>
-                                        
                                     </ion-item>
-                                    
                                     <ion-item [ngClass]="submitted && f1.nextFollowUpDate.errors && f1.nextFollowUpDate.errors.required ? 'has-error' : (f1.nextFollowUpDate.errors && !f1.nextFollowUpDate.errors.required ? 'has-text' : '')" class="date-time"  *ngIf = "registerForm1.value['workStatus']  != 'Close'">
                                         <ion-label>Next Follow up Date</ion-label>
                                         <ion-datetime formControlName="nextFollowUpDate" [(ngModel)]="data.nextFollowUpDate" displayFormat="DD-MMM-YYYY" min="{{minDate}}"></ion-datetime>
-                                        
                                         <ion-text *ngIf="submitted && f1.nextFollowUpDate.errors" class="cs-error">
-                                            
                                         </ion-text>
-                                        
                                     </ion-item>
-                                    
                                     <ion-item [ngClass]="submitted && f1.nextFollowUpTime.errors && f1.nextFollowUpTime.errors.required ? 'has-error' : (f1.nextFollowUpTime.errors && !f1.nextFollowUpTime.errors.required ? 'has-text' : '')" class="date-time"  *ngIf = "registerForm1.value['workStatus']  != 'Close'">
                                         <ion-label>Next Follow up Time</ion-label>
                                         <ion-datetime formControlName="nextFollowUpTime" [(ngModel)]="data.nextFollowUpTime" displayFormat="h:mm A"></ion-datetime>
-                                        
                                         <ion-text *ngIf="submitted && f1.nextFollowUpTime.errors" class="cs-error">
-                                            
                                         </ion-text>
-                                        
                                     </ion-item>
                                     
                                     <ion-item [ngClass]="submitted && f1.reasonNotCloser.errors && f1.reasonNotCloser.errors.required ? 'has-error' : (f1.reasonNotCloser.errors && !f1.reasonNotCloser.errors.required ? 'has-text' : '')" class="h70">
-                                        
                                         <ion-textarea formControlName="reasonNotCloser" [(ngModel)]="data.reasonNotCloser" placeholder="Reason For Not Closer" *ngIf = "registerForm1.value['workStatus']  != 'Close'"></ion-textarea>
                                         <ion-textarea formControlName="reasonNotCloser" [(ngModel)]="data.reasonNotCloser" placeholder="Remark" *ngIf = "registerForm1.value['workStatus']  == 'Close'"></ion-textarea>
-                                        
                                         <ion-text *ngIf="submitted && f1.reasonNotCloser.errors" class="cs-error">
-                                            
                                             <span *ngIf="f1.reasonNotCloser.errors.minlength">Minimum 5 Letter Required</span>
-                                            
                                         </ion-text>
-                                        
                                     </ion-item>
-
                                 </div>
                                 
                                 <div class="cs-btn mt16" text-right *ngIf = "taskStatus != 'Close'">
                                     <ion-button type="submit" class="success min w100">NEXT</ion-button>
                                 </div>
-                                
                             </form>
-                            
                         </div>
                         
-                      
-                        <div *ngIf="activeStage==2" class="auth_sign_info">
+                        <div class="auth_sign_info" *ngIf="activeStage == 2" >
                             
                             <form [formGroup]="registerForm3"  (ngSubmit)="onNextStageHandler(3)">
                                 
@@ -241,164 +175,113 @@
                                         <ion-label>Contact Person Name</ion-label>
                                         
                                         <ion-select formControlName="contactName" [(ngModel)]="data.contactName" (ngModelChange) = "onContactChangeHandler('dailyReport')"  placeholder="Select">
-                                            
-                                            <!-- <ion-select-option value="">Select an Option</ion-select-option> -->
-                                            
                                             <ion-select-option *ngFor="let row of contactList" [value]="row.name">{{row.name}}</ion-select-option>
-                                            
                                         </ion-select>
-                                        
+
                                     </ion-item>
                                     
                                     <ion-item *ngIf="data.contactName=='Other'" [ngClass]="submitted && f3.otherContactName.errors && f3.otherContactName.errors.required ? 'has-error' : (f3.otherContactName.errors && !f3.otherContactName.errors.required ? 'has-text' : '')">
-                                        
+
                                         <ion-label position="floating">Name</ion-label>
                                         <ion-input formControlName="otherContactName" [(ngModel)]="data.otherContactName"></ion-input>
-                                        
+
                                         <ion-text *ngIf="submitted && f3.otherContactName.errors" class="cs-error">
-                                            
                                             <span *ngIf="f3.otherContactName.errors.minlength">Minimum 5 Letter Required</span>
-                                            
                                         </ion-text>
-                                        
+
                                     </ion-item>
                                     
                                     <ion-item *ngIf="data.contactName" [ngClass]="submitted && f3.mobile.errors && f3.mobile.errors.required ? 'has-error' : (f3.mobile.errors && !f3.mobile.errors.required ? 'has-text' : '')">
-                                        
                                         <ion-label position="floating">Mobile No.</ion-label>
                                         <ion-input type="tel" formControlName="mobile" [(ngModel)]="data.mobile" (keypress) = "dbService.numberOnly($event)" [readonly]="data.contactName != 'Other'"></ion-input>
-                                        
                                         <ion-text *ngIf="submitted && f3.mobile.errors" class="cs-error">
-                                            
                                             <span *ngIf="f3.mobile.errors.minlength">Minimum 10 Digit Required</span>
-                                            
                                             <span *ngIf="f3.mobile.errors.maxlength">Maximum 10 Digit Required</span>
-                                            
-                                        </ion-text>
-                                        
-                                    </ion-item>
-                                    
-                                    <ion-item *ngIf="data.contactName" [ngClass]="submitted && f3.email.errors && f3.email.errors.required ? 'has-error' : (f3.email.errors && !f3.email.errors.required ? 'has-text' : '')">
-                                        
-                                        <ion-label position="floating">Email ID</ion-label>
-                                        <ion-input formControlName="email" [(ngModel)]="data.email" [readonly]="data.contactName != 'Other'"></ion-input>
-                                        
-                                        <ion-text *ngIf="submitted && f3.email.errors" class="cs-error">
-                                            
-                                            <span *ngIf="!f3.email.errors.required">Email Invalid</span>
-                                            
-                                        </ion-text>
-                                        
-                                    </ion-item>
-                                    
-                                </div>
-                                
-                                <div class="cs-btn mt16 lr">
-                                    
-                                    <ion-button (click)="onBackClickHandler(2)" class="dark min w100 clear border" fill="clear">BACK</ion-button>
-                                    <ion-button type="submit" class="success min w100">NEXT</ion-button>
-                                    
-                                </div>
-                                
-                            </form>
-                            
-                        </div>
-                        
-                        <div *ngIf="activeStage==3" class="auth_sign_info">
-                            
-                            <form [formGroup]="registerForm4"  (ngSubmit)="onNextStageHandler(4)">
-                                
-                                <div class="common_form inner_page ">
-                                    
-                                    <ion-item [ngClass]="submitted && f4.remark.errors && f4.remark.errors.required ? 'has-error' : (f4.remark.errors && !f4.remark.errors.required ? 'has-text' : '')" class="h70">
-                                        <ion-textarea formControlName="remark" [(ngModel)]="data.remark" placeholder="Customer Remark"></ion-textarea>
-                                        
-                                        <ion-text *ngIf="submitted && f4.remark.errors" class="cs-error">
-                                            
-                                            <span *ngIf="f4.remark.errors.minlength">Minimum 5 Letter Required</span>
-                                            
                                         </ion-text>
                                     </ion-item>
 
+                                    
+                                    <ion-item *ngIf="data.contactName" [ngClass]="submitted && f3.email.errors && f3.email.errors.required ? 'has-error' : (f3.email.errors && !f3.email.errors.required ? 'has-text' : '')">
+                                        <ion-label position="floating">Email ID</ion-label>
+                                        <ion-input formControlName="email" [(ngModel)]="data.email" [readonly]="data.contactName != 'Other'"></ion-input>
+                                        <ion-text *ngIf="submitted && f3.email.errors" class="cs-error">
+                                            <span *ngIf="!f3.email.errors.required">Email Invalid</span>
+                                        </ion-text>
+                                    </ion-item>
+                                </div>
+                                
+                                <div class="cs-btn mt16 lr">
+                                    <ion-button (click)="onBackClickHandler(2)" class="dark min w100 clear border" fill="clear">BACK</ion-button>
+                                    <ion-button type="submit" class="success min w100">NEXT</ion-button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="auth_sign_info"  *ngIf="activeStage == 3" >
+                            
+                            <form [formGroup]="registerForm4"  (ngSubmit)="onNextStageHandler(4)">
+                                <div class="common_form inner_page ">
+                                    <ion-item [ngClass]="submitted && f4.remark.errors && f4.remark.errors.required ? 'has-error' : (f4.remark.errors && !f4.remark.errors.required ? 'has-text' : '')" class="h70">
+                                        <ion-textarea formControlName="remark" [(ngModel)]="data.remark" placeholder="Customer Remark"></ion-textarea>
+                                        <ion-text *ngIf="submitted && f4.remark.errors" class="cs-error">
+                                            <span *ngIf="f4.remark.errors.minlength">Minimum 5 Letter Required</span>
+                                        </ion-text>
+                                    </ion-item>
+                                    
                                     <div class="common_form inner_page dflex mt20 mb20">
                                         <label class="font12 mr32 mt5">Rating</label>
                                         <div class="stars">
                                             <ion-button class="font16px mr7" [ngClass]="selectedRating >= 1 ? 'active' : ''" fill="clear" (click)="onStarClickHandler(1)" color="dark"><ion-icon name="{{selectedRating ? 'star' : 'star-outline'}}"></ion-icon></ion-button>
-                    
+                                            
                                             <ion-button class="font16px mr7" [ngClass]="selectedRating >= 2 ? 'active' : ''" fill="clear" (click)="onStarClickHandler(2)" color="dark"><ion-icon name="{{selectedRating ? 'star' : 'star-outline'}}"></ion-icon></ion-button>
-                    
+                                            
                                             <ion-button class="font16px mr7" fill="clear" [ngClass]="selectedRating >= 3 ? 'active' : ''" (click)="onStarClickHandler(3)" color="dark"><ion-icon name="{{selectedRating ? 'star' : 'star-outline'}}"></ion-icon></ion-button>
-                    
+                                            
                                             <ion-button class="font16px mr7" fill="clear" [ngClass]="selectedRating >= 4 ? 'active' : ''" (click)="onStarClickHandler(4)" color="dark"><ion-icon name="{{selectedRating ? 'star' : 'star-outline'}}"></ion-icon></ion-button>
-                    
+                                            
                                             <ion-button class="font16px mr7" fill="clear" [ngClass]="selectedRating == 5 ? 'active' : ''" (click)="onStarClickHandler(5)" color="dark"><ion-icon name="{{selectedRating ? 'star' : 'star-outline'}}"></ion-icon></ion-button>
                                         </div>
                                     </div>
                                     
                                     <ion-item>
-                                        
                                         <ion-label position="floating">Add Signature</ion-label>
-                                        
                                         <ion-input (click)="presentModal()"></ion-input>
-                                        
                                         <div (click)="presentModal()"><img [src]="signatureImage" *ngIf="signatureImage" /></div>
-                                        
                                     </ion-item> 
-                                    
                                 </div>
                                 
                                 <div class="cs-btn mt16 lr">
-                                    
-                                  
-
                                     <ion-button (click)="onBackClickHandler(3)" class="dark min w100 clear border" fill="clear">BACK</ion-button>
-
                                     <ion-button type="submit" class="success min w100">NEXT</ion-button>
-                                    
                                 </div>
-                                
                             </form>
-                            
                         </div>
-
+                        
                         <div class="expenses" *ngIf="activeStage == 4" >
                             
                             <form [formGroup]="registerForm2" (ngSubmit)="onSaveDailyReportHandler()">
-                                
                                 <div class="common_form inner_page">
-                                    
                                     <ion-item [ngClass]="submitted && f2.travelExpense.errors && f2.travelExpense.errors.required ? 'has-error' : (f2.travelExpense.errors && !f2.travelExpense.errors.required ? 'has-text' : '')">
                                         <ion-label position="floating">Engineer Travel Expense</ion-label>
                                         <ion-input type="tel" formControlName="travelExpense" [(ngModel)]="data.travelExpense" (keypress)="dbService.numberOnly($event)" ></ion-input>
-                                        
                                         <ion-text *ngIf="submitted && f2.travelExpense.errors" class="cs-error">
-                                            
                                             <span *ngIf="f2.travelExpense.errors.minlength">Minimum 2 Digit Required</span>
-                                            
                                         </ion-text>
                                     </ion-item>
                                     
                                     <ion-item [ngClass]="submitted && f2.otherExpense.errors && f2.otherExpense.errors.required ? 'has-error' : (f2.otherExpense.errors && !f2.otherExpense.errors.required ? 'has-text' : '')">
-                                        
                                         <ion-label position="floating">Engineer Other Expense</ion-label>
-                                        
                                         <ion-input type="tel" formControlName="otherExpense" [(ngModel)]="data.otherExpense" (keypress)="dbService.numberOnly($event)"></ion-input>
-                                        
                                         <ion-text *ngIf="submitted && f2.otherExpense.errors" class="cs-error">
-                                            
                                             <span *ngIf="f2.otherExpense.errors.minlength">Minimum 2 Digit Required</span>
-                                            
                                         </ion-text>
                                     </ion-item>
                                     
                                     <ion-item [ngClass]="submitted && f2.expenseDetail.errors && f2.expenseDetail.errors.required ? 'has-error' : (f2.expenseDetail.errors && !f2.expenseDetail.errors.required ? 'has-text' : '')" class="h70">
                                         
                                         <ion-textarea formControlName="expenseDetail" [(ngModel)]="data.expenseDetail" placeholder="Engineer Expense Detail"></ion-textarea>
-                                        
                                         <ion-text *ngIf="submitted && f2.expenseDetail.errors" class="cs-error">
-                                            
                                             <span *ngIf="f2.expenseDetail.errors.minlength">Minimum 5 Letter Required</span>
-                                            
                                         </ion-text>
                                     </ion-item>
                                     
@@ -406,187 +289,86 @@
                                 <div class="cs-btn mt16 lr">
                                     
                                     <ion-button (click)="onBackClickHandler(4)" class="dark min w100 clear border" fill="clear">BACK</ion-button>
-                                    
                                     <ion-button type="submit" class="success min w100">SAVE</ion-button>
-                                    
                                 </div>
-                                
                             </form>
-                            
                         </div>
                         
-                        
-                        <!-- <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckList; let index = index" class="check_list">
-                            <div class="cs-checkbox">
-                                
-                                <ion-list>
-                                    
-                                    <ion-item *ngFor="let checkRow of row.checkList">
-                                        <ion-label>{{checkRow.check_list_point}}</ion-label>
-                                        <ion-checkbox [(ngModel)]="checkRow.checked" slot="start" color="success"></ion-checkbox>
-                                    </ion-item>
-                                    
-                                </ion-list>
-                                
-                            </div>
-                            
-                            
-                            <div class="common_form inner_page">
-                                
-                                <ion-item class="cs-select">
-                                    
-                                        <ion-label>Contact Person Name</ion-label>
-                                        
-                                        <ion-select  [(ngModel)]="data.checkContactName" (ngModelChange) = "onContactChangeHandler('checkReport')"  placeholder="Select">
-                                            
-                                            <ion-select-option *ngFor="let row of contactList" [value]="row.name">{{row.name}}</ion-select-option>
-                                            
-                                        </ion-select>
-                                        
-                                </ion-item>
-                            
-                                
-                                <ion-item *ngIf="data.checkContactName=='Other'">
-                                    
-                                    <ion-label position="floating">Name</ion-label>
-                                    <ion-input  [(ngModel)]="data.checkOtherContactName"></ion-input>
-                        
-                                    
-                                </ion-item>
-                                
-                                <ion-item *ngIf="data.checkContactName">
-                                    
-                                    <ion-label position="floating">Mobile No.</ion-label>
-                                    <ion-input type="tel"  [(ngModel)]="data.checkMobile" (keypress) = "dbService.numberOnly($event)"></ion-input>
-                                    
-                                    <ion-text class="cs-error">
-                                        
-                                        <span *ngIf="!data.checkMobile  || (data.checkMobile.length < 10) || data.checkMobile.length > 10">Mobile Must be 10 Digit!</span>
-                                        
-                                    </ion-text>
-                                    
-                                </ion-item>
-                                
-                                <ion-item>
-                                    
-                                    <ion-label position="floating">Add Signature</ion-label>
-                                    
-                                    <ion-input (click)="presentModal()"></ion-input>
-                                    
-                                    <div (click)="presentModal()"><img [src]="signatureImage" *ngIf="signatureImage" /></div>
-                                    
-                                </ion-item> 
-                            </div>
-                            
-                            <div class="cs-btn mt16 lr">
-                                
-                                <ion-button (click)="onSaveCheckListHandler()" class="success min w100">SAVE</ion-button>
-                                
-                            </div>
-                        </div> -->
 
-                        <div class="custome-filter dlform mt15">
+
+                        <div class="custome-filter dlform mt15" *ngIf="activeStage == 5">
                             <div class="fiter-data">
                                 <div class="cs-right">
-                                    <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckListCategory; let index = index" class="check_list">
+                                    <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckList; let index = index" class="check_list">
                                         <div class="cs-checkbox">
-                                            
                                             <ion-list>
-                                                
-                                                <div class="checklist" *ngFor = "let categoryList of fgWisecheckListCategory;">
+                                                <div class="checklist ion-label-normal" *ngFor = "let categoryList of fgWisecheckListCategory;let index = index">
                                                     <p>{{categoryList.category}}</p>
                                                     <div *ngFor = "let categoryListPoint of categoryList.checkListData;">
-                                                        <ion-item >
+                                                        <ion-item>
                                                             <ion-label>{{categoryListPoint.check_list_point}}</ion-label>
-                                                            <ion-checkbox [(ngModel)]="categoryListPoint.checked" slot="start" color="success"></ion-checkbox>
+                                                            <ion-checkbox *ngIf="categoryList.category != 'Observations If Any'" [(ngModel)]="categoryListPoint.checked" slot="start" color="success" (click)="select_checklist(categoryListPoint)"></ion-checkbox>
                                                         </ion-item>
-                                                        
-                                                        <div class="common_form">
+                                                        <div class="common_form" *ngIf="categoryListPoint.checked">
                                                             <ion-item>
                                                                 <ion-textarea  [(ngModel)]="categoryListPoint.remark" placeholder="Remark"></ion-textarea>
                                                             </ion-item>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
-                                                
                                             </ion-list>
-                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                         
-                        <div class="custome-filter dlform mt15">
+                        <div class="custome-filter dlform mt15" *ngIf="activeStage == 5">
                             <div class="fiter-data">
                                 <div class="cs-right">
-                                    
-                                    <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckListCategory; let index = index" class="check_list">
-                                        
+
+                                    <div [hidden]="!(activeStage==5 && currentActiveCheckTab == index)" *ngFor = "let row of fgWisecheckList; let index = index" class="check_list">
+
                                         <div class="common_form inner_page">
-                                            
                                             <ion-item class="cs-select">
-                                                
                                                 <ion-label>Contact Person Name</ion-label>
-                                                
-                                                <ion-select  [(ngModel)]="data.checkContactName" (ngModelChange) = "onContactChangeHandler('checkReport')"  placeholder="Select">
-                                                    
+                                                <ion-select disabled="{{row.check_list_created}}" [(ngModel)]="row.checkContactName" (ngModelChange) = "onContactChangeHandler('checkReport')"  placeholder="Select">
                                                     <ion-select-option *ngFor="let row of contactList" [value]="row.name">{{row.name}}</ion-select-option>
-                                                    
                                                 </ion-select>
-                                                
                                             </ion-item>
-                                            
-                                            
-                                            <ion-item *ngIf="data.checkContactName=='Other'">
-                                                
+                                            <ion-item *ngIf="row.checkContactName=='Other'">
                                                 <ion-label position="floating">Name</ion-label>
-                                                <ion-input  [(ngModel)]="data.checkOtherContactName"></ion-input>
-                                                
-                                                
+                                                <ion-input [(ngModel)]="row.checkOtherContactName"></ion-input>
                                             </ion-item>
-                                            
-                                            <ion-item *ngIf="data.checkContactName">
-                                                
+                                            <ion-item *ngIf="row.checkContactName">
                                                 <ion-label position="floating">Mobile No.</ion-label>
-                                                <ion-input type="tel"  [(ngModel)]="data.checkMobile" (keypress) = "dbService.numberOnly($event)"></ion-input>
-                                                
+                                                <ion-input type="tel" readonly="{{row.check_list_created}}" [(ngModel)]="row.checkMobile" (keypress) = "dbService.numberOnly($event)"></ion-input>
                                                 <ion-text class="cs-error">
-                                                    
-                                                    <span *ngIf="!data.checkMobile  || (data.checkMobile.length < 10) || data.checkMobile.length > 10">Mobile Must be 10 Digit!</span>
-                                                    
+                                                    <span *ngIf="!row.checkMobile  || (row.checkMobile.length < 10) || row.checkMobile.length > 10">Mobile Must be 10 Digit!</span>
                                                 </ion-text>
-                                                
                                             </ion-item>
                                             
-                                            <ion-item>
-                                                
+                                            <ion-item (click)="!row.check_list_created ? presentModal() : ''">
+
+                                                <div><img [src]="row.signatureImage" *ngIf="row.signatureImage!=''" /></div>
+
                                                 <ion-label position="floating">Add Signature</ion-label>
                                                 
-                                                <ion-input (click)="presentModal()"></ion-input>
-                                                
-                                                <div (click)="presentModal()"><img [src]="signatureImage" *ngIf="signatureImage" /></div>
-                                                
+                                                <ion-input ></ion-input>
                                             </ion-item> 
                                         </div>
-                                        
-                                        <div class="cs-btn mt16 lr">
-                                            
+                                        <div class="cs-btn mt16 lr" *ngIf="!row.check_list_created">
                                             <ion-button (click)="onSaveCheckListHandler()" class="success min w100">SAVE</ion-button>
-                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
+
+
                     </div>
                 </div>
-                
             </div>
-            
         </div>
     </div>
 </ion-content>

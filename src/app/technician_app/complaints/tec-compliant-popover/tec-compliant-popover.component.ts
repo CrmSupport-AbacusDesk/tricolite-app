@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController, NavParams } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DbServiceService } from 'src/app/db-service.service';
+import * as $ from 'jquery';
+
+declare var cordova: any;
+
 
 
 @Component({
@@ -15,6 +19,8 @@ export class TecCompliantPopoverComponent implements OnInit {
   taskNo: any = '';
   taskStatus: any = '';
   routeType: any = '';
+  taskAllData: any ='';
+  taskPopUpData: any;
   
   constructor(public popoverController: PopoverController,
               private router: Router,
@@ -28,6 +34,8 @@ export class TecCompliantPopoverComponent implements OnInit {
         console.log(this.taskStatus);
 
         this.routeType = localStorage.getItem('routeType');
+
+        this.taskPopUpData = JSON.parse(localStorage.getItem('taskPopUpData'));
   }
 
   ngOnInit() {}
@@ -52,31 +60,40 @@ export class TecCompliantPopoverComponent implements OnInit {
     this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
   }
   
-
-  // GoToImagelist() {
-
-  //     this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/image-list/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-  // }
-
   GoToReport(type) {
 
     localStorage.setItem('reportType', type);
     this.router.navigateByUrl('/technicians/'+ localStorage.getItem('routeType') +'/details/dailyreport/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
   }
 
-  GoToServiceReport(){
+  GoToServiceReport(taskReportId) {
 
-    console.log("hello");
+    console.log('hello');
     const inputData = {
-      taskId: this.taskId
+        taskId: this.taskId,
+        taskReportId: taskReportId
     };
 
     this.dbService.onPostRequestHandler(inputData, 'Report/viewMobileServiceReport').subscribe((result) => {
 
       console.log(result);
 
-      // window.open(ReportDocURL, '_system', 'location=yes');
-      
+      const options = {
+          documentSize: 'A4',
+          type: 'share',
+          fileName: 'myFile.pdf'
+      };
+
+      cordova.plugins.pdf.htmlToPDF({
+        data: result,
+        documentSize: "A4",
+        type: "share",
+        fileName: 'my-pdf.pdf'
+        
+    },
+    (sucess) => console.log('sucess: ', sucess),
+    (error) => console.log('error:', error));
+       
 
     });
     

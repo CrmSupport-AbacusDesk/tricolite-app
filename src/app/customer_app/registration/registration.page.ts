@@ -84,6 +84,11 @@ export class RegistrationPage implements OnInit {
 
         let isContactDataFilled = false;
 
+        if(!this.data.district || !this.data.district['district_name']) {
+
+              this.data.district = '';
+        }
+
         if (this.data.contactName || this.data.designation || this.data.contactEmail || this.data.contactMobile) {
             isContactDataFilled = true;
         }
@@ -94,7 +99,7 @@ export class RegistrationPage implements OnInit {
              return;
         }
 
-        if (this.registerForm3.invalid) {
+        if (this.registerForm1.invalid || this.registerForm2.invalid || this.registerForm3.invalid) {
 
             return;
 
@@ -104,6 +109,8 @@ export class RegistrationPage implements OnInit {
 
             if (this.data.contactName && this.data.contactEmail && this.data.designation && this.data.contactMobile) {
 
+                  this.contactData = [];
+
                   this.contactData.push({
                       contactName: this.data.contactName,
                       designation: this.data.designation,
@@ -111,12 +118,7 @@ export class RegistrationPage implements OnInit {
                       contactMobile: this.data.contactMobile
                   });
 
-                  this.data.contactName = '';
-                  this.data.designation = '';
-                  this.data.contactMobile = '';
-                  this.data.contactEmail = '';
                   this.submitted = false;
-
             }
 
             if (this.contactData.length == 0) {
@@ -161,27 +163,25 @@ export class RegistrationPage implements OnInit {
                                 if (result[`status`] == 'error') {
 
                                     this.dbService.onShowAlertMessage('Error', result[`statusMessage`]);
-        
+
                                 } else {
               
                                     const loginData = {
-                                        // loginType: result[`loginData`][`loginType`],
+                                        loginType: result[`loginData`][`loginType`],
                                         loginId: result[`loginData`][`loginId`],
                                         loginName: result[`loginData`][`loginName`],
                                         loginStatus: result[`loginData`][`loginStatus`]
                                     };
+                                    
               
                                     localStorage.setItem('loginData', JSON.stringify(loginData));
               
                                     console.log(JSON.parse(localStorage.getItem('loginData')));
-                                    this.route.navigate(['/customer']);
-              
-                                    setTimeout(() => {
-                                      this.dbService.onShowAlertMessage('Success', 'Registration Successful!');
-                                    this.route.navigate(['/customer']);
+                                    
+                                    this.dbService.onShowAlertMessage('Success', 'Login Request sent, wait till Verification complete.');
 
-              
-                                    }, 1000);
+                                    this.route.navigate(['/customerlogin']);
+                                    
                                 }
                           });
                       }
@@ -209,7 +209,7 @@ export class RegistrationPage implements OnInit {
 
     async onGetDistrictListHandler() {
 
-        this.data.district =  {};
+        this.data.district =  '';
         this.districtList = [];
 
         const inputData = {

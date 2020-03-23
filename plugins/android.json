@@ -1,0 +1,68 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com-badrit-base64": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "27.+",
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-pdf-generator": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-image-picker": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "cordova.plugins.diagnostic": {
+      "ANDROID_SUPPORT_VERSION": "28.+",
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    },
+    "phonegap-plugin-push": {
+      "FCM_VERSION": "11.6.2",
+      "PACKAGE_NAME": "com.abacus.tricolite"
+    }
+  },
+  "dependent_plugins": {}
+}

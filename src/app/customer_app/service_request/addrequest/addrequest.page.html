@@ -24,30 +24,44 @@
                                     
                                     <ion-label>Request Type</ion-label>
                                     
-                                    <ion-select formControlName="requestType" [(ngModel)]="data.requestType" placeholder="Select Type">
+                                    <ion-select formControlName="requestType" [(ngModel)]="data.requestType" (ngModelChange)="onRequestTypeChangeHandler()" placeholder="Select Type">
                                         <ion-select-option value="service_request">Complaint</ion-select-option>
                                         <ion-select-option value="commissioning">Commissioning</ion-select-option>
                                     </ion-select>
                                     
                                 </ion-item>
-                                
-                                <ion-item [ngClass]="submitted && f1.priority.errors && f1.priority.errors.required ? 'has-error' : (f1.priority.errors && !f1.priority.errors.required ? 'has-text' : '')" class="cs-select">
+
+                                <ion-item  *ngIf = "registerForm1.value['requestType']"[ngClass]="submitted && f1.complaintTitle.errors && f1.complaintTitle.errors.required ? 'has-error' : (f1.complaintTitle.errors && !f1.complaintTitle.errors.required ? 'has-text' : '')" class="cs-select">
                                     
-                                    <ion-label>Priority</ion-label>
-                                    <ion-select formControlName="priority" [(ngModel)]="data.priority" placeholder="Select Priority">
-                                        <ion-select-option *ngFor="let row of priorityList" [value]="row.name">{{row.name}}</ion-select-option>
+                                    <ion-label>Complaint Title</ion-label>
+
+                                    <ion-select  *ngIf = "registerForm1.value['requestType']  != 'commissioning'" formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type">
+                                            <ion-select-option *ngFor="let row of complaintTypeList" [value]="row.title">{{row.title}}</ion-select-option>
+                                            
                                     </ion-select>
+
+                                    <ion-select *ngIf = "registerForm1.value['requestType']  != 'service_request'" formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type">
+                                
+                                            <ion-select-option  [value]="commissioning">Commissioning</ion-select-option>
+                                            
+                                    </ion-select>
+                                               
                                     
                                 </ion-item>
 
-                                <ion-item [ngClass]="submitted && f1.complaintTitle.errors && f1.complaintTitle.errors.required ? 'has-error' : (f1.complaintTitle.errors && !f1.complaintTitle.errors.required ? 'has-text' : '')" class="cs-select">
+                                <ion-item  class="cs-select" *ngIf = "registerForm1.value['requestType']  != 'commissioning'">
+                            
+                                    <ion-label>Nature Problem</ion-label>
+                                    <ionic-selectable
+                                    [(ngModel)]="data.natureProblem"
+                                    [items]="natureList"
+                                    itemValueField="nature"
+                                    itemTextField="nature"
+                                    formControlName="natureProblem"
+                                    [canSearch]="true">
                                     
-                                    <ion-label>Complaint Title</ion-label>
-                                    
-                                    <ion-select formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type">
-                                        <ion-select-option *ngFor="let row of complaintTypeList" [value]="row.title">{{row.title}}</ion-select-option>
-                                    </ion-select>
-                                    
+                                </ionic-selectable>
+                                
                                 </ion-item>
                                 
                                 <ion-item [ngClass]="submitted && f1.description.errors && f1.description.errors.required ? 'has-error' : (f1.description.errors && !f1.description.errors.required ? 'has-text' : '')" class="h70">
@@ -77,9 +91,9 @@
                         <div class="common_form inner_page">
                             <div class="heading"><h1>Add Product Information</h1></div>
                             
-                            <ion-item [ngClass]="submitted && f1.fgNo.errors && f1.fgNo.errors.required ? 'has-error' : (f1.fgNo.errors && !f1.fgNo.errors.required ? 'has-text' : '')" class="cs-select">
+                            <ion-item [ngClass]="submitted && f1.fgNo.errors  ? 'has-error' : (f1.fgNo.errors ? 'has-text' : '')" class="cs-select">
                                 
-                                <ion-label>FG No.</ion-label>
+                                <ion-label>FG No</ion-label>
                                 <ionic-selectable
                                 [(ngModel)]="data.fgNo"
                                 [items]="fgList"
@@ -91,25 +105,11 @@
                             </ionic-selectable>
                             
                         </ion-item>
-                        <ion-item  class="cs-select" *ngIf = "registerForm1.value['requestType']  != 'commissioning'">
-                            
-                            <ion-label>Nature Probelm</ion-label>
-                            <ionic-selectable
-                            [(ngModel)]="data.natureProblem"
-                            [items]="natureList"
-                            itemValueField="nature"
-                            itemTextField="nature"
-                            formControlName="natureProblem"
-                            [canSearch]="true">
-                            
-                        </ionic-selectable>
-                        
-                    </ion-item>
+                       
                     
-                    <div class="cs-btn mt16" text-right>
+                    <div [hidden]="data.requestType == 'service_request' && productData.length > 0" class="cs-btn mt16" text-right>
                         <ion-button (click)="onAddProductToListHandler()" class="success min w100">Add to List</ion-button>
                     </div>
-                    
                 </div>
                 
                 <div class="complaints list mt20">
@@ -120,40 +120,10 @@
                                 <div class="f-alpha">{{row.fgNo[0]}}</div>
                                 <div class="names">
                                     <h1>{{row.fgNo}}</h1>
-                                    <ion-text>{{row.model}}, {{row.subModel}}</ion-text>
                                 </div>
                             </div>
                             <div (click)="onDeleteProductHandler(index)" class="cm-right">
                                 <a class="delete"><i class="material-icons">delete_sweep</i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="one-two-one three">
-                            <div class="cs-box">
-                                <div>
-                                    <ion-text>Valid Upto</ion-text>
-                                    <ion-text>{{row.validUpToDate}}</ion-text>
-                                </div>
-                            </div>
-                            <div class="cs-box">
-                                <div>
-                                    <ion-text>Service Request</ion-text>
-                                    <ion-text>{{row.serviceRequestCount}}</ion-text>
-                                </div>
-                            </div>
-                            <div class="cs-box">
-                                <div>
-                                    <ion-text>Responsibility Center</ion-text>
-                                    <ion-text>{{row.serviceCenter}} </ion-text>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-two-one one" *ngIf = "registerForm1.value['requestType']  != 'commissioning'">
-                            <div class="cs-box">
-                                <div>
-                                    <ion-text>Nature Problem</ion-text>
-                                    <ion-text>{{row.natureProblem}}</ion-text>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -161,14 +131,14 @@
                 </div> 
             </div>
 
-            <div class="cs-right mt20">
+            <div [hidden] = "data.requestType == 'commissioning'" class="cs-right mt20">
                 <div class="common_form inner_page">
-                    <div class="heading"><h1>Transaction Type</h1></div>
+                    <div class="heading"><h1>Service Type</h1></div>
                         <div class="dflex">
 
                             <ion-item  class="cs-select">
                                             
-                                <ion-label>Transaction Type</ion-label>
+                                <ion-label>Service Type</ion-label>
                                 <ionic-selectable
                                 [(ngModel)]="data.transaction_type"
                                 [items]="transactionTypeList"
@@ -188,7 +158,6 @@
             <div class="cs-right mt20">
                 <div class="common_form inner_page">
                     <div class="heading"><h1>Engineer Visiting Date & Time</h1></div>
-                    <!-- <ion-text class="mt16 font12">Requires Engineer Visit Date & Time</ion-text> -->
                     <div class="dflex">
                         <ion-item [ngClass]="submitted && f1.visitDate.errors && f1.visitDate.errors.required ? 'has-error' : (f1.visitDate.errors && !f1.visitDate.errors.required ? 'has-text' : '')" class="date-time mb0 mr10">
                             <ion-label>Date</ion-label>
@@ -215,36 +184,7 @@
                     
                 </div>
             </div>
-              <div class="cs-right mt20">
-                <div class="common_form inner_page">
-                    <div class="heading"><h1>Expecting Closing Date & Time</h1></div>
-                    <!-- <ion-text class="mt16 font12">Requires Engineer Visit Date & Time</ion-text> -->
-                    <div class="dflex">
-                        <ion-item [ngClass]="submitted && f1.expectingClosingDate.errors && f1.expectingClosingDate.errors.required ? 'has-error' : (f1.expectingClosingDate.errors && !f1.expectingClosingDate.errors.required ? 'has-text' : '')" class="date-time mb0 mr10">
-                            <ion-label>Date</ion-label>
-                            <ion-datetime formControlName="expectingClosingDate" [(ngModel)]="data.expectingClosingDate" displayFormat="DD-MMM-YYYY" min="{{minDate}}"></ion-datetime>
-                            
-                            <ion-text *ngIf="submitted && f1.expectingClosingDate.errors" class="cs-error">
-                                
-                            </ion-text>
-                            
-                        </ion-item>
-                        
-                        <ion-item [ngClass]="submitted && f1.expectingClosingTime.errors && f1.expectingClosingTime.errors.required ? 'has-error' : (f1.expectingClosingTime.errors && !f1.expectingClosingTime.errors.required ? 'has-text' : '')" class="date-time">
-                            <ion-label>Time</ion-label>
-                            <ion-datetime formControlName="expectingClosingTime" [(ngModel)]="data.expectingClosingTime" displayFormat="h:mm A"></ion-datetime>
-                            
-                            <ion-text *ngIf="submitted && f1.expectingClosingTime.errors" class="cs-error">
-                                
-                            </ion-text>
-                            
-                        </ion-item>
-                        
-                        
-                    </div>
-                    
-                </div>
-            </div>
+              
             <div class="cs-right mt20">
                 <div class="common_form inner_page">
                     <div class="heading"><h1>Contact Person Information</h1></div>

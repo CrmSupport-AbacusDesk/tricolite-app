@@ -183,6 +183,8 @@ export class CustomerprofilePage implements OnInit {
             console.log(result);
             this.dbService.dismissLoader();
             this.profileData = result[`loginData`];
+            console.log(this.profileData);
+            
             this.contactData = result[`contactData`];
       });
   }

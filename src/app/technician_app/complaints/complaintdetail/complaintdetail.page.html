@@ -49,13 +49,13 @@
                         <div class="cs-box">
                             <div>
                                 <ion-text>Service Type</ion-text>
-                                <ion-text>{{taskDetail.taskData.serviceType}}</ion-text>
+                                <ion-text>{{(taskDetail.taskData.transaction_type == 'FOC' || taskDetail.taskData.transaction_type == 'Sale/Warranty' || taskDetail.taskData.transaction_type == 'Commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
                             </div>
                         </div>
                         <div class="cs-box close" style="background: #FFCC00;">
                             <div>
                                 <ion-text>Priority</ion-text>
-                                <ion-text>{{taskDetail.taskData.priority}}</ion-text>
+                                <ion-text>{{taskDetail.taskData.priority ? taskDetail.taskData.priority : 'NA'}}</ion-text>
                             </div>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                     <div class="cnt-person">
                         <div class="css-heading"><h1>Contact Person(S)</h1></div>
                         
-                        <div *ngFor = "let row of taskDetail.taskCustomerData.customerContactData" class="p-info">
+                        <div *ngFor = "let row of taskDetail.taskContactData" class="p-info">
                             <div class="cs-left">
                                 <h1><i class="material-icons">person</i> {{row.name}} ({{row.designation}})</h1>
                                 <ion-text><i class="material-icons">mail</i>{{row.email}}</ion-text>
@@ -167,7 +167,7 @@
                 
             </div>
             
-            <div class="complaints product-list mt20">
+            <div *ngIf="taskDetail.taskAssignData.length > 1" class="complaints product-list mt20">
                 <div class="cs-heading"><h1>Assign Subordinates</h1></div>
                 <div class="figure">
                     

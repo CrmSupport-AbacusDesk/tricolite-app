@@ -440,11 +440,15 @@ ion-button
 
 .lgtype
 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: -10px;
-    margin-right: -10px;
+    
+    ion-radio-group
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
     
     ion-item
     {
@@ -821,7 +825,7 @@ ion-button
         padding: 0px;
         box-shadow: none;
     }
-
+    
     .stars
     {
         ion-button
@@ -2636,13 +2640,27 @@ ion-button
         font-weight: 600;
         margin-top: 15px;
     }
-
+    
     &:first-child
     {
         p
         {
             margin-top: 0px;
         }
+    }
+    
+    &.ion-label-normal
+    {
+        
+        ion-item
+        {
+            ion-label
+            {
+                white-space: normal !important;
+            }
+        }
+        
+        
     }
 }
 
@@ -2817,7 +2835,7 @@ span
         box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.3);
         border: 2px solid #fff;
         border-radius: 10px;
-
+        
         img
         {
             border-radius: 10px;

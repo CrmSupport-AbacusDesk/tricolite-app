@@ -32,6 +32,8 @@ export class AddrequestPage implements OnInit {
   registerForm1: FormGroup;
   minDate: any  = '';
 
+  defaultActiveTitle = 'service_request';
+
   constructor(public popoverController: PopoverController, 
               private route: Router,
               public routeParams: ActivatedRoute,
@@ -40,7 +42,7 @@ export class AddrequestPage implements OnInit {
               public modalController: ModalController,
               public dbService: DbServiceService) {
 
-
+            this.data = {};
             this.registerForm1 = this.formBuilder.group({
 
                 requestType: ['', [Validators.required]],
@@ -52,9 +54,6 @@ export class AddrequestPage implements OnInit {
                 visitDate: ['', [Validators.required]],
                 visitTime: ['', [Validators.required]],
                 contactName: [''],
-                priority: [''],
-                expectingClosingDate:[''],
-                expectingClosingTime:[''],
                 transaction_type:[''],
             });
 
@@ -69,9 +68,6 @@ export class AddrequestPage implements OnInit {
                 visitDate: '',
                 visitTime: '',
                 contactName: '',
-                priority : '',
-                expectingClosingDate :'',
-                expectingClosingTime : '',
                 transaction_type : '',
             };
 
@@ -87,6 +83,24 @@ export class AddrequestPage implements OnInit {
       this.getPriorityListHandler();
       this.getTransactionTypeListHandler();
 
+      // this.defaultActiveTitle = 'service_request';
+  }
+
+  async onRequestTypeChangeHandler(){
+
+
+        if (this.data.requestType == 'commissioning') {
+
+             this.data.transaction_type = {
+                transaction_type: 'commissioning'
+             };
+        } else {
+            this.data.transaction_type = '';
+        }
+
+        console.log(this.data.transaction_type);
+
+        
   }
 
 
@@ -99,34 +113,34 @@ export class AddrequestPage implements OnInit {
                 this.dbService.onShowAlertMessage('Error', 'FG No Reuired');
             }
 
-            console.log(this.data.fg_no);
+            console.log(this.data.fgNo);
 
             return;
 
        } else {
 
+          console.log(this.fgList);
+          console.log(this.data.fgNo);
 
-           const isFGExist = this.fgList.findIndex(row=> row.fgNo == this.data.fgNo.fg_no);
+           const isFGExist = this.productData.findIndex(row => row.fgNo == this.data.fgNo.fg_no);
 
            if (isFGExist === -1) {
 
               this.productData.push({
 
                   fgNo: this.data.fgNo[`fg_no`],
-                  natureProblem: this.data.natureProblem.nature
               });
 
            } else {
 
                this.productData[isFGExist].fgNo = this.data.fgNo[`fg_no`];
-               this.productData[isFGExist].natureProblem = this.data.fgNo[`natureProblem`];
 
            }
-    console.log(this.productData);
+
+           console.log(this.productData);
 
 
            this.data.fgNo = {};
-           this.data.natureProblem = '';
 
            this.dbService.presentToast('Product Update To List!');
        }
@@ -137,13 +151,11 @@ export class AddrequestPage implements OnInit {
      
       this.submitted = true;
 
-      let isCheckListSelected = false;
+      // if (this.productData.length == 0) {
 
-      if (this.productData.length == 0) {
-
-          this.dbService.onShowAlertMessage('Error', 'No Product Information Added!');
-          return;
-      }
+      //     this.dbService.onShowAlertMessage('Error', 'No Product Information Added!');
+      //     return;
+      // }
 
       let isContactSelected = false;
 
@@ -172,9 +184,6 @@ export class AddrequestPage implements OnInit {
           this.registerForm1.get('visitDate').markAsTouched();
           this.registerForm1.get('visitTime').markAsTouched();
           this.registerForm1.get('contactName').markAsTouched();
-          this.registerForm1.get('priority').markAsTouched();
-          this.registerForm1.get('expectingClosingDate').markAsTouched();
-          this.registerForm1.get('expectingClosingTime').markAsTouched();
           this.registerForm1.get('transaction_type').markAsTouched();
 
 
@@ -209,16 +218,7 @@ export class AddrequestPage implements OnInit {
 
                           inputData[`visitDateTime`] = inputData[`visitDate`] + ' ' + inputData[`visitTime`];
 
-
-                          inputData[`expectingClosingDate`] = moment(this.data.visitDate).format('YYYY-MM-DD');
-                          inputData[`expectingClosingTime`] = moment(this.data.visitTime).format('hh:mm');
-
-
-
-                          inputData[`expectingClosingTime`] = inputData[`expectingClosingDate`] + ' ' + inputData[`expectingClosingTime`];
-
                           inputData[`transactionType`] = this.data.transaction_type;
-                          inputData[`priority`] = this.data.priority;
 
                           this.dbService.presentLoader();
 
@@ -229,7 +229,7 @@ export class AddrequestPage implements OnInit {
                                 console.log(result);
                                 this.dbService.dismissLoader();
 
-                                const routeURL = '/customer/home';
+                                const routeURL = '/customer/request';
                                 this.route.navigate([routeURL]);
 
                                 this.dbService.presentToast('Request Saved Successfully!');
@@ -274,6 +274,8 @@ export class AddrequestPage implements OnInit {
     this.dbService.onPostRequestHandler(inputData, 'task/getTransactionTypeList').subscribe((result) => {
         console.log(result);
         this.transactionTypeList = result[`transactionTypeList`];
+
+
         console.log(this.transactionTypeList);
         
     });
@@ -289,9 +291,7 @@ export class AddrequestPage implements OnInit {
         console.log(result);
         this.priorityList = result[`priorityList`];
         console.log(this.priorityList);
-        
     });
-
   }
 
 
@@ -301,7 +301,7 @@ export class AddrequestPage implements OnInit {
 
       this.dbService.onPostRequestHandler(inputData, 'customer/getProjectList').subscribe((result) => {
             console.log(result);
-            this.projectList = result[`projectList`];
+            this.projectList = result[`projectContactList`];
       });
   }
 
@@ -370,6 +370,11 @@ export class AddrequestPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  ionViewWillEnter() {
+
+      this.data = {};
   }
 
 

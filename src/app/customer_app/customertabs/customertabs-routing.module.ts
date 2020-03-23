@@ -46,15 +46,14 @@ const routes: Routes = [
         loadChildren: () => import('../service_request/request/request.module').then(m => m.RequestPageModule)
       },
       {
-        path: 'request/detail',
+        path: 'request/detail/:taskId',
         loadChildren: () => import('../service_request/request-details/request-details.module').then(m => m.RequestDetailsPageModule)
       },
 
       {
-        path: 'request/spareparts',
-        loadChildren: () => import('../service_request/sparepart/sparepart.module').then(m => m.SparepartPageModule)
+        path: 'request/spareparts/:taskId/:taskNo/:taskStatus',
+        loadChildren: () => import('../service_request/com-spareparts/com-spareparts.module').then(m => m.ComSparepartsPageModule)
       },
-
 
       {
         path: 'request/addrequest',

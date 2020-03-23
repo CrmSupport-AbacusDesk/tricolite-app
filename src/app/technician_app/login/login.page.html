@@ -45,6 +45,7 @@
                                         <path id="Path_2" data-name="Path 2" d="M10.844,20.316a6.871,6.871,0,0,0,6.422-9.3l6.565-6.566a.5.5,0,0,0,.147-.354V.5a.5.5,0,0,0-.5-.5H20.517a.5.5,0,0,0-.354.146l-1,1a.5.5,0,0,0-.147.354V2.722H17.8a.5.5,0,0,0-.5.5v.49H16.8a.5.5,0,0,0-.5.5V5.29H15.227a.5.5,0,0,0-.354.147L13.281,7.028a6.867,6.867,0,1,0-2.437,13.287Zm0-12.732a5.821,5.821,0,0,1,2.355.492.5.5,0,0,0,.55-.1l0,0L15.434,6.29H16.8a.5.5,0,0,0,.5-.5V4.713h.49a.5.5,0,0,0,.5-.5v-.49h1.224a.5.5,0,0,0,.5-.5V1.7l.7-.7h2.253v.707L16.861,7.824a.45.45,0,1,0,.637.637l5.479-5.479v.9L16.323,10.54l0,0a.5.5,0,0,0-.1.55,5.867,5.867,0,1,1-5.374-3.511Z" transform="translate(-3.978)" fill="rgba(0,0,0,0.3)"/>
                                     </g>
                                 </g>
+                                
                                 <g id="Group_6" data-name="Group 6" transform="translate(2.902 13.665)">
                                     <g id="Group_5" data-name="Group 5" transform="translate(0)">
                                         <path id="Path_3" data-name="Path 3" d="M342.275,76.893a1.874,1.874,0,1,0-1.874-1.874A1.876,1.876,0,0,0,342.275,76.893Zm0-2.748a.874.874,0,1,1-.874.874A.875.875,0,0,1,342.275,74.145Z" transform="translate(-340.401 -73.144)" fill="rgba(0,0,0,0.3)"/>
@@ -52,7 +53,7 @@
                                 </g>
                             </svg>
                             <ion-label position="floating">password</ion-label>
-                            <ion-input formControlName="password" [(ngModel)] = "data.password" (keyup.enter) = "onSubmitLoginHandler()"></ion-input>
+                            <ion-input type="password" formControlName="password" [(ngModel)] = "data.password" (keyup.enter) = "onSubmitLoginHandler()"></ion-input>
 
                             <ion-text *ngIf="submitted && f.password.errors" class="cs-error">
 

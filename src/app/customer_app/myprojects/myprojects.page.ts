@@ -75,7 +75,9 @@ export class MyprojectsPage implements OnInit {
            }, 2000);
         }
         
-        let resultData = result[`projectList`];
+        let resultData = result[`projectData`];
+        console.log(resultData);
+        
         
         if (!resultData || resultData == null || resultData.length == 0) {
           resultData = [];

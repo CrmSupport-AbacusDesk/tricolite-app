@@ -24,11 +24,12 @@ class Login extends MY_Controller
 
 					if($inputData['loginType'] == 'Customer') {
 
-                          $this->db->select('trc_customer.*');
-						  $this->db->from('trc_customer');
-						  $this->db->where('trc_customer.del', '0');
-						  $this->db->where('trc_customer.username', $inputData['userName']);
-						  $this->db->where('trc_customer.password', $inputData['password']);
+                          $this->db->select('trc_customer_login_access.*');
+						  $this->db->from('trc_customer_login_access');
+						  $this->db->where('trc_customer_login_access.del', '0');
+						  $this->db->where('trc_customer_login_access.username', $inputData['userName']);
+						  $this->db->where('trc_customer_login_access.password', $inputData['password']);
+						  $this->db->where('trc_customer_login_access.status', 'Approved');
 					      $resultData = $this->db->get()->row_array();
 
 					      $loginName = $resultData['company_name'];
@@ -90,71 +91,72 @@ class Login extends MY_Controller
 
 	public function onValidateLoginById() {
 
-	        $inputData = json_decode(file_get_contents('php://input'), true);
-		    
+			$inputData = json_decode(file_get_contents('php://input'), true);
+			
 			if(isset($inputData['loginType']) && isset($inputData['loginId']) &&  $inputData['loginType'] &&  $inputData['loginId'])  {
 
+				 
 					if($inputData['loginType'] == 'Customer') {
 
-                          $this->db->select('trc_customer.*');
-						  $this->db->from('trc_customer');
-						  $this->db->where('trc_customer.del', '0');
-						  $this->db->where('trc_customer.id', $inputData['loginId']);
-					      $resultData = $this->db->get()->row_array();
+						$this->db->select('trc_customer_login_access.*');
+						$this->db->from('trc_customer_login_access');
+						$this->db->where('trc_customer_login_access.del', '0');
+						$this->db->where('trc_customer_login_access.id', $inputData['loginId']);
+						$resultData = $this->db->get()->row_array();
 
-					      $loginName = $resultData['company_name'];
-				          $loginType = 'Customer';
-				          $status = $resultData['status'];
+						$loginName = $resultData['company_name'];
+						$loginType = 'Customer';
+						$status = $resultData['status'];
 					}
 
 					if($inputData['loginType'] == 'Technician') {
-                        
 
-                          $this->db->select('trc_user.*');
-						  $this->db->from('trc_user');
-						  $this->db->where('trc_user.del', '0');
-						  $this->db->where('trc_user.access_level', '5');
-						  $this->db->where('trc_user.id', $inputData['loginId']);
-					      $resultData = $this->db->get()->row_array();
+						$this->db->select('trc_user.*');
+						$this->db->from('trc_user');
+						$this->db->where('trc_user.del', '0');
+						$this->db->where('trc_user.access_level', '5');
+						$this->db->where('trc_user.id', $inputData['loginId']);
+						$resultData = $this->db->get()->row_array();
 
-					      $loginName = $resultData['name'];
-				          $loginType = 'Technician';
-				          $status = 'Active';
+						$loginName = $resultData['name'];
+						$loginType = 'Technician';
+						$status = 'Active';
 					}
 
 
-			        if(isset($resultData['id']) && $resultData['id']) {
+					if(isset($resultData['id']) && $resultData['id']) {
 
-			      	    $resultData['loginType'] = $inputData['loginType'];
+							$resultData['loginType'] = $inputData['loginType'];
 
-			      	    $outputData = array(
+							$outputData = array(
 
-			      	   	  'status' => 'success',
-			      	   	  'statusMessage' => '',
-			      	   	  'loginData' => $resultData,
-			      	   	  'loginId' => $resultData['id'],
-			      	   	  'loginName' => $loginName,
-	                      'loginType' => $loginType,
-	                      'loginStatus' => $status
-			      	    );
+								'status' => 'success',
+								'statusMessage' => '',
+								'loginData' => $resultData,
+								'loginId' => $resultData['id'],
+								'loginName' => $loginName,
+								'loginType' => $loginType,
+								'loginStatus' => $status
+							);
 
-			      } else {
+					} else {
 
-                        $outputData = array(
+						$outputData = array(
 
-			      	   	  'status' => 'error',
-			      	   	  'statusMessage' => 'Invalid Username and Password!',
-			      	   	  'loginData' => [],
-			      	   	 
-			      	   );
-			      }
+								'status' => 'error',
+								'statusMessage' => 'Invalid Username and Password!',
+								'loginData' => [],
+								
+						);
+					}
 
-			      echo json_encode($outputData);
 
-	        } else {
+					echo json_encode($outputData);
 
-                 $this->onReturnErrorMessage();
-	        }
+			} else {
+
+					$this->onReturnErrorMessage();
+			}
 	}
 
 
@@ -274,61 +276,178 @@ class Login extends MY_Controller
           
 		$inputData = json_decode(file_get_contents('php://input'), true);
 
-		// print_r($inputData); exit;
-		
 		if(isset($inputData['companyName']) && $inputData['companyName'] )  
 		{
 
-			$customerData = array(
-					
-				'date_created' => $this->dateData['dateCreated'],
-				'created_by' => $_SESSION['uid'],
-				'created_by_name' => $_SESSION['uname'],
-				'created_by_type' => $_SESSION['utype'],
-				'company_name' => $inputData['companyName'],
-				'email' => $inputData['email'],
-				'landline_no' => $inputData['landlineNo'],
-				'username' => $inputData['username'],
-				'password' => $inputData['password'],
-				'project_name' => $inputData['projectName'],
-				'project_street' => $inputData['street'],
-				'project_state' => $inputData['state']['state_name'],
-				'project_district' => $inputData['district']['district_name'],
-				'project_city' => $inputData['city'],
-				'project_pincode' => $inputData['pincode'],
-				'contact_person_name' => $inputData['contactData'][0]['contactName'],
-				'contact_designation' => $inputData['contactData'][0]['designation'],
-				'contact_email' => $inputData['contactData'][0]['contactEmail'],
-				'contact_mobile' =>$inputData['contactData'][0]['contactMobile'],
-				'status' => 'Pending',
-				'last_updated_by' => $_SESSION['uid'],
-				'last_updated_by_name' => $_SESSION['uname'],
-				'last_updated_by_type' => $_SESSION['utype']
+			$this->db->select('trc_customer_project_contact.*');
+			$this->db->from('trc_customer_project_contact');
+			$this->db->where('trc_customer_project_contact.del', '0');
+			$this->db->where('trc_customer_project_contact.mobile', $inputData['contactData'][0]['contactMobile']);
 
-			);
+			$mobileExistProject = $this->db->get()->row_array();
 
-			if($this->db->insert('trc_customer_login_access', $customerData)) {
-
-				$technicianId = $this->db->insert_id();
-
-				$status = 'success';
-				$statusMessage = '';
-
-			}else{
-
-				$status = 'error';
-				$statusMessage = $this->db->error();
-				$statusMessage = str_replace("Duplicate entry","Already Exist In System,", $statusMessage['message']);
+			$this->db->select('trc_customer_login_access.id');
+			$this->db->from('trc_customer_login_access');
+			$this->db->where('trc_customer_login_access.del', '0');
+			$this->db->where('trc_customer_login_access.username', $inputData['username']);
 			
+			$userNameData = $this->db->get()->row_array();
+
+
+			$this->db->select('trc_customer_login_access.*');
+			$this->db->from('trc_customer_login_access');
+			$this->db->where('trc_customer_login_access.del', '0');
+			$this->db->where('trc_customer_login_access.contact_mobile', $inputData['contactData'][0]['contactMobile']);
+			
+			$mobileExist = $this->db->get()->row_array();
+
+		    $loginData = array();
+
+			if((isset($mobileExist['id']) && $mobileExist['id']) || (isset($mobileExistProject['id']) && $mobileExistProject['id'])) {
+
+
+				if($mobileExist['status'] == 'Pending'){
+
+					$status = 'error';
+					$statusMessage = 'Account Verification with this mobile already under process.';
+
+				}
+				if($mobileExist['status'] == 'Approved'){
+
+
+					$status = 'error';
+					$statusMessage ='Account with this mobile has Already Active';
+
+				}
+
+				if($mobileExist['status'] == 'Reject') {
+
+					$status = 'error';
+					$statusMessage = 'Account with this mobile has rejected.';
+
+				}
+
+				if($mobileExist['status'] == '') {
+
+					$status = 'error';
+					$statusMessage = 'Account with this mobile has Already Active, Please Login.';
+
+				}
+
+			} else if(isset($userNameData['id']) && $userNameData['id']) {
+
+				    $status  = 'error';
+				    $statusMessage = 'Username not available';
+
+			}  else {
+
+				$customerData = array(
+					
+					'date_created' => $this->dateData['dateCreated'],
+					'created_by' => $_SESSION['uid'],
+					'created_by_name' => $_SESSION['uname'],
+					'created_by_type' => $_SESSION['utype'],
+					'company_name' => $inputData['companyName'],
+					'email' => $inputData['email'],
+					'landline_no' => isset($inputData['landlineNo']) && $inputData['landlineNo'] ? $inputData['landlineNo'] : NULL,
+					'username' => $inputData['username'],
+					'password' => $inputData['password'],
+					'project_name' => $inputData['projectName'],
+					'project_street' => isset($inputData['street']) && $inputData['street'] ? $inputData['street'] : '',
+					'project_state' => $inputData['state']['state_name'],
+					'project_district' => isset($inputData['district']['district_name']) && $inputData['district']['district_name'] ? $inputData['district']['district_name'] : '',
+					'project_city' => $inputData['city'],
+					'project_pincode' => $inputData['pincode'],
+					'contact_person_name' => $inputData['contactData'][0]['contactName'],
+					'contact_designation' => $inputData['contactData'][0]['designation'],
+					'contact_email' => $inputData['contactData'][0]['contactEmail'],
+					'contact_mobile' =>$inputData['contactData'][0]['contactMobile'],
+					'status' => 'Pending',
+					'last_updated_by' => $_SESSION['uid'],
+					'last_updated_by_name' => $_SESSION['uname'],
+					'last_updated_by_type' => $_SESSION['utype']
+	
+				);
+	
+				if($this->db->insert('trc_customer_login_access', $customerData)) {
+	
+					$customerId = $this->db->insert_id();
+	
+					$this->db->select('trc_customer_login_access.*');
+					$this->db->from('trc_customer_login_access');
+					$this->db->where('trc_customer_login_access.del', '0');
+					$this->db->where('trc_customer_login_access.id', $customerId);
+					$resultData = $this->db->get()->row_array();
+	
+					$loginData = $resultData;
+	
+					$loginData['loginId'] = $resultData['id'];
+					$loginData['loginType'] = 'Customer';
+					$loginData['loginName'] = $resultData['company_name'];
+					$loginData['loginStatus'] = $resultData['status'];
+	
+				   $status = 'success';
+				   $statusMessage = '';
+				   $this->sendMsgWhenRegistered($inputData['contactData'][0]['contactMobile']);
+	
+			   }else{
+	
+				   $status = 'error';
+				   $statusMessage = $this->db->error();
+				   $statusMessage = str_replace("Duplicate entry","Already Exist In System,", $statusMessage['message']);
+	
+				   $loginData = array();
+			   
+			   }
+	
 			}
 
-			$result = array('status' => $status, 'statusMessage' => $statusMessage);
+			$result = array('loginData' => $loginData, 'status' => $status, 'statusMessage' => $statusMessage);
 			echo json_encode($result);
 
 		}else {
 
 			$this->db->onReturnErrorMessage();
 		}
+	}
+
+	public function sendMsgWhenRegistered($cust_mobile) {
+
+		$msg ='Thanks For the Registration, Your Account Approval is in Under Process!';
+
+        $msg =urlencode( $msg );
+
+        
+         $ch = curl_init();
+        
+       
+        curl_setopt($ch,CURLOPT_URL, 'https://www.smsjust.com/blank/sms/user/urlsms.php?username=tricolite12&pass=w5!7XB@r&senderid=CUSAIX&dest_mobileno=9560882994&msgtype=UNI&message='.$msg.'&response=Y');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+            
+        $send_otp = curl_exec($ch);
+       
+        curl_close($ch);
+
+
+
+
+
+        $msg1 ='Your acoount have been Registered Successfully.We will soon verify it.';
+
+        $msg1 =urlencode( $msg1 );
+
+        
+         $ch1 = curl_init();
+        
+       
+        curl_setopt($ch1,CURLOPT_URL, 'https://www.smsjust.com/blank/sms/user/urlsms.php?username=tricolite12&pass=w5!7XB@r&senderid=CUSAIX&dest_mobileno='.$cust_mobile.'&msgtype=UNI&message='.$msg1.'&response=Y');
+        curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch1, CURLOPT_POST, 1);
+            
+        $send_otp = curl_exec($ch1);
+       
+        curl_close($ch1);
 	}
 
 
@@ -568,23 +687,25 @@ class Login extends MY_Controller
 
     public function onGetLoginUserCompleteDetail() {
 
-          $inputData = json_decode(file_get_contents('php://input'), true);
+		  $inputData = json_decode(file_get_contents('php://input'), true);
+		  
+		//   print_r($inputData); die;
 
     	  if(isset($inputData['loginType']) && isset($inputData['loginId']) && $inputData['loginType'] && $inputData['loginId']) {
 
     	  	    if($inputData['loginType'] == 'Customer') {
 
-                      $this->db->select('trc_customer.*');
-					  $this->db->from('trc_customer');
-					  $this->db->where('trc_customer.del', '0');
-					  $this->db->where('trc_customer.id', $inputData['loginId']);
+                      $this->db->select('trc_customer_login_access.*');
+					  $this->db->from('trc_customer_login_access');
+					  $this->db->where('trc_customer_login_access.del', '0');
+					  $this->db->where('trc_customer_login_access.id', $inputData['loginId']);
 					  $loginData = $this->db->get()->row_array();
 
 
-					  $this->db->select('trc_customer_contact.*');
-					  $this->db->from('trc_customer_contact');
-					  $this->db->where('trc_customer_contact.del', '0');
-					  $this->db->where('trc_customer_contact.customer_id', $inputData['loginId']);
+					  $this->db->select('trc_customer_project_contact.*');
+					  $this->db->from('trc_customer_project_contact');
+					  $this->db->where('trc_customer_project_contact.del', '0');
+					  $this->db->where('trc_customer_project_contact.project_id', $inputData['loginId']);
 					  $contactData = $this->db->get()->result_array();
 
 					  $result = array(

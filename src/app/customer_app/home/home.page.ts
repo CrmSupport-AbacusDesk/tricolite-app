@@ -40,6 +40,8 @@ export class HomePage implements OnInit {
           console.log(result);
           
           this.dashboardData = result;
+
+          console.log(this.dashboardData);
         });
     }
     
