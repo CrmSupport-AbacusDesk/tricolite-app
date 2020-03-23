@@ -190,21 +190,35 @@ export class ComDailyreportPage implements OnInit {
 
      
       let count = 0;
-      for (let i = 0; i < this.fgWisecheckListCategory.length; i++) {
+      for (let i = 0; i < this.fgWisecheckList.length; i++) {
 
-            for (let j = 0; j < this.fgWisecheckListCategory[i].checkListData.length; j++) {
+            let isFgAnyCategoryChecked = false;
 
-                  if (this.fgWisecheckListCategory[i].checkListData[j].checked) {
-                    console.log(this.fgWisecheckListCategory[i].checkListData.length);
-                    
+            for (let j = 0; j < this.fgWisecheckList[i].newCheckListCategory.length; j++) { 
 
-                      count++;
+              for (let k = 0; k < this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'].length; k++) { 
+            
+
+                  if (this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'][k].checked) {
+                    console.log(this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'].length);
+
+                      isFgAnyCategoryChecked = true;
                   }
+
+                }
+            }
+
+            if(isFgAnyCategoryChecked===true) {
+                count++;
             }
       }
 
+      console.log(count);
+      console.log(this.fgWisecheckList);
+      
+      
 
-      if (count != this.fgWisecheckListCategory.length) {
+      if (count != this.fgWisecheckList.length) {
 
            if (count == 0) {
 
