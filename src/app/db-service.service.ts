@@ -19,8 +19,7 @@ export class DbServiceService {
     public userDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/User_Doc/';
     public ReportDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Report_Doc/';
     public upload_url: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
-
-    
+  
     public backButton = 0;
     
     constructor(public http: HttpClient,
