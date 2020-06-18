@@ -47,14 +47,14 @@
                                         </ion-item>
 
                                         <ion-item [ngClass]="submitted && f1.landlineNo.errors && f1.landlineNo.errors.required ? 'has-error' : (f1.landlineNo.errors && !f1.landlineNo.errors.required ? 'has-text' : '')">
-                                            <ion-label position="floating">Landline No.</ion-label>
-                                            <ion-input type="tel" formControlName="landlineNo" [(ngModel)]="data.landlineNo"   minlength = "6" maxlength="13" (keypress)="dbService.numberOnly($event)" autocomplete="nope"></ion-input>
+                                            <ion-label position="floating">Mobile</ion-label>
+                                            <ion-input type="tel" formControlName="landlineNo" [(ngModel)]="data.landlineNo"   minlength = "10" maxlength="10" (keypress)="dbService.numberOnly($event)" autocomplete="nope"></ion-input>
 
                                             <ion-text *ngIf="submitted && f1.landlineNo.errors" class="cs-error">
     
-                                                <span *ngIf="f1.landlineNo.errors.minlength">Minimum 5 Digit Required</span>
+                                                <span *ngIf="f1.landlineNo.errors.minlength">Minimum 10 Digit Required</span>
     
-                                                <span *ngIf="f1.landlineNo.errors.maxlength">Maximum 30 Digit Required</span>
+                                                <span *ngIf="f1.landlineNo.errors.maxlength">Maximum 10 Digit Required</span>
                     
                                             </ion-text>
 

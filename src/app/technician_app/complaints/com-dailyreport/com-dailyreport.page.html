@@ -13,7 +13,7 @@
             <div class="cs-ion-hf"></div>
         </div>
         
-        <div class="cs-ion-content pt0">
+        <div class="cs-ion-content pt0" padding>
             <div class="custome-filter dlform">
                 <div class="fiter-data">
                     <div class="cs-left">
@@ -96,14 +96,14 @@
                                         <ion-label position="floating">Work Detail</ion-label>
                                         <ion-textarea formControlName="workDetail" [(ngModel)]="data.workDetail"></ion-textarea>
                                         <ion-text *ngIf="submitted && f1.workDetail.errors" class="cs-error">
-                                            <span *ngIf="f1.workDetail.errors.minlength">Minimum 5 Letter Required</span>
+                                            <span *ngIf="f1.workDetail.errors.minlength">Minimum 3 Letter Required</span>
                                         </ion-text>
                                     </ion-item>
                                     <ion-item [ngClass]="submitted && f1.causeFailure.errors && f1.causeFailure.errors.required ? 'has-error' : (f1.causeFailure.errors && !f1.causeFailure.errors.required ? 'has-text' : '')" class="h70">
                                         <ion-label position="floating">Cause Of Failure</ion-label>
                                         <ion-textarea formControlName="causeFailure" [(ngModel)]="data.causeFailure">
                                             <ion-text *ngIf="submitted && f1.causeFailure.errors" class="cs-error">
-                                                <span *ngIf="f1.causeFailure.errors.minlength">Minimum 5 Letter Required</span>
+                                                <span *ngIf="f1.causeFailure.errors.minlength">Minimum 3 Letter Required</span>
                                             </ion-text>
                                         </ion-textarea>
                                     </ion-item>
@@ -111,7 +111,7 @@
                                         <ion-label position="floating">Suggestion</ion-label>
                                         <ion-textarea formControlName="suggestion" [(ngModel)]="data.suggestion"></ion-textarea>
                                         <ion-text *ngIf="submitted && f1.suggestion.errors" class="cs-error">time
-                                            <span *ngIf="f1.suggestion.errors.minlength">Minimum 5 Letter Required</span>
+                                            <span *ngIf="f1.suggestion.errors.minlength">Minimum 3 Letter Required</span>
                                         </ion-text>
                                     </ion-item>
                                 </div>
@@ -142,7 +142,7 @@
                                         <ion-textarea formControlName="reasonNotCloser" [(ngModel)]="data.reasonNotCloser" placeholder="Reason For Not Closer" *ngIf = "registerForm1.value['workStatus']  != 'Close'"></ion-textarea>
                                         <ion-textarea formControlName="reasonNotCloser" [(ngModel)]="data.reasonNotCloser" placeholder="Remark" *ngIf = "registerForm1.value['workStatus']  == 'Close'"></ion-textarea>
                                         <ion-text *ngIf="submitted && f1.reasonNotCloser.errors" class="cs-error">
-                                            <span *ngIf="f1.reasonNotCloser.errors.minlength">Minimum 5 Letter Required</span>
+                                            <span *ngIf="f1.reasonNotCloser.errors.minlength">Minimum 3 Letter Required</span>
                                         </ion-text>
                                     </ion-item>
                                 </div>
@@ -165,7 +165,7 @@
                                         
                                         <ion-text *ngIf="submitted && f3.actionPlanned.errors" class="cs-error">
                                             
-                                            <span *ngIf="f3.actionPlanned.errors.minlength">Minimum 5 Letter Required</span>
+                                            <span *ngIf="f3.actionPlanned.errors.minlength">Minimum 3 Letter Required</span>
                                             
                                         </ion-text>
                                     </ion-item>
@@ -186,7 +186,7 @@
                                         <ion-input formControlName="otherContactName" [(ngModel)]="data.otherContactName"></ion-input>
 
                                         <ion-text *ngIf="submitted && f3.otherContactName.errors" class="cs-error">
-                                            <span *ngIf="f3.otherContactName.errors.minlength">Minimum 5 Letter Required</span>
+                                            <span *ngIf="f3.otherContactName.errors.minlength">Minimum 3 Letter Required</span>
                                         </ion-text>
 
                                     </ion-item>
@@ -224,7 +224,7 @@
                                     <ion-item [ngClass]="submitted && f4.remark.errors && f4.remark.errors.required ? 'has-error' : (f4.remark.errors && !f4.remark.errors.required ? 'has-text' : '')" class="h70">
                                         <ion-textarea formControlName="remark" [(ngModel)]="data.remark" placeholder="Customer Remark"></ion-textarea>
                                         <ion-text *ngIf="submitted && f4.remark.errors" class="cs-error">
-                                            <span *ngIf="f4.remark.errors.minlength">Minimum 5 Letter Required</span>
+                                            <span *ngIf="f4.remark.errors.minlength">Minimum 3 Letter Required</span>
                                         </ion-text>
                                     </ion-item>
                                     
@@ -243,7 +243,7 @@
                                         </div>
                                     </div>
                                     
-                                    <ion-item *ngIf="selectedRating">
+                                    <ion-item>
                                         <ion-label position="floating">Add Signature</ion-label>
                                         <ion-input (click)="presentModal()"></ion-input>
                                         <div (click)="presentModal()"><img [src]="signatureImage" *ngIf="signatureImage" /></div>
@@ -281,7 +281,7 @@
                                         
                                         <ion-textarea formControlName="expenseDetail" [(ngModel)]="data.expenseDetail" placeholder="Engineer Expense Detail"></ion-textarea>
                                         <ion-text *ngIf="submitted && f2.expenseDetail.errors" class="cs-error">
-                                            <span *ngIf="f2.expenseDetail.errors.minlength">Minimum 5 Letter Required</span>
+                                            <span *ngIf="f2.expenseDetail.errors.minlength">Minimum 3 Letter Required</span>
                                         </ion-text>
                                     </ion-item>
                                     

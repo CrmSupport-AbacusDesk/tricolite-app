@@ -56,6 +56,7 @@ export class ComDailyreportPage implements OnInit {
     registerForm4: FormGroup;
     
     constructor(public popoverController: PopoverController,private route: Router,public routeParams: ActivatedRoute,private formBuilder: FormBuilder,public alertCtrl: AlertController,private location: Location,public modalController: ModalController,public dbService:DbServiceService,) {
+        
         this.reportType = localStorage.getItem('reportType');
         this.routeTitleForView = localStorage.getItem('routeTitleForView');
         
@@ -90,34 +91,34 @@ export class ComDailyreportPage implements OnInit {
         
         this.registerForm1 = this.formBuilder.group({
             
-            workDetail: ['', [Validators.required, Validators.minLength(5)]],
-            suggestion: ['', [Validators.minLength(5)]],
-            causeFailure: ['', [Validators.minLength(5)]],
+            workDetail: ['', [Validators.required, Validators.minLength(3)]],
+            suggestion: ['', [Validators.minLength(3)]],
+            causeFailure: ['', [Validators.minLength(3)]],
             workStatus: ['', [Validators.required]],
             nextFollowUpDate: [''],
             nextFollowUpTime: [''],
-            reasonNotCloser: ['', [Validators.minLength(5)]],
+            reasonNotCloser: ['', [Validators.minLength(3)]],
         });
         
         this.registerForm2 = this.formBuilder.group({
             
             travelExpense: ['', [Validators.required, Validators.minLength(2)]],
             otherExpense: ['', [Validators.minLength(2)]],
-            expenseDetail: ['', [Validators.minLength(5)]],
+            expenseDetail: ['', [Validators.minLength(3)]],
         });
         
         this.registerForm3 = this.formBuilder.group({
             
-            actionPlanned: ['', [Validators.minLength(5)]],
+            actionPlanned: ['', [Validators.minLength(3)]],
             contactName: [''],
-            otherContactName: ['', [Validators.minLength(4)]],
+            otherContactName: ['', [Validators.minLength(3)]],
             mobile: ['', [Validators.minLength(10), Validators.maxLength(10)]],
             email: ['', [Validators.email]],
         });
         
         this.registerForm4 = this.formBuilder.group({
             
-            remark: ['', [Validators.required, Validators.minLength(5)]]
+            remark: ['', [Validators.required, Validators.minLength(3)]]
         });
         
         this.data = {
@@ -136,6 +137,7 @@ export class ComDailyreportPage implements OnInit {
             email : '',
             remark: ''
         };
+
         this.minDate = moment().format('YYYY-MM-DD');
     }
     
@@ -286,11 +288,6 @@ export class ComDailyreportPage implements OnInit {
         if (!this.selectedRating) {
             
             this.dbService.onShowAlertMessage('Error', 'Rating Required!');
-            return;
-        }
-
-        if (!this.signatureImage) {
-            this.dbService.onShowAlertMessage('Error', 'Signature Required!');
             return;
         }
         
@@ -517,11 +514,11 @@ export class ComDailyreportPage implements OnInit {
         
         if (this.data.workStatus == 'Complete') {
             
-            reasonNotCloserControl.setValidators([Validators.minLength(5)]);
+            reasonNotCloserControl.setValidators([Validators.minLength(3)]);
             
         } else {
             
-            reasonNotCloserControl.setValidators([Validators.required, Validators.minLength(5)]);
+            reasonNotCloserControl.setValidators([Validators.required, Validators.minLength(3)]);
         }
         
         reasonNotCloserControl.updateValueAndValidity();

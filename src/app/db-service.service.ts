@@ -19,7 +19,15 @@ export class DbServiceService {
     public userDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/User_Doc/';
     public ReportDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Report_Doc/';
     public upload_url: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
-  
+
+    //  public serverURL: any = 'http://localhost/tricolite/api/index.php/app/';
+    // public uploadURL: any = 'http://localhost/tricolite/api/uploads/Task_Doc/';
+    // public masterDocURL: any = 'http://localhost/tricolite/api/uploads/Master_Doc/';
+    // public customerDocURL: any = 'http://localhost/tricolite/api/uploads/Customer_Doc/';
+    // public userDocURL: any = 'http://localhost/tricolite/api/uploads/User_Doc/';
+    // public ReportDocURL: any = 'http://localhost/tricolite/api/uploads/Report_Doc/';
+
+    
     public backButton = 0;
     
     constructor(public http: HttpClient,

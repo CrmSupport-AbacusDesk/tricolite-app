@@ -47,7 +47,7 @@ export class AddrequestPage implements OnInit {
 
                 requestType: ['', [Validators.required]],
                 complaintTitle: ['', [Validators.required]],
-                description: ['', [Validators.minLength(5)]],
+                description: ['', [Validators.required]],
                 project: ['', [Validators.required]],
                 fgNo: [''],
                 natureProblem: [''],
@@ -94,13 +94,14 @@ export class AddrequestPage implements OnInit {
              this.data.transaction_type = {
                 transaction_type: 'commissioning'
              };
+
         } else {
             this.data.transaction_type = '';
         }
 
         console.log(this.data.transaction_type);
 
-        
+        this.data.complaintTitle = '';
   }
 
 
@@ -151,11 +152,17 @@ export class AddrequestPage implements OnInit {
      
       this.submitted = true;
 
-      // if (this.productData.length == 0) {
+      if (this.productData.length == 0) {
 
-      //     this.dbService.onShowAlertMessage('Error', 'No Product Information Added!');
-      //     return;
-      // }
+          this.dbService.onShowAlertMessage('Error', 'No Product Information Added!');
+          return;
+      }
+
+      if (this.data.requestType == 'service_request' && (!this.data.transaction_type || !this.data.transaction_type[`transaction_type`])) {
+
+          this.dbService.onShowAlertMessage('Error', 'Service Type Required!');
+          return;
+      }
 
       let isContactSelected = false;
 
@@ -310,7 +317,6 @@ export class AddrequestPage implements OnInit {
 
     this.fgList = [];
     this.data.fgNo = {};
-    this.data.natureProblem = '';
     this.productData = [];
 
     const inputData = {};

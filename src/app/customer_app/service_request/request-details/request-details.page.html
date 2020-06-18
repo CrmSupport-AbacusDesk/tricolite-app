@@ -114,7 +114,15 @@
                                 <ion-text>{{fgData.fg_no}} </ion-text>
                             </div>
                         </div>
+
+                        <div *ngIf="fgData.nature_problem" class="cs-box">
+                            <div>
+                                <ion-text>Nature</ion-text>
+                                <ion-text>{{fgData.nature_problem}} </ion-text>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
             

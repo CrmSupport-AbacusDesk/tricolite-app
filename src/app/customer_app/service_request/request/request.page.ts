@@ -31,7 +31,7 @@ export class RequestPage implements OnInit {
   isRequestInProcess: any = true;
 
   currentPage: any = 1;
-  pageSize = 2;
+  pageSize = 5;
   
   constructor(private route: Router,
               private formBuilder: FormBuilder,
@@ -43,7 +43,9 @@ export class RequestPage implements OnInit {
 
     ngOnInit() {
 
-      this.onGetComplaintListHandler(true, '');
+        setTimeout(() => {
+          this.onGetComplaintListHandler(true, '');
+        }, 1000);
     }
 
     toggle() {

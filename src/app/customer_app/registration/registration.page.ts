@@ -47,7 +47,7 @@ export class RegistrationPage implements OnInit {
                 email: ['', [Validators.required, Validators.email]],
                 username: ['', [Validators.required, Validators.minLength(5)]],                
                 password: ['', [Validators.required, Validators.minLength(5)]],
-                landlineNo: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
+                landlineNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
             });
 
             this.registerForm2 = this.formBuilder.group({
