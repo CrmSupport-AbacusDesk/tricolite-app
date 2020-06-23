@@ -35,7 +35,8 @@
                         <div class="cs-box">
                             <div>
                                 <ion-text>Service Type</ion-text>
-                                <ion-text>{{(taskDataDetail.transaction_type == 'FOC' || taskDataDetail.transaction_type == 'Sale/Warranty' || taskDataDetail.transaction_type == 'Commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
+                                <ion-text *ngIf="taskDataDetail.task_type == 'commissioning'">Free Service</ion-text>
+                                <ion-text *ngIf="taskDataDetail.task_type != 'commissioning'">{{(taskDataDetail.transaction_type == 'FOC' || taskDataDetail.transaction_type == 'Sale/Warranty' || taskDataDetail.transaction_type?.toLowerCase() == 'commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
                             </div>
                         </div>
                         <div class="cs-box close" style="background: #FFCC00;">
@@ -84,11 +85,11 @@
                 <div class="cs-heading"><h1>Product Information</h1></div>
                 <div class="figure">
                     <div class="cnt-info">
-                        <div class="cs-left" *ngFor = "let fgData of taskDataFgDetail">
-                            <div class="f-alpha">{{fgData.customer_name.substring(0,1).toUpperCase()}}</div>
+                        <div class="cs-left" >
+                            <div class="f-alpha">{{taskDataDetail.customer_name?taskDataDetail.customer_name.substring(0,1).toUpperCase():''}}</div>
                             <div class="names">
-                                <h1>{{fgData.customer_name.toUpperCase()}}</h1>
-                                <ion-text>({{fgData.project_name}})</ion-text>
+                                <h1>{{taskDataDetail.customer_name?.toUpperCase()}}</h1>
+                                <ion-text>({{taskDataDetail.project_name}})</ion-text>
                             </div>
                         </div>
                         <div class="cs-right">

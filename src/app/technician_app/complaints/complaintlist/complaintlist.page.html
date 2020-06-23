@@ -140,9 +140,9 @@
                 <div class="lf-btns">
                     <div class="cs-left">
                         
-                        <ion-button (click)="GoComplaintDetailModulesHandler('statusListPage', row.id, row.task_no,row.status)" color="primary" fill="clear">Status History</ion-button>
+                        <ion-button (click)="GoComplaintDetailModulesHandler('statusListPage', row.id, row.task_no,row.status,row.task_type)" color="primary" fill="clear">Status History</ion-button>
                         
-                        <ion-button (click)="GoComplaintDetailModulesHandler('dailyWorkReportPage', row.id, row.task_no,row.status)" color="primary" fill="clear">Daily Report</ion-button>
+                        <ion-button (click)="GoComplaintDetailModulesHandler('dailyWorkReportPage', row.id, row.task_no,row.status,row.task_type)" color="primary" fill="clear">Daily Report</ion-button>
                         
                     </div>
                     <div (click)="presentPopover($event, row.id, row.task_no,row.status)" class="cs-right">
