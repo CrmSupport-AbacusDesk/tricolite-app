@@ -49,6 +49,7 @@ export class ComDailyreportPage implements OnInit {
     currentActiveCheckTab: any = 0;
     
     selectedRating: any = '';
+    isAllCheckListSubmitted: any = false;
     
     
     registerForm1: FormGroup;
@@ -80,11 +81,7 @@ export class ComDailyreportPage implements OnInit {
             this.taskNo = params.taskNo;
             this.taskStatus = params.taskStatus;
             this.taskType = params.taskType;
-
-            if(this.reportType == 'checkListReport') {
-
-                this.onGetCheckListHandler();
-            }
+            this.onGetCheckListHandler();
            
             console.log(this.taskId);
             console.log(this.taskNo);
@@ -491,6 +488,9 @@ export class ComDailyreportPage implements OnInit {
             this.fgWisecheckListCategory = result[`taskFGCheckList`][0].newCheckListCategory;
             this.data = result[`customer_data`];
 
+            this.isAllCheckListSubmitted = result[`isAllCheckListSubmitted`];
+            console.log(this.isAllCheckListSubmitted);
+
             for (let index = 0; index < this.fgWisecheckList.length; index++) {
                 
                   if (this.fgWisecheckList[index].signatureImage) {
@@ -570,6 +570,8 @@ export class ComDailyreportPage implements OnInit {
             
         } else {
 
+            
+
             var ckeckListCount = 0
                     const taskData = {
                         taskId: this.taskId,
@@ -587,14 +589,15 @@ export class ComDailyreportPage implements OnInit {
             // tslint:disable-next-line: max-line-length
 
             // tslint:disable-next-line: max-line-length
-            if (stage == 1 && this.data.workStatus == "Close" && ckeckListCount == 0 ) {
+            if (stage == 1 && this.data.workStatus == "Close" && this.isAllCheckListSubmitted == false) {
                 
-                this.dbService.onShowAlertMessage('Error', 'Fill Check List First!');
+                this.dbService.onShowAlertMessage('Error', 'Fill FG Check List First!');
                 return;
                 
                 // tslint:disable-next-line:max-line-length
             }
-           else if (stage == 1 && ((this.data.nextFollowUpDate && !this.data.nextFollowUpTime) || (!this.data.nextFollowUpDate && this.data.nextFollowUpTime))) {
+           
+            if (stage == 1 && ((this.data.nextFollowUpDate && !this.data.nextFollowUpTime) || (!this.data.nextFollowUpDate && this.data.nextFollowUpTime))) {
                 
                 this.dbService.onShowAlertMessage('Error', 'Fill FollowUp Details!');
                 return;

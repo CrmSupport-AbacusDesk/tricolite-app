@@ -62,7 +62,7 @@ export class RegistrationPage implements OnInit {
 
             this.registerForm3 = this.formBuilder.group({
 
-                contactName: ['', [Validators.required,Validators.minLength(3), Validators.maxLength(50)]],
+                contactName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
                 designation: ['', [ Validators.minLength(3), Validators.maxLength(50)]],
                 contactEmail: ['', [Validators.required, Validators.email]],
                 contactMobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
