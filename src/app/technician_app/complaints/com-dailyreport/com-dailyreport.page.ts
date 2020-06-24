@@ -23,6 +23,7 @@ export class ComDailyreportPage implements OnInit {
     taskId: any = '';
     taskNo: any = '';
     taskStatus: any = '';
+    taskType: any = '';
     
     
     activeStage: any = '';
@@ -78,6 +79,7 @@ export class ComDailyreportPage implements OnInit {
             this.taskId = params.taskId;
             this.taskNo = params.taskNo;
             this.taskStatus = params.taskStatus;
+            this.taskType = params.taskType;
 
             if(this.reportType == 'checkListReport') {
 
@@ -87,6 +89,7 @@ export class ComDailyreportPage implements OnInit {
             console.log(this.taskId);
             console.log(this.taskNo);
             console.log(this.taskStatus);
+            console.log(this.taskType);
         });
         
         this.registerForm1 = this.formBuilder.group({
@@ -566,11 +569,32 @@ export class ComDailyreportPage implements OnInit {
             return;
             
         } else {
+
+            var ckeckListCount = 0
+                    const taskData = {
+                        taskId: this.taskId,
+                        taskNo: this.taskNo,
+                    };
+            this.dbService.onPostRequestHandler(taskData, 'report/checkTaskCheckList').subscribe((result) => {
+                            console.log(result);
+                            ckeckListCount = result['ckeckListCount']
+            });
             
             console.log(this.data);
+            console.log(ckeckListCount);
+
             
             // tslint:disable-next-line: max-line-length
-            if (stage == 1 && ((this.data.nextFollowUpDate && !this.data.nextFollowUpTime) || (!this.data.nextFollowUpDate && this.data.nextFollowUpTime))) {
+
+            // tslint:disable-next-line: max-line-length
+            if (stage == 1 && this.data.workStatus == "Close" && ckeckListCount == 0 ) {
+                
+                this.dbService.onShowAlertMessage('Error', 'Fill Check List First!');
+                return;
+                
+                // tslint:disable-next-line:max-line-length
+            }
+           else if (stage == 1 && ((this.data.nextFollowUpDate && !this.data.nextFollowUpTime) || (!this.data.nextFollowUpDate && this.data.nextFollowUpTime))) {
                 
                 this.dbService.onShowAlertMessage('Error', 'Fill FollowUp Details!');
                 return;

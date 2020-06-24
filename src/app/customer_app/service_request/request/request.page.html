@@ -109,7 +109,7 @@
                     <div *ngIf="row.task_type != 'commissioning'" class="cs-box close" style="background: #FFA200;">
                         <div>
                             <ion-text>Service Type</ion-text>
-                            <ion-text>{{(row.transaction_type == 'FOC' || row.transaction_type == 'Sale/Warranty' || row.transaction_type == 'Commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
+                            <ion-text>{{(row.transaction_type == 'FOC' || row.transaction_type == 'Sale/Warranty' || row.transaction_type?.toLowerCase() == 'commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
                         </div>
                     </div>
 

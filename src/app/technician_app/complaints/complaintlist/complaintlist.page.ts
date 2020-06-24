@@ -240,12 +240,18 @@ export class ComplaintlistPage implements OnInit {
 
       const taskIndex = this.complaintList.findIndex(row => row.id == taskId);
 
+      console.log(this.complaintList[taskIndex]);
+
+
       const taskPopUpData = {
             taskWorkReport: this.complaintList[taskIndex].taskWorkReport,
             taskReportCount: this.complaintList[taskIndex].taskReportCount,
             taskInstalledPartCount: this.complaintList[taskIndex].taskInstalledPartCount
       };
 
+    //   console.log(taskPopUpData);
+    //   console.log(ev);
+      
       localStorage.setItem('taskPopUpData', JSON.stringify(taskPopUpData));
 
       const taskData ={
@@ -254,13 +260,15 @@ export class ComplaintlistPage implements OnInit {
           taskStatus: taskStatus,
       };
 
-      console.log(taskData);
+    //   console.log(taskData);
       const popover = await this.popoverController.create({
           component: TecCompliantPopoverComponent,
           event: ev,
           translucent: true,
           componentProps: taskData
       });
+    //   console.log(popover);
+
       return await popover.present();
   }
 
@@ -270,7 +278,7 @@ export class ComplaintlistPage implements OnInit {
       this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/' + taskId + '');
   }
 
-  GoComplaintDetailModulesHandler(targetPage, taskId, taskNo,taskStatus) {
+  GoComplaintDetailModulesHandler(targetPage, taskId, taskNo,taskStatus,taskType) {
 
     localStorage.setItem('routeTitleForView', this.routeTitleForView);
 

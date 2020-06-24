@@ -44,10 +44,10 @@ export class RegistrationPage implements OnInit {
 
                 companyName: ['', [Validators.required, Validators.minLength(5)]],
                 projectName: ['', [Validators.required, Validators.minLength(5)]],
-                email: ['', [Validators.required, Validators.email]],
+                email: ['', [Validators.email]],
                 username: ['', [Validators.required, Validators.minLength(5)]],                
                 password: ['', [Validators.required, Validators.minLength(5)]],
-                landlineNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+                landlineNo: ['', [ Validators.minLength(10), Validators.maxLength(10)]],
             });
 
             this.registerForm2 = this.formBuilder.group({
@@ -62,10 +62,10 @@ export class RegistrationPage implements OnInit {
 
             this.registerForm3 = this.formBuilder.group({
 
-                contactName: ['', [Validators.minLength(3), Validators.maxLength(50)]],
+                contactName: ['', [Validators.required,Validators.minLength(3), Validators.maxLength(50)]],
                 designation: ['', [ Validators.minLength(3), Validators.maxLength(50)]],
-                contactEmail: ['', [ Validators.email]],
-                contactMobile: ['', [ Validators.minLength(10), Validators.maxLength(10)]],
+                contactEmail: ['', [Validators.required, Validators.email]],
+                contactMobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
             });
   }
 
@@ -89,11 +89,11 @@ export class RegistrationPage implements OnInit {
               this.data.district = '';
         }
 
-        if (this.data.contactName || this.data.designation || this.data.contactEmail || this.data.contactMobile) {
+        if (this.data.contactName || this.data.contactEmail || this.data.contactMobile) {
             isContactDataFilled = true;
         }
 
-        if(isContactDataFilled && (!this.data.contactName || !this.data.designation || !this.data.contactEmail || !this.data.contactMobile)) {
+        if(isContactDataFilled && (!this.data.contactName || !this.data.contactEmail || !this.data.contactMobile)) {
 
              this.dbService.onShowAlertMessage('Error', 'Fill Contact Complete Details!');
              return;
@@ -107,13 +107,13 @@ export class RegistrationPage implements OnInit {
 
             console.log('hello');
 
-            if (this.data.contactName && this.data.contactEmail && this.data.designation && this.data.contactMobile) {
+            if (this.data.contactName && this.data.contactEmail  && this.data.contactMobile) {
 
                   this.contactData = [];
 
                   this.contactData.push({
                       contactName: this.data.contactName,
-                      designation: this.data.designation,
+                      designation: this.data.designation?this.data.designation:'',
                       contactEmail: this.data.contactEmail,
                       contactMobile: this.data.contactMobile
                   });
@@ -221,8 +221,8 @@ export class RegistrationPage implements OnInit {
         this.dbService.onPostRequestHandler(inputData, 'task/getDistrictList').subscribe((result) => {
 
               console.log(result);
-              this.districtList = result[`districtList`];
               this.dbService.dismissLoader();
+              this.districtList = result[`districtList`];
 
         });
     }
