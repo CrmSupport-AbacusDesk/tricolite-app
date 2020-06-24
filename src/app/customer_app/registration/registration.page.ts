@@ -107,13 +107,13 @@ export class RegistrationPage implements OnInit {
 
             console.log('hello');
 
-            if (this.data.contactName && this.data.contactEmail && this.data.designation && this.data.contactMobile) {
+            if (this.data.contactName && this.data.contactEmail  && this.data.contactMobile) {
 
                   this.contactData = [];
 
                   this.contactData.push({
                       contactName: this.data.contactName,
-                      designation: this.data.designation,
+                      designation: this.data.designation?this.data.designation:'',
                       contactEmail: this.data.contactEmail,
                       contactMobile: this.data.contactMobile
                   });

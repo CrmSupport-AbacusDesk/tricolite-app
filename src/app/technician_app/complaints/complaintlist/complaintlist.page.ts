@@ -290,7 +290,7 @@ export class ComplaintlistPage implements OnInit {
 
     if (targetPage == 'dailyWorkReportPage') {
         localStorage.setItem('reportType',  'dailyReport');
-        this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/dailyreport/' + taskId + '/' + taskNo + '/' + taskStatus + '/' + taskType);
+        this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/dailyreport/' + taskId + '/' + taskNo + '/' + taskStatus);
     }
 
  }
