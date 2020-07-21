@@ -13,12 +13,16 @@ import { DbServiceService } from 'src/app/db-service.service';
 export class CustomerdocumentsPage implements OnInit {
 
   documentList: any = [];
+  masterDocList: any = [];
   isRequestInProcess: any = false;
+  currentActiveTab: any;
 
   constructor(private route: Router,
               private formBuilder: FormBuilder,
               public alertCtrl: AlertController,
               public dbService: DbServiceService) { 
+
+                this.currentActiveTab = 1;
 
               
   }
@@ -49,6 +53,7 @@ export class CustomerdocumentsPage implements OnInit {
               } else {
 
                   this.documentList = result[`documentList`];
+                  this.masterDocList = result[`masterDocList`];
               }
 
               this.isRequestInProcess = false;

@@ -84,6 +84,10 @@ export class RequestPopoverComponent implements OnInit {
     await this.popoverController.dismiss();
   }
 
+  GoToImages() {
+      this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+  }
+
   GoToSpare() {
 
       console.log(JSON.parse(localStorage.getItem('taskPopUpData')));

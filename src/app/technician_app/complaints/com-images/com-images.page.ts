@@ -23,6 +23,8 @@ export class ComImagesPage implements OnInit {
   taskNo: any = '';
   imageData: any = [];
 
+  loginData: any = {};
+
   taskImageData: any = [];
 
   constructor(public  popoverController: PopoverController,
@@ -53,6 +55,8 @@ export class ComImagesPage implements OnInit {
   }
 
   ngOnInit() {
+
+     this.loginData = JSON.parse(localStorage.getItem('loginData'));
 
   }
 

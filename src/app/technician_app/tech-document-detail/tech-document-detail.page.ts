@@ -71,9 +71,13 @@ export class TechDocumentDetailPage implements OnInit {
 
   async onViewImageHandler(index) {
 
+      console.log('heloaasa');
+
        const imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
        console.log(imagePath);
-       this.photoViewer.show(imagePath);
+
+       window.open(imagePath, '_blank');
+      //  this.photoViewer.show(imagePath);
   }
 
 }

@@ -61,6 +61,8 @@ export class ComDailyreportPage implements OnInit {
         
         this.reportType = localStorage.getItem('reportType');
         this.routeTitleForView = localStorage.getItem('routeTitleForView');
+        this.taskType = localStorage.getItem('taskType');
+        console.log(this.taskType);
         
         if (this.reportType == 'dailyReport') {
             this.activeStage = 1;
@@ -80,13 +82,12 @@ export class ComDailyreportPage implements OnInit {
             this.taskId = params.taskId;
             this.taskNo = params.taskNo;
             this.taskStatus = params.taskStatus;
-            this.taskType = params.taskType;
+
             this.onGetCheckListHandler();
            
             console.log(this.taskId);
             console.log(this.taskNo);
             console.log(this.taskStatus);
-            console.log(this.taskType);
         });
         
         this.registerForm1 = this.formBuilder.group({
@@ -429,8 +430,15 @@ export class ComDailyreportPage implements OnInit {
 
         console.log('hellosda');
         console.log(this.data.contactName, this.data.checkContactName);
-        if (this.data.contactName || this.data.checkContactName)
-        {
+
+        if (this.data.contactName == 'Other') {
+
+                this.data.mobile = 0;
+                this.data.email = '';
+                this.data.checkMobile = 0;
+        }
+
+        if (this.data.contactName || this.data.checkContactName)  {
 
             console.log('hello111');
             console.log(target);
@@ -589,7 +597,7 @@ export class ComDailyreportPage implements OnInit {
             // tslint:disable-next-line: max-line-length
 
             // tslint:disable-next-line: max-line-length
-            if (stage == 1 && this.data.workStatus == "Close" && this.isAllCheckListSubmitted == false) {
+            if (stage == 1 && this.taskType == 'commissioning' && this.data.workStatus == "Close" && this.isAllCheckListSubmitted == false) {
                 
                 this.dbService.onShowAlertMessage('Error', 'Fill FG Check List First!');
                 return;

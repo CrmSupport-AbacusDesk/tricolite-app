@@ -54,7 +54,8 @@ export class RequestDetailsPage implements OnInit {
       const taskData = {
           taskId: this.taskId,
           taskNo: this.taskDataDetail.task_no,
-          taskStatus : this.taskDataDetail.status
+          taskStatus : this.taskDataDetail.status,
+          taskType : this.taskDataDetail.task_type,
       };
   
       console.log(taskData);

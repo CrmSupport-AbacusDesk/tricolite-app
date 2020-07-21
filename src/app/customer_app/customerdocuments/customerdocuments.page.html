@@ -10,19 +10,45 @@
             <div class="cs-ion-hf"></div>
         </div>
         
-        <div class="cs-ion-content pt0" padding>
+        
+        <div class="ion-padding-horizontal">
+            <div class="cs-tabs">
+                <ion-button (click)="currentActiveTab = 1; onGetDocumentList()" [ngClass]="currentActiveTab==1 ? 'active' : ''">Customer Document</ion-button>
+                <ion-button (click)="currentActiveTab = 2; onGetDocumentList()" [ngClass]="currentActiveTab==2 ? 'active' : ''">Common Document</ion-button>
+            </div>
+        </div>
+        
+        <div *ngIf="currentActiveTab==1" class="cs-ion-content pt0" padding>
             <div class="m_documents" padding>
                 <div *ngFor="let row of documentList" routerLink="/customer/menu/documents/detail/{{row.id}}/{{row.subject}}" class="figure">
                     <div class="thumb"><img src="{{dbService.customerDocURL + row.document_url}}" alt=""></div>
                     <h1><ion-text>{{row.subject}}</ion-text> <i class="material-icons">arrow_right_alt</i></h1>
                 </div>
             </div>
-
+            
             <div *ngIf="!isRequestInProcess && documentList.length == 0" class="no-data">
-                    <img src="assets/icon/no_found.svg">
-                    <p>Data Not Found!</p>
+                <img src="assets/icon/no_found.svg">
+                <p>No Data Available!</p>
             </div>
-
+            
         </div>
+        
+        
+        
+        <div *ngIf="currentActiveTab==2" class="cs-ion-content pt0" padding>
+            <div class="m_documents" padding>
+                <div *ngFor="let row of masterDocList" routerLink="/customer/menu/documents/detail/{{row.id}}/{{row.subject}}" class="figure">
+                    <div class="thumb"><img src="{{dbService.customerDocURL + row.document_url}}" alt=""></div>
+                    <h1><ion-text>{{row.subject}}</ion-text> <i class="material-icons">arrow_right_alt</i></h1>
+                </div>
+            </div>
+            
+            <div *ngIf="!isRequestInProcess && masterDocList.length == 0" class="no-data">
+                <img src="assets/icon/no_found.svg">
+                <p>No Data Available!</p>
+            </div>
+            
+        </div>
+        
     </div>
 </ion-content>

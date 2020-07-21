@@ -258,6 +258,7 @@ export class ComplaintlistPage implements OnInit {
           taskId: taskId,
           taskNo: taskNo,
           taskStatus: taskStatus,
+          taskType: this.complaintList[taskIndex].task_type
       };
 
     //   console.log(taskData);
@@ -281,6 +282,7 @@ export class ComplaintlistPage implements OnInit {
   GoComplaintDetailModulesHandler(targetPage, taskId, taskNo,taskStatus,taskType) {
 
     localStorage.setItem('routeTitleForView', this.routeTitleForView);
+    localStorage.setItem('taskType',  taskType);
 
     if (targetPage == 'statusListPage') {
 

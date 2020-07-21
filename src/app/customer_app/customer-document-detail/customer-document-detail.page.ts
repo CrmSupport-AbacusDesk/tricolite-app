@@ -54,7 +54,8 @@ export class CustomerDocumentDetailPage implements OnInit {
   async onGetImageDataHandler() {
 
         const inputData = {
-            documentId: this.documentId
+            documentId: this.documentId,
+            documentTitle: this.documentTitle
         };
 
         this.dbService.presentLoader();
@@ -71,9 +72,23 @@ export class CustomerDocumentDetailPage implements OnInit {
 
   async onViewImageHandler(index) {
 
-       const imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
-       console.log(imagePath);
-       this.photoViewer.show(imagePath);
+       let imagePath;
+       if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master') {
+             
+            imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
+            console.log(imagePath);
+
+       } else {
+
+            imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
+            console.log(imagePath);
+
+              
+       }
+
+       window.open(imagePath, '_blank');
+
+      //  this.photoViewer.show(imagePath);
   }
 
 }

@@ -92,9 +92,9 @@
                         <div class="work-info" [hidden]="activeStage != 1 ">
                             <form [formGroup]="registerForm1" (ngSubmit)="onNextStageHandler(1)">
                                 <div class="common_form inner_page">
-                                    <ion-item [ngClass]="submitted && f1.workDetail.errors && f1.workDetail.errors.required ? 'has-error' : (f1.workDetail.errors && !f1.workDetail.errors.required ? 'has-text' : '')" class="h70">
+                                    <ion-item [ngClass]="submitted && f1.workDetail.errors && f1.workDetail.errors.required ? 'has-error' : (f1.workDetail.errors && !f1.workDetail.errors.required ? 'has-text' : '')" style="min-height: 110px;">
                                         <ion-label position="floating">Work Detail</ion-label>
-                                        <ion-textarea formControlName="workDetail" [(ngModel)]="data.workDetail"></ion-textarea>
+                                        <ion-textarea formControlName="workDetail" [(ngModel)]="data.workDetail" class="textarea-height"></ion-textarea>
                                         <ion-text *ngIf="submitted && f1.workDetail.errors" class="cs-error">
                                             <span *ngIf="f1.workDetail.errors.minlength">Minimum 3 Letter Required</span>
                                         </ion-text>
@@ -115,8 +115,11 @@
                                         </ion-text>
                                     </ion-item>
                                 </div>
+                                
                                 <div class="common_form inner_page mt20">
+
                                     <div class="heading"><h1>Work Status</h1></div>
+
                                     <ion-item [ngClass]="submitted && f1.workStatus.errors && f1.workStatus.errors.required ? 'has-error' : (f1.workStatus.errors && !f1.workStatus.errors.required ? 'has-text' : '')" class="cs-select">
                                         <ion-label>Select Status</ion-label>
                                         <ion-select formControlName="workStatus" [(ngModel)]="data.workStatus" (ngModelChange)="onChangeWorkStatusHandler()" placeholder="Select One">
@@ -125,6 +128,7 @@
                                             <ion-select-option value="Close">Close</ion-select-option>
                                         </ion-select>
                                     </ion-item>
+
                                     <ion-item [ngClass]="submitted && f1.nextFollowUpDate.errors && f1.nextFollowUpDate.errors.required ? 'has-error' : (f1.nextFollowUpDate.errors && !f1.nextFollowUpDate.errors.required ? 'has-text' : '')" class="date-time"  *ngIf = "registerForm1.value['workStatus']  != 'Close'">
                                         <ion-label>Next Follow up Date</ion-label>
                                         <ion-datetime formControlName="nextFollowUpDate" [(ngModel)]="data.nextFollowUpDate" displayFormat="DD-MMM-YYYY" min="{{minDate}}"></ion-datetime>

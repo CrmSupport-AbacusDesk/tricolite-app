@@ -12,13 +12,22 @@ export class DbServiceService {
     private isShowing = false;
     private user = JSON.parse(localStorage.getItem('loginData')) || [];  
     
-    public serverURL: any = 'http://tricolite.abacusdesk.com/api/index.php/app/';
-    public uploadURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
-    public masterDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Master_Doc/';
-    public customerDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Customer_Doc/';
-    public userDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/User_Doc/';
-    public ReportDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Report_Doc/';
-    public upload_url: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
+    public serverURL: any = 'http://crm.tricolite.com/api/index.php/app/';
+    public uploadURL: any = 'http://crm.tricolite.com/api/uploads/Task_Doc/';
+    public masterDocURL: any = 'http://crm.tricolite.com/api/uploads/Master_Doc/';
+    public customerDocURL: any = 'http://crm.tricolite.com/api/uploads/Customer_Doc/';
+    public userDocURL: any = 'http://crm.tricolite.com/api/uploads/User_Doc/';
+    public ReportDocURL: any = 'http://crm.tricolite.com/api/uploads/Report_Doc/';
+    public upload_url: any = 'http://crm.tricolite.com/api/uploads/Task_Doc/';
+
+
+    // public serverURL: any = 'http://tricolite.abacusdesk.com/api/index.php/app/';
+    // public uploadURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
+    // public masterDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Master_Doc/';
+    // public customerDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Customer_Doc/';
+    // public userDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/User_Doc/';
+    // public ReportDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Report_Doc/';
+    // public upload_url: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
 
     //  public serverURL: any = 'http://localhost/tricolite/api/index.php/app/';
     // public uploadURL: any = 'http://localhost/tricolite/api/uploads/Task_Doc/';

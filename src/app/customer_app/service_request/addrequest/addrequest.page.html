@@ -65,7 +65,7 @@
                                 </ion-item>
                                 
                                 <ion-item [ngClass]="submitted && f1.description.errors && f1.description.errors.required ? 'has-error' : (f1.description.errors && !f1.description.errors.required ? 'has-text' : '')" class="h70">
-                                    <ion-label position="floating">Description</ion-label>
+                                    <ion-label position="floating"><strong>Description</strong></ion-label>
 
                                     <ion-textarea formControlName="description" [(ngModel)]="data.description"></ion-textarea>
                                 </ion-item>

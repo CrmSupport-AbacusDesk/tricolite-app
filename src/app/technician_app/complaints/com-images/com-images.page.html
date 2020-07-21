@@ -6,7 +6,7 @@
                     <ion-button  (click)="GoComplaintDetail()"><ion-icon name="arrow-back"></ion-icon></ion-button>
                     <ion-title>#COM-{{taskNo}} - <ion-text>Images</ion-text></ion-title>
                 </div>
-                <div class="cs-right">
+                <div *ngIf="loginData.loginType != 'Customer'" class="cs-right">
                     <ion-button (click)="presentPopover($event)"><ion-icon name="more"></ion-icon></ion-button>
                 </div>
             </div>

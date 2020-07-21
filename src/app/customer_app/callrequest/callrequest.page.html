@@ -16,31 +16,28 @@
             <form [formGroup]="registerForm1" (ngSubmit)="onSaveCallRequestHandler()">
 
                 <div class="ion-padding">
+                    
                     <div class="cnt-content mb32">
                         <p>Please Select A Date & Time For When You Would Like To Discuss Your Enquiry Over The Phone.</p>
                     </div>
                     
                     <ion-item [ngClass]="submitted && f1.contactName.errors && f1.contactName.errors.required ? 'has-error' : (f1.contactName.errors && !f1.contactName.errors.required ? 'has-text' : '')" class="cs-select">
 
-                        <ion-label>Select Contact Person</ion-label>
+                        <ion-label position="floating">Contact Name</ion-label>
 
-                        <ion-select formControlName="contactName" [(ngModel)]="data.contactName"  placeholder="Select Contact" (ngModelChange) ="onChangeContactHandler()">
-                            <ion-select-option *ngFor="let row of contactData" [value]="row.name">{{row.name}}</ion-select-option>
-                        </ion-select>
+                        <ion-input formControlName="contactName" [(ngModel)]="data.contactName"></ion-input>
 
                     </ion-item>
                     
                     <ion-item [ngClass]="submitted && f1.mobile.errors && f1.mobile.errors.required ? 'has-error' : (f1.mobile.errors && !f1.mobile.errors.required ? 'has-text' : '')">
                         <ion-label position="floating">Mobile No.</ion-label>
-                        <ion-input tel="10" formControlName="mobile" [(ngModel)]="data.mobile" (keypress)="dbService.numberOnly($event)"></ion-input>
+
+                        <ion-input type="tel" formControlName="mobile" [(ngModel)]="data.mobile" (ngModelChange)="dbService.numberOnly($event)"></ion-input>
+
+                        <ion-text *ngIf="submitted && f1.mobile.errors" class="cs-error">
+                                <span>10 Digit Required</span>
+                        </ion-text>
                     </ion-item>
-
-                    <ion-text *ngIf="submitted && f1.mobile.errors" class="cs-error">
-
-                            <span *ngIf="f1.mobile.errors.minlength">Minimum 10 Digit Required</span>
-                            <span *ngIf="f1.mobile.errors.maxlength">Maximum 10 Digit Required</span>
-
-                    </ion-text>
                     
                     <ion-item [ngClass]="submitted && f1.suitableDate.errors && f1.suitableDate.errors.required ? 'has-error' : (f1.suitableDate.errors && !f1.suitableDate.errors.required ? 'has-text' : '')">
                         <ion-label position="floating">Suitable Date</ion-label>

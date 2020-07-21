@@ -80,6 +80,7 @@ export class ComplaintdetailPage implements OnInit {
         taskId: this.taskId,
         taskNo: this.taskDetail.taskData.task_no,
         taskStatus : this.taskDetail.taskData.status,
+        taskType : this.taskDetail.taskData.task_type,
     };
 
     console.log(taskData);

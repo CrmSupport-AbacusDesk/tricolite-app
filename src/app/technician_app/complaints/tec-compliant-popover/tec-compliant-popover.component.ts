@@ -18,6 +18,8 @@ export class TecCompliantPopoverComponent implements OnInit {
   taskId: any = '';
   taskNo: any = '';
   taskStatus: any = '';
+  taskType: any = '';
+
   routeType: any = '';
   taskAllData: any ='';
   taskPopUpData: any;
@@ -30,8 +32,10 @@ export class TecCompliantPopoverComponent implements OnInit {
         this.taskId = navParams.get('taskId');
         this.taskNo = navParams.get('taskNo');
         this.taskStatus = navParams.get('taskStatus');
+        this.taskType = navParams.get('taskType');
+        localStorage.setItem('taskType', this.taskType);
 
-        console.log(this.taskStatus);
+        console.log(this.taskType);
 
         this.routeType = localStorage.getItem('routeType');
 
@@ -63,6 +67,7 @@ export class TecCompliantPopoverComponent implements OnInit {
   GoToReport(type) {
 
     localStorage.setItem('reportType', type);
+
     this.router.navigateByUrl('/technicians/'+ localStorage.getItem('routeType') +'/details/dailyreport/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
   }
 

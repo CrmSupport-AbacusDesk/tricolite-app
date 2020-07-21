@@ -12,9 +12,13 @@
         
         <div class="cs-ion-content pt0" padding>
             <div class="gallery-container">
-                <div class="img-gallery">
-                    <div *ngFor="let row of documentImageData; let index = index"  class="figure">
-                        <img (click) = "onViewImageHandler(index)" src="{{dbService.masterDocURL}}{{row.document_url}}" alt="">
+                <div class="img-gallery aab">
+                    <div (click) = "onViewImageHandler(index)" *ngFor="let row of documentImageData; let index = index"  class="figure white-bg">
+                        <img *ngIf="row.document_type != 'application/pdf' && row.document_type != 'application/vnd.ms-excel'"  src="{{dbService.masterDocURL}}{{row.document_url}}" alt="">
+
+                        <img *ngIf="row.document_type == 'application/pdf'" src="assets/img/pdf.svg" alt="">
+
+                        <img *ngIf="row.document_type == 'application/vnd.ms-excel'" src="assets/img/excel.svg" alt="">
                     </div>
                 </div>
             </div>

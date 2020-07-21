@@ -52,6 +52,10 @@ export class CallrequestPage implements OnInit {
          }
   }
 
+  async getMobilelength(number) {
+      return number.toString().length == 10;
+  }
+
 
   async onSaveCallRequestHandler() {
 
