@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button [routerLink]=\"['/customer/home']\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>Documents</ion-title>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"m_documents\" padding>\r\n                <div *ngFor=\"let row of documentList\" routerLink=\"/customer/menu/documents/detail/{{row.id}}/{{row.subject}}\" class=\"figure\">\r\n                    <div class=\"thumb\"><img src=\"{{dbService.customerDocURL + row.document_url}}\" alt=\"\"></div>\r\n                    <h1><ion-text>{{row.subject}}</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\r\n                </div>\r\n            </div>\r\n\r\n            <div *ngIf=\"!isRequestInProcess && documentList.length == 0\" class=\"no-data\">\r\n                    <img src=\"assets/icon/no_found.svg\">\r\n                    <p>Data Not Found!</p>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button [routerLink]=\"['/customer/home']\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>Documents</ion-title>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        \r\n        <div class=\"ion-padding-horizontal\">\r\n            <div class=\"cs-tabs\">\r\n                <ion-button (click)=\"currentActiveTab = 1; onGetDocumentList()\" [ngClass]=\"currentActiveTab==1 ? 'active' : ''\">Personal Document</ion-button>\r\n                <ion-button (click)=\"currentActiveTab = 2; onGetDocumentList()\" [ngClass]=\"currentActiveTab==2 ? 'active' : ''\">Common Document</ion-button>\r\n            </div>\r\n        </div>\r\n        \r\n        <div *ngIf=\"currentActiveTab==1\" class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"m_documents\" padding>\r\n                <div *ngFor=\"let row of documentList\" (click)=\"onGetImageDataHandler(row.id, row.subject)\" class=\"figure\">\r\n                    <div class=\"thumb\"><img src=\"{{dbService.customerDocURL + row.document_url}}\" alt=\"\"></div>\r\n                    <h1><ion-text>{{row.subject}}</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\r\n                </div>\r\n            </div>\r\n            \r\n            <div *ngIf=\"!isRequestInProcess && documentList.length == 0\" class=\"no-data\">\r\n                <img src=\"assets/icon/no_found.svg\">\r\n                <p>No Data Available!</p>\r\n            </div>\r\n            \r\n        </div>\r\n        \r\n        \r\n        \r\n        <div *ngIf=\"currentActiveTab==2\" class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"m_documents\" padding>\r\n                <div *ngFor=\"let row of masterDocList\" routerLink=\"/customer/menu/documents/detail/{{row.id}}/{{row.subject}}\" class=\"figure\">\r\n                    <div class=\"thumb\"><img src=\"{{dbService.customerDocURL + row.document_url}}\" alt=\"\"></div>\r\n                    <h1><ion-text>{{row.subject}}</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\r\n                </div>\r\n            </div>\r\n            \r\n            <div *ngIf=\"!isRequestInProcess && masterDocList.length == 0\" class=\"no-data\">\r\n                <img src=\"assets/icon/no_found.svg\">\r\n                <p>No Data Available!</p>\r\n            </div>\r\n            \r\n        </div>\r\n        \r\n    </div>\r\n</ion-content>\r\n");
 
 /***/ }),
 
@@ -134,7 +134,10 @@ let CustomerdocumentsPage = class CustomerdocumentsPage {
         this.alertCtrl = alertCtrl;
         this.dbService = dbService;
         this.documentList = [];
+        this.masterDocList = [];
         this.isRequestInProcess = false;
+        this.documentImageData = [];
+        this.currentActiveTab = 1;
     }
     ngOnInit() {
         this.onGetDocumentList();
@@ -151,8 +154,39 @@ let CustomerdocumentsPage = class CustomerdocumentsPage {
             }
             else {
                 this.documentList = result[`documentList`];
+                this.masterDocList = result[`masterDocList`];
             }
             this.isRequestInProcess = false;
+        });
+    }
+    onGetImageDataHandler(documentId, documentTitle) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const inputData = {
+                documentId: documentId,
+                documentTitle: documentTitle
+            };
+            this.dbService.presentLoader();
+            this.dbService.onPostRequestHandler(inputData, 'task/getDocumentAllList').subscribe((result) => {
+                console.log(result);
+                this.dbService.dismissLoader();
+                this.documentImageData = result[`documentImageData`];
+                this.onViewImageHandler(0);
+            });
+        });
+    }
+    onViewImageHandler(index) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            let imagePath;
+            if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master') {
+                imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
+                console.log(imagePath);
+            }
+            else {
+                imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
+                console.log(imagePath);
+            }
+            window.open(imagePath, '_blank');
+            //  this.photoViewer.show(imagePath);
         });
     }
 };

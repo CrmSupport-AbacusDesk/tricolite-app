@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button [routerLink]=\"['/technicians/menu/documents']\" ><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>{{documentTitle}}</ion-title>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"gallery-container\">\r\n                <div class=\"img-gallery\">\r\n                    <div *ngFor=\"let row of documentImageData; let index = index\"  class=\"figure\">\r\n                        <img (click) = \"onViewImageHandler(index)\" src=\"{{dbService.masterDocURL}}{{row.document_url}}\" alt=\"\">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button [routerLink]=\"['/technicians/menu/documents']\" ><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>{{documentTitle}}</ion-title>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"gallery-container\">\r\n                <div class=\"img-gallery aab\">\r\n                    <div (click) = \"onViewImageHandler(index)\" *ngFor=\"let row of documentImageData; let index = index\"  class=\"figure white-bg\">\r\n                        <img *ngIf=\"row.document_type != 'application/pdf' && row.document_type != 'application/vnd.ms-excel'\"  src=\"{{dbService.masterDocURL}}{{row.document_url}}\" alt=\"\">\r\n\r\n                        <img *ngIf=\"row.document_type == 'application/pdf'\" src=\"assets/img/pdf.svg\" alt=\"\">\r\n\r\n                        <img *ngIf=\"row.document_type == 'application/vnd.ms-excel'\" src=\"assets/img/excel.svg\" alt=\"\">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n");
 
 /***/ }),
 
@@ -177,9 +177,11 @@ let TechDocumentDetailPage = class TechDocumentDetailPage {
     }
     onViewImageHandler(index) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            console.log('heloaasa');
             const imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
             console.log(imagePath);
-            this.photoViewer.show(imagePath);
+            window.open(imagePath, '_blank');
+            //  this.photoViewer.show(imagePath);
         });
     }
 };

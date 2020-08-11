@@ -26,6 +26,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 
 import { SignaturePadModule } from 'angular2-signaturepad';
+import { ContactpersonmodelPageModule } from './customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module';
 // import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 
 
@@ -52,6 +53,7 @@ import { SignaturePadModule } from 'angular2-signaturepad';
     IonicModule.forRoot(),
     AppRoutingModule,
     ConfirmmodalPageModule,
+    ContactpersonmodelPageModule,
     ComplaintfiltermodalPageModule,
     SignaturemodalPageModule,
     FormsModule,

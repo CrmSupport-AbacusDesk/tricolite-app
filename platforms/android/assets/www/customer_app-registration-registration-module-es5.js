@@ -246,10 +246,10 @@
         this.registerForm1 = this.formBuilder.group({
           companyName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(5)]],
           projectName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(5)]],
-          email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]],
+          email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]],
           username: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(5)]],
           password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(5)]],
-          landlineNo: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(10)]]
+          landlineNo: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(10)]]
         });
         this.registerForm2 = this.formBuilder.group({
           street: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(5)]],
@@ -259,10 +259,10 @@
           pincode: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(6), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(6)]]
         });
         this.registerForm3 = this.formBuilder.group({
-          contactName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(50)]],
+          contactName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(50)]],
           designation: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(50)]],
-          contactEmail: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]],
-          contactMobile: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(10)]]
+          contactEmail: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]],
+          contactMobile: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(10)]]
         });
       }
 
@@ -280,11 +280,11 @@
             this.data.district = '';
           }
 
-          if (this.data.contactName || this.data.designation || this.data.contactEmail || this.data.contactMobile) {
+          if (this.data.contactName || this.data.contactEmail || this.data.contactMobile) {
             isContactDataFilled = true;
           }
 
-          if (isContactDataFilled && (!this.data.contactName || !this.data.designation || !this.data.contactEmail || !this.data.contactMobile)) {
+          if (isContactDataFilled && (!this.data.contactName || !this.data.contactEmail || !this.data.contactMobile)) {
             this.dbService.onShowAlertMessage('Error', 'Fill Contact Complete Details!');
             return;
           }
@@ -294,11 +294,11 @@
           } else {
             console.log('hello');
 
-            if (this.data.contactName && this.data.contactEmail && this.data.designation && this.data.contactMobile) {
+            if (this.data.contactName && this.data.contactEmail && this.data.contactMobile) {
               this.contactData = [];
               this.contactData.push({
                 contactName: this.data.contactName,
-                designation: this.data.designation,
+                designation: this.data.designation ? this.data.designation : '',
                 contactEmail: this.data.contactEmail,
                 contactMobile: this.data.contactMobile
               });
@@ -376,8 +376,8 @@
           this.dbService.presentLoader();
           this.dbService.onPostRequestHandler(inputData, 'task/getDistrictList').subscribe(result => {
             console.log(result);
-            this.districtList = result["districtList"];
             this.dbService.dismissLoader();
+            this.districtList = result["districtList"];
           });
         });
       }

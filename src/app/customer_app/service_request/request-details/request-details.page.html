@@ -18,7 +18,7 @@
                 <div class="figure">
                     <div class="top">
                         <div class="cs-left">
-                            <h1>#COM-{{taskDataDetail.task_no}} <ion-text>({{taskDataDetail.days}})</ion-text></h1>
+                            <h1>#SR-{{taskDataDetail.task_no}} <ion-text>({{taskDataDetail.days}})</ion-text></h1>
                         </div>
                         <div class="cs-right">
                             <ion-text>{{taskDataDetail.dateCreated}} | {{taskDataDetail.timeCreated}}</ion-text>
@@ -35,8 +35,8 @@
                         <div class="cs-box">
                             <div>
                                 <ion-text>Service Type</ion-text>
-                                <ion-text *ngIf="taskDataDetail.task_type == 'commissioning'">Free Service</ion-text>
-                                <ion-text *ngIf="taskDataDetail.task_type != 'commissioning'">{{(taskDataDetail.transaction_type == 'FOC' || taskDataDetail.transaction_type == 'Sale/Warranty' || taskDataDetail.transaction_type?.toLowerCase() == 'commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
+                                <ion-text *ngIf="taskDataDetail.task_type == 'commissioning'">Under Warranty</ion-text>
+                                <ion-text *ngIf="taskDataDetail.task_type != 'commissioning'">{{(taskDataDetail.transaction_type == 'FOC' || taskDataDetail.transaction_type == 'Sale/Warranty' || taskDataDetail.transaction_type?.toLowerCase() == 'commissioning') ? 'Under Warranty' : 'Out of Warranty'}}</ion-text>
                             </div>
                         </div>
                         <div class="cs-box close" style="background: #FFCC00;">
@@ -126,18 +126,28 @@
 
                 </div>
             </div>
+
+            <!-- {{assignData.image_url != '' ? dbService.userDocURL+assignData.image_url : assignData.user_name.substring(0,1).toUpperCase()}} -->
             
             <div *ngIf="taskAssignData.length != 0" class="complaints product-list mt20">
-                <div class="cs-heading"><h1>Assign Subordinates</h1></div>
+                <div class="cs-heading"><h1>Assign Engineer</h1></div>
                 <div class="figure" *ngFor="let assignData of taskAssignData">
-                    <div class="cnt-person">
-                        <div class="p-info" >
-                            <div class="cs-left" >
-                                <h1 [hidden] = "assignData.type=='Primary'"><i class="material-icons">person</i>{{assignData.name}} ({{assignData.designation}})</h1>
+                    <div class="cnt-info" [hidden] = "assignData.type!='Primary'">
+                        <div class="cs-left" >
+                            
+                            <div class="f-alpha" *ngIf="assignData.image_url != ''">
+                                <img  [src]="dbService.userDocURL+assignData.image_url" (click)="onViewImageHandler(assignData.image_url)">
                             </div>
-                            <div class="cs-right">
-                                <a href="tel: {{assignData.mobile}}"><i class="material-icons">call</i></a>
+
+                            <div class="f-alpha" *ngIf="assignData.image_url == ''">
+                                {{assignData.user_name ? assignData.user_name.substring(0,1).toUpperCase() : ''}}
                             </div>
+                            <div class="names">
+                                <h1>{{assignData.name}} ({{assignData.designation}})</h1>
+                            </div>
+                        </div>
+                        <div class="cs-right">
+                            <a class="call" href="tel: {{assignData.mobile}}"><i class="material-icons">call</i></a>
                         </div>
                     </div>
                 </div>

@@ -513,7 +513,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\r\n<div class=\"cs-popover\">\r\n\r\n    <ion-button *ngIf=\"taskPopUpData && taskPopUpData.taskInstalledPartCount && taskPopUpData.taskInstalledPartCount != 0\" fill=\"clear\" (click)=\"GoToSpare()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/add_remark.svg\" alt=\"\">Spare Part</div></ion-button>\r\n\r\n    <ion-button *ngIf=\"taskPopUpData && taskPopUpData.taskReportCount && taskPopUpData.taskReportCount != 0\" fill=\"clear\"><div><img src=\"assets/icon/mail_service_report.svg\" alt=\"\">View Service Report</div></ion-button>\r\n\r\n    <ion-button fill=\"clear\" *ngIf=\"taskPopUpData && taskPopUpData.status && taskPopUpData.status != 'Cancel'\" (click)=\"onCancelComplaintHandler()\"><div><img src=\"assets/icon/cancel-complaint.svg\" alt=\"\">Cancel Complaint</div></ion-button>\r\n\r\n</div>\r\n";
+    __webpack_exports__["default"] = "\r\n<div class=\"cs-popover\">\r\n\r\n    <ion-button *ngIf=\"taskPopUpData && taskPopUpData.taskInstalledPartCount && taskPopUpData.taskInstalledPartCount != 0\" fill=\"clear\" (click)=\"GoToSpare()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/add_remark.svg\" alt=\"\">Spare Part</div></ion-button>\r\n\r\n    <ion-button fill=\"clear\"  (click)=\"GoToImages()\"   (click)=\"DismissClick()\"><div><img src=\"assets/icon/view_service_report.svg\" alt=\"\">Images</div></ion-button>\r\n\r\n    <ion-button *ngIf=\"taskPopUpData && taskPopUpData.taskReportCount && taskPopUpData.taskReportCount != 0\" fill=\"clear\"><div><img src=\"assets/icon/mail_service_report.svg\" alt=\"\">View Service Report</div></ion-button>\r\n\r\n    <ion-button fill=\"clear\" *ngIf=\"taskPopUpData && taskPopUpData.status && taskPopUpData.status != 'Cancel'\" (click)=\"onCancelComplaintHandler()\"><div><img src=\"assets/icon/cancel-complaint.svg\" alt=\"\">Cancel Complaint</div></ion-button>\r\n\r\n</div>\r\n";
     /***/
   },
 
@@ -2408,6 +2408,10 @@
         });
       }
 
+      GoToImages() {
+        this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+      }
+
       GoToSpare() {
         console.log(JSON.parse(localStorage.getItem('taskPopUpData')));
         this.router.navigateByUrl('/customer/request/spareparts/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
@@ -2498,13 +2502,20 @@
         this.route = route;
         this.isShowing = false;
         this.user = JSON.parse(localStorage.getItem('loginData')) || [];
-        this.serverURL = 'http://tricolite.abacusdesk.com/api/index.php/app/';
-        this.uploadURL = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
-        this.masterDocURL = 'http://tricolite.abacusdesk.com/api/uploads/Master_Doc/';
-        this.customerDocURL = 'http://tricolite.abacusdesk.com/api/uploads/Customer_Doc/';
-        this.userDocURL = 'http://tricolite.abacusdesk.com/api/uploads/User_Doc/';
-        this.ReportDocURL = 'http://tricolite.abacusdesk.com/api/uploads/Report_Doc/';
-        this.upload_url = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/'; //  public serverURL: any = 'http://localhost/tricolite/api/index.php/app/';
+        this.serverURL = 'http://crm.tricolite.com/api/index.php/app/';
+        this.uploadURL = 'http://crm.tricolite.com/api/uploads/Task_Doc/';
+        this.masterDocURL = 'http://crm.tricolite.com/api/uploads/Master_Doc/';
+        this.customerDocURL = 'http://crm.tricolite.com/api/uploads/Customer_Doc/';
+        this.userDocURL = 'http://crm.tricolite.com/api/uploads/User_Doc/';
+        this.ReportDocURL = 'http://crm.tricolite.com/api/uploads/Report_Doc/';
+        this.upload_url = 'http://crm.tricolite.com/api/uploads/Task_Doc/'; // public serverURL: any = 'http://tricolite.abacusdesk.com/api/index.php/app/';
+        // public uploadURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
+        // public masterDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Master_Doc/';
+        // public customerDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Customer_Doc/';
+        // public userDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/User_Doc/';
+        // public ReportDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Report_Doc/';
+        // public upload_url: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
+        //  public serverURL: any = 'http://localhost/tricolite/api/index.php/app/';
         // public uploadURL: any = 'http://localhost/tricolite/api/uploads/Task_Doc/';
         // public masterDocURL: any = 'http://localhost/tricolite/api/uploads/Master_Doc/';
         // public customerDocURL: any = 'http://localhost/tricolite/api/uploads/Customer_Doc/';
@@ -2978,12 +2989,15 @@
         this.taskId = '';
         this.taskNo = '';
         this.taskStatus = '';
+        this.taskType = '';
         this.routeType = '';
         this.taskAllData = '';
         this.taskId = navParams.get('taskId');
         this.taskNo = navParams.get('taskNo');
         this.taskStatus = navParams.get('taskStatus');
-        console.log(this.taskStatus);
+        this.taskType = navParams.get('taskType');
+        localStorage.setItem('taskType', this.taskType);
+        console.log(this.taskType);
         this.routeType = localStorage.getItem('routeType');
         this.taskPopUpData = JSON.parse(localStorage.getItem('taskPopUpData'));
       }
@@ -3170,7 +3184,7 @@
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! /var/www/html/tricolite/tricolite-app/src/main.ts */
+    /*! E:\git\tricoliteApp\tricolite-app\src\main.ts */
     "./src/main.ts");
     /***/
   }

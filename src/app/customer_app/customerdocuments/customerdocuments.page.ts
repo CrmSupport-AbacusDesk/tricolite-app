@@ -16,6 +16,7 @@ export class CustomerdocumentsPage implements OnInit {
   masterDocList: any = [];
   isRequestInProcess: any = false;
   currentActiveTab: any;
+  documentImageData: any = [];
 
   constructor(private route: Router,
               private formBuilder: FormBuilder,
@@ -59,5 +60,46 @@ export class CustomerdocumentsPage implements OnInit {
               this.isRequestInProcess = false;
         });
   }
+
+  async onGetImageDataHandler(documentId, documentTitle) {
+
+    const inputData = {
+        documentId: documentId,
+        documentTitle: documentTitle
+    };
+
+    this.dbService.presentLoader();
+
+    this.dbService.onPostRequestHandler(inputData, 'task/getDocumentAllList').subscribe((result) => {
+
+          console.log(result);
+
+          this.dbService.dismissLoader();
+          this.documentImageData = result[`documentImageData`];
+
+          this.onViewImageHandler(0);
+    });
+}
+
+async onViewImageHandler(index) {
+
+  let imagePath;
+  if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master') {
+        
+       imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
+       console.log(imagePath);
+
+  } else {
+
+       imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
+       console.log(imagePath);
+
+         
+  }
+
+  window.open(imagePath, '_blank');
+
+ //  this.photoViewer.show(imagePath);
+}
 
 }
