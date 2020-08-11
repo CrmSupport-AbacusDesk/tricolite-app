@@ -62,7 +62,11 @@ const routes: Routes = [
   {
     path: 'customer_forgotpassword',
     loadChildren: () => import('./customer_app/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
+  },  {
+    path: 'contactpersonmodel',
+    loadChildren: () => import('./customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module').then( m => m.ContactpersonmodelPageModule)
   },
+
   // {
   //   path: 'pdf',
   //   loadChildren: () => import('./technician_app/pdf/pdf.module').then( m => m.PdfPageModule)

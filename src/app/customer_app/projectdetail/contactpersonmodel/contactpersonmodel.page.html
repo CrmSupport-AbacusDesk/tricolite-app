@@ -1,0 +1,66 @@
+<ion-content class="cs-modal-container">
+    <div class="modal-container align-center">
+        <div class="main-figure">
+            <div class="cs-modal-body">
+                <form [formGroup]="cpForm" (ngSubmit)="onSaveHandler()">
+                    <div class="modal-content">
+                        <div class="common_form shadow-none padding0">
+                            <div class="heading"><h1>Add Contact Person</h1></div>
+                            
+                            <ion-item [ngClass]="{'has-text': cpForm.get('cpName').hasError('required') && cpForm.get('cpName').touched}">
+                                <ion-label position="floating">Name</ion-label>
+                                <ion-input formControlName="cpName"></ion-input>
+
+                                <ion-text  class="cs-error" *ngIf="cpForm.get('cpName').hasError('required') && cpForm.get('cpName').touched">
+                                    This Field is Required
+                                </ion-text>
+                            </ion-item>
+                            
+                            <ion-item [ngClass]="{'has-text': cpForm.get('cpMobile').hasError('required') && cpForm.get('cpMobile').touched}">
+                                <ion-label position="floating">Mobile No.</ion-label>
+                                <ion-input type="tel" formControlName="cpMobile"></ion-input>
+
+                                <ion-text class="cs-error" *ngIf="cpForm.get('cpMobile').hasError('required') && cpForm.get('cpMobile').touched">
+                                    This Field is Required
+                                </ion-text>
+
+                                <ion-text class="cs-error" *ngIf="cpForm.get('cpMobile').hasError('minlength') || cpForm.get('cpMobile').hasError('maxlength')">
+                                    Mobile No. must be at least 10 Digit.
+                                </ion-text>
+                            </ion-item>
+                            
+                            <ion-item [ngClass]="{'has-text': cpForm.get('cpDesignation').hasError('required') && cpForm.get('cpDesignation').touched}">
+                                <ion-label position="floating">Designation</ion-label>
+                                <ion-input formControlName="cpDesignation"></ion-input>
+
+                                <ion-text class="cs-error" *ngIf="cpForm.get('cpDesignation').hasError('required') && cpForm.get('cpDesignation').touched">
+                                    This Field is Required
+                                </ion-text>
+                            </ion-item>
+                            
+                            <ion-item [ngClass]="{'has-text': cpForm.get('cpEmail').hasError('required') && cpForm.get('cpEmail').touched}">
+                                <ion-label position="floating">Email</ion-label>
+                                <ion-input type="email" formControlName="cpEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
+
+                                <ion-text class="cs-error" *ngIf="cpForm.get('cpEmail').hasError('required') && cpForm.get('cpEmail').touched">
+                                    This Field is Required
+                                </ion-text>
+
+                                <ion-text class="cs-error" *ngIf="cpForm.get('cpEmail').hasError('pattern')">
+                                    Enter a valid Email
+                                </ion-text>
+                            </ion-item>
+                        </div>
+                        
+                        <div class="cs-btn mt16 lr">
+                            <ion-button type="submit" class="success min w100">SAVE</ion-button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-close model-cross">
+                <ion-button color="danger" (click)="dismiss()"><ion-icon name="close"></ion-icon></ion-button>
+            </div>
+        </div>
+    </div>
+</ion-content>

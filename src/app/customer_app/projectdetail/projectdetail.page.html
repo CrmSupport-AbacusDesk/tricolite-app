@@ -47,14 +47,15 @@
                 </div>
             </div>
             
-            <div class="complaints product-list mt20">
-                <div class="cs-tabs">
-                    <ion-button (click)="activeTab=1" [ngClass]="activeTab==1 ? 'active' : ''">Products</ion-button>
-                    <ion-button (click) = "activeTab=2" [ngClass]="activeTab==2  || activeTab == 3 ? 'active' : ''">Contact Persons</ion-button>
-                </div>
-                
+            <div class="cs-tabs mt16">
+                <ion-button (click)="activeTab=1" [ngClass]="activeTab==1 ? 'active' : ''">Products</ion-button>
+                <ion-button (click) = "activeTab=2" [ngClass]="activeTab==2  || activeTab == 3 ? 'active' : ''">Contact Persons
+                    <i class="material-icons" (click)="contactPerson()" style="font-size: 19px; margin-left: 15px;">add_circle</i>
+                </ion-button>
+            </div>
+
+            <div class="complaints product-list mt16">
                 <div *ngIf="activeTab == 1" class="project_FG_data">
-                    
                     <div *ngFor="let row of projectData.productData" class="figure">
                         <div class="cnt-info">
                             <div class="cs-left">
@@ -119,7 +120,7 @@
                 
                 <div *ngIf="activeTab == 2" class="my_contact_persons">
                     
-                    <div *ngFor= "let row of projectData.contactData" class="figure pb0">
+                    <div *ngFor= "let row of projectData.contactData; let index = index" class="figure pb0">
                         <div class="cnt-info">
                             <div class="cs-left">
                                 <div class="f-alpha bg1">g</div>
@@ -128,8 +129,9 @@
                                     <a>{{row.email}}</a>
                                 </div>
                             </div>
-                            <div class="cs-right">
+                            <div class="cs-right two-icons">
                                 <a href="tel: {{row.mobile}}" class="call"><i class="material-icons">call</i></a>
+                                <a class="call red-color" (click)="deleteContactPerson(row.id, index)"><i class="material-icons">delete_sweep</i></a>
                             </div>
                         </div>
                     </div>

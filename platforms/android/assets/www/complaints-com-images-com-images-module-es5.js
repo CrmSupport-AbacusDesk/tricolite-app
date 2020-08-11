@@ -15,7 +15,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button  (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>#COM-{{taskNo}} - <ion-text>Images</ion-text></ion-title>\r\n                </div>\r\n                <div class=\"cs-right\">\r\n                    <ion-button (click)=\"presentPopover($event)\"><ion-icon name=\"more\"></ion-icon></ion-button>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"gallery-container\">\r\n                <div class=\"img-gallery\">\r\n                    <div (click)=\"presentActionSheet()\" class=\"figure upload\"><i class=\"material-icons\">add</i></div>\r\n                    <div *ngFor=\"let row of taskImageData; let index = index\"  class=\"figure\">\r\n                        <img (click) = \"onViewImageHandler(index)\" [src]=\"dbService.uploadURL+row.image_url\" alt=\"\">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n";
+    __webpack_exports__["default"] = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button  (click)=\"GoComplaintDetail()\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>#COM-{{taskNo}} - <ion-text>Images</ion-text></ion-title>\r\n                </div>\r\n                <div *ngIf=\"loginData.loginType != 'Customer'\" class=\"cs-right\">\r\n                    <ion-button (click)=\"presentPopover($event)\"><ion-icon name=\"more\"></ion-icon></ion-button>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        <div class=\"cs-ion-content pt0\" padding>\r\n            <div class=\"gallery-container\">\r\n                <div class=\"img-gallery\">\r\n                    <div (click)=\"presentActionSheet()\" class=\"figure upload\"><i class=\"material-icons\">add</i></div>\r\n                    <div *ngFor=\"let row of taskImageData; let index = index\"  class=\"figure\">\r\n                        <img (click) = \"onViewImageHandler(index)\" [src]=\"dbService.uploadURL+row.image_url\" alt=\"\">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n";
     /***/
   },
 
@@ -275,6 +275,7 @@
         this.taskId = '';
         this.taskNo = '';
         this.imageData = [];
+        this.loginData = {};
         this.taskImageData = [];
         this.routeParams.params.subscribe(params => {
           console.log(params);
@@ -286,7 +287,9 @@
         });
       }
 
-      ngOnInit() {}
+      ngOnInit() {
+        this.loginData = JSON.parse(localStorage.getItem('loginData'));
+      }
 
       onGetTaskImageDataHandler() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {

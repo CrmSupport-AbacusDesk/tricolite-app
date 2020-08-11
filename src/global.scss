@@ -603,7 +603,7 @@ ion-button
                 font-family:Colfax-Regular,Helvetica,Arial,sans-serif !important;
                 font-weight:400;
             }
-          
+            
         }
         ion-datetime
         {
@@ -1449,6 +1449,7 @@ ion-button
         .f-alpha
         {
             min-width: 35px;
+            width: 35px;
             height: 35px;
             border-radius: 17.5px;
             background: var(--ion-color-primary);
@@ -1465,6 +1466,13 @@ ion-button
             &.bg2{background: #FFDD00; color: #000;}
             &.bg3{background: #7AEDFF; color: #000;}
             &.bg4{background: #FF57EB; color: #000;}
+            
+            img
+            {
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+            }
         }
         
         .names
@@ -1516,6 +1524,38 @@ ion-button
             
             &.call{i{color: var(--ion-color-success);}}
             &.arrow{i{color: var(--ion-color-light-shade);}}
+            &.red-color{i{color: #ff0000;}}
+        }
+        
+        &.two-icons
+        {
+            a
+            {
+                margin-right: 6px;
+                position: relative;
+                
+                &:after
+                {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: -3px;
+                    width: 1px;
+                    height: 15px;
+                    background: #8c8c8c;
+                }
+                
+                &:last-child
+                {
+                    margin-right: 0px;
+                    
+                    &:after
+                    {
+                        display: none;
+                    }
+                }
+            }
         }
         
         
@@ -2481,13 +2521,13 @@ ion-button
             justify-content: center;
             margin: 5px;
             
-
-
+            
+            
             &.white-bg
             {
                 background: var(--ion-color-secondary-contrast);
                 border-color: var(--ion-color-medium);
-
+                
                 img
                 {
                     height: 60px;
@@ -2699,7 +2739,7 @@ ion-button
         letter-spacing: 0;
         color: var(--ion-color-dark);
         width: 100%;
-        height: 35px;
+        height: 30px;
         border-radius: 35px;
         --border-radius: 35px;
         --background: var(--ion-color-white);
@@ -2738,6 +2778,8 @@ ion-button
                 .main-figure
                 {
                     padding: 32px;
+                    width: 100%;
+                    position: relative;
                     
                     .cs-modal-body
                     {
@@ -2788,6 +2830,19 @@ ion-button
                             border: 1px solid #fff;
                             border-radius: 100%;
                             --border-radius: 100%;
+                        }
+                        
+                        &.model-cross
+                        {
+                            position: absolute;
+                            top: 0px;
+                            right: 38px;
+                            
+                            ion-button
+                            {
+                                width: 23px;
+                                height: 23px;
+                            }
                         }
                     }
                 }
@@ -2870,6 +2925,9 @@ span
 }
 
 
+.shadow-none{box-shadow: none !important;}
+.align-center{align-items: center !important;}
+.padding0{padding: 0px !important}
 
 
 
@@ -2976,17 +3034,3 @@ span
 {
     .h#{$i} {height: 1px * $i !important}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
