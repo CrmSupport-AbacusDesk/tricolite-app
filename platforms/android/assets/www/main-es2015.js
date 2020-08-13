@@ -759,6 +759,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.html":
+/*!**********************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.html ***!
+  \**********************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content class=\"cs-modal-container\">\n    <div class=\"modal-container align-center\">\n        <div class=\"main-figure\">\n            <div class=\"cs-modal-body\">\n                <form [formGroup]=\"cpForm\" (ngSubmit)=\"onSaveHandler()\">\n                    <div class=\"modal-content\">\n                        <div class=\"common_form shadow-none padding0\">\n                            <div class=\"heading\"><h1>Add Contact Person</h1></div>\n                            \n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpName').hasError('required') && cpForm.get('cpName').touched}\">\n                                <ion-label position=\"floating\">Name</ion-label>\n                                <ion-input formControlName=\"cpName\"></ion-input>\n\n                                <ion-text  class=\"cs-error\" *ngIf=\"cpForm.get('cpName').hasError('required') && cpForm.get('cpName').touched\">\n                                    This Field is Required\n                                </ion-text>\n                            </ion-item>\n                            \n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpMobile').hasError('required') && cpForm.get('cpMobile').touched}\">\n                                <ion-label position=\"floating\">Mobile No.</ion-label>\n                                <ion-input type=\"tel\" formControlName=\"cpMobile\"></ion-input>\n\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpMobile').hasError('required') && cpForm.get('cpMobile').touched\">\n                                    This Field is Required\n                                </ion-text>\n\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpMobile').hasError('minlength') || cpForm.get('cpMobile').hasError('maxlength')\">\n                                    Mobile No. must be at least 10 Digit.\n                                </ion-text>\n                            </ion-item>\n                            \n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpDesignation').hasError('required') && cpForm.get('cpDesignation').touched}\">\n                                <ion-label position=\"floating\">Designation</ion-label>\n                                <ion-input formControlName=\"cpDesignation\"></ion-input>\n\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpDesignation').hasError('required') && cpForm.get('cpDesignation').touched\">\n                                    This Field is Required\n                                </ion-text>\n                            </ion-item>\n                            \n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpEmail').hasError('required') && cpForm.get('cpEmail').touched}\">\n                                <ion-label position=\"floating\">Email</ion-label>\n                                <ion-input type=\"email\" formControlName=\"cpEmail\" pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$\"></ion-input>\n\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpEmail').hasError('required') && cpForm.get('cpEmail').touched\">\n                                    This Field is Required\n                                </ion-text>\n\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpEmail').hasError('pattern')\">\n                                    Enter a valid Email\n                                </ion-text>\n                            </ion-item>\n                        </div>\n                        \n                        <div class=\"cs-btn mt16 lr\">\n                            <ion-button type=\"submit\" class=\"success min w100\">SAVE</ion-button>\n                        </div>\n                    </div>\n                </form>\n            </div>\n            <div class=\"modal-close model-cross\">\n                <ion-button color=\"danger\" (click)=\"dismiss()\"><ion-icon name=\"close\"></ion-icon></ion-button>\n            </div>\n        </div>\n    </div>\n</ion-content>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request-popover/request-popover.component.html":
 /*!***********************************************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request-popover/request-popover.component.html ***!
@@ -1105,6 +1118,10 @@ const routes = [
         path: 'customer_forgotpassword',
         loadChildren: () => __webpack_require__.e(/*! import() | customer_app-forgotpassword-forgotpassword-module */ "customer_app-forgotpassword-forgotpassword-module").then(__webpack_require__.bind(null, /*! ./customer_app/forgotpassword/forgotpassword.module */ "./src/app/customer_app/forgotpassword/forgotpassword.module.ts")).then(m => m.ForgotpasswordPageModule)
     },
+    {
+        path: 'contactpersonmodel',
+        loadChildren: () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module */ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module.ts")).then(m => m.ContactpersonmodelPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -1376,6 +1393,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @ionic-native/push/ngx */ "./node_modules/@ionic-native/push/ngx/index.js");
 /* harmony import */ var angular2_signaturepad__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! angular2-signaturepad */ "./node_modules/angular2-signaturepad/index.js");
 /* harmony import */ var angular2_signaturepad__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(angular2_signaturepad__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _customer_app_projectdetail_contactpersonmodel_contactpersonmodel_module__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module */ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module.ts");
+
 
 
 
@@ -1419,6 +1438,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"].forRoot(),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
             _customer_app_confirmmodal_confirmmodal_module__WEBPACK_IMPORTED_MODULE_12__["ConfirmmodalPageModule"],
+            _customer_app_projectdetail_contactpersonmodel_contactpersonmodel_module__WEBPACK_IMPORTED_MODULE_24__["ContactpersonmodelPageModule"],
             _complaintfiltermodal_complaintfiltermodal_module__WEBPACK_IMPORTED_MODULE_14__["ComplaintfiltermodalPageModule"],
             _technician_app_complaints_signaturemodal_signaturemodal_module__WEBPACK_IMPORTED_MODULE_13__["SignaturemodalPageModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
@@ -1837,6 +1857,186 @@ ConfirmmodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]])
 ], ConfirmmodalPage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel-routing.module.ts":
+/*!****************************************************************************************************!*\
+  !*** ./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel-routing.module.ts ***!
+  \****************************************************************************************************/
+/*! exports provided: ContactpersonmodelPageRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContactpersonmodelPageRoutingModule", function() { return ContactpersonmodelPageRoutingModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _contactpersonmodel_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contactpersonmodel.page */ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.ts");
+
+
+
+
+const routes = [
+    {
+        path: '',
+        component: _contactpersonmodel_page__WEBPACK_IMPORTED_MODULE_3__["ContactpersonmodelPage"]
+    }
+];
+let ContactpersonmodelPageRoutingModule = class ContactpersonmodelPageRoutingModule {
+};
+ContactpersonmodelPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
+    })
+], ContactpersonmodelPageRoutingModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module.ts":
+/*!********************************************************************************************!*\
+  !*** ./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module.ts ***!
+  \********************************************************************************************/
+/*! exports provided: ContactpersonmodelPageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContactpersonmodelPageModule", function() { return ContactpersonmodelPageModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _contactpersonmodel_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./contactpersonmodel-routing.module */ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel-routing.module.ts");
+/* harmony import */ var _contactpersonmodel_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./contactpersonmodel.page */ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.ts");
+
+
+
+
+
+
+
+let ContactpersonmodelPageModule = class ContactpersonmodelPageModule {
+};
+ContactpersonmodelPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
+            _contactpersonmodel_routing_module__WEBPACK_IMPORTED_MODULE_5__["ContactpersonmodelPageRoutingModule"]
+        ],
+        declarations: [_contactpersonmodel_page__WEBPACK_IMPORTED_MODULE_6__["ContactpersonmodelPage"]]
+    })
+], ContactpersonmodelPageModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.scss":
+/*!********************************************************************************************!*\
+  !*** ./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.scss ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyX2FwcC9wcm9qZWN0ZGV0YWlsL2NvbnRhY3RwZXJzb25tb2RlbC9jb250YWN0cGVyc29ubW9kZWwucGFnZS5zY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.ts":
+/*!******************************************************************************************!*\
+  !*** ./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.ts ***!
+  \******************************************************************************************/
+/*! exports provided: ContactpersonmodelPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContactpersonmodelPage", function() { return ContactpersonmodelPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/db-service.service */ "./src/app/db-service.service.ts");
+
+
+
+
+
+
+let ContactpersonmodelPage = class ContactpersonmodelPage {
+    constructor(modalController, formBuilder, dbService, navParams) {
+        this.modalController = modalController;
+        this.formBuilder = formBuilder;
+        this.dbService = dbService;
+        this.navParams = navParams;
+        this.data = {};
+        this.projectID = '';
+        this.inputData = {};
+        this.projectID = this.navParams.get('projectId');
+        this.cpForm = this.formBuilder.group({
+            cpName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            cpMobile: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(10)]],
+            cpDesignation: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            cpEmail: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+        });
+    }
+    ngOnInit() {
+    }
+    dismiss() {
+        this.modalController.dismiss({
+            'dismissed': true
+        });
+    }
+    onSaveHandler() {
+        if (this.cpForm.invalid) {
+            this.cpForm.get('cpName').markAsTouched();
+            this.cpForm.get('cpMobile').markAsTouched();
+            this.cpForm.get('cpDesignation').markAsTouched();
+            this.cpForm.get('cpEmail').markAsTouched();
+            return;
+        }
+        this.inputData = this.cpForm.value;
+        this.inputData.projectId = this.projectID;
+        this.dbService.onPostRequestHandler(this.inputData, 'customer/saveContactPersonData').subscribe((result) => {
+            console.log(result);
+            this.dbService.dismissLoader();
+            if (result[`status`] != 'true') {
+                this.dbService.onShowAlertMessage('Error', result[`statusMessage`]);
+            }
+            else {
+                this.data = {};
+                this.dbService.presentToast('Contact Saved Successfully!');
+            }
+        });
+    }
+};
+ContactpersonmodelPage.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] },
+    { type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"] }
+];
+ContactpersonmodelPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-contactpersonmodel',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./contactpersonmodel.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./contactpersonmodel.page.scss */ "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.scss")).default]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]])
+], ContactpersonmodelPage);
 
 
 

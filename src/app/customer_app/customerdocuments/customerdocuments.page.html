@@ -19,12 +19,18 @@
         </div>
         
         <div *ngIf="currentActiveTab==1" class="cs-ion-content pt0" padding>
-            <div class="m_documents" padding>
+            
+            <ion-list class="list-item">
+                <ion-item *ngFor="let row of documentList" (click)="onGetImageDataHandler(row.id, row.subject)" >
+                    <ion-label>{{row.subject}}</ion-label>
+                </ion-item>
+            </ion-list>
+            <!-- <div class="m_documents" padding>
                 <div *ngFor="let row of documentList" (click)="onGetImageDataHandler(row.id, row.subject)" class="figure">
                     <div class="thumb"><img src="{{dbService.customerDocURL + row.document_url}}" alt=""></div>
                     <h1><ion-text>{{row.subject}}</ion-text> <i class="material-icons">arrow_right_alt</i></h1>
                 </div>
-            </div>
+            </div> -->
             
             <div *ngIf="!isRequestInProcess && documentList.length == 0" class="no-data">
                 <img src="assets/icon/no_found.svg">
@@ -36,12 +42,18 @@
         
         
         <div *ngIf="currentActiveTab==2" class="cs-ion-content pt0" padding>
-            <div class="m_documents" padding>
+            <!-- <div class="m_documents" padding>
                 <div *ngFor="let row of masterDocList" routerLink="/customer/menu/documents/detail/{{row.id}}/{{row.subject}}" class="figure">
                     <div class="thumb"><img src="{{dbService.customerDocURL + row.document_url}}" alt=""></div>
                     <h1><ion-text>{{row.subject}}</ion-text> <i class="material-icons">arrow_right_alt</i></h1>
                 </div>
-            </div>
+            </div> -->
+
+            <ion-list class="list-item">
+                <ion-item *ngFor="let row of masterDocList" (click)="onGetImageDataHandler(row.id, row.subject)" >
+                    <ion-label>{{row.subject}}</ion-label>
+                </ion-item>
+            </ion-list>
             
             <div *ngIf="!isRequestInProcess && masterDocList.length == 0" class="no-data">
                 <img src="assets/icon/no_found.svg">
