@@ -75,47 +75,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div *ngIf="row.task_type == 'commissioning'" class="one-one-one" (click)="GoComplaintDetail(row.id)">
-                        <div class="cs-box">
-                            <div>
-                                <ion-text>Service Type </ion-text>
-                                <ion-text>Free Service</ion-text>
-                            </div>
-                        </div>
-                </div>
-
-                <div class="one-two-one three" (click)="GoComplaintDetail(row.id)">
-
-                    <div class="cs-box close" style="background: #FFCC00;">
-                            <div>
-                                <ion-text>Priority</ion-text>
-                                <ion-text>{{row.priority ? row.priority : 'NA'}}</ion-text>
-                            </div>
-                    </div>
-
-                </div>
                 
-                <div *ngFor="let fgRow of row.fgData" class="one-two-one three" (click)="GoComplaintDetail(row.id)">
-
-                    <div class="cs-box">
-                        <div>
-                            <ion-text>FG No.</ion-text>
-                            <ion-text>{{fgRow.fg_no}}</ion-text>
-                        </div>
-                    </div>
-
-
-                    <div *ngIf="row.task_type != 'commissioning'" class="cs-box close" style="background: #FFA200;">
-                        <div>
-                            <ion-text>Service Type</ion-text>
-                            <ion-text>{{(row.transaction_type == 'FOC' || row.transaction_type == 'Sale/Warranty' || row.transaction_type?.toLowerCase() == 'commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
-                        </div>
-                    </div>
-
-                </div>
-                
-                <div *ngIf="row.task_type != 'commissioning'" class="one-one-one" (click)="GoComplaintDetail(row.id)">
+                <div *ngIf="row.task_type != 'commissioning'"  class="one-one-one" (click)="GoComplaintDetail(row.id)">
                     <div class="cs-box">
                         <div>
                             <ion-text>Complaint Title </ion-text>
@@ -124,6 +85,47 @@
                     </div>
                 </div>
                 
+                <div class="one-two-one three" >
+                    
+                    <div class="cs-box" (click)="GoComplaintDetail(row.id)">
+                        <div>
+                            <ion-text>Priority</ion-text>
+                            <ion-text>{{row.priority ? row.priority : 'NA'}}</ion-text>
+                        </div>
+                    </div>
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>FG No.</ion-text>
+                            <ion-text *ngFor="let fgRow of row.fgData" class="one-two-one three" (click)="GoComplaintDetail(row.id)">{{fgRow.fg_no}}</ion-text>
+                        </div>
+                    </div>
+                    <div class="cs-box" *ngIf="row.task_type != 'commissioning'">
+                        <div>
+                            <ion-text>Service Type</ion-text>
+                            <ion-text>{{(row.transaction_type == 'FOC' || row.transaction_type == 'Sale/Warranty' || row.transaction_type?.toLowerCase() == 'commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div *ngFor="let fgRow of row.fgData" class="one-two-one three" (click)="GoComplaintDetail(row.id)">
+                    
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>FG No.</ion-text>
+                            <ion-text>{{fgRow.fg_no}}</ion-text>
+                        </div>
+                    </div>
+                    
+                    
+                    <div *ngIf="row.task_type != 'commissioning'" class="cs-box" >
+                        <div>
+                            <ion-text>Service Type</ion-text>
+                            <ion-text>{{(row.transaction_type == 'FOC' || row.transaction_type == 'Sale/Warranty' || row.transaction_type?.toLowerCase() == 'commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
+                        </div>
+                    </div>
+                    
+                </div>
+                 -->
                 <div class="one-two-one two" (click)="GoComplaintDetail(row.id)">
                     <div class="cs-box">
                         <div>
@@ -131,7 +133,7 @@
                             <ion-text>{{row.workStatus ? row.workStatus : '--'}}</ion-text>
                         </div>
                     </div>
-                    <div class="cs-box" [ngClass] = "(row.status) ? row.status.toLowerCase() : ''">
+                    <div class="cs-box">
                         <div>
                             <ion-text>Complaint Status</ion-text>
                             <ion-text>{{row.status}}</ion-text>
