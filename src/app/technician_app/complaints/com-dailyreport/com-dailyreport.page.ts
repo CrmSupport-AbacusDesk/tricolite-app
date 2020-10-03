@@ -498,6 +498,7 @@ export class ComDailyreportPage implements OnInit {
 
             this.isAllCheckListSubmitted = result[`isAllCheckListSubmitted`];
             console.log(this.isAllCheckListSubmitted);
+            console.log(this.fgWisecheckListCategory);
 
             for (let index = 0; index < this.fgWisecheckList.length; index++) {
                 
