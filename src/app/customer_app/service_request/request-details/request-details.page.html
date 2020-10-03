@@ -39,7 +39,7 @@
                                 <ion-text *ngIf="taskDataDetail.task_type != 'commissioning'">{{(taskDataDetail.transaction_type == 'FOC' || taskDataDetail.transaction_type == 'Sale/Warranty' || taskDataDetail.transaction_type?.toLowerCase() == 'commissioning') ? 'Under Warranty' : 'Out of Warranty'}}</ion-text>
                             </div>
                         </div>
-                        <div class="cs-box close" style="background: #FFCC00;">
+                        <div class="cs-box close">
                             <div>
                                 <ion-text>Priority</ion-text>
                                 <ion-text>{{taskDataDetail.priority? taskDataDetail.priority : 'N/A'}}</ion-text>
@@ -52,6 +52,15 @@
                             <div>
                                 <ion-text>Request Type & Complaint Title</ion-text>
                                 <ion-text>{{taskDataDetail.task_type | titlecase}} / {{taskDataDetail.compaint_title}}</ion-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="taskDataDetail.nature_problem" class="one-two-one one mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Nature Problem</ion-text>
+                                <ion-text>{{taskDataDetail.nature_problem}}</ion-text>
                             </div>
                         </div>
                     </div>
@@ -71,7 +80,7 @@
                                 <ion-text>{{taskDataDetail.workStatus? taskDataDetail.workStatus : 'N/A'}}</ion-text>
                             </div>
                         </div>
-                        <div class="cs-box" style="background: #FF0000;">
+                        <div class="cs-box">
                             <div>
                                 <ion-text>Complaint Status</ion-text>
                                 <ion-text>{{taskDataDetail.status? taskDataDetail.status : 'N/A'}}</ion-text>
@@ -132,7 +141,7 @@
             <div *ngIf="taskAssignData.length != 0" class="complaints product-list mt20">
                 <div class="cs-heading"><h1>Assign Engineer</h1></div>
                 <div class="figure" *ngFor="let assignData of taskAssignData">
-                    <div class="cnt-info" [hidden] = "assignData.type!='Primary'">
+                    <div class="cnt-info" [hidden] = "assignData.type!='Primary' && assignData.type!=''">
                         <div class="cs-left" >
                             
                             <div class="f-alpha" *ngIf="assignData.image_url != ''">

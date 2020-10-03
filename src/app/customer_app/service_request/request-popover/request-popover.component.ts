@@ -12,6 +12,7 @@ export class RequestPopoverComponent implements OnInit {
 
   taskId: any = '';
   taskNo: any = '';
+  taskType: any = '';
   taskStatus: any = '';
   taskReportCount: any = '';
 
@@ -26,6 +27,7 @@ export class RequestPopoverComponent implements OnInit {
       this.taskId = navParams.get('taskId');
       this.taskNo = navParams.get('taskNo');
       this.taskStatus = navParams.get('taskStatus');
+      this.taskType = navParams.get('taskType');
       this.taskPopUpData = JSON.parse(localStorage.getItem('taskPopUpData'));
 
       console.log(this.taskStatus);
@@ -85,12 +87,22 @@ export class RequestPopoverComponent implements OnInit {
   }
 
   GoToImages() {
-      this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+
+      let pathName;;
+      if (this.taskType == 'commissioning') {
+           pathName = 'complaints';
+      } else {
+
+        pathName = 'commissioning';
+           
+      }
+      this.router.navigateByUrl('/technicians/' + pathName + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
   }
 
   GoToSpare() {
 
       console.log(JSON.parse(localStorage.getItem('taskPopUpData')));
+      
 
       this.router.navigateByUrl('/customer/request/spareparts/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
   }
