@@ -3,13 +3,13 @@
     
     <ion-button fill="clear" (click)="GoToRemarks()" (click)="DismissClick()"><div><img src="assets/icon/spare_parts.svg" alt=""> Remark</div></ion-button>
     
-    <ion-button fill="clear" (click)="GoToStatus()" (click)="DismissClick()"><div><img src="assets/icon/change_status.svg" alt="">Status</div></ion-button>
+    <!-- <ion-button fill="clear" (click)="GoToStatus()" (click)="DismissClick()"><div><img src="assets/icon/change_status.svg" alt="">Status</div></ion-button> -->
     
-    <ion-button fill="clear" (click)="GoToSpareParts()" (click)="DismissClick()"><div><img src="assets/icon/add_remark.svg" alt="">Spare Part</div></ion-button>
+    <ion-button fill="clear" (click)="GoToSpareParts()" (click)="DismissClick()"><div><img src="assets/icon/add_remark.svg" alt=""> Assigned Material Details</div></ion-button>
     
     <ion-button fill="clear"  (click)="GoToImages()"   (click)="DismissClick()"><div><img src="assets/icon/view_service_report.svg" alt="">Images</div></ion-button>
     
-    <ion-button fill="clear" (click)="GoToReport('dailyReport')" (click)="DismissClick()"><div><img src="assets/icon/export_service_report.svg" alt="">Daily Report</div></ion-button>
+    <!-- <ion-button fill="clear" (click)="GoToReport('dailyReport')" (click)="DismissClick()"><div><img src="assets/icon/export_service_report.svg" alt="">Daily Report</div></ion-button> -->
     
     <ion-button  *ngFor="let row of taskPopUpData.taskWorkReport" fill="clear" [hidden]="!taskPopUpData || !taskPopUpData.taskReportCount || taskPopUpData.taskReportCount  == 0" (click)="GoToServiceReport(row.id)"><div><img src="assets/icon/report.svg" alt="" class="h20">Service Report ({{row.date_created | date: 'dd MMM yyyy'}})</div></ion-button>
     

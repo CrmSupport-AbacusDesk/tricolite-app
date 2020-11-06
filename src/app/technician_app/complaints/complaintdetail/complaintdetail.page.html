@@ -52,7 +52,7 @@
                                 <ion-text>{{(taskDetail.taskData.transaction_type == 'FOC' || taskDetail.taskData.transaction_type == 'Sale/Warranty' || taskDetail.taskData.transaction_type == 'Commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
                             </div>
                         </div>
-                        <div class="cs-box close">
+                        <div class="cs-box">
                             <div>
                                 <ion-text>Priority</ion-text>
                                 <ion-text>{{taskDetail.taskData.priority ? taskDetail.taskData.priority : 'NA'}}</ion-text>
@@ -63,7 +63,7 @@
                     <div class="one-two-one one mt10">
                         <div class="cs-box">
                             <div>
-                                <ion-text>Request Type & Complaint Title</ion-text>
+                                <ion-text>Request Type & Issue Category</ion-text>
                                 <ion-text>{{taskDetail.taskData.task_type}} / {{taskDetail.taskData.compaint_title}}</ion-text>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                     <div *ngIf="taskDetail.taskData.nature_problem" class="one-two-one one mt10">
                         <div class="cs-box">
                             <div>
-                                <ion-text>Nature Problem</ion-text>
+                                <ion-text>Nature of issue</ion-text>
                                 <ion-text>{{taskDetail.taskData.nature_problem}}</ion-text>
                             </div>
                         </div>
@@ -85,7 +85,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div class="one-two-one two mt10">
                         <div class="cs-box">
                             <div>
@@ -93,12 +92,23 @@
                                 <ion-text>{{taskDetail.taskData.workStatus ? taskDetail.taskData.workStatus : '--'}}</ion-text>
                             </div>
                         </div>
-                        <div class="cs-box">
+                        <!-- <div class="cs-box">
+                            <div>
+                                <ion-text>Complaint Status</ion-text>
+                                <ion-text>{{taskDetail.taskData.status}}</ion-text>
+                            </div>
+                        </div> -->
+
+
+                        <div [ngClass] = "(taskDetail.taskData.status) ? taskDetail.taskData.status.toLowerCase() : ''" class="cs-box">
                             <div>
                                 <ion-text>Complaint Status</ion-text>
                                 <ion-text>{{taskDetail.taskData.status}}</ion-text>
                             </div>
                         </div>
+                 
+
+
                     </div>
                 </div>
             </div>

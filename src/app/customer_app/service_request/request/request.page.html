@@ -79,7 +79,7 @@
                 <div *ngIf="row.task_type != 'commissioning'"  class="one-one-one" (click)="GoComplaintDetail(row.id)">
                     <div class="cs-box">
                         <div>
-                            <ion-text>Complaint Title </ion-text>
+                            <ion-text>Issue Category </ion-text>
                             <ion-text>{{row.compaint_title}}</ion-text>
                         </div>
                     </div>
@@ -133,12 +133,21 @@
                             <ion-text>{{row.workStatus ? row.workStatus : '--'}}</ion-text>
                         </div>
                     </div>
-                    <div class="cs-box">
+             
+             
+                    <div [ngClass] = "(row.status) ? row.status.toLowerCase() : ''" class="cs-box">
                         <div>
                             <ion-text>Complaint Status</ion-text>
                             <ion-text>{{row.status}}</ion-text>
                         </div>
                     </div>
+             
+                    <!-- <div class="cs-box">
+                        <div>
+                            <ion-text>Service Request Status</ion-text>
+                            <ion-text>{{row.status}}</ion-text>
+                        </div>
+                    </div> -->
                 </div>
                 
             </div>

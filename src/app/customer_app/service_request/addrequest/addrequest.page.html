@@ -25,7 +25,7 @@
                                     <ion-label>Request Type</ion-label>
                                     
                                     <ion-select formControlName="requestType" [(ngModel)]="data.requestType" (ngModelChange)="onRequestTypeChangeHandler()" placeholder="Select Type">
-                                        <ion-select-option value="service_request">Complaint</ion-select-option>
+                                        <ion-select-option value="service_request"> Service Request</ion-select-option>
                                         <ion-select-option value="commissioning">Commissioning</ion-select-option>
                                     </ion-select>
                                     
@@ -33,9 +33,9 @@
 
                                 <ion-item  *ngIf = "registerForm1.value['requestType']"[ngClass]="submitted && f1.complaintTitle.errors && f1.complaintTitle.errors.required ? 'has-error' : (f1.complaintTitle.errors && !f1.complaintTitle.errors.required ? 'has-text' : '')" class="cs-select">
                                     
-                                    <ion-label>Complaint Title</ion-label>
+                                    <ion-label> Issue Category</ion-label>
 
-                                    <ion-select  *ngIf = "registerForm1.value['requestType']  != 'commissioning'" formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type">
+                                    <ion-select class="test"  *ngIf = "registerForm1.value['requestType']  != 'commissioning'" formControlName="complaintTitle" [(ngModel)]="data.complaintTitle" placeholder="Select Type">
                                             <ion-select-option *ngFor="let row of complaintTypeList" [value]="row.title">{{row.title}}</ion-select-option>
                                             
                                     </ion-select>

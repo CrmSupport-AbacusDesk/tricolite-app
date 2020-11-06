@@ -100,6 +100,7 @@ export class ForgotpasswordPage implements OnInit {
                   console.log(result);
                   this.dbService.dismissLoader();
 
+                // tslint:disable-next-line:triple-equals
                   if (result[`status`] == 'error') {
 
                         this.dbService.onShowAlertMessage('Error', result[`statusMessage`]);
@@ -141,6 +142,7 @@ export class ForgotpasswordPage implements OnInit {
 
        this.isPasswordSubmitted = true;
 
+      // tslint:disable-next-line:triple-equals
        if (this.registerForm3.invalid || (this.data.password != this.data.confirmPassword)) {
 
             this.registerForm3.get('password').markAsTouched();

@@ -19,9 +19,15 @@ export class TabsPage {
         console.log('helloooo');
 
         if (targetType == 'complaint') {
+
+            localStorage.setItem('dashboardCountFilterData', '');
             this.route.navigateByUrl('/technicians/complaints');
+
         } else if (targetType == 'commissioning') {
+
+            localStorage.setItem('dashboardCountFilterData', '');
             this.route.navigateByUrl('/technicians/commissioning');
+
         } else if (targetType == 'menu') {
           this.route.navigateByUrl('/technicians/menu');
         } else if (targetType == 'home') {

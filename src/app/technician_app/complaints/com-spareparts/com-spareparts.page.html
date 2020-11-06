@@ -4,7 +4,7 @@
             <div class="cs-ion-header">
                 <div class="cs-left">
                     <ion-button (click)="GoComplaintDetail()"><ion-icon name="arrow-back"></ion-icon></ion-button>
-                    <ion-title>#COM-{{taskNo}} - <ion-text>Spare Parts</ion-text></ion-title>
+                    <ion-title>#COM-{{taskNo}} - <ion-text> Assigned Material Details</ion-text></ion-title>
                 </div>
                 <div class="cs-right">
                     <ion-button (click)="presentPopover($event)"><ion-icon name="more"></ion-icon></ion-button>
@@ -16,7 +16,7 @@
         <div class="cs-ion-content pt0" padding>
 
             <div class="complaints product-list part-list">
-                <div class="cs-heading"><h1>Assign spare parts</h1></div>
+                <div class="cs-heading"><h1> Assigned Material Details</h1></div>
 
                 <div *ngFor="let row of sparePartAssignedData" class="figure">
                     <div class="cnt-info">
@@ -36,7 +36,7 @@
             
             <div *ngIf="sparePartInstalledData && sparePartInstalledData.length > 0" class="complaints product-list part-list mt20">
 
-                <div class="cs-heading"><h1>install spare parts</h1></div>
+                <div class="cs-heading"><h1>install assigned material details</h1></div>
 
                 <div *ngFor="let row of sparePartInstalledData" class="figure">
                     <div class="cnt-info">

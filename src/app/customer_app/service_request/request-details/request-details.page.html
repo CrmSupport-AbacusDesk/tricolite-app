@@ -39,7 +39,9 @@
                                 <ion-text *ngIf="taskDataDetail.task_type != 'commissioning'">{{(taskDataDetail.transaction_type == 'FOC' || taskDataDetail.transaction_type == 'Sale/Warranty' || taskDataDetail.transaction_type?.toLowerCase() == 'commissioning') ? 'Under Warranty' : 'Out of Warranty'}}</ion-text>
                             </div>
                         </div>
-                        <div class="cs-box close">
+                        <div class="cs-box">
+
+                            <!-- class="cs-box close" -->
                             <div>
                                 <ion-text>Priority</ion-text>
                                 <ion-text>{{taskDataDetail.priority? taskDataDetail.priority : 'N/A'}}</ion-text>

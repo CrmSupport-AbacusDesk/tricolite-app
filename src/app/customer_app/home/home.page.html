@@ -47,4 +47,25 @@
             </div>
         </div>
     </div>
+
+    <div class="cs-btn">
+        <ion-button class="after-img" fill="clear" routerLink="/customer/customer-center">
+            <div class="figure">
+                <ion-text>ESCALATION MATRIX</ion-text>
+                <!-- <ion-text>Our Products</ion-text> -->
+            </div>
+            <i class="material-icons">arrow_right_alt</i>
+        </ion-button>
+    </div>
+
+    <div class="h40"></div>
 </ion-content>
+
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" size="small"  (click)="GoToEscalation()" style="display: none;">
+    <ion-fab-button class="h50 w50 transparent">
+        <!--            routerLink="/customer/escalationdetail"-->
+        
+        <img  src="assets/img/details.svg">
+    </ion-fab-button>
+</ion-fab>

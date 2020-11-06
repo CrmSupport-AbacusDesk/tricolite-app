@@ -111,7 +111,7 @@ export class ComDailyreportPage implements OnInit {
         this.registerForm3 = this.formBuilder.group({
             
             actionPlanned: ['', [Validators.minLength(3)]],
-            contactName: [''],
+            contactName: ['', [Validators.required]],
             otherContactName: ['', [Validators.minLength(3)]],
             mobile: ['', [Validators.minLength(10), Validators.maxLength(10)]],
             email: ['', [Validators.email]],

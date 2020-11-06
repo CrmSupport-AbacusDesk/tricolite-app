@@ -48,6 +48,8 @@ export class HomePage implements OnInit {
                 console.log(result);
                 
                 this.dashboardData = result;
+
+
          });
   }
 
@@ -119,5 +121,14 @@ export class HomePage implements OnInit {
         
         pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
       }
+
+
+
+      // const pushObject1: PushObject= this.push.init(options1);
+      // pushobject1.on('notification').subscribe((notification: any)=>console.log('Reject a notification', notification));
+
+
+
+
 
 }

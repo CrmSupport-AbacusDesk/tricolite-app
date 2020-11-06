@@ -30,7 +30,7 @@ export class AppComponent {
     private formBuilder: FormBuilder,
     public alertCtrl: AlertController,
     public dbService: DbServiceService,
-    public push : Push
+    public push: Push
   ) {
 
         this.initializeApp();
@@ -54,7 +54,7 @@ export class AppComponent {
               const inputData = {};
 
               this.dbService.presentLoader();
-   
+
               this.dbService.onPostRequestHandler(inputData, 'login/onValidateLoginById').subscribe((result) => {
 
                     console.log(result);
@@ -83,14 +83,14 @@ export class AppComponent {
 
                                this.route.navigate(['/technicians']);
                           }
-            
+
                           if (loginData[`loginType`] == 'Customer') {
-            
+
                               this.route.navigate(['/customer']);
                           }
                     }
 
-                     
+
               });
 
         } else {
@@ -104,6 +104,7 @@ export class AppComponent {
                 console.log('hello');
                 console.log(this.route.url);
 
+            // tslint:disable-next-line:max-line-length
                 if (this.route.url === '/loginType'  || this.route.url === '/technicians/home' || this.route.url === '/customer/home'  || this.route.url == '/customer/aboutus') {
 
                         if (this.dbService.backButton == 0 )  {
@@ -124,12 +125,13 @@ export class AppComponent {
                             console.log('hello1');
                             navigator[`app`].exitApp();
                         }
-
+                    // tslint:disable-next-line:max-line-length triple-equals
                 } else if (this.route.url === '/technicians/complaints' || this.route.url == '/technicians/commissioning' || this.route.url == '/technicians/menu') {
 
                      this.route.navigateByUrl('/technicians/home');
 
 
+                    // tslint:disable-next-line:triple-equals
                 } else if (this.route.url === '/customer/request' || this.route.url == '/customer/projects') {
 
                   this.route.navigateByUrl('/customer/home');
@@ -143,20 +145,16 @@ export class AppComponent {
     });
   }
 
-  initPushNotification()
-  {
+  initPushNotification() {
     this.push.hasPermission()
     .then((res: any) => {
-      if (res.isEnabled)
-      {
+      if (res.isEnabled) {
         console.log('We have permission to send push notifications');
-      }
-      else
-      {
+      } else {
         console.log('We don\'t have permission to send push notifications');
       }
     });
-    
+
     // to initialize push notifications
     const options: PushOptions = {
       android: {
@@ -170,18 +168,18 @@ export class AppComponent {
       },
       windows: {}
     };
-    
+
     const pushObject: PushObject = this.push.init(options);
-    
+
     pushObject.on('notification')
-    .subscribe((notification) =>{
+    .subscribe((notification) => {
       console.log('Received a notification', notification);
-      
-      //Notification Display Section
+
+      // Notification Display Section
       let confirmAlert = this.alertCtrl
       .create({
         message: JSON.stringify(notification.message),
-        buttons: 
+        buttons:
         [{
           text: 'Ignore',
           role: 'cancel'
@@ -189,14 +187,14 @@ export class AppComponent {
         {
           text: 'View',
           handler: () => {
-            //TODO: Your logic here
-            console.log("View Notification");
-            
+            // TODO: Your logic here
+            console.log('View Notification');
+
           }
         }]
       });
     });
-    
+
     pushObject.on('registration')
     .subscribe((registration) =>{
       console.log('Device registered', registration);
@@ -207,7 +205,7 @@ export class AppComponent {
       //   console.log(r);
       // });
     });
-    
+
     pushObject.on('error')
     .subscribe((error) =>
     console.error('Error with Push plugin', error));

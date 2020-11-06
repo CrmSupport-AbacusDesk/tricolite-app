@@ -123,7 +123,7 @@
                                     <ion-item [ngClass]="submitted && f1.workStatus.errors && f1.workStatus.errors.required ? 'has-error' : (f1.workStatus.errors && !f1.workStatus.errors.required ? 'has-text' : '')" class="cs-select">
                                         <ion-label>Select Status</ion-label>
                                         <ion-select formControlName="workStatus" [(ngModel)]="data.workStatus" (ngModelChange)="onChangeWorkStatusHandler()" placeholder="Select One">
-                                            <ion-select-option value="Running">In-Process</ion-select-option>
+                                            <ion-select-option value="Running">Work in-Process</ion-select-option>
                                             <ion-select-option value="Pending">Pending</ion-select-option>
                                             <ion-select-option value="Close">Close</ion-select-option>
                                         </ion-select>
@@ -178,7 +178,7 @@
                                         
                                         <ion-label>Contact Person Name</ion-label>
                                         
-                                        <ion-select formControlName="contactName" [(ngModel)]="data.contactName" (ngModelChange) = "onContactChangeHandler('dailyReport')"  placeholder="Select">
+                                        <ion-select formControlName="contactName"  [(ngModel)]="data.contactName" (ngModelChange) = "onContactChangeHandler('dailyReport')"  placeholder="Select">
                                             <ion-select-option *ngFor="let row of contactList" [value]="row.name">{{row.name}}</ion-select-option>
                                         </ion-select>
 
@@ -336,8 +336,10 @@
                                         <div class="common_form inner_page">
                                             <ion-item class="cs-select">
                                                 <ion-label>Contact Person Name</ion-label>
-                                                <ion-select disabled="{{row.check_list_created}}" [(ngModel)]="row.checkContactName" (ngModelChange) = "onContactChangeHandler('checkReport')"  placeholder="Select">
-                                                    <ion-select-option *ngFor="let row of contactList" [value]="row.name">{{row.name}}</ion-select-option>
+
+                                           
+                                                <ion-select id="checkContactName" name="checkContactName" disabled="{{row.check_list_created}}" [(ngModel)]="row.checkContactName" (ngModelChange) = "onContactChangeHandler('checkReport')"  placeholder="Select" required>
+                                                    <ion-select-option *ngFor="let row of contactList" [value]="row.name" id="checkContactName" name="checkContactName" required>{{row.name}}</ion-select-option>
                                                 </ion-select>
                                             </ion-item>
                                             <ion-item *ngIf="row.checkContactName=='Other'">

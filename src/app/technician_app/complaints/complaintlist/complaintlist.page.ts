@@ -6,6 +6,7 @@ import { DbServiceService } from 'src/app/db-service.service';
 import { ComplaintfiltermodalPage } from 'src/app/complaintfiltermodal/complaintfiltermodal.page';
 import { TecCompliantPopoverComponent } from '../tec-compliant-popover/tec-compliant-popover.component';
 import * as $ from 'jquery';
+import {HomePage} from '../../home/home.page';
 
 @Component({
   selector: 'app-complaintlist',
@@ -21,7 +22,7 @@ export class ComplaintlistPage implements OnInit {
 
   routeTitleForView: any = '';
   complaintList: any = [];
-
+  searchval1: any = {};
   isSearchOptionActive: any = false;
   searchData: any = {};
   data: any = {};
@@ -39,7 +40,8 @@ export class ComplaintlistPage implements OnInit {
               private formBuilder: FormBuilder,
               public alertCtrl: AlertController,
               public modalController: ModalController,
-              public dbService: DbServiceService) {
+              public dbService: DbServiceService,
+              ) {
 
     
   }
@@ -78,7 +80,7 @@ export class ComplaintlistPage implements OnInit {
       if (this.route.url == '/technicians/complaints') {
 
            inputData[`type`] = 'service_request';
-           this.routeTitleForView = 'Complaints';
+           this.routeTitleForView = 'Service Request';
 
            localStorage.setItem('routeType', 'complaints');
       }
@@ -91,16 +93,21 @@ export class ComplaintlistPage implements OnInit {
          localStorage.setItem('routeType', 'commissioning');
       }
 
+     
+
       if (localStorage.getItem('dashboardCountFilterData')) {
 
             this.dashboardCountFilterData = JSON.parse(localStorage.getItem('dashboardCountFilterData'));
             console.log(this.dashboardCountFilterData);
-      } else {
-          
-           this.dashboardCountFilterData = '';
-      }
+            // this.searchval1 = this.home.searchVal;
 
-      this.searchData[`dashboardCountFilterData`] = this.dashboardCountFilterData;
+      } else {
+
+          
+           this.dashboardCountFilterData = '' ;
+      }
+   
+      this.searchData[`dashboardCountFilterData`] = this.dashboardCountFilterData ;
 
       inputData[`searchData`] = this.searchData;
       inputData[`inputSearch`] = this.data.inputSearch;
@@ -122,9 +129,6 @@ export class ComplaintlistPage implements OnInit {
             }
 
             let resultData = result[`taskList`];
-
-            this.dashboardCountFilterData = '';
-            localStorage.setItem('dashboardCountFilterData', '');
 
             if (!resultData || resultData == null || resultData.length == 0) {
                 resultData = [];

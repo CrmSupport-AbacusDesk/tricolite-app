@@ -21,11 +21,11 @@ export class CustomerdocumentsPage implements OnInit {
   constructor(private route: Router,
               private formBuilder: FormBuilder,
               public alertCtrl: AlertController,
-              public dbService: DbServiceService) { 
+              public dbService: DbServiceService) {
 
                 this.currentActiveTab = 1;
 
-              
+
   }
 
   ngOnInit() {

@@ -36,6 +36,9 @@ const routes: Routes = [
         path: 'menu/documents/detail/:documentId/:documentTitle',
         loadChildren: () => import('../customer-document-detail/customer-document-detail.module').then(m => m.CustomerDocumentDetailModule)
       },
+
+
+
       // ============= +++++++
       // ============= +++++++
       // ============= +++++++ Service Request Inner Page Routing Start..........
@@ -44,6 +47,11 @@ const routes: Routes = [
       {
         path: 'request',
         loadChildren: () => import('../service_request/request/request.module').then(m => m.RequestPageModule)
+      },
+      {
+        path: 'escalationdetail',
+        loadChildren: () => import('../escalationdetail/escalationdetail.module').then(m => m.EscalationdetailPageModule)
+
       },
       {
         path: 'request/detail/:taskId',
@@ -85,6 +93,10 @@ const routes: Routes = [
       {
         path: 'aboutus',
         loadChildren: () => import('../aboutus/aboutus.module').then(m => m.AboutusPageModule)
+      },
+      {
+        path: 'customer-center',
+        loadChildren: () => import('../customer-center/customer-center.module').then( m => m.CustomerCenterPageModule)
       },
       {
         path: '',
