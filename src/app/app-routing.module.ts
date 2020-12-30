@@ -62,8 +62,10 @@ const routes: Routes = [
   {
     path: 'customer_forgotpassword',
     loadChildren: () => import('./customer_app/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
-  },  {
+  },
+  {
     path: 'contactpersonmodel',
+    // tslint:disable-next-line:max-line-length
     loadChildren: () => import('./customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module').then( m => m.ContactpersonmodelPageModule)
   },
 

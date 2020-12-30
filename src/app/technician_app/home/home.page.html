@@ -51,7 +51,7 @@
                 <div class="figure">
                     <div class="count"><ion-text>{{dashboardData.freeServiceTask}}</ion-text> Complaint</div>
                     <div class="pr-section">
-                        <h1>Free <ion-text>Service</ion-text></h1>
+                        <h1>Under  <ion-text>warranty</ion-text></h1>
                         <i class="material-icons">keyboard_arrow_right</i>
                     </div>
                 </div>
@@ -62,10 +62,13 @@
                 <div class="figure">
                     <div class="count"><ion-text>{{dashboardData.paidServiceTask}}</ion-text> Complaint</div>
                     <div class="pr-section">
-                        <h1>Paid <ion-text>Service</ion-text></h1>
+                        <h1>Out <ion-text>of warranty </ion-text></h1>
                         <i class="material-icons">keyboard_arrow_right</i>
                     </div>
                 </div>
+
+
+            
             </ion-button>
             <ion-button routerLink="{{dashboardData.commissioningTask && dashboardData.commissioningTask != '0' ? '/technicians/commissioning' : ''}}" fill="clear" class="default">
                 <div class="figure">

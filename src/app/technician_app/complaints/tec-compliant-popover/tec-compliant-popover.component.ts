@@ -6,8 +6,6 @@ import * as $ from 'jquery';
 
 declare var cordova: any;
 
-
-
 @Component({
   selector: 'app-tec-compliant-popover',
   templateUrl: './tec-compliant-popover.component.html',
@@ -21,9 +19,13 @@ export class TecCompliantPopoverComponent implements OnInit {
   taskType: any = '';
 
   routeType: any = '';
-  taskAllData: any ='';
+  taskAllData: any = '';
   taskPopUpData: any;
-  
+
+
+  GoToImages1: any = '';
+status: any = '';
+
   constructor(public popoverController: PopoverController,
               private router: Router,
               private navParams: NavParams,
@@ -33,6 +35,12 @@ export class TecCompliantPopoverComponent implements OnInit {
         this.taskNo = navParams.get('taskNo');
         this.taskStatus = navParams.get('taskStatus');
         this.taskType = navParams.get('taskType');
+
+        this.taskType = navParams.get('taskType');
+        this.GoToImages1 = navParams.get('GoToImages1');
+        this.status = navParams.get('status');
+
+
         localStorage.setItem('taskType', this.taskType);
 
         console.log(this.taskType);
@@ -49,26 +57,31 @@ export class TecCompliantPopoverComponent implements OnInit {
   }
 
   GoToRemarks() {
+      // tslint:disable-next-line:max-line-length
     this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/remarks/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
   }
 
   GoToStatus() {
-    this.router.navigateByUrl('/technicians/'+ localStorage.getItem('routeType') +'/details/status/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+      // tslint:disable-next-line:max-line-length
+    this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/status/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
   }
 
   GoToSpareParts() {
-    this.router.navigateByUrl('/technicians/'+ localStorage.getItem('routeType') + '/details/spareparts/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
+      // tslint:disable-next-line:max-line-length
+    this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/spareparts/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
   }
 
   GoToImages() {
+      // tslint:disable-next-line:max-line-length
     this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
   }
-  
+
   GoToReport(type) {
 
     localStorage.setItem('reportType', type);
 
-    this.router.navigateByUrl('/technicians/'+ localStorage.getItem('routeType') +'/details/dailyreport/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
+      // tslint:disable-next-line:max-line-length
+    this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/dailyreport/' + this.taskId + '/' + this.taskNo +  '/' + this.taskStatus + '');
   }
 
   GoToServiceReport(taskReportId) {
@@ -91,17 +104,17 @@ export class TecCompliantPopoverComponent implements OnInit {
 
       cordova.plugins.pdf.htmlToPDF({
         data: result,
-        documentSize: "A4",
-        type: "share",
+        documentSize: 'A4',
+        type: 'share',
         fileName: 'my-pdf.pdf'
-        
+
     },
     (sucess) => console.log('sucess: ', sucess),
     (error) => console.log('error:', error));
-       
+
 
     });
-    
+
   }
 }
 

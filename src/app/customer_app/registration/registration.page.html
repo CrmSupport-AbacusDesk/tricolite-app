@@ -35,7 +35,7 @@
 
 
                                         <ion-item [ngClass]="submitted && f1.email.errors && f1.email.errors.required ? 'has-error' : (f1.email.errors && !f1.email.errors.required ? 'has-text' : '')">
-                                            <ion-label position="floating">Email ID</ion-label>
+                                            <ion-label position="floating"> Corporate Mail</ion-label>
                                             <ion-input formControlName="email" [(ngModel)]="data.email" autocomplete="nope"></ion-input>
 
                                             <ion-text *ngIf="submitted && f1.email.errors" class="cs-error">
@@ -47,7 +47,7 @@
                                         </ion-item>
 
                                         <ion-item [ngClass]="submitted && f1.landlineNo.errors && f1.landlineNo.errors.required ? 'has-error' : (f1.landlineNo.errors && !f1.landlineNo.errors.required ? 'has-text' : '')">
-                                            <ion-label position="floating">Mobile</ion-label>
+                                            <ion-label position="floating">Corporate Mobile No.</ion-label>
                                             <ion-input type="tel" formControlName="landlineNo" [(ngModel)]="data.landlineNo"   minlength = "10" maxlength="10" (keypress)="dbService.numberOnly($event)" autocomplete="nope"></ion-input>
 
                                             <ion-text *ngIf="submitted && f1.landlineNo.errors" class="cs-error">
@@ -144,7 +144,7 @@
                                     
                                     <ion-item [ngClass]="submitted && f2.city.errors && f2.city.errors.required ? 'has-error' : (f2.city.errors && !f2.city.errors.required ? 'has-text' : '')">
                                         <ion-label position="floating">City</ion-label>
-                                        <ion-input formControlName="city" [(ngModel)]="data.city"></ion-input>
+                                        <ion-input formControlName="city" [(ngModel)]="data.city" ></ion-input>
 
                                         <ion-text *ngIf="submitted && f2.city.errors" class="cs-error">
     
@@ -172,10 +172,9 @@
                               </form>
 
                             </div>
-                            
-
+                        
                             <div class="heading">
-                                <h2>Contact Person Info</h2>
+                                <h2>Site Contact Person Detail</h2>
                             </div>
                             <div class="contact_person">
                             <form [formGroup]="registerForm3" (ngSubmit)="onNextStageHandler(3)">

@@ -20,9 +20,7 @@ export class RequestDetailsPage implements OnInit {
   
   constructor(public popoverController: PopoverController,
     public dbService: DbServiceService,
-    public routeParams: ActivatedRoute,
-    
-    ) {
+    public routeParams: ActivatedRoute) {
     }
     
     ngOnInit() {
@@ -72,8 +70,7 @@ export class RequestDetailsPage implements OnInit {
         
         console.log(result);
         this.onGetComplaintDetailHandler()
-        
-        
+      
       });
       
       return await popover.present();
@@ -83,11 +80,9 @@ export class RequestDetailsPage implements OnInit {
       
       const inputData = {
         
-        taskId: this.taskId
-        
+        taskId: this.taskId    
       };
-      
-      
+ 
       this.dbService.onPostRequestHandler(inputData, 'task/onTaskDetail').subscribe((result) => {
         console.log(result);
         this.taskDataDetail = Object.assign({},result['taskData']);
@@ -96,10 +91,8 @@ export class RequestDetailsPage implements OnInit {
         this.taskDataFgDetail = Object.assign([],result['taskFGData']);
         console.log(this.taskDataFgDetail);
         this.taskAssignData = Object.assign([],result['taskAssignData']);
-        console.log(this.taskAssignData);
-        
-      });
-      
+        console.log(this.taskAssignData);       
+      });     
     }
     
     async onViewImageHandler(image) 

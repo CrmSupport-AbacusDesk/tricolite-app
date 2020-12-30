@@ -45,7 +45,7 @@
                 
                 <div (click)="GoComplaintDetail(row.id)" class="top">
                     <div class="cs-left">
-                        <h1>#COM - {{row.task_no}} <ion-text>({{row.days}} Days)</ion-text></h1>
+                        <h1>#SR - {{row.task_no}} <ion-text>({{row.days}} Days)</ion-text></h1>
                     </div>
                     <div class="cs-right">
                         <ion-text>{{row.dateCreated}}  |  {{row.timeCreated}}</ion-text>
@@ -87,8 +87,11 @@
 
                 <div class="one-two-one three" (click)="GoComplaintDetail(row.id)">
 
-                    <div class="cs-box close" style="background: #FFCC00;">
-                            <div>
+                    <div class="cs-box" >
+                        <!-- style="background: #FFCC00;" -->
+                        <!-- class="cs-box close" -->
+                        
+                        <div>
                                 <ion-text>Priority</ion-text>
                                 <ion-text>{{row.priority ? row.priority : 'NA'}}</ion-text>
                             </div>
@@ -104,7 +107,10 @@
                         </div>
                     </div>
             
-                    <div  *ngIf="row.task_type != 'commissioning'" class="cs-box close" style="background: #FFA200;">
+                    <div  *ngIf="row.task_type != 'commissioning'" class="cs-box" >
+
+                        <!-- style="background: #FFA200;" -->
+
                         <div>
                             <ion-text>Service Type</ion-text>
                             <ion-text>{{(row.transaction_type == 'FOC' || row.transaction_type == 'Sale/Warranty' || row.transaction_type == 'Commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
@@ -116,7 +122,7 @@
                 <div *ngIf="row.task_type != 'commissioning'" (click)="GoComplaintDetail(row.id)" class="one-one-one">
                     <div class="cs-box">
                         <div>
-                            <ion-text>Complaint Title </ion-text>
+                            <ion-text> Issue Category </ion-text>
                             <ion-text>{{row.compaint_title}}</ion-text>
                         </div>
                     </div>
@@ -131,7 +137,7 @@
                     </div>
                     <div [ngClass] = "(row.status) ? row.status.toLowerCase() : ''" class="cs-box">
                         <div>
-                            <ion-text>Complaint Status</ion-text>
+                            <ion-text> Service Request Status</ion-text>
                             <ion-text>{{row.status}}</ion-text>
                         </div>
                     </div>

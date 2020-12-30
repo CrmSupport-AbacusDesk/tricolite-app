@@ -33,6 +33,7 @@ export class AddrequestPage implements OnInit {
   minDate: any  = '';
 
   defaultActiveTitle = 'service_request';
+    commissioning: any;
 
   constructor(public popoverController: PopoverController, 
               private route: Router,

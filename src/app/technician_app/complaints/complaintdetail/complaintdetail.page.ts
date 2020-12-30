@@ -13,7 +13,6 @@ import { DbServiceService } from 'src/app/db-service.service';
   styleUrls: ['./complaintdetail.page.scss'],
 })
 export class ComplaintdetailPage implements OnInit {
-
   taskId: any = '';
   taskDetail: any = {};
   routeTitleForView: any = '';
