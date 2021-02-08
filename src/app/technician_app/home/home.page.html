@@ -47,7 +47,7 @@
         
         <div class="midd-counters">
 
-            <ion-button (click)= "onDashboardCountClickHandler('freeTask')" routerLink="{{dashboardData.freeServiceTask && dashboardData.freeServiceTask != '0' ? '/technicians/complaints' : ''}}" fill="clear" class="free">
+            <ion-button (click)= "onDashboardCountClickHandler('freeTask')" routerLink="/technicians/complaints" *ngIf="dashboardData.freeServiceTask && dashboardData.freeServiceTask != '0'" fill="clear" class="free">
                 <div class="figure">
                     <div class="count"><ion-text>{{dashboardData.freeServiceTask}}</ion-text> Complaint</div>
                     <div class="pr-section">
@@ -57,8 +57,17 @@
                 </div>
             </ion-button>
 
+            <ion-button (click)= "onDashboardCountClickHandler('freeTask')" *ngIf="!dashboardData.freeServiceTask ||dashboardData.freeServiceTask == '0'" fill="clear" class="free">
+                <div class="figure">
+                    <div class="count"><ion-text>{{dashboardData.freeServiceTask}}</ion-text> Complaint</div>
+                    <div class="pr-section">
+                        <h1>Under  <ion-text>warranty</ion-text></h1>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </div>
+                </div>
+            </ion-button>
 
-            <ion-button (click)= "onDashboardCountClickHandler('paidTask')" routerLink="{{dashboardData.paidServiceTask && dashboardData.paidServiceTask != '0' ? '/technicians/complaints' : ''}}" fill="clear" class="paid">
+            <ion-button (click)= "onDashboardCountClickHandler('paidTask')" routerLink="/technicians/complaints" *ngIf="dashboardData.paidServiceTask && dashboardData.paidServiceTask != '0'" fill="clear" class="paid">
                 <div class="figure">
                     <div class="count"><ion-text>{{dashboardData.paidServiceTask}}</ion-text> Complaint</div>
                     <div class="pr-section">
@@ -66,11 +75,29 @@
                         <i class="material-icons">keyboard_arrow_right</i>
                     </div>
                 </div>
-
-
-            
             </ion-button>
-            <ion-button routerLink="{{dashboardData.commissioningTask && dashboardData.commissioningTask != '0' ? '/technicians/commissioning' : ''}}" fill="clear" class="default">
+
+            <ion-button (click)= "onDashboardCountClickHandler('paidTask')" *ngIf="!dashboardData.paidServiceTask ||dashboardData.paidServiceTask == '0'" fill="clear" class="paid">
+                <div class="figure">
+                    <div class="count"><ion-text>{{dashboardData.paidServiceTask}}</ion-text> Complaint</div>
+                    <div class="pr-section">
+                        <h1>Out <ion-text>of warranty </ion-text></h1>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </div>
+                </div>
+            </ion-button>
+
+            <ion-button routerLink="/technicians/commissioning" *ngIf="dashboardData.commissioningTask && dashboardData.commissioningTask != '0'" fill="clear" class="default">
+                <div class="figure">
+                    <div class="count"><ion-text>{{dashboardData.commissioningTask}}</ion-text> Task</div>
+                    <div class="pr-section">
+                        <h1>Commissioning</h1>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </div>
+                </div>
+            </ion-button>
+
+            <ion-button *ngIf="!dashboardData.commissioningTask || dashboardData.commissioningTask == '0' " fill="clear" class="default">
                 <div class="figure">
                     <div class="count"><ion-text>{{dashboardData.commissioningTask}}</ion-text> Task</div>
                     <div class="pr-section">
