@@ -49,7 +49,7 @@
 
             <ion-button (click)= "onDashboardCountClickHandler('freeTask')" routerLink="/technicians/complaints" *ngIf="dashboardData.freeServiceTask && dashboardData.freeServiceTask != '0'" fill="clear" class="free">
                 <div class="figure">
-                    <div class="count"><ion-text>{{dashboardData.freeServiceTask}}</ion-text> Complaint</div>
+                    <div class="count"><ion-text>{{dashboardData.freeServiceTask}}</ion-text> Request</div>
                     <div class="pr-section">
                         <h1>Under  <ion-text>warranty</ion-text></h1>
                         <i class="material-icons">keyboard_arrow_right</i>
@@ -59,7 +59,7 @@
 
             <ion-button (click)= "onDashboardCountClickHandler('freeTask')" *ngIf="!dashboardData.freeServiceTask ||dashboardData.freeServiceTask == '0'" fill="clear" class="free">
                 <div class="figure">
-                    <div class="count"><ion-text>{{dashboardData.freeServiceTask}}</ion-text> Complaint</div>
+                    <div class="count"><ion-text>{{dashboardData.freeServiceTask}}</ion-text> Request</div>
                     <div class="pr-section">
                         <h1>Under  <ion-text>warranty</ion-text></h1>
                         <i class="material-icons">keyboard_arrow_right</i>
@@ -69,7 +69,7 @@
 
             <ion-button (click)= "onDashboardCountClickHandler('paidTask')" routerLink="/technicians/complaints" *ngIf="dashboardData.paidServiceTask && dashboardData.paidServiceTask != '0'" fill="clear" class="paid">
                 <div class="figure">
-                    <div class="count"><ion-text>{{dashboardData.paidServiceTask}}</ion-text> Complaint</div>
+                    <div class="count"><ion-text>{{dashboardData.paidServiceTask}}</ion-text> Request</div>
                     <div class="pr-section">
                         <h1>Out <ion-text>of warranty </ion-text></h1>
                         <i class="material-icons">keyboard_arrow_right</i>
@@ -79,7 +79,7 @@
 
             <ion-button (click)= "onDashboardCountClickHandler('paidTask')" *ngIf="!dashboardData.paidServiceTask ||dashboardData.paidServiceTask == '0'" fill="clear" class="paid">
                 <div class="figure">
-                    <div class="count"><ion-text>{{dashboardData.paidServiceTask}}</ion-text> Complaint</div>
+                    <div class="count"><ion-text>{{dashboardData.paidServiceTask}}</ion-text> Request</div>
                     <div class="pr-section">
                         <h1>Out <ion-text>of warranty </ion-text></h1>
                         <i class="material-icons">keyboard_arrow_right</i>
