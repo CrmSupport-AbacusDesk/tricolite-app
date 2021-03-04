@@ -283,7 +283,7 @@
           };
           this.dbService.onPostRequestHandler(inputData, 'login/onValidateMobileExistance').subscribe(result => {
             console.log(result);
-            this.dbService.dismissLoader();
+            this.dbService.dismissLoader(); // tslint:disable-next-line:triple-equals
 
             if (result["status"] == 'error') {
               this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
@@ -312,7 +312,7 @@
 
       onPasswordSubmitHandler() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.isPasswordSubmitted = true;
+          this.isPasswordSubmitted = true; // tslint:disable-next-line:triple-equals
 
           if (this.registerForm3.invalid || this.data.password != this.data.confirmPassword) {
             this.registerForm3.get('password').markAsTouched();

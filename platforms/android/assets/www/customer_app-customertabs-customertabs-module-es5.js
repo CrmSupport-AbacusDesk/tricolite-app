@@ -118,6 +118,11 @@
         /*! ../service_request/request/request.module */
         "./src/app/customer_app/service_request/request/request.module.ts")).then(m => m.RequestPageModule)
       }, {
+        path: 'escalationdetail',
+        loadChildren: () => Promise.resolve().then(__webpack_require__.bind(null,
+        /*! ../escalationdetail/escalationdetail.module */
+        "./src/app/customer_app/escalationdetail/escalationdetail.module.ts")).then(m => m.EscalationdetailPageModule)
+      }, {
         path: 'request/detail/:taskId',
         loadChildren: () => __webpack_require__.e(
         /*! import() | service_request-request-details-request-details-module */
@@ -171,6 +176,13 @@
         "aboutus-aboutus-module").then(__webpack_require__.bind(null,
         /*! ../aboutus/aboutus.module */
         "./src/app/customer_app/aboutus/aboutus.module.ts")).then(m => m.AboutusPageModule)
+      }, {
+        path: 'customer-center',
+        loadChildren: () => __webpack_require__.e(
+        /*! import() | customer-center-customer-center-module */
+        "customer-center-customer-center-module").then(__webpack_require__.bind(null,
+        /*! ../customer-center/customer-center.module */
+        "./src/app/customer_app/customer-center/customer-center.module.ts")).then(m => m.CustomerCenterPageModule)
       }, {
         path: '',
         redirectTo: '/tabs/home',

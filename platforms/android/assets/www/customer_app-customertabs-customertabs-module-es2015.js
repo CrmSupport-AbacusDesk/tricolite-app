@@ -71,6 +71,10 @@ const routes = [
                 loadChildren: () => Promise.all(/*! import() | service_request-request-request-module */[__webpack_require__.e("default~complaints-complaintlist-complaintlist-module~myprojects-myprojects-module~service_request-r~738493b2"), __webpack_require__.e("service_request-request-request-module")]).then(__webpack_require__.bind(null, /*! ../service_request/request/request.module */ "./src/app/customer_app/service_request/request/request.module.ts")).then(m => m.RequestPageModule)
             },
             {
+                path: 'escalationdetail',
+                loadChildren: () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ../escalationdetail/escalationdetail.module */ "./src/app/customer_app/escalationdetail/escalationdetail.module.ts")).then(m => m.EscalationdetailPageModule)
+            },
+            {
                 path: 'request/detail/:taskId',
                 loadChildren: () => __webpack_require__.e(/*! import() | service_request-request-details-request-details-module */ "service_request-request-details-request-details-module").then(__webpack_require__.bind(null, /*! ../service_request/request-details/request-details.module */ "./src/app/customer_app/service_request/request-details/request-details.module.ts")).then(m => m.RequestDetailsPageModule)
             },
@@ -102,6 +106,10 @@ const routes = [
             {
                 path: 'aboutus',
                 loadChildren: () => __webpack_require__.e(/*! import() | aboutus-aboutus-module */ "aboutus-aboutus-module").then(__webpack_require__.bind(null, /*! ../aboutus/aboutus.module */ "./src/app/customer_app/aboutus/aboutus.module.ts")).then(m => m.AboutusPageModule)
+            },
+            {
+                path: 'customer-center',
+                loadChildren: () => __webpack_require__.e(/*! import() | customer-center-customer-center-module */ "customer-center-customer-center-module").then(__webpack_require__.bind(null, /*! ../customer-center/customer-center.module */ "./src/app/customer_app/customer-center/customer-center.module.ts")).then(m => m.CustomerCenterPageModule)
             },
             {
                 path: '',

@@ -15,7 +15,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-tabs #mainTabs>\r\n    \r\n    <ion-tab-bar slot=\"bottom\">\r\n        <ion-tab-button (click)=\"tabChanged('home')\" tab=\"home\">\r\n            <ion-icon name=\"home\"></ion-icon>\r\n            <ion-label>HOME</ion-label>\r\n        </ion-tab-button>\r\n        \r\n        <ion-tab-button (click)=\"tabChanged('complaint')\" tab=\"complaints\">\r\n            <ion-icon name=\"alert\"></ion-icon>\r\n            <ion-label>COMPLAINTS</ion-label>\r\n        </ion-tab-button>\r\n        \r\n        <ion-tab-button (click)=\"tabChanged('commissioning')\" tab=\"commissioning\">\r\n            <ion-icon name=\"flower\"></ion-icon>\r\n            <ion-label>COMMISSIONING</ion-label>\r\n        </ion-tab-button>\r\n        \r\n        <ion-tab-button (click)=\"tabChanged('menu')\" tab=\"menu\">\r\n            <ion-icon name=\"menu\"></ion-icon>\r\n            <ion-label>MENU</ion-label>\r\n        </ion-tab-button>\r\n    </ion-tab-bar>\r\n    \r\n</ion-tabs>\r\n";
+    __webpack_exports__["default"] = "<ion-tabs #mainTabs>\r\n    \r\n    <ion-tab-bar slot=\"bottom\">\r\n        <ion-tab-button (click)=\"tabChanged('home')\" tab=\"home\">\r\n            <ion-icon name=\"home\"></ion-icon>\r\n            <ion-label>HOME</ion-label>\r\n        </ion-tab-button>\r\n        \r\n        <ion-tab-button (click)=\"tabChanged('complaint')\" tab=\"complaints\">\r\n            <ion-icon name=\"alert\"></ion-icon>\r\n            <ion-label> SERVICE REQUEST</ion-label>\r\n        </ion-tab-button>\r\n        \r\n        <ion-tab-button (click)=\"tabChanged('commissioning')\" tab=\"commissioning\">\r\n            <ion-icon name=\"flower\"></ion-icon>\r\n            <ion-label>COMMISSIONING</ion-label>\r\n        </ion-tab-button>\r\n        \r\n        <ion-tab-button (click)=\"tabChanged('menu')\" tab=\"menu\">\r\n            <ion-icon name=\"menu\"></ion-icon>\r\n            <ion-label>MENU</ion-label>\r\n        </ion-tab-button>\r\n    </ion-tab-bar>\r\n    \r\n</ion-tabs>\r\n";
     /***/
   },
 
@@ -431,8 +431,10 @@
         console.log('helloooo');
 
         if (targetType == 'complaint') {
+          localStorage.setItem('dashboardCountFilterData', '');
           this.route.navigateByUrl('/technicians/complaints');
         } else if (targetType == 'commissioning') {
+          localStorage.setItem('dashboardCountFilterData', '');
           this.route.navigateByUrl('/technicians/commissioning');
         } else if (targetType == 'menu') {
           this.route.navigateByUrl('/technicians/menu');
