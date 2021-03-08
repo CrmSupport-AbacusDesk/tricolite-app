@@ -55,6 +55,9 @@ export class CustomerdocumentsPage implements OnInit {
 
                   this.documentList = result[`documentList`];
                   this.masterDocList = result[`masterDocList`];
+                  console.log(this.documentList);
+                    console.log(this.masterDocList);
+                                
               }
 
               this.isRequestInProcess = false;
@@ -84,18 +87,36 @@ export class CustomerdocumentsPage implements OnInit {
 async onViewImageHandler(index) {
 
   let imagePath;
-  if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master') {
-        
-       imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
-       console.log(imagePath);
 
-  } else {
 
-       imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
-       console.log(imagePath);
+  if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master')
+   {
+     if( this.documentImageData[index]['document_type']=='URL')
+     {
+     imagePath =  this.documentImageData[index].document_url;
+       
+     }
+     else
+     imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
+     console.log(imagePath);
 
-         
-  }
+} 
+
+
+
+else {
+
+     imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
+     console.log(imagePath);
+
+       
+}
+
+
+     {
+
+     }  
+
 
   window.open(imagePath, '_blank');
 

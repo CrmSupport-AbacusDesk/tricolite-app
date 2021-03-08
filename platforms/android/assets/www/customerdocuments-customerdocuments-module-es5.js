@@ -15,7 +15,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button [routerLink]=\"['/customer/home']\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>Documents</ion-title>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        \r\n        <div class=\"ion-padding-horizontal\">\r\n            <div class=\"cs-tabs\">\r\n                <ion-button (click)=\"currentActiveTab = 1; onGetDocumentList()\" [ngClass]=\"currentActiveTab==1 ? 'active' : ''\">Personal Document</ion-button>\r\n                <ion-button (click)=\"currentActiveTab = 2; onGetDocumentList()\" [ngClass]=\"currentActiveTab==2 ? 'active' : ''\">Common Document</ion-button>\r\n            </div>\r\n        </div>\r\n        \r\n        <div *ngIf=\"currentActiveTab==1\" class=\"cs-ion-content pt0\" padding>\r\n            \r\n            <ion-list class=\"list-item\">\r\n                <ion-item *ngFor=\"let row of documentList\" (click)=\"onGetImageDataHandler(row.id, row.subject)\" >\r\n                    <ion-label>{{row.subject}}</ion-label>\r\n                </ion-item>\r\n            </ion-list>\r\n            <!-- <div class=\"m_documents\" padding>\r\n                <div *ngFor=\"let row of documentList\" (click)=\"onGetImageDataHandler(row.id, row.subject)\" class=\"figure\">\r\n                    <div class=\"thumb\"><img src=\"{{dbService.customerDocURL + row.document_url}}\" alt=\"\"></div>\r\n                    <h1><ion-text>{{row.subject}}</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\r\n                </div>\r\n            </div> -->\r\n            \r\n            <div *ngIf=\"!isRequestInProcess && documentList.length == 0\" class=\"no-data\">\r\n                <img src=\"assets/icon/no_found.svg\">\r\n                <p>No Data Available!</p>\r\n            </div>\r\n            \r\n        </div>\r\n        \r\n        \r\n        \r\n        <div *ngIf=\"currentActiveTab==2\" class=\"cs-ion-content pt0\" padding>\r\n            <ion-list class=\"list-item\">\r\n                <ion-item *ngFor=\"let row of masterDocList\" (click)=\"onGetImageDataHandler(row.id, row.subject)\" >\r\n                    <ion-label>{{row.subject}}</ion-label>\r\n                </ion-item>\r\n            </ion-list>\r\n            \r\n            <div *ngIf=\"!isRequestInProcess && masterDocList.length == 0\" class=\"no-data\">\r\n                <img src=\"assets/icon/no_found.svg\">\r\n                <p>No Data Available!</p>\r\n            </div>\r\n            \r\n        </div>\r\n        \r\n    </div>\r\n</ion-content>\r\n";
+    __webpack_exports__["default"] = "<ion-content >\r\n    <div class=\"cs-main-container\">\r\n        <div class=\"custome-head\">\r\n            <div class=\"cs-ion-header\">\r\n                <div class=\"cs-left\">\r\n                    <ion-button [routerLink]=\"['/customer/home']\"><ion-icon name=\"arrow-back\"></ion-icon></ion-button>\r\n                    <ion-title>Documents</ion-title>\r\n                </div>\r\n            </div>\r\n            <div class=\"cs-ion-hf\"></div>\r\n        </div>\r\n        \r\n        \r\n        <div class=\"ion-padding-horizontal\">\r\n            <div class=\"cs-tabs\">\r\n                <ion-button (click)=\"currentActiveTab = 1; onGetDocumentList()\" [ngClass]=\"currentActiveTab==1 ? 'active' : ''\">Personal Document</ion-button>\r\n                <ion-button (click)=\"currentActiveTab = 2; onGetDocumentList()\" [ngClass]=\"currentActiveTab==2 ? 'active' : ''\">Common Document</ion-button>\r\n            </div>\r\n        </div>\r\n        \r\n        <div *ngIf=\"currentActiveTab==1\" class=\"cs-ion-content pt0\" padding>\r\n            \r\n            <ion-list class=\"list-item\">\r\n                <ion-item *ngFor=\"let row of documentList\" (click)=\"onGetImageDataHandler(row.id, row.subject)\" >\r\n                    <ion-label >{{row.subject}}</ion-label>\r\n                </ion-item>\r\n            </ion-list>\r\n            <!-- <div class=\"m_documents\" padding>\r\n                <div *ngFor=\"let row of documentList\" (click)=\"onGetImageDataHandler(row.id, row.subject)\" class=\"figure\">\r\n                    <div class=\"thumb\"><img src=\"{{dbService.customerDocURL + row.document_url}}\" alt=\"\"></div>\r\n                    <h1><ion-text>{{row.subject}}</ion-text> <i class=\"material-icons\">arrow_right_alt</i></h1>\r\n                </div>\r\n            </div> -->\r\n            \r\n            <div *ngIf=\"!isRequestInProcess && documentList.length == 0\" class=\"no-data\">\r\n                <img src=\"assets/icon/no_found.svg\">\r\n                <p>No Data Available!</p>\r\n            </div>\r\n            \r\n        </div>\r\n        \r\n        \r\n        \r\n        <div *ngIf=\"currentActiveTab==2\" class=\"cs-ion-content pt0\" padding>\r\n            <ion-list class=\"list-item\">\r\n                <ion-item *ngFor=\"let row of masterDocList\"  >\r\n                    <ion-label *ngIf=\"row.document_type!='URL'\" (click)=\"onGetImageDataHandler(row.id, row.subject)\">{{row.subject}}</ion-label>\r\n                    <ion-label *ngIf=\"row.document_type=='URL'\" (click)=\"onGetImageDataHandler(row.id, row.subject)\">{{row.subject}}</ion-label>\r\n                    <!-- <a *ngIf=\"row.document_type=='URL'\" href=\"row.document_url\" > <ion-label>{{row.subject}}</ion-label></a>  -->\r\n                    \r\n                </ion-item>\r\n            </ion-list>\r\n            \r\n            <div *ngIf=\"!isRequestInProcess && masterDocList.length == 0\" class=\"no-data\">\r\n                <img src=\"assets/icon/no_found.svg\">\r\n                <p>No Data Available!</p>\r\n            </div>\r\n            \r\n        </div>\r\n        \r\n    </div>\r\n</ion-content>\r\n";
     /***/
   },
 
@@ -251,6 +251,8 @@
           } else {
             this.documentList = result["documentList"];
             this.masterDocList = result["masterDocList"];
+            console.log(this.documentList);
+            console.log(this.masterDocList);
           }
 
           this.isRequestInProcess = false;
@@ -278,13 +280,17 @@
           let imagePath;
 
           if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master') {
-            imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
+            if (this.documentImageData[index]['document_type'] == 'URL') {
+              imagePath = this.documentImageData[index].document_url;
+            } else imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
+
             console.log(imagePath);
           } else {
             imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
             console.log(imagePath);
           }
 
+          {}
           window.open(imagePath, '_blank'); //  this.photoViewer.show(imagePath);
         });
       }

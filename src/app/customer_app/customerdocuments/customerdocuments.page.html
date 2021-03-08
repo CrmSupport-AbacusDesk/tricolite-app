@@ -22,7 +22,7 @@
             
             <ion-list class="list-item">
                 <ion-item *ngFor="let row of documentList" (click)="onGetImageDataHandler(row.id, row.subject)" >
-                    <ion-label>{{row.subject}}</ion-label>
+                    <ion-label >{{row.subject}}</ion-label>
                 </ion-item>
             </ion-list>
             <!-- <div class="m_documents" padding>
@@ -43,8 +43,11 @@
         
         <div *ngIf="currentActiveTab==2" class="cs-ion-content pt0" padding>
             <ion-list class="list-item">
-                <ion-item *ngFor="let row of masterDocList" (click)="onGetImageDataHandler(row.id, row.subject)" >
-                    <ion-label>{{row.subject}}</ion-label>
+                <ion-item *ngFor="let row of masterDocList"  >
+                    <ion-label *ngIf="row.document_type!='URL'" (click)="onGetImageDataHandler(row.id, row.subject)">{{row.subject}}</ion-label>
+                    <ion-label *ngIf="row.document_type=='URL'" (click)="onGetImageDataHandler(row.id, row.subject)">{{row.subject}}</ion-label>
+                    <!-- <a *ngIf="row.document_type=='URL'" href="row.document_url" > <ion-label>{{row.subject}}</ion-label></a>  -->
+                    
                 </ion-item>
             </ion-list>
             
