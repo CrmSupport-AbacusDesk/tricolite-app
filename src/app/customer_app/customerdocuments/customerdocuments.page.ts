@@ -97,26 +97,18 @@ async onViewImageHandler(index) {
        
      }
      else
+     {
+     
      imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
      console.log(imagePath);
+     }
 
 } 
-
-
-
 else {
 
      imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
-     console.log(imagePath);
-
-       
+     console.log(imagePath);      
 }
-
-
-     {
-
-     }  
-
 
   window.open(imagePath, '_blank');
 

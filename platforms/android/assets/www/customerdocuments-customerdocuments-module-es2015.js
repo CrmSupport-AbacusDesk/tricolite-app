@@ -183,15 +183,14 @@ let CustomerdocumentsPage = class CustomerdocumentsPage {
                 if (this.documentImageData[index]['document_type'] == 'URL') {
                     imagePath = this.documentImageData[index].document_url;
                 }
-                else
+                else {
                     imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
-                console.log(imagePath);
+                    console.log(imagePath);
+                }
             }
             else {
                 imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
                 console.log(imagePath);
-            }
-            {
             }
             window.open(imagePath, '_blank');
             //  this.photoViewer.show(imagePath);
