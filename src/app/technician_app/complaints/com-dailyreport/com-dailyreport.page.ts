@@ -351,7 +351,7 @@ export class ComDailyreportPage implements OnInit {
                             inputData[`signatureData`] = binaryDataSplit[1];
                             
                             inputData[`rating`] = this.selectedRating;
-                            
+                        
                             this.dbService.presentLoader();
                             
                             this.dbService.onPostRequestHandler(inputData, 'report/onSaveDailyReportData2').subscribe((result) => {
