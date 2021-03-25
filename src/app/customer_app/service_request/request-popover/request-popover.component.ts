@@ -42,7 +42,7 @@ export class RequestPopoverComponent implements OnInit {
 
     const alert = await this.alertCtrl.create({
       header: 'Confirm',
-      message: 'Are You Sure, You Want To Cancel Complaint ?',
+      message: 'Are You Sure, You Want To Cancel Request ?',
       buttons: [
             {
               text: 'No',
