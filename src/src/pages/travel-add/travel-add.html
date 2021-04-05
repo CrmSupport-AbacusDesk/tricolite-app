@@ -1,0 +1,119 @@
+<ion-header>
+    
+    <ion-navbar>
+        <ion-title>Add Travel Plan</ion-title>
+    </ion-navbar>
+    
+</ion-header>
+
+
+<ion-content>
+    <div class="edit mt10">
+        <ion-list>
+            <div>
+                <ion-item>
+                    <ion-label floating><span>Select Date <strong>*</strong></span></ion-label>
+                    <ion-datetime display-format="MMM DD, YYYY"  placeholder="Select Date" [min]="today_date" type="text" name="travel_date" #travel_date="ngModel" [(ngModel)]="travel_data.travel_date" (ngModelChange)="getTravelPlan(travel_data.travel_date)" class="calander" required ></ion-datetime>
+                </ion-item>
+                
+                <ion-item class="cs-normal-select mt16" *ngIf="userType=='OFFICE'">
+                    <ion-label>Select Type <strong>*</strong></ion-label>
+                    <ion-select [(ngModel)]="travel_data.travel_type" required>
+                        <ion-option value="Area Visit">Area Visit</ion-option>
+                        <ion-option value="Distributor Visit">Distributors Visit</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item class="cs-normal-select mt16" *ngIf="userType!='OFFICE'">
+                    <ion-label>Select Type <strong>*</strong></ion-label>
+                    <ion-select [(ngModel)]="travel_data.travel_type" required>
+                        <ion-option value="Area Visit">Area Visit</ion-option>
+                        <ion-option value="Distributor Visit">Distributors Visit</ion-option>
+                    </ion-select>
+                </ion-item>
+                
+                <ion-item class="cs-normal-select" *ngIf="travel_data.travel_type=='Area Visit'" >
+                    <ion-label class="select-label">Select State <strong>*</strong></ion-label>
+                    <ion-select name="state" [(ngModel)]="travel_data.state" (ngModelChange)="getDstrictList()" required>
+                        <ion-option *ngFor="let list of state_list" [value]="list.state_name">{{list.state_name}}</ion-option>
+                        <!-- <ion-option value="two">Punjab</ion-option> -->
+                    </ion-select>
+                </ion-item>
+                
+                <ion-item class="cs-normal-select" *ngIf="travel_data.travel_type=='Area Visit' && travel_data.state">
+                    <ion-label> Select District <strong>*</strong></ion-label>
+                    <ion-select name="district" [(ngModel)]="travel_data.district" required>
+                        <ion-option *ngFor="let list of district_list" [value]="list.district_name">{{list.district_name}}</ion-option>
+                        <!-- <ion-option value="two">Palwal</ion-option> -->
+                    </ion-select>
+                </ion-item>
+                
+                <ion-item class="cs-normal-select" *ngIf="travel_data.travel_type=='Distributor Visit'">
+                    <ion-label>Select Distributors <strong>*</strong></ion-label>
+                    <ion-select [(ngModel)]="travel_data.dr_id" required>
+                        <ion-option *ngFor="let list of channel_partners" [value]="list.id">{{list.company_name}}</ion-option>
+                        <!-- <ion-option value="two">Shayam Singh</ion-option> -->
+                    </ion-select>
+                </ion-item>
+                
+            </div>
+        </ion-list>
+        
+        <button ion-button block class="h35 green-color mt20" style="letter-spacing: 1px;"  [disabled]="!travel_data.travel_date || !travel_data.travel_type || (travel_data.travel_type=='Distributor Visit' && !travel_data.dr_id) || (travel_data.travel_type=='Area Visit' && !travel_data.state) || (travel_data.travel_type=='Area Visit' && !travel_data.district)" (click)="addTravelPlan()">Save</button>
+    </div>
+
+    <div class="pd-left-right16">
+        <ng-container *ngIf="travel_list.length">
+            <div class="cs-heading1 pl0 mb5 pt30" *ngIf="areaVisitExist">
+                <p>Area Wise Visit</p>
+            </div>
+            
+            <div *ngFor="let row of travel_list;let i=index">
+                <div class="list-box expand-box border-remove" *ngIf="row.travel_type=='Area Visit'">
+                    <div class="upper">
+                        <div class="left-date">
+                            <div class="date-section">
+                                <p>{{row.state}}</p>
+                                <p>Visit State</p>
+                            </div>
+                            <div class="date-section">
+                                <p>{{row.district}}</p>
+                                <p>Visit District</p>
+                            </div>
+                        </div>
+                        <div class="right-date" *ngIf="selected_date >= today_date">
+                            <button (click)="deleteTravelPlan(row.id,i,row.flag)"><i class="material-icons red-clr">delete_sweep</i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    
+        
+        <ng-container *ngIf="travel_list.length">
+            <div class="cs-heading1 pl0 mb5" *ngIf="cpVisitExist">
+                <p>Distributors</p>
+            </div>
+    
+            <div *ngFor="let row of travel_list;let i=index">
+                <div class="list-box expand-box border-remove" *ngIf="row.travel_type=='Distributor Visit'">
+                    <div class="mid mt0">
+                        <div class="content-info">
+                            <div class="left-info">
+                                <div class="circle">{{row.company_name.substring(0,1).toUpperCase()}}</div>
+                            </div>
+                            <div class="right-info">
+                                <p>{{row.company_name}}</p>
+                            </div>
+                        </div>
+                        <div class="tag-info" *ngIf="selected_date >= today_date">
+                            <button (click)="deleteTravelPlan(row.id,i,row.flag)"><i class="material-icons red-clr">delete_sweep</i></button>
+                        </div>
+                    </div>
+                    <div class="lower one-line" *ngIf="row.address!='     '">
+                        <p>Address : <span>{{row.address | titlecase}}</span></p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ion-content>

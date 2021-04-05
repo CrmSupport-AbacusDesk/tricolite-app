@@ -1,0 +1,180 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <h1>Add Order </h1>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="edit mt16">
+        <ion-list>
+            <ion-item class="cs-selectable" *ngIf="user_data.type == 3 && distributorSelected==true">
+                <ion-label><span>Select Distributor</span></ion-label>
+                <ionic-selectable item-content disabled [(ngModel)]="data.distributor_id" [items]="distributor_list" itemValueField="id" itemTextField="company_name" name="company_name" value="id" [canSearch]="true">
+                </ionic-selectable>
+            </ion-item>
+
+            <ion-item class="cs-selectable" *ngIf="user_data.type == 3 && distributorSelected==false">
+                <ion-label><span>Select Distributor</span></ion-label>
+                <ionic-selectable item-content [(ngModel)]="data.distributor_id" [items]="distributor_list" itemValueField="id" itemTextField="company_name" name="company_name" value="id" [canSearch]="true">
+                </ionic-selectable>
+            </ion-item>
+
+           
+        </ion-list>
+    </div>
+
+    <div class="pd-left-right16">
+
+        <!-- //------ADD TO LIST FINISHED------// -->
+        <div class="dummycnt mt20" (click)="goToProductPage()">
+            * To Add Item Into Cart, Click Here.
+        </div>
+
+        <div class="cs-heading1 pl0" *ngIf="cart_array.length">
+            <p>PRODUCT INFORMATION</p>
+        </div>
+
+
+        <div class="list-box mt10" *ngFor="let row of cart_array;let i=index;">
+            <div class="mid mt0">
+                <div class="content-info">
+                    <div class="right-info">
+                        <p> {{row.category}} {{row.cat_no}}</p>
+                        <p> {{row.product_name}}</p>
+                    </div>
+                </div>
+                <div class="tag-info amount-view">
+                    <p>₹ {{row.price | number:'1.2-2'}}</p>
+                    <p>Price</p>
+                </div>
+                <div class="tag-info ml8" (click)="deleteItemFromCartAlertMessage(i)">
+                    <a><i class="material-icons red-clr">delete_sweep</i></a>
+                </div>
+            </div>
+
+            <div class="qty-column">
+                <p>Quantity</p> 
+                <input type="number"  [(ngModel)]="row.qty"   (input)="calculateAmount(row.qty,i,false)" >
+             </div>
+ 
+             <div class="three_boxes">
+                    <div class="lower">
+                        <p>Amount</p>
+                        <p>₹{{row.subTotal | number:'1.2-2'}}</p>
+                    </div>
+                    <div class="lower">
+
+                     <p>Discount amount (2%)</p>
+                     <p>₹{{row.discount_amount| number:'1.2-2'}}</p>
+                 </div>
+                 <div class="lower">
+
+                    <p>Discounted amount</p>
+                    <p>₹{{row.discountedAmount| number:'1.2-2'}}</p>
+                    </div>
+                </div>
+                 <!-- gst%-{{row.gst_percent}} -->
+                 <div class="three_boxes">
+                 <div class="lower">
+
+                    <p>GST Amount</p>
+                     <p>₹{{row.gst_amount | number:'1.2-2'}}</p>
+                </div>
+             </div>
+            <div class="time_show amount-listing pb5 border-none">
+                <p>Total Amount</p>
+                <p>₹ {{row.amount | number:'1.2-2'}}</p>
+            </div>
+        </div>
+
+        <div *ngIf="sub_total" class="time_show amount-listing">
+            <p>Sub Total</p>
+            <p>₹ {{sub_total | number:'1.2-2'}} /-</p>
+        </div>
+        <div *ngIf="sub_total" class="time_show amount-listing">
+            <p>taxable amount</p>
+            <p>₹ {{order_discount | number:'1.2-2'}} /-</p>
+        </div>
+        <!-- <div *ngIf="order_gst" class="time_show amount-listing">
+            <p>GST Amount</p>
+            <p>₹ {{order_gst | number:'1.2-2'}} /-</p>
+        </div> -->
+        <div  *ngIf="order_igst" class="time_show amount-listing">
+            <p>IGST Amount</p>
+            <p>₹ {{order_igst | number:'1.2-2'}} /-</p>
+        </div>
+        <div  *ngIf="order_cgst" class="time_show amount-listing">
+            <p>CGST Amount</p>
+            <p>₹ {{order_cgst | number:'1.2-2'}} /-</p>
+        </div>
+        <div *ngIf="order_sgst"  class="time_show amount-listing">
+            <p>SGST Amount</p>
+            <p>₹ {{order_sgst | number:'1.2-2' }} /-</p>
+        </div>
+        <div *ngIf="grand_total" class="time_show amount-listing border-none">
+            <p>Grand Total</p>
+            <p>₹ {{grand_total  }} /-</p>
+        </div>
+        <div class="edit m0">
+            <ion-list>
+                <ion-item class="cs-textarea1" *ngIf="cart_array.length">
+                    <ion-label floating><span>Remark </span></ion-label>
+                    <ion-textarea type="text" name="order_remark" [(ngModel)]="user_data.order_remark"></ion-textarea>
+                </ion-item>
+            </ion-list>
+        </div>
+    </div>
+    <div class="border-sepration" *ngIf="cart_array.length"></div>
+
+    <div class="pd-left-right16">
+        <!-- <div class="edit m0" *ngIf="cart_array.length">
+            <ion-list>
+                <ion-item>
+                    <ion-label floating><span>Private Marka</span></ion-label>
+                    <ion-input type="text" style="height: 28px;" name="private_marka" [(ngModel)]="user_data.private_marka" ></ion-input>
+                </ion-item>
+                
+            </ion-list>
+        </div>
+        
+        <div class="edit m0" *ngIf="cart_array.length">
+            <ion-list>
+                <ion-item>
+                    <ion-label floating><span>Transport Name</span></ion-label>
+                    <ion-input type="text" style="height: 28px;" name="transport_name" [(ngModel)]="user_data.transport_name" ></ion-input>
+                </ion-item>
+            </ion-list>
+        </div>
+        
+        <div class="edit m0" *ngIf="cart_array.length">
+            <ion-list>
+                <ion-item>
+                    <ion-label floating><span>Transport Mobile</span></ion-label>
+                    <ion-input type="tel" style="height: 28px;" name="transport_mobile"  min="0" maxlength="10" minlength="10" (keypress)="MobileNumber($event)"  [(ngModel)]="user_data.transport_mobile" ></ion-input>
+                </ion-item>
+            </ion-list>
+        </div>
+        
+        <div class="edit m0" *ngIf="cart_array.length">
+            <ion-list>
+                <ion-item>
+                    <ion-label floating><span>Transport Address</span></ion-label>
+                    <ion-input type="text" style="height: 28px;" name="transport_address" [(ngModel)]="user_data.transport_address" ></ion-input>
+                </ion-item>
+            </ion-list>
+        </div>
+         -->
+        <div class="align-btn">
+            <button class="cs-button border" *ngIf="(!user_data.order_status && cart_array.length > 0) || (user_data.order_status=='Draft') " (click)="user_data.order_status='Draft';save_orderalert('save')">
+                <i class="material-icons">save</i>    
+                SAVE AS DRAFT
+            </button>
+            <button class="cs-button w200" *ngIf="cart_array.length > 0" (click)="user_data.order_status='Pending';save_orderalert('submit')">SUBMIT</button>
+        </div>
+
+    </div>
+
+
+</ion-content>

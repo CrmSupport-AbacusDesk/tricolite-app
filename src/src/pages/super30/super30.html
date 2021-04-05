@@ -1,0 +1,299 @@
+<!--
+  Generated template for the Super30Page page.
+  
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="main-header remove">
+  <ion-navbar>
+    <ion-title>super30  || Your Rank : {{SelfData.index}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<!-- <ion-content class="super-30">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content  pullingIcon="arrow-dropdown"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+  </ion-refresher-content>
+</ion-refresher>
+
+
+<div *ngIf="!plumber_list.length" class="data-not">
+  <img  src="assets/imgs/data-not-found.png">
+</div>
+
+
+
+<div *ngIf="plumber_list.length" class="main-div">
+  <ion-list  *ngFor="let row of plumber_list; let i = index;">
+    <button [ngClass]="row.id == service.karigar_info.id?'highlight':''" ion-item class="btn">
+      <div class="pulmber-detail">
+        <div class="plumber-info">
+          <div class="imgs">
+            <img [src]="row.profile">
+          </div>
+          <div class="name-info">
+            <h3>{{row.first_name}}</h3>
+          </div>
+        </div>
+        
+        <div class="rank">
+          <h3>#{{i+1}}</h3>
+        </div>
+      </div> 
+    </button>  
+  </ion-list>  
+  
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+    <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+</div>
+
+</ion-content> -->
+
+<ion-content class="super-plumber">
+  
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content  pullingIcon="arrow-dropdown"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+  </ion-refresher-content>
+</ion-refresher>
+
+
+<div *ngIf="!plumber_list.length" class="data-not">
+  <img  src="assets/imgs/data-not-found.png">
+</div>
+
+<div >
+  
+  <ion-list *ngFor="let row of plumber_list; let i = index;" >
+    <button ion-item >
+      <div class="list " [ngClass]="row.id == service.karigar_info.id?'active':''">
+        <div class="point">
+          <h4>{{i+1}}</h4>
+        </div>
+        
+        <div class="detail">
+          <div class="info">
+            <h4>{{row.first_name | titlecase}}</h4>
+            <p>Wallet Balance : {{row.balance_point}}</p> 
+            <p>{{row.city | titlecase}} {{row.state | titlecase}}</p> 
+            <div class="pulmber-rating">
+              <ul>
+                <li [ngClass]="{'active':row.rating>='1'}">
+                  <a><i  class="material-icons">star</i></a>
+                </li>
+                
+                <li [ngClass]="{'active':row.rating>='2'}">
+                  <a><i  class="material-icons">star</i></a>
+                </li>
+                <li [ngClass]="{'active':row.rating>='3'}">
+                  <a><i  class="material-icons">star</i></a>
+                </li >
+                
+                <li [ngClass]="{'active':row.rating>='4'}">
+                  <a><i  class="material-icons">star</i></a>
+                </li>
+
+                <li [ngClass]="{'active':row.rating>='5'}">
+                    <a><i  class="material-icons">star</i></a>
+                  </li>
+                
+              </ul>
+            </div>
+          </div>
+          
+          <div class="photo">
+            <img [src]="row.profile">
+          </div>
+          
+        </div>
+      </div>
+    </button>
+  </ion-list>
+</div>
+
+
+
+<!-- <ion-list>
+  <button ion-item>
+    <div class="list">
+      
+      <div class="point">
+        <h4>2</h4>
+      </div>
+      
+      <div class="detail">
+        <div class="info">
+          <h4>Narender</h4>
+          
+          <div class="pulmber-rating">
+            <ul>
+              <li>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="photo">
+          <img src="assets/imgs/pic.jpg">
+        </div>
+        
+      </div>
+    </div>
+  </button>
+</ion-list>
+
+
+<ion-list>
+  <button ion-item>
+    <div class="list ">
+      
+      <div class="point">
+        <h4>3</h4>
+      </div>
+      
+      <div class="detail">
+        <div class="info">
+          <h4>Narender</h4>
+          
+          <div class="pulmber-rating ">
+            <ul>
+              <li>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="photo">
+          <img src="assets/imgs/pic.jpg">
+        </div>
+        
+      </div>
+    </div>
+  </button>
+</ion-list>
+
+
+<ion-list>
+  <button ion-item>
+    <div class="list ">
+      
+      <div class="point">
+        <h4>4</h4>
+      </div>
+      
+      <div class="detail">
+        <div class="info">
+          <h4>Narender</h4>
+          
+          <div class="pulmber-rating ">
+            <ul>
+              <li>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="photo">
+          <img src="assets/imgs/pic.jpg">
+        </div>
+        
+      </div>
+    </div>
+  </button>
+</ion-list>
+
+
+<ion-list>
+  <button ion-item>
+    <div class="list ">
+      
+      <div class="point">
+        <h4>5</h4>
+      </div>
+      
+      <div class="detail">
+        <div class="info">
+          <h4>Narender</h4>
+          
+          <div class="pulmber-rating ">
+            <ul>
+              <li>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="photo">
+          <img src="assets/imgs/pic.jpg">
+        </div>
+        
+      </div>
+    </div>
+  </button>
+</ion-list>
+<ion-list>
+  <button ion-item>
+    <div class="list ">
+      
+      <div class="point">
+        <h4>6</h4>
+      </div>
+      
+      <div class="detail">
+        <div class="info">
+          <h4>Narender</h4>
+          
+          <div class="pulmber-rating ">
+            <ul>
+              <li>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+                <a><i class="material-icons">star</i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="photo">
+          <img src="assets/imgs/pic.jpg">
+        </div>
+        
+      </div>
+    </div>
+  </button>
+</ion-list>
+-->
+</ion-content>

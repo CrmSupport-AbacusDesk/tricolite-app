@@ -1,0 +1,96 @@
+
+<ion-header>
+    
+    <ion-navbar>
+        <ion-title>Check In Detail</ion-title>
+    </ion-navbar>
+    
+</ion-header>
+
+
+<ion-content>
+    
+    
+    
+    <div class="pd-left-right16">
+        
+        <div class="list-box mt16" >
+            <div class="upper">
+                <div class="left-date">
+                    <div class="date-section">
+                        <p>{{checkin_data.activity_date | date: 'MMM d, y'}}</p>
+                        <p>Date Created</p>
+                    </div>
+                    <div class="date-section">
+                        <p>{{checkin_data.visit_start | date:'hh:mm a'}}</p>
+                        <p>Start Time</p>
+                    </div>
+                    <div class="date-section" *ngIf="checkin_data.visit_end != '0000-00-00 00:00:00'">
+                        <p>{{checkin_data.visit_end | date:'hh:mm a'}}</p>
+                        <p>End Time</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="mid" >
+                <div class="content-info">
+                    <div class="left-info">
+                        <div *ngIf="checkin_data.dr_id != 0" class="circle">{{checkin_data.dr_name | slice:0:1 }}</div>
+                        <div *ngIf="checkin_data.dr_id == 0" class="circle">O</div>
+                    </div>
+                    <div class="right-info">
+                        <p *ngIf="checkin_data.dr_id != 0">{{checkin_data.dr_name | titlecase}}</p>
+                        <p *ngIf="checkin_data.dr_id == 0">{{checkin_data.other_name | titlecase}}</p>
+                        <p *ngIf="checkin_data.dr_id != 0">{{checkin_data.mobile_no}}</p>
+                        <p *ngIf="checkin_data.dr_id == 0">{{checkin_data.mobile}}</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="lower" *ngIf=" checkin_data.address  || checkin_data.state  || checkin_data.district  || checkin_data.city  || checkin_data.area  || checkin_data.pincode">
+                <p>Address</p>
+                <p>{{checkin_data.address}} {{checkin_data.state | titlecase}} {{checkin_data.district | titlecase}} {{checkin_data.city | titlecase}} {{checkin_data.area | titlecase}}  {{checkin_data.pincode}}</p>
+                <p></p>
+            </div>
+            
+            
+            <div class="three_boxes" *ngIf="checkin_data.start_address"> 
+                <div class="lower one-line">
+                    <p>Start Location : <span>{{checkin_data.start_address | titlecase}}</span></p>
+                </div>
+            </div>
+            <div class="three_boxes" *ngIf="checkin_data.address"> 
+                <div class="lower one-line">
+                    <p>End Location : <span>{{checkin_data.address | titlecase}}</span></p>
+                </div> 
+            </div>
+        </div>  
+    </div>
+    
+    
+    
+    
+    
+    <div class="pd-left-right16 mt20">
+        <div class="list-box mt16" >           
+            <div class="lower mt0">
+                <p>DESCRIPTION</p>
+                <p>{{checkin_data.description ? checkin_data.description : '--'}}</p>
+            </div>
+        </div>  
+    </div>
+    
+    <div class="add-new" *ngIf="checkin_data.Doc" (click)="viewProfiePic(checkin_data.Doc)">
+        <div class="cs-heading1 pt0 pl5 pr0 mb10">
+            <p>Document</p>
+        </div>
+        <div class="uplode-image" >
+            <ul>
+                <li class="ml0 mr0 wp100 h160"><img src="{{checkin_data.Doc}}"></li>
+            </ul>
+        </div>
+    </div>
+</ion-content>

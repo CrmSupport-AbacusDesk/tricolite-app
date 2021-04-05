@@ -1,0 +1,34 @@
+page-leave-list {
+    
+    .list
+    {
+        .box
+        {
+            .heading
+            {
+                justify-content: space-between;
+                align-items: center;
+                
+                h1
+                {
+                    text-align: left;
+                    font-size: 12px !important;
+                }
+                
+                button
+                {
+                    margin: 0px;
+                    box-shadow: none;
+                    background: #efefef;
+                    height: 25px;
+                    width: 30px;
+                    border-radius: 4px;
+                    padding: 14px 5px;
+                }
+            }
+        }
+    }
+
+
+    
+}

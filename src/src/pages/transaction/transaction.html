@@ -1,0 +1,94 @@
+
+<ion-header>
+	<ion-navbar>
+		<ion-title>Transaction</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content  pullingIcon="arrow-dropdown"
+		pullingText="Pull to refresh"
+		refreshingSpinner="circles"
+		refreshingText="Refreshing...">
+	</ion-refresher-content>
+</ion-refresher>
+
+<div class="top-nav nav-adjust">
+	<p>Balance Points</p>
+	<h1>{{balance_point}}</h1>
+</div>
+<div class="transaction-list"  >
+	<div class="his-listing" *ngFor="let list of transaction_detail; let i=index" (click)="goOnShippingPage(list.id)">
+		<button ion-item class="main-list"  >
+			<div class="tr-content">
+				<div class="inner">
+					<div class="tr-cicle">
+						<i class="material-icons">call_made</i>
+					</div>
+					<div class="tr-tags">
+						<h2>Request Send</h2>
+						<h1>{{list.gift_title | titlecase}}</h1>
+						<p> Req Id : REQ# {{list.id }}</p>
+						<span *ngIf="list.gift_status=='Reject' && receive_status != ''">{{list.reject_reason | titlecase}}</span>
+					</div>
+				</div>			
+				<div class="tr-points"  >
+					<h2>{{list.coupon_points}}</h2>
+					<p>Points</p>
+					<span class="refund" *ngIf="list.gift_status=='Reject' && receive_status != ''">Refunded</span>
+				</div>
+			</div>
+		</button>
+		
+		<div class="tr-status" *ngIf="list.gift_status=='Pending' && list.receive_status==''" >
+			<div class="tag">
+				<h1>{{list.date_created |date:'d MMMM y'}}</h1>
+			</div>
+			<div class="pending">
+				<p>{{list.gift_status}}</p>
+			</div>
+		</div>
+		<div class="tr-status" *ngIf="list.gift_status=='Reject' && list.receive_status=='' " >
+			<div class="tag">
+				<h1>{{list.date_created |date:'d MMMM y'}}</h1>
+			</div>
+			<div class="reject">
+				<p>{{list.gift_status}}</p>
+			</div>
+		</div>
+		<div class="tr-status" *ngIf="list.gift_status=='Approved' && list.receive_status==''">
+			<div class="tag">
+				<h1>{{list.date_created |date:'d MMMM y'}}</h1>
+			</div>
+			<div class="approved">
+				<p>{{list.gift_status}}</p>
+			</div>
+		</div> 
+		<div class="tr-status" *ngIf="list.receive_status=='Shipped'" >
+			<div class="tag btn-received">
+				<button (click)="recvConfirmation(list.id)">Receive</button>
+			</div>
+			<div class="shipped" >
+				<p>Shipped</p>
+			</div>
+		</div>
+		<div class="tr-status"  *ngIf="list.receive_status=='Received'">
+			<div class="tag">
+				<h1>Receive on : {{list.received_date | date:'d MMMM y'}}</h1>
+			</div>
+			<div class="received">
+				<p>Receive</p>
+			</div>
+		</div>
+	</div>
+	<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+		<ion-infinite-scroll-content
+		loadingSpinner="bubbles"
+		loadingText="Loading more data...">
+	</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+<div class="h100"></div>
+</div>		
+</ion-content>

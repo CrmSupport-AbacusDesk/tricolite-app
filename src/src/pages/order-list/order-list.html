@@ -1,0 +1,129 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            
+            <h1 *ngIf="order_type == 'Primary'"> Primary Order</h1>
+            <h1 *ngIf="order_type == 'Secondary'"> Secondary Order</h1>
+        </ion-title>
+    </ion-navbar>
+    <ion-navbar>
+        <div class="search add-search">
+            <div class="filter">
+                <ion-searchbar type='text' name="master" [(ngModel)]="filter.master" (ngModelChange)="get_orderssearch()"></ion-searchbar>
+                <a class="date-pick">
+                    <label class="chedate">
+                        <input type="date" name="date"  [max]="date" [(ngModel)]="filter.date" (ngModelChange)="get_orderssearch()" />
+                        <i class="material-icons">date_range</i>
+                    </label>
+                </a>
+            </div>
+        </div>
+        
+    </ion-navbar>
+</ion-header>
+<div class="text-line" *ngIf="filter.date">
+    <div class="lf-text">
+        <p>Date</p>
+        <p>{{filter.date | date:'d MMM y'}}</p>
+    </div>
+    <div class="rf-text">
+        <i class="material-icons" (click)="filter.date='';get_orderssearch()">cancel</i>
+    </div>
+</div>
+
+<ion-content >
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="Pull to refresh"     refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+        <div class="capsule-tabs">
+            <ul>
+                <!-- <ng-container *ngIf="order_type == 'Primary'"> -->
+                    <li [ngClass]="{'active' : filter.order_status=='Draft'}" (click)="filter.date='';filter.master='';start=0;filter.order_status='Draft';get_orders()">
+                        <p>Draft<span>{{count.draft}}</span></p>
+                    </li>
+                <!-- </ng-container> -->
+                <li  [ngClass]="{'active' : filter.order_status=='Pending'}" (click)="filter.date='';filter.master='';start=0;filter.order_status='Pending' ;get_orders()">
+                    <p>Pending<span>{{count.pending}}</span></p>
+                </li>
+                <li [ngClass]="{'active' : filter.order_status=='Approved'}" (click)="filter.date='';filter.master='';start=0;filter.order_status='Approved';get_orders()">
+                    <p>Approved<span>{{count.approved}}</span></p>
+                </li>
+                <li [ngClass]="{'active' : filter.order_status=='Dispatch'}" (click)="filter.date='';filter.master='';start=0;filter.order_status='Dispatch';get_orders()">
+                    <p>Dispatched<span>{{count.dispatch}}</span></p>
+                </li>
+               
+                <li [ngClass]="{'active' : filter.order_status=='Reject'}" (click)="filter.date='';filter.master='';start=0;filter.order_status='Reject';get_orders()">
+                    <p>Rejected<span>{{count.rejected}}</span></p>
+                </li>
+                <li [ngClass]="{'active' : filter.order_status=='Pre Close'}" (click)="filter.date='';filter.master='';start=0;filter.order_status='Pre Close';get_orders()">
+                    <p>Pre Closed<span>{{count.pre_close}}</span></p>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="list-outer ordlist">
+           
+        </div>
+        
+        <div class="pd-left-right16 mb80">
+            <div class="list-box mt16" *ngFor="let row of order_list" (click)="!userId ? goOnOrderDetail(row.id) : goOnOrderDetailFromDrLogin(row.id)">
+                <div class="upper"  *ngIf="row.order_status!='Draft'">
+                    <div class="left-date">
+                        <div class="date-section">
+                            <p>{{row.date_created| date:'d MMM y hh:mm a'}}</p>
+                            <p>Date</p>
+                        </div>
+                       
+                    </div>
+                    <div class="right-date">
+                        <button><p >{{row.order_no}}</p></button>
+                    </div>
+                </div>
+                <div class="mid" [ngClass]="{'mt0' : row.order_status=='Draft' }">
+                    <div class="content-info">
+                        <div class="left-info">
+                            <div class="circle" >{{row.dr_name.substring(0,1).toUpperCase()}}</div>
+                        </div>
+                        <div class="right-info">
+                            <p *ngIf="order_type == 'Primary' ">{{row.dr_name.toUpperCase()}}</p>
+                            <p *ngIf="order_type == 'Secondary'"> Dealer : {{row.dr_name.toUpperCase()}}</p>
+                            <p> Total Item : {{row.order_item  ? row.order_item : '0'}}</p>
+                        </div>
+                    </div>
+                    <div class="tag-info amount-view">
+                        <p>₹ {{row.order_grand_total ? row.order_grand_total : '0'}}</p>
+                        <p>Amount</p>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="nothing-here" style="height: 50%;" *ngIf="!order_list?.length && sendRequest">
+            <div class="outer">
+                <div class="innear">
+                    <img src="assets/imgs/no_found.svg" alt="">
+                    <p>Data not Available</p>
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </ion-content>
+    
+  
+    <!-- <div class="cus-fab" *ngIf="!userId">
+        <button (click)="add_order()">
+            <i class="material-icons">add</i>
+        </button>
+    </div> -->
+
+    <ion-footer class="af-none" *ngIf="!userId"> 
+        <div class="cus-fab">
+            <button (click)="add_order()">
+                <i class="material-icons">add</i>
+            </button>
+        </div>
+    </ion-footer>

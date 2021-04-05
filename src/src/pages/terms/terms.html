@@ -1,0 +1,19 @@
+
+<ion-header class="main-header remove">
+  <ion-navbar>
+    <ion-title>Terms & Condtion</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="fix">
+		<div class="bg-banner">
+			 <!-- <img src="assets/imgs/banner.png"> -->
+			 <img src="{{terms_detail.offer_banner}}">
+		</div>
+	</div>
+	<div class="terms-text">
+		<p [innerHTML]="terms_detail.terms">{{terms_detail.terms}}</p>
+	</div>
+
+</ion-content>

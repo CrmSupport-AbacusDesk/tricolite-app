@@ -1,0 +1,277 @@
+<ion-header class="catalogue-header">
+    <ion-navbar>
+        
+        <ion-title *ngIf="type=='Lead'">Lead Detail</ion-title>
+        <ion-title *ngIf="type!='Lead'">Detail</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content *ngIf="type=='Lead'">
+    <div class="sticky-main">
+        <div class="pd-left-right16 af_bg">
+            <div class="list-box">
+                <div class="upper">
+                    <div class="left-date">
+                        <div class="date-section">
+                            <p>{{distributor_detail.date_created | date:'d MMM y'}}</p>
+                            <p>Date Created</p> 
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="mid">
+                    <div class="content-info">
+                        <div class="left-info"> 
+                            <div class="circle" >{{distributor_detail.company_name | slice:0:1}}</div>
+                        </div>
+                        <div class="right-info">
+                            <p>{{distributor_detail.company_name | titlecase}}</p>
+                            <p> {{!distributor_detail.name ? 'N/A' : distributor_detail.name | titlecase}} - ( {{distributor_detail.mobile}} )</p>
+                            <p *ngIf="distributor_detail.email"> {{distributor_detail.email ? distributor_detail.email : 'N/A'}}</p>
+                        </div>
+                    </div>
+                    <div class="tag-info">
+                        <a href="tel:{{distributor_detail.mobile ? distributor_detail.mobile : 'N/A'}}"><i class="material-icons">phone</i></a>
+                    </div>
+                </div>
+                <div class="lower">
+                    <p>Address</p>
+                    <p>{{!distributor_detail.state ? 'N/A' : distributor_detail.state | titlecase}} {{!distributor_detail.district ? '' : ', '+distributor_detail.district | titlecase}} {{distributor_detail.pincode ? ' - '+distributor_detail.pincode : ''}}</p>
+                </div>
+            </div>  
+        </div>
+        
+        <div class="csn-heading neww" *ngIf="total_checkin?.length && !search.date">
+            <p>Latest Checkins</p>
+            
+            <label class="chedate">
+                <input  type="date" [max]="date" name="date" [(ngModel)]="search.date" (ngModelChange)="lead_detail()" type="date" >
+                <i class="material-icons">date_range</i>
+            </label>
+            
+            <div class="text-line" *ngIf="search.date">
+                <div class="lf-text">
+                    <p>Date</p>
+                    <p>{{search.date | date:'d MMM y'}}</p>
+                </div>
+                <div class="rf-text"  (click)="search.date=null;lead_detail()">
+                    <i class="material-icons">cancel</i>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="pl16 pr16" *ngIf="total_checkin?.length && !search.date">
+        <div class="list-box mt16"*ngFor="let val of total_checkin" (click)="checkin_detail(val.id)" >
+            <div class="upper">
+                <div class="left-date">
+                    <div class="date-section">
+                        <p>{{val.activity_date | date: 'MMM d, y'}}</p>
+                        <p>Date Created</p>
+                    </div>
+                    <div class="date-section">
+                        <p>{{val.visit_start | date:'hh:mm a'}}</p>
+                        <p>Start Time</p>
+                    </div>
+                    <div class="date-section" *ngIf="val.visit_end != '0000-00-00 00:00:00'">
+                        <p>{{val.visit_end | date:'hh:mm a'}}</p>
+                        <p>End Time</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="three_boxes" *ngIf="val.start_address"> 
+                <div class="lower one-line">
+                    <p>Start Location : <span>{{val.start_address | titlecase}}</span></p>
+                </div>
+            </div>
+            <div class="three_boxes" *ngIf="val.address"> 
+                <div class="lower one-line">
+                    <p>End Location : <span>{{val.address | titlecase}}</span></p>
+                </div> 
+            </div>
+        </div>  
+    </div>
+    
+</ion-content>
+<ng-container *ngIf="type!='Lead'">
+    
+    <ion-content >
+        <div class="sticky-main">
+            <div class="pd-left-right16 af_bg">
+                <div class="list-box">
+                    <!-- <div class="upper">
+                        <div class="left-date">
+                            <div class="date-section">
+                                <p>{{distributor_detail.date_created | date:'d MMM y'}}</p>
+                                <p>Date Created</p> 
+                            </div>
+                        </div>
+                        
+                    </div> -->
+                    <div class="mid">
+                        <div class="content-info">
+                            <div class="left-info"> 
+                                <div class="circle" >{{distributor_detail.company_name | slice:0:1}}</div>
+                                
+                            </div>
+                            <div class="right-info">
+                                <p>{{distributor_detail.company_name?.toUpperCase()}}</p>
+                                <p> {{!distributor_detail.name ? 'N/A' : distributor_detail.name | titlecase}} - ( {{distributor_detail.mobile}} )</p>
+                                <p *ngIf="distributor_detail.email"> {{distributor_detail.email ? distributor_detail.email : 'N/A'}}</p>
+                            </div>
+                        </div>
+                        <div class="tag-info">
+                            <a href="tel:{{distributor_detail.mobile ? distributor_detail.mobile : 'N/A'}}"><i class="material-icons">phone</i></a>
+                        </div>
+                    </div>
+                    <div class="upper pt10" *ngIf="distributor_detail.date_of_birth != '0000-00-00' || distributor_detail.date_of_anniversary !='0000-00-00'">
+                        <div class="left-date">
+                            <div class="date-section" *ngIf="distributor_detail.date_of_birth != '0000-00-00' ">
+                                <p>{{distributor_detail.date_of_birth | date:'d MMM y'}}</p>
+                                <p>Date of Birth</p> 
+                            </div>
+                            <div class="date-section" *ngIf="distributor_detail.date_of_anniversary !='0000-00-00'">
+                                <p>{{distributor_detail.date_of_anniversary | date:'d MMM y'}}</p>
+                                <p>Date of Annirversary</p> 
+                            </div>
+                        </div>                     
+                    </div>
+
+                    <div class="lower">
+                        <p>Address</p>
+                        <p>{{!distributor_detail.state ? 'N/A' : distributor_detail.state | titlecase}} {{!distributor_detail.district ? '' : ', '+distributor_detail.district | titlecase}} {{distributor_detail.pincode ? ' - '+distributor_detail.pincode : ''}}</p>
+                    </div>
+                    
+                </div>  
+            </div>
+            
+            
+            <div class="csn-heading neww" *ngIf="(total_order?.length || secondary.length || search.date ) && showRelatedTab!=false">
+                <p>Latest Orders</p>
+                
+                <label class="chedate">
+                    <input  type="date" [max]="date" name="date" [(ngModel)]="search.date" (ngModelChange)="dr_detail(distributor_detaill.orderType)" type="date" >
+                    <i class="material-icons">date_range</i>
+                </label>
+                
+                <div class="text-line" *ngIf="search.date">
+                    <div class="lf-text">
+                        <p>Date</p>
+                        <p>{{search.date | date:'d MMM y'}}</p>
+                    </div>
+                    <div class="rf-text"  (click)="search.date=null;dr_detail(distributor_detaill.orderType)">
+                        <i class="material-icons">cancel</i>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <ng-container *ngIf="distributor_detaill.orderType=='Primary' && showRelatedTab!=false">
+
+            <div class="pl16 pr16" *ngIf="total_order?.length && !search.date">
+                <div class="list-box mt16" *ngFor="let row of total_order" (click)="goOnOrderDetail(row.orderId)">
+                    <div class="upper"  *ngIf="row.order_status!='Draft'">
+                        <div class="left-date">
+                            <div class="date-section">
+                                <p>{{row.date_created| date:'d MMM y hh:mm a'}}</p>
+                                <p>Date</p>
+                            </div>
+                            <div class="date-section">
+                                <p>{{row.order_no}}</p>
+                                <p>Order Id</p>
+                            </div>
+                            
+                        </div>
+                        <!-- <div class="right-date">
+                            <button><p *ngIf="row.delivery_from=='ToyZone'">Primary</p></button>
+                            <button><p *ngIf="row.delivery_from!='ToyZone'">Secondary</p></button>
+                        </div> -->
+                    </div>
+                    <div class="mid" [ngClass]="{'mt0' : row.order_status=='Draft' }">
+                        <div class="content-info">
+                            <div class="left-info">
+                                <div class="circle" >{{row.dr_name.substring(0,1).toUpperCase()}}</div>
+                            </div>
+                            <div class="right-info">
+                                <p>{{row.dr_name.toUpperCase()}}</p>
+                                <p> Total Item : {{row.order_item  ? row.order_item : '0'}}</p>
+                            </div>
+                        </div>
+                        <div class="tag-info amount-view">
+                            <p>₹ {{row.order_grand_total ? row.order_grand_total : '0'}}</p>
+                            <p>Amount</p>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <div class="nothing-here" style="height: 60%;" *ngIf="!total_order.length && distributor_detaill.orderType && distributor_detaill.type==1">
+                <div class="outer">
+                    <div class="innear">
+                        <img src="assets/imgs/no_found.svg" alt="">
+                        <p>No Data Available</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+
+        <ng-container *ngIf="distributor_detaill.orderType=='Secondary' && showRelatedTab!=false">
+
+            <div class="pl16 pr16" *ngIf="secondary?.length && !search.date">
+                <div class="list-box mt16" *ngFor="let row of secondary" (click)="goOnOrderDetail(row.orderId)">
+                    <div class="upper"  *ngIf="row.order_status!='Draft'">
+                        <div class="left-date">
+                            <div class="date-section">
+                                <p>{{row.date_created| date:'d MMM y hh:mm a'}}</p>
+                                <p>Date</p>
+                            </div>
+                            <div class="date-section">
+                                <p>{{row.order_no}}</p>
+                                <p>Order Id</p>
+                            </div>
+                            
+                        </div>
+                        <!-- <div class="right-date">
+                            <button><p *ngIf="row.delivery_from=='ToyZone'">Primary</p></button>
+                            <button><p *ngIf="row.delivery_from!='ToyZone'">Secondary</p></button>
+                        </div> -->
+                    </div>
+                    <div class="mid" [ngClass]="{'mt0' : row.order_status=='Draft' }">
+                        <div class="content-info">
+                            <div class="left-info">
+                                <div class="circle" >{{row.dr_name.substring(0,1).toUpperCase()}}</div>
+                            </div>
+                            <div class="right-info">
+                                <p>{{row.dr_name.toUpperCase()}}</p>
+                                <p> Total Item : {{row.order_item  ? row.order_item : '0'}}</p>
+                            </div>
+                        </div>
+                        <div class="tag-info amount-view">
+                            <p>₹ {{row.order_grand_total ? row.order_grand_total : '0'}}</p>
+                            <p>Amount</p>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <div class="nothing-here" style="height: 60%;" *ngIf="!secondary.length && distributor_detaill.orderType && distributor_detaill.type==1">
+                <div class="outer">
+                    <div class="innear">
+                        <img src="assets/imgs/no_found.svg" alt="">
+                        <p>No Data Available </p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        
+    </ion-content>
+    <ion-footer class="csm-footer-tabs" *ngIf="distributor_detail.type==1 && showRelatedTab!=false">
+        <div class="ftabs">
+            <button ion-item [ngClass]="{'active': distributor_detaill.orderType == 'Primary'}" (click)="distributor_detaill.orderType='Primary'"><p>Primary</p></button>
+
+            <button ion-item [ngClass]="{'active': distributor_detaill.orderType == 'Secondary'}" (click)="distributor_detaill.orderType='Secondary'" ><p>Secondary</p> </button>
+        </div>
+    </ion-footer> 
+    
+</ng-container>

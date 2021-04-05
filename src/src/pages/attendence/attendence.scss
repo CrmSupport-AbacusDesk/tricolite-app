@@ -1,0 +1,262 @@
+page-attendence {
+
+  .cs-calender
+  {
+      background: #fff;
+      padding: 16px;
+      padding-top: 0;
+      margin-top: 16px;
+  }
+  
+  
+  .in-clnd
+  {
+      background: #fff;
+      box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.4);
+  }
+  .cs-calender .calendar-header
+  {
+      display: flex;
+      align-items: center;
+      height: 45px;
+      justify-content: space-between;
+  }
+  
+  .cs-calender .calendar-header button
+  {
+      width: 45px;
+      height: 45px;
+      background: #fff;
+      border: 0px;
+  }
+  .cs-calender .calendar-header button img{height: 13px;}
+  
+  .cs-calender .calendar-body .grid 
+  {
+      padding: 0px;
+  }
+  
+  .cs-calender .calendar-body .col:last-child 
+  {
+      border-right: none;
+  }
+  
+  .cs-calender .calendar-body .calendar-weekday,
+  .cs-calender .calendar-body .calendar-date
+  {
+      text-align: center;
+      margin: 0;
+  }
+  
+  
+  .cs-calender .calendar-body .calendar-weekday
+  {
+      font-weight: 600;
+      /* border-bottom: solid 1px #000; */
+      /* background-color: #333 */
+  }
+  
+  .cs-calender .calendar-body .calendar-weekday .col
+  {
+      padding: 8px !important;
+      font-weight: 600;
+  }
+  
+  .cs-calender .calendar-body .calendar-date
+  {
+      /* border-bottom: solid 1px #000; */
+  }
+  
+  .cs-calender .calendar-body ion-grid ion-row
+  {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+  
+  
+  .cs-calender [col-1]
+  {
+      webkit-box-flex: 0;
+      -webkit-flex: 0 0 8.33333%;
+      -ms-flex: 0 0 8.33333%;
+      flex: 0 0 14.285714285714286%;
+      width: 14.285714285714286%;
+      max-width: 14.285714285714286%;
+      height: 35px;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+  }
+  
+  .cs-calender .col
+  {
+      text-align: center;
+      // color: #fff;
+      font-size: 12px;
+      font-weight: 300;
+      padding: 2px;
+  }
+  
+  .cs-calender .col span
+  {
+      display: block;
+      padding: 8px;
+      /* border: solid 2px #333; */
+  }
+  
+  
+  .cs-calender .col span.notactive
+  {
+      border-radius: 0px;
+  }
+  
+  .cs-calender .col span.active
+  {
+      background: #000;
+      border-radius: 0px;
+  }
+  
+  span.csred
+  {
+      border: solid 2px #ff0000;
+      border-radius: 100%;
+      display: block;
+      height: 35px;
+      width: 35px;
+  }
+  span.csred.activated
+  {
+      background: #ff0000;
+      color: #fff;
+  }
+  
+  
+  span.csgreen
+  {
+      border: solid 2px #008626;
+      border-radius: 100%;
+      display: block;
+      height: 35px;
+      width: 35px;
+  }
+  span.csgreen.activated
+  {
+      background: #008626;
+      color: #fff;
+  }
+  
+  span.csblue
+  {
+      border: solid 2px #01a8e7;
+      border-radius: 100%;
+      display: block;
+      height: 35px;
+      width: 35px;
+  }
+  span.csblue.activated
+  {
+      background: #01a8e7;
+      color: #fff;
+  }
+  
+  
+  
+  
+  .cs-calender .col span.currentDate,
+  .cs-calender .col span.dotclick
+  {
+      font-weight: 600;
+      color: white;
+      border-radius: 0px;
+  }
+  
+  .cs-calender .col span.currentDate
+  {
+      background-color: #ff0000;
+  }
+  
+  .cs-calender .col span.dotclick
+  {
+      border:solid 2px #000 !important; 
+  }
+  
+  .cs-calender .last-month,
+  .cs-calender .next-month
+  {
+      color: #999999;
+      font-size: 90%;
+  }
+  
+  .cs-calender .currentDate,
+  .cs-calender .otherDate
+  {
+      padding: 5px;
+  }
+  
+  
+  .cs-calender .event-bullet 
+  {
+      margin: 2px auto;
+      height: 5px;
+      width: 5px;
+      background-color: green;
+      border-radius: 30px;
+  }
+  
+  
+  .cs-calender .selected-date 
+  {
+      width: 20px;
+      height: 2px;
+      background-color: blue;
+  }
+  
+  .cs-calender .unselected-date 
+  {
+      border: none;
+  }
+  
+  .cs-calender .csm-header
+  {
+      background: #00a8e7;
+      padding: 15px;
+  }
+  
+  .cs-calender .csm-header p
+  {
+      color: #fff;
+      font-size: 12px;
+      opacity: 0.7;
+      font-weight: 600;
+  }
+  .cs-calender .csm-header h1
+  {
+      font-size: 24px;
+      font-weight: 600;
+      color: #fff;
+  }
+  
+  .at-datainfo
+  {
+      padding: 16px;
+      padding-top: 0;
+  }
+  
+  .at-datainfo table
+  {
+      table-layout: fixed;
+      width: 100%;
+  }
+  .at-datainfo table tr{}
+  .at-datainfo table tr td
+  {
+      border: solid 1px #ccc;
+      padding: 10px;
+      width: 50%;
+  }
+  .at-datainfo table tr td p{}
+  .at-datainfo table tr td p:nth-child(1){opacity: 0.7;}
+  .at-datainfo table tr td p:nth-child(2){font-weight: 600;}
+  
+}

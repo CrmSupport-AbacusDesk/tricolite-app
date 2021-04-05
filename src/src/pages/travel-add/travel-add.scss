@@ -1,0 +1,19 @@
+page-travel-add {
+
+
+    .edit ion-list ion-item.select-cs .item-inner ion-select
+    {
+        border: 0px;
+    }
+
+    ion-item.select-cs 
+    {
+        border: 1px solid #d5d5d5 !important;
+        margin-top: 16px;
+    }
+
+    ion-label.select-label
+    {
+        margin: 0px !important;
+    }
+}

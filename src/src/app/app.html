@@ -1,0 +1,85 @@
+<ion-menu  [content]="content" side="start" id="first" [swipeEnabled]="(user_logged_in) ? true : false">
+    <ion-content>
+        <div class="home-list" style="position: sticky;top: 0px;">
+            <button style="padding-left: 10px !important;" ion-item (click)="((userRoleId == '' || userRoleId == undefined) && userType != 'MARKET' && userType!='OFFICE') ? goto_profile() : ''" menuClose>
+                <div class="thumb" *ngIf="user_logged_in" >
+                    <div class="outer">
+                        <div class="innear">
+                            <ng-container *ngIf="((userRoleId != '' || userRoleId != undefined) && (userType == 'MARKET' || userType == 'OFFICE'))">
+                                <p>{{userLoggedDisplayName[0]}}</p>
+                            </ng-container>
+                            <ng-container *ngIf="((userRoleId == '' || userRoleId == undefined) && userType != 'MARKET' && userType!='OFFICE')">
+                                
+                                <p *ngIf="!constant?.UserLoggedInData?.all_data?.image && userLoggedDisplayName!=undefined">{{userLoggedDisplayName[0]}}</p>
+                            </ng-container>
+                            <ng-container *ngIf="((userRoleId == '' || userRoleId == undefined) && userType != 'MARKET' && userType!='OFFICE')">
+                                <img *ngIf="constant?.UserLoggedInData?.all_data?.image" src="http://phpstack-83335-1428632.cloudwaysapps.com/uploads/{{constant?.UserLoggedInData?.all_data.image}}"   onerror="this.src='http://phpstack-83335-1428632.cloudwaysapps.com/uploads/no-thumbnail.jpg'">
+                                
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="description person-name">
+                    <div class="innear" *ngIf="user_logged_in">
+                        <h2>{{userLoggedDisplayName}}</h2>
+                        <p class="name-ellipsis" *ngIf="((userRoleId == '' || userRoleId == undefined) && userType != 'MARKET' && userType!='OFFICE')">(Profile)</p>
+                        <ng-container *ngIf="((userRoleId == '' || userRoleId == undefined) && userType != 'MARKET' && userType!='OFFICE')">
+                            
+                            <ion-icon name="ios-arrow-forward-outline" ></ion-icon>
+                        </ng-container>
+                    </div>
+
+                    <div class="innear wp100 text-left" *ngIf="!user_logged_in">
+                        <h2>Hello ,Welcome To ToyZone</h2>
+                    </div>
+                    
+                </div>
+            </button>
+        </div>
+        
+        <span *ngFor="let p of pages" >
+            <div class="option" menuClose *ngIf="p.show && user_logged_in" (click)="((userRoleId != '' || userRoleId != undefined) && (userType == 'MARKET' || userType== 'OFFICE' || userType== 'Market')) ?  openPage(p): openDealerPage(p)">
+                <i class="material-icons">{{p.icon}}</i>
+                <a href="#">{{p.title}}</a>
+            </div>
+            <div class="option" menuClose *ngIf="!user_logged_in" (click)="openDealerPage(p)">
+                <i class="material-icons">{{p.icon}}</i>
+                <a href="#">{{p.title}}</a>
+            </div>
+        </span>
+        <span >
+          <div class="option" menuClose (click)="openCatelogue()">
+             <i class="material-icons" >menu_book</i>
+             <a >Catalouge Pdf</a>
+          </div>
+        </span>
+    </ion-content>
+    
+    <ion-footer style="background: #fff !important;">
+        <div class="btns" *ngIf="!user_logged_in" menuClose  (click)="login()">
+            <button class ="login" >
+                <div class="lf-btn">
+                    <i class="material-icons">power_settings_new</i>
+                </div>
+                <div class="rt-btn">
+                    <p>LOGIN / SIGN UP </p>
+                </div>
+            </button>
+        </div>
+        
+        <div class="btns" *ngIf="user_logged_in" menuClose  (click)="logout()">
+            <!-- login -->
+            <button class="logout"  >
+                <div class="lf-btn">
+                    <i class="material-icons">power_settings_new</i>
+                </div>
+                <div class="rt-btn">
+                    <p>LOGOUT</p>
+                    <!-- <p>LOGIN</p> -->
+                </div>
+            </button>
+        </div>
+    </ion-footer>
+    
+</ion-menu>
+<ion-nav  [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,105 @@
+page-registration {
+	.csm-form
+	{
+		ion-list
+		{
+			ion-item
+			{
+				min-height: inherit;
+				padding-left: 0px;
+				height: 40px;
+				box-shadow: none !important;
+				// border-bottom: 0px !important;
+				
+				.item-inner
+				{
+					box-shadow: none !important;
+					padding-right: 0px !important;
+					border: solid 1px #ccc !important;
+					background: #fff;
+					
+					.input-wrapper
+					{
+						background: transparent;
+						
+						ion-label
+						{
+							margin: 0px;
+							padding: 0px;
+							position: absolute;
+							padding-left: 16px;
+							margin-top: -15px;
+							font-size: 14px;
+						}
+						
+						ion-input
+						{
+							background: transparent;
+							
+							input
+							{
+								background: transparent;
+								width: 100%;
+								margin: 0px;
+								margin-top: 11px;
+								padding-left: 13px;
+							}
+						}
+					}
+				}
+				
+				&.input-has-value,
+				&.item-input-has-focus
+				{
+					.item-inner
+					{
+						
+						.input-wrapper
+						{
+							
+							ion-label
+							{
+								font-size: 12px;
+								margin-top: 0px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	.upload-document
+	{
+		background: #e7ffee;
+		height: 110px;
+		border: solid 1px #ccc;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		
+		p
+		{
+			font-size: 12px;
+			text-align: center;
+			line-height: 16px;
+			color: #354b9c;
+			
+			i
+			{
+				font-size: 24px;
+			}
+		}
+
+		&.error
+		{
+			border-color: #ff0000;
+
+			p
+			{
+				color: #ff0000;
+			}
+		}
+	}
+}

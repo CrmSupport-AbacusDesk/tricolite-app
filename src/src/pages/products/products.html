@@ -1,0 +1,148 @@
+<ion-header class="main-header remove">
+    <ion-navbar>
+        <ion-title>Products</ion-title>
+        <ion-buttons end>
+            <button ion-button class="top-cart-btn" *ngIf="cart_array?.length" (click)="toGoOrderPage()">
+                <span class="counter">{{cart_array.length}}</span>
+                <i class="material-icons">shopping_cart</i>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter pr16">
+                <ion-searchbar type='text' name='master' [(ngModel)]="filter.master" (input)="getProductList()">
+                </ion-searchbar>
+                <button class="filter-btn" ion-button
+                    (click)="(filter_active = !filter_active);  (filter_category_active = true); (filter_price_active = false); ">
+                    <i class="material-icons">filter_alt</i>
+                    filter
+                </button>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+    <!-- loop start -->
+    <div class="cs-list-full" *ngFor="let list of product_list; let i=index">
+        <div class="top-secation">
+            <p (click)="goOnProductDetailPage(list.id)">{{list.product_name}}</p>
+            <code (click)="goOnProductDetailPage(list.id)">{{list.cat_no}}</code>
+
+            <button class="add-fav" [ngClass]="{'active':list.favorite == true}"
+                *ngIf="userId !=''&& userType=='drLogin'" ion-button
+                (click)="list.favorite == false? add_to_fav(list.id):remove_from_fav(list.id)"><i
+                    class="material-icons">&nbsp;</i></button>
+        </div>
+
+
+        <div class="mid-secation">
+
+            <div class="img-thumnail" (click)="viewProfiePic(list.image)">
+                <img *ngIf="list.image != '' && list.image != null" src="{{image_url+list.image}}" alt="">
+                <img *ngIf="list.image == '' || list.image == null" src="assets/imgs/default.png" alt="">
+
+            </div>
+            <div class="item-desc">
+                <div (click)="goOnProductDetailPage(list.id)">
+                    <span>Category</span>
+                    <p>{{list.category}}</p>
+                </div>
+                <div (click)="goOnProductDetailPage(list.id)">
+                    <span>HSN Code</span>
+                    <p>{{list.hsn}}</p>
+                </div>
+
+                <div (click)="goOnProductDetailPage(list.id)">
+                    <span>Price</span>
+                    <p>&#8377; {{list.price}}</p>
+                </div>
+                 <!-- <div class="value" *ngIf="list.price!=list.mrp">Price : &#8377; {{list.price}}</div>
+                <div *ngIf="userType=='drLogin'" class="value mt20">MRP: &#8377; {{list.mrp}}</div> -->
+                 <div class="value">
+                    <p *ngIf="list.price!=list.mrp">Price : &#8377;{{list.price}}</p>
+                    <p *ngIf="userType=='drLogin'">MRP: &#8377; {{list.mrp}}</p>
+                    <p> Master Packing :  {{list.cartoon_packing}}</p>
+                </div> 
+
+
+
+                <div class="item-cart-secation" *ngIf="order == true">
+                    <ul>
+                        <li>
+                            <button class="qty-btn" ion-button (click)="quantity(i,'remove')"><i
+                                    class="material-icons">remove</i></button>
+                        </li>
+                        <li>
+                            <input type="number" placeholder="Qty" (keypress)="MobileNumber1($event)" name="qty{{i}}"
+                                [(ngModel)]="list.qty">
+                        </li>
+                        <li>
+                            <button class="qty-btn" ion-button (click)="quantity(i,'add')"><i
+                                    class="material-icons">add</i></button>
+                        </li>
+                        <li>
+                            <button class="add-cart" ion-button [disabled]="!list.qty" (click)="addToCart(list,i)"><i
+                                    class="material-icons">shopping_cart</i>Add Cart</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- loop end -->
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="flag!=1">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>
+
+<div class="modal-outer" [ngClass]="{'active' : filter_active == true }">
+    <div class="filter-modal">
+        <div class="filter-head">
+            <button ion-button class="close-modal" (click)="filter_active = !filter_active"><i
+                    class="material-icons">keyboard_arrow_down</i></button>
+            <h2>Filter</h2>
+            <span (click)="getFilterData(); (filter_active = !filter_active); getProductList();">Clear</span>
+        </div>
+        <div class="filter-body">
+            <div class="filtr-btn">
+                <button ion-button [ngClass]="{'active':filter_category_active == true}"
+                    (click)="filter_price_active = false;filter_category_active = true;">Category</button>
+                <button ion-button [ngClass]="{'active':filter_price_active == true}"
+                    (click)="filter_price_active = true;filter_category_active = false;">Price</button>
+
+            </div>
+            <div class="filter-list ds-none" [ngClass]="{'ds-blcok' : filter_category_active == true}">
+                <ion-item *ngFor="let data of category_list">
+                    <ion-label>{{data.category_name}}</ion-label>
+                    <ion-checkbox [(ngModel)]="data.checked" (ionChange)="filter_by(data.checked,data.id,'category')">
+                    </ion-checkbox>
+                </ion-item>
+            </div>
+
+            <div class="filter-list ds-none" [ngClass]="{'ds-blcok' : filter_price_active == true}">
+                <ion-list radio-group name="price" [(ngModel)]="filter.price" #price="ngModel"
+                    (ionChange)="filter_by(filter.price,'','price')">
+                    <ion-item>
+                        <ion-radio value="low"></ion-radio>
+                        <ion-label>Price Low - High</ion-label>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-radio value="high"></ion-radio>
+                        <ion-label>Price High - Low</ion-label>
+                    </ion-item>
+                </ion-list>
+            </div>
+
+            <button class="footer-btn" ion-button
+                (click)="getProductList(); (filter_active = !filter_active); ">Apply</button>
+        </div>
+    </div>
+</div>

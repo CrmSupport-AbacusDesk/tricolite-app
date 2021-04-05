@@ -1,0 +1,123 @@
+page-contact {
+    
+    .contact-icons
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        border: 2px solid #285297;
+        border-radius: 6px;
+        
+        ion-icon
+        {
+            color: #285297;
+            font-size: 22px;
+        }
+    }
+    
+    ion-item
+    {
+        h2
+        {
+            font-size: 14px !important;
+        }
+    }
+    
+    .cnct-us 
+    {
+        border-top: 1px solid #285297;
+        padding: 16px;
+        position: relative;
+        margin-top: 40px;
+        margin-bottom: 20px;
+
+        h2
+        {
+            font-size: 18px;
+            text-align: center;
+
+            span
+            {
+                color: #285297;
+                font-weight: 600;
+            }
+        }
+
+        &:after
+        {
+            content: '';
+            position: absolute;
+            top: -7px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 12px;
+            height: 12px;
+            background: #285297;
+        }
+    }
+    
+
+    .social-btns 
+    {
+        padding: 0px 16px;
+        display: flex;
+        grid-column-gap: 16px;
+        justify-content: flex-start;
+        align-items: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-bottom: 16px;
+
+        button 
+        {
+            width: 45px;
+            min-width: 45px;
+            height: 45px;
+            padding: 0px;
+            border-radius: 6px!important;
+
+            ion-icon
+            {
+                font-size: 28px;
+                line-height: 20px;
+                color: #ffffff;
+            }
+        }
+
+        a
+        {
+            font-size: 12px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        &:last-child
+        {
+            margin-bottom: 0px;
+        }
+    }
+
+}
+
+.fb-bg
+{
+    background: #285297 !important;
+}
+.youtube-bg
+{
+    background: #e62e2d !important;
+}
+.insta-bg
+{
+    background: #833ab4 !important; 
+    background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4) !important; 
+    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4) !important;
+    
+}
+.twiter-bg
+{
+    background: #52a2f3 !important;
+}

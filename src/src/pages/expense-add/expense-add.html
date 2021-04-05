@@ -1,0 +1,824 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Expense Add</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list radio-group class="radio-type-group" [(ngModel)]="expense.expType">
+    <ion-list-header class="ion-list-header">
+      Expense Type
+    </ion-list-header>
+    <div class="dflex">
+      <ion-item>
+        <ion-label>Local Conveyance</ion-label>
+        <ion-radio value="Local Conveyance"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Outstation Travel</ion-label>
+        <ion-radio value="Outstation Travel"></ion-radio>
+      </ion-item>
+    </div>
+  </ion-list>
+  <div class="cs-accordion">
+        
+    <!-- Outstation Travel accordion start-->
+    <div class="accordion" *ngIf="expense.expType == 'Outstation Travel'" [ngClass]="{'expand':expand_travel == true}">
+      <div class="accordion-head" (click)="expand_travel = !expand_travel; expand_food = false ;expand_hotel = false ;expand_local = false ;expand_misc = false;">TRAVEL ENTITLEMENT </div>
+      <div class="accordion-body">
+        <div class="edit m0">
+          <ion-list>
+
+           <form name="travelform" #travelform="ngForm" (ngSubmit)="travelform.valid && addTravel()">
+
+            <div>
+              
+              <!-- <ion-item [ngClass]="{'cs-error':addTravel.submitted && company_name?.invalid}">
+                <ion-label floating><span>From</span></ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              
+              <ion-item>
+                <ion-label floating><span>To</span></ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item> -->
+              
+              <ion-item class="cs-normal-select mt16 mb0 " [ngClass]="{'cs-error':travelform.submitted && travelMode?.invalid}">
+                <ion-label>Mode Of Travel </ion-label>
+                <ion-select name="travelMode" [(ngModel)]="travelForm.travelMode" required #travelMode="ngModel">
+                  <ion-option value="Flight" *ngIf="allowanceData.flight == '1'">Flight</ion-option>
+                  <ion-option value="Train" *ngIf="allowanceData.trainSC == '1' || allowanceData.train2Tier == '1' || allowanceData.train3Tier == '1'">Train</ion-option>
+                </ion-select>
+              </ion-item>
+              
+              <ion-item class="cs-normal-select mt16 mb0 " [ngClass]="{'cs-error':travelform.submitted && travelClass?.invalid}">
+                <ion-label>Class</ion-label>
+                <ion-select name="travelClass" [(ngModel)]="travelForm.travelClass" #travelClass="ngModel" required>
+                  <ion-option value="Economy Class" *ngIf="travelForm.travelMode == 'Flight' && allowanceData.flight == '1'">Economy Class</ion-option>
+                  <ion-option value="Train (Executive Chair Car, Sleeper)" *ngIf="travelForm.travelMode == 'Train' && allowanceData.trainSC == '1'">Train (Executive Chair Car, Sleeper)</ion-option>
+                  <ion-option value="Train (III Tier)" *ngIf="travelForm.travelMode == 'Train' && allowanceData.train3Tier == '1'">Train (III Tier)</ion-option>
+                  <ion-option value="Train (II Tier)" *ngIf="travelForm.travelMode == 'Train' && allowanceData.train2Tier == '1'">Train (II Tier)</ion-option>
+                </ion-select>
+              </ion-item>
+              
+              
+              <div class="head">DEPATURE</div>
+              
+              <ion-item [ngClass]="{'cs-error':travelform.submitted && depatureDate?.invalid}">
+                <ion-label floating><span>Date</span></ion-label>
+                <ion-datetime display-format="MMM DD, YYYY" placeholder="Select Date" max={{today_date}} type="text" name="depatureDate" #depatureDate="ngModel" [(ngModel)]="travelForm.depatureDate" class="calander" required ></ion-datetime>
+              </ion-item>
+              
+              <ion-item [ngClass]="{'cs-error':travelform.submitted && depatureStation?.invalid}">
+                <ion-label floating><span>Station</span></ion-label>
+                <ion-input type="text" name="depatureStation" [(ngModel)]="travelForm.depatureStation" required #depatureStation="ngModel"></ion-input>
+              </ion-item>
+              
+              <ion-item [ngClass]="{'cs-error':travelform.submitted && depatureTime?.invalid}">
+                <ion-label floating><span>Time</span></ion-label>
+                <ion-datetime display-format="h:mm A" pickerFormat="h:mm A" name="depatureTime" [(ngModel)]="travelForm.depatureTime" required #depatureTime="ngModel"></ion-datetime>
+              </ion-item>
+
+              <div class="two-col">
+                  <ion-item [ngClass]="{'cs-error':travelform.submitted && depatureTicket?.invalid}">
+                    <ion-label floating><span>Ticket No</span></ion-label>
+                    <ion-input type="text" name="depatureTicket" [(ngModel)]="travelForm.depatureTicket" required #depatureTicket="ngModel"></ion-input>
+                  </ion-item>
+                  
+                  <ion-item [ngClass]="{'cs-error':travelform.submitted && depatureAmount?.invalid}">
+                    <ion-label floating><span>Amount</span></ion-label>
+                    <ion-input type="number" name="depatureAmount" [(ngModel)]="travelForm.depatureAmount" required #depatureAmount="ngModel"></ion-input>
+                  </ion-item>
+                </div>
+                
+                <div class="two-col">
+                  <!-- <ion-item>
+                    <ion-label floating><span>Tax Amount</span></ion-label>
+                    <ion-input type="text"></ion-input>
+                  </ion-item> -->
+                  
+                  <ion-item [ngClass]="{'cs-error':travelform.submitted && depatureDistance?.invalid}">
+                    <ion-label floating><span>Travel Distance(Km)</span></ion-label>
+                    <ion-input type="number" name="depatureDistance" [(ngModel)]="travelForm.depatureDistance" required #depatureDistance="ngModel"></ion-input>
+                  </ion-item>
+                </div>
+              
+              <div class="head">ARRIVAL</div>
+              
+              <ion-item [ngClass]="{'cs-error':travelform.submitted && arrivalDate?.invalid}">
+                <ion-label floating><span>Date</span></ion-label>
+                <ion-datetime display-format="MMM DD, YYYY" display-format="MMM DD, YYYY" max={{today_date}} placeholder="Select Date" type="text" name="arrivalDate" #arrivalDate="ngModel" [(ngModel)]="travelForm.arrivalDate" class="calander" required></ion-datetime>
+              </ion-item>
+              
+              <ion-item [ngClass]="{'cs-error':travelform.submitted && arrivalStation?.invalid}">
+                <ion-label floating><span>Station</span></ion-label>
+                <ion-input type="text" name="arrivalStation" [(ngModel)]="travelForm.arrivalStation" required #arrivalStation="ngModel"></ion-input>
+              </ion-item>
+              
+              <ion-item [ngClass]="{'cs-error':travelform.submitted && arrivalTime?.invalid}">
+                <ion-label floating><span>Time</span></ion-label>
+                <ion-datetime display-format="h:mm A" pickerFormat="h:mm A" name="arrivalTime" [(ngModel)]="travelForm.arrivalTime" required #arrivalTime="ngModel"></ion-datetime>
+              </ion-item>
+              
+              
+              <div class="two-col">
+                <ion-item [ngClass]="{'cs-error':travelform.submitted && arrivalTicket?.invalid}">
+                  <ion-label floating><span>Ticket No</span></ion-label>
+                  <ion-input type="text" name="arrivalTicket" [(ngModel)]="travelForm.arrivalTicket" required #arrivalTicket="ngModel"></ion-input>
+                </ion-item>
+                
+                <ion-item [ngClass]="{'cs-error':travelform.submitted && arrivalAmount?.invalid}">
+                  <ion-label floating><span>Amount</span></ion-label>
+                  <ion-input type="number" name="arrivalAmount" [(ngModel)]="travelForm.arrivalAmount" required #arrivalAmount="ngModel"></ion-input>
+                </ion-item>
+              </div>
+              
+              <div class="two-col">
+                <!-- <ion-item>
+                  <ion-label floating><span>Tax Amount</span></ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item> -->
+                
+                <ion-item [ngClass]="{'cs-error':travelform.submitted && arrivalDistance?.invalid}">
+                  <ion-label floating><span>Travel Distance</span></ion-label>
+                  <ion-input type="number" name="arrivalDistance" [(ngModel)]="travelForm.arrivalDistance" required #arrivalDistance="ngModel"></ion-input>
+                </ion-item>
+              </div>
+              <div class="text-right">
+                <button ion-button  class="h35 green-color mt16 mb16" type="submit">Add To List</button>
+              </div>
+            </div>
+          </form>
+          </ion-list>
+          
+          
+          <!-- list loop start -->
+          <div class="cs-list-item" *ngFor="let row of travelInfo;let i = index">
+            <div class="cs-top">
+              <div class="list-content">
+                <p>{{row.depatureDate | date:'d MMM y'}} & {{row.depatureTime}}</p>
+                <span>Date & Time</span>
+              </div>
+              <div class="list-content af-none">
+                <p>{{row.depatureStation}}</p>
+                <span>Station</span>
+              </div>
+              
+              <div class="left-auto">
+                <div class="type-bg">Depature</div>
+              </div>
+            </div>
+            <div class="cs-top pt10">
+              <div class="list-content">
+                <p>{{row.arrivalDate | date:'d MMM y'}} & {{row.arrivalTime}}</p>
+                <span>Date & Time</span>
+              </div>
+              <div class="list-content af-none">
+                <p>{{row.arrivalStation}}</p>
+                <span>Station</span>
+              </div>
+              
+              <div class="left-auto">
+                <div class="type-bg">Arrival</div>
+              </div>
+            </div>
+            <div class="middle-content one-column">
+              <div class="col-box">
+                <p>Class & Mode Of Travel </p>
+                <span>{{row.travelMode}}/{{row.travelClass}}</span>
+              </div>
+            </div>
+            <div class="middle-content">
+              <div class="col-box">
+                <p>Depature Ticket No</p>
+                <span>{{row.depatureTicket}}</span>
+              </div>
+              <div class="col-box">
+                <p>Depature Amt</p>
+                <span>&#8377; {{row.depatureAmount}}</span>
+              </div>
+              <div class="col-box">
+                <p>Depature Distance</p>
+                <span>{{row.depatureDistance}} Km</span>
+              </div>
+            </div>
+            <div class="middle-content">
+              <div class="col-box">
+                <p>Arrival Ticket No</p>
+                <span>{{row.arrivalTicket}}</span>
+              </div>
+              <div class="col-box">
+                <p>Arrival Amt</p>
+                <span>&#8377; {{row.arrivalAmount}}</span>
+              </div>
+              <div class="col-box">
+                <p>Arrival Distance</p>
+                <span>{{row.arrivalDistance}} Km</span>
+              </div>
+            </div>
+          </div>
+          <!-- list loop end -->
+          
+          
+          <div class="summary-table">
+            <table>
+              <tr>
+                <td class="text-right" >Total</td>
+                <td class="text-right w120" >&#8377; {{expense.travelEntitlementAmt}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="accordion" *ngIf="expense.expType" [ngClass]="{'expand':expand_local == true}">
+      <div class="accordion-head" (click)="expand_local = !expand_local ; expand_food = false ;expand_hotel = false ;expand_misc = false ;expand_travel = false;">LOCAL CONVEYANCE</div>
+      <div class="accordion-body">
+        <div class="edit m0">
+          <ion-list>
+           <form name="lcform" #lcform="ngForm" (ngSubmit)="lcform.valid && addLocalConv()">
+
+            <div>
+              <ion-item class="cs-normal-select mb0 " [ngClass]="{'cs-error':lcform.submitted && modeOfTravel?.invalid}">
+                <ion-label>Mode Of Travel</ion-label>
+                <ion-select name="modeOfTravel" [(ngModel)]="localConvForm.modeOfTravel" required #modeOfTravel="ngModel">
+                  <ion-option *ngIf="allowanceData.busAC == '1' || allowanceData.busNonAC == '1'|| allowanceData.auto == '1'|| allowanceData.taxi == '1'" value="Public Vehicle">Public Vehicle</ion-option>
+                  <ion-option *ngIf="allowanceData.car != '' || allowanceData.bike != ''" value="Self Vehicle">Self Vehicle</ion-option>
+                </ion-select>
+              </ion-item>
+              
+              <ion-item class="cs-normal-select mt16 mb0 " [ngClass]="{'cs-error':lcform.submitted && travelClass?.invalid}">
+                <ion-label>Class</ion-label>
+                <ion-select name="travelClass" [(ngModel)]="localConvForm.travelClass" required #travelClass="ngModel">
+                  <ion-option *ngIf="allowanceData.busAC == '1' && localConvForm.modeOfTravel == 'Public Vehicle' " value="AC Bus">AC Bus</ion-option>
+                  <ion-option *ngIf="allowanceData.busNonAC == '1' && localConvForm.modeOfTravel == 'Public Vehicle'" value="Non AC Bus">Non AC Bus</ion-option>
+                  <ion-option *ngIf="allowanceData.taxi == '1' && localConvForm.modeOfTravel == 'Public Vehicle'" value="Taxi">Taxi</ion-option>
+                  <ion-option *ngIf="allowanceData.auto == '1' && localConvForm.modeOfTravel == 'Public Vehicle'" value="Auto">Auto</ion-option>
+                  <ion-option *ngIf="allowanceData.car != '' && localConvForm.modeOfTravel == 'Self Vehicle'" value="Car">Car</ion-option>
+                  <ion-option *ngIf="allowanceData.bike != '' && localConvForm.modeOfTravel == 'Self Vehicle'" value="Bike">Bike</ion-option>
+                </ion-select>
+              </ion-item>
+              
+              <ion-item [ngClass]="{'cs-error':lcform.submitted && date?.invalid}">
+                <ion-label floating><span>Date</span></ion-label>
+                <ion-datetime display-format="MMM DD, YYYY" max={{today_date}} type="text" name="date" #date="ngModel" [(ngModel)]="localConvForm.date" class="calander" required ></ion-datetime>
+              </ion-item>
+              
+              <ion-item [ngClass]="{'cs-error':lcform.submitted && distance?.invalid}">
+                <ion-label floating><span>Distance (KM)</span></ion-label>
+                <ion-input type="number" name="distance" [(ngModel)]="localConvForm.distance" required #distance="ngModel"  (input)=" localConvForm.travelClass == 'Car' || localConvForm.travelClass == 'Bike' ? calculateTravelAmount() : ''"></ion-input>
+              </ion-item>
+              
+              <ion-item [ngClass]="{'cs-error':lcform.submitted && amount?.invalid}">
+                <ion-label floating><span>Amount</span></ion-label>
+                <ion-input type="number" name="amount" [(ngModel)]="localConvForm.amount" required #amount="ngModel"></ion-input>
+              </ion-item>
+              
+              <!-- <div class="two-col">
+                <ion-item>
+                  <ion-label floating><span>Amount</span></ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+                
+                <ion-item>
+                  <ion-label floating><span>Tax</span></ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </div> -->
+              
+              <ion-item class="cs-textarea1 ">
+                <ion-label floating><span>Description</span></ion-label>
+                <ion-textarea name="remark" [(ngModel)]="localConvForm.remark" ></ion-textarea>
+              </ion-item>
+              
+              <div class="text-right">
+                <button ion-button  class="h35 green-color mt16 mb16" type="submit">Add To List</button>
+              </div>
+            </div>
+
+           </form>
+          </ion-list>
+          
+          
+          <!-- list loop start -->
+          <div class="cs-list-item" *ngFor="let val3 of localConvInfo;let i=index">
+            <div class="cs-top">
+              <div class="list-content">
+                <p>{{val3.modeOfTravel}}</p>
+                <span>Mode Of Travel</span>
+              </div>
+              <div class="list-content">
+                <p>{{val3.travelClass}}</p>
+                <span>Class</span>
+              </div>
+              <div class="list-content af-none">
+                <p>{{val3.date | date:'d MMM y'}}</p>
+                <span>Date</span>
+              </div>
+              
+              <div class="left-auto">
+                <button ion-button class="circle-btn" (click)="rmLocalConvExp(i, val3.amount)"><i class="material-icons">delete_sweep</i></button>
+              </div>
+            </div>
+            
+            
+            <div class="middle-content">
+              <div class="col-box">
+                <p>Distance (KM)</p>
+                <span>{{val3.distance}}</span>
+              </div>
+              <div class="col-box">
+                <p>Amount</p>
+                <span>&#8377;{{val3.amount}} /-</span>
+              </div>
+              <!-- <div class="col-box">
+                <p>Tax</p>
+                <span>&#8377; 25</span>
+              </div> -->
+            </div>
+            
+            <div class="middle-content one-column">
+              <div class="col-box">
+                <span class="remark"><strong>Remark:-</strong>{{val3.remark}}</span>
+              </div>
+            </div>
+          </div>
+          <!-- list loop end -->
+          
+          
+          <div class="summary-table">
+            <table>
+              <tr>
+                <td class="text-right" >Total</td>
+                <td class="text-right w120" >&#8377; {{expense.localConvAmt}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="accordion expand">
+      <div class="accordion-head">LOCAL CONVEYANCE</div>
+      <div class="accordion-body">
+        <div class="edit m0">
+          <ion-list>
+            <div>
+              <ion-item>
+                <ion-label floating><span>Date Of Visit</span></ion-label>
+                <ion-datetime display-format="MMM DD, YYYY" ></ion-datetime>
+              </ion-item>
+              
+              <ion-item>
+                <ion-label floating><span>From</span></ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              
+              <ion-item>
+                <ion-label floating><span>To</span></ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              
+              <ion-item class="cs-normal-select mt16">
+                <ion-label>Type Of Mode</ion-label>
+                <ion-select>
+                  <ion-option value="Public Vechical">Public Vechical</ion-option>
+                  <ion-option value="Private Vechical">Private Vechical</ion-option>
+                </ion-select>
+              </ion-item>
+              
+              <ion-item class="cs-normal-select mt16 mb0 ">
+                <ion-label>Mode Of Travel</ion-label>
+                <ion-select>
+                  <ion-option value="Public Vechical">Public Vechical</ion-option>
+                  <ion-option value="Private Vechical">Private Vechical</ion-option>
+                </ion-select>
+              </ion-item>
+              
+              <ion-item>
+                <ion-label floating><span>Amount</span></ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              
+              <ion-item class="cs-textarea1 ">
+                <ion-label floating><span>Description</span></ion-label>
+                <ion-textarea ></ion-textarea>
+              </ion-item>
+              
+              <div class="text-right">
+                <button ion-button  class="h35 green-color mt16 mb16">Add To List</button>
+              </div>
+            </div>
+          </ion-list>
+          
+          
+          <div class="cs-list-item">
+            <div class="cs-top">
+              <div class="list-content">
+                <p>12 Feb 2020</p>
+                <span>Date Of Visit</span>
+              </div>
+              <div class="list-content">
+                <p>Delhi</p>
+                <span>From</span>
+              </div>
+              <div class="list-content af-none">
+                <p>Haryana</p>
+                <span>To</span>
+              </div>
+              
+              <div class="left-auto">
+                <button ion-button class="circle-btn"><i class="material-icons">delete_sweep</i></button>
+              </div>
+            </div>
+            <div class="middle-content">
+              <div class="col-box">
+                <p>Type</p>
+                <span>Self Vehicle</span>
+              </div>
+              <div class="col-box">
+                <p>Mode Of Travel</p>
+                <span>Bike</span>
+              </div>
+              <div class="col-box">
+                <p>KMS Covered</p>
+                <span>&#8377; 25 K.M</span>
+              </div>
+            </div>
+            <div class="middle-content one-column">
+              <div class="col-box">
+                <span class="remark"><strong>Remark:-</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit recusandae reiciendis placeat quas doloremque, molestias in aliquam exercitationem perspiciatis! Repudiandae libero quisquam sapiente earum perferendis eaque placeat quo perspiciatis modi.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="summary-table">
+            <table>
+              <tr>
+                <td class="text-right" >Total</td>
+                <td class="text-right w120" >&#8377; 20,000</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    
+    <div class="accordion" *ngIf="expense.expType == 'Outstation Travel'" [ngClass]="{'expand':expand_hotel == true}">
+      <div class="accordion-head" (click)="expand_hotel = !expand_hotel ; expand_food = false ;expand_misc = false ;expand_local = false ;expand_travel = false;">HOTEL</div>
+      <div class="accordion-body">
+        <div class="edit m0">
+          <ion-list>
+
+           <form name="htform" #htform="ngForm" (ngSubmit)="htform.valid && addHotel()">
+
+            <div>
+              
+              <ion-item [ngClass]="{'cs-error':htform.submitted && city?.invalid}">
+                <ion-label floating><span>City</span></ion-label>
+                <ion-input type="text" name="city" [(ngModel)]="hotelForm.city" required #city="ngModel" ></ion-input>
+              </ion-item>
+              
+              <ion-item [ngClass]="{'cs-error':htform.submitted && checkInDate?.invalid}">
+                <ion-label floating><span>Check In Date</span></ion-label>
+                <ion-datetime display-format="MMM DD, YYYY" type="text" name="checkInDate" #checkInDate="ngModel" [(ngModel)]="hotelForm.checkInDate" class="calander" max={{today_date}} required  ></ion-datetime>
+              </ion-item>
+              
+              
+              <ion-item [ngClass]="{'cs-error':htform.submitted && checkOutDate?.invalid}">
+                <ion-label floating><span>Check Out Date</span></ion-label>
+                <ion-datetime display-format="MMM DD, YYYY" type="text" name="checkOutDate" #checkOutDate="ngModel" [(ngModel)]="hotelForm.checkOutDate" class="calander" max={{today_date}} required  ></ion-datetime>
+              </ion-item>
+              
+              <ion-item [ngClass]="{'cs-error':htform.submitted && hotelName?.invalid}">
+                <ion-label floating><span>Hotel Name</span></ion-label>
+                <ion-input type="text" name="hotelName" [(ngModel)]="hotelForm.hotelName" required #hotelName="ngModel"></ion-input>
+              </ion-item>
+              
+              <!-- <div class="two-col"> -->
+                <ion-item [ngClass]="{'cs-error':htform.submitted && amount?.invalid}">
+                  <ion-label floating><span>Amount</span></ion-label>
+                  <ion-input type="number" name="amount" [(ngModel)]="hotelForm.amount" required #amount="ngModel"></ion-input>
+                </ion-item>
+                
+                <!-- <ion-item>
+                  <ion-label floating><span>Tax</span></ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </div> -->
+              
+              <ion-item class="cs-textarea1 ">
+                <ion-label floating><span>Description</span></ion-label>
+                <ion-textarea type="text" name="remark" #remark="ngModel" [(ngModel)]="hotelForm.remark" ></ion-textarea>
+              </ion-item>
+              
+              
+              <div class="text-right">
+                <button ion-button  class="h35 green-color mt16 mb16" type="submit">Add To List</button>
+              </div>
+            </div>
+
+            </form>
+          </ion-list>
+          
+          
+          <!-- list loop start -->
+          <div class="cs-list-item" *ngFor="let val1 of hotelInfo;let i=index">
+            <div class="cs-top">
+              <!-- <div class="list-content">
+                <p>Faridabad</p>
+                <span>City</span>
+              </div> -->
+              <div class="list-content">
+                <p>{{val1.checkOutDate | date:'d MMM y'}}</p>
+                <span>Check Out Date</span>
+              </div>
+              <div class="list-content af-none">
+                <p>{{val1.checkInDate | date:'d MMM y'}}</p>
+                <span>Check In Date</span>
+              </div>
+              
+              <div class="left-auto">
+                <button ion-button class="circle-btn" (click)="rmHotelExp(i, val1.amount)"><i class="material-icons">delete_sweep</i></button>
+              </div>
+            </div>
+            
+            <div class="middle-content one-column">
+              <div class="col-box">
+                <p>Remark</p>
+                <span>{{val1.remark}}</span>
+              </div>
+            </div>
+            <div class="middle-content">
+              <div class="col-box">
+                <p>City</p>
+                <span>{{val1.city}}</span>
+              </div>
+              <div class="col-box">
+                <p>Hotel</p>
+                <span>{{val1.hotelName}}</span>
+              </div>
+              <div class="col-box">
+                <p>Amount</p>
+                <span>&#8377; {{val1.amount}}</span>
+              </div>
+            </div>
+          </div>
+          <!-- list loop end -->
+          
+          
+          <div class="summary-table">
+            <table>
+              <tr>
+                <td class="text-right" >Total</td>
+                <td class="text-right w120" >&#8377; {{expense.hotelAmt}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="accordion" *ngIf="expense.expType == 'Outstation Travel'" [ngClass]="{'expand':expand_food == true}">
+      <div class="accordion-head" (click)="expand_food = !expand_food ;expand_misc = false ;expand_hotel = false ;expand_local = false ;expand_travel = false;">FOOD</div>
+      <div class="accordion-body">
+        <div class="edit m0">
+          <ion-list>
+
+           <form name="fdform" #fdform="ngForm" (ngSubmit)="fdform.valid && addFood()">
+            
+            <div>
+              
+              <div class="two-col">
+                <ion-item [ngClass]="{'cs-error':fdform.submitted && city?.invalid}">
+                  <ion-label floating><span>City</span></ion-label>
+                  <ion-input type="text" type="text" name="city" [(ngModel)]="foodForm.c" required #city="ngModel" ></ion-input>
+                </ion-item>
+                
+                <ion-item [ngClass]="{'cs-error':fdform.submitted && date?.invalid}">
+                  <ion-label floating><span>Date</span></ion-label>
+                  <ion-datetime display-format="MMM DD, YYYY" type="text" name="date" #date="ngModel" [(ngModel)]="foodForm.date" class="calander" max={{today_date}} required ></ion-datetime>
+                </ion-item>
+              </div>
+              
+              <div class="two-col">
+                <ion-item [ngClass]="{'cs-error':fdform.submitted && amount?.invalid}">
+                  <ion-label floating><span>Amount</span></ion-label>
+                  <ion-input type="number" name="amount" [(ngModel)]="foodForm.amount" required #amount="ngModel"></ion-input>
+                </ion-item>
+                
+                <!-- <ion-item>
+                  <ion-label floating><span>Tax</span></ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item> -->
+              </div>
+              
+              <ion-item class="cs-textarea1 ">
+                <ion-label floating><span>Description</span></ion-label>
+                <ion-textarea type="text" name="remark" [(ngModel)]="foodForm.remark" #remark="ngModel"></ion-textarea>
+              </ion-item>
+              
+              
+              <div class="text-right">
+                <button ion-button  class="h35 green-color mt16 mb16" type="submit">Add To List</button>
+              </div>
+            </div>
+
+           </form>
+          </ion-list>
+          
+          
+          <!-- list loop start -->
+          <div class="cs-list-item" *ngFor="let val2 of foodInfo;let i=index">
+            <div class="cs-top">
+              <div class="list-content">
+                <p>{{val2.date | date:'d MMM y'}}</p>
+                <span>Date</span>
+              </div>
+              <div class="list-content af-none">
+                <p>{{val2.city}}</p>
+                <span>City</span>
+              </div>
+              
+              <div class="left-auto">
+                <button ion-button class="circle-btn" (click)="rmFoodExp(i, val1.amount)"><i class="material-icons">delete_sweep</i></button>
+              </div>
+            </div>
+            
+            
+            <div class="middle-content two-column">
+              <div class="col-box">
+                <p>Amount</p>
+                <span>&#8377; {{val2.amount}}</span>
+              </div>
+              <!-- <div class="col-box">
+                <p>Tax</p>
+                <span>&#8377; 20,000</span>
+              </div> -->
+            </div>
+            <div class="middle-content one-column">
+              <div class="col-box">
+                <span class="remark"><strong>Remark:-</strong> {{val2.remark}}</span>
+              </div>
+            </div>
+          </div>
+          <!-- list loop end -->
+          
+          
+          <div class="summary-table">
+            <table>
+              <tr>
+                <td class="text-right" >Total</td>
+                <td class="text-right w120" >&#8377; {{expense.foodAmt}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="accordion" *ngIf="expense.expType == 'Outstation Travel'" [ngClass]="{'expand':expand_misc == true}">
+      <div class="accordion-head" (click)="expand_misc = !expand_misc ;expand_food = false ;expand_hotel = false ;expand_local = false ;expand_travel = false;">MISC EXPENSE INFORMATION</div>
+      <div class="accordion-body">
+        <div class="edit m0">
+          <ion-list>
+
+           <form name="miscform" #miscform="ngForm" (ngSubmit)="miscform.valid && addMiscExp()">
+
+            <div>
+              
+              <div class="two-col">
+                <ion-item [ngClass]="{'cs-error':miscform.submitted && expName?.invalid}">
+                  <ion-label floating><span>Nature Of Expense</span></ion-label>
+                  <ion-input type="text" type="text" name="expName" #expName="ngModel" [(ngModel)]="miscExpForm.expName" required></ion-input>
+                </ion-item>
+                
+                <ion-item [ngClass]="{'cs-error':miscform.submitted && date?.invalid}">
+                  <ion-label floating><span>Date</span></ion-label>
+                  <ion-datetime display-format="MMM DD, YYYY" type="text" name="date" max={{today_date}} #date="ngModel" [(ngModel)]="miscExpForm.date" required ></ion-datetime>
+                </ion-item>
+              </div>
+              
+              <div class="two-col">
+                <ion-item [ngClass]="{'cs-error':miscform.submitted && expPlace?.invalid}">
+                  <ion-label floating><span>Place Of Expense</span></ion-label>
+                  <ion-input type="text" name="expPlace" #expPlace="ngModel" [(ngModel)]="miscExpForm.expPlace" required></ion-input>
+                </ion-item>
+                
+                <ion-item [ngClass]="{'cs-error':miscform.submitted && amount?.invalid}">
+                  <ion-label floating><span>Amount</span></ion-label>
+                  <ion-input type="number" name="amount" #amount="ngModel" [(ngModel)]="miscExpForm.amount" required></ion-input>
+                </ion-item>
+              </div>
+              
+              <!-- <ion-item>
+                <ion-label floating><span>Tax</span></ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item> -->
+              
+              <ion-item class="cs-textarea1 ">
+                <ion-label floating><span>Description</span></ion-label>
+                <ion-textarea type="text" name="remark" #remark="ngModel" [(ngModel)]="miscExpForm.remark" ></ion-textarea>
+              </ion-item>
+              
+              
+              <div class="text-right">
+                <button ion-button  class="h35 green-color mt16 mb16" type="submit">Add To List</button>
+              </div>
+            </div>
+
+            </form>
+          </ion-list>
+          
+          
+          <!-- list loop start -->
+          <div class="cs-list-item" *ngFor="let val4 of miscExpInfo;let i=index">
+            <div class="cs-top">
+              <div class="list-content">
+                <p>{{val4.date | date:'d MMM y'}}</p>
+                <span>Date</span>
+              </div>
+              <div class="list-content af-none">
+                <p>{{val4.expName}}</p>
+                <span>Nature Of Expense</span>
+              </div>
+              
+              <div class="left-auto">
+                <button ion-button class="circle-btn" (click)="rmMiscExp(i, val4.amount)"><i class="material-icons">delete_sweep</i></button>
+              </div>
+            </div>
+            
+            
+            <div class="middle-content">
+              <div class="col-box">
+                <p>Place of Expense</p>
+                <span>{{val4.expPlace}}</span>
+              </div>
+              <div class="col-box">
+                <p>Amount</p>
+                <span>&#8377; {{val4.amount}}</span>
+              </div>
+              <!-- <div class="col-box">
+                <p>Tax</p>
+                <span>&#8377; 20,000</span>
+              </div> -->
+            </div>
+            <div class="middle-content one-column">
+              <div class="col-box">
+                <span class="remark"><strong>Remark:-</strong> {{val4.remark}}</span>
+              </div>
+            </div>
+          </div>
+          <!-- list loop end -->
+          
+          
+          <div class="summary-table">
+            <table>
+              <tr>
+                <td class="text-right" >Total</td>
+                <td class="text-right w120" >&#8377; {{expense.miscExpAmt}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Outstation Travel accordion end-->
+  </div>
+  
+  <div class="upload-doc" *ngIf="expense.expType">
+    <p class="">Upload Bill</p>
+    <ul class="no-padding">
+
+      <li class="image-upload" *ngFor="let pic of image_data;let i = index;">
+        <img src="{{pic}}">
+        <button class="del"><i class="material-icons" (click)="remove_image(i)">delete_sweep</i></button>
+      </li>
+      
+      <li class="add-image" (click)="captureMedia()">
+        <i class="material-icons">add</i>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="summary-table" *ngIf="expense.expType">
+    <table>
+      <tr>
+        <td class="text-right" >Total</td>
+        <td class="text-right w120" >&#8377; {{expense.totalAmt}}</td>
+      </tr>
+      <!-- <tr>
+        <td class="text-right" >Bill Amount</td>
+        <td class="text-right w120" >&#8377; 20,000</td>
+      </tr> -->
+    </table>
+  </div>
+
+
+  <div class="text-right" *ngIf="(expense.expType == 'Outstation Travel' && travelInfo.length) || (expense.expType == 'Local Conveyance' && localConvInfo.length)">
+    <button ion-button  class="h35 green-color mt16 mb16" (click)="submitExpense()">Save</button>
+  </div>
+  
+</ion-content>

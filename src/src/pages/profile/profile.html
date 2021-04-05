@@ -1,0 +1,194 @@
+<ion-header class="main-header">
+	<ion-navbar>
+		<ion-title> Profile </ion-title>
+		<div class="header-icons" >
+			<button ion-button class="cs-hdr-icons mr16"  (click)="logout()">
+				<i class="material-icons">power_settings_new</i>
+			</button>
+		</div>
+	</ion-navbar>
+</ion-header>
+
+<ion-content *ngIf=" service.karigar_info.type == 'Plumber'" class="profile-bg" >
+	<div class="profile">
+		<div class="profile-detail">
+			<div class="profile-pic">
+				<!-- <img src="assets/imgs/man.svg" *ngIf="karigar_detail.profile ==''"> -->
+				<img [src]="karigar_detail.profile" (click) = "viewProfiePic()">
+				<!-- <img src="assets/imgs/profile.png"> -->
+				<a><i class="material-icons" (click)="openeditprofile()">camera_alt</i></a>
+			</div>
+			
+			<div class="name">
+				<p>{{karigar_detail.first_name |titlecase}} </p>
+				<a class="{{karigar_detail.status}}">
+					<i class="material-icons Verified " *ngIf="karigar_detail.status =='Verified'">check_circle </i>
+					<i class="material-icons Pending " *ngIf="karigar_detail.status =='Pending'">hourglass_full</i>
+					<i class="material-icons Suspect " *ngIf="karigar_detail.status =='Suspect'">info</i>
+					<i class="material-icons Reject " *ngIf="karigar_detail.status =='Reject'">cancel</i>		
+					{{karigar_detail.status}} ({{karigar_detail.type}})</a>
+				</div>
+				<div class="edit-profile pencil-btn" (click)="editProfilePage()">
+					<button > <i class="material-icons">edit</i></button>
+				</div>
+				
+				<div class="rating-area mt16">
+					<div class="border-box">
+						<div class="boxs">
+							<p>Mobile No.</p>
+							<h4>+91{{karigar_detail.mobile_no}}</h4>
+						</div>
+						
+						<div class="boxs">
+							<p>Date of Birth</p>
+							<h4>{{(karigar_detail.dob !='') ? (karigar_detail.dob| date:'d MMM,y'):('----')}}</h4>
+						</div>
+						
+					</div> 
+					
+					<div class="ratings border-bottom">
+						
+						<h3>Working Address</h3>
+						<p>{{karigar_detail.address |titlecase}} {{karigar_detail.state |titlecase}} {{karigar_detail.district |titlecase}} {{karigar_detail.city |titlecase}} {{karigar_detail.pincode }}</p>
+					</div>
+					<div class="ratings" *ngIf="karigar_detail.permanent_address">
+						<h3>Permanent Address</h3>
+						<p>{{karigar_detail.permanent_address |titlecase}} {{karigar_detail.permanent_state |titlecase}} {{karigar_detail.parmanent_district |titlecase}}  {{karigar_detail.permanent_city |titlecase}} {{karigar_detail.permanent_pincode }}</p>
+					</div>
+					<div class="ratings"  *ngIf="service.karigar_info.type == 'Plumber'">
+						<h3>Dealer Information</h3>
+						<p> {{karigar_detail.dealer_contact_person | titlecase}} ({{karigar_detail.dealer_mobile}})</p>
+					</div>
+					<!-- <div class="ratings"  *ngIf="service.karigar_info.type == 'Plumber'">
+						<h3>Service Wallet Balance</h3>
+						<p> {{karigar_detail.service_wallet_balance_points}} </p>
+					</div> -->
+				</div>
+			</div>
+
+			<div class="document-section" *ngIf="karigar_detail.document_image && karigar_detail.document_type && karigar_detail.document_no">
+
+				<h4>Document Information</h4>
+				<div class="document-img" *ngIf="karigar_detail.document_image">
+					<img [src]="karigar_detail.document_image">
+
+				 <div class="document-info" *ngIf="karigar_detail.document_type && karigar_detail.document_no">
+					 <h3>{{karigar_detail.document_type}}</h3>
+					 <p>{{karigar_detail.document_no}}</p>
+				 </div>
+				</div>
+				
+
+			</div>
+			
+			<!-- <div class="profile-point">
+				<h4>Points information</h4>
+				<ul>
+					<li>
+						<div class="pints">
+							<h3>{{karigar_detail.service_wallet_balance_points}}</h3>
+							<p>Service Wallet</p>
+							<span>POINTS</span>
+						</div>
+					</li>
+					<li>
+						<div class="pints">
+							<h3>{{karigar_detail.balance_point}}</h3>
+							<p>Loyalty Balance</p>
+							<span>POINTS</span>
+						</div>
+					</li>
+					<li>
+						<div class="pints">
+							<h3>{{karigar_detail.totalpoints}}</h3>
+							<p>Total</p>
+							<span>POINTS</span>
+						</div>
+					</li>
+				</ul>
+			</div> -->
+		</div>
+	</ion-content>
+	
+	
+<ion-content *ngIf=" service.karigar_info.type == 'Customer'">
+		<div class="profile">
+			<div class="profile-detail">
+				<div class="profile-pic">
+					<!-- <img src="assets/imgs/man.svg" *ngIf="karigar_detail.profile ==''"> -->
+					<img [src]="karigar_detail.profile" (click) = "viewProfiePic()" >
+					<!-- <img src="assets/imgs/profile.png"> -->
+					<a><i class="material-icons" (click)="openeditprofile()">camera_alt</i></a>
+				</div>
+				
+				<div class="name">
+					<p>{{karigar_detail.first_name |titlecase}} </p>
+					<a>
+						<i class="material-icons Verified " *ngIf="karigar_detail.status =='Verified'">check_circle </i>
+						<i class="material-icons Pending " *ngIf="karigar_detail.status =='Pending'">hourglass_full</i>
+						<i class="material-icons Suspect " *ngIf="karigar_detail.status =='Suspect'">info</i>
+						<i class="material-icons Reject " *ngIf="karigar_detail.status =='Reject'">cancel</i>		
+						{{karigar_detail.status}}</a>
+					</div>
+
+					<div class="edit-profile pencil-btn" (click)="editProfilePage()">
+						<button><i class="material-icons">edit</i></button>
+					</div>
+					<div class="rating-area mt16 new-cl">
+						
+						<div class="ratings">
+							<h3>Mobile No.</h3>
+							<p>+91{{karigar_detail.mobile_no}}</p>
+						</div>
+						
+						<div class="ratings">
+							<h3>Address</h3>
+							<p>{{karigar_detail.address |titlecase}}</p>
+						</div>
+						
+						<div class="ratings">
+							<h3>City</h3>
+							<p>{{karigar_detail.city |titlecase}} </p>
+						</div>
+						
+						<div class="ratings">
+							<h3>District</h3>
+							<p> {{karigar_detail.district |titlecase}}</p>
+						</div>
+						
+						<div class="ratings">
+							<h3>State</h3>
+							<p> {{karigar_detail.state |titlecase}}</p>
+						</div>
+						
+						<div class="ratings">
+							<h3>Pincode</h3>
+							<p> {{karigar_detail.pincode}}</p>
+						</div>
+			
+					</div>
+				</div>
+				
+				<div class="point-loc remove-pointlo">
+					<div class="point-add" *ngIf="karigar_detail.cust_geo_address">
+					  <p>Geo Location</p>
+					  <textarea [(ngModel)]="karigar_detail.cust_geo_address" readonly></textarea>
+					</div>
+				
+					<div class="enquiry-btn loction-btn mt16 mb16">
+					  <button ion-button color="danger" class="green-color h35" (click)="pointLocation()">
+						<p>{{karigar_detail.cust_geo_address?'Update location':'Add location' }}</p>
+					  </button>
+					</div>
+				  </div>
+				
+			</div>
+			
+			
+			<!-- <div class="ponit-location" (click)='pointLocation()'>
+				<a><i class="material-icons">room</i></a>
+			</div> -->
+
+
+
+	</ion-content>

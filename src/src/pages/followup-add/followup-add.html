@@ -1,0 +1,78 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Follow-Up</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+    <div class="edit mt10">
+        <ion-list>
+          <div>
+              <ion-item>
+                  <ion-label floating><span>Select Date <strong>*</strong></span></ion-label>
+                  <ion-datetime display-format="MMM DD, YYYY"  placeholder="Select Date" [min]="today_date" type="text" name="followup_date" #followup_date="ngModel" [(ngModel)]="followup_data.followup_date" (ngModelChange)="getFollowup(followup_data.followup_date)" class="calander" required ></ion-datetime>
+              </ion-item>
+
+              <ion-item class="cs-normal-select mt16">
+                  <ion-label>Select Type <strong>*</strong></ion-label>
+                  <ion-select [(ngModel)]="followup_data.type" required>
+                      <ion-option value="Lead">Lead </ion-option>
+                      <ion-option value="Dr">Distribution Net.</ion-option>
+                  </ion-select>
+              </ion-item>
+
+              <ion-item class="cs-normal-select mt16" *ngIf="followup_data.type">
+                  <ion-label *ngIf="followup_data.type =='Lead'" >Select Lead Type <strong>*</strong></ion-label>
+                  <ion-label *ngIf="followup_data.type =='Dr'" >Select Distribution Net. <strong>*</strong></ion-label>
+                  <ion-select [(ngModel)]="followup_data.dr_type" required (ngModelChange)="getDrList(followup_data.dr_type)">
+                      <ion-option value="1">Distributors </ion-option>
+                      <ion-option *ngIf="followup_data.type =='Dr'" value="7">Direct Dealers</ion-option>
+                      <ion-option value="3">Dealers</ion-option>
+                  </ion-select>
+              </ion-item>
+
+              <ion-item class="cs-normal-select" *ngIf="drList.length > 0">
+                  <ion-label>Select Company Name <strong>*</strong></ion-label>
+                  <ion-select [(ngModel)]="followup_data.dr_id" required>
+                      <ion-option *ngFor="let list of drList" [value]="list.id">{{list.company_name}}</ion-option>
+                  </ion-select>
+              </ion-item>
+
+              <ion-item class="cs-textarea1 " *ngIf="followup_data.dr_id">
+                  <ion-label floating><span>Description</span></ion-label>
+                  <ion-textarea name="description" #description="ngModel" [(ngModel)]="followup_data.description"  placeholder="Enter Description" ></ion-textarea>
+              </ion-item>
+          </div>          
+        </ion-list>
+
+        <button ion-button block class="h35 green-color mt20" style="letter-spacing: 1px;" [disabled]= " !followup_data.followup_date || !followup_data.type || !followup_data.dr_type || !followup_data.dr_id " (click)="addFollowup()">Save</button>
+    </div>
+
+    <div class="pd-left-right16" *ngIf="followupList.length">
+        <div class="list-box mt16" *ngFor="let data of followupList" >
+            
+            <div class="mid mt0">
+                <div class="content-info" >
+                    <div class="left-info" >
+                        <div class="circle">{{data.company_name.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    
+                    <div class="right-info">
+                        <p>{{data.company_name.toUpperCase()}}</p>
+                        <p >{{data.dr_name | titlecase}} ({{data.mobile}})</p>
+                    </div>
+                </div>
+                <div class="tag-info">
+                    <button (click)="deleteFollowUp(data.id,i)"><i class="material-icons red-clr">delete_sweep</i></button>
+                </div>
+            </div>
+
+            <div class="lower" *ngIf=" data.description">
+                <p>Description</p>
+                <p>{{data.description}} </p>
+            </div>
+        </div>  
+    </div>
+
+</ion-content>

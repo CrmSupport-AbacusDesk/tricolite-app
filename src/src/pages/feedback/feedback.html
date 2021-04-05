@@ -1,0 +1,16 @@
+<ion-header class="main-header remove">
+  <ion-navbar>
+    <ion-title>Feedback</ion-title>
+	    <div class="header-icons">
+	      <button ion-button class="cs-hdr-icons mr12" (click)="submitFeedback(data.feedback)">
+	        <img src="assets/icons/sent.svg">
+	      </button>
+	    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="feedback-input">
+		<textarea type="text" placeholder="Write something" name="feedback" #feedback="ngModel" [(ngModel)]="data.feedback">Write something</textarea>
+	</div>
+</ion-content>

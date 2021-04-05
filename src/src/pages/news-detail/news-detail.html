@@ -1,0 +1,28 @@
+
+<ion-header>
+	<ion-navbar>
+		<ion-title>News Detail</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="fix">
+		<div class="pr-img">
+			<img src={{news_detail.image}}>
+		</div>
+	</div>
+	<div class="box">
+		<div class="date">
+			<span><i class="material-icons">date_range</i></span>
+			<p>{{news_detail.date_created |date:'d MMM, y'}}</p>
+		</div>
+		<div class="social">
+			<span><i class="material-icons">public</i></span>
+			<p>{{news_detail.source}}</p>
+		</div>
+	</div>
+	<div class="pr-about">
+		<h1>{{news_detail.title |titlecase}}</h1>
+		<p><strong>Description</strong> : {{news_detail.desc}}</p>
+	</div>
+</ion-content>

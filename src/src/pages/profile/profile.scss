@@ -1,0 +1,16 @@
+page-profile {
+
+	ion-header
+	{
+		ion-navbar
+		{
+
+		}
+
+		&:after
+		{
+			display: none !important;
+		}
+	}
+
+}

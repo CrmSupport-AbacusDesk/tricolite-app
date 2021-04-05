@@ -1,0 +1,75 @@
+<ion-header class="main-header remove">
+    <ion-navbar>
+        <ion-title *ngIf="data.type=='Installation'">New Request</ion-title>
+        <ion-title *ngIf="data.type=='Service'">New Service Request</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content >
+    <form  #f="ngForm" (ngSubmit)="f.form.valid && submit()">
+        <div class="cs-heading1">
+            <p class="mb0">Basic information</p>
+        </div>
+        
+        <div class="edit">
+            <ion-list>
+                <ion-item class="cs-textarea1" [ngClass]="{'error':f.submitted && nature_problem?.invalid}" style="background: transparent !important;">
+                    <ion-label floating *ngIf="data.type=='Service'"><span>Nature Problem</span></ion-label>
+                    <ion-label floating *ngIf="data.type!='Service'"><span>Remark</span></ion-label>
+                    <ion-textarea type="text" name="nature_problem" #nature_problem="ngModel" [(ngModel)]="complaint_data.nature_problem" required></ion-textarea>
+                </ion-item>
+                
+                <ion-item [ngClass]="{'error':f.submitted && dealer_name?.invalid}" style="background: transparent !important;">
+                    <ion-label floating><span>Dealer Name</span></ion-label>
+                    <ion-input type="text" name="dealer_name" #dealer_name="ngModel" [(ngModel)]="data.dealer_name"></ion-input>
+                </ion-item>
+                
+                <ion-item [ngClass]="{'error':f.submitted && dealer_mobile?.invalid}" style="background: transparent !important;">
+                    <ion-label floating><span>Dealer Mobile</span> </ion-label>
+                    <ion-input type="text" name="dealer_mobile" #dealer_mobile="ngModel" [(ngModel)]="data.dealer_mobile" ></ion-input>
+                </ion-item>
+            </ion-list>
+            
+            <div class="cs-heading1 pl0 pb10">
+                <p *ngIf="data.type=='Service'">Upload Image or Video</p>
+            </div>
+            
+            <div class="add-new padding0">
+                <div class="uplode-image" *ngIf="data.type=='Service'">
+                    <ul>
+                        <li *ngFor="let pic of image_data;let i = index;">
+                            <img src="{{pic}}">
+                            <button><i class="material-icons" (click)="remove_image(i)">clear</i></button>
+                        </li>
+                        
+                        <li *ngIf='videoId'>
+                            <label>
+                                <div class="other">
+                                    <a ><img src="assets/imgs/videos.png"></a>
+                                    <button><i class="material-icons" (click)="remove_video()">clear</i></button>
+                                </div>
+                            </label>
+                        </li>
+                        
+                        <li (click)="captureMedia()">
+                            <label>
+                                <input type="file" style="display: none;">
+                                <div class="other">
+                                    <a ><i class="material-icons" >camera_alt</i></a>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="enquiry-btn add-btns mt20">
+                <button ion-button block class="h40 green-color" style="letter-spacing: 1px;">
+                    <p> Submit</p>
+                </button>
+            </div>
+        </div>
+        
+    </form>
+</ion-content>
+

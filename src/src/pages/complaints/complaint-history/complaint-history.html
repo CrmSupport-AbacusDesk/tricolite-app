@@ -1,0 +1,106 @@
+<!--
+  Generated template for the ComplaintHistoryPage page.
+  
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="main-header remove">
+  <ion-navbar>
+    <ion-title>Request History</ion-title>
+  </ion-navbar>
+
+  <div *ngIf="complaint_count!='0'">
+      <div class="filter-select">
+        <ion-list>
+          <ion-item>
+            <ion-select  name="status" [(ngModel)]="filter.status"  (ngModelChange)="getComplaintHistory()" >
+              <ion-option value="">All</ion-option>
+              <ion-option value="Pending">Pending</ion-option>
+              <ion-option value="Closed">Closed</ion-option>
+              <ion-option value="Cancel">Cancel</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <div class="found">
+          <h3>{{complaint_list.length}}/{{complaint_count}}</h3>
+        </div>
+      </div>
+  </div>
+</ion-header>
+
+
+
+<ion-content >
+  
+  <div *ngIf="!complaint_list.length" class="data-not">
+    <img  src="assets/imgs/data-not-found.png">
+    
+  </div>
+  
+  
+  <div *ngIf="complaint_list.length" class="main-div">
+    
+    
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content  pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <div class="main-history">
+    <div class="boxs">
+      <ul>
+        <li  *ngFor="let complaint of complaint_list; let i=index" (click)="onComplaintdetail(complaint.complaintId)" [ngClass]="{'border-color':complaint.plumberName !=null}">
+          <div class="otp">
+            <a>COM#{{complaint.complaintId}}</a>
+            <p>OTP : {{complaint.otp}}</p>
+          </div>
+          
+          <div class="problme">
+            
+            <h3><span>Nature Problem </span>: {{complaint.nature_problem}}</h3>
+            <a>
+              <p>{{complaint.compalintDate | date:'d MMMM y' }}</p>
+              <h4 class="{{complaint.status}}">{{complaint.status | titlecase}}</h4>
+            </a>
+            
+          </div>
+          
+          <div class="wait" *ngIf="complaint.plumberName ==null && complaint.status=='Pending'">
+            <h4>Waiting For Plumber Assign . . .</h4>
+          </div>
+          
+          <div class="contect" *ngIf="complaint.plumberName !=null">            
+            <h3>Plumber Information</h3>
+            <a>
+              <i class="material-icons ">assignment_ind</i>
+              <p class="pr32">{{complaint.plumberName}}</p>
+            </a>
+            <a href="tel:{{complaint.plumberMobileNo}}">
+              <i class="material-icons">call</i>
+              <p>{{complaint.plumberMobileNo}}</p>
+            </a>
+          </div>
+        </li>
+        
+        
+      </ul>
+    </div>
+  </div>
+  
+  <!-- infinite scroll -->
+  
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+    <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+<!-- infinite scroll end -->
+
+</div>
+
+</ion-content>

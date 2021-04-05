@@ -1,0 +1,92 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			<h1>Order</h1>
+		</ion-title>
+	
+		
+		
+	</ion-navbar>
+</ion-header>
+
+
+
+
+<ion-content>
+	
+	<div class="nothing-here" *ngIf="!order_list.length && load_data == '1'">
+		<div class="outer">
+			<div class="innear">
+				<img src="assets/imgs/nothing.svg" alt="">
+				<p>Data not Available</p>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<div class="prlist sticky">
+		<div class="box light-red-bg relative" style="margin-bottom: 0px !important;">
+			
+			<div class="relative">
+				<h1 class="font14 mb10 semibold">{{order_data.company_name}}</h1>
+			</div>
+			
+			
+			
+			<div class="heading border-none pb0">
+				<div class="dist-name dflex mb0">
+					<div class="first-leter w50">H</div>
+					<div class="name-number">
+						<p style="margin-top: 10px !important;">{{order_data.name}}</p>
+						
+						<div class="text-with-ic dflex mb0">
+							<i class="material-icons text-relat-icon">call</i>
+							<p>+91-{{order_data.mobile}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<div class="list-outer ordlist">
+		
+		
+		<div class="list-inner none-shadow" >
+				<h2 class="sticky-heading">{{order_data.type == '3' ? 'Secondary' : 'Primary'}} Order</h2>
+				<div class="cs-box" *ngFor="let val of order_list" (click)="goOnOrderDetail(val.id)">
+					<span class="date"><i class="material-icons">insert_invitation</i>{{val.date_created | date:'MMM d, y'}}</span>
+				<div class="oneinfo">
+					<div class="figure">
+						<p>Order ID</p>
+						<p>#ORD-{{val.id}}</p>
+					</div>
+					<div class="figure">
+						<p>Total Item</p>
+						<p>{{val.order_item}}</p>
+					</div>
+					<div class="figure">
+						<p>Value</p>
+						<p>&#x20B9; {{val.order_total}}</p>
+					</div>
+				</div>
+				</div>
+		</div>
+		
+		
+		
+	</div>
+	
+	
+	
+	
+</ion-content>
+
+
+

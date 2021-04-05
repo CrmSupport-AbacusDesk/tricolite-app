@@ -1,0 +1,24 @@
+
+<ion-header class=" home-header">
+	<ion-navbar>
+		<ion-title>
+      Video Categories
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="listing mt0">
+  <div *ngIf="noRec" class="data-not">
+    <img  src="assets/imgs/data-not-found.png">
+</div>
+	<div class="list-adjust mt0">
+		<ion-list>
+			<button *ngFor="let row of categoryData" ion-item (click)="goToVideosPage(row.category)">{{row.category}} <i class="material-icons">
+				keyboard_arrow_right
+			</i></button>  
+		</ion-list>
+	</div>
+</ion-content>
+
+

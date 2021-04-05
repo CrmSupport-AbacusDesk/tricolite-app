@@ -1,0 +1,307 @@
+<ion-header *ngIf="service.karigar_info.type == 'Customer'" class="home-header">
+    <ion-navbar>
+        <ion-title></ion-title>
+        <ion-buttons end></ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<div class="header-logo">
+    <img src="assets/imgs/logo.png">
+    <!-- <img src="assets/imgs/logo.png"> -->
+</div>
+
+<ion-content *ngIf=" service.karigar_info.type == 'Customer'">
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+    </ion-refresher-content>
+</ion-refresher>
+
+<div class="banner" *ngIf="banner.length">
+    <!-- <img src="assets/imgs/banner.png">
+    -->
+    <ion-slides pager autoplay=3000  >
+        <ion-slide *ngFor="let list of banner; let i=index" >
+            <img src="http://phpstack-83335-1428632.cloudwaysapps.com/dd_api/app/uploads/{{list.banner}}">
+        </ion-slide>
+    </ion-slides>
+</div>
+
+<div class="banner" *ngIf="!banner.length">
+    <img src="assets/imgs/banner.png">
+</div>
+
+<div class="product-option">
+    <div class="main-box" (click)="goOnProductPage()">
+        <div class="product-box">
+            <img src="assets/imgs/package.svg">
+        </div>
+        <div class="heading">
+            <h4>Product Catalogue</h4>
+        </div>
+        <div class="point">
+            <h3>{{prodCount.total}}</h3>
+        </div>
+        
+    </div>
+    <div class="main-box" (click)= "complaintHistory('Service')">
+        <div class="product-box">
+            <img src="assets/imgs/request.svg">
+            
+        </div>
+        <div class="heading">
+            <h4>Service Request </h4>
+        </div>
+        <div class="point">
+            <h3>{{complaint_count}}</h3>
+        </div>
+    </div>
+    <div class="main-box" (click)= "complaintHistory('Installation')">
+        <div class="product-box">
+            <img src="assets/imgs/server.svg">
+        </div>
+        <div class="heading">
+            <h4>Installation Request </h4>
+        </div>
+        <div class="point">
+            <h3>{{installation_count}}</h3>
+        </div>
+    </div>
+</div>
+
+<div style="padding: 0px 10px 10px 10px;">
+    <div class="btns">
+        <button *ngIf="!complaint_exist" (click)="goOnComplaintAdd('Service')">
+            <div class="lf-btn">
+                <i class="material-icons">home_repair_service</i>
+            </div>
+            <div class="rt-btn">
+                <p> Add Service Req.</p>
+            </div>
+        </button>
+        <button *ngIf="!complaint_exist" (click)="goOnComplaintAdd('Installation')">
+            <div class="lf-btn">
+                <i class="material-icons">miscellaneous_services</i>
+            </div>
+            <div class="rt-btn">
+                <p> Add Installation Req.</p>
+            </div>
+        </button>
+    </div>
+    
+    <div class="btns">
+        <!-- <button *ngIf="complaint_exist" (click)="goOnOpenComplaintAdd()">
+            <div class="lf-btn">
+                <i class="material-icons">meeting_room</i>
+            </div>
+            <div class="rt-btn">
+                <p>Open Service Req.</p>
+            </div>
+        </button> -->
+        
+        <button href="tel:9582198301" (click)="callCustomerCare()">
+            <div class="lf-btn">
+                <i class="material-icons">person</i>
+            </div>
+            <div class="rt-btn">
+                <p>Customer Care</p>
+            </div>
+        </button>
+        
+        <button (click)="goToNewArrivals()">
+            <div class="lf-btn">
+                <i class="material-icons">fiber_new</i>
+            </div>
+            <div class="rt-btn">
+                <p> New Arrivals </p>
+            </div>
+        </button>
+        
+    </div>
+    
+    <div class="btns">
+        <button class="green-color" (click)="goToNearestDealers('Dealer')">
+            <div class="lf-btn">
+                <i class="material-icons">add_shopping_cart</i>
+            </div>
+            <div class="rt-btn">
+                <p> Nearest Dealers </p>
+            </div>
+        </button>
+        
+        <button *ngIf=" service.karigar_info.type != 'Plumber'" (click)="goToNearestDealers('Plumber')">
+            <div class="lf-btn">
+                <i class="material-icons">engineering</i>
+            </div>
+            <div class="rt-btn">
+                <p> Nearest Plumbers </p>
+            </div>
+        </button>
+    </div>
+    <div class="btns">
+        <button class="green-color" (click)="goToFav()">
+            <div class="lf-btn">
+                <i class="material-icons">star</i>
+            </div>
+            <div class="rt-btn">
+                <p> Favourite Products </p>
+            </div>
+        </button>
+        
+        <!-- <button *ngIf=" service.karigar_info.type != 'Plumber'" (click)="goToNearestDealers('Plumber')">
+            <div class="lf-btn">
+                <i class="material-icons">engineering</i>
+            </div>
+            <div class="rt-btn">
+                <p> Nearest Plumbers </p>
+            </div>
+        </button> -->
+    </div>
+</div>
+
+</ion-content>
+
+<ion-header *ngIf=" service.karigar_info.type == 'Plumber'" class="home-header">
+    <ion-navbar>
+        <ion-title>
+        </ion-title>      
+    </ion-navbar>
+</ion-header>
+
+<div class="header-logo">
+    <img src="assets/imgs/logo.png">
+    <div class="btn-head">
+        <button  ion-button class="hs-menu cs-hdr-icons mr16" color="light"  (click)="ShareApp()">
+            <img src="assets/imgs/share.svg">
+        </button>
+        <!-- *ngIf="karigar_detail.status=='Verified'" -->
+        <button  *ngIf=" service.karigar_info.type == 'Plumber' && karigar_detail.status=='Verified'" ion-button class="hs-menu cs-hdr-icons" color="light"  (click)="scan()">
+            <img src="assets/imgs/qr-code.svg">
+        </button>
+    </div>
+</div>
+
+<ion-content *ngIf=" service.karigar_info.type == 'Plumber'">
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="Pull to refresh"     refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    
+    <div class="banner">
+        <img *ngIf="!offer_list.length" src="assets/imgs/banner.png">
+        
+        <ion-slides pager autoplay=300 *ngIf="offer_list && offer_list.length" >
+            <ion-slide *ngFor="let list of offer_list; let i=index" (click)="goOnOffersPage(list.id)">
+                <img [src]="list.offer_banner">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    
+    <div class="home-pint" style="padding: 5px 15px;">
+        <div class="profile-point ">
+            <ul>
+                <li>
+                    <div class="pints">
+                        <h3>{{today_point}}</h3>
+                        <p>today</p>
+                        <span>POINTS</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pints">
+                        <h3>{{last_point}}</h3>
+                        <p>Last 7 Days</p>
+                        <span>POINTS</span>
+                    </div>
+                </li>
+                <li >
+                    <div class="pints">
+                        <h3>{{conInt(karigar_detail.balance_point) +conInt(karigar_detail.referal_point_balance)}}</h3>
+                        <p>Balance</p>
+                        <span>POINTS</span>
+                    </div>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    <div class="product-option">
+        <div class="main-box" (click)="goOnProductPage()">
+            <div class="product-box">
+                <img src="assets/imgs/design.svg">
+                
+            </div>
+            <div class="heading">
+                <h4>Our Products</h4>
+            </div>
+            <span>{{product_count}}</span>
+        </div>
+        <div class="main-box"  (click)="goOnMyCamplaintsPage('Service')" >
+            <div class="product-box">
+                <img src="assets/imgs/complaint.svg">
+            </div>
+            <div class="heading">
+                <h4>Service Request</h4>
+            </div>
+            <span>{{plumber_complaint}}</span>
+        </div>
+        <div class="main-box"  (click)="goOnMyCamplaintsPage('Installation')" >
+            <div class="product-box">
+                <img src="assets/imgs/complaint.svg">
+            </div>
+            <div class="heading">
+                <h4>Installation  Request</h4>
+            </div>
+            <span>
+                
+                {{plumber_installation}}
+            </span>
+        </div>
+    </div>
+    
+    <div style="padding: 0px 10px 10px 10px;">
+        <div class="btns" >
+            <button (click)="goToNewArrivals()">
+                <div class="lf-btn">
+                    <i class="material-icons">group_add</i>
+                </div>
+                <div class="rt-btn">
+                    <p>New Arrivals</p>
+                </div>
+            </button>
+            <button  (click)="goToNearestDealers('Dealer')">
+                <div class="lf-btn">
+                    <i class="material-icons">engineering</i>
+                </div>
+                <div class="rt-btn">
+                    <p>Nearest Dealers</p>
+                </div>
+            </button>
+        </div>
+        
+        <div class="btns" >
+            <a href="tel:9582198301">
+                <div class="lf-btn">
+                    <i class="material-icons">group_add</i>
+                </div>
+                <div class="rt-btn">
+                    <p>Customer Care</p>
+                </div>
+            </a>
+            <button class="green-color" (click)="goToFav()">
+                <div class="lf-btn">
+                    <i class="material-icons">star</i>
+                </div>
+                <div class="rt-btn">
+                    <p> Favourite Products </p>
+                </div>
+            </button>
+        </div>
+    </div>
+    
+</ion-content>

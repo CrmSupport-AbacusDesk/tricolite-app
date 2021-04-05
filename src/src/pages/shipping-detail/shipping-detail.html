@@ -1,0 +1,43 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Shipped Detail</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="shipped-detail">
+		<div class="content" *ngIf="shipped_detail.shipped_type">
+			<p>Shipped By</p>
+			<h1>{{shipped_detail.shipped_type}}</h1> 
+		</div>
+		<div class="content" >
+			<p>Estimate Delivery Time</p>
+			<h1>{{shipped_detail.estimated_date}}</h1>
+		</div>
+		<div class="content">
+			<p>Shipping Information</p>
+			<h1>{{shipped_detail.shipping_information}}</h1>
+		</div>
+		
+	</div>
+	<div class="margin-padding">
+		<div class="phone">
+			<div class="phone-head">
+				<h1>{{gift_detail.gift_title}}</h1>
+			</div>
+			<div class="phone-img">
+				<img [src]="gift_detail.image">
+			</div>
+		</div>
+		<div class="lorem-text">
+			<p><Strong>Specification : </Strong>{{gift_detail.gift_specification}}</p>
+		</div>
+		<div class="fix-btn">
+			<button ion-item class="cs-btn btn-radius mb0" (click)="recvConfirmation(gift_detail.id)">Click Here if you Recieve</button>
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer>
+	
+</ion-footer>

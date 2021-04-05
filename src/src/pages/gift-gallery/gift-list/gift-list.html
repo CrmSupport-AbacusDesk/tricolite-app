@@ -1,0 +1,51 @@
+<ion-header class="main-header remove">
+	<ion-navbar>
+		<ion-title>Gift Gallery</ion-title>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content  pullingIcon="arrow-dropdown"
+		pullingText="Pull to refresh"
+		refreshingSpinner="circles"
+		refreshingText="Refreshing...">
+		</ion-refresher-content>
+	</ion-refresher>
+	
+	
+<div class="fix">
+	<div class="top-nav">
+		<p>Balance Points</p>
+		<h1>{{balance_point}}</h1>
+	</div>
+	<div class="search">
+		<ion-searchbar type='text' name='search' #search="ngModel" [(ngModel)]="filter.search" (ngModelChange)="getGiftList(filter.search)"></ion-searchbar>
+	</div>
+</div>
+<div class="listing " >
+	<button ion-item [ngClass]="{'verify' : list.coupon_points <= balance_point  }" *ngFor="let list of gift_list; let i=index" (click)="goOnGiftDetail(list.id)">
+		<div class="head-detail" >
+			<div class="head">
+				<h1>{{list.coupon_points}}</h1>
+				<p>Points</p>
+			</div>
+			<div class="detail">
+				<h1>{{list.gift_title | titlecase}}</h1>
+				<p><span>Offer Points:</span>{{list.offer_balance  || 0  }}</p>
+				<p>{{list.title | titlecase}} | {{list.end_date | date:'d MMMM y'}}</p>
+			</div>
+		</div>  
+		<div class="product-img">
+			<img src="{{list.image}}">
+		</div>
+	</button>
+	<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+		<ion-infinite-scroll-content
+		loadingSpinner="bubbles"
+		loadingText="Loading more data...">
+	</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</div>
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header class="main-header remove" >
+    <ion-navbar >
+        <ion-title>My Favourites</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter">
+                <ion-searchbar type='text' name='search'  [(ngModel)]="filter.search" (ngModelChange)="get_favorite_product(cat_id,filter.search)"></ion-searchbar>
+            </div>
+        </div>
+    </ion-toolbar>    
+</ion-header>
+
+<ion-content class="listing grid-listing category-product sub-category">
+    
+    <div class="nothing-here" *ngIf="!prod_list.length && load_data == '1' ">
+        <div class="outer">
+            <div class="innear">
+                 <img src="assets/imgs/nothing.svg" alt=""> 
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf="prod_list.length"class="main-div">
+        <div class="sub-listing tydo-list p0">
+            <ion-list (click)="goOnProductSubDetailPage(list.id)" *ngFor="let list of prod_list;let i=index">
+                <button ion-item>
+                    <div class="image-manage">
+                        <img  *ngIf="list.image != '' && list.image != null" src= "{{image_url+list.image}}"  style="width: 60%;">
+                        <img *ngIf="list.image == '' || list.image == null" src="assets/imgs/default.png" alt="">
+
+                        <!-- <img  src="http://phpstack-83335-1428632.cloudwaysapps.com/dd_api/app/Http/Controllers/Admin/Master/     appOfflineUploads/productImage/{{list.actual_image_name}}" style="width: 60%;"> -->
+                    </div>
+                    <div class="detail">
+                        <h4>{{list.description}}</h4>
+                        <!-- <h3 class="m0"><span>₹​</span>{{list.price}}/-</h3> -->
+                    </div>
+                </button>
+            </ion-list>
+        </div>
+        <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+            <div class="sub-listing tydo-list p0">
+                <ion-list class="skleton-box-2"  *ngFor="let row of skelton"></ion-list>
+            </div>
+        </ion-infinite-scroll> -->
+    </div>
+    
+    <!-- <div class="main-div" *ngIf="!prod_list.length">
+        <div class="sub-listing tydo-list p0">
+            <ion-list class="skleton-box-2"  *ngFor="let row of skelton"></ion-list>
+        </div>
+    </div> -->
+</ion-content>

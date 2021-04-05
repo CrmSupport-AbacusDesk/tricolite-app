@@ -1,0 +1,172 @@
+<!--
+  Generated template for the PulmberCustomerDetailPage page.
+  
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="main-header remove">
+  <ion-navbar>
+    <ion-title>Customer Detail</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  
+  <div class="lists">
+    <div class="pumber-name">
+      <span class="alphabet">{{plumber_detail.customerName ? plumber_detail.customerName[0].toUpperCase():'' }}</span>
+      <div class="name pl30">
+        <h4>{{plumber_detail.customerName | titlecase}}</h4>
+        <p>{{plumber_detail.customerMobileNo}}</p> 
+        <a  class="phone-call"   href="tel:{{plumber_detail.customerMobileNo}}"><i class="material-icons">call</i></a>
+      </div>
+    </div>
+    
+    <div class="add">
+      <a *ngIf="plumber_detail.cust_long!='' && plumber_detail.complaintStatus=='Pending'">
+        <h3>Address</h3>
+        <!-- <i  class="material-icons">near_me</i> -->
+        <button (click)="getDirection()">Get Route</button>
+      </a>
+      <p class="pb0">{{plumber_detail.address | titlecase}} {{plumber_detail.city | titlecase}}{{plumber_detail.district | titlecase}}{{plumber_detail.state | titlecase}}{{plumber_detail.pincode}}</p>
+    </div>
+    
+    <ul>
+      
+      <li>
+        <h4>Complaint ID</h4>
+        <p><span>:</span>COM#{{complaint_id}}</p>
+      </li>
+      <!-- <li>
+        <a>OTP</a>
+        <p><span>:</span>{{plumber_detail.otp}}</p>
+      </li> -->
+      
+      
+      <li>
+        <h4> Nature Problem</h4>
+        <p><span>:</span>{{plumber_detail.nature_problem}}</p>
+      </li>
+      
+      <li>
+        <h4>Status</h4>
+        <p class="{{plumber_detail.complaintStatus}}"><span>:</span>{{plumber_detail.complaintStatus}}</p>
+      </li>
+      <ng-container *ngIf="plumber_detail.complaintStatus=='Closed'">
+        <li>
+
+          <h4> Closed By</h4>
+          <p><span>:</span>{{plumber_detail.cancelled_by}}</p>
+        </li>
+
+        <li>
+          <h4> Closing Date</h4>
+          <p><span>:</span>{{plumber_detail.cancel_date |  date:'d MMMM y'}}</p>
+        </li>
+
+        <li>
+          <h4> Closing Remark</h4>
+          <p><span>:</span>{{plumber_detail.reason_cancel}}</p>
+          <a *ngIf="remark_count>0" (click)="goToRemarkHistory()">View all</a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="plumber_detail.complaintStatus=='Cancel'">
+          <li>
+  
+            <h4> Cancel By</h4>
+            <p><span>:</span>{{plumber_detail.cancelled_by}}</p>
+          </li>
+  
+          <li>
+            <h4> Cancel Date</h4>
+            <p><span>:</span>{{plumber_detail.cancel_date |  date:'d MMMM y'}}</p>
+          </li>
+  
+          <li>
+            <h4> Cancel Remark</h4>
+            <p><span>:</span>{{plumber_detail.reason_cancel}}</p>
+            <a *ngIf="remark_count>0" (click)="goToRemarkHistory()">View all</a>
+          </li>
+        </ng-container>
+      
+    </ul>
+  </div>
+  <div class="new-remark" *ngIf="plumber_detail.complaintStatus=='Pending' && plumber_detail.reason_cancel!==''">
+    <div class="timing">
+      <div class="date">
+        <h4>{{plumber_detail.cancel_date |  date:'d MMMM y'}}</h4>
+        <!-- <h4>3:22pm</h4> -->
+      </div>
+      <a (click)="goToRemarkHistory()">view all</a>
+    </div>
+    
+    <div class="content">
+      <p><span>Remark : </span> {{plumber_detail.reason_cancel}}</p>
+    </div>
+  </div>
+  <div class="gallery">
+    <div class="select-img" *ngIf="complaint_media.length">
+      <h4>Product Gallery</h4>
+      
+      
+      <div class="video-area">
+        <ul>
+          <ng-container *ngFor="let image of plumber_detail.image;let i=index;">
+            <li *ngIf="image.type=='video'">
+              <iframe [src]="image.file_name" width="100%" height="180" rameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      
+      <ul>
+        <ng-container *ngFor="let image of plumber_detail.image;let i=index;">
+          <li *ngIf="image.type=='image'"  (click)="viewComplaintImage(i)" >
+            <img [src]="image.file_name">
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <!-- <ul >
+      
+      <li *ngFor="let val of plumber_detail.image; let i=index" (click)="viewComplaintImage(i)
+      ">
+      <img [src]="val.file_name">
+    </li>
+    
+  </ul> -->
+  
+  <!-- </div> -->
+  
+  <div class="customer-ratings" *ngIf="plumber_detail.star>'0'">
+    <p>Rating</p>
+    
+    <ul>
+      <li [ngClass]="{'active':plumber_detail.star>='1'}"><a><i class="material-icons" >star</i></a></li>
+      <li [ngClass]="{'active':plumber_detail.star>='2'}"><a><i class="material-icons" >star</i></a></li>
+      <li [ngClass]="{'active':plumber_detail.star>='3'}"><a><i class="material-icons" >star</i></a></li>
+      <li [ngClass]="{'active':plumber_detail.star>='4'}"><a><i class="material-icons"  >star</i></a></li>
+      <li [ngClass]="{'active':plumber_detail.star>='5'}"><a><i class="material-icons" >star</i></a></li>
+      <li><p>{{plumber_detail.star}} Star </p></li>
+    </ul>
+  </div>
+  
+  <div class="enquiry-btn task-btn" *ngIf="plumber_detail.complaintStatus=='Pending'">
+    <button ion-button color="danger" class="green-color" icon-start (click)="goToTaskPage('Closed')">
+      <!-- <ion-icon name='close'></ion-icon> -->
+      <p> Close Complaint</p>
+    </button>
+    
+    
+    <button ion-button  class="reen-color" icon-start (click)="goToTaskPage('Pending')">
+      <!-- <ion-icon name='close'></ion-icon> -->
+      <p> In process</p>
+    </button>
+  </div>
+</div>
+
+
+
+</ion-content>
+

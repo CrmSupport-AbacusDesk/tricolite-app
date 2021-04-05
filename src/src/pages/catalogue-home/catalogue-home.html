@@ -1,0 +1,110 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <ion-title>catalogue-home</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="dashboard_header">
+        <div class="csm_header">
+            <div class="logo flat"><img src="assets/imgs/p-logo.png" alt=""></div>
+            <div class="buttons">
+                <button ion-button (click)="open_menu()"><img src="assets/imgs/menu_icon.svg" alt="" class="menu_icon"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher> -->
+
+    <div class="cs-slider">
+        <ion-slides pager autoplay=3000 *ngIf=" bannerlist.length>0">
+            <ion-slide *ngFor="let list of bannerlist; let i=index">
+                <img src="http://phpstack-83335-1428632.cloudwaysapps.com/uploads/banners/{{list.banner}}" alt="slide1" alt="slide1">
+            </ion-slide>
+        </ion-slides>
+
+        <ion-slides pager autoplay=3000 *ngIf=" bannerlist.length==0">
+            <ion-slide>
+                <img src="http://www.toyzone.in/web/image/2946" alt="slide1">
+            </ion-slide>
+            <ion-slide>
+                <img src="http://www.toyzone.in/web/image/2951" alt="slide2">
+            </ion-slide>
+            <ion-slide>
+                <img src="http://www.toyzone.in/web/image/2954" alt="slide3">
+            </ion-slide>
+            <ion-slide>
+                <img src="http://www.toyzone.in/web/image/2947" alt="slide4">
+            </ion-slide>
+        </ion-slides>
+    </div>
+
+    <div class="bg-outer" style="background: #b3e5fc;">
+        <div class="bg-inner">
+            <div class="head">
+                <h2>Shop By Category</h2>
+                <button class="cs-ion-btn" ion-button (click)="goToProductList()">View All</button>
+            </div>
+            <div class="carousel">
+                <!-- loop start -->
+                <div class="carousel-item" *ngFor="let list of category_list; let i=index" (click)="gotoproductpage('category',list.id)">
+                    <div class="img-section">
+                        <img *ngIf="list.image != '' && list.image != null" src="{{image_url+list.image}}" alt="">
+                        <img *ngIf="list.image == '' || list.image == null" src="assets/imgs/default.png" alt="">
+                    </div>
+                    <label>{{list.category_name}}</label>
+                </div>
+
+                <!-- loop end -->
+
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-outer" style="background: #c4ffce;" *ngIf="new_arrival.length > 0 ">
+        <div class="bg-inner">
+            <div class="head">
+                <h2>New Arrival</h2>
+                <button class="cs-ion-btn" ion-button style="background: #0bb72c;" (click)="goToarrivals()">View All</button>
+            </div>
+            <div class="carousel">
+
+                <div class="carousel-item" *ngFor="let list of new_arrival; let i=index" (click)='goOnProductDetailPage(list.id)'>
+                    <div class="img-section">
+                        <img *ngIf="list.image != '' && list.image != null" src="{{image_url+'Products/'+list.image}}" alt="">
+                        <img *ngIf="list.image == '' || list.image == null" src="assets/imgs/default.png" alt="">
+                    </div>
+                    <label>{{list.product_name}}</label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-outer" style="background: #fff59d;" *ngIf="best_selling.length > 0 ">
+        <div class="bg-inner">
+            <div class="head">
+                <h2>Best Selling Products</h2>
+            </div>
+
+            <div class="grid-item">
+                <!-- loop start -->
+                <div class="grid-item-content" *ngFor="let list of best_selling; let i=index" (click)='goOnProductDetailPage(list.id)'>
+                    <div class="thumbnail">
+                        <button class="add-fav" [ngClass]="{'active':list.favorite == true}" *ngIf="userId !=''" ion-button><i class="material-icons">&nbsp;</i></button>
+                        <img *ngIf="list.image != '' && list.image != null" src="{{image_url+'Products/'+list.image}}" alt="">
+                        <img *ngIf="list.image == '' || list.image == null" src="assets/imgs/default.png" alt="">
+                    </div>
+                    <div class="item-info">
+                        <p>{{list.product_name}}</p>
+                        <span>&#x20B9; {{list.price}}</span>
+                    </div>
+                </div>
+                <!-- loop end -->
+            </div>
+        </div>
+    </div>
+</ion-content>

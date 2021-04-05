@@ -1,0 +1,102 @@
+<ion-header class="main-header remove">
+    <ion-navbar>
+        <ion-title>Product Detail</ion-title>
+        <ion-buttons end>
+            <!-- <button ion-button icon-only color="light" (click)="shareproduct()">
+                <ion-icon name="md-share"></ion-icon>
+            </button> -->
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="detais mt10">
+        <div class="detail-prize">
+            <h4>{{prod_detail.product_name}}</h4>
+            <h3><span>₹​</span> {{prod_detail.price}}</h3>
+        </div>
+        <div class="product-pic">
+            <img class="single-image" src="assets/imgs/no-thumbnail.jpg" *ngIf="!prod_image.length">
+            <ng-container *ngIf="prod_image.length && prod_image.length==1">
+                <img *ngFor="let image of prod_image" class="single-image" src="{{image.imageCompletePath}}" >
+            </ng-container>
+            <ion-slides pager *ngIf="prod_image.length  && prod_image.length!=1">
+                <ion-slide  *ngFor="let image of prod_image">
+                    <img src="{{image.imageCompletePath}}">
+                </ion-slide>
+            </ion-slides>
+            
+            <ng-container *ngIf="prod_image.length!=0 && prod_image.length!=1">
+                <ul *ngFor="let image of prod_image; let i=index">
+                    <li (click)="changeImage(i)">
+                        <a><img src="{{image.imageCompletePath}}"></a>
+                    </li>
+                </ul>
+            </ng-container>
+        </div>
+        
+        <div class="product-descr">
+            <h3>Description</h3>
+            <p *ngIf="prod_detail.desc">{{prod_detail.desc}}</p>
+        </div>
+        
+        <div class="table-capsule">
+            <div class="box1">
+                <h4>Product Desc.</h4>
+                <p>{{prod_detail.description?prod_detail.description:'NA'}}</p>
+            </div>
+            <div class="box1">
+                <h4>Product Name</h4>
+                <p>{{prod_detail.product_name?prod_detail.product_name:'NA'}}</p>
+            </div>
+            <div class="box1">
+                <h4>Product Code</h4>
+                <p>{{prod_detail.material_code?prod_detail.material_code:'NA'}}</p>
+            </div>
+            <div class="box1">
+                <h4>HSN Code</h4>
+                <p>{{prod_detail.hsn?prod_detail.hsn:'NA'}}</p>
+            </div>
+            <!-- <div class="box1">
+                <h4>PCS/SET</h4>
+                <p>{{prod_detail.pcs?prod_detail.pcs:'NA'}}</p>
+            </div>
+            
+            <div class="box1">
+                <h4>Box Packing</h4>
+                <p>{{prod_detail.std_packing?prod_detail.std_packing :'NA'}}</p>
+            </div>
+            <div class="box1">
+                <h4>Carton Packing</h4>
+                <p>{{prod_detail.cartoon_packing?prod_detail.cartoon_packing :'NA'}}</p>
+            </div> -->
+            <!-- <div *ngIf="prod_detail.video_link" class="link" (click)="openLink(prod_detail.video_link)">
+                <h4>Video Link</h4>
+                <p>{{prod_detail.video_link?prod_detail.video_link:'NA'}}</p>
+            </div> -->
+        </div>
+        
+        <!-- <div class="enquiry-btn" *ngIf="service.karigar_info?.type == 'Customer' && userType=='CMS'">
+            <button ion-button color="danger" class="green-color" icon-start (click)="goToEnquiryPage()">
+                <p> ENQUIRY NOW</p>
+            </button>
+        </div> -->
+    </div>    
+</ion-content>
+
+<!-- <ion-footer style="padding: 14px 16px;" >
+    <ng-container>
+        <div class="add-favroute" [ngClass]="{'remove': existInFavourite}"  >
+            <div class="iner-fav">
+                <button (click)="existInFavourite ? remove_from_fav() : add_to_fav(); existInFavourite=!existInFavourite">
+                    <i class="material-icons" *ngIf="!existInFavourite">favorite_border</i>
+                    <p *ngIf="!existInFavourite"> Add to Favourites</p>
+                    <i class="material-icons" *ngIf="existInFavourite">favorite</i>
+                    <p *ngIf="existInFavourite"> Remove From Favourites</p>
+                </button>
+            </div>
+        </div>
+
+    </ng-container>
+   
+</ion-footer> -->

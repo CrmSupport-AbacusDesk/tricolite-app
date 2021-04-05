@@ -1,0 +1,151 @@
+<ion-header class="catalogue-header">
+    <ion-navbar>
+        <ion-title>Executive Detail</ion-title>
+        <ion-buttons end >
+            <button ion-button icon-only color="light" (click)="presentPopover($event,executive_data.id)">
+                <ion-icon name="md-more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div class="sticky-main">
+        <div class="pd-left-right16 af_bg">
+            <div class="list-box">
+                <div class="upper">
+                    <div class="left-date">
+                        <div class="date-section">
+                            <p>{{executive_data.date_created | date: 'MMM d, y'}}</p>
+                            <p>Date Created</p>
+                        </div>
+                        <div class="date-section" >
+                            <p>{{executive_data.created_by_name | titlecase}}</p>
+                            <p>Created By</p>
+                        </div>
+                    </div>
+                    <div class="right-date">
+                        <button class="green-btn " *ngIf="executive_data.active != 0" >
+                            <p   (click)="chngeStatus('Active',0)">Activate</p>
+                        </button>
+                        <button class="green-btn deactivate" *ngIf="executive_data.active == 0">
+                            <p  (click)="chngeStatus('Deactive',1)">Deactivate</p>
+                        </button>
+                    </div>
+                </div>
+                <div class="mid" >
+                    <div class="content-info">
+                        <div class="left-info">
+                            <div class="circle">{{executive_data.name ? executive_data.name[0].toUpperCase():'' }}</div>
+                        </div>
+                        <div class="right-info">
+                            <p>{{executive_data.name | titlecase}}</p>
+                            <p>{{executive_data.email | titlecase}}</p>
+                        </div>
+                    </div>
+                    <div class="tag-info">
+                        <a href="tel:{{executive_data.contact_01}}"><i class="material-icons">phone</i></a>
+                    </div>
+                </div>
+                <div class="lower" *ngIf=" executive_data.street || executive_data.city || executive_data.district_name || executive_data.state_name || executive_data.pincode">
+                    <p>Address</p>
+                    <p>{{executive_data.street}} {{executive_data.city}} {{executive_data.district_name}} {{executive_data.state_name}} {{executive_data.pincode}}</p>
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    <div style="padding: 15px 10px 10px 10px;">
+        <div class="btns" >
+            <button (click)="viewLeaves(executive_data.id)">
+                <div class="lf-btn padding7">
+                    <i class="material-icons">date_range</i>
+                </div>
+                <div class="rt-btn">
+                    <p>View Leaves</p>
+                </div>
+            </button>
+
+            <button (click)="viewLeads(executive_data.id)">
+                <div class="lf-btn padding7">
+                    <i class="material-icons">note_add</i>
+                </div>
+                <div class="rt-btn">
+                    <p>Leads</p>
+                </div>
+            </button>
+        </div>
+
+        <div class="btns" >
+            <button (click)="viewCheckin(executive_data.id)">
+                <div class="lf-btn padding7">
+                    <i class="material-icons">fact_check</i>
+                </div>
+                <div class="rt-btn">
+                    <p>Checkin</p>
+                </div>
+            </button>
+
+            <button (click)="viewTravelPlan(executive_data.id)">
+                <div class="lf-btn padding7">
+                    <i class="material-icons">emoji_transportation</i>
+                </div>
+                <div class="rt-btn">
+                    <p>Travel Plan</p>
+                </div>
+            </button>
+        </div>
+        
+    </div>
+
+    <div class="pd-left-right16 mt15" (click)="viewAttendance(executive_data.id)">
+        <div class="go-btn artificial">
+            <div class="g-left">
+                <img src="assets/imgs/representative.svg">
+            </div>
+            <div class="g-right">
+                <div class="g-content" >
+                    <p>Attendance Summary</p>
+                </div>
+                <div class="g-count">
+                    <i class="material-icons">arrow_right_alt</i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pd-left-right16 mt20" (click)="viewPrimaryOrder(executive_data.id)">
+        <div class="go-btn artificial">
+            <div class="g-left">
+                <img src="assets/imgs/product.svg" style="height: 42px; top: -19px;">
+            </div>
+            <div class="g-right">
+                <div class="g-content" >
+                    <p>Order To ToyZone</p>
+                </div>
+                <div class="g-count">
+                    <i class="material-icons">arrow_right_alt</i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pd-left-right16 mt20" (click)="viewSecondaryOrder(executive_data.id)">
+        <div class="go-btn artificial">
+            <div class="g-left">
+                <img src="assets/imgs/online-learning.svg" style="height: 42px; top: -19px;">
+            </div>
+            <div class="g-right">
+                <div class="g-content" >
+                    <p>Order To Distributor</p>
+                </div>
+                <div class="g-count">
+                    <i class="material-icons">arrow_right_alt</i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  
+</ion-content>
+
+

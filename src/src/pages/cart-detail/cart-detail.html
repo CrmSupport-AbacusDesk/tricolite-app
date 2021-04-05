@@ -1,0 +1,160 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Order Summary</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="stable">
+        <div class="head-table">
+            <table>
+                <tr>
+                    <th>Brand Name</th>
+                    <th class="text-center">Qty.</th>
+                    <th class="text-right">Amount</th>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="body-table">
+            <table>
+                <tr *ngFor="let value of temp_arr"> 
+                    <td>{{value.brand}}</td>
+                    <td class="text-center">{{value.qty}}</td>
+                    <td class="text-right">&#x20B9; {{value.amount | number:'1.2-2'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="sngtable">
+        <table>
+            <tr>
+                <td>Subtotal</td>
+                <th>&#x20B9; {{order_data.sub_total |number:'1.2-2'}}</th>
+            </tr>
+            <tr *ngIf="order_data.order_discount != 0" >
+                <td>Discount</td>
+                <th>&#x20B9; {{order_data.order_discount |number:'1.2-2'}}</th>
+            </tr>
+            <tr *ngIf="order_data.order_gst != 0 && order_data.order_discount != 0">
+                <td>GST</td>
+                <th>&#x20B9; {{order_data.order_gst |number:'1.2-2'}}</th>
+            </tr>
+            <tr>
+                <th class="text-left">Net Amount</th>
+                <th>&#x20B9; {{order_data.order_total |number:'1.2-2'}}</th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="csnninput pt0 pb0" padding>
+        <h1>Remark</h1>
+        <textarea name="remark" [(ngModel)]="order.remark"></textarea>
+    </div>
+
+    <div class="edit">
+        <ion-list>
+            <ion-item >
+                <ion-label floating><span>Private Marka</span></ion-label>
+                <ion-input type="text" style="height: 28px;" name="private_marka" [(ngModel)]="order_data.private_marka"></ion-input>
+            </ion-item>
+            
+        </ion-list>
+    </div>
+    
+    <div class="edit">
+        <ion-list>
+            <ion-item>
+                <ion-label floating><span>Transport Detail</span></ion-label>
+                <ion-input type="text" style="height: 28px;" name="transport_detail" [(ngModel)]="order_data.transport_detail"></ion-input>
+            </ion-item>
+        </ion-list>
+    </div>
+    
+    <div class="pl-orde pt20 pb0 mt15" *ngIf="order_data.order_gst != 0 && order_data.order_discount != 0 && order_data.order_id == undefined">
+        <button (click)="place_order()">Place Order</button>
+    </div>
+    <div class="pl-orde pt20 pb0" *ngIf="order_data.order_gst != 0 && order_data.order_discount == 0 && order_data.order_id == undefined">
+        <button (click)="place_order()">Place Order</button>
+    </div>
+    <div class="pl-orde pt20 pb0" *ngIf="order_data.order_gst == 0 && order_data.order_id == undefined">
+        <button (click)="place_order_dealer()">Place Order</button>
+    </div>
+    <div class="pl-orde pt20 pb0" *ngIf="order_data.order_id">
+        <button (click)="addOrderItem()">Add Item</button>
+    </div>
+    <div class="pl-orde1" *ngIf="order_data.order_id == undefined">
+        <button (click)="delete_order()">Remove Order</button>
+    </div>
+    <div class="sticky">
+        <div class="cs-search">
+            <ion-searchbar (ionInput)="getItems()" name="type" [(ngModel)]="search.type"></ion-searchbar>
+        </div>
+    </div>
+    
+    
+    <div class="list-outer ordlist">
+        <div class="list-inner" *ngFor="let data of order_item;let i = index;">
+            <div style="padding: 0px 16px;">
+                <div class="min-heading">
+                    <div class="cs-l">
+                        <h2>{{data.product_name | titlecase}}</h2>
+                    </div>
+                    <div class="cs-r" (click)="removeFromCart(i)">
+                        <p>DELETE</p>
+                    </div>
+                </div>
+                
+                <div class="data-table">
+                    <table>
+                        <tr *ngIf="data.cat_no != ''">
+                            <th></th>
+                            <td></td>
+                        </tr>
+                        <tr *ngIf="data.brand != ''">
+                            <th>Brand</th>
+                            <td>{{data.brand | titlecase}}</td>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <td>{{data.category | titlecase}}</td>
+                        </tr>
+                        <tr *ngIf="data.sub_category != ''">
+                            <th>Sub Category</th>
+                            <td>{{data.sub_category | titlecase}}</td>
+                        </tr>
+                        <tr>
+                            <th>Qty</th>
+                            <td>
+                                <div class="edit-data" ngClass="{{data.active ? 'active' : ''}}">
+                                    <input type="number" [readonly]=!data.active name="qty{{i}}" [(ngModel)]="data.qty" (keyup)="change_qty(i)">
+                                    <a class="edit-value edits" *ngIf="!data.active" (click)="data.active = true">
+                                        <i class="material-icons create">create</i>
+                                    </a>
+                                    <a class="edit-value saves" *ngIf="data.active" (click)="data.active = false">
+                                        <i class="material-icons create">save</i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="oneinfo">
+                    <div class="figure">
+                        <p>CAT No.</p>
+                        <p>{{data.cat_no}}</p>
+                    </div>
+                    <div class="figure" *ngIf="order_data.order_gst != 0 && order_data.order_discount != 0">
+                        <p>Discount</p>
+                        <p>&#x20B9; {{data.discount}}</p>
+                    </div>
+                    <div class="figure">
+                        <p>Amount</p>
+                        <p>&#x20B9; {{data.amount |number:'1.2-2'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

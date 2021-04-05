@@ -1,0 +1,31 @@
+
+<ion-header >
+	<ion-navbar>
+		<ion-title *ngIf="!category">Videos</ion-title>
+		<ion-title *ngIf="category">{{category | titlecase}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="nothing-here" *ngIf="!video_list.length && load_data == '1' ">
+        
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/nothing.svg" alt="">
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div>
+	<div  class="video" *ngFor="let list of video_list;let i=index">
+		<iframe [src]="list.url" width="100%" height="180" rameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<div class="vid-text video">
+			<P>{{list.desc}}</P>
+		</div>
+	</div>
+	<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+		<ion-infinite-scroll-content
+		loadingSpinner="bubbles"
+		loadingText="Loading more data...">
+	</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

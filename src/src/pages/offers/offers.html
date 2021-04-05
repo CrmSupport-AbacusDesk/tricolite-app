@@ -1,0 +1,88 @@
+<ion-header class="main-header remove">
+	<ion-navbar>
+		<ion-title>{{offer_detail.title| titlecase}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content  pullingIcon="arrow-dropdown"
+		pullingText="Pull to refresh"
+		refreshingSpinner="circles"
+		refreshingText="Refreshing...">
+	</ion-refresher-content>
+	</ion-refresher>
+
+<!-- <div class="fix">
+	<div class="bg-banner">
+		<img src="{{offer_detail.offer_banner}}">
+	</div>
+	<div class="content-padding">
+		<div class="offer">
+			<div class="offer-detail">
+				<h1>{{offer_detail.title| titlecase}}</h1>
+				<p><span>Offer Point : </span>{{offer_balance || 0}}</p>
+				<p><span>Valid Upto :</span> {{offer_detail.end_date | date:'d MMMM y'}}</p>
+			</div>
+			<div class="terms" (click)="goOntermsPage(offer_detail.id)">
+				<a>Terms & Condition</a>
+			</div>
+		</div>
+	</div>
+</div>	
+<div class="listing main-margin-16">
+	<button ion-item [ngClass]="{'verify' : list.coupon_points <= offer_balance  }"   *ngFor="let list of gift_list;let i=index" (click)="goOnGiftDetail(list.id)">
+		<div class="head-detail">
+			<div class="head">
+				<h1>{{list.coupon_points}}</h1>
+				<p>Points</p>
+			</div>
+			<div class="detail">
+				<h1>{{list.gift_title | titlecase}}</h1>
+			</div>
+		</div>  
+		<div class="product-img">
+			<img src="{{list.image}}">
+		</div>
+	</button>
+</div>	  -->
+
+
+
+<div class="banner">
+	<img src="{{offer_detail.offer_banner}}">
+</div>
+
+
+<div class="listings main-margin-16">
+	
+	<div class="offers-list " >
+		<div class="tittle">
+			<h4>{{offer_detail.title| titlecase}}</h4>
+			<p>Valid Upto : {{offer_detail.end_date | date:'d MMMM y'}} </p>
+		</div>
+		
+		<a (click)="goOntermsPage(offer_detail.id)">Terms & Condition</a>
+	</div>
+	<!-- (click)="goOnGiftDetail(list.id)" -->
+	<button ion-item    *ngFor="let list of gift_list;let i=index" (click)="goOnGiftDetail(list.id)" >
+		<div class="head-detail">
+			<div class="head">
+				<h1>{{list.coupon_points}} </h1>
+				<p>Points</p>
+				<a *ngIf="toInt(list.coupon_points) <= balance_point  "><i class="material-icons" >verified_user</i></a>
+			</div>
+			<div class="detail">
+				<h1>{{list.gift_title | titlecase}}</h1>
+			</div>
+		</div>  
+		<div class="product-img">
+			<img src="{{list.image}}">
+		</div>
+	</button>
+	
+	
+</div>
+
+</ion-content>

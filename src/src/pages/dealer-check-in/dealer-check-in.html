@@ -1,0 +1,102 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <h1>Sales Person Visit</h1>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter">
+                <ion-searchbar type='text' name="master" [(ngModel)]="filter.master" (ngModelChange)="get_all_checkin()"></ion-searchbar>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    
+    
+    
+    
+    <div class="nothing-here" *ngIf="!checkin_list?.length && norec">
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/nothing.svg" alt="">
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div>
+    <div class="checkinlist">
+        <!-- <a *ngFor="let row of checkin_list;let i=index;">
+            <div class="csheader">
+                <div class="cs-left" style="width: 100%;">
+                    <p>Start : <span>{{!row.visit_start ? 'N/A' : row.visit_start | date:"h:m a"}}</span></p>
+                    <p style="margin-left: 10px !important;">End : <span>{{!row.visit_end ? 'N/A' : row.visit_end | date : 'h:m a'}}</span></p>
+                </div>
+                <div class="cs-right flex-right" style="width: 130px;">
+                    <p style="width: 100%; text-align: right;"><span>{{!row.activity_date ?'N/A' : row.activity_date | date : 'd MMM y'}}</span></p>
+                </div>
+            </div>
+            
+            <div>
+                <div class="csmiddle" >
+                    <div class="csicon">{{row.name[0] ? row.name[0] : '--'}}</div>
+                    <div class="csdesc pcvr no-white-space">
+                        <p style="width: 100%;"><i class="material-icons">person</i>{{row.name ? row.name : 'N/A'}}</p>
+                        <p style="width: 100%;"><i class="material-icons">call</i>{{row.contact_01 ? row.contact_01 : 'N/A'}}</p>
+                    </div>
+                </div>
+            </div>
+        </a> -->
+    <div class="pd-left-right16">
+
+        <div class="list-box mt16" *ngFor="let row of checkin_list;let i=index;">
+            <div class="upper">
+                <div class="left-date">
+                    <div class="date-section">
+                        <p>{{row.date_created | date: 'MMM d, y'}}</p>
+                        <p>Date</p>
+                    </div>
+                    <div class="date-section" *ngIf="row.visit_start!='0000-00-00 00:00:00'">
+                        <p>{{row.visit_start  | date: 'h:m a'}}</p>
+                        <p>Start Time</p>
+                    </div>
+                    <div class="date-section" *ngIf="row.visit_end!='0000-00-00 00:00:00'">
+                        <p>{{row.visit_end  | date: 'h:m a'}}</p>
+                        <p>End Time</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mid">
+                <div class="content-info">
+                    <div class="left-info">
+                        <div class="circle">{{row.name?.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    <div class="right-info">
+                        <p>{{row.name | titlecase}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="three_boxes"> -->
+                <div class="lower" *ngIf="row.start_address">
+                    <p>Start Location</p>
+                    <p>{{row.start_address | titlecase}}</p>
+                </div>
+                <div class="lower" *ngIf="row.end_address">
+                    <p>End Location</p>
+                    <p>{{row.end_address | titlecase}}</p>
+                </div>
+            <!-- </div> -->
+        </div>  
+        </div>
+
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+    
+    <div class="h80"></div>
+</ion-content>

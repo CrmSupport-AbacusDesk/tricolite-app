@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Followup List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div class="month-calander">
+        <button (click)="previousDate()"><i class="material-icons">keyboard_arrow_left</i></button>
+        <p>{{selected_date | date:'d MMM, y' }}</p>
+        <button (click)="nextDate()"><i class="material-icons">keyboard_arrow_right</i></button>
+    </div>
+    
+    <div class="nothing-here" *ngIf="!followupList.length && requestSend">
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/nothing.svg" alt="">
+                <p>No Follow Up</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="pd-left-right16" *ngIf="followupList.length">
+        <div class="list-box mt16" *ngFor="let data of followupList" >
+            
+            <div class="mid mt0">
+                <div class="content-info" >
+                    <div class="left-info" >
+                        <div class="circle">{{data.company_name.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    
+                    <div class="right-info">
+                        <p>{{data.company_name.toUpperCase()}}</p>
+                        <p >{{data.dr_name | titlecase}} ({{data.mobile}})</p>
+                    </div>
+                </div>
+                <div class="tag-info">
+                    <a href="tel:{{data.mobile}}"><i class="material-icons">phone</i></a>
+                    <button *ngIf="selected_date >= today_date" (click)="deleteFollowUp(data.id,i)"><i class="material-icons red-clr">delete_sweep</i></button>
+                </div>
+            </div>
+            <div class="lower" *ngIf="data.description">
+                <p>Description</p>
+                <p>{{data.description}} </p>
+            </div>
+        </div>  
+    </div>
+
+    <ion-fab right bottom *ngIf="!userId">
+        <button ion-fab color="danger" (click)="goOnAddFollowup()" ><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
+</ion-content>

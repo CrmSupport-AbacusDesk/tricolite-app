@@ -1,0 +1,144 @@
+<ion-header class="catalogue-header">
+    <ion-navbar>
+        <ion-title *ngIf="distributor_detail.type=='3'">Dealer Detail</ion-title>
+        <ion-title *ngIf="distributor_detail.type=='1'">Distributor Detail</ion-title>
+        <ion-title *ngIf="distributor_detail.type=='7'">Direct Dealer Detail</ion-title>
+        <!-- *ngIf="user_right && user_right.add_D_N == '1'" -->
+        <ion-buttons end >
+            <button ion-button icon-only color="light" (click)="editNetwork(distributor_detail.id)">
+                <ion-icon name="md-create"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div class="sticky-main">
+        <div class="pd-left-right16 af_bg">
+            <div class="list-box">
+                <div class="upper">
+                    <div class="left-date">
+                        <div class="date-section">
+                            <p *ngIf="distributor_detail.active == 0" class="approved-color" >ACTIVE</p>
+                            <p *ngIf="distributor_detail.active != 0" class="pending-color"  >DEACTIVE</p>
+                            <p>Status</p> 
+                        </div>
+                    </div>
+                    <div class="right-date">
+                        <button class="green-btn " *ngIf="distributor_detail.active != 0" >
+                            <p   (click)="chngeStatus('Active',0)">Change Status</p>
+                        </button>
+                        <button class="green-btn " *ngIf="distributor_detail.active == 0">
+                            <p  (click)="chngeStatus('Deactive',1)">Change Status</p>
+                        </button>
+                    </div>
+                </div>
+                <div class="mid">
+                    <div class="content-info">
+                        <div class="left-info"> 
+                            <div class="circle" *ngIf="!distributor_detail.image">{{distributor_detail.company_name | slice:0:1}}</div>
+                            <div class="circle image-in"  *ngIf="distributor_detail.image">
+                                <img src="http://phpstack-83335-1428632.cloudwaysapps.com/uploads/{{distributor_detail.image}}"  (click) = "viewProfiePic(distributor_detail.image)">
+                            </div>
+                        </div>
+                        <div class="right-info">
+                            <p>{{distributor_detail.company_name | titlecase}}</p>
+                            <p> {{!distributor_detail.name ? 'N/A' : distributor_detail.name | titlecase}}</p>
+                            <p *ngIf="distributor_detail.email"> {{distributor_detail.email ? distributor_detail.email : 'N/A'}}</p>
+                        </div>
+                    </div>
+                    <div class="tag-info">
+                        <a href="tel:{{distributor_detail.mobile ? distributor_detail.mobile : 'N/A'}}"><i class="material-icons">phone</i></a>
+                    </div>
+                </div>
+                <div class="lower">
+                    <p>Address</p>
+                    <p>{{!distributor_detail.state ? 'N/A' : distributor_detail.state | titlecase}} {{!distributor_detail.district ? '' : ', '+distributor_detail.district | titlecase}} {{distributor_detail.pincode ? ' - '+distributor_detail.pincode : ''}}</p>
+                </div>
+            </div>  
+        </div>
+        
+        <div class="round-tab pt0 pb0">
+            <ul>
+                <li [ngClass]="{'active' : distributor_detail.tabActiv=='Order'} "  (click)="distributor_detail.tabActiv='Order'">
+                    <p>Order</p>
+                </li>
+                <li [ngClass]="{'active' : distributor_detail.tabActiv=='Discount'} " (click)="edit_discount();distributor_detail.tabActiv='Discount'">
+                    <p>Discount</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <ng-container *ngIf="distributor_detail.tabActiv=='Order'">
+        <div class="pd-left-right16" *ngFor="let row of total_order">
+            <div class="list-box mt16">
+                <div class="upper">
+                    <div class="left-date">
+                        <div class="date-section">
+                            <p>{{row.date_created | date: 'MMM d, y'}}</p>
+                            <p>Date</p>
+                        </div>
+                    </div>
+                    <div class="right-date">
+                        <button><p>{{row.order_no}}</p></button>
+                    </div>
+                </div>
+                <div class="three_boxes">
+                    <div class="lower">
+                        <p>Order Item</p>
+                        <p>{{row.order_item }}</p>
+                    </div>
+                    <div class="lower">
+                        <p>Order Value</p>
+                        <p>{{row.order_grand_total}}</p>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="nothing-here" style="height: 60%;" *ngIf="!total_order.length">
+            <div class="outer">
+                <div class="innear">
+                    <img src="assets/imgs/no_found.svg" alt="">
+                    <p>No Order Found</p>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+<ng-container *ngIf="distributor_detail.tabActiv=='Discount'">
+    
+    <div class="next-btn mb0" *ngIf="edit_permission"  (click)="edit_discount()">
+        <div class="nx-left">
+            <p>Discount</p>
+            <p>Category Wise Discount</p>
+        </div>
+        <div class="nx-right">
+            <i *ngIf="!discount_list.length" class="material-icons">keyboard_arrow_right</i>
+            <input *ngIf="discount_list.length" type="text" name="all_discount" [(ngModel)]="all_discount" (keyup)="set_discount()">
+        </div>
+    </div>
+    
+    
+    
+    <div class="normal-list mb30" *ngIf="discount_list.length">
+        <a *ngFor="let row of discount_list;let i=index;">
+            <div class="nr-left">
+                <p>{{row.category}}</p>
+            </div>
+            <div class="nr-right">
+                <p><input type="text"name="discount" [(ngModel)]="row.discount"></p>
+            </div>
+        </a>
+    </div> 
+    <div class="nothing-here" style="height: 60%;" *ngIf="!discount_list.length">
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/no_found.svg" alt="">
+                <p>No Discount Found</p>
+            </div>
+        </div>
+    </div>
+    </ng-container>
+
+</ion-content>
+<ion-footer *ngIf="discount_list.length && distributor_detail.tabActiv=='Discount'" class="before-btn" style="padding: 10px 16px;">
+    <button class="foot-btn" (click)="update_discount()">UPDATE</button>
+</ion-footer>

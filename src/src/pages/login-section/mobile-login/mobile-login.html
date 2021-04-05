@@ -1,0 +1,34 @@
+
+<ion-content>
+    <div class="main-login">
+        <div class="login-back">
+			<button (click)="bck()"><i class="material-icons">keyboard_backspace</i></button>
+		</div>
+        <div class="logo">
+            <img src="assets/imgs/logo.png">
+        </div>
+        <form #f="ngForm">
+            <div class="mobile-login" >
+                <div class="text">
+                    <p>Enter your mobile number to get started !</p>
+                </div>
+                
+                <div class="input-section">
+                    <div class="input-adjust" >
+                        <input type="tel"  placeholder="Mobile number" name="mobile_no" #mobile_no="ngModel" [(ngModel)]="data.mobile_no" (keypress)="MobileNumber($event)" [ngClass]="{'is-invalid':f.submitted && mobile_no?.invalid}" required min=0 maxlength=10 minlength=10 > 
+                        <div class="fixed-number">
+                            <p>+91</p>
+                        </div>
+                    </div>
+                    <i class="material-icons">local_phone</i>
+                </div>
+                
+                <div class="login-btn" >
+                    <button [disabled]="!data.mobile_no || data.mobile_no.length!= '10'" (click)="f.valid && submit()">Continue</button>
+                </div>
+            </div>
+        </form>   
+        
+        
+    </div>
+</ion-content>

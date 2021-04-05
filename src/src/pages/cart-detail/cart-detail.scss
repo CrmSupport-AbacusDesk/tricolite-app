@@ -1,0 +1,179 @@
+page-cart-detail {
+    
+    table
+    {
+        table-layout: fixed;
+        width: 100%;
+    }
+    
+    .stable
+    {
+        .head-table
+        {
+            background: #f8f8f8;
+            padding-left: 16px;
+            padding-right: 16px;
+            border-bottom: solid 1px #ccc;
+            
+            table
+            {
+                tr
+                {
+                    th
+                    {
+                        padding: 10px;
+                        text-align: left;
+                        font-weight: 600;
+                        border: solid 1px #ccc;
+                        border-bottom: 0px;
+                        
+                        &:nth-child(1){border-left: 0px;}
+                        &:nth-child(3){border-right: 0px;}
+                    }
+                }
+            }
+        }
+        
+        .body-table
+        {
+            padding: 16px;
+            
+            table
+            {
+                box-shadow: 0px 3px 6px 0px #ccc;
+                
+                tr
+                {
+                    td
+                    {
+                        padding: 10px;
+                        border: solid 1px #ccc;
+                    }
+                }
+            }
+        }
+    }
+    
+    .sngtable
+    {
+        padding: 16px;
+        padding-top: 0;
+        padding-bottom: 0;
+        
+        table
+        {
+            tr
+            {
+                border-bottom: solid 1px #ccc;
+                
+                td, th
+                {
+                    padding: 10px;
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+                
+                th
+                {
+                    text-align: right;
+                    font-weight: 600;
+                }
+                
+                &:last-child{border-bottom: 0px;}
+            }
+        }
+    }
+    
+    
+    .pl-orde
+    {
+        padding: 16px;
+        
+        button
+        {
+            background: #06a736;
+            width: 100%;
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+    }
+
+
+    .pl-orde1
+    {
+        padding: 16px;
+        
+        button
+        {
+            background: #FF0000;
+            width: 100%;
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+    }
+    
+    
+    .ordlist
+    {
+        .list-inner
+        {
+            border-top: solid 4px #73459c;
+
+            &:first-child{border-top: 0px;}
+
+            .min-heading
+            {
+                .cs-l
+                {
+                    
+                }
+                
+                .cs-r
+                {
+                    background: #ff0000 !important;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-right: 10px !important;
+                    border: 0px !important;
+                    
+                    p
+                    {
+                        color: #fff !important;
+                        font-size: 12px !important;
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                    }
+                }
+            }
+            
+            .data-table
+            {
+                padding-top: 0;
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+
+    .cs-search
+    {
+        background: #73459c;
+        padding: 16px;
+
+        ion-searchbar
+        {
+            padding: 0px;
+        }
+    }
+
+    .sticky{background: #fff;}
+}

@@ -1,0 +1,230 @@
+page-dashboard {
+    
+    
+    .ds-top
+    {
+        background: #005197;
+        box-shadow: 0px 3px 6px 0px #ccc;
+        padding: 16px 32px 48px 32px;    
+        position: relative;
+        
+        .hm-menu
+        {
+            background: #005197;
+            color: #fff;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+        }
+        
+        .dslogo
+        {
+            text-align: center;
+            
+            img
+            {
+                height: 100px;
+                margin-bottom: 32px;
+            }
+        }
+        
+        h1
+        {
+            font-size: 18px;
+            font-weight: 500;
+            color: #fff;
+            
+            span
+            {
+                font-size: 24px;
+                font-weight: 600;
+            }
+        }
+        
+        p
+        {
+            color: #fff;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 16px !important;
+            
+            span
+            {
+                background: rgba(0,0,0,0.3);
+                display: inline-block;
+                font-size: 24px;
+                padding: 10px;
+                border-radius: 5px;
+                margin-left: 8px !important;
+                font-family: 'DS-Digital';
+            }
+        }
+    }
+    
+    
+    .dtbtns{padding: 16px 16px 0px 16px;}
+    
+    
+    
+    .dtbtns .csfigure,
+    .dtbtns a{
+        height: 70px;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        position: relative;
+    }
+    .dtbtns .csfigure .cs-left,
+    .dtbtns a .cs-left{
+        display: flex;
+        align-items: center;
+    }
+    
+    
+    .dtbtns .csfigure .cs-left .counter,
+    .dtbtns a .cs-left .counter{
+        min-width: 105px;
+        max-width: 105px;
+        border-right: solid 1px #DEDEDE;
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0.16em;
+        line-height: 32px;
+        color: #002341;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+    }
+    
+    
+    .dtbtns .csfigure .cs-left .counter{flex-wrap: wrap;}
+    .dtbtns .csfigure .cs-left .counter h2{
+        width: 100%;
+        font-size: 24px;
+        text-align: center;
+    }
+    .dtbtns .csfigure .cs-left .counter p{
+        width: 100%;
+        font-size: 12px;
+        letter-spacing: 0px;
+        font-weight: 400;
+        color: #000;
+        line-height: 0;
+        opacity: 0.5;
+        text-align: center;
+    }
+    
+    
+    .dtbtns .csfigure .chedate{position: absolute; top: 10px; right: 10px;}
+    .dtbtns .csfigure .chedate i{font-size: 20px; color: #219a62;}
+    
+    
+    .dtbtns .csfigure .cs-left .dghe{font-size: 14px;}
+    .dtbtns .csfigure .cs-left .dghe span{font-size: 24px; color: #ee3a2d;}
+    .dtbtns .csfigure .cs-left .dghe strong{}
+    
+    
+    .dtbtns a:after{
+        content: "";
+        position: absolute;
+        width: 5px;
+        height: 70px;
+        border-radius: 5px 0px 0px 5px;
+        left: 0px;
+        top: 0px;
+    }
+    
+    
+    .dtbtns a:nth-child(1):after{background: #008fb5;}
+    .dtbtns a:nth-child(2):after{background: #F5E100;}
+    
+    
+    
+    
+    .dtbtns .csfigure .cs-left h1,
+    .dtbtns a .cs-left h1{
+        font-weight:400;
+        font-size: 16px;
+        line-height: 32px;
+        color: #002341;
+        margin-left: 16px !important;
+    }
+    
+    .dtbtns a i{
+        font-size: 26px;
+        color: #000;
+        opacity: 0.3;
+        margin-right: 32px;
+    }
+    
+    
+    
+    
+    
+    
+    .dscscounter{
+        display: flex;
+        overflow: scroll;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 24px;
+        margin-top: -12px;
+        padding-bottom: 32px;
+    }
+    .dscscounter a{
+        width: calc(33.33% - 14px);
+        background: #fff;
+        box-shadow: 0px 3px 6px 0px #ccc;
+        margin: 7px;
+        text-align: center;
+        padding: 15px;
+        border-radius: 6px;
+        padding-bottom: 5px;
+    }
+
+    .dscscounter a .icon{
+        /* width: 50px; */
+        /* height: 50px; */
+        /* background: #f4fbfb; */
+        border-radius: 100%;
+        display: inline-block;
+        /* line-height: 70px; */
+    }
+    .dscscounter a .icon img{
+        height: 50px; 
+        box-shadow: 0px 3px 6px 0px #ccc; 
+        border-radius: 100%;
+        border: solid 2px #fff;
+    }
+    .dscscounter a h1
+    {
+        font-size: 18px;
+        margin: 5px 10px 0px 10px !important;
+        color: #ff0000;
+    }
+    
+    .dscscounter a p{
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        margin-left: -10px !important;
+        text-align: center;
+        margin-right: -10px !important;
+    }
+    .dscscounter a p i{font-size: 16px; display: none;}
+    
+
+
+    .main-box{box-shadow: 0px 0px 15px 0px #a4e3e3, 0px 0px 15px 0px #d2e3e3 !important;}
+
+    
+}

@@ -1,0 +1,43 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			<ion-input type="text" #input [(ngModel)]="val" (ngModelChange)="dataChanged(val)" placeholder="Search" class="cs-searc"></ion-input>
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	
+	<div class="listing">
+		<ion-list>
+			<button (click)="goToProductDetailPage(val.id)" ion-item *ngFor="let val of data">
+				<div class="description">
+					<h2>{{val.product_name}}</h2>
+					<ion-icon name="ios-arrow-forward-outline"></ion-icon>
+				</div>
+			</button>
+		</ion-list>
+	</div>
+	
+	<div class="nothing" *ngIf="!request && val && !data.length">
+		<div class="outer">
+			<div class="innear">
+				<img src="assets/imgs/main-imgs/nothing.svg" alt="">
+				<p>Data Not Available</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="bg" padding padding *ngIf="!val">
+		<div class="outer">
+			<div class="innear">
+				<h1>Search</h1>
+				<img src="assets/imgs/main-imgs/search-icons.svg" class="csicon" alt="">
+				<div class="dflex mt64">
+						<button ion-button block (click)="getCategory()" >Search By Category</button>	
+						<!-- <button ion-button block class="ml8" (click)="getBrand()" >Brand</button> -->
+					</div>
+			</div>
+		</div>
+	</div>
+</ion-content>

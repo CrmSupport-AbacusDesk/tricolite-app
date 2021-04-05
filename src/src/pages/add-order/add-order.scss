@@ -1,0 +1,56 @@
+page-add-order {
+    .field-heading
+    {
+        h1
+        {
+            font-size: 16px;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+        }
+    }
+    
+    .text-input-md
+    {
+        height: 29px;
+    }
+    
+    .label-md
+    {
+        margin-top: 0;
+    }
+    
+    
+    .refbtn
+    {
+        // position: fixed;
+        // bottom: 0px;
+        // left: 0px;
+        // width: 100%;
+        // padding: 16px;
+        padding-bottom: 25px;
+        margin-top: 25px !important;
+        
+        button
+        {
+            height: 45px;
+            min-height: 45px;
+            font-size: 16px;
+            letter-spacing: 2px;
+            // @extend.semibold;
+            background: #32db64;
+        }
+    }
+    .item-md.item-block .item-inner{border-bottom: 0px !important; box-shadow: none !important;}
+
+    .dummycnt
+    {
+        margin: 16px;
+        padding: 32px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 28px;
+        background: #f8f8f8;
+    }
+
+    
+}

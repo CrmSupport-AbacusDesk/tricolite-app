@@ -1,0 +1,64 @@
+
+<ion-header class="main-header remove">
+	<ion-navbar>
+		<ion-title>Gift Gallery</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="top-nav nav-adjust">
+		<!-- <p>{{gift_detail.title |titlecase}} offer  Point</p> -->
+		<p>Balance Points</p>
+		<h1>{{balance_point || 0}}</h1>
+	</div>
+	<div class="margin-padding pb0">
+		<div class="phone">
+			<div class="phone-head">
+				<h1>{{gift_detail.gift_title | titlecase}}</h1>
+				<p>{{gift_detail.coupon_points}} Points</p>
+				
+			</div>
+			<div class="phone-img">
+				<img src="{{gift_detail.image}}">
+				
+			</div>
+		</div>
+		<!-- (click)="goOnOfferDetailPage(gift_detail.offer_id)" -->
+		<div class="detail-list">
+			<div class="detail">
+				<div class="img-section">
+					<img src="{{gift_detail.offer_banner}}">
+				</div>
+				<div class="info" >
+					<h1>{{gift_detail.title | titlecase}}</h1>
+					<p><span>Valid Upto :</span> {{gift_detail.end_date | date:'d MMMM y'}}</p>
+					
+				</div>
+			</div>  
+			<!-- <div class="product-icon">
+				<i class="material-icons">keyboard_arrow_right</i>
+			</div> -->
+		</div>
+		<!-- <div class="rating">
+			<i class="material-icons" [ngClass]="{'active':rating_star>=1}">star_rate</i>
+			<i class="material-icons" [ngClass]="{'active':rating_star>=2}">star_rate</i>
+			<i class="material-icons" [ngClass]="{'active':rating_star>=3}">star_rate</i>
+			<i class="material-icons" [ngClass]="{'active':rating_star>=4}">star_rate</i>
+			<i class="material-icons" [ngClass]="{'active':rating_star>=5}">star_rate</i>
+			<p>{{rating_star}} Star - {{gift_detail.votes}} Votes </p>
+		</div> -->
+		<div class="lorem-text">
+			<p><Strong>Specification : </Strong>{{gift_detail.gift_specification}}</p>
+		</div>
+		<button ion-item class="cs-btn btn-radius mb0" (click)="presentCancelPolicyModal()" *ngIf="balance_point >= gift_detail.coupon_points">Send Redeem Request</button>
+		<div class="h32"></div>
+	</div>
+	<!-- <div class="fix-item">
+		<p>Rate a Gift</p>
+		<i class="material-icons" [ngClass]="{'active':star>=1}" (click)="rating('1')">star_rate</i>
+		<i class="material-icons" [ngClass]="{'active':star>=2}" (click)="rating('2')">star_rate</i>
+		<i class="material-icons" [ngClass]="{'active':star>=3}" (click)="rating('3')">star_rate</i>
+		<i class="material-icons" [ngClass]="{'active':star>=4}" (click)="rating('4')">star_rate</i>
+		<i class="material-icons" [ngClass]="{'active':star>=5}" (click)="rating('5')">star_rate</i>
+	</div>     -->
+</ion-content>

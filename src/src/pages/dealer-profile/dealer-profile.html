@@ -1,0 +1,185 @@
+<ion-header class="" [ngClass]="{'back-remove' : edit==true}">
+    <ion-navbar>
+        <ion-title *ngIf="edit==true">Edit Profile </ion-title>
+        <ion-title *ngIf="edit!=true">Profile </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<div [ngClass]="{'add-back' : edit == true}">
+    <i class="material-icons" (click)="edit=false;get_details()">arrow_back</i>
+</div>
+
+<ion-content class="space-remove"  *ngIf="!edit">
+    <div class="profile mt45">
+        <div class="profile-detail mb80">
+            <div class="flex-content">
+                <div class="profile-pic">
+                    <img src="http://phpstack-83335-1428632.cloudwaysapps.com/uploads/{{data.image}}"   onerror="this.src='http://phpstack-83335-1428632.cloudwaysapps.com/uploads/no-thumbnail.jpg'" (click) = "viewProfiePic()">
+                    <a><i class="material-icons" (click)="openeditprofile()">camera_alt</i></a>
+                </div>
+                
+                <div class="name">
+                    <p>{{data.company_name | titlecase}}</p>
+                    <div class="edit-profile pencil-btn" (click)="edit = true">
+                        <button > <i class="material-icons">edit</i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rating-area mt10 new-cl">
+                <div class="ratings">
+                    <h3>{{type | titlecase}} Code</h3>
+                    <p> {{data.dr_code}}</p>
+                </div>
+                <div class="ratings">
+                    <h3>User Type</h3>
+                    <p> {{type | titlecase}}</p>
+                </div>
+
+                <div class="ratings">
+                    <h3>Name</h3>
+                    <p> {{data.name | titlecase}}</p>
+                </div>
+                
+                <div class="ratings">
+                    <h3>Mobile No.</h3>
+                    <p>+91 {{data.mobile}}</p>
+                </div>
+                
+                <div class="ratings">
+                    <h3>Email</h3>
+                    <p> {{data.email}}</p>
+                </div>
+
+                <div class="ratings">
+                    <h3>GST No.</h3>
+                    <p> {{data.gst?data.gst:'N/A'}}</p>
+                </div>
+
+                <div class="ratings">
+                    <h3>PAN No.</h3>
+                    <p> {{data.pan_no?data.pan_no:'N/A'}}</p>
+                </div>
+                
+                <div class="ratings">
+                    <h3>Address</h3>
+                    <p> {{data.address | titlecase}} {{data.city ? ', '+data.city : 'N/A'}} {{data.district ? ', '+data.district : 'N/A'}} {{data.state ? ', '+data.state : 'N/A'}} {{data.pincode}}</p>
+                </div>
+            </div>
+            
+            <div class="rating-area mt10 new-cl">
+                <div *ngIf="data.private_marka" class="ratings">
+                    <h3>Private Marka</h3>
+                    <p> {{data.private_marka?.toUpperCase()}}</p>
+                </div>
+                
+                <div *ngIf="data.transport_name" class="ratings">
+                    <h3>Transport Name</h3>
+                    <p>{{data.transport_name?.toUpperCase()}}</p>
+                </div>
+                <div *ngIf="data.transport_mobile" class="ratings">
+                    <h3>Transport Mobile</h3>
+                    <p>{{data.transport_mobile}}</p>
+                </div>
+                <div *ngIf="data.transport_address" class="ratings">
+                    <h3>Transport Address</h3>
+                    <p>{{data.transport_address?.toUpperCase()}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+
+<ion-content *ngIf="edit">
+    <form #f="ngForm" (ngSubmit)="f.form.valid && submit()">
+        <div class="edit mb32 mt50">
+            <ion-list>
+                <ion-item [ngClass]="{'cs-error':f.submitted && company_name?.invalid}">
+                    <ion-label floating><span>Company Name <strong>*</strong></span></ion-label>
+                    <ion-input type="text" name="company_name" #company_name="ngModel" [(ngModel)]="data.company_name" required></ion-input>
+                </ion-item>
+                <p  *ngIf="f.submitted && company_name?.invalid" class="error-line">Company Name Is Required</p>
+
+                <ion-item [ngClass]="{'cs-error':f.submitted && name?.invalid}">
+                    <ion-label floating><span>Name <strong>*</strong></span></ion-label>
+                    <ion-input type="text" name="name" #name="ngModel" [(ngModel)]="data.name" required></ion-input>
+                </ion-item>
+                <p  *ngIf="f.submitted && name?.invalid" class="error-line">Name Is Required</p>
+                
+                
+                <ion-item  [ngClass]="{'cs-error':f.submitted && mobile?.invalid}" >
+                    <ion-label floating><span>Mobile No. <strong>*</strong></span></ion-label>
+                    <ion-input type="tel" name="mobile" #mobile="ngModel" [(ngModel)]="data.mobile" required min="0" maxlength="10" minlength="10" (keypress)="MobileNumber($event)"  ></ion-input>
+                </ion-item>
+                <p  *ngIf="f.submitted && mobile?.invalid" class="error-line">Mobile Is Required</p>
+
+
+                <ion-item  [ngClass]="{'cs-error':f.submitted && email?.invalid}" >
+                    <ion-label floating><span>Email </span></ion-label>
+                    <ion-input type="text" name="email" #email="ngModel" [(ngModel)]="data.email" ></ion-input>
+                </ion-item>
+                
+                <ion-item  [ngClass]="{'cs-error':(f.address && address?.invalid) || (f.submitted && !address.valid)}">
+                    <ion-label floating><span>Street </span></ion-label>
+                    <ion-input type="text"  type="text"  name="address"  #address="ngModel" [(ngModel)]="data.address"  ></ion-input>
+                </ion-item>
+                
+                <ion-item class="cs-normal-select mt16" [ngClass]="{'cs-error':f.submitted && state?.invalid}">
+                    <ion-label >State</ion-label>
+                    <ion-select name="state" [(ngModel)]="data.state" #state="ngModel" (ngModelChange)="getDistrictList(data.state)" >
+                        <ion-option *ngFor="let row of state_list" value="{{row.state_name}}">{{row.state_name}}</ion-option>
+                    </ion-select>
+                </ion-item>
+                
+                <ion-item class="cs-normal-select mb4" [ngClass]="{'cs-error':f.submitted && state?.invalid}">
+                    <ion-label><span>District</span></ion-label>
+                    <ion-select name="district" [(ngModel)]="data.district" #district="ngModel" >
+                        <ion-option *ngFor="let row of district_list" value="{{row.district_name}}">{{row.district_name}}</ion-option>
+                    </ion-select>
+                </ion-item>
+                
+                <ion-item >
+                    <ion-label floating ><span>City</span></ion-label>
+                    <ion-input type="text" name="city" [(ngModel)]="data.city" #city="ngModel" ></ion-input>
+                </ion-item>
+                
+                <ion-item [ngClass]="{'cs-error':f.submitted && pincode?.invalid}">
+                    <ion-label floating><span>Pincode </span></ion-label>
+                    <ion-input type="tel" name="pincode" [(ngModel)]="data.pincode" #pincode="ngModel" maxlength="6" minlength="6" (keypress)="MobileNumber($event)" ></ion-input>
+                </ion-item>
+                
+                <ion-item [ngClass]="{'cs-error':f.submitted && pan_no?.invalid}">
+                    <ion-label floating><span>PAN No.</span></ion-label>
+                    <ion-input type="text" name="pan_no" [(ngModel)]="data.pan_no" #pan_no="ngModel" ></ion-input>
+                </ion-item>
+                
+                
+                <ion-item [ngClass]="{'cs-error':f.submitted && gst?.invalid}">
+                    <ion-label floating><span>GST No. </span></ion-label>
+                    <ion-input type="text" name="gst" [(ngModel)]="data.gst" #gst="ngModel" ></ion-input>
+                </ion-item>
+                <!-- <ion-item [ngClass]="{'cs-error':f.submitted && transport_mobile?.invalid}">
+                    <ion-label floating><span>Transport Mobile </span></ion-label>
+                    <ion-input type="tel" name="transport_mobile"  min="0" maxlength="10" minlength="10" (keypress)="MobileNumber($event)"   [(ngModel)]="data.transport_mobile" #transport_mobile="ngModel" ></ion-input>
+                </ion-item>
+                <ion-item [ngClass]="{'cs-error':f.submitted && transport_address?.invalid}">
+                    <ion-label floating><span>Transport Address </span></ion-label>
+                    <ion-input type="text" name="transport_address" [(ngModel)]="data.transport_address" #transport_address="ngModel" ></ion-input>
+                </ion-item> -->
+                <button ion-button class="mt32 cs-btn re-btn">Update</button>
+            </ion-list>
+        </div>
+    </form>
+</ion-content>
+
+<!-- <div class="endcheck" *ngIf="!edit">
+    <a (click)="check_location()">Point Your Location</a>
+</div> -->
+
+<!-- <div class="cus-fab">
+    <button (click)="check_location()">
+        <i class="material-icons">location_on</i>
+        <p>Location</p>
+    </button>
+</div> -->

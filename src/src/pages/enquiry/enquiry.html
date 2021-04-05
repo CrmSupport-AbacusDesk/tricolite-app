@@ -1,0 +1,62 @@
+<!--
+  Generated template for the EnquiryPage page.
+  
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="main-header remove">
+    <ion-navbar>
+      <ion-title>enquiry</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <div class="enquriy">
+      <p>Please fill In this form below, we will get back to you soon as poosible</p>
+      
+      
+      
+    </div>
+	<form #f="ngForm" (ngSubmit)="f.form.valid && submit()">
+    
+    <div class="enquriy">
+      <div class="cs-form">
+        <ion-list>
+          <ion-item class="cs-input" [ngClass]="{'error':f.submitted && customerName?.invalid}">
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text" name="customerName" #customerName="ngModel" (keypress)="namecheck($event)" [(ngModel)]="contactDetails.customerName"  required></ion-input>
+          </ion-item>
+        </ion-list>
+        
+        <ion-list>
+          <ion-item class="cs-input" [ngClass]="{'error':f.submitted && customerEmail?.invalid}">
+            <ion-label floating>Email ID</ion-label>
+            <ion-input type="text" #customerEmail="ngModel" [(ngModel)]="contactDetails.customerEmail" name="customerEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" required></ion-input>
+          </ion-item>
+        </ion-list>
+        
+        <ion-list>
+          <ion-item class="cs-input" [ngClass]="{'error':f.submitted && customerMobileNo?.invalid}">
+            <ion-label floating>Mobile No.</ion-label>
+            <ion-input type="tel" #customerMobileNo="ngModel" [(ngModel)]="contactDetails.customerMobileNo" required name="customerMobileNo" (keypress)="MobileNumber($event)" min="0" maxlength="10" minlength="10"></ion-input>
+          </ion-item>
+        </ion-list>
+        
+        <ion-list>
+          <ion-item class="cs-input h100" [ngClass]="{'error':f.submitted && customerInformation?.invalid}">
+            <ion-label floating>Enquiry Message</ion-label>
+            <ion-textarea type="text" name="customerInformation" #customerInformation="ngModel" [(ngModel)]="contactDetails.customerInformation" required ></ion-textarea>
+          </ion-item>
+        </ion-list>
+      </div>
+  
+      <div class="enquiry-btn tranparnt-btn">
+          <button ion-button color="danger" class="green-color" icon-start >
+            <!-- <ion-icon name='close'></ion-icon> -->
+            <p>SUBMIT</p>
+          </button>
+        </div>
+    </div>
+    </form>
+  </ion-content>
+  

@@ -1,0 +1,258 @@
+ <ion-header>
+    
+    
+    <ion-navbar>
+        
+        <ion-title>
+            <h1>My Checkins</h1>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <div class="padding16 no-dtp" *ngIf="(!today_checkin.length) && load_data == '1'">
+        <p>No Check-Ins Today</p>
+    </div>
+    
+    <div class="cs-heading1"  *ngIf="today_checkin.length ">
+        <p>Today</p>
+    </div>
+    
+    
+    <div class="pd-left-right16" >
+        
+        <div class="list-box mt16" [ngClass]="{ light_bluebg : val.description == '' }"  *ngFor="let val of today_checkin" (click)="((val.description == '') && !userId )? end_visit():checkin_detail(val.checkin_id)" >
+            <div class="upper">
+                <div class="left-date">
+                    <div class="date-section">
+                        <p>{{val.activity_date | date: 'MMM d, y'}}</p>
+                        <p>Date Created</p>
+                    </div>
+                    <div class="date-section">
+                        <p>{{val.visit_start | date:'hh:mm a'}}</p>
+                        <p>Start Time</p>
+                    </div>
+                    <div class="date-section" *ngIf="val.visit_end != '0000-00-00 00:00:00'">
+                        <p>{{val.visit_end | date:'hh:mm a'}}</p>
+                        <p>End Time</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="mid" *ngIf="val.dr_id != 0">
+                <div class="content-info">
+                    <div class="left-info">
+                        <div class="circle">{{val.dr_name.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    <div class="right-info">
+                        <p>{{val.dr_name | titlecase}}</p>
+                        <p>{{val.name ? val.name : '--'}} ({{val.mobile_no ? val.mobile_no : '--'}})</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mid" *ngIf="val.dr_id == 0">
+                <div class="content-info">
+                    <div class="left-info">
+                        <div class="circle">{{val.other_name.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    <div class="right-info">
+                        <p>{{val.other_name.toUpperCase()}}</p>
+                        <p>{{val.mobile ? val.mobile : '--'}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="three_boxes" *ngIf="val.start_address"> 
+                <div class="lower one-line">
+                    <p>Start Location : <span>{{val.start_address | titlecase}}</span></p>
+                </div>
+            </div>
+            <div class="three_boxes" *ngIf="val.address"> 
+                <div class="lower one-line">
+                    <p>End Location : <span>{{val.address | titlecase}}</span></p>
+                </div> 
+            </div>
+        </div>  
+    </div>
+    
+    
+    <div class="border-sepration"></div>
+    
+    
+    
+    
+    <div class="csn-heading neww" *ngIf="previous_checkin?.length">
+        <p>Earlier</p>
+        
+        <label class="chedate">
+            <input type="date" [max]="date" name="check_in_date" [(ngModel)]="search.check_in_date" (ngModelChange)="checkin_list(search.check_in_date)">
+            <i class="material-icons">date_range</i>
+        </label>
+        
+        <div class="text-line" *ngIf="search.check_in_date">
+            <div class="lf-text">
+                <p>Date</p>
+                <p>{{search.check_in_date | date:'d MMM y'}}</p>
+            </div>
+            <div class="rf-text" (click)="search.check_in_date=null;checkin_list(search.check_in_date)" >
+                <i class="material-icons">cancel</i>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="padding16 no-dtp" *ngIf="!previous_checkin.length && search.check_in_date">
+        <p>No Previous Check-In's</p>
+    </div>
+    <div class="pd-left-right16" *ngIf="previous_checkin.length">
+        
+        <div class="list-box mt16" *ngFor="let val of previous_checkin" (click)="checkin_detail(val.checkin_id)" >
+            <div class="upper">
+                <div class="left-date">
+                    <div class="date-section">
+                        <p>{{val.activity_date | date: 'MMM d, y'}}</p>
+                        <p>Date Created</p>
+                    </div>
+                    <div class="date-section">
+                        <p>{{val.visit_start | date:'hh:mm a'}}</p>
+                        <p>Start Time</p>
+                    </div>
+                    <div class="date-section" *ngIf="val.visit_end != '0000-00-00 00:00:00'">
+                        <p>{{val.visit_end | date:'hh:mm a'}}</p>
+                        <p>End Time</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mid" *ngIf="val.dr_id != 0">
+                <div class="content-info">
+                    <div class="left-info">
+                        <div class="circle">{{val.dr_name.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    <div class="right-info">
+                        <p>{{val.dr_name.toUpperCase()}}</p>
+                        <p>{{!val.name ? '--' : val.name | titlecase}} ({{val.mobile_no ? val.mobile_no : '--'}})</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mid" *ngIf="val.dr_id == 0">
+                <div class="content-info">
+                    <div class="left-info">
+                        <div class="circle">o</div>
+                    </div>
+                    <div class="right-info">
+                        <p>{{val.other_name.toUpperCase()}}</p>
+                        <p>{{val.mobile ? val.mobile : '--'}}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="three_boxes" *ngIf="val.start_address"> 
+                <div class="lower one-line">
+                    <p>Start Location : <span>{{val.start_address | titlecase}}</span></p>
+                </div>
+            </div>
+            <div class="three_boxes" *ngIf="val.address"> 
+                <div class="lower one-line">
+                    <p>End Location : <span>{{val.address | titlecase}}</span></p>
+                </div> 
+            </div>
+        </div>  
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="checkinlist" *ngIf="previous_checkin.length" style="display: none;">
+        <a *ngFor="let val of previous_checkin" (click)="checkin_detail(val.checkin_id)" >
+            <div class="csheader">
+                <div class="cs-left" style="width: 100%;">
+                    <p>Start : <span>{{val.visit_start | date:'hh:mm a'}}</span></p>
+                    <p *ngIf="val.visit_end != '0000-00-00 00:00:00'" style="margin-left: 10px !important;">End : <span>{{val.visit_end | date:'hh:mm a'}}</span></p>
+                    
+                </div>
+                <div class="cs-right flex-right" style="width: 130px;">
+                    <p style="width: 100%; text-align: right;"><span>{{val.activity_date | date: 'MMM d, y'}}</span></p>
+                </div>
+                
+            </div>
+            
+            
+            <div *ngIf="val.dr_id != 0" >
+                <div class="csmiddle" >
+                    <div class="csicon">{{val.dr_name.substring(0,1).toUpperCase()}}</div>
+                    <div class="csdesc pcvr no-white-space">
+                        
+                        <p style="width: 100%;"><i class="material-icons">apartment</i>{{val.dr_name.toUpperCase()}}</p>
+                        <p style="width: 100%;"><i class="material-icons">person</i>{{val.name ? val.name : '--'}}</p>
+                        <p style="width: 100%;"><i class="material-icons">call</i>{{val.mobile_no ? val.mobile_no : '--'}}</p>
+                    </div>
+                </div>
+                
+                <p class="create-by" *ngIf="val.creator"><strong>Created By:</strong>{{val.creator}}</p>
+            </div>
+            
+            
+            <div *ngIf="val.dr_id == 0">
+                <div class="csmiddle" *ngIf="val.dr_id == 0">
+                    <div class="csicon">O</div>
+                    <div class="csdesc pcvr">
+                        <h1></h1>
+                        
+                        <p style="width: 100%;"><i class="material-icons">apartment</i>{{val.other_name | titlecase}}</p>
+                        <p style="width: 100%;"><i class="material-icons">person</i>{{val.name ? val.name : '--'}}</p>
+                        <p style="width: 100%;"><i class="material-icons">call</i>{{val.mobile_no ? val.mobile_no : '--'}}</p>
+                    </div>
+                </div>
+                <p class="create-by" *ngIf="val.creator"><strong>Created By:</strong>{{val.creator}}</p>
+            </div>
+            
+        </a>
+        
+        
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+            <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    
+</div>
+
+
+<div class="h80"></div>
+
+
+
+
+</ion-content>
+
+<ion-footer>
+<div class="endcheck" *ngIf="!userId">
+    <div class="wp100 mt40" *ngIf="val == 1 && checkin_data.other_name == ''">
+        <button color="theme"  class="btn-elip" ion-button block round (click)="end_visit(checkin_id)">End Visit with {{checkin_data.dr_name.toUpperCase()}}</button>
+    </div>  
+    <div class="wp100 mt40" *ngIf="val == 1 && checkin_data.other_name != ''">
+        <button color="theme"  class="btn-elip" ion-button block round (click)="end_visit(checkin_id)">End Visit with {{checkin_data.other_name.toUpperCase()}}</button>
+    </div> 
+</div>
+
+<ion-fab right bottom *ngIf="val == 0 && !userId">
+    <button ion-fab color="danger" (click)="addCheckin()"><ion-icon name="add"></ion-icon></button>
+</ion-fab>
+</ion-footer>
+
+

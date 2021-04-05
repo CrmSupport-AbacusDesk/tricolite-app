@@ -1,0 +1,103 @@
+page-distributor-detail {
+
+    .dtbtns{padding: 16px 16px 0px 16px;}
+
+
+
+    .dtbtns .csfigure,
+    .dtbtns a{
+        height: 70px;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        position: relative;
+    }
+    .dtbtns .csfigure .cs-left,
+    .dtbtns a .cs-left{
+        display: flex;
+        align-items: center;
+    }
+    
+    
+    .dtbtns .csfigure .cs-left .counter,
+    .dtbtns a .cs-left .counter{
+        min-width: 85px;
+        border-right: solid 1px #DEDEDE;
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0.16em;
+        line-height: 32px;
+        color: #002341;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+    }
+    
+    
+    .dtbtns .csfigure .cs-left .counter{flex-wrap: wrap;}
+    .dtbtns .csfigure .cs-left .counter h2{
+        width: 100%;
+        font-size: 24px;
+        text-align: center;
+    }
+    .dtbtns .csfigure .cs-left .counter p{
+        width: 100%;
+        font-size: 12px;
+        letter-spacing: 0px;
+        font-weight: 400;
+        color: #000;
+        opacity: 0.5;
+        text-align: center;
+    }
+    
+    
+    .dtbtns .csfigure .chedate{position: absolute; top: 10px; right: 10px;}
+    .dtbtns .csfigure .chedate i{font-size: 20px; color: #219a62;}
+    
+    
+    .dtbtns .csfigure .cs-left .dghe{font-size: 14px;}
+    .dtbtns .csfigure .cs-left .dghe span{font-size: 24px; color: #ee3a2d;}
+    .dtbtns .csfigure .cs-left .dghe strong{}
+    
+    
+    .dtbtns a:after{
+        content: "";
+        position: absolute;
+        width: 5px;
+        height: 70px;
+        border-radius: 5px 0px 0px 5px;
+        left: 0px;
+        top: 0px;
+    }
+    
+    
+    .dtbtns a:nth-child(1):after{background: #008fb5;}
+    .dtbtns a:nth-child(2):after{background: #F5E100;}
+    
+    
+    
+    
+    .dtbtns .csfigure .cs-left h1,
+    .dtbtns a .cs-left h1{
+        font-weight:400;
+        font-size: 16px;
+        line-height: 32px;
+        color: #002341;
+        margin-left: 16px !important;
+    }
+    
+    .dtbtns a i{
+        font-size: 26px;
+        color: #000;
+        opacity: 0.3;
+        margin-right: 16px;
+    }
+    
+    
+    
+}

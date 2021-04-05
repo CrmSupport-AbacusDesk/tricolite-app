@@ -1,0 +1,78 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title> Category</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter">
+                <!-- getProductCategoryList(filter.category_name);getProductSubCategoryList() -->
+                <ion-searchbar type='text' name='category_name' [(ngModel)]="filter.category_name" (keyup.enter)="getCategoryData()"></ion-searchbar>
+            </div>
+        </div>
+    </ion-toolbar>
+    
+</ion-header>
+
+<ion-content>
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    
+    <div class="nothing-here" *ngIf="!prod_cat_list.length && no_rec">
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/no_found.svg" alt="">
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div> 
+    
+    <div class="listings normal-list" *ngIf="prod_cat_list.length" style="display: none;">
+        <ion-list *ngFor="let list of prod_cat_list; let i=index">
+            <!-- <a>{{list.image}}</a> -->
+            <button *ngIf="!list.image" ion-item (click)="goToProductList('category',list.id)">
+                <div class="product-img">
+                    <i class="material-icons">collections</i>
+                </div>
+                <p>{{list.category_name}}</p>
+            </button>
+            
+            <button *ngIf="list.image" ion-item (click)="goToProductList('category',list.id)">
+                <div class="product-img">
+                    <img src="{{image_url+list.image}}">
+                </div>
+                <p>{{list.category_name}}</p>
+            </button>
+        </ion-list>
+    </div>
+
+    <div class="main-div" *ngIf="prod_cat_list.length">        
+        <div class="Product">
+            <button ion-item class="bg-product " *ngFor="let list of prod_cat_list; let i=index" (click)="goToProductList('category',list.id)">
+                <div class="thumbnail" *ngIf="list.image">
+                    <img src="{{image_url+list.image}}">
+                </div>
+                <div class="thumbnail" *ngIf="!list.image">
+                    <i class="material-icons">collections</i>
+                </div>
+                <div class="errow">
+                    <div class="list-tags wthspan">
+                        <h1>{{list.category_name}}</h1>
+                        <!-- <p>Valid Upto : {{list.end_date | date:'d MMMM y'}}</p> -->
+                    </div>
+                    <i class="material-icons">trending_flat</i>
+                </div>
+            </button>
+        </div>
+    </div>
+    
+</ion-content>
+
+<!-- <div class="main-div" *ngIf="!prod_cat_list.length && !no_rec">
+    <ion-list *ngFor="let row of skelton" >
+        <button class="skleton-box"></button>
+    </ion-list>
+</div> -->

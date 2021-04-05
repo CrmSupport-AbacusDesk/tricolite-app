@@ -1,0 +1,30 @@
+
+<ion-content>
+     <div class="main-login">
+          <div class="login-back">
+               <button (click)="bck()"><i class="material-icons">keyboard_backspace</i></button>
+          </div>
+          <div class="logo">
+               <img src="assets/imgs/logo.png">
+          </div>
+          <form [formGroup]="validations_form" (ngSubmit)="form.phone?.length == 10 ? login_submit() : ''" autocomplete="off">		
+               <div class="cs-form">
+                    <div class="heading">
+                         <p>LOGIN</p>
+                    </div>
+                    <ion-list class="mb40">
+                         <ion-item>
+                              <ion-label><img src="assets/imgs/phone-call.svg"></ion-label>
+                              <ion-input type="tel" minlength="10" maxlength="10" [(ngModel)]="form.phone" placeholder="*Mobile Number" formControlName="phone" ></ion-input>
+                         </ion-item>	
+                         
+                         <p class="error-left relative" *ngIf="validations_form.get('phone').hasError('required') && validations_form.get('phone').touched">*Required</p>
+                         <p class="error-left relative" *ngIf="(validations_form.get('phone').hasError('minlength') || validations_form.get('phone').hasError('maxlength')) && validations_form.get('phone').touched">*Mobile No. not valid</p>		
+                    </ion-list>
+                    <div class="login-button">
+                         <button ion-button [disabled]="loading == '1'">LOGIN </button>
+                    </div> 
+               </div>
+          </form>                
+     </div>
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <h1>Discount</h1>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter">
+                <ion-searchbar type='text' name="master" [(ngModel)]="filter.master" (ngModelChange)="get_all_checkin()"></ion-searchbar>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="nothing-here" *ngIf="!discount_list?.length && norec">
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/nothing.svg" alt="">
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div>
+    <div class="normal-list">
+        <a *ngFor="let row of discount_list;let i=index;">
+            <div class="nr-left">
+                <p>{{row.category}}</p>
+            </div>
+            <div class="nr-right">
+                <p>{{row.discount}}%</p>
+                <p>Discount</p>
+            </div>
+        </a>
+        
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>    
+    <div class="h80"></div>
+</ion-content>

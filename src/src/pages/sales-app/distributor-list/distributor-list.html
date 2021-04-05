@@ -1,0 +1,83 @@
+<ion-header>
+    
+    <ion-navbar>
+        <ion-title>My Leads</ion-title>
+    </ion-navbar>    
+    <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter">
+                <ion-searchbar (ngModelChange)="get_assign_drsearch()" [(ngModel)]="filter.master" name="master" ></ion-searchbar>
+                <a class="date-pick">
+                    <label class="chedate">
+                        <input type="date" name="date"  [max]="date" name="date" [(ngModel)]="filter.date" (ngModelChange)="get_assign_drsearch()" />
+                        <i class="material-icons">date_range</i>
+                    </label>
+                </a>
+            </div>
+        </div>
+    </ion-toolbar> 
+</ion-header>
+<div class="text-line" *ngIf="filter.date">
+    <div class="lf-text">
+        <p>Date</p>
+        <p>{{filter.date | date:'d MMM y'}}</p>
+    </div>
+    <div class="rf-text">
+        <i class="material-icons" (click)="filter.date='';get_assign_drsearch()">cancel</i>
+    </div>
+</div>
+
+<ion-content>
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="Pull to refresh"     refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+	</ion-refresher> -->
+    <div class="nothing-here" *ngIf="load_data == 1">
+        
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/nothing.svg" alt="">
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pd-left-right16">
+        <div class="list-box mt16" *ngFor="let data of dr_list" >
+            <div class="upper">
+                <div class="left-date">
+                    <div class="date-section">
+                        <p>{{data.date_created | date:'d MMM y'}}</p>
+                        <p>Date Created</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mid">
+                <div class="content-info" >
+                    <div class="left-info" >
+                        <div class="circle" >{{data.company_name.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    
+                    <div class="right-info" (click)="!userId ? dealer_detail(data.dr_id) : ''">
+                        <p *ngIf="data.dealer_verify!=0"> {{data.company_name.toUpperCase()}} (Verified)</p>
+                        <p *ngIf="data.dealer_verify==0"> {{data.company_name.toUpperCase()}}</p>
+                        <p > {{data.name | titlecase}} ({{data.mobile}})</p>
+                    </div>
+                </div>
+                <div class="tag-info">
+                    <a href="tel:{{data.mobile}}"><i class="material-icons">phone</i></a>
+                </div>
+            </div>
+            <div class="lower"  *ngIf=" data.address  || data.state  || data.district  || data.city  || data.area  || data.pincode"(click)="dealer_detail(data.dr_id)">
+                <p>Address</p>
+                <p>{{data.address}} {{!data.state ? 'N/A' : data.state | titlecase}} {{!data.district ? '' : ', '+data.district | titlecase}}  {{!data.pincode ? '' : ' - '+data.pincode}}</p>
+            </div>
+        </div>  
+    </div>
+</ion-content>
+
+<div class="cus-fab" *ngIf="!userId">
+    <button (click)="add_dealer_lead()">
+        <i class="material-icons">add</i>
+    </button>
+</div>

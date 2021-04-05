@@ -1,0 +1,29 @@
+
+<ion-header>
+	<ion-navbar>
+		<ion-title>Latest News</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="glsec m16">
+		<div class="figuree" *ngFor="let list of news_list;let i=index" (click)="goOnNewsDetailPage(list.id)">
+			<div class="csr">
+				<div class="thumb" >
+					<img src={{list.image}} alt="">
+				</div>
+			</div>
+			<div class="csl">
+				<div class="description">
+					<p>{{list.title | lowercase |titlecase}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+		<ion-infinite-scroll-content
+		loadingSpinner="bubbles"
+		loadingText="Loading more data...">
+	</ion-infinite-scroll-content>
+   </ion-infinite-scroll>
+</ion-content>

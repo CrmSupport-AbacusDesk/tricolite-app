@@ -1,0 +1,206 @@
+<ion-header [hidden]="true">
+    <ion-navbar>
+        <ion-title>
+        </ion-title> 
+    </ion-navbar>
+</ion-header>
+
+<ion-content >
+    <div class="dashboard_header">
+        <div class="csm_header">
+            <div class="logo flat"><img src="assets/imgs/p-logo.png" alt=""></div>
+            <div class="buttons">
+                <button ion-button (click)="open_menu()"><img src="assets/imgs/menu_icon.svg" alt="" class="menu_icon"></button>
+            </div>
+        </div>
+    </div>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="Pull to refresh"     refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    
+    <!-- <div class="banner" *ngIf="!banner.length">
+        <img src="assets/imgs/no-thumbnail.jpg">
+    </div>
+    <div class="banner" *ngIf="banner.length">
+        <img src="assets/imgs/banner.png">
+        <ion-slides pager autoplay=3000  >
+            <ion-slide *ngFor="let list of banner; let i=index" >
+                <img src="http://phpstack-83335-1428632.cloudwaysapps.com/dd_api/app/uploads/{{list.banner}}">
+            </ion-slide>
+        </ion-slides>
+    </div> -->
+    
+    <div class="banner" *ngIf="dashboardData.banners && !dashboardData.banners.length">
+        <img src="assets/imgs/no-thumbnail.jpg">
+    </div>
+
+    <div class="cs-slider" *ngIf="dashboardData.banners && dashboardData.banners.length">
+            <ion-slides pager autoplay=3000>
+              <ion-slide *ngFor="let list of dashboardData.banners; let i=index">
+                <img src="http://phpstack-83335-1428632.cloudwaysapps.com/uploads/banners/{{list.banner}}" alt="slide1">
+              </ion-slide>
+              <!-- <ion-slide>
+                <img src="http://www.toyzone.in/web/image/2951" alt="slide2">
+              </ion-slide>
+              <ion-slide>
+                <img src="http://www.toyzone.in/web/image/2954" alt="slide3">
+              </ion-slide>
+              <ion-slide>
+                <img src="http://www.toyzone.in/web/image/2947" alt="slide4">
+              </ion-slide> -->
+            </ion-slides>
+    </div>
+
+                                                               
+    <div class="product-option">
+        <div class="main-box" (click)="goOnProductPage()">
+            <div class="product-box">
+                <img src="assets/imgs/product-1.svg">
+            </div>
+            <div class="heading">
+                <h4>Products</h4>
+            </div>
+            <span>{{!dashboardData.prodCount? '0' :dashboardData.prodCount}}</span>
+        </div>
+        
+        <div class="main-box" (click)="goToassignedDr()" *ngIf="constant.UserLoggedInData.all_data?.type!=7">
+            <div class="product-box">
+                <img src="assets/imgs/hand.svg">
+            </div>
+            <div class="heading">
+                <h4 *ngIf="constant.UserLoggedInData.all_data?.type==1">My Dealers</h4>
+                <h4 *ngIf="constant.UserLoggedInData.all_data?.type==3">My Distributors</h4>
+                <!-- <h4 *ngIf="constant.UserLoggedInData.all_data.type==3">My Distributors</h4> -->
+                <!--<h4>{{lable}}</h4> -->
+            </div>
+            <span *ngIf="constant.UserLoggedInData.all_data?.type==1">{{dashboardData.drCount}}</span>
+            <span *ngIf="constant.UserLoggedInData.all_data?.type==3">{{dashboardData.drCount}}</span>
+        </div>
+        
+        <div class="main-box" (click)="goToarrivals()" >
+            <div class="product-box">
+                <img src="assets/imgs/neweffect.gif">
+            </div>
+            <div class="heading">
+                <h4>New Arrivals</h4>
+            </div>
+            <span>{{!dashboardData.newProdCount? '0' :dashboardData.newProdCount}}</span>
+        </div>
+    </div>
+    
+    <div class="pd-left-right16">
+        <div class="go-btn mb16" (click)="goToOrders('Primary')" *ngIf="dashboardData.primary && constant.UserLoggedInData.all_data?.type==1">
+            <div class="g-left">
+                <p>{{dashboardData.primary.total_count}}</p>
+                <p>Total</p>
+            </div>
+            <div class="g-right">
+                <div class="g-content" >
+                    <p>Primary Order</p>
+                    <p> ₹ {{dashboardData.primary.total_amount  }}</p>
+                </div>
+                <div class="g-count">
+                    <i class="material-icons">keyboard_arrow_right</i>
+                </div>
+            </div>
+        </div>
+        <div class="go-btn" (click)="goToOrders('Primary')" *ngIf="dashboardData.primary && constant.UserLoggedInData.all_data?.type!=1">
+            
+            <div class="g-left">
+                <p>{{dashboardData.primary.total_count}} </p>
+                <p>Total</p>
+            </div>
+            <div class="g-right">
+                <div class="g-content">
+                    <p>Primary Order</p>
+                    <p> ₹ {{dashboardData.primary.total_amount }}</p>
+                </div>
+                <div class="g-count">
+                    <i class="material-icons">keyboard_arrow_right</i>
+                </div>
+            </div>
+        </div>
+        <div class="go-btn" (click)="goToOrders('Secondary')" *ngIf="dashboardData.secondary && constant.UserLoggedInData.all_data?.type==1">
+            
+            <div class="g-left">
+                <p>{{dashboardData.secondary.total_count   }}</p>
+                <p>Total</p>
+            </div>
+            <div class="g-right">
+                <div class="g-content">
+                    <p>Secondary Order</p>
+                    <p> ₹ {{dashboardData.secondary.total_amount}}</p>
+                </div>
+                <div class="g-count">
+                    <i class="material-icons">keyboard_arrow_right</i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div class="pd-left-right16 mt20" (click)="goToVideosPage('Product Installation')">
+        <div class="go-btn artificial">
+            <div class="g-left">
+                <img src="assets/imgs/online-learning.svg">
+            </div>
+            <div class="g-right">
+                <div class="g-content" >
+                    <p>Installation Videos</p>
+                </div>
+                <div class="g-count">
+                    <i class="material-icons">arrow_right_alt</i>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
+    <div style="padding: 15px 10px 10px 10px;">
+        <div class="btns" >
+            <button  (click)="newOrder()">
+                <div class="lf-btn">
+                    <i class="material-icons">add_shopping_cart</i>
+                </div>
+                <div class="rt-btn">
+                    <p>Add New Order </p>
+                </div>
+            </button>
+            <button (click)="goOnContactPage()">
+                <div class="lf-btn">
+                    <i class="material-icons">call</i>
+                </div>
+                <div class="rt-btn">
+                    <p>Contact Us</p>
+                </div>
+            </button>
+            
+        </div>
+        
+        <div class="btns" *ngIf="constant.UserLoggedInData.all_data?.type!=3">
+            
+            <button (click)="delaerexecutive('dealer')" *ngIf="constant.UserLoggedInData.all_data?.type!=7">
+                <div class="lf-btn">
+                    <i class="material-icons">how_to_reg</i>
+                </div>
+                <div class="rt-btn">
+                    <p>Add New Dealer</p>
+                </div>
+            </button>
+            
+            <button (click)="goto_executive()" >
+                <div class="lf-btn">
+                    <i class="material-icons">work</i>
+                </div>
+                <div class="rt-btn">
+                    <p>My Executive</p>
+                </div>
+            </button>
+            
+        </div>
+        
+        
+    </div>
+    
+    
+</ion-content>
+

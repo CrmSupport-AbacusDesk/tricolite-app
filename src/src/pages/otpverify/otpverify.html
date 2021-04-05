@@ -1,0 +1,39 @@
+<ion-content>
+    <div class="cm-header">
+        <div class="outer">
+            <div class="innear">
+                <p>Enter OTP Number</p>
+            </div>
+        </div>
+    </div>
+    
+    <div padding>
+        <p class="cm-paragraph padding16" text-center>Please input the verification code sent <br> to <strong style="color: #005197;">{{data_value.phone}}</strong></p>
+    </div>
+    
+    <form [formGroup]="otpForm" autocomplete="off">
+        <div text-center padding>
+            <div class="ent-token-field">
+                <ion-input type="tel" placeholder="*" maxlength="1"  tabindex="1" #a (keyup)="moveFocus(b,'',$event) " formControlName="one" [(ngModel)]="otp_values.one"></ion-input>
+                <ion-input type="tel" placeholder="*" maxlength="1"  tabindex="2" #b (keyup)="moveFocus(c,a,$event)" formControlName="two" [(ngModel)]="otp_values.two"></ion-input>
+                <ion-input type="tel" placeholder="*" maxlength="1"  tabindex="3" #c (keyup)="moveFocus(d,b,$event)" formControlName="three" [(ngModel)]="otp_values.three"></ion-input>
+                <ion-input type="tel" placeholder="*" maxlength="1"  tabindex="4" #d (keyup)="moveFocus(e,c,$event)" formControlName="four" [(ngModel)]="otp_values.four"></ion-input>
+                <ion-input type="tel" placeholder="*" maxlength="1"  tabindex="5" #e (keyup)="moveFocus(f,d,$event)" formControlName="five" [(ngModel)]="otp_values.five"></ion-input>
+                <ion-input type="tel" placeholder="*" maxlength="1"  tabindex="6" #f (keyup)="moveFocus('',e,$event)" formControlName="six" [(ngModel)]="otp_values.six"></ion-input>
+            </div>
+        </div>
+        
+        <div class="resend pr32 opacity" *ngIf="resendActiveClass==true">	
+            <a >Resend Otp will Be available in {{maxTime}} sec</a>
+        </div>	
+        <div class="resend pr32" *ngIf="resendActiveClass==false">	
+            <a (click)="resendOtp()">Resend OTP</a>
+        </div>
+        <div class="cs-btns pt32 pl32 pr32">
+            <button color="theme" (click)="check_otp()" [ngClass]="otpForm.valid ? 'active' : ''" [disabled]="!otpForm.valid">CONFIRM</button>
+        </div>
+        <div class="rsnd pb32" text-center *ngIf="disable_resend_button">
+            <a class="font16 relative"><img src="assets/imgs/ic_watch.svg" alt="" class="h20 absolute">&nbsp; &nbsp; &nbsp; &nbsp;{{final_time}}</a>
+        </div>
+    </form>
+</ion-content>

@@ -1,0 +1,53 @@
+<!--
+  Generated template for the CustomerCheckinPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Customer Checkin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <div class="nothing-here" *ngIf="!customer_checkin_list.length && load_data == '1' ">
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/nothing.svg" alt="">
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="checkinlist" *ngIf="customer_checkin_list.length">
+        <a *ngFor="let val of customer_checkin_list" (click)="checkin_detail(val.checkin_id)" >
+            <div class="csheader">
+                <div class="cs-left">
+                    <p>Date : <span>{{val.activity_date | date: 'MMM d, y'}}</span></p>
+                </div>
+                <!-- <div class="cs-right">
+                    <p>Visit Start : <span>{{val.visit_start | date: 'h:mm a'}}</span></p>
+                </div> -->
+            </div>
+            
+            <div class="csmiddle">
+                <div class="csicon">T</div>
+                <div class="csdesc pcvr">
+                    <h1>{{val.name| titlecase }}</h1>
+                    <p *ngIf="val.address == ''"><i class="material-icons">place</i>N A</p>
+                    <p *ngIf="val.address != ''"><i class="material-icons">place</i>{{val.address}}</p>
+                </div>
+            </div>
+            
+          
+        </a>
+        
+    </div>
+
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-content>
+	
+	<div class="cs-hedaer2">
+		<img class="logo" src="assets/imgs/p-logo.png" alt="">
+	</div>
+	
+	
+
+	<ion-list radio-group [(ngModel)]="data.registerType" >
+		<ion-list-header class="border-heading">
+			Select Registration/Login Type
+		</ion-list-header>
+	  
+		<!-- <ion-item>
+		  <ion-label>Consumer</ion-label>
+		  <ion-radio value="Customer" ></ion-radio>
+		</ion-item> -->
+
+		<ion-item>
+		  <ion-label>Executive</ion-label>
+		  <ion-radio  value="Employee"></ion-radio>
+		</ion-item>
+	  
+	  
+		<!-- <ion-item>
+		  <ion-label>Plumber</ion-label>
+		  <ion-radio  value="Plumber"></ion-radio>
+		</ion-item> -->
+
+		<ion-item>
+			<ion-label>Dealer/Distributor</ion-label>
+			<ion-radio  value="DrLogin"></ion-radio>
+		</ion-item>
+
+		<ion-item>
+			<ion-label>New Registration</ion-label>
+			<ion-radio  value="registration"></ion-radio>
+		  </ion-item>
+	  </ion-list>
+	
+	
+</ion-content>
+
+<ion-footer>
+	<button ion-button  class="signup-btn back-btn" (click)="goToHome()"><i class="material-icons">arrow_back</i>Back</button>
+	<button ion-button [disabled]="!data?.registerType" (click)="goToRegisterPage()" class="signup-btn">GO <i class="material-icons">arrow_forward</i></button>
+</ion-footer>
+

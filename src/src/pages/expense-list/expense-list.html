@@ -1,0 +1,79 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{expenseType}} Expense List</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+
+        <!-- <ion-icon name="ellipsis-vertical"></ion-icon> -->
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <div class="sticky bg-white">
+    <div  class="round-tab">
+      <ul>
+        <li [ngClass]="{'active':expenseStatus == 'Pending'}" (click)="expenseStatus = 'Pending';getExpenseList()">
+          <a>Pending</a>
+        </li>
+        <li [ngClass]="{'active':expenseStatus == 'Approved'}" (click)="expenseStatus = 'Approved';getExpenseList()">
+          <a>Approved</a>
+        </li>
+        <li [ngClass]="{'active':expenseStatus == 'Reject'}" (click)="expenseStatus = 'Reject';getExpenseList()"> 
+          <a>Reject</a>
+        </li>
+        <!-- <li [ngClass]="{'active':expenseStatus == 'Cancel'}" (click)="expenseStatus = 'Cancel';getExpenseList()">
+          <a>Cancel</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+  
+  <div padding class="pb80">
+    <div class="cs-list-item" (click)="deatilPage(row.id)" *ngFor="let row of expenseList">
+      <div class="cs-top">
+        <div class="list-content af-none">
+          <p>{{row.dateCreated | date:'d MMM y'}}</p>
+          <span>Date Created</span>
+        </div>
+        
+        <div class="left-auto">
+          <p class="inr-rupy"> &#x20B9; {{row.totalAmt}}</p>
+        </div>
+      </div>
+      <div class="travel-type">{{row.expenseType}}</div>
+      <div class="middle-content">
+        <div class="col-box">
+          <p>Senior Status</p>
+          <span>{{row.seniorStatus}}</span>
+        </div>
+        <div class="col-box">
+          <p>A/C Status</p>
+          <span>{{row.acStatus}}</span>
+        </div>
+        <div class="col-box">
+          <p>Ref ID</p>
+          <span>---</span>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="nothing-here" style="height: 50%;" *ngIf="!expenseList?.length && sendRequest">
+      <div class="outer">
+          <div class="innear">
+              <img src="assets/imgs/no_found.svg" alt="">
+              <p>Data not Available</p>
+          </div>
+      </div>
+  </div>
+  
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="addPage()" ><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>

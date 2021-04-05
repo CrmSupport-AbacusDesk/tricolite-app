@@ -1,0 +1,71 @@
+<ion-header class="catalogue-header" no-border>
+    <ion-navbar>
+        <ion-title>Apply Leave</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form #f1="ngForm" (ngSubmit)="f1.valid && add_leave()" autocomplete="off">
+        <div class="edit">
+            <ion-list>
+                <div>
+                    <ion-item  class="cs-normal-select mt16 mb0" [ngClass]="{'cs-error':f1.submitted && subject?.invalid}">
+                        <ion-label>Select type</ion-label>
+                        <ion-select  placeholder="Select Type" name="type" required #type="ngModel"  [(ngModel)]="data.type">
+                            <ion-option value="Full Day">Full Day</ion-option>
+                            <ion-option value="Half Day">Half Day</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <p *ngIf="f1.submitted && type?.invalid"  class="error-line relative">Leave Type is Required!</p>
+                    
+                    <ion-item [ngClass]="{'cs-error':f1.submitted && subject?.invalid}">
+                        <ion-label floating><span>Subject *</span></ion-label>
+                        <ion-input type="text" style="height: 28px;" name="subject" placeholder="Enter Subject" [(ngModel)]="data.subject" #subject="ngModel" [ngClass]="{'is-invalid':f1.submitted && subject?.invalid}" required></ion-input>
+                    </ion-item>
+                    
+                    <p *ngIf="f1.submitted && subject?.invalid"  class="error-line relative">Subject is Required!</p>
+                    
+                    <ng-container *ngIf="data.type=='Full Day'">
+                        
+                        <ion-item [ngClass]="{'cs-error':f1.submitted && leave_start_date?.invalid}" >
+                            <ion-label floating><span>Leave Start Date *</span></ion-label>
+                            <ion-datetime display-format="MMM DD, YYYY" placeholder ="Select Leave Start Date" min="{{today_date}}" name="leave_start_date" [(ngModel)]="data.leave_start_date" #leave_start_date="ngModel" [ngClass]="{'is-invalid':f1.submitted && leave_start_date?.invalid}" required></ion-datetime>
+                        </ion-item>
+                        
+                        <p *ngIf="f1.submitted && leave_start_date?.invalid"  class="error-line relative">Leave Start Date is Required!</p>
+                        
+                        <ion-item [ngClass]="{'cs-error':f1.submitted && leave_end_date?.invalid}">
+                            <ion-label floating><span>Leave End Date * </span></ion-label>
+                            <ion-datetime display-format="MMM DD, YYYY" name="leave_end_date" min="{{data.leave_start_date}}" placeholder ="Select Leave End Date" [(ngModel)]="data.leave_end_date" #leave_end_date="ngModel" [ngClass]="{'is-invalid':f1.submitted && leave_end_date?.invalid}" required></ion-datetime>
+                        </ion-item>
+                        <p *ngIf="f1.submitted && leave_end_date?.invalid"  class="error-line relative">Leave End Date is Required!</p>
+                        
+                    </ng-container>
+                    
+                    
+                    <ng-container *ngIf="data.type=='Half Day'">
+                        
+                        <ion-item [ngClass]="{'cs-error':f1.submitted && leave_start_date?.invalid}" >
+                            <ion-label floating><span>Leave Date *</span></ion-label>
+                            <ion-datetime display-format="MMM DD, YYYY" placeholder ="Select Leave  Date" min="{{today_date}}" name="leave_start_date" [(ngModel)]="data.leave_start_date" #leave_start_date="ngModel" [ngClass]="{'is-invalid':f1.submitted && leave_start_date?.invalid}" required></ion-datetime>
+                        </ion-item>
+                        
+                        <p *ngIf="f1.submitted && leave_start_date?.invalid"  class="error-line relative">Leave  Date is Required!</p>
+                        
+                        
+                    </ng-container>
+                    
+                    
+                    <ion-item class="cs-textarea1" >
+                        <ion-label floating><span>Description</span></ion-label>
+                        <ion-textarea name="description" placeholder="Enter Description" [(ngModel)]="data.description"></ion-textarea>
+                    </ion-item>
+                </div>
+            </ion-list>
+            <div >
+            </div>
+            <button ion-button block class="h40 green-color mt15" style="letter-spacing: 1px;" >Submit</button>
+        </div>
+    </form>
+</ion-content>
+

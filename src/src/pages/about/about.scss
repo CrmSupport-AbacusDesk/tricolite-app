@@ -1,0 +1,279 @@
+page-about {
+    .new-contact
+    {
+        .new-text
+        {
+            padding: 16px;
+            
+            h1
+            {
+                font-size: 14px;
+                margin-bottom: 16px !important;
+                line-height: 18px;
+                letter-spacing: 0.5px;
+                font-weight: 600;
+            }
+            
+            p
+            {
+                font-size: 14px;
+                line-height: 22px;
+                text-align: justify;
+            }
+        }
+        
+        .image-section
+        {
+            display: flex;
+        }
+        
+        .contact-bottom
+        {
+            //  background: linear-gradient(to top, #198dcd, #0d98e4,);
+            padding: 16px;
+            
+            .left-cont
+            {
+                display: flex;
+                margin-bottom: 16px;
+                
+                i
+                {
+                    
+                    font-size: 25px;
+                    margin-right: 16px;
+                }
+                
+                .text-content
+                {
+            
+                    
+                    h1
+                    {   
+                        font-size: 14px;
+                        margin-bottom: 3px !important;
+                    }
+                    
+                    p
+                    {
+                        font-size: 13px;
+                        line-height: 18px;
+                        letter-spacing: 1px;
+                        font-weight: 400;
+                    }
+                }
+                
+                &:last-child
+                {
+                    margin-bottom: 0px !important;
+                }
+            }            
+        }
+    }
+}
+
+
+
+.clcsd
+{
+    ul
+    {
+        &.collapsible
+        {
+            list-style: none;
+            
+            li
+            {
+                transition: 0.5s;
+                
+                .collapsible-header
+                {
+                    padding: 16px 20px;
+                    background: #fff;
+                    position: relative;
+                    border-bottom: solid 1px #d6d6d6;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    
+                    
+                    .counter
+                    {
+                        text-align: left;
+                        font-size: 13px;
+                        color: #143143;
+                        font-weight: 500;
+                        line-height: 13px;
+                        min-width: 20px;
+                    }
+                    
+                    h2
+                    {
+                        text-align: left;
+                        font-size: 13px;
+                        color: #143143;
+                        font-weight: 500;
+                        line-height: 20px;
+                        padding-right: 16px !important;
+                    }
+                    
+                    &:after
+                    {
+                        position: absolute;
+                        content: "";
+                        background: url(../assets/icons/plus-ic.svg) no-repeat center;
+                        background-size: 10px;
+                        width: 20px;
+                        height: 20px;
+                        right: 16px;
+                        transition: 0.3s linear;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                    
+                }
+                .clear-btn
+                {
+                    line-height: 35px;
+                    text-align: center;
+                    // background: #ccc;
+                    color: #fff;
+                    font-size: 14px;
+                    letter-spacing: 2px;
+                    // @extend.semibold;   
+                }
+                
+                .collapsible-body
+                {
+                    display: none;
+                    padding: 20px;
+                    height: auto;
+                    min-height: auto;
+                    // max-height: 180px;
+                    overflow: auto;
+                    background: #daf5fe;
+                    
+                    p
+                    {
+                        font-size: 12px;
+                        line-height: 22px;                        
+                    }
+                }
+                
+                &.active
+                {
+                    position: relative;
+                    transition: 0.5s;
+                    
+                    .collapsible-header
+                    {
+                        position: sticky;
+                        top: 0px;
+                        z-index: 9;
+                        border-bottom: 0px;
+                        background: #def5ff;
+                        // padding-bottom: 0px;
+                        
+                        &:after
+                        {
+                            background: url(../assets/icons/minus-ic.svg) no-repeat center;
+                            background-size: 10px;
+                            top: 50%;
+                        }
+                    }
+                    
+                    .collapsible-body
+                    {
+                        display: block;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+
+
+
+
+
+
+.cnct-us 
+{
+    padding: 16px 0px;
+    position: relative;
+    // margin-top: 40px;
+    margin-bottom: 20px;
+    
+    h2
+    {
+        position: relative;
+        font-size: 18px;
+        text-align: center;
+        color: #fc0;
+        
+        span
+        {
+            color:#ffffff;
+            font-weight: 600;
+        }
+        
+        &:after
+        {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 2px;
+            background: #ffffff;;
+        }
+    }
+    
+    &:after
+    {
+        content: '';
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 12px;
+        height: 12px;
+        background: #ffffff;;
+    }
+    
+    &.cnct-us-1
+    {
+        h2
+        {
+            color: #dc9a1e;
+            
+            span
+            {
+                color:#19191f;
+            }
+            
+            &:after
+            {
+                background: #d9b974;;
+            }
+        }
+        
+        &:after
+        {
+            background: #d09830;;
+        }
+    }
+}
+
+.us-logo
+{
+    display: flex;
+}
+.about{
+text-align: justify;
+margin-left: -33px;
+
+}

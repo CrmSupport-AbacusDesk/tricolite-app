@@ -1,0 +1,28 @@
+page-support {
+
+     
+    .contact-icons
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        border: 2px solid #285297;
+        border-radius: 6px;
+        
+        ion-icon
+        {
+            color: #285297;
+            font-size: 22px;
+        }
+    }
+    
+    ion-item
+    {
+        h2
+        {
+            font-size: 14px !important;
+        }
+    }
+
+}

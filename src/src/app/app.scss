@@ -1,0 +1,119 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+
+ion-menu
+{
+    background: rgba(0, 0, 0, 0.4);
+    
+    ion-header
+    {
+        text-align: center;
+        img
+        {
+            margin: 15px 0px 4px 0px;
+            height: 110px;
+        }
+        
+    }
+    
+    ion-content
+    {
+        .option
+        {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #cecece;
+            margin: 0px 16px;
+            
+            .material-icons
+            {
+                float: left;
+                margin: -1px 15px 0px 15px;
+                color: $theme5;
+                font-size: 18px;
+            }
+            a
+            {
+                float: left;
+                color: #000;
+                font-size: 13px;
+                text-transform: capitalize;
+                text-decoration: none;
+                @extend.regular;
+            }            
+        }
+        .home-list
+        {
+            button
+            {
+                background: $theme5 !important;
+                height: 90px;
+                
+                .thumb
+                {
+                    background: #ffffff;
+                    height: 50px;
+                    min-width: 50px;
+                    width: 50px;
+                    border-radius: 100px;
+                    overflow: hidden;
+                    margin-right: 16px;
+                    
+                    p
+                    {
+                        text-transform: uppercase;
+                        color: $theme5;
+                        font-size: 22px;
+                        @extend.semibold;
+                    }
+                    
+                    img
+                    { 
+                        height: 50px;
+                        width: 50px;
+                        object-fit: cover;
+                    }
+                }
+                
+                .description
+                {
+                    color: #ffffff;
+                    
+                    h2
+                    {
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        font-size: 16px;
+                        @extend.semibold;
+                    }
+                    
+                    ion-icon
+                    {
+                        font-size: 20px !important;
+                        color: #ffffff !important;
+                        top: 18px !important;
+                    }
+                }
+            }
+            
+        }
+        
+    }
+    
+}

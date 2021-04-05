@@ -1,0 +1,67 @@
+<ion-header>
+    
+    <ion-navbar>
+        <ion-title *ngIf="DrType==1">My Distributor</ion-title>
+        <ion-title *ngIf="DrType==7">My Direct Dealers</ion-title>
+        <ion-title *ngIf="DrType==3">My Dealers</ion-title>
+    </ion-navbar>  
+    <ion-toolbar>
+        <ion-searchbar (keyup.enter)="get_distributor_list()" [(ngModel)]="search" name="search" ></ion-searchbar>
+    </ion-toolbar>  
+    
+</ion-header>
+
+
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="Pull to refresh"  refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+	</ion-refresher>
+    <div class="nothing-here" *ngIf="!distributor_list.length && load_data == '1'">
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/nothing.svg" alt="">
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div> 
+    
+    
+    <div class="pd-left-right16">
+        <div class="list-box mt16" *ngFor="let data of distributor_list" (click)="distributor_detail(data.id)">
+            
+            <div class="mid mt0">
+                <div class="content-info" >
+                    <div class="left-info" >
+                        <div class="circle">{{data.company_name.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    
+                    <div class="right-info">
+                        <p>{{data.company_name.toUpperCase()}}</p>
+                        <!-- <p *ngIf="data.creator">{{data.name | titlecase}} ({{data.mobile}})</p> -->
+                        <p >{{data.name | titlecase}} ({{data.mobile}})</p>
+                    </div>
+                </div>
+                <div class="tag-info">
+                    <a href="tel:{{data.mobile}}"><i class="material-icons">phone</i></a>
+                </div>
+            </div>
+            <div class="lower"  *ngIf=" data.address  || data.state  || data.district  || data.city  || data.area  || data.pincode">
+                <p>Address</p>
+                <p>{{data.address}} {{data.state | titlecase}} {{data.district | titlecase}} {{data.city | titlecase}} {{data.area | titlecase}}  {{data.pincode}}</p>
+            </div>
+        </div>  
+    </div>
+    
+    
+    <!-- infinite scroll -->
+    
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <!-- infinite scroll end -->
+    
+</ion-content>
+
+

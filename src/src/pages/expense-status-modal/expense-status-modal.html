@@ -1,0 +1,38 @@
+<ion-content  class="transprant-bg">
+  <div class="work-modal">
+    <div class="work-modal-bg">
+      <div>
+        
+        <div class="head">
+          <h2>Change Status</h2>
+          <a class="close" (click)="dismiss()"><i class="material-icons">close</i></a>
+        </div>
+        <div class="edit mt10 ml0 mr0">
+          <ion-list>
+            <div>
+    
+                <ion-item class="cs-normal-select mt16">
+                    <ion-label>Status</ion-label>
+                    <ion-select name="status" [(ngModel)]="data.status">
+                        <ion-option value="Approved">Approved</ion-option>
+                        <ion-option value="Reject">Reject</ion-option>
+                    </ion-select>
+                </ion-item>
+    
+                <ion-item class="cs-textarea1" *ngIf="data.status == 'Reject'">
+                    <ion-label floating><span>Reason For Rejet</span></ion-label>
+                    <ion-textarea name="reason" [(ngModel)]="data.reason"></ion-textarea>
+                </ion-item>
+            </div>          
+          </ion-list>
+    
+      </div>
+        
+        <div class="text-right mt32">
+          <button ion-button color="secondary" [disabled]="!data.status || (data.status == 'Reject' && !data.reason)" (click)="update_status()">Update</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</ion-content>

@@ -1,0 +1,109 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Attendence
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="cs-calender">
+        <div class="in-clnd">
+            <div class="csm-header">
+                <p>{{currentYear}}</p>
+                <h1>{{TodayDate | date : 'EEEE, MMMM d'}}</h1>
+            </div>
+            <div class="calendar-header">
+                <button (click)="goToLastMonth()"><i class="material-icons"> keyboard_arrow_left</i></button>
+                <p>{{currentMonth}} {{currentYear}}</p>
+                <button (click)="goToNextMonth()"><i class="material-icons" > keyboard_arrow_right</i></button>
+            </div>
+            <div class="calendar-body" >
+                <ion-grid>
+                    <ion-row class="calendar-weekday">
+                        <ion-col col-1>Sun</ion-col>
+                        <ion-col col-1>Mon</ion-col>
+                        <ion-col col-1>Tue</ion-col>
+                        <ion-col col-1>Wed</ion-col>
+                        <ion-col col-1>Thr</ion-col>
+                        <ion-col col-1>Fri</ion-col>
+                        <ion-col col-1>Sat</ion-col>
+                    </ion-row>
+                    <ion-row class="calendar-date">
+                        <ion-col col-1 class="last-month" *ngFor="let lastDay of daysInLastMonth">
+                            <span> {{lastDay}}  </span>
+                        </ion-col>
+                        <ion-col col-1  *ngFor="let day of daysInThisMonth;let i=index">
+                            <span class="current Date csblue activated" (click)="date_click(i,day.login_date)" *ngIf="currentDate === day.day;">
+                                {{day.day}} 
+                            </span>
+                            <span class="otherDate {{day.class}} " [ngClass]="{'activated' : day.activated == 1}" *ngIf="currentDate > day.day;" (click)="date_click(i,day.login_date)">
+                                    {{day.day}}
+                                </span>
+                            <span class="otherDate next-month" *ngIf="currentDate < day.day;" >
+                                {{day.day}}
+                            </span>
+                        </ion-col>
+                        <ion-col col-1 class="next-month" *ngFor="let nextDay of daysInNextMonth">
+                            <span>{{nextDay}}</span>
+                        </ion-col>
+                        
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </div>
+    </div>
+    <!-- when clicked on specific date -->
+    
+    <div class="at-datainfo" *ngIf="start_time && load_data == 1 && load == 0 ">
+        <table>
+            <tr>
+                <td>
+                    <p>Work Time Start</p>
+                    <p>{{start_time }}</p>
+                </td>
+                <td>
+                    <p>Work Time Stop</p>
+                    <p *ngIf="stop_time == '12:00AM' ">- - - </p>
+                    <p  *ngIf="stop_time != '12:00AM' ">{{stop_time}}</p>
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    
+    <div class="at-datainfo" *ngIf="attendence_data && calender == '1' && load == 1 ">
+        <table>
+            <tr>
+                <td>
+                    <p>Work Time Start</p>
+                    <p>{{attendence_data.start_time }}</p>
+                </td>
+                <td>
+                    <p>Work Time Stop</p>
+                    <p *ngIf="attendence_data.stop_time == '12:00AM' ">- - - </p>
+                    <p  *ngIf="attendence_data.stop_time != '12:00AM' ">{{attendence_data.stop_time}}</p>
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- end -->
+    <!-- attendence data of today date -->
+    <div class="at-datainfo" *ngIf="(stop_time != '00:00:00') && (not_calender == '1') && load == 1">
+        <table>
+            <tr>
+                <td>
+                    <p>Work Time Start</p>
+                    <p>{{start_time}}</p>
+                </td>
+                <td>
+                    <p>Work Time Stop</p>
+                    <p *ngIf="stop_time == '12:00AM' ">- - -</p>
+                    <p *ngIf = "stop_time != '12:00AM' ">{{stop_time}}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</ion-content>

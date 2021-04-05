@@ -1,0 +1,217 @@
+<!-- 
+<ion-header class="main-header" >
+	<ion-navbar>
+		<ion-title>My Points</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content  pullingIcon="arrow-dropdown"
+		pullingText="Pull to refresh"
+		refreshingSpinner="circles"
+		refreshingText="Refreshing...">
+	</ion-refresher-content>
+</ion-refresher>
+<div class="profile-point padding16">
+	<h4>Points information</h4>
+	<ul>
+		<li>
+			<div class="pints">
+				<h3>₹{{karigar_point.service_wallet_balance_points}}</h3>
+				<p>Service <br>Wallet</p>
+				<span>POINTS</span>
+			</div>
+		</li>
+		<li>
+			<div class="pints">
+				<h3>₹{{karigar_point.balance_point}}</h3>
+				<p>Loyalty <br>Balance</p>
+				<span>POINTS</span>
+			</div>
+		</li>
+		<li>
+			<div class="pints">
+				<h3>₹{{conInt(karigar_point.balance_point) + conInt(karigar_point.service_wallet_balance_points)}}</h3>
+				<p>Total</p>
+				<span>POINTS</span>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div *ngIf="!coupon_list.length" class="data-not"> 
+	<img  src="assets/imgs/data-not-found.png">
+</div>
+<div *ngIf="coupon_list.length"class="main-div">
+	<div class="point-box listview-point">
+		<button ion-item  *ngFor="let list of coupon_list; let i=index" >
+			<h1>Get Point</h1>
+			<div class="point-info">
+				<h2>{{list.coupon_value}}</h2>
+				<p>{{list.scan_date | date:'d MMMM y'}}</p>
+			</div>
+		</button>
+	</div>
+	<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+		<ion-infinite-scroll-content
+		loadingSpinner="bubbles"
+		loadingText="Loading more data...">
+	</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</div>
+
+</ion-content>
+<ion-footer class="csm-footer-tabs">
+    <div class="ftabs">
+        <button ion-item [ngClass]="{'active': filter.active_tab == 'points'}" (click)="change_tab('points')"><p>Points History</p></button>
+        <button ion-item  [ngClass]="{'active': filter.active_tab == 'redeem'}" (click)="change_tab('redeem')"><p>Redeem History</p></button>
+    </div>
+</ion-footer>  -->
+<!-- new code for redeem requests -->
+
+<ion-header class="main-header" >
+    <ion-navbar>
+        <ion-title>My Points</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+    </ion-refresher-content>
+</ion-refresher>
+
+<div class="profile-point padding16 pb10">
+	<h4>Points information</h4>
+	<ul>
+		<li>
+			<div class="pints">
+				<h3>₹{{karigar_point.service_wallet_balance_points}}</h3>
+				<p>Service <br>Wallet</p>
+				<span>POINTS</span>
+			</div>
+		</li>
+		<li>
+			<div class="pints">
+				<h3>₹{{karigar_point.balance_point}}</h3>
+				<p>Loyalty <br>Balance</p>
+				<span>POINTS</span>
+			</div>
+		</li>
+		<li>
+			<div class="pints">
+				<h3>₹{{conInt(karigar_point.balance_point) + conInt(karigar_point.service_wallet_balance_points)}}</h3>
+				<p>Total</p>
+				<span>POINTS</span>
+			</div>
+		</li>
+	</ul>
+</div>
+<div *ngIf="filter.active_tab == 'points' &&  !coupon_list.length" class="data-not"> 
+    <img  src="assets/imgs/data-not-found.png">    
+</div>
+<div *ngIf="filter.active_tab == 'points' && coupon_list.length"class="main-div">
+	<div class="point-box listview-point">
+		<button ion-item  *ngFor="let list of coupon_list; let i=index" >
+			<h1>Get Point</h1>
+			<div class="point-info">
+				<h2>{{list.coupon_value}}</h2>
+				<p>{{list.scan_date | date:'d MMMM y'}}</p>
+			</div>
+		</button>
+	</div>
+	<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+		<ion-infinite-scroll-content
+		loadingSpinner="bubbles"
+		loadingText="Loading more data...">
+	</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</div>
+
+
+<!-- (click)="goOnShippingPage(list.id)" -->
+<div class="transaction-list" *ngIf="filter.active_tab == 'redeem'" >
+    <div class="his-listing" *ngFor="let list of transaction_detail; let i=index">
+        <button ion-item class="main-list"  >
+            <div class="tr-content">
+                <div class="inner">
+                    <div class="tr-cicle">
+                        <i class="material-icons">call_made</i>
+                    </div>
+                    <div class="tr-tags">
+                        <h2>Request Send</h2>
+                        <h1>{{list.gift_title | titlecase}}</h1>
+                        <p> Req Id : REQ# {{list.id }}</p>
+                        <span *ngIf="list.gift_status=='Reject' && receive_status != ''">{{list.reject_reason | titlecase}}</span>
+                    </div>
+                </div>			
+                <div class="tr-points"  >
+                    <h2>{{list.coupon_points}}</h2>
+                    <p>Points</p>
+                    <span class="refund" *ngIf="list.gift_status=='Reject' && receive_status != ''">Refunded</span>
+                </div>
+            </div>
+        </button>
+        
+        <div class="tr-status" *ngIf="list.gift_status=='Pending' && list.receive_status==''" >
+            <div class="tag">
+                <h1>{{list.date_created |date:'d MMMM y'}}</h1>
+            </div>
+            <div class="pending">
+                <p>{{list.gift_status}}</p>
+            </div>
+        </div>
+        <div class="tr-status" *ngIf="list.gift_status=='Reject' && list.receive_status=='' " >
+            <div class="tag">
+                <h1>{{list.date_created |date:'d MMMM y'}}</h1>
+            </div>
+            <div class="reject">
+                <p>{{list.gift_status}}</p>
+            </div>
+        </div>
+        <div class="tr-status" *ngIf="list.gift_status=='Approved' && list.receive_status==''">
+            <div class="tag">
+                <h1>{{list.date_created |date:'d MMMM y'}}</h1>
+            </div>
+            <div class="approved">
+                <p>{{list.gift_status}}</p>
+            </div>
+        </div> 
+        <div class="tr-status" *ngIf="list.receive_status=='Shipped'" >
+            <div class="tag btn-received">
+                <!-- <button (click)="recvConfirmation(list.id)">Receive</button> -->
+            </div>
+            <div class="shipped" >
+                <p>Shipped</p>
+            </div>
+        </div>
+        <div class="tr-status"  *ngIf="list.receive_status=='Received'">
+            <div class="tag">
+                <h1>Receive on : {{list.received_date | date:'d MMMM y'}}</h1>
+            </div>
+            <div class="received">
+                <p>Receive</p>
+            </div>
+        </div>
+    </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)"  *ngIf="flag!=1">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div class="h100"></div>
+</div>
+
+</ion-content>
+
+<ion-footer class="csm-footer-tabs">
+    <div class="ftabs">
+        <button ion-item [ngClass]="{'active': filter.active_tab == 'points'}" (click)="change_tab('points')"><p>Points History</p></button>
+        <button ion-item  [ngClass]="{'active': filter.active_tab == 'redeem'}" (click)="change_tab('redeem')"><p>Redeem History</p></button>
+    </div>
+</ion-footer> 

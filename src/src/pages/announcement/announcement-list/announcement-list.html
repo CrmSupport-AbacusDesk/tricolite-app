@@ -1,0 +1,59 @@
+<ion-header class="catalogue-header" no-border>
+	<ion-navbar>
+		<ion-title>Announcement/Notices</ion-title>
+		<ion-buttons end class="add-btn">
+			
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+	</ion-refresher>
+	
+	<div class="nothing-here" *ngIf="!announcementList.length && sendRequest == true ">
+		
+		<div class="outer">
+			<div class="innear">
+				<img src="assets/imgs/nothing.svg" alt="">
+				<p>Data not Available</p>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="pd-left-right16 mb80" >
+		<div class="list-box mt16" *ngFor="let data of announcementList" (click)="deatilPage(data.notice_id,data.id)">
+			<div class="upper">
+				<div class="left-date">
+					
+					<ng-container >
+						<div class="date-section">
+							<p>{{data.date_created | date:'d MMM, y'}}</p>
+							<p>Date </p>
+						</div>
+						
+						<!-- <div class="date-section">
+							<p>{{data.created_by_name | titlecase}}</p>
+							<p>Created By</p>
+						</div> -->
+
+					</ng-container>
+				</div>
+				
+			</div>
+			<div class="mid">
+				<div class="content-info">
+					<div class="right-info">
+						<p>Subject : <span>{{data.subject | titlecase}}</span></p>
+					</div>
+				</div>
+			</div>
+			
+		</div>  
+	</div>
+	
+	
+</ion-content>

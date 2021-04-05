@@ -1,0 +1,517 @@
+  <ion-header class="catalogue-header">
+    <ion-navbar>
+        <ion-title  *ngIf="userDetail.order_status=='Draft'" >Order Detail</ion-title>
+        <ion-title  *ngIf="userDetail.order_status!='Draft'" >{{userDetail.order_no}}</ion-title>
+        <!-- <ion-buttons end class="login-btn">
+            <button ion-button>
+                <img class="w30" src="assets/icons/profil-ic-2.svg" alt="">
+            </button>
+        </ion-buttons>
+        <ion-buttons end class="login-btn" (click)="presentPopover($event)">
+            <button ion-button>
+                <img class="w4 h16" src="assets/icons/more-option-ic.svg" alt="">
+            </button>
+        </ion-buttons> -->
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content  >
+    <div class="pd-left-right16 af_bg">
+        <ng-container *ngIf="userDetail.delivery_from!='ToyZone'" >
+            <div class="list-box mb0">
+                
+                <ng-container >
+                    <div class="upper">
+                        <div class="left-date">
+                            <div class="date-section">
+                                <p >{{userDetail.order_creator | titlecase}}</p>
+                                <p>Created By</p>
+                            </div>
+                            <div class="date-section" >
+                                <p >{{userDetail.order_date_created | date:'d MMM y hh:mm a'}}</p>
+                                <p>Date Created</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="mid ">
+                        <div class="content-info">
+                            <div class="left-info">
+                                <div class="circle">{{userDetail?.company_name?.substring(0,1).toUpperCase()}}</div>
+                            </div>
+                            <div class="right-info">
+                                <p>{{userDetail?.company_name?.toUpperCase()}}</p>
+                                <p>Dealer Name</p>
+                            </div>
+                        </div>
+                        <div class="tag-info" *ngIf="userDetail?.mobile">
+                            <a href="tel:{{userDetail?.mobile}}"><i class="material-icons">phone</i></a>
+                        </div> 
+                    </div>
+                    <div class="three_boxes">
+                        <div class="lower" >
+                            <p>Contact Person</p>
+                            <p >{{userDetail?.name | titlecase}}</p>
+                        </div>
+                        <div class="lower" >
+                            <p>Contact No.</p>
+                            <p >{{userDetail?.mobile}}</p>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    <div class="three_boxes">
+                        
+                        
+                        <div *ngIf="userDetail.order_status=='Pending'" class=" lower pending" >
+                            <p>Status</p>
+                            <p>PLACED</p>
+                        </div>
+                        
+                        <div *ngIf="userDetail.order_status=='Draft'" class=" lower draft" >
+                            <p>Status</p>
+                            <p >DRAFT</p>
+                        </div>
+                        
+                        <div *ngIf="userDetail.order_status=='Approved'" class=" lower approved" >
+                            <p>Status</p>
+                            <p >ACCEPTED</p>
+                        </div>
+                        
+                        <div *ngIf="userDetail.order_status=='Reject' || userDetail.order_status=='Rejected'" class=" lower reject" >
+                            <p>Status</p>
+                            <p >Referred Back</p>
+                        </div>
+                        
+                        <div *ngIf="userDetail.order_status=='Dispatch'" class=" lower dispatch" >
+                            <p>Status</p>
+                            <p >Dispatched</p> 
+                            
+                        </div>
+                        <div *ngIf="userDetail.order_status=='Pre Close'" class=" lower pre" >
+                            <p>Status</p>
+                            <p >Pre Closed</p> 
+                            
+                        </div>
+                        <div class="lower" *ngIf="userDetail.action_on!='0000-00-00 00:00:00'">
+                            <p>Action On</p>
+                            <p >{{userDetail.action_on | date:'d MMM y hh:mm a'}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="lower" *ngIf="userDetail.district || userDetail.state || userDetail.pincode || userDetail.address">
+                        <p>Address</p>
+                        <p>{{userDetail.address | titlecase}} {{userDetail.district | titlecase}} {{userDetail.state | titlecase}} {{userDetail.pincode}}</p>
+                    </div>
+                </ng-container>
+                
+                
+                
+                <div class="lower" *ngIf="userDetail.reason_reject && userDetail.reason_reject != ''">
+                    <p>Reason of Referred Back</p>
+                    <p>{{userDetail.reason_reject}}</p>
+                </div>
+                <div class="lower" *ngIf="userDetail.remark && userDetail.remark != ''">
+                    <p>Accept Remark</p>
+                    <p>{{userDetail.remark}}</p>
+                </div>
+                <div class="lower" *ngIf="userDetail.order_remark && userDetail.order_remark != ''">
+                    <p>Order Remark</p>
+                    <p>{{userDetail.order_remark}}</p>
+                </div>
+                <div class="lower" *ngIf="userDetail.pre_close_remark && userDetail.pre_close_remark != ''">
+                    <p>Pre Close Remark</p>
+                    <p>{{userDetail.pre_close_remark}}</p>
+                </div>
+                
+            </div>  
+        </ng-container>
+        
+        <div class="list-box mb0" *ngIf="userDetail.delivery_from=='ToyZone'">
+            
+            <div class="upper">
+                <div class="left-date">
+                    <div class="date-section">
+                        <p >{{userDetail.order_creator | titlecase}}</p>
+                        <p>Created By</p>
+                    </div>
+                    <div class="date-section" >
+                        <p >{{userDetail.order_date_created | date:'d MMM y hh:mm a'}}</p>
+                        <p>Date Created</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="mid ">
+                <div class="content-info">
+                    <div class="left-info">
+                        <div class="circle">{{userDetail?.company_name?.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    <div class="right-info">
+                        <p>{{userDetail?.company_name?.toUpperCase()}}</p>
+                        <p>Distributor Name</p>
+                    </div>
+                </div>
+                <div class="tag-info" *ngIf="userDetail?.mobile">
+                    <a href="tel:{{userDetail?.mobile}}"><i class="material-icons">phone</i></a>
+                </div> 
+            </div>
+            <div class="three_boxes">
+                <div class="lower" >
+                    <p>Contact Person</p>
+                    <p >{{userDetail?.name | titlecase}}</p>
+                </div>
+                <div class="lower" >
+                    <p>Contact No.</p>
+                    <p >{{userDetail?.mobile}}</p>
+                </div>
+            </div>
+            
+            <div class="three_boxes">
+                <div *ngIf="userDetail.order_status=='Pending'" class=" lower pending" >
+                    <p>Status</p>
+                    <p>PLACED</p>
+                </div>
+                
+                <div *ngIf="userDetail.order_status=='Draft'" class=" lower draft" >
+                    <p>Status</p>
+                    <p >DRAFT</p>
+                </div>
+                
+                <div *ngIf="userDetail.order_status=='Approved'" class=" lower approved" >
+                    <p>Status</p>
+                    <p >ACCEPTED</p>
+                </div>
+                
+                <div *ngIf="userDetail.order_status=='Reject' || userDetail.order_status=='Rejected'" class=" lower reject" >
+                    <p>Status</p>
+                    <p >Referred Back</p>
+                </div>
+                
+                <div *ngIf="userDetail.order_status=='Dispatch'" class=" lower dispatch" >
+                    <p>Status</p>
+                    <p >Dispatched</p> 
+                    
+                </div>
+                <div *ngIf="userDetail.order_status=='Pre Close'" class=" lower pre" >
+                    <p>Status</p>
+                    <p >Pre Closed</p> 
+                    
+                </div>
+                <div class="lower" *ngIf="userDetail.action_on!='0000-00-00 00:00:00'">
+                    <p>Action On</p>
+                    <p >{{userDetail.action_on | date:'d MMM y hh:mm a'}}</p>
+                </div>
+            </div>
+            
+            <div class="lower" *ngIf="userDetail.district || userDetail.state || userDetail.pincode || userDetail.address">
+                <p>Address</p>
+                <p>{{userDetail.address | titlecase}} {{userDetail.district | titlecase}} {{userDetail.state | titlecase}} {{userDetail.pincode}}</p>
+            </div>
+            
+            
+            <div class="lower" *ngIf="userDetail.reason_reject && userDetail.reason_reject != ''">
+                <p>Reason of Referred Back</p>
+                <p>{{userDetail.reason_reject}}</p>
+            </div>
+            <div class="lower" *ngIf="userDetail.remark && userDetail.remark != ''">
+                <p>Accept Remark</p>
+                <p>{{userDetail.remark}}</p>
+            </div>
+            <div class="lower" *ngIf="userDetail.order_remark && userDetail.order_remark != ''">
+                <p>Order Remark</p>
+                <p>{{userDetail.order_remark}}</p>
+            </div>
+            <div class="lower" *ngIf="userDetail.pre_close_remark && userDetail.pre_close_remark != ''">
+                <p>Pre Close Remark</p>
+                <p>{{userDetail.pre_close_remark}}</p>
+            </div>
+            
+        </div>  
+        
+    </div>
+    
+    
+    <div class="pl16 pr16" *ngIf="userDetail.delivery_from!='ToyZone'">
+        <div class="cs-heading1 pl0 pr0 mb10"><p>Distributor Information</p></div>
+        
+        <div class="list-box mb0">
+            <div class="mid mt0">
+                <div class="content-info">
+                    <div class="left-info">
+                        <div class="circle">{{userDetail?.company_name?.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    <div class="right-info">
+                        <p>{{userDetail?.deliveryFromData?.company_name.toUpperCase()}}</p>
+                        <p>{{userDetail?.deliveryFromData?.name | titlecase}} ({{userDetail?.deliveryFromData?.mobile}})</p>
+                    </div>
+                </div>
+                <div class="tag-info" *ngIf="userDetail?.deliveryFromData?.mobile">
+                    <a href="tel:{{userDetail?.deliveryFromData?.mobile}}"><i class="material-icons">phone</i></a>
+                </div> 
+            </div>
+        </div>  
+    </div>
+    
+    <div class="pd-left-right16">
+        <button class="cs-button border-btn mt16" *ngIf="userDetail.order_status == 'Draft' || userDetail.order_status == 'Pending'"  (click)="more_item_executive(order_id)">ADD MORE ITEM</button>
+    </div>
+    
+    
+    <section class="ac-container" >
+        <figure *ngFor="let order of orderDetail;let i = index;">
+            <input id="ac-{{i}}" name="accordion-1" type="radio" class="ds-none">
+            
+            <label class="header-label "  [ngClass]="{'cs-art':collObject.index == true}" for="ac-{{i}}" (click)="collapse(i)">
+                <p>{{order.sub_category}}, {{order.product_name}}, {{order.cat_no}}</p>
+                <span>Qty : {{order.qty}}  Net Total : ₹{{order.amountAfterRoundOff }}</span>
+            </label>
+            <article   [ngClass]="{'cs-art':collObject.index == true}">
+                
+                <div class="common_form">
+                    <div *ngIf="!dispatch">
+                        <div class="box complete">
+                            <div class="data-table padding0">
+                                <table>
+                                    <tr>
+                                        <th>Order Quantity</th>
+                                        <td>
+                                            <!-- (userDetail.delivery_from=='ToyZone' ? '1 == 1' : orderDate == currentDate) &&  -->
+                                            <div class="edit-data" ngClass="{{order.edit_true ? '' : 'active' }}">
+                                                <input type="number" string-to-number (input)="userDetail.delivery_from == 'ToyZone' ?  calculateAmountExecutive(order.qty,i,false) : calculateAmountExecutive(order.qty,i,false)" [readonly]="active[i]?.qty != '1'"  name="qty" [(ngModel)]="order.qty" readonly>
+                                                <ng-container *ngIf="order.edit_true && (userDetail.order_status=='Reject' || userDetail.order_status=='Rejected' ||userDetail.order_status=='Pending' || userDetail.order_status=='Draft')">
+                                                    
+                                                    <a class="edit-value edits" *ngIf="userDetail.order_status!='Reject' ||  userDetail.dr_id==constant.UserLoggedInData.id" (click)="edit_order_executive(i,order.id,order.category,userDetail.dr_id,userDetail.type,order.cat_no)">
+                                                        <i class="material-icons create" >create</i>
+                                                    </a>
+                                                </ng-container>
+                                                
+                                                <a class="edit-value saves" *ngIf="!order.edit_true">
+                                                    <i class="material-icons create" (click)="update_order(i,order.order_id,order.id,false)">save</i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr *ngIf="order.pending_qty && order.pending_qty!='0' && userDetail.order_status!='Dispatch'">
+                                        <th>Pending Qty</th>
+                                        <td>{{order.pending_qty}}</td>
+                                    </tr>
+                                    <tr *ngIf="userDetail.order_status=='Dispatch'">
+                                        <th>Dispatched Qty</th>
+                                        <td>{{order.dispatch_qty ? order.dispatch_qty: '0'}}</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th>MRP</th>
+                                        <td>&#8377; {{order.price | number:'1.2-2'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Discount</th>
+                                        <td *ngIf="order.discount_percent">{{order.discount_percent}} %</td>
+                                        <td *ngIf="!order.discount_percent">--</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Amount After Discount</th>
+                                        <td>&#8377; {{order.discounted_amount | number:'1.2-2'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total Amount</th>
+                                        <td> &#8377;  {{order.amount | number:'1.2-2'}}</td>
+                                    </tr> -->
+
+                                    <tr>
+                                        <th>Price</th>
+                                        <td>&#8377; {{order.price | number:'1.2-2'}}</td>
+                                    </tr>
+                                     <tr>
+                                        <th>Amount</th>
+                                        <td>&#8377; {{order.sub_total | number:'1.2-2'}}</td>
+                                    </tr> 
+                                    <tr>
+                                        <th> Discount Amount</th>
+                                        <td>&#8377; {{order.discount_amount | number:'1.2-2'}}</td>
+                                    </tr> 
+                                    <tr>
+                                        <th> Discounted Amount</th>
+                                        <td>&#8377; {{order.discounted_amount | number:'1.2-2'}}</td>
+                                    </tr> 
+                                    <tr>
+                                        <th>GST %</th>
+                                        <td *ngIf="order.gst_percent">{{order.gst_percent}} %</td>
+                                        <td *ngIf="!order.gst_percent">--</td>
+                                    </tr>
+                                    <tr>
+                                        <th>GST Amount</th>
+                                        <td>&#8377; {{order.gst_amount | number:'1.2-2'}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th>Total Amount</th>
+                                        <td> &#8377;  {{order.amount | number:'1.2-2'}}</td>
+                                    </tr>
+                                    <ng-container *ngIf="order.edit_true && (userDetail.order_status=='Reject' || userDetail.order_status=='Rejected' ||userDetail.order_status=='Pending' || userDetail.order_status=='Draft')">
+                                        <tr *ngIf="userDetail.order_status!='Reject' ||  userDetail.dr_id==constant.UserLoggedInData.id" >
+                                            <th>Action</th>
+                                            <td><a class="del-btn" (click)="delete_item(i,order.order_id,order.id)"><i class="material-icons create" >delete_sweep</i>Delete</a></td>
+                                        </tr>
+                                    </ng-container>
+                                </table>
+                            </div>
+                            
+                            <!-- <div class="oneinfo pt0 pr0 pl0 pb0"  style="display: none;">
+                                <div class="figure" *ngIf="userDetail.delivery_from == 'ToyZone'">
+                                    <p>GST</p>
+                                    <p>&#8377; {{order.gst_amount | number:'1.2-2'}}</p>
+                                </div>
+                                
+                                <div class="figure">
+                                    <p>Discount</p>
+                                    <p>&#8377; {{order.discount_amount | number:'1.2-2'}}</p>
+                                </div>
+                            </div> -->
+                            <div class="oneinfo pt0 pr0 pl0" style="display: none;">
+                                <div class="figure wp100">
+                                    <p>Total Amount</p>
+                                    <p>&#8377; {{order.amount | number:'1.2-2'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </figure>
+    </section>
+    
+    
+    <!-- <div style="padding: 0px 16px 16px 16px;" *ngIf="userDetail.changeStatus!=true && !dispatch">
+        <div class="time_show amount-listing">
+            <p>Sub Total</p>
+            <p>₹ {{userDetail.sub_total | number:'1.2-2'}} </p>
+        </div>
+        <div class="time_show amount-listing">
+            <p>Discount</p>
+            <p>₹ {{userDetail.order_discount | number:'1.2-2'}} </p>
+        </div>
+        <div class="time_show amount-listing">
+            <p>Net Total</p>
+            <p>₹ {{userDetail.order_total | number:'1.2-2'}} </p>
+        </div>
+        <div class="time_show amount-listing" *ngIf="userDetail.special_discount_amount!='0'">
+            <p *ngIf="userDetail.DiscType=='Discount'">{{!userDetail.lable ? 'Special Discount' : userDetail.lable | titlecase }} ({{userDetail.special_discount_percentage}}%)</p>
+            <p *ngIf="userDetail.DiscType!='Discount'">{{!userDetail.lable ? 'Additional Charges' : userDetail.lable | titlecase }} ({{userDetail.special_discount_percentage}}%)</p>
+            <p *ngIf="userDetail.DiscType!='Discount'">₹ {{userDetail.special_discount_amount | number:'1.2-2'}} </p>
+            <p *ngIf="userDetail.DiscType=='Discount'">- ₹ {{userDetail.special_discount_amount | number:'1.2-2'}} </p>
+        </div>
+        <div class="time_show amount-listing">
+            <p>Grand Total</p>
+            <p>₹ {{userDetail.order_grand_totalAfterRoundOff | number:'1.2-2'}} </p>
+        </div>
+        <div class="time_show amount-listing border-none">
+            <p>Break Up Of Grand Total</p>
+            <p>({{userDetail.netBreakup | number:'1.2-2'}} , GST (18%): {{userDetail.gstBreakup | number:'1.2-2'}} )</p>
+        </div>
+    </div> -->
+
+    <div style="padding: 0px 16px 16px 16px;" *ngIf="userDetail.changeStatus!=true && !dispatch">
+        <div class="time_show amount-listing">
+            <p>Sub Total</p>
+            <p>₹ {{userDetail.sub_total | number:'1.2-2'}} </p>
+        </div>
+        <div class="time_show amount-listing">
+            <p>Taxable amount</p>
+            <p>₹ {{userDetail.order_discount | number:'1.2-2'}} </p>
+        </div>
+        <!-- <div class="time_show amount-listing">
+            <p>GST Amount</p>
+            <p>₹ {{userDetail.order_gst | number:'1.2-2'}} </p>
+        </div> -->
+        <div *ngIf="userDetail.order_igst>0" class="time_show amount-listing">
+            <p>IGST Amount</p>
+            <p>₹ {{userDetail.order_igst | number:'1.2-2'}} </p>
+        </div>
+        <div  *ngIf="userDetail.order_cgst>0"class="time_show amount-listing">
+            <p>CGST Amount</p>
+            <p>₹ {{userDetail.order_cgst | number:'1.2-2'}} </p>
+        </div>
+        <div  *ngIf="userDetail.order_sgst>0" class="time_show amount-listing">
+            <p>SGST Amount</p>
+            <p>₹ {{userDetail.order_sgst | number:'1.2-2'}} </p>
+        </div>
+        
+        
+        <div class="time_show amount-listing" *ngIf="userDetail.special_discount_amount!='0'">
+            <p >{{!userDetail.lable ? 'Special Discount' : userDetail.lable | titlecase }} ({{userDetail.special_discount_percentage}}%)</p>
+            <p >- ₹ {{userDetail.special_discount_amount | number:'1.2-2'}} </p>
+        </div>
+        <div class="time_show amount-listing">
+            <p>Grand Total</p>
+            <p>₹ {{userDetail.order_grand_total | number:'1.2-2'}} </p>
+        </div>
+    </div>
+    
+    <div class="border-sepration m0" *ngIf="userDetail.changeStatus!=true && (userDetail.private_marka || userDetail.transport_address || userDetail.transport_mobile || userDetail.transport_name)"></div>
+    
+    <div class="cs-heading1" *ngIf="userDetail.changeStatus!=true && (userDetail.private_marka || userDetail.transport_address || userDetail.transport_mobile || userDetail.transport_name)">
+        <p>Transport Information</p>
+    </div>
+    
+    <div class="transport-section mt16" *ngIf="userDetail.changeStatus!=true && (userDetail.private_marka || userDetail.transport_address || userDetail.transport_mobile || userDetail.transport_name)">
+        <ul>
+            <li *ngIf="userDetail.private_marka">
+                <p>Private Marka</p>
+                <p>{{userDetail.private_marka.toUpperCase()}}</p>
+            </li>
+            <li *ngIf="userDetail.transport_name">
+                <p>Transporter Name</p>
+                <p>{{userDetail.transport_name.toUpperCase()}}</p>
+            </li>
+            <li *ngIf="userDetail.transport_mobile">
+                <p>Transporter Mobile</p>
+                <p>{{userDetail.transport_mobile}}</p>
+            </li>
+            <li class="break-row" *ngIf="userDetail.transport_address">
+                <p>Transporter Address</p>
+                <p>{{userDetail.transport_address.toUpperCase()}}</p>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="upload-plus-icon ch-change" >
+        <h1 class="img-heading" *ngIf="show_image && image.length">Dispatch Document</h1>
+        <ul>
+            <li *ngIf="dispatch">
+                <div class="label">
+                    <button type="button" (click)="open_camera();">
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+            </li>
+            <ng-container *ngIf="show_image">
+                <li *ngFor="let row of image;let i=index">
+                    <div class="label">
+                        <button type="button" (click)="imageModal(upload_url+row.image_name)">
+                            <img src="{{row.id ? upload_url+row.image_name : row}}">
+                            <i *ngIf="dispatch" (click)="delete_image(row,i);" class="material-icons im-delete">delete_sweep</i>
+                        </button>
+                    </div>
+                </li>                       
+            </ng-container>
+        </ul>
+    </div>
+    
+    
+</ion-content>
+
+<div class="endcheck" *ngIf="(userDetail.order_status == 'Draft' || userDetail.order_status == 'Reject' || userDetail.order_status == 'Rejected')">
+    <a (click)="changeStatus()">Submit Order</a>
+</div>
+
+<!-- <div class="cus-fab">
+    <button class="pdf-img" style="margin-bottom: 70px !important;" (click)="goToDownload(userDetail.order_id)">
+        <img src="assets/imgs/pdf1.svg">
+    </button>
+</div> -->

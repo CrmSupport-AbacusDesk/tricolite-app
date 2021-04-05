@@ -1,0 +1,79 @@
+<ion-header>
+    
+    <ion-navbar>
+        <ion-title>Nearest {{search.type | titlecase}}</ion-title>
+    </ion-navbar>    
+    <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter">
+                <ion-searchbar placeholder='Search By Pincode' (keyup.enter)="getNearestDealerSearch(search.type)" [(ngModel)]="search.pincode" name="search" ></ion-searchbar>
+            </div>
+        </div>
+    </ion-toolbar> 
+</ion-header>
+
+
+<ion-content>
+    <div class="nothing-here" *ngIf="!dealerData.length && loadData==0 ">
+        <div class="outer">
+            <div class="innear">
+                <p>No {{search.type}} Found In Your Area Kindly Contact Our Executive</p>
+                <a href="tel:9582198301" >
+                    <p>Customer Care</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="prlist" *ngIf="search.type=='Dealer'">
+        <div class="box light-red-bg relative" *ngFor="let data of dealerData" >
+            <div class="heading">
+                <div class="dist-name dflex">
+                    <div class="first-leter">{{data.company_name.substring(0,1).toUpperCase()}}</div>
+                    <div class="name-number">
+                        <p>{{data.company_name | titlecase}}</p>
+                        
+                        <div class="text-with-ic dflex mb0">
+                            <i class="material-icons text-relat-icon">call</i>
+                            <a  href="tel:{{data.mobile}}" class="f14" style="line-height: 32px;">{{data.mobile}}</a>
+                        </div>
+                        <div class="loacte" *ngIf="data.lat && data.lng">
+                            <button (click)="show_loc(data)">
+                                <img src="assets/imgs/location1.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="cs-type" (click)="show_loc(data)"><i class="material-icons">place</i>{{data.address | titlecase}} ,{{data.city | titlecase}} ,{{data.pincode}}, {{data.state | titlecase}} </p>
+        </div>
+    </div>
+
+    <div class="pd-left-right16 mt16" *ngIf="search.type=='Plumber'">
+        <div class="list-box" *ngFor="let data of dealerData">
+            <div class="mid mt0" >
+                <div class="content-info">
+                    <div class="left-info">
+                        <div class="circle">{{data.first_name.substring(0,1).toUpperCase()}}</div>
+                    </div>
+                    <div class="right-info">
+                        <p>{{data.first_name | titlecase}}</p>
+                        <p>{{data.mobile_no}}</p>
+                    </div>
+                </div>
+                <div class="tag-info">
+                    <a  href="tel:{{data.mobile_no}}"><i class="material-icons">phone</i></a>
+                </div>
+            </div>
+
+            
+            <div class="lower" >
+                <p>Address</p>
+                <p>{{data.address | titlecase}} ,{{data.city | titlecase}} ,{{data.pincode}}, {{data.state | titlecase}}</p>
+            </div>
+        </div>  
+
+    </div>
+</ion-content>
+
+

@@ -1,0 +1,276 @@
+<ion-header>
+    
+    <ion-navbar>
+        <ion-title>End Checkin</ion-title>
+    </ion-navbar>
+    
+</ion-header>
+
+
+<ion-content>
+    
+    
+    <!-- Not Other Check IN Start -->
+    <div class="sticky-main" *ngIf="checkin_data.other_name == ''">
+        <div class="pd-left-right16 af_bg">
+            <div class="list-box">
+                <div class="mid mt0">
+                    <div class="content-info">
+                        <div class="left-info"> 
+                            <div class="circle" *ngIf="!checkin_data.image">{{checkin_data.dr_name | slice:0:1}}</div>
+                            <div class="circle image-in"  *ngIf="checkin_data.image">
+                                <img src="http://phpstack-83335-1428632.cloudwaysapps.com/uploads/{{checkin_data.image}}"  (click) = "viewProfiePic(checkin_data.image)">
+                            </div>
+                        </div>
+                        <div class="right-info">
+                            <p>{{checkin_data.dr_name}}</p>
+                            <p> {{!checkin_data.name ? 'N/A' : checkin_data.name | titlecase}}</p>
+                            <p *ngIf="checkin_data.email"> {{checkin_data.email ? checkin_data.email : 'N/A'}}</p>
+                        </div>
+                    </div>
+                    <div class="tag-info" *ngIf="checkin_data.dr_mobile_no">
+                        <a href="tel:{{checkin_data.dr_mobile_no ? checkin_data.dr_mobile_no : 'N/A'}}"><i class="material-icons">phone</i></a>
+                    </div>
+                </div>
+                <div class="lower" *ngIf=" checkin_data.address  || checkin_data.state  || checkin_data.district  || checkin_data.city  || checkin_data.area  || checkin_data.pincode">
+                    <p>Address</p>
+                    <p>{{checkin_data.address}} {{checkin_data.state | titlecase}} {{checkin_data.district | titlecase}} {{checkin_data.city | titlecase}} {{checkin_data.area | titlecase}}  {{checkin_data.pincode}}</p>
+                </div>
+            </div>  
+        </div>
+    </div>
+    <!-- Not Other Check IN End -->
+    
+    
+    
+    
+    
+    <!-- All Check IN Start -->
+    <div class="sticky-main">
+        <div class="pd-left-right16 af_bg" *ngIf="checkin_data.other_name != ''">
+            <div class="list-box">
+                <div class="mid mt0">
+                    <div class="content-info">
+                        <div class="left-info"> 
+                            <div class="circle" *ngIf="!checkin_data.image">{{checkin_data.other_name | slice:0:1}}</div>
+                            <div class="circle image-in"  *ngIf="checkin_data.image">
+                                <img src="http://phpstack-83335-1428632.cloudwaysapps.com/uploads/{{checkin_data.image}}"  (click) = "viewProfiePic(checkin_data.image)">
+                            </div>
+                        </div>
+                        <div class="right-info">
+                            <p>{{checkin_data.other_name}}</p>
+                            <p>{{checkin_data.mobile}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+    <!-- All Check IN End -->
+    
+     <form class="pt0" *ngIf="checkin_data.checkin_with_new_dealer!='true'"  name="f" #f="ngForm"  (ngSubmit)="f.valid && end_visit(checkin_data.checkin_id,checkin.description)"  padding>
+        
+        <div class="vstime">
+            <p>Start Time</p>
+            <p>{{checkin_data.visit_start | date: 'h:mm a'}}</p>
+        </div>
+        
+        <div class="edit ml0 mr0">
+            <ion-list>
+                <ion-item class="cs-textarea1 " [ngClass]="{'cs-error': (f.submitted && description?.invalid)}">
+                    <ion-label floating><span>Description *</span></ion-label>
+                    <ion-textarea name="description" #description="ngModel" [(ngModel)]="checkin.description"  placeholder="Enter Description" required></ion-textarea>
+                </ion-item>
+                <!-- -->
+                <p class="error-line relative"  *ngIf="f.submitted && description?.invalid" >Description is Required!</p>
+            </ion-list>
+        </div>
+        <div class="add-new p0 pt16">
+            <h4 >Upload Document </h4>
+            <div class="uplode-image" >
+                <ul>
+                    
+                    <li *ngFor="let pic of image_data;let i = index;">
+                        <img src="{{pic}}">
+                        <button><i class="material-icons" (click)="remove_image(i)">clear</i></button>
+                        
+                    </li>
+                    <li (click)="captureMedia()">
+                        <label>
+                            <input type="file" style="display: none;">
+                            <div class="other">
+                                <a ><i class="material-icons" >camera_alt</i></a>
+                            </div>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="endcheck inherit p0">
+            <div class="wp100 mt16">
+                <button color="theme" ion-button block round>End Visit</button>
+            </div>
+        </div>
+   
+    </form>
+    
+    
+    <form class="pt0"  *ngIf="checkin_data.checkin_with_new_dealer=='true'" name="f" #f="ngForm" (ngSubmit)="f.valid && end_visitwithNewDealer(checkin_data.checkin_id,checkin.description)">
+        
+        <div padding class="pb0 pt0">
+            
+            <div class="cs-heading1 pl0 pr0 mb10 pt10"><p>Visit information</p></div>
+            
+            <div class="vstime">
+                <p>Start Time</p>
+                <p>{{checkin_data.visit_start | date: 'h:mm a'}}</p>
+            </div>
+            
+            <div class="edit ml0 mr0">
+                <ion-list>
+                    <ion-item class="cs-textarea1 " [ngClass]="{'cs-error':f.submitted && description?.invalid}">
+                        <ion-label floating><span>Description *</span> </ion-label>
+                        <ion-textarea name="description" placeholder="Enter Description" #description="ngModel" required  [(ngModel)]="checkin.description"></ion-textarea>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && description?.invalid && checkin.description" class="error-line relative">Description Is Invalid!</p>
+                    <p  *ngIf="f.submitted && description?.invalid && !checkin.description" class="error-line relative">Description Is Required!</p>
+                </ion-list>
+            </div>
+            
+            
+            
+            <div class="add-new p0 pt16">
+                <div class="uplode-image" >
+                    <ul>
+                        <li *ngFor="let pic of image_data;let i = index;">
+                            <img src="{{pic}}">
+                            <button><i class="material-icons" (click)="remove_image(i)">clear</i></button>
+                        </li>
+                        <li (click)="captureMedia()">
+                            <label>
+                                <input type="file" style="display: none;">
+                                <div class="other">
+                                    <a ><i class="material-icons" >camera_alt</i></a>
+                                    <br>
+                                    <span>Upload Document</span>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        
+        
+        <div class="border-sepration"></div>
+        
+        <div padding class="pt0">
+            
+            <div class="cs-heading1 pl0 pr0">
+                <p>Update Dealer information</p>        
+            </div>
+            <div class="edit ml0 mr0">
+                <ion-list>
+                    
+                    
+                    <ion-item [ngClass]="{'cs-error':f.submitted && dr_name?.invalid}">
+                        <ion-label floating><span>Company Name <strong>*</strong></span></ion-label>
+                        <ion-input type="text" readonly placeholder="Enter Company Name"  name="dr_name" #dr_name="ngModel"  [(ngModel)]="checkin.dr_name" [ngClass]="{'is-invalid':f.submitted && dr_name?.invalid}" required></ion-input>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && dr_name?.invalid && checkin.dr_name" class="error-line">Company Name Is Invalid!</p>
+                    <p  *ngIf="f.submitted && dr_name?.invalid && !checkin.dr_name" class="error-line">Company Name Is Required!</p>
+                    
+                    <ion-item [ngClass]="{'cs-error':f.submitted && name?.invalid}">
+                        <ion-label floating><span>Name <strong>*</strong></span></ion-label>
+                        <ion-input type="text" readonly name="name" #name="ngModel" placeholder="Enter Name" [(ngModel)]="checkin.name" required [ngClass]="{'is-invalid':f.submitted && name?.invalid}"></ion-input>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && name?.invalid && checkin.name" class="error-line">Name Is Invalid</p>
+                    <p  *ngIf="f.submitted && name?.invalid && !checkin.name" class="error-line">Name Is Required</p>
+                    
+                    
+                    <ion-item [ngClass]="{'cs-error':(f.submitted && ( dr_mobile?.invalid ||  checkin.dr_mobile?.length!=10 ))}" >
+                        <ion-label floating><span>Mobile No.<strong>*</strong></span></ion-label>
+                        <ion-input type="tel" readonly name="dr_mobile" placeholder="Enter Mobile" #dr_mobile="ngModel" [(ngModel)]="checkin.dr_mobile" minLength="10" maxLength="10"  required ></ion-input>
+                    </ion-item>
+                    <p  *ngIf="checkExist==true" class="error-line">Same Mobile No. Already Exists</p>
+                    <p  *ngIf="f.submitted && dr_mobile?.invalid && !checkin.dr_mobile" class="error-line">Mobile No. Is Required</p>
+                    <p  *ngIf="checkin.dr_mobile && checkin.dr_mobile?.length!=10 && f.submitted " class="error-line">Mobile No.Must be 10 Digits</p>
+                    
+                    
+                    <ion-item [ngClass]="{'cs-error':f.submitted && email?.invalid && !checkin.DealerExist}">
+                        <ion-label floating><span>Email ID </span></ion-label>
+                        <ion-input type="email" placeholder="Enter Email"    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email"  #email="ngModel" [(ngModel)]="checkin.email"  [ngClass]="{'is-invalid':f.submitted && email?.invalid}"></ion-input>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && email?.invalid && !checkin.email" class="error-line">Email Is Required</p>
+                    <p  *ngIf="f.submitted && email?.invalid && checkin.email" class="error-line">Email Is Invalid</p>
+                    
+                    <ion-item >
+                        <ion-label floating><span>GST</span></ion-label>
+                        <ion-input type="text"  name="gst" placeholder="Enter GST"  [(ngModel)]="checkin.gst"></ion-input>
+                    </ion-item>
+                    <p  *ngIf="type == 'dealer' && f.submitted && gst?.invalid" class="error-line">Invalid</p>
+                    
+                </ion-list>
+            </div>
+            
+            <div class="cs-heading1 pl0 pr0" >
+                <p>Dealer Address Information</p>
+            </div>
+            
+            <div class="edit ml0 mr0" >
+                <ion-list>   
+                    <ion-item class="mb0" [ngClass]="{'cs-error':f.submitted && pincode?.invalid}">
+                        <ion-label floating><span>Pincode </span></ion-label>
+                        <ion-input   type="tel" minLength="6" placeholder="Enter Pincode"  maxLength="6" name="pincode"  #pincode="ngModel" [(ngModel)]="checkin.pincode" (input)="selectAddressOnBehalfOfPincode()"></ion-input>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && pincode?.invalid" class="error-line">Pincode Is Invalid</p>               
+                    <ion-item [ngClass]="{'cs-error':f.submitted && street?.invalid}">
+                        <ion-label floating><span>Street </span></ion-label>
+                        <ion-input   type="text" placeholder="Enter Street"  name="street" #street="ngModel" [(ngModel)]="checkin.street" ></ion-input>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && street?.invalid" class="error-line">Street Is Invalid</p>               
+                    
+                    <ion-item class="cs-normal-select mt15" [ngClass]="{'cs-error':f.submitted && state?.invalid}">
+                        <ion-label><span>State </span></ion-label>
+                        <ion-select    name="state" name="state" #state="ngModel" [(ngModel)]="checkin.state" (ionChange)="get_district()"  >
+                            <ion-option *ngFor="let row of state_list;let i=index;" value="{{row.state_name}}">{{row.state_name | titlecase}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && state?.invalid" class="error-line">State Is Invalid</p>
+                    
+                    <ion-item class="cs-normal-select mb0" [ngClass]="{'cs-error':f.submitted && district?.invalid}">
+                        <ion-label><span>District </span></ion-label>
+                        <ion-select    name="district" name="district" #district="ngModel" [(ngModel)]="checkin.district"  >
+                            <ion-option *ngFor="let row of district_list" value="{{row.district_name}}">{{row.district_name}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && district?.invalid" class="error-line">District Is Invalid</p>
+                    
+                    <ion-item [ngClass]="{'cs-error':f.submitted && city?.invalid}">
+                        <ion-label floating ><span>City </span></ion-label>
+                        <ion-input  placeholder="Enter City"  type="text" name="city" #city="ngModel" [(ngModel)]="checkin.city"></ion-input>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && city?.invalid" class="error-line">City Is Invalid</p>
+                    
+                    <ion-item [ngClass]="{'cs-error':f.submitted && area?.invalid}">
+                        <ion-label floating ><span>Area </span></ion-label>
+                        <ion-input placeholder="Enter Area"   type="text" name="area" #area="ngModel"  [(ngModel)]="checkin.area"></ion-input>
+                    </ion-item>
+                    <p  *ngIf="f.submitted && area?.invalid" class="error-line">Area Is Invalid</p>
+                    
+                </ion-list>
+            </div>
+            
+            
+            
+            <div class="endcheck inherit p0">
+                <div class="wp100 mt16">
+                    <button color="theme" type="submit" ion-button block round>End Visit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+</ion-content>

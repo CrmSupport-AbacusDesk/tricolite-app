@@ -1,0 +1,94 @@
+page-add-checkin {
+    .text-input-md
+    {
+        height: 45px;
+    }
+    .grid-radio
+    {
+        flex-wrap: wrap;
+        display: flex;
+        margin-bottom: 0px;
+        
+        ion-item
+        {
+            width: 50%;
+            
+            .item-inner
+            {
+                flex-direction: row-reverse;
+                border-bottom: 0px !important;
+                
+                ion-label
+                {
+                    color: #000000 ;
+                }
+            }
+        }
+    }
+    
+    ion-list
+    {
+        &.cs-list-change
+        {
+            border-radius: 10px;
+            border: 1px solid #dedede;
+            overflow: hidden;
+            margin: 0px !important;
+            
+            ion-item
+            {
+                padding: 0px !important;
+                min-height: 55px !important;
+                
+                .item-inner
+                {
+                    padding-left: 16px;
+                    
+                    ion-label
+                    {
+                        margin: 0px;
+                    }
+                }
+                
+                &.item-radio-checked
+                {
+                    
+                    .item-inner
+                    {
+                        ion-label
+                        {
+                            color: #32db64;
+                        }
+                        
+                        ion-radio
+                        {
+                            .radio-checked
+                            {
+                                border-color: #32db64;
+                                
+                                .radio-inner
+                                {
+                                    background-color: #32db64;
+                                }
+                            }
+                        }
+                        
+                        .radio-ios .radio-checked .radio-inner
+                        {
+                            background: transparent;
+                            top: 1px;
+                            width: 8px;
+                            height: 19px;
+                            border-color: #32db64;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+}

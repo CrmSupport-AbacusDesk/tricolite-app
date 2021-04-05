@@ -1,0 +1,38 @@
+
+
+<ion-content  class="transprant-bg">
+  <div class="work-modal">
+    <div class="work-modal-bg">
+      <div>
+        
+        <div class="head">
+          <h2>SELECT ATTENDENCE TYPE</h2>
+          <a class="close" (click)="close()"><i class="material-icons">close</i></a>
+        </div>
+        
+        <ion-list radio-group name="work_type" [(ngModel)]="data.work_type" #work_type="ngModel" required>
+          
+          <ion-item *ngFor="let row of working_type">
+            <ion-label>{{row.work_type}}</ion-label>
+            <ion-radio   [value]="row.work_type" ></ion-radio>
+          </ion-item>
+          
+        </ion-list>
+        
+        <div class="edit" style="margin: 0px;" *ngIf="data.work_type == 'Travel'">
+          <ion-list>
+            <ion-item>
+              <ion-label floating><span>Description</span></ion-label>
+              <ion-textarea name="description" class="h100" name="travel_place" [(ngModel)]="data.travel_place"></ion-textarea>
+            </ion-item>
+          </ion-list>
+        </div>
+        
+        <div class="text-right mt32">
+          <button ion-button color="secondary" [disabled]="!data.work_type && !data.travel_place" (click)="submit()">Submit</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</ion-content>

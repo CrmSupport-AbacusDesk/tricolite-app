@@ -1,0 +1,190 @@
+
+<ion-header class="main-header remove" >
+    <ion-navbar >
+        <ion-title>{{prod_detail.product_name?prod_detail.product_name:'NA'}}</ion-title>
+        <!-- <ion-title *ngIf="!filter.globalSearchData" >{{prod_cat.main_category |titlecase}} </ion-title>
+        <ion-title *ngIf="filter.globalSearchData" >{{filter.categoryName | titlecase}} - Product List</ion-title> -->
+        <ion-buttons end >
+            <button ion-button class="top-cart-btn" *ngIf="cart_array?.length" (click)="toGoOrderPage()">
+                <span class="counter">{{cart_array.length}}</span>
+                <i class="material-icons">shopping_cart</i>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <!-- <ion-toolbar>
+        <div class="search add-search">
+            <div class="filter">
+                <ion-searchbar type='text' name='search'  [(ngModel)]="filter.search" (ngModelChange)="filter.search=='' ? getProductList(cat_id,filter.search) : ''" (keyup.enter)="getProductList(cat_id,filter.search)"></ion-searchbar>
+            </div>
+            
+        </div>
+    </ion-toolbar> -->
+</ion-header>
+
+<!-- <ion-content class="listing grid-listing sub-category pt0 mt0" style="display: none;">
+    
+    <div *ngIf="!cat_id" class="prfnt">
+        <div class="pr-figure"> 
+            <span>"{{total_count}}"</span> Product found with "{{filter.globalSearchData}}" .
+        </div>
+    </div>
+    <div class="nothing-here"  *ngIf="!prod_list.length && no_rec">
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/no_found.svg" alt="">
+                <p>Data not Available</p>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <div *ngIf="prod_list.length" class="main-div">
+        <div class="sub-listing tydo-list p0">
+            
+            <div class="tydo-item mt16" *ngIf="cat_id">
+                <h3>{{prod_cat.category_name}}<br><span>"{{prod_list.length}}/{{total_count}}" Products Found</span> </h3>
+                <img src="{{prod_cat.imageCompletePath}}">
+            </div>
+            
+            <ion-list (click)="goOnProductSubDetailPage(list.id)" *ngFor="let list of prod_list;let i=index">
+                <button ion-item>
+                    <div class="image-manage">
+                        
+                        <img *ngIf="list.image" src="{{list.imageCompletePath}}">
+                    </div>
+                    <div class="detail mt9">
+                        <h4>{{list.description}}</h4>
+                        <h4>{{list.product_name}}</h4>
+                        <h3><span>₹​</span>{{list.price}}/-</h3>
+                    </div>
+                </button>
+            </ion-list>
+        </div>
+        
+    </div>
+    
+    <div class="main-div" *ngIf="!prod_list.length && !no_rec">
+        <div class="sub-listing tydo-list p0">
+            <div class="skleton-box-1"></div>
+            
+            <ion-list class="skleton-box-2"  *ngFor="let row of skelton"></ion-list>
+        </div>
+    </div>
+</ion-content> -->
+
+<ion-content padding>
+        <div class="lg-img-thumbnail">
+            <img *ngIf="prod_detail.image && prod_detail.image.length != 0 " src="{{image_url+prod_detail.image[0].image}}" alt="">
+            <img *ngIf="prod_detail.image && prod_detail.image.length == 0 " src="assets/imgs/default.png" alt="">
+        </div>
+        <!-- <div class="item-cart-secation" *ngIf="order == true">
+            <ul>
+                <li>
+                    <button ion-button class="qty-btn" (click)="quantity('remove')"><i class="material-icons">remove</i></button>
+                </li>
+                <li><input type="number" placeholder="Qty" name="qty" [(ngModel)]="prod_detail.qty"></li>
+                <li>
+                    <button ion-button class="qty-btn" (click)="quantity('add')"><i class="material-icons">add</i></button>
+                </li>
+                <li><button ion-button class="add-cart" [disabled]="!prod_detail.qty" (click)="addToCart(prod_detail)"><i class="material-icons">shopping_cart</i>Add Cart</button></li>
+            </ul>
+        </div> -->
+
+        <div class="information-card">
+            <h2>Product information</h2>
+            <table>
+                <tr>
+                    <th class="w100">Category</th>
+                    <td>{{prod_detail.category?prod_detail.category:'NA'}}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{prod_detail.product_name?prod_detail.product_name:'NA'}}</td>
+                </tr>
+                <tr>
+                    <th>Code</th>
+                    <td>{{prod_detail.cat_no?prod_detail.cat_no:'NA'}}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>&#8377; {{prod_detail.price?prod_detail.price:'0'}}</td>
+                </tr>
+                <tr>
+                    <th>HSN Code</th>
+                    <td>{{prod_detail.hsn?prod_detail.hsn:'N/A'}}</td>
+                </tr>
+                <tr>
+                    <th>Master Packing</th>
+                    <td>{{prod_detail.cartoon_packing?prod_detail.cartoon_packing:'N/A'}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="information-card">
+            <h2>Product Feature</h2>
+            <table>
+                <!-- <tr>
+                    <th class="w100">Color</th>
+                    <td>Red, Yellow, Green</td>
+                </tr> -->
+                <tr>
+                    <th class="w100">Description</th>
+                    <td>{{prod_detail.product_name?prod_detail.product_name:'NA'}}( {{prod_detail.category}}) </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="bg-outer padding0">
+            <div class="bg-inner">
+              <div class="head">
+                <h2>Related Products</h2>
+              </div>
+              <div class="carousel sm-label-font" >
+                <!-- loop start -->
+                <div class="carousel-item" *ngFor="let row of related_products " (click)="gotodetail(row.id)">
+                  <!-- <img src="http://www.toyzone.in/web/image/product.template/1103/image/300x300?unique=8bc2e28" alt="Magic Cars"> -->
+                  <img *ngIf="row.image != '' && row.image != null" src="{{image_url+row.image}}" alt="">
+                  <img *ngIf="row.image == '' || row.image == null" src="assets/imgs/default.png" alt="">
+                  <label>{{row.description}}</label>
+                </div>
+                
+                <!-- <div class="carousel-item" (click)="goToCategory()">
+                  <img src="http://www.toyzone.in/web/image/product.public.category/33/image/265x265?unique=6daf1d3" alt="Kitchen sets">
+                  <label>Toyzone My Little Kitchen</label>
+                </div>
+                
+                <div class="carousel-item" (click)="goToCategory()">
+                  <img src="http://www.toyzone.in/web/image/product.public.category/30/image/265x265?unique=e1465a3" alt="educational">
+                  <label>Toyzone 4 in 1 My School Desk</label>
+                </div>
+                
+                <div class="carousel-item" (click)="goToCategory()">
+                  <img src="http://www.toyzone.in/web/image/product.public.category/86/image/265x265?unique=6944356" alt="pools">
+                  <label>Intex Fancy Stars Pool Set With Ball & Ring (Multicolor)</label>
+                </div>
+                
+                <div class="carousel-item" (click)="goToCategory()">
+                  <img src="http://www.toyzone.in/web/image/product.public.category/91/image/265x265?unique=5062bec" alt="floats & toys">
+                  <label>Intex Arm Band</label>
+                </div> -->
+                <!-- loop start -->
+                
+              </div>
+            </div>
+          </div>
+</ion-content>
+
+<ion-footer class="af-none" style="padding: 8px 16px;" *ngIf ="userType=='drLogin'">
+<div class="add-favroute" [ngClass]="{'remove': existInFavourite}" >
+    <div class="iner-fav">
+        <!-- <button>
+            <p> Add to Favourites</p>
+        </button> -->
+        <button (click)="existInFavourite ? remove_from_fav() : add_to_fav(); existInFavourite=!existInFavourite">
+            <p *ngIf="!existInFavourite"> Add to Favourites</p>
+            <p *ngIf="existInFavourite"> Remove From Favourites</p>
+        </button>
+    </div>
+</div>
+</ion-footer>

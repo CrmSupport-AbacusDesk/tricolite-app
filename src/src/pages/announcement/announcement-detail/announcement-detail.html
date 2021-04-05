@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detail</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="cs-list-item" >
+    <div class="cs-top">
+      <div class="list-content">
+        <p>{{announcementDetail.date_created | date:'d MMM y'}}</p>
+        <span>Date Created</span>
+      </div>
+      <!-- <div class="list-content af-none">
+        <p class="yellow-clr">{{expenseDetail.seniorStatus}}</p>
+        <span> Senior Status</span>
+      </div>
+      <div class="list-content af-none">
+        <p class="yellow-clr">{{expenseDetail.acStatus}}</p>
+        <span>A/C Status</span>
+      </div> -->
+      
+      <!-- <div class="left-auto">
+        <p class="inr-rupy"> &#x20B9;{{expenseDetail.totalAmt}}</p>
+      </div> -->
+    </div>
+    <div class="travel-type">{{announcementDetail.subject}}</div>
+    <div class="middle-content one-column">
+      <div class="col-box">
+        <p>Message</p>
+        <span>{{announcementDetail.msg}}</span>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="upload-doc" *ngIf="announcementDetail.doc && announcementDetail.doc.length > 0">
+    <p class="">Uploads</p>
+    <ul class="no-padding">
+      <li class="image-upload" *ngFor="let val of announcementDetail.doc">
+        <img src="{{image_url+val.image}}">
+      </li>
+      
+    </ul>
+  </div>
+  
+</ion-content>

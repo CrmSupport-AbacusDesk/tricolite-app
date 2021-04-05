@@ -1,0 +1,115 @@
+<ion-header>    
+  <ion-navbar>
+    <ion-title>
+      <h1>Edit Executive Details</h1>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>   
+  
+  <form [formGroup]="validateForm"  >
+    <div class="edit">        
+      <ion-list>
+        <div>
+          <ion-item [ngClass]="{'cs-error':validateForm.get('name').hasError('required') && validateForm.get('name').touched }"> 
+            <ion-label floating><span>Name <strong>*</strong></span></ion-label>
+            <ion-input type="text" formControlName="name" [(ngModel)]="data.name" required></ion-input>
+          </ion-item>
+          <p *ngIf="validateForm.get('name').hasError('required') && validateForm.get('name').touched" class="error-line">Name is required!</p>
+          
+          <ion-item [ngClass]="{'cs-error':(validateForm.get('mobile').hasError('required') && validateForm.get('mobile').touched) || ((validateForm.get('mobile').hasError('minlength') || validateForm.get('mobile').hasError('maxlength')) && validateForm.get('mobile').touched) }">
+            <ion-label floating><span>Mobile No <strong>*</strong></span></ion-label>
+            <ion-input type="tel" (keypress)="MobileNumber($event)" minlength="10" maxlength="10" formControlName="mobile"  [(ngModel)]="data.mobile" required></ion-input>
+          </ion-item>
+          
+          <p *ngIf="validateForm.get('mobile').hasError('required') && validateForm.get('mobile').touched"  class="error-line">Mobile is required!</p>
+          
+          <p *ngIf="(validateForm.get('mobile').hasError('minlength') || validateForm.get('mobile').hasError('maxlength')) && validateForm.get('mobile').touched"  class="error-line">Mobile must be 10 digit!</p>
+          
+          <ion-item >
+            <ion-label floating><span>Email</span></ion-label>
+            <ion-input type="email" formControlName="email" [(ngModel)]="data.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
+          </ion-item>
+          <p *ngIf="data.email && validateForm.get('email').hasError('pattern') && validateForm.get('email').touched"  class="error-line">Email invalid!</p>
+          
+          <ion-item>
+            <ion-label floating><span>Address</span></ion-label>
+            <ion-input type="text"formControlName="address" [(ngModel)]="data.address" ></ion-input>
+          </ion-item>
+          <p *ngIf="validateForm.get('address').hasError('required') && validateForm.get('address').touched" class="error-line">Address is required!</p>
+          
+            <div >
+              <ion-item class="cs-select mt14">
+                <ion-label class="pl15">State</ion-label>
+                <ionic-selectable
+                item-content 
+                [(ngModel)]="data.stateName"
+                [items]="state_list"
+                itemValueField="state_name"
+                itemTextField="state_name"
+                (onChange)="getDistrict(data.stateName.state_name)"
+                formControlName="stateName"
+                [canSearch]="true">
+              </ionic-selectable>
+            </ion-item>
+            <p *ngIf="validateForm.get('stateName').hasError('required') && validateForm.get('stateName').touched"  class="error-line">State is required!</p>
+          </div>
+          
+          <div>
+            <ion-item class="cs-select mt14">
+              <ion-label>District</ion-label>
+              <ionic-selectable
+              item-content 
+              [(ngModel)]="data.districtName"
+              [items]="district_list"
+              itemValueField="district_name"
+              itemTextField="district_name"
+              formControlName="districtName"
+              (onChange)="getCity(data.stateName.state_name,data.districtName.district_name)"
+              [canSearch]="true">
+            </ionic-selectable>
+          </ion-item>
+          <p *ngIf="validateForm.get('districtName').hasError('required') && validateForm.get('districtName').touched"  class="error-line">District is required!</p>
+        </div>
+        
+        <div >
+          <ion-item class="cs-select mt14">
+            <ion-label class="pl15">City</ion-label>
+            <ionic-selectable
+            item-content 
+            [(ngModel)]="data.cityName"
+            [items]="city_list"
+            itemValueField="city"
+            itemTextField="city"
+            formControlName="cityName"
+            [canSearch]="true">
+          </ionic-selectable>
+        </ion-item>
+        <p *ngIf="validateForm.get('cityName').hasError('required') && validateForm.get('cityName').touched"  class="error-line">City is required!</p>
+      </div>
+    
+    <ion-item>
+      <ion-label floating><span>Pincode</span></ion-label>
+      <ion-input type="text"  minlength="6" maxlength="6" formControlName="pincode" [(ngModel)]="data.pincode"   ></ion-input>
+    </ion-item>
+    <p *ngIf="validateForm.get('pincode').hasError('required') && validateForm.get('pincode').touched" class="error-line">Pincode is required!</p>
+    
+    <p *ngIf="(validateForm.get('pincode').hasError('minlength') || validateForm.get('pincode').hasError('maxlength')) && validateForm.get('pincode').touched"  class="error-line">Pincode must be 6 digit!</p>
+    
+  </div>
+  
+</ion-list>
+<div >
+</div>
+</div>
+
+</form>
+<div class="h16"></div>
+</ion-content>
+
+<ion-footer>
+  <div class="enquiry-btn">
+    <button ion-button block class="h40 green-color" style="letter-spacing: 1px;" (click)="saveUpdate()">Update</button>
+  </div>
+</ion-footer>

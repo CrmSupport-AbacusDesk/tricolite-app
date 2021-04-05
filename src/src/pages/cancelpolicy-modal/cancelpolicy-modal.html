@@ -1,0 +1,40 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>cancelpolicy-modal</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding class="popup-modal">
+	<div class="modal-content">
+		<form #f="ngForm" (ngSubmit)="f.form.valid && submit()">
+			<h1>ToyZone</h1>
+			<p>Are you sure to redeem your {{gift_detail.coupon_points}} points?</p>
+			<div class="number-content">
+				<p>Enter your 6 digit number that sent to <span class="blue-color lineh24">+91 {{karigar_detail.mobile_no}}</span></p>
+			</div>
+			<div class="input-section">
+				<div class="input-adjust m0">
+					<input class="pl16 radius-none" type="tel" name="otp" placeholder="Enter OTP" #otp="ngModel" [(ngModel)]="data.otp" (ngModelChange)="otpvalidation()" required>
+					<div class="otp-error" *ngIf="!otp_value && otp?.touched">
+						<p>Wrong OTP value</p>
+					</div>	
+				</div>
+				<div class="resend">	
+					<a (click)="resendOtp()">Resend</a>
+				</div>	
+			</div>
+			
+			<div class="check-bx">
+				<ion-item>
+					<ion-checkbox color="secondary" checked="true" name="check" #check="ngModel" [(ngModel)]="data.check" required ></ion-checkbox>
+				</ion-item>
+				<!-- (click)="goOnCancelationPolicy()" -->
+				<p>I have read <a >cancelation policy</a></p>
+			</div>
+			<div class="btn-align">
+				<a ion-item (click)="dismiss()">No</a>	
+				<button ion-item [disabled]="!data.check ||!data.otp ||!otp_value ">Yes</button>
+			</div>	
+		</form>
+	</div>
+</ion-content>

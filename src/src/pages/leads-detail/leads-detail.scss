@@ -1,0 +1,57 @@
+page-leads-detail {
+    label.chedate
+    {
+        position: relative;
+        overflow: hidden;
+        color: #000;
+    }
+    
+    label.chedate input
+    {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        margin: 0px !important;
+        padding: 0px !important;
+        height: 24px !important;
+        font-size: 999999px !important;
+        opacity: 0;
+        z-index: 1;
+        width: 200px !important;
+    }
+    
+    .btn-elip
+    {
+        .button-inner
+        {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: inline-block;
+        }
+    }
+    
+    .ftabs
+    {
+        button
+        {
+            height: 35px;
+            min-height: 35px;
+
+            .item-inner
+            {
+                .input-wrapper
+                {
+                    ion-label
+                    {
+                        height: 35px;
+                        padding: 0px !important;
+                        justify-content: center !important;
+                    }
+                }
+            }
+        }
+    }
+    
+    
+}
