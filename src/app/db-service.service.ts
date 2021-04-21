@@ -18,7 +18,7 @@ export class DbServiceService {
     // public customerDocURL: any = 'http://crm.tricolite.com/api/uploads/Customer_Doc/';
     // public userDocURL: any = 'http://crm.tricolite.com/api/uploads/User_Doc/';
     // public ReportDocURL: any = 'http://crm.tricolite.com/api/uploads/Report_Doc/';
-    // public upload_url: any = 'http://crm.tricolite.com/api/uploads/Task_Doc/';
+    // public upload_url: any = 'http://crm.tricolite.com/api/uploads/Task_Doc/'; 
 
 
 

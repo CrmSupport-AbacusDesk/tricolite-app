@@ -354,13 +354,14 @@ export class ComDailyreportPage implements OnInit {
                         
                             this.dbService.presentLoader();
                             
-                            this.dbService.onPostRequestHandler(inputData, 'report/onSaveDailyReportData2').subscribe((result) => {
+                            this.dbService.onPostRequestHandler(inputData, 'report/onSaveDailyReportData').subscribe((result) => {
                                 
                                 console.log(result);
                                 this.dbService.dismissLoader();
                                 
                                 this.data.status = '';
                                 this.location.back();
+                                console.log("hiiiiii");
                                 
                                 this.dbService.presentToast('Report Saved Successfully!');
                             });
