@@ -42,9 +42,16 @@ export class RegistrationPage implements OnInit {
 
             this.registerForm1 = this.formBuilder.group({
 
-                companyName: ['', [Validators.required, Validators.minLength(5)]],
-                projectName: ['', [Validators.required, Validators.minLength(5)]],
+                name: ['', [Validators.required, Validators.minLength(5)]],
+                designation: ['', [Validators.required, Validators.minLength(5)]],
+                superiorName: ['', [Validators.required, Validators.minLength(5)]],
                 email: ['', [Validators.email]],
+                companyName: ['', [Validators.required, Validators.minLength(5)]],
+                so_no: ['', [Validators.required, Validators.minLength(5)]],
+
+                fg_no: ['', [Validators.required, Validators.minLength(5)]],
+                projectName: ['', [Validators.required, Validators.minLength(5)]],
+                superioremail: ['', [Validators.email]],
                 username: ['', [Validators.required, Validators.minLength(5)]],                
                 password: ['', [Validators.required, Validators.minLength(5)]],
                 landlineNo: ['', [ Validators.minLength(10), Validators.maxLength(10)]],
@@ -80,50 +87,25 @@ export class RegistrationPage implements OnInit {
 
         this.submitted = true;
 
-        let isContactDataFilled = false;
 
-        if(!this.data.district || !this.data.district['district_name']) {
+       
 
-              this.data.district = '';
-        }
+       
 
-        if (this.data.contactName || this.data.contactEmail || this.data.contactMobile) {
-            isContactDataFilled = true;
-        }
-
-        if(isContactDataFilled && (!this.data.contactName || !this.data.contactEmail || !this.data.contactMobile)) {
+        if( (!this.data.so_no && !this.data.fg_no )) {
 
              this.dbService.onShowAlertMessage('Error', 'Fill Contact Complete Details!');
              return;
         }
 
-        if (this.registerForm1.invalid || this.registerForm2.invalid || this.registerForm3.invalid) {
 
-            return;
 
-        } else {
+         else {
 
             console.log('hello');
 
-            if (this.data.contactName && this.data.contactEmail  && this.data.contactMobile) {
 
-                  this.contactData = [];
-
-                  this.contactData.push({
-                      contactName: this.data.contactName,
-                      designation: this.data.designation?this.data.designation:'',
-                      contactEmail: this.data.contactEmail,
-                      contactMobile: this.data.contactMobile
-                  });
-
-                  this.submitted = false;
-            }
-
-            if (this.contactData.length == 0) {
-
-                 this.dbService.onShowAlertMessage('Error', 'No Contact Added!');
-                 return;
-            }
+         
 
             console.log(this.data);
 
@@ -146,10 +128,7 @@ export class RegistrationPage implements OnInit {
 
                           const inputData = JSON.parse(JSON.stringify(this.data));
 
-                          inputData[`stateName`] = inputData[`state`][`state_name`];
-                          inputData[`districtName`] = inputData[`district`][`district_name`];
-                          inputData[`contactData`] = this.contactData;
-
+                        
                           this.dbService.presentLoader();
 
                           this.dbService.onPostRequestHandler(inputData, 'login/onRegisterCustomerAccount').subscribe((result) => {
@@ -191,8 +170,32 @@ export class RegistrationPage implements OnInit {
 
         }
     }
+    async onSonoHandler(){
+      const inputData = {
+        so_no: this.data.so_no,
+        
+    };
+      this.dbService.onPostRequestHandler(inputData, 'login/checkSono').subscribe((result) => {
+
+        console.log(result);
+        this.stateList = result[`stateList`];
+
+  });
+    }
 
 
+    async onfgHandler(){
+      const inputData = {
+        so_no: this.data.so_no,
+        fg_no:this.data.fg_no
+    };
+      this.dbService.onPostRequestHandler(inputData, 'login/checkFgno').subscribe((result) => {
+
+        console.log(result);
+        this.stateList = result[`stateList`];
+
+  });
+    }
     async onGetStateListHandler() {
 
         const inputData = {};
@@ -235,11 +238,17 @@ export class RegistrationPage implements OnInit {
         if (this['registerForm' + stage + ''].invalid) {
 
               if (stage == 1) {
+                this['registerForm' + stage + ''].get('name').markAsTouched();
+                this['registerForm' + stage + ''].get('designation').markAsTouched();
 
                   this['registerForm' + stage + ''].get('companyName').markAsTouched();
                   this['registerForm' + stage + ''].get('email').markAsTouched();
                   // this['registerForm' + stage + ''].get('mobile').markAsTouched();
                   this['registerForm' + stage + ''].get('landlineNo').markAsTouched();
+                  this['registerForm' + stage + ''].get('superiorName').markAsTouched();
+                  this['registerForm' + stage + ''].get('superioremail').markAsTouched();
+                  this['registerForm' + stage + ''].get('so_no').markAsTouched();
+                  this['registerForm' + stage + ''].get('fg_no').markAsTouched();
   
 
               } else if (stage == 2) {
