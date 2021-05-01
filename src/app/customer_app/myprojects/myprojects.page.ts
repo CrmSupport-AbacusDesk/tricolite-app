@@ -23,7 +23,7 @@ export class MyprojectsPage implements OnInit {
   
   
   currentPage: any = 1;
-  pageSize = 2;
+  pageSize = 10;
   
   constructor(private router: Router,
     private formBuilder: FormBuilder,

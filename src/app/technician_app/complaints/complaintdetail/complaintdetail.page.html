@@ -49,7 +49,7 @@
                         <div class="cs-box">
                             <div>
                                 <ion-text>Service Type</ion-text>
-                                <ion-text>{{(taskDetail.taskData.transaction_type == 'FOC' || taskDetail.taskData.transaction_type == 'Sale/Warranty' || taskDetail.taskData.transaction_type == 'Commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
+                                <ion-text>{{(taskDetail.taskData.transaction_type == 'FOC' || taskDetail.taskData.transaction_type == 'Sale/Warranty' || taskDetail.taskData.transaction_type == 'Commissioning') ? 'Warranty Service' : 'Paid Service'}}</ion-text>
                             </div>
                         </div>
                         <div class="cs-box">
@@ -84,6 +84,16 @@
                                 <ion-text>Description <strong>{{taskDetail.taskData.task_description}}</strong></ion-text>
                             </div>
                         </div>
+                    </div>
+
+                    <div  class="one-two-one one mt10">
+                        <div class="cs-box">
+                            <div>
+                                <ion-text>Engineer Visiting Date & Time <strong>{{taskDetail.taskData.visit_date_time| date : 'dd MMM yyyy hh:mm a'}}</strong></ion-text>
+                            </div>
+                        </div>
+                        
+                    
                     </div>
                     <div class="one-two-one two mt10">
                         <div class="cs-box">

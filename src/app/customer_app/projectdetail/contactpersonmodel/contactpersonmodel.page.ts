@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DbServiceService } from 'src/app/db-service.service';
 import { NavParams } from '@ionic/angular';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Router } from '@angular/router';
+import { ProjectdetailPage } from '../projectdetail.page';
+import { Push } from '@ionic-native/push/ngx';
+
 
 @Component({
   selector: 'app-contactpersonmodel',
@@ -17,7 +21,7 @@ export class ContactpersonmodelPage implements OnInit {
   projectID:any='';
   inputData:any={};
   
-  constructor(public modalController: ModalController,private formBuilder: FormBuilder, public dbService: DbServiceService, private navParams: NavParams) 
+  constructor(private route: Router,public modalController: ModalController, public push: Push,private formBuilder: FormBuilder, public dbService: DbServiceService, public navCtrl:NavController, private navParams: NavParams) 
   { 
     this.projectID = this.navParams.get('projectId');
 
@@ -60,14 +64,23 @@ export class ContactpersonmodelPage implements OnInit {
       this.dbService.dismissLoader();
       
       if (result[`status`] != 'true') {
+        console.log(result[`status`]);
         
         this.dbService.onShowAlertMessage('Error', result[`statusMessage`]);
         
       } else {
+        console.log(result[`status`]);
         
         this.data = {};
+        this.modalController.dismiss({
+          'dismissed': true
+        });
         this.dbService.presentToast('Contact Saved Successfully!');
+        
       }
     });
+  }
+  project_detail(){
+
   }
 }

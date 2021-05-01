@@ -102,11 +102,18 @@
                     <div class="cs-box" *ngIf="row.task_type != 'commissioning'">
                         <div>
                             <ion-text>Service Type</ion-text>
-                            <ion-text>{{(row.transaction_type == 'FOC' || row.transaction_type == 'Sale/Warranty' || row.transaction_type?.toLowerCase() == 'commissioning') ? 'Free Service' : 'Paid Service'}}</ion-text>
+                            <ion-text>{{(row.transaction_type == 'FOC' || row.transaction_type == 'Sale/Warranty' || row.transaction_type?.toLowerCase() == 'commissioning') ? 'Warranty Service' : 'Paid Service'}}</ion-text>
                         </div>
                     </div>
                 </div>
-                
+                <div class="one-one-one" (click)="GoComplaintDetail(row.id)">
+                    <div class="cs-box">
+                        <div>
+                            <ion-text>Engineer Visiting Date & Time </ion-text>
+                            <ion-text>{{row.visit_date_time| date : 'dd MMM yyyy hh:mm a'}}</ion-text>
+                        </div>
+                    </div>
+                </div>
                 <!-- <div *ngFor="let fgRow of row.fgData" class="one-two-one three" (click)="GoComplaintDetail(row.id)">
                     
                     <div class="cs-box">
@@ -133,7 +140,7 @@
                             <ion-text>{{row.workStatus ? row.workStatus : '--'}}</ion-text>
                         </div>
                     </div>
-             
+                    
              
                     <div [ngClass] = "(row.status) ? row.status.toLowerCase() : ''" class="cs-box">
                         <div>
@@ -149,7 +156,7 @@
                         </div>
                     </div> -->
                 </div>
-                
+               
             </div>
         </div>
         
