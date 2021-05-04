@@ -96,7 +96,7 @@
 
                                         </ion-item>
                                          <ion-item [ngClass]="submitted && f1.email.errors && f1.email.errors.required ? 'has-error' : (f1.email.errors && !f1.email.errors.required ? 'has-text' : '')">
-                                            <ion-label position="floating">Email ID(please enter here only official email id)</ion-label>
+                                            <ion-label position="floating">Email ID<span style="font-size: 10px">(please enter here only official id)</span></ion-label>
                                             <ion-input formControlName="email" [(ngModel)]="data.email" autocomplete="nope"></ion-input>
 
                                             <ion-text *ngIf="submitted && f1.email.errors" class="cs-error">
@@ -165,10 +165,10 @@
                                                                           
 
                                         </ion-item> 
-                                        <div class="head">
-                                            <div class="heading">
+                                        <div class="head1">
+                                            <div class="head">
                                               
-                                                <ion-button fill="clear" routerLink="/imagemodal"> *AVAILABLE ON PANEL NAME PLATE & DRAWING</ion-button>
+                                                <ion-button fill="clear" style="font-size: 8px" routerLink="/imagemodal"> *AVAILABLE ON PANEL NAME PLATE & DRAWING</ion-button>
                                             </div>
                                         </div>
                                         <!-- <div class="heading">
