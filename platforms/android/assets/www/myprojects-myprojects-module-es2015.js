@@ -143,7 +143,7 @@ let MyprojectsPage = class MyprojectsPage {
         this.doCheckForMoreData = true;
         this.isRequestInProcess = true;
         this.currentPage = 1;
-        this.pageSize = 2;
+        this.pageSize = 10;
     }
     ngOnInit() {
         this.onGetProjectListHandler(true, '');

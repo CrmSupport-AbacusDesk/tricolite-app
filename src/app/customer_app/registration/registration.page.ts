@@ -6,6 +6,7 @@ import { LoadingController, AlertController, ModalController } from '@ionic/angu
 import { DbServiceService } from 'src/app/db-service.service';
 
 import * as moment from 'moment';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-registration',
@@ -16,8 +17,12 @@ export class RegistrationPage implements OnInit {
 
 
   activeStage: any = 1;
+  fgList2: any;
 
-  stateList: any = [];
+  fgList: any = [];
+  soList: any = [];
+  soList2: any = [];
+
   districtList: any = [];
 
   contactData: any = [];
@@ -94,7 +99,7 @@ export class RegistrationPage implements OnInit {
 
         if( (!this.data.so_no && !this.data.fg_no )) {
 
-             this.dbService.onShowAlertMessage('Error', 'Fill Contact Complete Details!');
+             this.dbService.onShowAlertMessage('Error', 'Enter SO NO or FGNO !');
              return;
         }
 
@@ -178,8 +183,12 @@ export class RegistrationPage implements OnInit {
       this.dbService.onPostRequestHandler(inputData, 'login/checkSono').subscribe((result) => {
 
         console.log(result);
-        this.stateList = result[`stateList`];
+        this.fgList = result[`fg`];
+         console.log(this.fgList);
+        
 
+        
+         
   });
     }
 
@@ -192,7 +201,11 @@ export class RegistrationPage implements OnInit {
       this.dbService.onPostRequestHandler(inputData, 'login/checkFgno').subscribe((result) => {
 
         console.log(result);
-        this.stateList = result[`stateList`];
+         this.soList = result[`fg`];
+console.log( this.soList);
+    
+    this.data.so_no=this.soList.so_no
+console.log(this.data.so_no);
 
   });
     }
@@ -203,7 +216,7 @@ export class RegistrationPage implements OnInit {
         this.dbService.onPostRequestHandler(inputData, 'task/getStateList').subscribe((result) => {
 
               console.log(result);
-              this.stateList = result[`stateList`];
+              // this.stateList = result[`stateList`];
 
         });
     }
