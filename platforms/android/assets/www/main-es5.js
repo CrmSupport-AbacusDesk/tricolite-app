@@ -473,7 +473,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content class=\"cs-modal-container\">\r\n    <div class=\"modal-container full-modal-container\">\r\n        <div class=\"main-figure\">\r\n            <div class=\"cs-modal-body\">\r\n               \r\n                    <div class=\"custome-filter\">\r\n                            <div class=\"cs-header\">\r\n\r\n                                <ion-button (click)=\"dismiss()\"><i class=\"material-icons\">keyboard_arrow_down</i></ion-button>\r\n                                <h1>filters</h1>\r\n\r\n                                <ion-text (click)=\"onRemoveAllFilterHandler()\">Clear</ion-text>\r\n                            </div>\r\n                            \r\n                            <div class=\"fiter-data\">\r\n\r\n                                <div class=\"cs-left\">\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 1\" [ngClass]=\"currentActiveTab==1 ? 'active' : ''\" fill=\"clear\" color=\"dark\">Date & Days</ion-button>\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 2\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==2 ? 'active' : ''\">Priority</ion-button>\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 3\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==3 ? 'active' : ''\">Com. Type</ion-button>\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 4\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==4 ? 'active' : ''\">Status</ion-button>\r\n\r\n                                </div>\r\n                                \r\n                                <div class=\"cs-right\">\r\n\r\n                                 <div *ngIf=\"currentActiveTab==1\" id=\"days\">\r\n                                        <div class=\"common_form inner_page\">\r\n                                                <ion-item class=\"date-time\">\r\n                                                    <ion-label>Date From</ion-label>\r\n                                                    <ion-datetime [(ngModel)]=\"data.dateFrom\" (ngModelChange)=\"onDateFromChangeHandler()\" displayFormat=\"DD MMM YYYY\" max=\"{{currentDate}}\"></ion-datetime>\r\n                                                </ion-item>\r\n                                                <ion-item class=\"date-time\">\r\n                                                    <ion-label>Date To</ion-label>\r\n                                                    <ion-datetime [(ngModel)]=\"data.dateTo\" (ngModelChange)=\"data.range = 0\"  displayFormat=\"DD MMM YYYY\" min=\"{{minDate}}\" max=\"{{currentDate}}\"></ion-datetime>\r\n                                                </ion-item>\r\n                                            </div>\r\n\r\n                                            <div class=\"or-cnt or-cnt16\">\r\n                                                <div>OR</div>\r\n                                            </div>\r\n                                            \r\n\r\n                                            <div class=\"cs-range\">\r\n        \r\n                                                <h1>Days Range <span><ion-text>{{data.range}}</ion-text></span></h1>\r\n                                                <ion-item>\r\n        \r\n                                                    <ion-range [(ngModel)]=\"data.range\" (ngModelChange) = \"data.dateFrom = ''; data.dateTo = ''\"  min=\"0\" max=\"30\" color=\"warning\">\r\n        \r\n                                                        <ion-label slot=\"start\">0 Days</ion-label>\r\n        \r\n                                                        <ion-label slot=\"end\">30 Days</ion-label>\r\n        \r\n                                                    </ion-range>\r\n        \r\n                                                </ion-item>\r\n        \r\n                                            </div>\r\n                                 </div>\r\n\r\n                                    \r\n                                    \r\n                                    <div *ngIf=\"currentActiveTab==2\" id=\"priority\" class=\"cs-checkbox\">\r\n                                        <ion-list>\r\n                                            <ion-item *ngFor=\"let row of priorityList\">\r\n\r\n                                                <ion-label>{{row.name}}</ion-label>\r\n\r\n                                                <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\r\n\r\n                                            </ion-item>\r\n                                        </ion-list>\r\n                                    </div>\r\n\r\n                                    <div *ngIf=\"currentActiveTab==3\" id=\"complaintTitle\" class=\"cs-checkbox\">\r\n                                            <ion-list>\r\n                                                <ion-item *ngFor=\"let row of complaintTypeList\">\r\n                                                    <ion-label>{{row.title}}</ion-label>\r\n                                                    <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\r\n                                                </ion-item>\r\n                                            </ion-list>\r\n                                    </div>\r\n\r\n                                    <div *ngIf=\"currentActiveTab==4\" id=\"complaintStatus\" class=\"cs-checkbox\">\r\n\r\n                                            <ion-list>\r\n\r\n                                                <ion-item *ngFor=\"let row of statusList\">\r\n\r\n                                                    <ion-label>{{row.name}}</ion-label>\r\n\r\n                                                    <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\r\n\r\n                                                </ion-item>\r\n\r\n                                            </ion-list>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            \r\n                         <div class=\"cs-btn\" padding>\r\n                                <ion-button (click)=\"onApplyFilterHandler()\" class=\"success min\" shape=\"round\" expand=\"full\">APPLY</ion-button>\r\n                            </div>\r\n                        </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n";
+    __webpack_exports__["default"] = "<ion-content class=\"cs-modal-container\">\r\n    <div class=\"modal-container full-modal-container\">\r\n        <div class=\"main-figure\">\r\n            <div class=\"cs-modal-body\">\r\n               \r\n                    <div class=\"custome-filter\">\r\n                            <div class=\"cs-header\">\r\n\r\n                                <ion-button (click)=\"dismiss()\"><i class=\"material-icons\">keyboard_arrow_down</i></ion-button>\r\n                                <h1>filters</h1>\r\n\r\n                                <ion-text (click)=\"onRemoveAllFilterHandler()\">Clear</ion-text>\r\n                            </div>\r\n                            \r\n                            <div class=\"fiter-data\">\r\n\r\n                                <div class=\"cs-left\">\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 1\" [ngClass]=\"currentActiveTab==1 ? 'active' : ''\" fill=\"clear\" color=\"dark\">Date & Days</ion-button>\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 2\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==2 ? 'active' : ''\">Priority</ion-button>\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 3\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==3 ? 'active' : ''\">Req. Type</ion-button>\r\n\r\n                                    <ion-button (click)=\"currentActiveTab = 4\" fill=\"clear\" color=\"dark\" [ngClass]=\"currentActiveTab==4 ? 'active' : ''\">Status</ion-button>\r\n\r\n                                </div>\r\n                                \r\n                                <div class=\"cs-right\">\r\n\r\n                                 <div *ngIf=\"currentActiveTab==1\" id=\"days\">\r\n                                        <div class=\"common_form inner_page\">\r\n                                                <ion-item class=\"date-time\">\r\n                                                    <ion-label>Date From</ion-label>\r\n                                                    <ion-datetime [(ngModel)]=\"data.dateFrom\" (ngModelChange)=\"onDateFromChangeHandler()\" displayFormat=\"DD MMM YYYY\" max=\"{{currentDate}}\"></ion-datetime>\r\n                                                </ion-item>\r\n                                                <ion-item class=\"date-time\">\r\n                                                    <ion-label>Date To</ion-label>\r\n                                                    <ion-datetime [(ngModel)]=\"data.dateTo\" (ngModelChange)=\"data.range = 0\"  displayFormat=\"DD MMM YYYY\" min=\"{{minDate}}\" max=\"{{currentDate}}\"></ion-datetime>\r\n                                                </ion-item>\r\n                                            </div>\r\n\r\n                                            <div class=\"or-cnt or-cnt16\">\r\n                                                <div>OR</div>\r\n                                            </div>\r\n                                            \r\n\r\n                                            <div class=\"cs-range\">\r\n        \r\n                                                <h1>Days Range <span><ion-text>{{data.range}}</ion-text></span></h1>\r\n                                                <ion-item>\r\n        \r\n                                                    <ion-range [(ngModel)]=\"data.range\" (ngModelChange) = \"data.dateFrom = ''; data.dateTo = ''\"  min=\"0\" max=\"30\" color=\"warning\">\r\n        \r\n                                                        <ion-label slot=\"start\">0 Days</ion-label>\r\n        \r\n                                                        <ion-label slot=\"end\">30 Days</ion-label>\r\n        \r\n                                                    </ion-range>\r\n        \r\n                                                </ion-item>\r\n        \r\n                                            </div>\r\n                                 </div>\r\n\r\n                                    \r\n                                    \r\n                                    <div *ngIf=\"currentActiveTab==2\" id=\"priority\" class=\"cs-checkbox\">\r\n                                        <ion-list>\r\n                                            <ion-item *ngFor=\"let row of priorityList\">\r\n\r\n                                                <ion-label>{{row.name}}</ion-label>\r\n\r\n                                                <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\r\n\r\n                                            </ion-item>\r\n                                        </ion-list>\r\n                                    </div>\r\n\r\n                                    <div *ngIf=\"currentActiveTab==3\" id=\"complaintTitle\" class=\"cs-checkbox\">\r\n                                            <ion-list>\r\n                                                <ion-item *ngFor=\"let row of complaintTypeList\">\r\n                                                    <ion-label>{{row.title}}</ion-label>\r\n                                                    <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\r\n                                                </ion-item>\r\n                                            </ion-list>\r\n                                    </div>\r\n\r\n                                    <div *ngIf=\"currentActiveTab==4\" id=\"complaintStatus\" class=\"cs-checkbox\">\r\n\r\n                                            <ion-list>\r\n\r\n                                                <ion-item *ngFor=\"let row of statusList\">\r\n\r\n                                                    <ion-label>{{row.name}}</ion-label>\r\n\r\n                                                    <ion-checkbox [(ngModel)]=\"row.checked\" slot=\"start\" color=\"success\"></ion-checkbox>\r\n\r\n                                                </ion-item>\r\n\r\n                                            </ion-list>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            \r\n                         <div class=\"cs-btn\" padding>\r\n                                <ion-button (click)=\"onApplyFilterHandler()\" class=\"success min\" shape=\"round\" expand=\"full\">APPLY</ion-button>\r\n                            </div>\r\n                        </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n";
     /***/
   },
 
@@ -533,7 +533,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content class=\"cs-modal-container\">\r\n    <div class=\"modal-container align-center\">\r\n        <div class=\"main-figure\">\r\n            <div class=\"cs-modal-body\">\r\n                <form [formGroup]=\"cpForm\" (ngSubmit)=\"onSaveHandler()\">\r\n                    <div class=\"modal-content\">\r\n                        <div class=\"common_form shadow-none padding0\">\r\n                            <div class=\"heading\"><h1>Add Contact Person</h1></div>\r\n                            \r\n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpName').hasError('required') && cpForm.get('cpName').touched}\">\r\n                                <ion-label position=\"floating\">Name</ion-label>\r\n                                <ion-input formControlName=\"cpName\"></ion-input>\r\n\r\n                                <ion-text  class=\"cs-error\" *ngIf=\"cpForm.get('cpName').hasError('required') && cpForm.get('cpName').touched\">\r\n                                    This Field is Required\r\n                                </ion-text>\r\n                            </ion-item>\r\n                            \r\n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpMobile').hasError('required') && cpForm.get('cpMobile').touched}\">\r\n                                <ion-label position=\"floating\">Mobile No.</ion-label>\r\n                                <ion-input type=\"tel\" formControlName=\"cpMobile\"></ion-input>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpMobile').hasError('required') && cpForm.get('cpMobile').touched\">\r\n                                    This Field is Required\r\n                                </ion-text>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpMobile').hasError('minlength') || cpForm.get('cpMobile').hasError('maxlength')\">\r\n                                    Mobile No. must be at least 10 Digit.\r\n                                </ion-text>\r\n                            </ion-item>\r\n                            \r\n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpDesignation').hasError('required') && cpForm.get('cpDesignation').touched}\">\r\n                                <ion-label position=\"floating\">Designation</ion-label>\r\n                                <ion-input formControlName=\"cpDesignation\"></ion-input>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpDesignation').hasError('required') && cpForm.get('cpDesignation').touched\">\r\n                                    This Field is Required\r\n                                </ion-text>\r\n                            </ion-item>\r\n                            \r\n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpEmail').hasError('required') && cpForm.get('cpEmail').touched}\">\r\n                                <ion-label position=\"floating\">Email</ion-label>\r\n                                <ion-input type=\"email\" formControlName=\"cpEmail\" pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$\"></ion-input>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpEmail').hasError('required') && cpForm.get('cpEmail').touched\">\r\n                                    This Field is Required\r\n                                </ion-text>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpEmail').hasError('pattern')\">\r\n                                    Enter a valid Email\r\n                                </ion-text>\r\n                            </ion-item>\r\n                        </div>\r\n                        \r\n                        <div class=\"cs-btn mt16 lr\">\r\n                            <ion-button type=\"submit\" class=\"success min w100\">SAVE</ion-button>\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n            <div class=\"modal-close model-cross\">\r\n                <ion-button color=\"danger\" (click)=\"dismiss()\"><ion-icon name=\"close\"></ion-icon></ion-button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content class=\"cs-modal-container\">\r\n    <div class=\"modal-container align-center\">\r\n        <div class=\"main-figure\">\r\n            <div class=\"cs-modal-body\">\r\n                <form [formGroup]=\"cpForm\" (ngSubmit)=\"onSaveHandler()\">\r\n                    <div class=\"modal-content\">\r\n                        <div class=\"common_form shadow-none padding0\">\r\n                            <div class=\"heading\"><h1>Add Contact Person</h1></div>\r\n                            \r\n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpName').hasError('required') && cpForm.get('cpName').touched}\">\r\n                                <ion-label position=\"floating\">Name</ion-label>\r\n                                <ion-input formControlName=\"cpName\"></ion-input>\r\n\r\n                                <ion-text  class=\"cs-error\" *ngIf=\"cpForm.get('cpName').hasError('required') && cpForm.get('cpName').touched\">\r\n                                    This Field is Required\r\n                                </ion-text>\r\n                            </ion-item>\r\n                            \r\n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpMobile').hasError('required') && cpForm.get('cpMobile').touched}\">\r\n                                <ion-label position=\"floating\">Mobile No.</ion-label>\r\n                                <ion-input type=\"tel\" formControlName=\"cpMobile\"></ion-input>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpMobile').hasError('required') && cpForm.get('cpMobile').touched\">\r\n                                    This Field is Required\r\n                                </ion-text>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpMobile').hasError('minlength') || cpForm.get('cpMobile').hasError('maxlength')\">\r\n                                    Mobile No. must be at least 10 Digit.\r\n                                </ion-text>\r\n                            </ion-item>\r\n                            \r\n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpDesignation').hasError('required') && cpForm.get('cpDesignation').touched}\">\r\n                                <ion-label position=\"floating\">Designation</ion-label>\r\n                                <ion-input formControlName=\"cpDesignation\"></ion-input>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpDesignation').hasError('required') && cpForm.get('cpDesignation').touched\">\r\n                                    This Field is Required\r\n                                </ion-text>\r\n                            </ion-item>\r\n                            \r\n                            <ion-item [ngClass]=\"{'has-text': cpForm.get('cpEmail').hasError('required') && cpForm.get('cpEmail').touched}\">\r\n                                <ion-label position=\"floating\">Email</ion-label>\r\n                                <ion-input type=\"email\" formControlName=\"cpEmail\" pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$\"></ion-input>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpEmail').hasError('required') && cpForm.get('cpEmail').touched\">\r\n                                    This Field is Required\r\n                                </ion-text>\r\n\r\n                                <ion-text class=\"cs-error\" *ngIf=\"cpForm.get('cpEmail').hasError('pattern')\">\r\n                                    Enter a valid Email\r\n                                </ion-text>\r\n                            </ion-item>\r\n                        </div>\r\n                        \r\n                        <div class=\"cs-btn mt16 lr\">\r\n                            <ion-button type=\"submit\" class=\"success min w100\" >SAVE</ion-button>\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n            <div class=\"modal-close model-cross\">\r\n                <ion-button color=\"danger\" (click)=\"dismiss()\"><ion-icon name=\"close\"></ion-icon></ion-button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>";
     /***/
   },
 
@@ -554,6 +554,26 @@
 
 
     __webpack_exports__["default"] = "\r\n<div class=\"cs-popover\">\r\n\r\n    <ion-button *ngIf=\"taskPopUpData && taskPopUpData.taskInstalledPartCount && taskPopUpData.taskInstalledPartCount != 0\" fill=\"clear\" (click)=\"GoToSpare()\" (click)=\"DismissClick()\"><div><img src=\"assets/icon/add_remark.svg\" alt=\"\">Spare Part</div></ion-button>\r\n\r\n    <ion-button fill=\"clear\"  (click)=\"GoToImages()\"   (click)=\"DismissClick()\"><div><img src=\"assets/icon/view_service_report.svg\" alt=\"\">Images</div></ion-button>\r\n\r\n    <ion-button *ngIf=\"taskPopUpData && taskPopUpData.taskReportCount && taskPopUpData.taskReportCount != 0\" fill=\"clear\"><div><img src=\"assets/icon/mail_service_report.svg\" alt=\"\">View Service Report</div></ion-button>\r\n\r\n    <ion-button fill=\"clear\" *ngIf=\"taskPopUpData && taskPopUpData.status && taskPopUpData.status != 'Cancel'\" (click)=\"onCancelComplaintHandler()\"><div><img src=\"assets/icon/cancel-complaint.svg\" alt=\"\">Cancel Request</div></ion-button>\r\n\r\n</div>\r\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/imagemodal/imagemodal.page.html":
+  /*!***************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/imagemodal/imagemodal.page.html ***!
+    \***************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppImagemodalImagemodalPageHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<ion-content>\n  <div class=\"login-container\">\n      <div class=\"logo\"><img src=\"../../assets/img/logo.jpg\" alt=\"\"></div>\n      \n      <div class=\"form-container\">\n          \n          <div class=\"head\">\n              \n              <div class=\"heading\">\n                  \n                  <h1>PANEL NAME PLATE</h1>\n                  \n                  <ion-button fill=\"clear\" routerLink=\"/registration\" routerDirection=\"\">\n                      <i class=\"material-icons\">arrow_right_alt</i> Back</ion-button>\n                      \n                  </div>\n                  \n                \n                  \n              </div>\n              \n              <div class=\"input-container\">\n                <div class=\"pop-imge\">\n                  <img src=\"../../assets/img/panel.jpg\">\n                 \n              \n              </div>\n              \n                \n                 \n                  \n              </div>\n          </div>\n      </div>\n      \n  </ion-content>\n";
     /***/
   },
 
@@ -1286,6 +1306,11 @@
       loadChildren: () => Promise.resolve().then(__webpack_require__.bind(null,
       /*! ./customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module */
       "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module.ts")).then(m => m.ContactpersonmodelPageModule)
+    }, {
+      path: 'imagemodal',
+      loadChildren: () => Promise.resolve().then(__webpack_require__.bind(null,
+      /*! ./imagemodal/imagemodal.module */
+      "./src/app/imagemodal/imagemodal.module.ts")).then(m => m.ImagemodalPageModule)
     }];
     let AppRoutingModule = class AppRoutingModule {};
     AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
@@ -1752,14 +1777,20 @@
 
     var _customer_app_escalationdetail_escalationdetail_module__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
     /*! ./customer_app/escalationdetail/escalationdetail.module */
-    "./src/app/customer_app/escalationdetail/escalationdetail.module.ts"); // import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
+    "./src/app/customer_app/escalationdetail/escalationdetail.module.ts");
+    /* harmony import */
+
+
+    var _imagemodal_imagemodal_module__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(
+    /*! ./imagemodal/imagemodal.module */
+    "./src/app/imagemodal/imagemodal.module.ts"); // import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 
 
     let AppModule = class AppModule {};
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"], _technician_app_complaints_tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_10__["TecCompliantPopoverComponent"], _customer_app_service_request_request_popover_request_popover_component__WEBPACK_IMPORTED_MODULE_11__["RequestPopoverComponent"]],
       entryComponents: [_technician_app_complaints_tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_10__["TecCompliantPopoverComponent"], _customer_app_service_request_request_popover_request_popover_component__WEBPACK_IMPORTED_MODULE_11__["RequestPopoverComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _customer_app_confirmmodal_confirmmodal_module__WEBPACK_IMPORTED_MODULE_12__["ConfirmmodalPageModule"], _customer_app_projectdetail_contactpersonmodel_contactpersonmodel_module__WEBPACK_IMPORTED_MODULE_24__["ContactpersonmodelPageModule"], _complaintfiltermodal_complaintfiltermodal_module__WEBPACK_IMPORTED_MODULE_14__["ComplaintfiltermodalPageModule"], _technician_app_complaints_signaturemodal_signaturemodal_module__WEBPACK_IMPORTED_MODULE_13__["SignaturemodalPageModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"], ionic_selectable__WEBPACK_IMPORTED_MODULE_16__["IonicSelectableModule"], angular2_signaturepad__WEBPACK_IMPORTED_MODULE_23__["SignaturePadModule"], _customer_app_escalationdetail_escalationdetail_module__WEBPACK_IMPORTED_MODULE_26__["EscalationdetailPageModule"]],
+      imports: [_imagemodal_imagemodal_module__WEBPACK_IMPORTED_MODULE_27__["ImagemodalPageModule"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _customer_app_confirmmodal_confirmmodal_module__WEBPACK_IMPORTED_MODULE_12__["ConfirmmodalPageModule"], _customer_app_projectdetail_contactpersonmodel_contactpersonmodel_module__WEBPACK_IMPORTED_MODULE_24__["ContactpersonmodelPageModule"], _complaintfiltermodal_complaintfiltermodal_module__WEBPACK_IMPORTED_MODULE_14__["ComplaintfiltermodalPageModule"], _technician_app_complaints_signaturemodal_signaturemodal_module__WEBPACK_IMPORTED_MODULE_13__["SignaturemodalPageModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"], ionic_selectable__WEBPACK_IMPORTED_MODULE_16__["IonicSelectableModule"], angular2_signaturepad__WEBPACK_IMPORTED_MODULE_23__["SignaturePadModule"], _customer_app_escalationdetail_escalationdetail_module__WEBPACK_IMPORTED_MODULE_26__["EscalationdetailPageModule"]],
       providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_7__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_6__["SplashScreen"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_18__["Camera"], _technician_app_home_home_page__WEBPACK_IMPORTED_MODULE_25__["HomePage"], _ionic_native_diagnostic_ngx__WEBPACK_IMPORTED_MODULE_17__["Diagnostic"], _ionic_native_image_picker_ngx__WEBPACK_IMPORTED_MODULE_19__["ImagePicker"], _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_20__["Base64"], _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_21__["PhotoViewer"], _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_22__["Push"], // DocumentViewer,
       {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
@@ -2754,12 +2785,27 @@
     var src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @ionic-native/push/ngx */
+    "./node_modules/@ionic-native/push/ngx/index.js");
 
     let ContactpersonmodelPage = class ContactpersonmodelPage {
-      constructor(modalController, formBuilder, dbService, navParams) {
+      constructor(route, modalController, push, formBuilder, dbService, navCtrl, navParams) {
+        this.route = route;
         this.modalController = modalController;
+        this.push = push;
         this.formBuilder = formBuilder;
         this.dbService = dbService;
+        this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.data = {};
         this.projectID = '';
@@ -2797,22 +2843,35 @@
           this.dbService.dismissLoader();
 
           if (result["status"] != 'true') {
+            console.log(result["status"]);
             this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
           } else {
+            console.log(result["status"]);
             this.data = {};
+            this.modalController.dismiss({
+              'dismissed': true
+            });
             this.dbService.presentToast('Contact Saved Successfully!');
           }
         });
       }
 
+      project_detail() {}
+
     };
 
     ContactpersonmodelPage.ctorParameters = () => [{
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
+    }, {
       type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+    }, {
+      type: _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"]
     }, {
       type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
     }, {
       type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]
+    }, {
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]
     }, {
       type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
     }];
@@ -2825,7 +2884,7 @@
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./contactpersonmodel.page.scss */
       "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.scss")).default]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]])], ContactpersonmodelPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]])], ContactpersonmodelPage);
     /***/
   },
 
@@ -2928,7 +2987,7 @@
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
           const alert = yield this.alertCtrl.create({
             header: 'Confirm',
-            message: 'Are You Sure, You Want To Cancel Complaint ?',
+            message: 'Are You Sure, You Want To Cancel Request ?',
             buttons: [{
               text: 'No',
               role: 'cancel',
@@ -3065,27 +3124,21 @@
         this.toastCtrl = toastCtrl;
         this.route = route;
         this.isShowing = false;
-        this.user = JSON.parse(localStorage.getItem('loginData')) || [];
-        this.serverURL = 'http://crm.tricolite.com/api/index.php/app/';
-        this.uploadURL = 'http://crm.tricolite.com/api/uploads/Task_Doc/';
-        this.masterDocURL = 'http://crm.tricolite.com/api/uploads/Master_Doc/';
-        this.customerDocURL = 'http://crm.tricolite.com/api/uploads/Customer_Doc/';
-        this.userDocURL = 'http://crm.tricolite.com/api/uploads/User_Doc/';
-        this.ReportDocURL = 'http://crm.tricolite.com/api/uploads/Report_Doc/';
-        this.upload_url = 'http://crm.tricolite.com/api/uploads/Task_Doc/'; // public serverURL: any = 'http://tricolite.abacusdesk.com/api/index.php/app/';
-        // public uploadURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
-        // public masterDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Master_Doc/';
-        // public customerDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Customer_Doc/';
-        // public userDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/User_Doc/';
-        // public ReportDocURL: any = 'http://tricolite.abacusdesk.com/api/uploads/Report_Doc/';
-        // public upload_url: any = 'http://tricolite.abacusdesk.com/api/uploads/Task_Doc/';
-        //  public serverURL: any = 'http://localhost/tricolite/api/index.php/app/';
-        // public uploadURL: any = 'http://localhost/tricolite/api/uploads/Task_Doc/';
-        // public masterDocURL: any = 'http://localhost/tricolite/api/uploads/Master_Doc/';
-        // public customerDocURL: any = 'http://localhost/tricolite/api/uploads/Customer_Doc/';
-        // public userDocURL: any = 'http://localhost/tricolite/api/uploads/User_Doc/';
-        // public ReportDocURL: any = 'http://localhost/tricolite/api/uploads/Report_Doc/';
+        this.user = JSON.parse(localStorage.getItem('loginData')) || []; // public serverURL: any = 'http://crm.tricolite.com/api/index.php/app/';
+        // public uploadURL: any = 'http://crm.tricolite.com/api/uploads/Task_Doc/';
+        // public masterDocURL: any = 'http://crm.tricolite.com/api/uploads/Master_Doc/';
+        // public customerDocURL: any = 'http://crm.tricolite.com/api/uploads/Customer_Doc/';
+        // public userDocURL: any = 'http://crm.tricolite.com/api/uploads/User_Doc/';
+        // public ReportDocURL: any = 'http://crm.tricolite.com/api/uploads/Report_Doc/';
+        // public upload_url: any = 'http://crm.tricolite.com/api/uploads/Task_Doc/'; 
 
+        this.serverURL = 'http://phpstack-83335-1824762.cloudwaysapps.com/api/index.php/app/';
+        this.uploadURL = 'http://phpstack-83335-1824762.cloudwaysapps.com/api/uploads/Task_Doc/';
+        this.masterDocURL = 'http://phpstack-83335-1824762.cloudwaysapps.com/api/uploads/Master_Doc/';
+        this.customerDocURL = 'http://phpstack-83335-1824762.cloudwaysapps.com/api/uploads/Customer_Doc/';
+        this.userDocURL = 'http://phpstack-83335-1824762.cloudwaysapps.com/api/uploads/User_Doc/';
+        this.ReportDocURL = 'http://phpstack-83335-1824762.cloudwaysapps.com/api/uploads/Report_Doc/';
+        this.upload_url = 'http://phpstack-83335-1824762.cloudwaysapps.com/api/uploads/Task_Doc/';
         this.backButton = 0;
       }
 
@@ -3189,6 +3242,202 @@
     DbServiceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])], DbServiceService);
+    /***/
+  },
+
+  /***/
+  "./src/app/imagemodal/imagemodal-routing.module.ts":
+  /*!*********************************************************!*\
+    !*** ./src/app/imagemodal/imagemodal-routing.module.ts ***!
+    \*********************************************************/
+
+  /*! exports provided: ImagemodalPageRoutingModule */
+
+  /***/
+  function srcAppImagemodalImagemodalRoutingModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ImagemodalPageRoutingModule", function () {
+      return ImagemodalPageRoutingModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _imagemodal_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./imagemodal.page */
+    "./src/app/imagemodal/imagemodal.page.ts");
+
+    const routes = [{
+      path: '',
+      component: _imagemodal_page__WEBPACK_IMPORTED_MODULE_3__["ImagemodalPage"]
+    }];
+    let ImagemodalPageRoutingModule = class ImagemodalPageRoutingModule {};
+    ImagemodalPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+    })], ImagemodalPageRoutingModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/imagemodal/imagemodal.module.ts":
+  /*!*************************************************!*\
+    !*** ./src/app/imagemodal/imagemodal.module.ts ***!
+    \*************************************************/
+
+  /*! exports provided: ImagemodalPageModule */
+
+  /***/
+  function srcAppImagemodalImagemodalModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ImagemodalPageModule", function () {
+      return ImagemodalPageModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/fesm2015/common.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/dist/fesm5.js");
+    /* harmony import */
+
+
+    var _imagemodal_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./imagemodal-routing.module */
+    "./src/app/imagemodal/imagemodal-routing.module.ts");
+    /* harmony import */
+
+
+    var _imagemodal_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./imagemodal.page */
+    "./src/app/imagemodal/imagemodal.page.ts");
+
+    let ImagemodalPageModule = class ImagemodalPageModule {};
+    ImagemodalPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _imagemodal_routing_module__WEBPACK_IMPORTED_MODULE_5__["ImagemodalPageRoutingModule"]],
+      declarations: [_imagemodal_page__WEBPACK_IMPORTED_MODULE_6__["ImagemodalPage"]]
+    })], ImagemodalPageModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/imagemodal/imagemodal.page.scss":
+  /*!*************************************************!*\
+    !*** ./src/app/imagemodal/imagemodal.page.scss ***!
+    \*************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppImagemodalImagemodalPageScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".module {\n  background: rgba(0, 0, 0, 0.9) !important;\n}\n.module .scroll-content {\n  left: 0;\n  right: 0;\n  top: 50%;\n  position: absolute;\n  -webkit-transform: translateY(-50%);\n  transform: translateY(-50%);\n  overflow: inherit;\n  bottom: inherit;\n  contain: initial;\n}\n.module .scroll-content .pop-imge {\n  padding: 20px;\n  margin: 6px;\n  position: relative;\n  border-radius: 5px;\n}\n.module .scroll-content .pop-imge img {\n  width: 100%;\n  height: 100%;\n  border-radius: 5px;\n}\n.module .scroll-content .pop-imge a {\n  position: absolute;\n  top: 9px;\n  right: 9px;\n  background: #d31010;\n  width: 30px;\n  height: 30px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  border-radius: 24px;\n}\n.module .scroll-content .pop-imge a i {\n  color: #fff;\n  font-size: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaW1hZ2Vtb2RhbC9DOlxcVXNlcnNcXEFkbWluXFxEb2N1bWVudHNcXHRyaWNvbGl0ZS1hcHAvc3JjXFxhcHBcXGltYWdlbW9kYWxcXGltYWdlbW9kYWwucGFnZS5zY3NzIiwic3JjL2FwcC9pbWFnZW1vZGFsL2ltYWdlbW9kYWwucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0kseUNBQUE7QUNDSjtBREFJO0VBQ0ksT0FBQTtFQUNBLFFBQUE7RUFDQSxRQUFBO0VBQ0Esa0JBQUE7RUFDQSxtQ0FBQTtFQUNBLDJCQUFBO0VBQ0EsaUJBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUNFUjtBRERRO0VBRUksYUFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtFQUNBLGtCQUFBO0FDRVo7QUREWTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUNHaEI7QUREWTtFQUNJLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLFVBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0Esb0JBQUE7RUFBQSxhQUFBO0VBQ0EseUJBQUE7VUFBQSxtQkFBQTtFQUNBLHdCQUFBO1VBQUEsdUJBQUE7RUFDQSxtQkFBQTtBQ0doQjtBREZnQjtFQUNJLFdBQUE7RUFDQSxlQUFBO0FDSXBCIiwiZmlsZSI6InNyYy9hcHAvaW1hZ2Vtb2RhbC9pbWFnZW1vZGFsLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tb2R1bGUge1xyXG4gICAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjkpICFpbXBvcnRhbnQ7XHJcbiAgICAuc2Nyb2xsLWNvbnRlbnQge1xyXG4gICAgICAgIGxlZnQ6IDA7XHJcbiAgICAgICAgcmlnaHQ6IDA7XHJcbiAgICAgICAgdG9wOiA1MCU7XHJcbiAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgICAgIC13ZWJraXQtdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MCUpO1xyXG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtNTAlKTtcclxuICAgICAgICBvdmVyZmxvdzogaW5oZXJpdDtcclxuICAgICAgICBib3R0b206IGluaGVyaXQ7XHJcbiAgICAgICAgY29udGFpbjogaW5pdGlhbDtcclxuICAgICAgICAucG9wLWltZ2Uge1xyXG4gICAgICAgICAgICAvLyBiYWNrZ3JvdW5kOiAjZmZmO1xyXG4gICAgICAgICAgICBwYWRkaW5nOiAyMHB4O1xyXG4gICAgICAgICAgICBtYXJnaW46IDZweDtcclxuICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICAgICAgICAgIGltZyB7XHJcbiAgICAgICAgICAgICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgICAgICAgICAgIGhlaWdodDogMTAwJTtcclxuICAgICAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICBhIHtcclxuICAgICAgICAgICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgICAgICAgICAgICAgIHRvcDogOXB4O1xyXG4gICAgICAgICAgICAgICAgcmlnaHQ6IDlweDtcclxuICAgICAgICAgICAgICAgIGJhY2tncm91bmQ6ICNkMzEwMTA7XHJcbiAgICAgICAgICAgICAgICB3aWR0aDogMzBweDtcclxuICAgICAgICAgICAgICAgIGhlaWdodDogMzBweDtcclxuICAgICAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiAyNHB4O1xyXG4gICAgICAgICAgICAgICAgaSB7XHJcbiAgICAgICAgICAgICAgICAgICAgY29sb3I6ICNmZmY7XHJcbiAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOiAyMHB4O1xyXG4gICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59IiwiLm1vZHVsZSB7XG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC45KSAhaW1wb3J0YW50O1xufVxuLm1vZHVsZSAuc2Nyb2xsLWNvbnRlbnQge1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgdG9wOiA1MCU7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTUwJSk7XG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtNTAlKTtcbiAgb3ZlcmZsb3c6IGluaGVyaXQ7XG4gIGJvdHRvbTogaW5oZXJpdDtcbiAgY29udGFpbjogaW5pdGlhbDtcbn1cbi5tb2R1bGUgLnNjcm9sbC1jb250ZW50IC5wb3AtaW1nZSB7XG4gIHBhZGRpbmc6IDIwcHg7XG4gIG1hcmdpbjogNnB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbn1cbi5tb2R1bGUgLnNjcm9sbC1jb250ZW50IC5wb3AtaW1nZSBpbWcge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBib3JkZXItcmFkaXVzOiA1cHg7XG59XG4ubW9kdWxlIC5zY3JvbGwtY29udGVudCAucG9wLWltZ2UgYSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiA5cHg7XG4gIHJpZ2h0OiA5cHg7XG4gIGJhY2tncm91bmQ6ICNkMzEwMTA7XG4gIHdpZHRoOiAzMHB4O1xuICBoZWlnaHQ6IDMwcHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBib3JkZXItcmFkaXVzOiAyNHB4O1xufVxuLm1vZHVsZSAuc2Nyb2xsLWNvbnRlbnQgLnBvcC1pbWdlIGEgaSB7XG4gIGNvbG9yOiAjZmZmO1xuICBmb250LXNpemU6IDIwcHg7XG59Il19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/imagemodal/imagemodal.page.ts":
+  /*!***********************************************!*\
+    !*** ./src/app/imagemodal/imagemodal.page.ts ***!
+    \***********************************************/
+
+  /*! exports provided: ImagemodalPage */
+
+  /***/
+  function srcAppImagemodalImagemodalPageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ImagemodalPage", function () {
+      return ImagemodalPage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    let ImagemodalPage = class ImagemodalPage {
+      constructor() {}
+
+      ngOnInit() {}
+
+    };
+    ImagemodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-imagemodal',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./imagemodal.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/imagemodal/imagemodal.page.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./imagemodal.page.scss */
+      "./src/app/imagemodal/imagemodal.page.scss")).default]
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], ImagemodalPage);
     /***/
   },
 
@@ -3953,7 +4202,7 @@
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! E:\tricolite-app\src\main.ts */
+    /*! C:\Users\Admin\Documents\tricolite-app\src\main.ts */
     "./src/main.ts");
     /***/
   }

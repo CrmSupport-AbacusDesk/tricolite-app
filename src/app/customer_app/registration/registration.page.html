@@ -18,12 +18,7 @@
                         <div class="cs-right">
                             <div class="heading">
                                 <h2>Basic Info</h2>
-                                <div class="head">
-                                    <div class="heading">
-                                      
-                                        <ion-button fill="clear" routerLink="/customerlogin"> Information</ion-button>
-                                    </div>
-                                </div>
+                              
                                 
                             </div>
                             <div  class="basic_info mb16">
@@ -101,7 +96,7 @@
 
                                         </ion-item>
                                          <ion-item [ngClass]="submitted && f1.email.errors && f1.email.errors.required ? 'has-error' : (f1.email.errors && !f1.email.errors.required ? 'has-text' : '')">
-                                            <ion-label position="floating">Official Email ID</ion-label>
+                                            <ion-label position="floating">Email ID(please enter here only official email id)</ion-label>
                                             <ion-input formControlName="email" [(ngModel)]="data.email" autocomplete="nope"></ion-input>
 
                                             <ion-text *ngIf="submitted && f1.email.errors" class="cs-error">
@@ -170,7 +165,12 @@
                                                                           
 
                                         </ion-item> 
-                                        
+                                        <div class="head">
+                                            <div class="heading">
+                                              
+                                                <ion-button fill="clear" routerLink="/imagemodal"> *AVAILABLE ON PANEL NAME PLATE & DRAWING</ion-button>
+                                            </div>
+                                        </div>
                                         <!-- <div class="heading">
                                             <h2>Project Info</h2>
                                         </div>

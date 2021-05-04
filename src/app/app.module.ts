@@ -25,6 +25,7 @@ import { ContactpersonmodelPageModule } from './customer_app/projectdetail/conta
 import {HomePage} from './technician_app/home/home.page';
 import {EscalationdetailPageModule} from './customer_app/escalationdetail/escalationdetail.module';
 import { ContactpersonmodelPage } from './customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page';
+import { ImagemodalPageModule } from './imagemodal/imagemodal.module';
 // import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ContactpersonmodelPage } from './customer_app/projectdetail/contactpers
 
   imports:
   [
+    ImagemodalPageModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,

@@ -67,7 +67,11 @@ const routes: Routes = [
     path: 'contactpersonmodel',
     // tslint:disable-next-line:max-line-length
     loadChildren: () => import('./customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module').then( m => m.ContactpersonmodelPageModule)
+  },  {
+    path: 'imagemodal',
+    loadChildren: () => import('./imagemodal/imagemodal.module').then( m => m.ImagemodalPageModule)
   },
+
 
   // {
   //   path: 'pdf',
