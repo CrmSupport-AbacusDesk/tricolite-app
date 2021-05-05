@@ -4,7 +4,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ImagemodalPageRoutingModule } from './imagemodal-routing.module';
+// import { ImagemodalPageRoutingModule } from './imagemodal-routing.module';
 
 import { ImagemodalPage } from './imagemodal.page';
 
@@ -14,7 +14,7 @@ import { ImagemodalPage } from './imagemodal.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    ImagemodalPageRoutingModule
+    //ImagemodalPageRoutingModule
   ],
   declarations: [ImagemodalPage]
 })
