@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./logintype/logintype.module').then( m => m.LogintypePageModule)
   },
   {
+    path: 'imagemodal',
+    loadChildren: () => import('./imagemodal/imagemodal.module').then( m => m.ImagemodalPageModule)
+  },
+  {
     path: 'techlogin',
     loadChildren: () => import('./technician_app/login/login.module').then(m => m.LoginPageModule)
   },
@@ -67,10 +71,8 @@ const routes: Routes = [
     path: 'contactpersonmodel',
     // tslint:disable-next-line:max-line-length
     loadChildren: () => import('./customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module').then( m => m.ContactpersonmodelPageModule)
-  },  {
-    path: 'imagemodal',
-    loadChildren: () => import('./imagemodal/imagemodal.module').then( m => m.ImagemodalPageModule)
   },
+  
 
 
   // {

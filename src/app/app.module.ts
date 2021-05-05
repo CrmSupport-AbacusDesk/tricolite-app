@@ -39,7 +39,7 @@ import { ImagemodalPageModule } from './imagemodal/imagemodal.module';
   entryComponents:
   [
     TecCompliantPopoverComponent,
-    RequestPopoverComponent
+    RequestPopoverComponent,
   ],
 
   imports:

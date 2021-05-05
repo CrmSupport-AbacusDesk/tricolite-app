@@ -40,3 +40,104 @@
         }
     }
 }
+
+.cs-modal-container
+{
+    --background: rgba(0,0,0, 0.3);
+    
+    .modal-container
+    {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .main-figure
+        {
+            padding: 32px;
+            width: 100%;
+            position: relative;
+            
+            .cs-modal-body
+            {
+                border-radius: 10px;
+                background: #fff;
+                box-shadow: 0px 13px 26px rgba(0, 0, 0, 0.16);
+                padding: 16px;
+                
+                
+                signature-pad {
+                    canvas {
+                        width: 100% !important;
+                    }
+                }
+                
+                
+                .logo
+                {
+                    img{height: 30px;}
+                }
+                
+                .modal-content
+                {
+                    p
+                    {
+                        // @extend.regular;
+                        font-size: 14px;
+                        line-height: 28px;
+                        color: var(--ion-color-dark);
+                        margin-top: 20px;
+                        
+                        // ion-text{@extend.medium;}
+                        
+                        a{}
+                    }
+                }
+            }
+            
+            .modal-close
+            {
+                text-align: center;
+                margin-top: 32px;
+                
+                ion-button
+                {
+                    width: 40px;
+                    height: 40px;
+                    border: 1px solid #fff;
+                    border-radius: 100%;
+                    --border-radius: 100%;
+                }
+                
+                &.model-cross
+                {
+                    position: absolute;
+                    top: 0px;
+                    right: 38px;
+                    
+                    ion-button
+                    {
+                        width: 23px;
+                        height: 23px;
+                    }
+                }
+            }
+        }
+        
+        &.full-modal-container
+        {
+            .main-figure
+            {
+                width: 100%;
+                padding: 0px;
+                
+                .cs-modal-body
+                {
+                    background: #ffffff;
+                    border-radius: 20px 20px 0px 0px;
+                    padding: 0px;
+                }
+            }
+        }
+    }
+}

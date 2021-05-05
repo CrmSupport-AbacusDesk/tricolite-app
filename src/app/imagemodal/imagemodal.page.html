@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content style="display: none;">
   <div class="login-container">
       <div class="logo"><img src="../../assets/img/logo.jpg" alt=""></div>
       
@@ -34,3 +34,18 @@
       </div>
       
   </ion-content>
+  <ion-content class="cs-modal-container">
+    <div class="modal-container">
+        <div class="main-figure">
+            <div class="cs-modal-body">
+                <div class="modal-content">
+                    <img src="../../assets/img/panel.jpg">
+                </div>
+            </div>
+            <div class="modal-close">
+                <ion-button color="danger" (click)="dismiss()"><ion-icon name="close"></ion-icon></ion-button>
+            </div>
+        </div>
+    </div>
+</ion-content>
+

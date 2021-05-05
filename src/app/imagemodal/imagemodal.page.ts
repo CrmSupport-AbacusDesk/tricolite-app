@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController, NavController} from '@ionic/angular';
+
 
 @Component({
   selector: 'app-imagemodal',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImagemodalPage implements OnInit {
 
-  constructor() { }
+  constructor(public modalController: ModalController,public navCtrl:NavController) { }
 
   ngOnInit() {
+  }
+
+  
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
   }
 
 }
