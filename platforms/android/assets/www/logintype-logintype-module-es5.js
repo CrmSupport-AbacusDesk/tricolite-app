@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["logintype-logintype-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/logintype/logintype.page.html":
@@ -63,11 +69,15 @@
     /*! ./logintype.page */
     "./src/app/logintype/logintype.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _logintype_page__WEBPACK_IMPORTED_MODULE_3__["LogintypePage"]
     }];
-    let LogintypePageRoutingModule = class LogintypePageRoutingModule {};
+
+    var LogintypePageRoutingModule = function LogintypePageRoutingModule() {
+      _classCallCheck(this, LogintypePageRoutingModule);
+    };
+
     LogintypePageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./logintype.page */
     "./src/app/logintype/logintype.page.ts");
 
-    let LogintypePageModule = class LogintypePageModule {};
+    var LogintypePageModule = function LogintypePageModule() {
+      _classCallCheck(this, LogintypePageModule);
+    };
+
     LogintypePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _logintype_routing_module__WEBPACK_IMPORTED_MODULE_5__["LogintypePageRoutingModule"]],
       declarations: [_logintype_page__WEBPACK_IMPORTED_MODULE_6__["LogintypePage"]]
@@ -203,58 +216,70 @@
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
 
-    let LogintypePage = class LogintypePage {
-      constructor(route) {
+    var LogintypePage = /*#__PURE__*/function () {
+      function LogintypePage(route) {
+        _classCallCheck(this, LogintypePage);
+
         this.route = route;
         this.data = {};
       }
 
-      ngOnInit() {}
+      _createClass(LogintypePage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "onGoToLoginPageHandler",
+        value: function onGoToLoginPageHandler() {
+          var targetedPage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+          console.log('**** DATA ****');
+          console.log(this.data);
+          console.log(targetedPage);
+          var loginData = {
+            loginType: targetedPage,
+            loginId: '',
+            loginName: ''
+          };
+          localStorage.setItem('loginData', JSON.stringify(loginData));
+          console.log(JSON.parse(localStorage.getItem('loginData')));
 
-      onGoToLoginPageHandler(targetedPage = '') {
-        console.log('**** DATA ****');
-        console.log(this.data);
-        console.log(targetedPage);
-        const loginData = {
-          loginType: targetedPage,
-          loginId: '',
-          loginName: ''
-        };
-        localStorage.setItem('loginData', JSON.stringify(loginData));
-        console.log(JSON.parse(localStorage.getItem('loginData')));
+          if (targetedPage == 'Technician') {
+            this.route.navigate(['/techlogin']);
+          }
 
-        if (targetedPage == 'Technician') {
-          this.route.navigate(['/techlogin']);
+          if (targetedPage == 'Customer') {
+            this.route.navigate(['/customerlogin']);
+          }
         }
-
-        if (targetedPage == 'Customer') {
-          this.route.navigate(['/customerlogin']);
+      }, {
+        key: "ionViewDidEnter",
+        value: function ionViewDidEnter() {
+          console.log(this.data);
+          this.data.loginType = false;
         }
-      }
+      }, {
+        key: "test",
+        value: function test(event) {
+          console.log(event);
+        }
+      }]);
 
-      ionViewDidEnter() {
-        console.log(this.data);
-        this.data.loginType = false;
-      }
+      return LogintypePage;
+    }();
 
-      test(event) {
-        console.log(event);
-      }
-
+    LogintypePage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }];
     };
-
-    LogintypePage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }];
 
     LogintypePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-logintype',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./logintype.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/logintype/logintype.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/logintype/logintype.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./logintype.page.scss */
-      "./src/app/logintype/logintype.page.scss")).default]
+      "./src/app/logintype/logintype.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])], LogintypePage);
     /***/
   }

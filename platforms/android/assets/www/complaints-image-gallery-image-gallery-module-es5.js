@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["complaints-image-gallery-image-gallery-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/image-gallery/image-gallery.page.html":
@@ -63,11 +69,15 @@
     /*! ./image-gallery.page */
     "./src/app/technician_app/complaints/image-gallery/image-gallery.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _image_gallery_page__WEBPACK_IMPORTED_MODULE_3__["ImageGalleryPage"]
     }];
-    let ImageGalleryPageRoutingModule = class ImageGalleryPageRoutingModule {};
+
+    var ImageGalleryPageRoutingModule = function ImageGalleryPageRoutingModule() {
+      _classCallCheck(this, ImageGalleryPageRoutingModule);
+    };
+
     ImageGalleryPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./image-gallery.page */
     "./src/app/technician_app/complaints/image-gallery/image-gallery.page.ts");
 
-    let ImageGalleryPageModule = class ImageGalleryPageModule {};
+    var ImageGalleryPageModule = function ImageGalleryPageModule() {
+      _classCallCheck(this, ImageGalleryPageModule);
+    };
+
     ImageGalleryPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _image_gallery_routing_module__WEBPACK_IMPORTED_MODULE_5__["ImageGalleryPageRoutingModule"]],
       declarations: [_image_gallery_page__WEBPACK_IMPORTED_MODULE_6__["ImageGalleryPage"]]
@@ -203,31 +216,40 @@
     /*! @angular/common */
     "./node_modules/@angular/common/fesm2015/common.js");
 
-    let ImageGalleryPage = class ImageGalleryPage {
-      constructor(location) {
+    var ImageGalleryPage = /*#__PURE__*/function () {
+      function ImageGalleryPage(location) {
+        _classCallCheck(this, ImageGalleryPage);
+
         this.location = location;
       }
 
-      ngOnInit() {}
+      _createClass(ImageGalleryPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "GoComplaintDetail",
+        value: function GoComplaintDetail() {
+          this.location.back();
+        }
+      }]);
 
-      GoComplaintDetail() {
-        this.location.back();
-      }
+      return ImageGalleryPage;
+    }();
 
+    ImageGalleryPage.ctorParameters = function () {
+      return [{
+        type: _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"]
+      }];
     };
-
-    ImageGalleryPage.ctorParameters = () => [{
-      type: _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"]
-    }];
 
     ImageGalleryPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-image-gallery',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./image-gallery.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/image-gallery/image-gallery.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/image-gallery/image-gallery.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./image-gallery.page.scss */
-      "./src/app/technician_app/complaints/image-gallery/image-gallery.page.scss")).default]
+      "./src/app/technician_app/complaints/image-gallery/image-gallery.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"]])], ImageGalleryPage);
     /***/
   }

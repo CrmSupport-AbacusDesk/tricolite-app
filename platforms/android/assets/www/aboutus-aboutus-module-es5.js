@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["aboutus-aboutus-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/aboutus/aboutus.page.html":
@@ -63,11 +69,15 @@
     /*! ./aboutus.page */
     "./src/app/customer_app/aboutus/aboutus.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _aboutus_page__WEBPACK_IMPORTED_MODULE_3__["AboutusPage"]
     }];
-    let AboutusPageRoutingModule = class AboutusPageRoutingModule {};
+
+    var AboutusPageRoutingModule = function AboutusPageRoutingModule() {
+      _classCallCheck(this, AboutusPageRoutingModule);
+    };
+
     AboutusPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./aboutus.page */
     "./src/app/customer_app/aboutus/aboutus.page.ts");
 
-    let AboutusPageModule = class AboutusPageModule {};
+    var AboutusPageModule = function AboutusPageModule() {
+      _classCallCheck(this, AboutusPageModule);
+    };
+
     AboutusPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _aboutus_routing_module__WEBPACK_IMPORTED_MODULE_5__["AboutusPageRoutingModule"]],
       declarations: [_aboutus_page__WEBPACK_IMPORTED_MODULE_6__["AboutusPage"]]
@@ -209,43 +222,72 @@
     /*! ../confirmmodal/confirmmodal.page */
     "./src/app/customer_app/confirmmodal/confirmmodal.page.ts");
 
-    let AboutusPage = class AboutusPage {
-      constructor(modalController) {
+    var AboutusPage = /*#__PURE__*/function () {
+      function AboutusPage(modalController) {
+        _classCallCheck(this, AboutusPage);
+
         this.modalController = modalController;
       }
 
-      ngOnInit() {
-        const loginData = JSON.parse(localStorage.getItem('loginData'));
-        console.log(loginData);
+      _createClass(AboutusPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var loginData = JSON.parse(localStorage.getItem('loginData'));
+          console.log(loginData);
 
-        if (loginData && loginData.loginStatus && loginData.loginStatus != 'Approved') {
-          this.presentModal();
+          if (loginData && loginData.loginStatus && loginData.loginStatus != 'Approved') {
+            this.presentModal();
+          }
         }
-      }
+      }, {
+        key: "presentModal",
+        value: function presentModal() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var modal;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.next = 2;
+                    return this.modalController.create({
+                      component: _confirmmodal_confirmmodal_page__WEBPACK_IMPORTED_MODULE_3__["ConfirmmodalPage"]
+                    });
 
-      presentModal() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const modal = yield this.modalController.create({
-            component: _confirmmodal_confirmmodal_page__WEBPACK_IMPORTED_MODULE_3__["ConfirmmodalPage"]
-          });
-          return yield modal.present();
-        });
-      }
+                  case 2:
+                    modal = _context.sent;
+                    _context.next = 5;
+                    return modal.present();
 
+                  case 5:
+                    return _context.abrupt("return", _context.sent);
+
+                  case 6:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }]);
+
+      return AboutusPage;
+    }();
+
+    AboutusPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }];
     };
-
-    AboutusPage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
-    }];
 
     AboutusPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-aboutus',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./aboutus.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/aboutus/aboutus.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/aboutus/aboutus.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./aboutus.page.scss */
-      "./src/app/customer_app/aboutus/aboutus.page.scss")).default]
+      "./src/app/customer_app/aboutus/aboutus.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]])], AboutusPage);
     /***/
   }

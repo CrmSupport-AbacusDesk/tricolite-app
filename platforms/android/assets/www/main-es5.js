@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"], {
   /***/
   "./$$_lazy_route_resource lazy recursive":
@@ -573,7 +579,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content>\n  <div class=\"login-container\">\n      <div class=\"logo\"><img src=\"../../assets/img/logo.jpg\" alt=\"\"></div>\n      \n      <div class=\"form-container\">\n          \n          <div class=\"head\">\n              \n              <div class=\"heading\">\n                  \n                  <h1>PANEL NAME PLATE</h1>\n                  \n                  <ion-button fill=\"clear\" routerLink=\"/registration\" routerDirection=\"\">\n                      <i class=\"material-icons\">arrow_right_alt</i> Back</ion-button>\n                      \n                  </div>\n                  \n                \n                  \n              </div>\n              \n              <div class=\"input-container\">\n                <div class=\"pop-imge\">\n                  <img src=\"../../assets/img/panel.jpg\">\n                 \n              \n              </div>\n              \n                \n                 \n                  \n              </div>\n          </div>\n      </div>\n      \n  </ion-content>\n";
+    __webpack_exports__["default"] = "<ion-content style=\"display: none;\">\r\n  <div class=\"login-container\">\r\n      <div class=\"logo\"><img src=\"../../assets/img/logo.jpg\" alt=\"\"></div>\r\n      \r\n      <div class=\"form-container\">\r\n          \r\n          <div class=\"head\">\r\n              \r\n              <div class=\"heading\">\r\n                  \r\n                  <h1>PANEL NAME PLATE</h1>\r\n                  \r\n                  <ion-button fill=\"clear\" routerLink=\"/registration\" routerDirection=\"\">\r\n                      <i class=\"material-icons\">arrow_right_alt</i> Back</ion-button>\r\n                      \r\n                  </div>\r\n                  \r\n                \r\n                  \r\n              </div>\r\n              \r\n              <div class=\"input-container\">\r\n                <div class=\"pop-imge\">\r\n                  <img src=\"../../assets/img/panel.jpg\">\r\n                 \r\n              \r\n              </div>\r\n              \r\n                \r\n                 \r\n                  \r\n              </div>\r\n          </div>\r\n      </div>\r\n      \r\n  </ion-content>\r\n  <ion-content class=\"cs-modal-container\">\r\n    <div class=\"modal-container\">\r\n        <div class=\"main-figure\">\r\n            <div class=\"cs-modal-body\">\r\n                <div class=\"modal-content\">\r\n                    <img src=\"../../assets/img/panel.jpg\">\r\n                </div>\r\n            </div>\r\n            <div class=\"modal-close\">\r\n                <ion-button color=\"danger\" (click)=\"dismiss()\"><ion-icon name=\"close\"></ion-icon></ion-button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ion-content>\r\n\r\n";
     /***/
   },
 
@@ -794,7 +800,9 @@
       } instanceof Array && function (d, b) {
         d.__proto__ = b;
       } || function (d, b) {
-        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+        for (var p in b) {
+          if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
       };
 
       return _extendStatics(d, b);
@@ -815,7 +823,9 @@
         for (var s, i = 1, n = arguments.length; i < n; i++) {
           s = arguments[i];
 
-          for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+          for (var p in s) {
+            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+          }
         }
 
         return t;
@@ -827,7 +837,9 @@
     function __rest(s, e) {
       var t = {};
 
-      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+      }
 
       if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
         if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
@@ -839,7 +851,9 @@
       var c = arguments.length,
           r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
           d;
-      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
       return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
 
@@ -912,74 +926,76 @@
       function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
 
-        while (_) try {
-          if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-          if (y = 0, t) op = [op[0] & 2, t.value];
+        while (_) {
+          try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
 
-          switch (op[0]) {
-            case 0:
-            case 1:
-              t = op;
-              break;
-
-            case 4:
-              _.label++;
-              return {
-                value: op[1],
-                done: false
-              };
-
-            case 5:
-              _.label++;
-              y = op[1];
-              op = [0];
-              continue;
-
-            case 7:
-              op = _.ops.pop();
-
-              _.trys.pop();
-
-              continue;
-
-            default:
-              if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-                _ = 0;
-                continue;
-              }
-
-              if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-                _.label = op[1];
-                break;
-              }
-
-              if (op[0] === 6 && _.label < t[1]) {
-                _.label = t[1];
+            switch (op[0]) {
+              case 0:
+              case 1:
                 t = op;
                 break;
-              }
 
-              if (t && _.label < t[2]) {
-                _.label = t[2];
+              case 4:
+                _.label++;
+                return {
+                  value: op[1],
+                  done: false
+                };
 
-                _.ops.push(op);
+              case 5:
+                _.label++;
+                y = op[1];
+                op = [0];
+                continue;
 
-                break;
-              }
+              case 7:
+                op = _.ops.pop();
 
-              if (t[2]) _.ops.pop();
+                _.trys.pop();
 
-              _.trys.pop();
+                continue;
 
-              continue;
+              default:
+                if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                  _ = 0;
+                  continue;
+                }
+
+                if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+                  _.label = op[1];
+                  break;
+                }
+
+                if (op[0] === 6 && _.label < t[1]) {
+                  _.label = t[1];
+                  t = op;
+                  break;
+                }
+
+                if (t && _.label < t[2]) {
+                  _.label = t[2];
+
+                  _.ops.push(op);
+
+                  break;
+                }
+
+                if (t[2]) _.ops.pop();
+
+                _.trys.pop();
+
+                continue;
+            }
+
+            op = body.call(thisArg, _);
+          } catch (e) {
+            op = [6, e];
+            y = 0;
+          } finally {
+            f = t = 0;
           }
-
-          op = body.call(thisArg, _);
-        } catch (e) {
-          op = [6, e];
-          y = 0;
-        } finally {
-          f = t = 0;
         }
 
         if (op[0] & 5) throw op[1];
@@ -991,7 +1007,9 @@
     }
 
     function __exportStar(m, exports) {
-      for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+      for (var p in m) {
+        if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+      }
     }
 
     function __values(o) {
@@ -1018,7 +1036,9 @@
           e;
 
       try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+          ar.push(r.value);
+        }
       } catch (error) {
         e = {
           error: error
@@ -1035,15 +1055,23 @@
     }
 
     function __spread() {
-      for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+      for (var ar = [], i = 0; i < arguments.length; i++) {
+        ar = ar.concat(__read(arguments[i]));
+      }
 
       return ar;
     }
 
     function __spreadArrays() {
-      for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+      for (var s = 0, i = 0, il = arguments.length; i < il; i++) {
+        s += arguments[i].length;
+      }
 
-      for (var r = Array(s), k = 0, i = 0; i < il; i++) for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++) r[k] = a[j];
+      for (var r = Array(s), k = 0, i = 0; i < il; i++) {
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++) {
+          r[k] = a[j];
+        }
+      }
 
       return r;
     }
@@ -1157,14 +1185,16 @@
     function __importStar(mod) {
       if (mod && mod.__esModule) return mod;
       var result = {};
-      if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-      result.default = mod;
+      if (mod != null) for (var k in mod) {
+        if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+      }
+      result["default"] = mod;
       return result;
     }
 
     function __importDefault(mod) {
       return mod && mod.__esModule ? mod : {
-        default: mod
+        "default": mod
       };
     }
     /***/
@@ -1209,34 +1239,59 @@
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
 
-    const routes = [{
+    var routes = [{
       path: 'loginType',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | logintype-logintype-module */
-      "logintype-logintype-module").then(__webpack_require__.bind(null,
-      /*! ./logintype/logintype.module */
-      "./src/app/logintype/logintype.module.ts")).then(m => m.LogintypePageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | logintype-logintype-module */
+        "logintype-logintype-module").then(__webpack_require__.bind(null,
+        /*! ./logintype/logintype.module */
+        "./src/app/logintype/logintype.module.ts")).then(function (m) {
+          return m.LogintypePageModule;
+        });
+      }
+    }, {
+      path: 'imagemodal',
+      loadChildren: function loadChildren() {
+        return Promise.resolve().then(__webpack_require__.bind(null,
+        /*! ./imagemodal/imagemodal.module */
+        "./src/app/imagemodal/imagemodal.module.ts")).then(function (m) {
+          return m.ImagemodalPageModule;
+        });
+      }
     }, {
       path: 'techlogin',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | technician_app-login-login-module */
-      "technician_app-login-login-module").then(__webpack_require__.bind(null,
-      /*! ./technician_app/login/login.module */
-      "./src/app/technician_app/login/login.module.ts")).then(m => m.LoginPageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | technician_app-login-login-module */
+        "technician_app-login-login-module").then(__webpack_require__.bind(null,
+        /*! ./technician_app/login/login.module */
+        "./src/app/technician_app/login/login.module.ts")).then(function (m) {
+          return m.LoginPageModule;
+        });
+      }
     }, {
       path: 'technicians',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | technician_app-tabs-tabs-module */
-      "technician_app-tabs-tabs-module").then(__webpack_require__.bind(null,
-      /*! ./technician_app/tabs/tabs.module */
-      "./src/app/technician_app/tabs/tabs.module.ts")).then(m => m.TabsPageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | technician_app-tabs-tabs-module */
+        "technician_app-tabs-tabs-module").then(__webpack_require__.bind(null,
+        /*! ./technician_app/tabs/tabs.module */
+        "./src/app/technician_app/tabs/tabs.module.ts")).then(function (m) {
+          return m.TabsPageModule;
+        });
+      }
     }, {
       path: 'forgotpassword',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | technician_app-forgotpassword-forgotpassword-module */
-      "technician_app-forgotpassword-forgotpassword-module").then(__webpack_require__.bind(null,
-      /*! ./technician_app/forgotpassword/forgotpassword.module */
-      "./src/app/technician_app/forgotpassword/forgotpassword.module.ts")).then(m => m.ForgotpasswordPageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | technician_app-forgotpassword-forgotpassword-module */
+        "technician_app-forgotpassword-forgotpassword-module").then(__webpack_require__.bind(null,
+        /*! ./technician_app/forgotpassword/forgotpassword.module */
+        "./src/app/technician_app/forgotpassword/forgotpassword.module.ts")).then(function (m) {
+          return m.ForgotpasswordPageModule;
+        });
+      }
     }, // =================================
     // =================================
     // ================================= Customer APP Routing Start
@@ -1248,25 +1303,37 @@
     // },
     {
       path: 'customer',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | customer_app-customertabs-customertabs-module */
-      "customer_app-customertabs-customertabs-module").then(__webpack_require__.bind(null,
-      /*! ./customer_app/customertabs/customertabs.module */
-      "./src/app/customer_app/customertabs/customertabs.module.ts")).then(m => m.CustomertabsPageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | customer_app-customertabs-customertabs-module */
+        "customer_app-customertabs-customertabs-module").then(__webpack_require__.bind(null,
+        /*! ./customer_app/customertabs/customertabs.module */
+        "./src/app/customer_app/customertabs/customertabs.module.ts")).then(function (m) {
+          return m.CustomertabsPageModule;
+        });
+      }
     }, {
       path: 'customerlogin',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | customer_app-login-login-module */
-      "customer_app-login-login-module").then(__webpack_require__.bind(null,
-      /*! ./customer_app/login/login.module */
-      "./src/app/customer_app/login/login.module.ts")).then(m => m.LoginPageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | customer_app-login-login-module */
+        "customer_app-login-login-module").then(__webpack_require__.bind(null,
+        /*! ./customer_app/login/login.module */
+        "./src/app/customer_app/login/login.module.ts")).then(function (m) {
+          return m.LoginPageModule;
+        });
+      }
     }, {
       path: 'registration',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | customer_app-registration-registration-module */
-      "customer_app-registration-registration-module").then(__webpack_require__.bind(null,
-      /*! ./customer_app/registration/registration.module */
-      "./src/app/customer_app/registration/registration.module.ts")).then(m => m.RegistrationPageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | customer_app-registration-registration-module */
+        "customer_app-registration-registration-module").then(__webpack_require__.bind(null,
+        /*! ./customer_app/registration/registration.module */
+        "./src/app/customer_app/registration/registration.module.ts")).then(function (m) {
+          return m.RegistrationPageModule;
+        });
+      }
     }, // {
     //   path: 'customerprofile',
     //   loadChildren: () => import('./customer_app/customerprofile/customerprofile.module').then( m => m.CustomerprofilePageModule)
@@ -1281,38 +1348,53 @@
     // },
     {
       path: 'changepassword',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | customer_app-changepassword-changepassword-module */
-      "customer_app-changepassword-changepassword-module").then(__webpack_require__.bind(null,
-      /*! ./customer_app/changepassword/changepassword.module */
-      "./src/app/customer_app/changepassword/changepassword.module.ts")).then(m => m.ChangepasswordPageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | customer_app-changepassword-changepassword-module */
+        "customer_app-changepassword-changepassword-module").then(__webpack_require__.bind(null,
+        /*! ./customer_app/changepassword/changepassword.module */
+        "./src/app/customer_app/changepassword/changepassword.module.ts")).then(function (m) {
+          return m.ChangepasswordPageModule;
+        });
+      }
     }, {
       path: 'aboutus',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | customer_app-aboutus-aboutus-module */
-      "aboutus-aboutus-module").then(__webpack_require__.bind(null,
-      /*! ./customer_app/aboutus/aboutus.module */
-      "./src/app/customer_app/aboutus/aboutus.module.ts")).then(m => m.AboutusPageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | customer_app-aboutus-aboutus-module */
+        "aboutus-aboutus-module").then(__webpack_require__.bind(null,
+        /*! ./customer_app/aboutus/aboutus.module */
+        "./src/app/customer_app/aboutus/aboutus.module.ts")).then(function (m) {
+          return m.AboutusPageModule;
+        });
+      }
     }, {
       path: 'customer_forgotpassword',
-      loadChildren: () => __webpack_require__.e(
-      /*! import() | customer_app-forgotpassword-forgotpassword-module */
-      "customer_app-forgotpassword-forgotpassword-module").then(__webpack_require__.bind(null,
-      /*! ./customer_app/forgotpassword/forgotpassword.module */
-      "./src/app/customer_app/forgotpassword/forgotpassword.module.ts")).then(m => m.ForgotpasswordPageModule)
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | customer_app-forgotpassword-forgotpassword-module */
+        "customer_app-forgotpassword-forgotpassword-module").then(__webpack_require__.bind(null,
+        /*! ./customer_app/forgotpassword/forgotpassword.module */
+        "./src/app/customer_app/forgotpassword/forgotpassword.module.ts")).then(function (m) {
+          return m.ForgotpasswordPageModule;
+        });
+      }
     }, {
       path: 'contactpersonmodel',
       // tslint:disable-next-line:max-line-length
-      loadChildren: () => Promise.resolve().then(__webpack_require__.bind(null,
-      /*! ./customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module */
-      "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module.ts")).then(m => m.ContactpersonmodelPageModule)
-    }, {
-      path: 'imagemodal',
-      loadChildren: () => Promise.resolve().then(__webpack_require__.bind(null,
-      /*! ./imagemodal/imagemodal.module */
-      "./src/app/imagemodal/imagemodal.module.ts")).then(m => m.ImagemodalPageModule)
+      loadChildren: function loadChildren() {
+        return Promise.resolve().then(__webpack_require__.bind(null,
+        /*! ./customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module */
+        "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.module.ts")).then(function (m) {
+          return m.ContactpersonmodelPageModule;
+        });
+      }
     }];
-    let AppRoutingModule = class AppRoutingModule {};
+
+    var AppRoutingModule = function AppRoutingModule() {
+      _classCallCheck(this, AppRoutingModule);
+    };
+
     AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, {
         preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__["PreloadAllModules"]
@@ -1422,8 +1504,10 @@
     /*! @angular/common */
     "./node_modules/@angular/common/fesm2015/common.js");
 
-    let AppComponent = class AppComponent {
-      constructor(platform, splashScreen, statusBar, route, location, formBuilder, alertCtrl, dbService, push) {
+    var AppComponent = /*#__PURE__*/function () {
+      function AppComponent(platform, splashScreen, statusBar, route, location, formBuilder, alertCtrl, dbService, push) {
+        _classCallCheck(this, AppComponent);
+
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
@@ -1437,158 +1521,179 @@
         this.initializeApp(); // this.initPushNotification();
       }
 
-      initializeApp() {
-        this.platform.ready().then(() => {
-          this.statusBar.styleDefault();
-          this.splashScreen.hide();
-          const loginData = JSON.parse(localStorage.getItem('loginData'));
-          console.log(loginData);
+      _createClass(AppComponent, [{
+        key: "initializeApp",
+        value: function initializeApp() {
+          var _this = this;
 
-          if (loginData && loginData["loginId"]) {
-            const inputData = {};
-            this.dbService.presentLoader();
-            this.dbService.onPostRequestHandler(inputData, 'login/onValidateLoginById').subscribe(result => {
-              console.log(result);
-              setTimeout(() => {
-                this.dbService.dismissLoader();
-              }, 3000);
+          this.platform.ready().then(function () {
+            _this.statusBar.styleDefault();
 
-              if (result["status"] == 'error') {
-                localStorage.removeItem('loginData');
-                this.route.navigate(['/loginType']);
+            _this.splashScreen.hide();
+
+            var loginData = JSON.parse(localStorage.getItem('loginData'));
+            console.log(loginData);
+
+            if (loginData && loginData["loginId"]) {
+              var inputData = {};
+
+              _this.dbService.presentLoader();
+
+              _this.dbService.onPostRequestHandler(inputData, 'login/onValidateLoginById').subscribe(function (result) {
+                console.log(result);
+                setTimeout(function () {
+                  _this.dbService.dismissLoader();
+                }, 3000);
+
+                if (result["status"] == 'error') {
+                  localStorage.removeItem('loginData');
+
+                  _this.route.navigate(['/loginType']);
+                } else {
+                  var updatedLoginData = {
+                    loginType: result["loginType"],
+                    loginId: result["loginId"],
+                    loginName: result["loginName"],
+                    loginStatus: result["loginStatus"]
+                  };
+                  localStorage.setItem('loginData', JSON.stringify(updatedLoginData));
+
+                  if (loginData["loginType"] == 'Technician') {
+                    _this.route.navigate(['/technicians']);
+                  }
+
+                  if (loginData["loginType"] == 'Customer') {
+                    _this.route.navigate(['/customer']);
+                  }
+                }
+              });
+            } else {
+              _this.route.navigate(['/loginType']);
+            }
+
+            _this.platform.backButton.subscribeWithPriority(0, function () {
+              console.log('hello');
+              console.log(_this.route.url); // tslint:disable-next-line:max-line-length
+
+              if (_this.route.url === '/loginType' || _this.route.url === '/technicians/home' || _this.route.url === '/customer/home' || _this.route.url == '/customer/aboutus') {
+                if (_this.dbService.backButton == 0) {
+                  console.log('hello2');
+                  _this.dbService.backButton = 1;
+
+                  _this.dbService.presentToast('Press again to exit!');
+
+                  setTimeout(function () {
+                    _this.dbService.backButton = 0;
+                  }, 2500);
+                } else {
+                  console.log('hello1');
+                  navigator["app"].exitApp();
+                } // tslint:disable-next-line:max-line-length triple-equals
+
+              } else if (_this.route.url === '/technicians/complaints' || _this.route.url == '/technicians/commissioning' || _this.route.url == '/technicians/menu') {
+                _this.route.navigateByUrl('/technicians/home'); // tslint:disable-next-line:triple-equals
+
+              } else if (_this.route.url === '/customer/request' || _this.route.url == '/customer/projects') {
+                _this.route.navigateByUrl('/customer/home');
               } else {
-                const updatedLoginData = {
-                  loginType: result["loginType"],
-                  loginId: result["loginId"],
-                  loginName: result["loginName"],
-                  loginStatus: result["loginStatus"]
-                };
-                localStorage.setItem('loginData', JSON.stringify(updatedLoginData));
-
-                if (loginData["loginType"] == 'Technician') {
-                  this.route.navigate(['/technicians']);
-                }
-
-                if (loginData["loginType"] == 'Customer') {
-                  this.route.navigate(['/customer']);
-                }
+                _this.location.back();
               }
             });
-          } else {
-            this.route.navigate(['/loginType']);
-          }
+          });
+        }
+      }, {
+        key: "initPushNotification",
+        value: function initPushNotification() {
+          var _this2 = this;
 
-          this.platform.backButton.subscribeWithPriority(0, () => {
-            console.log('hello');
-            console.log(this.route.url); // tslint:disable-next-line:max-line-length
-
-            if (this.route.url === '/loginType' || this.route.url === '/technicians/home' || this.route.url === '/customer/home' || this.route.url == '/customer/aboutus') {
-              if (this.dbService.backButton == 0) {
-                console.log('hello2');
-                this.dbService.backButton = 1;
-                this.dbService.presentToast('Press again to exit!');
-                setTimeout(() => {
-                  this.dbService.backButton = 0;
-                }, 2500);
-              } else {
-                console.log('hello1');
-                navigator["app"].exitApp();
-              } // tslint:disable-next-line:max-line-length triple-equals
-
-            } else if (this.route.url === '/technicians/complaints' || this.route.url == '/technicians/commissioning' || this.route.url == '/technicians/menu') {
-              this.route.navigateByUrl('/technicians/home'); // tslint:disable-next-line:triple-equals
-            } else if (this.route.url === '/customer/request' || this.route.url == '/customer/projects') {
-              this.route.navigateByUrl('/customer/home');
+          this.push.hasPermission().then(function (res) {
+            if (res.isEnabled) {
+              console.log('We have permission to send push notifications');
             } else {
-              this.location.back();
+              console.log('We don\'t have permission to send push notifications');
             }
+          }); // to initialize push notifications
+
+          var options = {
+            android: {
+              senderID: '590596859248',
+              icon: './assets/imgs/logo_small'
+            },
+            ios: {
+              alert: 'true',
+              badge: true,
+              sound: 'false'
+            },
+            windows: {}
+          };
+          var pushObject = this.push.init(options);
+          pushObject.on('notification').subscribe(function (notification) {
+            console.log('Received a notification', notification); // Notification Display Section
+
+            var confirmAlert = _this2.alertCtrl.create({
+              message: JSON.stringify(notification.message),
+              buttons: [{
+                text: 'Ignore',
+                role: 'cancel'
+              }, {
+                text: 'View',
+                handler: function handler() {
+                  // TODO: Your logic here
+                  console.log('View Notification');
+                }
+              }]
+            });
           });
-        });
-      }
-
-      initPushNotification() {
-        this.push.hasPermission().then(res => {
-          if (res.isEnabled) {
-            console.log('We have permission to send push notifications');
-          } else {
-            console.log('We don\'t have permission to send push notifications');
-          }
-        }); // to initialize push notifications
-
-        const options = {
-          android: {
-            senderID: '590596859248',
-            icon: './assets/imgs/logo_small'
-          },
-          ios: {
-            alert: 'true',
-            badge: true,
-            sound: 'false'
-          },
-          windows: {}
-        };
-        const pushObject = this.push.init(options);
-        pushObject.on('notification').subscribe(notification => {
-          console.log('Received a notification', notification); // Notification Display Section
-
-          let confirmAlert = this.alertCtrl.create({
-            message: JSON.stringify(notification.message),
-            buttons: [{
-              text: 'Ignore',
-              role: 'cancel'
-            }, {
-              text: 'View',
-              handler: () => {
-                // TODO: Your logic here
-                console.log('View Notification');
-              }
-            }]
+          pushObject.on('registration').subscribe(function (registration) {
+            console.log('Device registered', registration);
+            console.log('Device Token', registration.registrationId); // this.dbService.onPostRequestHandler({'registration_id':registration.registrationId },'task/update_token_static')
+            // .subscribe((r)=>
+            // {
+            //   console.log(r);
+            // });
           });
-        });
-        pushObject.on('registration').subscribe(registration => {
-          console.log('Device registered', registration);
-          console.log('Device Token', registration.registrationId); // this.dbService.onPostRequestHandler({'registration_id':registration.registrationId },'task/update_token_static')
-          // .subscribe((r)=>
-          // {
-          //   console.log(r);
-          // });
-        });
-        pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-      }
+          pushObject.on('error').subscribe(function (error) {
+            return console.error('Error with Push plugin', error);
+          });
+        }
+      }]);
 
+      return AppComponent;
+    }();
+
+    AppComponent.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"]
+      }, {
+        type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"]
+      }, {
+        type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
+      }, {
+        type: _angular_common__WEBPACK_IMPORTED_MODULE_9__["Location"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_7__["DbServiceService"]
+      }, {
+        type: _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_8__["Push"]
+      }];
     };
 
-    AppComponent.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"]
-    }, {
-      type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"]
-    }, {
-      type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
-    }, {
-      type: _angular_common__WEBPACK_IMPORTED_MODULE_9__["Location"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_7__["DbServiceService"]
-    }, {
-      type: _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_8__["Push"]
-    }];
-
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonRouterOutlet"], {
-      static: false
+      "static": false
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonRouterOutlet"])], AppComponent.prototype, "routerOutlets", void 0);
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-root',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./app.component.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./app.component.scss */
-      "./src/app/app.component.scss")).default]
+      "./src/app/app.component.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"], _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["Location"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_7__["DbServiceService"], _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_8__["Push"]])], AppComponent);
     /***/
   },
@@ -1786,7 +1891,10 @@
     "./src/app/imagemodal/imagemodal.module.ts"); // import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 
 
-    let AppModule = class AppModule {};
+    var AppModule = function AppModule() {
+      _classCallCheck(this, AppModule);
+    };
+
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"], _technician_app_complaints_tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_10__["TecCompliantPopoverComponent"], _customer_app_service_request_request_popover_request_popover_component__WEBPACK_IMPORTED_MODULE_11__["RequestPopoverComponent"]],
       entryComponents: [_technician_app_complaints_tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_10__["TecCompliantPopoverComponent"], _customer_app_service_request_request_popover_request_popover_component__WEBPACK_IMPORTED_MODULE_11__["RequestPopoverComponent"]],
@@ -1845,11 +1953,15 @@
     /*! ./complaintfiltermodal.page */
     "./src/app/complaintfiltermodal/complaintfiltermodal.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: 'filterModal',
       component: _complaintfiltermodal_page__WEBPACK_IMPORTED_MODULE_3__["ComplaintfiltermodalPage"]
     }];
-    let ComplaintfiltermodalPageRoutingModule = class ComplaintfiltermodalPageRoutingModule {};
+
+    var ComplaintfiltermodalPageRoutingModule = function ComplaintfiltermodalPageRoutingModule() {
+      _classCallCheck(this, ComplaintfiltermodalPageRoutingModule);
+    };
+
     ComplaintfiltermodalPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -1919,7 +2031,10 @@
     /*! ./complaintfiltermodal.page */
     "./src/app/complaintfiltermodal/complaintfiltermodal.page.ts");
 
-    let ComplaintfiltermodalPageModule = class ComplaintfiltermodalPageModule {};
+    var ComplaintfiltermodalPageModule = function ComplaintfiltermodalPageModule() {
+      _classCallCheck(this, ComplaintfiltermodalPageModule);
+    };
+
     ComplaintfiltermodalPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _complaintfiltermodal_routing_module__WEBPACK_IMPORTED_MODULE_5__["ComplaintfiltermodalPageRoutingModule"]],
       declarations: [_complaintfiltermodal_page__WEBPACK_IMPORTED_MODULE_6__["ComplaintfiltermodalPage"]]
@@ -2013,8 +2128,10 @@
 
     var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
 
-    let ComplaintfiltermodalPage = class ComplaintfiltermodalPage {
-      constructor(modalCtrl, route, formBuilder, alertCtrl, navParams, modalController, dbService) {
+    var ComplaintfiltermodalPage = /*#__PURE__*/function () {
+      function ComplaintfiltermodalPage(modalCtrl, route, formBuilder, alertCtrl, navParams, modalController, dbService) {
+        _classCallCheck(this, ComplaintfiltermodalPage);
+
         this.modalCtrl = modalCtrl;
         this.route = route;
         this.formBuilder = formBuilder;
@@ -2069,108 +2186,126 @@
         }
       }
 
-      ngOnInit() {}
+      _createClass(ComplaintfiltermodalPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "onRemoveAllFilterHandler",
+        value: function onRemoveAllFilterHandler() {
+          this.data.dateFrom = '';
+          this.data.dateTo = '';
+          this.data.range = 0;
 
-      onRemoveAllFilterHandler() {
-        this.data.dateFrom = '';
-        this.data.dateTo = '';
-        this.data.range = 0;
+          for (var index = 0; index < this.priorityList.length; index++) {
+            this.priorityList[index].checked = false;
+          }
 
-        for (let index = 0; index < this.priorityList.length; index++) {
-          this.priorityList[index].checked = false;
+          for (var _index = 0; _index < this.complaintTypeList.length; _index++) {
+            this.complaintTypeList[_index].checked = false;
+          }
+
+          for (var _index2 = 0; _index2 < this.statusList.length; _index2++) {
+            this.statusList[_index2].checked = false;
+          }
+
+          this.dbService.presentToast('Filter Cleared!');
         }
-
-        for (let index = 0; index < this.complaintTypeList.length; index++) {
-          this.complaintTypeList[index].checked = false;
+      }, {
+        key: "onDateFromChangeHandler",
+        value: function onDateFromChangeHandler() {
+          this.data.range = 0;
+          this.minDate = moment__WEBPACK_IMPORTED_MODULE_6__(this.data.dateFrom).format('YYYY-MM-DD');
         }
+      }, {
+        key: "onApplyFilterHandler",
+        value: function onApplyFilterHandler() {
+          var filterData = JSON.parse(JSON.stringify(this.data));
 
-        for (let index = 0; index < this.statusList.length; index++) {
-          this.statusList[index].checked = false;
+          if (this.data.dateFrom && !this.data.dateTo || !this.data.dateFrom && this.data.dateTo) {
+            this.dbService.onShowAlertMessage('Error', 'Date Missing!');
+            return;
+          }
+
+          if (this.data.dateFrom && this.data.dateTo) {
+            filterData["dateFrom"] = moment__WEBPACK_IMPORTED_MODULE_6__(this.data.dateFrom).format('YYYY-MM-DD');
+            filterData["dateTo"] = moment__WEBPACK_IMPORTED_MODULE_6__(this.data.dateTo).format('YYYY-MM-DD');
+          }
+
+          filterData["priorityList"] = this.priorityList;
+          filterData["complaintTypeList"] = this.complaintTypeList;
+          filterData["statusList"] = this.statusList;
+          this.modalCtrl.dismiss({
+            'dismissed': true,
+            data: filterData
+          });
         }
+      }, {
+        key: "getPriorityList",
+        value: function getPriorityList() {
+          var _this3 = this;
 
-        this.dbService.presentToast('Filter Cleared!');
-      }
+          this.dbService.presentLoader();
+          var inputData = {};
+          this.dbService.onPostRequestHandler(inputData, 'task/getPriorityList').subscribe(function (result) {
+            console.log(result);
 
-      onDateFromChangeHandler() {
-        this.data.range = 0;
-        this.minDate = moment__WEBPACK_IMPORTED_MODULE_6__(this.data.dateFrom).format('YYYY-MM-DD');
-      }
+            _this3.dbService.dismissLoader();
 
-      onApplyFilterHandler() {
-        const filterData = JSON.parse(JSON.stringify(this.data));
-
-        if (this.data.dateFrom && !this.data.dateTo || !this.data.dateFrom && this.data.dateTo) {
-          this.dbService.onShowAlertMessage('Error', 'Date Missing!');
-          return;
+            _this3.priorityList = result["priorityList"];
+          });
         }
+      }, {
+        key: "getComplaintTypeList",
+        value: function getComplaintTypeList() {
+          var _this4 = this;
 
-        if (this.data.dateFrom && this.data.dateTo) {
-          filterData["dateFrom"] = moment__WEBPACK_IMPORTED_MODULE_6__(this.data.dateFrom).format('YYYY-MM-DD');
-          filterData["dateTo"] = moment__WEBPACK_IMPORTED_MODULE_6__(this.data.dateTo).format('YYYY-MM-DD');
+          var inputData = {};
+          this.dbService.onPostRequestHandler(inputData, 'task/getComplaintTypeList').subscribe(function (result) {
+            console.log(result);
+            _this4.complaintTypeList = result["complaintTypeList"];
+          });
         }
+      }, {
+        key: "dismiss",
+        value: function dismiss() {
+          // using the injected ModalController this page
+          // can "dismiss" itself and optionally pass back data
+          this.modalCtrl.dismiss({
+            'dismissed': true
+          });
+        }
+      }]);
 
-        filterData["priorityList"] = this.priorityList;
-        filterData["complaintTypeList"] = this.complaintTypeList;
-        filterData["statusList"] = this.statusList;
-        this.modalCtrl.dismiss({
-          'dismissed': true,
-          data: filterData
-        });
-      }
+      return ComplaintfiltermodalPage;
+    }();
 
-      getPriorityList() {
-        this.dbService.presentLoader();
-        const inputData = {};
-        this.dbService.onPostRequestHandler(inputData, 'task/getPriorityList').subscribe(result => {
-          console.log(result);
-          this.dbService.dismissLoader();
-          this.priorityList = result["priorityList"];
-        });
-      }
-
-      getComplaintTypeList() {
-        const inputData = {};
-        this.dbService.onPostRequestHandler(inputData, 'task/getComplaintTypeList').subscribe(result => {
-          console.log(result);
-          this.complaintTypeList = result["complaintTypeList"];
-        });
-      }
-
-      dismiss() {
-        // using the injected ModalController this page
-        // can "dismiss" itself and optionally pass back data
-        this.modalCtrl.dismiss({
-          'dismissed': true
-        });
-      }
-
+    ComplaintfiltermodalPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    ComplaintfiltermodalPage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)], ComplaintfiltermodalPage.prototype, "searchData", void 0);
     ComplaintfiltermodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-complaintfiltermodal',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./complaintfiltermodal.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/complaintfiltermodal/complaintfiltermodal.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/complaintfiltermodal/complaintfiltermodal.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./complaintfiltermodal.page.scss */
-      "./src/app/complaintfiltermodal/complaintfiltermodal.page.scss")).default]
+      "./src/app/complaintfiltermodal/complaintfiltermodal.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], ComplaintfiltermodalPage);
     /***/
   },
@@ -2219,11 +2354,15 @@
     /*! ./confirmmodal.page */
     "./src/app/customer_app/confirmmodal/confirmmodal.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: 'confirmModal',
       component: _confirmmodal_page__WEBPACK_IMPORTED_MODULE_3__["ConfirmmodalPage"]
     }];
-    let ConfirmmodalPageRoutingModule = class ConfirmmodalPageRoutingModule {};
+
+    var ConfirmmodalPageRoutingModule = function ConfirmmodalPageRoutingModule() {
+      _classCallCheck(this, ConfirmmodalPageRoutingModule);
+    };
+
     ConfirmmodalPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -2293,7 +2432,10 @@
     /*! ./confirmmodal.page */
     "./src/app/customer_app/confirmmodal/confirmmodal.page.ts");
 
-    let ConfirmmodalPageModule = class ConfirmmodalPageModule {};
+    var ConfirmmodalPageModule = function ConfirmmodalPageModule() {
+      _classCallCheck(this, ConfirmmodalPageModule);
+    };
+
     ConfirmmodalPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _confirmmodal_routing_module__WEBPACK_IMPORTED_MODULE_5__["ConfirmmodalPageRoutingModule"]],
       declarations: [_confirmmodal_page__WEBPACK_IMPORTED_MODULE_6__["ConfirmmodalPage"]]
@@ -2359,35 +2501,44 @@
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/dist/fesm5.js");
 
-    let ConfirmmodalPage = class ConfirmmodalPage {
-      constructor(modalCtrl) {
+    var ConfirmmodalPage = /*#__PURE__*/function () {
+      function ConfirmmodalPage(modalCtrl) {
+        _classCallCheck(this, ConfirmmodalPage);
+
         this.modalCtrl = modalCtrl;
       }
 
-      ngOnInit() {}
+      _createClass(ConfirmmodalPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "dismiss",
+        value: function dismiss() {
+          // using the injected ModalController this page
+          // can "dismiss" itself and optionally pass back data
+          this.modalCtrl.dismiss({
+            'dismissed': true
+          });
+        }
+      }]);
 
-      dismiss() {
-        // using the injected ModalController this page
-        // can "dismiss" itself and optionally pass back data
-        this.modalCtrl.dismiss({
-          'dismissed': true
-        });
-      }
+      return ConfirmmodalPage;
+    }();
 
+    ConfirmmodalPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }];
     };
-
-    ConfirmmodalPage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
-    }];
 
     ConfirmmodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-confirmmodal',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./confirmmodal.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/confirmmodal/confirmmodal.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/confirmmodal/confirmmodal.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./confirmmodal.page.scss */
-      "./src/app/customer_app/confirmmodal/confirmmodal.page.scss")).default]
+      "./src/app/customer_app/confirmmodal/confirmmodal.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]])], ConfirmmodalPage);
     /***/
   },
@@ -2436,11 +2587,15 @@
     /*! ./escalationdetail.page */
     "./src/app/customer_app/escalationdetail/escalationdetail.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _escalationdetail_page__WEBPACK_IMPORTED_MODULE_3__["EscalationdetailPage"]
     }];
-    let EscalationdetailPageRoutingModule = class EscalationdetailPageRoutingModule {};
+
+    var EscalationdetailPageRoutingModule = function EscalationdetailPageRoutingModule() {
+      _classCallCheck(this, EscalationdetailPageRoutingModule);
+    };
+
     EscalationdetailPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -2510,7 +2665,10 @@
     /*! ./escalationdetail.page */
     "./src/app/customer_app/escalationdetail/escalationdetail.page.ts");
 
-    let EscalationdetailPageModule = class EscalationdetailPageModule {};
+    var EscalationdetailPageModule = function EscalationdetailPageModule() {
+      _classCallCheck(this, EscalationdetailPageModule);
+    };
+
     EscalationdetailPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _escalationdetail_routing_module__WEBPACK_IMPORTED_MODULE_5__["EscalationdetailPageRoutingModule"]],
       declarations: [_escalationdetail_page__WEBPACK_IMPORTED_MODULE_6__["EscalationdetailPage"]]
@@ -2570,22 +2728,29 @@
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
-    let EscalationdetailPage = class EscalationdetailPage {
-      constructor() {}
-
-      ngOnInit() {
-        console.log('helllllllllllllllooooooooooo');
+    var EscalationdetailPage = /*#__PURE__*/function () {
+      function EscalationdetailPage() {
+        _classCallCheck(this, EscalationdetailPage);
       }
 
-    };
+      _createClass(EscalationdetailPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          console.log('helllllllllllllllooooooooooo');
+        }
+      }]);
+
+      return EscalationdetailPage;
+    }();
+
     EscalationdetailPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-escalationdetail',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./escalationdetail.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/escalationdetail/escalationdetail.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/escalationdetail/escalationdetail.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./escalationdetail.page.scss */
-      "./src/app/customer_app/escalationdetail/escalationdetail.page.scss")).default]
+      "./src/app/customer_app/escalationdetail/escalationdetail.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], EscalationdetailPage);
     /***/
   },
@@ -2634,11 +2799,15 @@
     /*! ./contactpersonmodel.page */
     "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _contactpersonmodel_page__WEBPACK_IMPORTED_MODULE_3__["ContactpersonmodelPage"]
     }];
-    let ContactpersonmodelPageRoutingModule = class ContactpersonmodelPageRoutingModule {};
+
+    var ContactpersonmodelPageRoutingModule = function ContactpersonmodelPageRoutingModule() {
+      _classCallCheck(this, ContactpersonmodelPageRoutingModule);
+    };
+
     ContactpersonmodelPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -2708,7 +2877,10 @@
     /*! ./contactpersonmodel.page */
     "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.ts");
 
-    let ContactpersonmodelPageModule = class ContactpersonmodelPageModule {};
+    var ContactpersonmodelPageModule = function ContactpersonmodelPageModule() {
+      _classCallCheck(this, ContactpersonmodelPageModule);
+    };
+
     ContactpersonmodelPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _contactpersonmodel_routing_module__WEBPACK_IMPORTED_MODULE_5__["ContactpersonmodelPageRoutingModule"]],
       declarations: [_contactpersonmodel_page__WEBPACK_IMPORTED_MODULE_6__["ContactpersonmodelPage"]]
@@ -2798,8 +2970,10 @@
     /*! @ionic-native/push/ngx */
     "./node_modules/@ionic-native/push/ngx/index.js");
 
-    let ContactpersonmodelPage = class ContactpersonmodelPage {
-      constructor(route, modalController, push, formBuilder, dbService, navCtrl, navParams) {
+    var ContactpersonmodelPage = /*#__PURE__*/function () {
+      function ContactpersonmodelPage(route, modalController, push, formBuilder, dbService, navCtrl, navParams) {
+        _classCallCheck(this, ContactpersonmodelPage);
+
         this.route = route;
         this.modalController = modalController;
         this.push = push;
@@ -2819,71 +2993,86 @@
         });
       }
 
-      ngOnInit() {}
-
-      dismiss() {
-        this.modalController.dismiss({
-          'dismissed': true
-        });
-      }
-
-      onSaveHandler() {
-        if (this.cpForm.invalid) {
-          this.cpForm.get('cpName').markAsTouched();
-          this.cpForm.get('cpMobile').markAsTouched();
-          this.cpForm.get('cpDesignation').markAsTouched();
-          this.cpForm.get('cpEmail').markAsTouched();
-          return;
+      _createClass(ContactpersonmodelPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "dismiss",
+        value: function dismiss() {
+          this.modalController.dismiss({
+            'dismissed': true
+          });
         }
+      }, {
+        key: "onSaveHandler",
+        value: function onSaveHandler() {
+          var _this5 = this;
 
-        this.inputData = this.cpForm.value;
-        this.inputData.projectId = this.projectID;
-        this.dbService.onPostRequestHandler(this.inputData, 'customer/saveContactPersonData').subscribe(result => {
-          console.log(result);
-          this.dbService.dismissLoader();
-
-          if (result["status"] != 'true') {
-            console.log(result["status"]);
-            this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
-          } else {
-            console.log(result["status"]);
-            this.data = {};
-            this.modalController.dismiss({
-              'dismissed': true
-            });
-            this.dbService.presentToast('Contact Saved Successfully!');
+          if (this.cpForm.invalid) {
+            this.cpForm.get('cpName').markAsTouched();
+            this.cpForm.get('cpMobile').markAsTouched();
+            this.cpForm.get('cpDesignation').markAsTouched();
+            this.cpForm.get('cpEmail').markAsTouched();
+            return;
           }
-        });
-      }
 
-      project_detail() {}
+          this.inputData = this.cpForm.value;
+          this.inputData.projectId = this.projectID;
+          this.dbService.onPostRequestHandler(this.inputData, 'customer/saveContactPersonData').subscribe(function (result) {
+            console.log(result);
 
+            _this5.dbService.dismissLoader();
+
+            if (result["status"] != 'true') {
+              console.log(result["status"]);
+
+              _this5.dbService.onShowAlertMessage('Error', result["statusMessage"]);
+            } else {
+              console.log(result["status"]);
+              _this5.data = {};
+
+              _this5.modalController.dismiss({
+                'dismissed': true
+              });
+
+              _this5.dbService.presentToast('Contact Saved Successfully!');
+            }
+          });
+        }
+      }, {
+        key: "project_detail",
+        value: function project_detail() {}
+      }]);
+
+      return ContactpersonmodelPage;
+    }();
+
+    ContactpersonmodelPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }, {
+        type: _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
+      }];
     };
-
-    ContactpersonmodelPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
-    }, {
-      type: _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
-    }];
 
     ContactpersonmodelPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-contactpersonmodel',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./contactpersonmodel.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./contactpersonmodel.page.scss */
-      "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.scss")).default]
+      "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]])], ContactpersonmodelPage);
     /***/
   },
@@ -2958,8 +3147,10 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let RequestPopoverComponent = class RequestPopoverComponent {
-      constructor(popoverController, router, navParams, alertCtrl, dbService) {
+    var RequestPopoverComponent = /*#__PURE__*/function () {
+      function RequestPopoverComponent(popoverController, router, navParams, alertCtrl, dbService) {
+        _classCallCheck(this, RequestPopoverComponent);
+
         this.popoverController = popoverController;
         this.router = router;
         this.navParams = navParams;
@@ -2981,87 +3172,135 @@
         console.log(this.taskId);
       }
 
-      ngOnInit() {}
+      _createClass(RequestPopoverComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "onCancelComplaintHandler",
+        value: function onCancelComplaintHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this6 = this;
 
-      onCancelComplaintHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const alert = yield this.alertCtrl.create({
-            header: 'Confirm',
-            message: 'Are You Sure, You Want To Cancel Request ?',
-            buttons: [{
-              text: 'No',
-              role: 'cancel',
-              handler: () => {
-                console.log('No clicked');
-                this.popoverController.dismiss();
+            var alert;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.next = 2;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Cancel Request ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+
+                          _this6.popoverController.dismiss();
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          console.log('Yes clicked');
+                          var inputData = {};
+                          inputData["taskId"] = _this6.taskId;
+
+                          _this6.dbService.presentLoader();
+
+                          console.log(inputData);
+
+                          _this6.dbService.onPostRequestHandler(inputData, 'task/onCancelComplaintHandler').subscribe(function (result) {
+                            console.log(result);
+
+                            _this6.dbService.dismissLoader();
+
+                            _this6.popoverController.dismiss();
+
+                            _this6.dbService.presentToast('Complaint Cancel Successfully!');
+                          });
+                        }
+                      }]
+                    });
+
+                  case 2:
+                    alert = _context.sent;
+                    _context.next = 5;
+                    return alert.present();
+
+                  case 5:
+                  case "end":
+                    return _context.stop();
+                }
               }
-            }, {
-              text: 'Yes',
-              handler: () => {
-                console.log('Yes clicked');
-                const inputData = {};
-                inputData["taskId"] = this.taskId;
-                this.dbService.presentLoader();
-                console.log(inputData);
-                this.dbService.onPostRequestHandler(inputData, 'task/onCancelComplaintHandler').subscribe(result => {
-                  console.log(result);
-                  this.dbService.dismissLoader();
-                  this.popoverController.dismiss();
-                  this.dbService.presentToast('Complaint Cancel Successfully!');
-                });
-              }
-            }]
-          });
-          yield alert.present();
-        });
-      }
-
-      DismissClick() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          yield this.popoverController.dismiss();
-        });
-      }
-
-      GoToImages() {
-        let pathName;
-        ;
-
-        if (this.taskType == 'commissioning') {
-          pathName = 'complaints';
-        } else {
-          pathName = 'commissioning';
+            }, _callee, this);
+          }));
         }
+      }, {
+        key: "DismissClick",
+        value: function DismissClick() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    _context2.next = 2;
+                    return this.popoverController.dismiss();
 
-        this.router.navigateByUrl('/technicians/' + pathName + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-      }
+                  case 2:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "GoToImages",
+        value: function GoToImages() {
+          var pathName;
+          ;
 
-      GoToSpare() {
-        console.log(JSON.parse(localStorage.getItem('taskPopUpData')));
-        this.router.navigateByUrl('/customer/request/spareparts/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-      }
+          if (this.taskType == 'commissioning') {
+            pathName = 'complaints';
+          } else {
+            pathName = 'commissioning';
+          }
 
+          this.router.navigateByUrl('/technicians/' + pathName + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+        }
+      }, {
+        key: "GoToSpare",
+        value: function GoToSpare() {
+          console.log(JSON.parse(localStorage.getItem('taskPopUpData')));
+          this.router.navigateByUrl('/customer/request/spareparts/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+        }
+      }]);
+
+      return RequestPopoverComponent;
+    }();
+
+    RequestPopoverComponent.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]
+      }];
     };
-
-    RequestPopoverComponent.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]
-    }];
 
     RequestPopoverComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-request-popover',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./request-popover.component.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request-popover/request-popover.component.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request-popover/request-popover.component.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./request-popover.component.scss */
-      "./src/app/customer_app/service_request/request-popover/request-popover.component.scss")).default]
+      "./src/app/customer_app/service_request/request-popover/request-popover.component.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]])], RequestPopoverComponent);
     /***/
   },
@@ -3116,8 +3355,10 @@
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
 
-    let DbServiceService = class DbServiceService {
-      constructor(http, loadingCtrl, alertCtrl, toastCtrl, route) {
+    var DbServiceService = /*#__PURE__*/function () {
+      function DbServiceService(http, loadingCtrl, alertCtrl, toastCtrl, route) {
+        _classCallCheck(this, DbServiceService);
+
         this.http = http;
         this.loadingCtrl = loadingCtrl;
         this.alertCtrl = alertCtrl;
@@ -3142,102 +3383,184 @@
         this.backButton = 0;
       }
 
-      presentLoader() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          if (!this.isShowing) {
-            this.loading = yield this.loadingCtrl.create({
-              message: "Please Wait...."
-            });
-            this.isShowing = true;
-            console.log(this.loading);
-            return yield this.loading.present();
-          } else {
-            this.isShowing = true;
-            this.loading.message = 'sasas';
-          }
-        });
-      }
+      _createClass(DbServiceService, [{
+        key: "presentLoader",
+        value: function presentLoader() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    if (this.isShowing) {
+                      _context3.next = 11;
+                      break;
+                    }
 
-      dismissLoader() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log(this.loading);
+                    _context3.next = 3;
+                    return this.loadingCtrl.create({
+                      message: "Please Wait...."
+                    });
 
-          if (this.loading && this.isShowing) {
-            this.isShowing = false;
-            yield this.loading.dismiss();
-          }
-        });
-      }
+                  case 3:
+                    this.loading = _context3.sent;
+                    this.isShowing = true;
+                    console.log(this.loading);
+                    _context3.next = 8;
+                    return this.loading.present();
 
-      onShowAlertMessage(title, message) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const alert = yield this.alertCtrl.create({
-            header: title,
-            message: message,
-            backdropDismiss: false,
-            buttons: [{
-              text: 'Ok',
-              handler: () => {
-                console.log('Ok Button Clicked!');
+                  case 8:
+                    return _context3.abrupt("return", _context3.sent);
+
+                  case 11:
+                    this.isShowing = true;
+                    this.loading.message = 'sasas';
+
+                  case 13:
+                  case "end":
+                    return _context3.stop();
+                }
               }
-            }]
-          });
-          yield alert.present();
-        });
-      }
-
-      presentToast(message) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const toast = yield this.toastCtrl.create({
-            message: message,
-            duration: 2000
-          });
-          toast.present();
-        });
-      }
-
-      numberOnly(event) {
-        const charCode = event.which ? event.which : event.keyCode;
-
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-          return false;
+            }, _callee3, this);
+          }));
         }
+      }, {
+        key: "dismissLoader",
+        value: function dismissLoader() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    console.log(this.loading);
 
-        return true;
-      }
+                    if (!(this.loading && this.isShowing)) {
+                      _context4.next = 5;
+                      break;
+                    }
 
-      onPostRequestHandler(requestData, fn) {
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
-        const loginData = JSON.parse(localStorage.getItem('loginData'));
-        console.log(loginData);
+                    this.isShowing = false;
+                    _context4.next = 5;
+                    return this.loading.dismiss();
 
-        if (loginData) {
-          requestData["loginId"] = loginData["loginId"];
-          requestData["loginName"] = loginData["loginName"];
-          requestData["loginType"] = loginData["loginType"];
+                  case 5:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            }, _callee4, this);
+          }));
         }
+      }, {
+        key: "onShowAlertMessage",
+        value: function onShowAlertMessage(title, message) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            var alert;
+            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+              while (1) {
+                switch (_context5.prev = _context5.next) {
+                  case 0:
+                    _context5.next = 2;
+                    return this.alertCtrl.create({
+                      header: title,
+                      message: message,
+                      backdropDismiss: false,
+                      buttons: [{
+                        text: 'Ok',
+                        handler: function handler() {
+                          console.log('Ok Button Clicked!');
+                        }
+                      }]
+                    });
 
-        console.log(requestData);
-        return this.http.post(this.serverURL + fn, JSON.stringify(requestData), {
-          headers: headers
-        });
-      }
+                  case 2:
+                    alert = _context5.sent;
+                    _context5.next = 5;
+                    return alert.present();
 
+                  case 5:
+                  case "end":
+                    return _context5.stop();
+                }
+              }
+            }, _callee5, this);
+          }));
+        }
+      }, {
+        key: "presentToast",
+        value: function presentToast(message) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            var toast;
+            return regeneratorRuntime.wrap(function _callee6$(_context6) {
+              while (1) {
+                switch (_context6.prev = _context6.next) {
+                  case 0:
+                    _context6.next = 2;
+                    return this.toastCtrl.create({
+                      message: message,
+                      duration: 2000
+                    });
+
+                  case 2:
+                    toast = _context6.sent;
+                    toast.present();
+
+                  case 4:
+                  case "end":
+                    return _context6.stop();
+                }
+              }
+            }, _callee6, this);
+          }));
+        }
+      }, {
+        key: "numberOnly",
+        value: function numberOnly(event) {
+          var charCode = event.which ? event.which : event.keyCode;
+
+          if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+          }
+
+          return true;
+        }
+      }, {
+        key: "onPostRequestHandler",
+        value: function onPostRequestHandler(requestData, fn) {
+          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
+          headers.append('Accept', 'application/json');
+          headers.append('Content-Type', 'application/json');
+          var loginData = JSON.parse(localStorage.getItem('loginData'));
+          console.log(loginData);
+
+          if (loginData) {
+            requestData["loginId"] = loginData["loginId"];
+            requestData["loginName"] = loginData["loginName"];
+            requestData["loginType"] = loginData["loginType"];
+          }
+
+          console.log(requestData);
+          return this.http.post(this.serverURL + fn, JSON.stringify(requestData), {
+            headers: headers
+          });
+        }
+      }]);
+
+      return DbServiceService;
+    }();
+
+    DbServiceService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
+      }];
     };
-
-    DbServiceService.ctorParameters = () => [{
-      type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
-    }];
 
     DbServiceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
@@ -3289,11 +3612,15 @@
     /*! ./imagemodal.page */
     "./src/app/imagemodal/imagemodal.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _imagemodal_page__WEBPACK_IMPORTED_MODULE_3__["ImagemodalPage"]
     }];
-    let ImagemodalPageRoutingModule = class ImagemodalPageRoutingModule {};
+
+    var ImagemodalPageRoutingModule = function ImagemodalPageRoutingModule() {
+      _classCallCheck(this, ImagemodalPageRoutingModule);
+    };
+
     ImagemodalPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -3363,9 +3690,12 @@
     /*! ./imagemodal.page */
     "./src/app/imagemodal/imagemodal.page.ts");
 
-    let ImagemodalPageModule = class ImagemodalPageModule {};
+    var ImagemodalPageModule = function ImagemodalPageModule() {
+      _classCallCheck(this, ImagemodalPageModule);
+    };
+
     ImagemodalPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _imagemodal_routing_module__WEBPACK_IMPORTED_MODULE_5__["ImagemodalPageRoutingModule"]],
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _imagemodal_routing_module__WEBPACK_IMPORTED_MODULE_5__["ImagemodalPageRoutingModule"]],
       declarations: [_imagemodal_page__WEBPACK_IMPORTED_MODULE_6__["ImagemodalPage"]]
     })], ImagemodalPageModule);
     /***/
@@ -3387,7 +3717,7 @@
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".module {\n  background: rgba(0, 0, 0, 0.9) !important;\n}\n.module .scroll-content {\n  left: 0;\n  right: 0;\n  top: 50%;\n  position: absolute;\n  -webkit-transform: translateY(-50%);\n  transform: translateY(-50%);\n  overflow: inherit;\n  bottom: inherit;\n  contain: initial;\n}\n.module .scroll-content .pop-imge {\n  padding: 20px;\n  margin: 6px;\n  position: relative;\n  border-radius: 5px;\n}\n.module .scroll-content .pop-imge img {\n  width: 100%;\n  height: 100%;\n  border-radius: 5px;\n}\n.module .scroll-content .pop-imge a {\n  position: absolute;\n  top: 9px;\n  right: 9px;\n  background: #d31010;\n  width: 30px;\n  height: 30px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n          justify-content: center;\n  border-radius: 24px;\n}\n.module .scroll-content .pop-imge a i {\n  color: #fff;\n  font-size: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaW1hZ2Vtb2RhbC9DOlxcVXNlcnNcXEFkbWluXFxEb2N1bWVudHNcXHRyaWNvbGl0ZS1hcHAvc3JjXFxhcHBcXGltYWdlbW9kYWxcXGltYWdlbW9kYWwucGFnZS5zY3NzIiwic3JjL2FwcC9pbWFnZW1vZGFsL2ltYWdlbW9kYWwucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0kseUNBQUE7QUNDSjtBREFJO0VBQ0ksT0FBQTtFQUNBLFFBQUE7RUFDQSxRQUFBO0VBQ0Esa0JBQUE7RUFDQSxtQ0FBQTtFQUNBLDJCQUFBO0VBQ0EsaUJBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUNFUjtBRERRO0VBRUksYUFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtFQUNBLGtCQUFBO0FDRVo7QUREWTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUNHaEI7QUREWTtFQUNJLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLFVBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0Esb0JBQUE7RUFBQSxhQUFBO0VBQ0EseUJBQUE7VUFBQSxtQkFBQTtFQUNBLHdCQUFBO1VBQUEsdUJBQUE7RUFDQSxtQkFBQTtBQ0doQjtBREZnQjtFQUNJLFdBQUE7RUFDQSxlQUFBO0FDSXBCIiwiZmlsZSI6InNyYy9hcHAvaW1hZ2Vtb2RhbC9pbWFnZW1vZGFsLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tb2R1bGUge1xyXG4gICAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjkpICFpbXBvcnRhbnQ7XHJcbiAgICAuc2Nyb2xsLWNvbnRlbnQge1xyXG4gICAgICAgIGxlZnQ6IDA7XHJcbiAgICAgICAgcmlnaHQ6IDA7XHJcbiAgICAgICAgdG9wOiA1MCU7XHJcbiAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgICAgIC13ZWJraXQtdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MCUpO1xyXG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtNTAlKTtcclxuICAgICAgICBvdmVyZmxvdzogaW5oZXJpdDtcclxuICAgICAgICBib3R0b206IGluaGVyaXQ7XHJcbiAgICAgICAgY29udGFpbjogaW5pdGlhbDtcclxuICAgICAgICAucG9wLWltZ2Uge1xyXG4gICAgICAgICAgICAvLyBiYWNrZ3JvdW5kOiAjZmZmO1xyXG4gICAgICAgICAgICBwYWRkaW5nOiAyMHB4O1xyXG4gICAgICAgICAgICBtYXJnaW46IDZweDtcclxuICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICAgICAgICAgIGltZyB7XHJcbiAgICAgICAgICAgICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgICAgICAgICAgIGhlaWdodDogMTAwJTtcclxuICAgICAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICBhIHtcclxuICAgICAgICAgICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgICAgICAgICAgICAgIHRvcDogOXB4O1xyXG4gICAgICAgICAgICAgICAgcmlnaHQ6IDlweDtcclxuICAgICAgICAgICAgICAgIGJhY2tncm91bmQ6ICNkMzEwMTA7XHJcbiAgICAgICAgICAgICAgICB3aWR0aDogMzBweDtcclxuICAgICAgICAgICAgICAgIGhlaWdodDogMzBweDtcclxuICAgICAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiAyNHB4O1xyXG4gICAgICAgICAgICAgICAgaSB7XHJcbiAgICAgICAgICAgICAgICAgICAgY29sb3I6ICNmZmY7XHJcbiAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOiAyMHB4O1xyXG4gICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59IiwiLm1vZHVsZSB7XG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC45KSAhaW1wb3J0YW50O1xufVxuLm1vZHVsZSAuc2Nyb2xsLWNvbnRlbnQge1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgdG9wOiA1MCU7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTUwJSk7XG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtNTAlKTtcbiAgb3ZlcmZsb3c6IGluaGVyaXQ7XG4gIGJvdHRvbTogaW5oZXJpdDtcbiAgY29udGFpbjogaW5pdGlhbDtcbn1cbi5tb2R1bGUgLnNjcm9sbC1jb250ZW50IC5wb3AtaW1nZSB7XG4gIHBhZGRpbmc6IDIwcHg7XG4gIG1hcmdpbjogNnB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbn1cbi5tb2R1bGUgLnNjcm9sbC1jb250ZW50IC5wb3AtaW1nZSBpbWcge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBib3JkZXItcmFkaXVzOiA1cHg7XG59XG4ubW9kdWxlIC5zY3JvbGwtY29udGVudCAucG9wLWltZ2UgYSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiA5cHg7XG4gIHJpZ2h0OiA5cHg7XG4gIGJhY2tncm91bmQ6ICNkMzEwMTA7XG4gIHdpZHRoOiAzMHB4O1xuICBoZWlnaHQ6IDMwcHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBib3JkZXItcmFkaXVzOiAyNHB4O1xufVxuLm1vZHVsZSAuc2Nyb2xsLWNvbnRlbnQgLnBvcC1pbWdlIGEgaSB7XG4gIGNvbG9yOiAjZmZmO1xuICBmb250LXNpemU6IDIwcHg7XG59Il19 */";
+    __webpack_exports__["default"] = ".module {\n  background: rgba(0, 0, 0, 0.9) !important;\n}\n.module .scroll-content {\n  left: 0;\n  right: 0;\n  top: 50%;\n  position: absolute;\n  transform: translateY(-50%);\n  overflow: inherit;\n  bottom: inherit;\n  contain: initial;\n}\n.module .scroll-content .pop-imge {\n  padding: 20px;\n  margin: 6px;\n  position: relative;\n  border-radius: 5px;\n}\n.module .scroll-content .pop-imge img {\n  width: 100%;\n  height: 100%;\n  border-radius: 5px;\n}\n.module .scroll-content .pop-imge a {\n  position: absolute;\n  top: 9px;\n  right: 9px;\n  background: #d31010;\n  width: 30px;\n  height: 30px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 24px;\n}\n.module .scroll-content .pop-imge a i {\n  color: #fff;\n  font-size: 20px;\n}\n.cs-modal-container {\n  --background: rgba(0,0,0, 0.3);\n}\n.cs-modal-container .modal-container {\n  height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.cs-modal-container .modal-container .main-figure {\n  padding: 32px;\n  width: 100%;\n  position: relative;\n}\n.cs-modal-container .modal-container .main-figure .cs-modal-body {\n  border-radius: 10px;\n  background: #fff;\n  box-shadow: 0px 13px 26px rgba(0, 0, 0, 0.16);\n  padding: 16px;\n}\n.cs-modal-container .modal-container .main-figure .cs-modal-body signature-pad canvas {\n  width: 100% !important;\n}\n.cs-modal-container .modal-container .main-figure .cs-modal-body .logo img {\n  height: 30px;\n}\n.cs-modal-container .modal-container .main-figure .cs-modal-body .modal-content p {\n  font-size: 14px;\n  line-height: 28px;\n  color: var(--ion-color-dark);\n  margin-top: 20px;\n}\n.cs-modal-container .modal-container .main-figure .modal-close {\n  text-align: center;\n  margin-top: 32px;\n}\n.cs-modal-container .modal-container .main-figure .modal-close ion-button {\n  width: 40px;\n  height: 40px;\n  border: 1px solid #fff;\n  border-radius: 100%;\n  --border-radius: 100%;\n}\n.cs-modal-container .modal-container .main-figure .modal-close.model-cross {\n  position: absolute;\n  top: 0px;\n  right: 38px;\n}\n.cs-modal-container .modal-container .main-figure .modal-close.model-cross ion-button {\n  width: 23px;\n  height: 23px;\n}\n.cs-modal-container .modal-container.full-modal-container .main-figure {\n  width: 100%;\n  padding: 0px;\n}\n.cs-modal-container .modal-container.full-modal-container .main-figure .cs-modal-body {\n  background: #ffffff;\n  border-radius: 20px 20px 0px 0px;\n  padding: 0px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaW1hZ2Vtb2RhbC9FOlxcdHJpY29saXRlLWFwcC9zcmNcXGFwcFxcaW1hZ2Vtb2RhbFxcaW1hZ2Vtb2RhbC5wYWdlLnNjc3MiLCJzcmMvYXBwL2ltYWdlbW9kYWwvaW1hZ2Vtb2RhbC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSx5Q0FBQTtBQ0NKO0FEQUk7RUFDSSxPQUFBO0VBQ0EsUUFBQTtFQUNBLFFBQUE7RUFDQSxrQkFBQTtFQUVBLDJCQUFBO0VBQ0EsaUJBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUNFUjtBRERRO0VBRUksYUFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtFQUNBLGtCQUFBO0FDRVo7QUREWTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUNHaEI7QUREWTtFQUNJLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLFVBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtBQ0doQjtBREZnQjtFQUNJLFdBQUE7RUFDQSxlQUFBO0FDSXBCO0FER0E7RUFFSSw4QkFBQTtBQ0RKO0FER0k7RUFFSSxhQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7QUNGUjtBRElRO0VBRUksYUFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtBQ0haO0FES1k7RUFFSSxtQkFBQTtFQUNBLGdCQUFBO0VBQ0EsNkNBQUE7RUFDQSxhQUFBO0FDSmhCO0FEUW9CO0VBQ0ksc0JBQUE7QUNOeEI7QURhb0I7RUFBSSxZQUFBO0FDVnhCO0FEZW9CO0VBR0ksZUFBQTtFQUNBLGlCQUFBO0VBQ0EsNEJBQUE7RUFDQSxnQkFBQTtBQ2Z4QjtBRHdCWTtFQUVJLGtCQUFBO0VBQ0EsZ0JBQUE7QUN2QmhCO0FEeUJnQjtFQUVJLFdBQUE7RUFDQSxZQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtFQUNBLHFCQUFBO0FDeEJwQjtBRDJCZ0I7RUFFSSxrQkFBQTtFQUNBLFFBQUE7RUFDQSxXQUFBO0FDMUJwQjtBRDRCb0I7RUFFSSxXQUFBO0VBQ0EsWUFBQTtBQzNCeEI7QURtQ1k7RUFFSSxXQUFBO0VBQ0EsWUFBQTtBQ2xDaEI7QURvQ2dCO0VBRUksbUJBQUE7RUFDQSxnQ0FBQTtFQUNBLFlBQUE7QUNuQ3BCIiwiZmlsZSI6InNyYy9hcHAvaW1hZ2Vtb2RhbC9pbWFnZW1vZGFsLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tb2R1bGUge1xyXG4gICAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjkpICFpbXBvcnRhbnQ7XHJcbiAgICAuc2Nyb2xsLWNvbnRlbnQge1xyXG4gICAgICAgIGxlZnQ6IDA7XHJcbiAgICAgICAgcmlnaHQ6IDA7XHJcbiAgICAgICAgdG9wOiA1MCU7XHJcbiAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgICAgIC13ZWJraXQtdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MCUpO1xyXG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtNTAlKTtcclxuICAgICAgICBvdmVyZmxvdzogaW5oZXJpdDtcclxuICAgICAgICBib3R0b206IGluaGVyaXQ7XHJcbiAgICAgICAgY29udGFpbjogaW5pdGlhbDtcclxuICAgICAgICAucG9wLWltZ2Uge1xyXG4gICAgICAgICAgICAvLyBiYWNrZ3JvdW5kOiAjZmZmO1xyXG4gICAgICAgICAgICBwYWRkaW5nOiAyMHB4O1xyXG4gICAgICAgICAgICBtYXJnaW46IDZweDtcclxuICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICAgICAgICAgIGltZyB7XHJcbiAgICAgICAgICAgICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgICAgICAgICAgIGhlaWdodDogMTAwJTtcclxuICAgICAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICBhIHtcclxuICAgICAgICAgICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgICAgICAgICAgICAgIHRvcDogOXB4O1xyXG4gICAgICAgICAgICAgICAgcmlnaHQ6IDlweDtcclxuICAgICAgICAgICAgICAgIGJhY2tncm91bmQ6ICNkMzEwMTA7XHJcbiAgICAgICAgICAgICAgICB3aWR0aDogMzBweDtcclxuICAgICAgICAgICAgICAgIGhlaWdodDogMzBweDtcclxuICAgICAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiAyNHB4O1xyXG4gICAgICAgICAgICAgICAgaSB7XHJcbiAgICAgICAgICAgICAgICAgICAgY29sb3I6ICNmZmY7XHJcbiAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOiAyMHB4O1xyXG4gICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59XHJcblxyXG4uY3MtbW9kYWwtY29udGFpbmVyXHJcbntcclxuICAgIC0tYmFja2dyb3VuZDogcmdiYSgwLDAsMCwgMC4zKTtcclxuICAgIFxyXG4gICAgLm1vZGFsLWNvbnRhaW5lclxyXG4gICAge1xyXG4gICAgICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgICAgIFxyXG4gICAgICAgIC5tYWluLWZpZ3VyZVxyXG4gICAgICAgIHtcclxuICAgICAgICAgICAgcGFkZGluZzogMzJweDtcclxuICAgICAgICAgICAgd2lkdGg6IDEwMCU7XHJcbiAgICAgICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIC5jcy1tb2RhbC1ib2R5XHJcbiAgICAgICAgICAgIHtcclxuICAgICAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kOiAjZmZmO1xyXG4gICAgICAgICAgICAgICAgYm94LXNoYWRvdzogMHB4IDEzcHggMjZweCByZ2JhKDAsIDAsIDAsIDAuMTYpO1xyXG4gICAgICAgICAgICAgICAgcGFkZGluZzogMTZweDtcclxuICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgXHJcbiAgICAgICAgICAgICAgICBzaWduYXR1cmUtcGFkIHtcclxuICAgICAgICAgICAgICAgICAgICBjYW52YXMge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xyXG4gICAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgXHJcbiAgICAgICAgICAgICAgICAubG9nb1xyXG4gICAgICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgIGltZ3toZWlnaHQ6IDMwcHg7fVxyXG4gICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICAgICAgXHJcbiAgICAgICAgICAgICAgICAubW9kYWwtY29udGVudFxyXG4gICAgICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgIHBcclxuICAgICAgICAgICAgICAgICAgICB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIC8vIEBleHRlbmQucmVndWxhcjtcclxuICAgICAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBsaW5lLWhlaWdodDogMjhweDtcclxuICAgICAgICAgICAgICAgICAgICAgICAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1kYXJrKTtcclxuICAgICAgICAgICAgICAgICAgICAgICAgbWFyZ2luLXRvcDogMjBweDtcclxuICAgICAgICAgICAgICAgICAgICAgICAgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIC8vIGlvbi10ZXh0e0BleHRlbmQubWVkaXVtO31cclxuICAgICAgICAgICAgICAgICAgICAgICAgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGF7fVxyXG4gICAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICBcclxuICAgICAgICAgICAgLm1vZGFsLWNsb3NlXHJcbiAgICAgICAgICAgIHtcclxuICAgICAgICAgICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgICAgICAgICAgICAgIG1hcmdpbi10b3A6IDMycHg7XHJcbiAgICAgICAgICAgICAgICBcclxuICAgICAgICAgICAgICAgIGlvbi1idXR0b25cclxuICAgICAgICAgICAgICAgIHtcclxuICAgICAgICAgICAgICAgICAgICB3aWR0aDogNDBweDtcclxuICAgICAgICAgICAgICAgICAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICAgICAgICAgICAgICAgICAgYm9yZGVyOiAxcHggc29saWQgI2ZmZjtcclxuICAgICAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiAxMDAlO1xyXG4gICAgICAgICAgICAgICAgICAgIC0tYm9yZGVyLXJhZGl1czogMTAwJTtcclxuICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgJi5tb2RlbC1jcm9zc1xyXG4gICAgICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgICAgICAgICAgICAgICAgICB0b3A6IDBweDtcclxuICAgICAgICAgICAgICAgICAgICByaWdodDogMzhweDtcclxuICAgICAgICAgICAgICAgICAgICBcclxuICAgICAgICAgICAgICAgICAgICBpb24tYnV0dG9uXHJcbiAgICAgICAgICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICB3aWR0aDogMjNweDtcclxuICAgICAgICAgICAgICAgICAgICAgICAgaGVpZ2h0OiAyM3B4O1xyXG4gICAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgfVxyXG4gICAgICAgIH1cclxuICAgICAgICBcclxuICAgICAgICAmLmZ1bGwtbW9kYWwtY29udGFpbmVyXHJcbiAgICAgICAge1xyXG4gICAgICAgICAgICAubWFpbi1maWd1cmVcclxuICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgd2lkdGg6IDEwMCU7XHJcbiAgICAgICAgICAgICAgICBwYWRkaW5nOiAwcHg7XHJcbiAgICAgICAgICAgICAgICBcclxuICAgICAgICAgICAgICAgIC5jcy1tb2RhbC1ib2R5XHJcbiAgICAgICAgICAgICAgICB7XHJcbiAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZDogI2ZmZmZmZjtcclxuICAgICAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiAyMHB4IDIwcHggMHB4IDBweDtcclxuICAgICAgICAgICAgICAgICAgICBwYWRkaW5nOiAwcHg7XHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9XHJcbiAgICB9XHJcbn0iLCIubW9kdWxlIHtcbiAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjkpICFpbXBvcnRhbnQ7XG59XG4ubW9kdWxlIC5zY3JvbGwtY29udGVudCB7XG4gIGxlZnQ6IDA7XG4gIHJpZ2h0OiAwO1xuICB0b3A6IDUwJTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICAtd2Via2l0LXRyYW5zZm9ybTogdHJhbnNsYXRlWSgtNTAlKTtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MCUpO1xuICBvdmVyZmxvdzogaW5oZXJpdDtcbiAgYm90dG9tOiBpbmhlcml0O1xuICBjb250YWluOiBpbml0aWFsO1xufVxuLm1vZHVsZSAuc2Nyb2xsLWNvbnRlbnQgLnBvcC1pbWdlIHtcbiAgcGFkZGluZzogMjBweDtcbiAgbWFyZ2luOiA2cHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xufVxuLm1vZHVsZSAuc2Nyb2xsLWNvbnRlbnQgLnBvcC1pbWdlIGltZyB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbn1cbi5tb2R1bGUgLnNjcm9sbC1jb250ZW50IC5wb3AtaW1nZSBhIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB0b3A6IDlweDtcbiAgcmlnaHQ6IDlweDtcbiAgYmFja2dyb3VuZDogI2QzMTAxMDtcbiAgd2lkdGg6IDMwcHg7XG4gIGhlaWdodDogMzBweDtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGJvcmRlci1yYWRpdXM6IDI0cHg7XG59XG4ubW9kdWxlIC5zY3JvbGwtY29udGVudCAucG9wLWltZ2UgYSBpIHtcbiAgY29sb3I6ICNmZmY7XG4gIGZvbnQtc2l6ZTogMjBweDtcbn1cblxuLmNzLW1vZGFsLWNvbnRhaW5lciB7XG4gIC0tYmFja2dyb3VuZDogcmdiYSgwLDAsMCwgMC4zKTtcbn1cbi5jcy1tb2RhbC1jb250YWluZXIgLm1vZGFsLWNvbnRhaW5lciB7XG4gIGhlaWdodDogMTAwdmg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuLmNzLW1vZGFsLWNvbnRhaW5lciAubW9kYWwtY29udGFpbmVyIC5tYWluLWZpZ3VyZSB7XG4gIHBhZGRpbmc6IDMycHg7XG4gIHdpZHRoOiAxMDAlO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG4uY3MtbW9kYWwtY29udGFpbmVyIC5tb2RhbC1jb250YWluZXIgLm1haW4tZmlndXJlIC5jcy1tb2RhbC1ib2R5IHtcbiAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgYmFja2dyb3VuZDogI2ZmZjtcbiAgYm94LXNoYWRvdzogMHB4IDEzcHggMjZweCByZ2JhKDAsIDAsIDAsIDAuMTYpO1xuICBwYWRkaW5nOiAxNnB4O1xufVxuLmNzLW1vZGFsLWNvbnRhaW5lciAubW9kYWwtY29udGFpbmVyIC5tYWluLWZpZ3VyZSAuY3MtbW9kYWwtYm9keSBzaWduYXR1cmUtcGFkIGNhbnZhcyB7XG4gIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7XG59XG4uY3MtbW9kYWwtY29udGFpbmVyIC5tb2RhbC1jb250YWluZXIgLm1haW4tZmlndXJlIC5jcy1tb2RhbC1ib2R5IC5sb2dvIGltZyB7XG4gIGhlaWdodDogMzBweDtcbn1cbi5jcy1tb2RhbC1jb250YWluZXIgLm1vZGFsLWNvbnRhaW5lciAubWFpbi1maWd1cmUgLmNzLW1vZGFsLWJvZHkgLm1vZGFsLWNvbnRlbnQgcCB7XG4gIGZvbnQtc2l6ZTogMTRweDtcbiAgbGluZS1oZWlnaHQ6IDI4cHg7XG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItZGFyayk7XG4gIG1hcmdpbi10b3A6IDIwcHg7XG59XG4uY3MtbW9kYWwtY29udGFpbmVyIC5tb2RhbC1jb250YWluZXIgLm1haW4tZmlndXJlIC5tb2RhbC1jbG9zZSB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLXRvcDogMzJweDtcbn1cbi5jcy1tb2RhbC1jb250YWluZXIgLm1vZGFsLWNvbnRhaW5lciAubWFpbi1maWd1cmUgLm1vZGFsLWNsb3NlIGlvbi1idXR0b24ge1xuICB3aWR0aDogNDBweDtcbiAgaGVpZ2h0OiA0MHB4O1xuICBib3JkZXI6IDFweCBzb2xpZCAjZmZmO1xuICBib3JkZXItcmFkaXVzOiAxMDAlO1xuICAtLWJvcmRlci1yYWRpdXM6IDEwMCU7XG59XG4uY3MtbW9kYWwtY29udGFpbmVyIC5tb2RhbC1jb250YWluZXIgLm1haW4tZmlndXJlIC5tb2RhbC1jbG9zZS5tb2RlbC1jcm9zcyB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAwcHg7XG4gIHJpZ2h0OiAzOHB4O1xufVxuLmNzLW1vZGFsLWNvbnRhaW5lciAubW9kYWwtY29udGFpbmVyIC5tYWluLWZpZ3VyZSAubW9kYWwtY2xvc2UubW9kZWwtY3Jvc3MgaW9uLWJ1dHRvbiB7XG4gIHdpZHRoOiAyM3B4O1xuICBoZWlnaHQ6IDIzcHg7XG59XG4uY3MtbW9kYWwtY29udGFpbmVyIC5tb2RhbC1jb250YWluZXIuZnVsbC1tb2RhbC1jb250YWluZXIgLm1haW4tZmlndXJlIHtcbiAgd2lkdGg6IDEwMCU7XG4gIHBhZGRpbmc6IDBweDtcbn1cbi5jcy1tb2RhbC1jb250YWluZXIgLm1vZGFsLWNvbnRhaW5lci5mdWxsLW1vZGFsLWNvbnRhaW5lciAubWFpbi1maWd1cmUgLmNzLW1vZGFsLWJvZHkge1xuICBiYWNrZ3JvdW5kOiAjZmZmZmZmO1xuICBib3JkZXItcmFkaXVzOiAyMHB4IDIwcHggMHB4IDBweDtcbiAgcGFkZGluZzogMHB4O1xufSJdfQ== */";
     /***/
   },
 
@@ -3422,22 +3752,53 @@
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
 
-    let ImagemodalPage = class ImagemodalPage {
-      constructor() {}
 
-      ngOnInit() {}
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/dist/fesm5.js");
 
+    var ImagemodalPage = /*#__PURE__*/function () {
+      function ImagemodalPage(modalController, navCtrl) {
+        _classCallCheck(this, ImagemodalPage);
+
+        this.modalController = modalController;
+        this.navCtrl = navCtrl;
+      }
+
+      _createClass(ImagemodalPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "dismiss",
+        value: function dismiss() {
+          this.modalController.dismiss({
+            'dismissed': true
+          });
+        }
+      }]);
+
+      return ImagemodalPage;
+    }();
+
+    ImagemodalPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]
+      }];
     };
+
     ImagemodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-imagemodal',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./imagemodal.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/imagemodal/imagemodal.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/imagemodal/imagemodal.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./imagemodal.page.scss */
-      "./src/app/imagemodal/imagemodal.page.scss")).default]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], ImagemodalPage);
+      "./src/app/imagemodal/imagemodal.page.scss"))["default"]]
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]])], ImagemodalPage);
     /***/
   },
 
@@ -3485,11 +3846,15 @@
     /*! ./signaturemodal.page */
     "./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: 'signatueModal',
       component: _signaturemodal_page__WEBPACK_IMPORTED_MODULE_3__["SignaturemodalPage"]
     }];
-    let SignaturemodalPageRoutingModule = class SignaturemodalPageRoutingModule {};
+
+    var SignaturemodalPageRoutingModule = function SignaturemodalPageRoutingModule() {
+      _classCallCheck(this, SignaturemodalPageRoutingModule);
+    };
+
     SignaturemodalPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -3569,7 +3934,10 @@
 
     var angular2_signaturepad__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(angular2_signaturepad__WEBPACK_IMPORTED_MODULE_7__);
 
-    let SignaturemodalPageModule = class SignaturemodalPageModule {};
+    var SignaturemodalPageModule = function SignaturemodalPageModule() {
+      _classCallCheck(this, SignaturemodalPageModule);
+    };
+
     SignaturemodalPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], angular2_signaturepad__WEBPACK_IMPORTED_MODULE_7__["SignaturePadModule"], _signaturemodal_routing_module__WEBPACK_IMPORTED_MODULE_5__["SignaturemodalPageRoutingModule"]],
       declarations: [_signaturemodal_page__WEBPACK_IMPORTED_MODULE_6__["SignaturemodalPage"]]
@@ -3645,8 +4013,10 @@
 
     var angular2_signaturepad_signature_pad__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(angular2_signaturepad_signature_pad__WEBPACK_IMPORTED_MODULE_3__);
 
-    let SignaturemodalPage = class SignaturemodalPage {
-      constructor(modalCtrl, navParams) {
+    var SignaturemodalPage = /*#__PURE__*/function () {
+      function SignaturemodalPage(modalCtrl, navParams) {
+        _classCallCheck(this, SignaturemodalPage);
+
         this.modalCtrl = modalCtrl;
         this.navParams = navParams;
         this.signaturePadOptions = {
@@ -3658,67 +4028,81 @@
         this.signatureImage = this.navParams.get('sigImage');
       }
 
-      ngOnInit() {
-        console.log(this.signatureImage);
-        setTimeout(() => {
+      _createClass(SignaturemodalPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this7 = this;
+
+          console.log(this.signatureImage);
+          setTimeout(function () {
+            _this7.signaturePad.clear();
+
+            _this7.canvasResize();
+          }, 1000);
+        }
+      }, {
+        key: "canvasResize",
+        value: function canvasResize() {
+          var canvas = document.querySelector('canvas');
+          this.signaturePad.set('minWidth', 1);
+          this.signaturePad.set('canvasWidth', canvas.offsetWidth);
+          this.signaturePad.set('canvasHeight', canvas.offsetHeight);
+        }
+      }, {
+        key: "drawCancel",
+        value: function drawCancel() {
+          this.signaturePadView = false;
+        }
+      }, {
+        key: "drawComplete",
+        value: function drawComplete() {
+          this.signatureImage = this.signaturePad.toDataURL();
+          console.log(this.signatureImage);
+          this.modalCtrl.dismiss({
+            'dismissed': true,
+            'signatureImage': this.signatureImage
+          });
+        }
+      }, {
+        key: "drawClear",
+        value: function drawClear() {
           this.signaturePad.clear();
-          this.canvasResize();
-        }, 1000);
-      }
+        }
+      }, {
+        key: "dismiss",
+        value: function dismiss() {
+          // using the injected ModalController this page
+          // can "dismiss" itself and optionally pass back data
+          this.modalCtrl.dismiss({
+            'dismissed': true,
+            data: this.signatureImage
+          });
+        }
+      }]);
 
-      canvasResize() {
-        const canvas = document.querySelector('canvas');
-        this.signaturePad.set('minWidth', 1);
-        this.signaturePad.set('canvasWidth', canvas.offsetWidth);
-        this.signaturePad.set('canvasHeight', canvas.offsetHeight);
-      }
+      return SignaturemodalPage;
+    }();
 
-      drawCancel() {
-        this.signaturePadView = false;
-      }
-
-      drawComplete() {
-        this.signatureImage = this.signaturePad.toDataURL();
-        console.log(this.signatureImage);
-        this.modalCtrl.dismiss({
-          'dismissed': true,
-          'signatureImage': this.signatureImage
-        });
-      }
-
-      drawClear() {
-        this.signaturePad.clear();
-      }
-
-      dismiss() {
-        // using the injected ModalController this page
-        // can "dismiss" itself and optionally pass back data
-        this.modalCtrl.dismiss({
-          'dismissed': true,
-          data: this.signatureImage
-        });
-      }
-
+    SignaturemodalPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
+      }];
     };
-
-    SignaturemodalPage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
-    }];
 
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)], SignaturemodalPage.prototype, "value", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(angular2_signaturepad_signature_pad__WEBPACK_IMPORTED_MODULE_3__["SignaturePad"], {
-      static: false
+      "static": false
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", angular2_signaturepad_signature_pad__WEBPACK_IMPORTED_MODULE_3__["SignaturePad"])], SignaturemodalPage.prototype, "signaturePad", void 0);
     SignaturemodalPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-signaturemodal',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./signaturemodal.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./signaturemodal.page.scss */
-      "./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.scss")).default]
+      "./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]])], SignaturemodalPage);
     /***/
   },
@@ -3793,8 +4177,10 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let TecCompliantPopoverComponent = class TecCompliantPopoverComponent {
-      constructor(popoverController, router, navParams, dbService) {
+    var TecCompliantPopoverComponent = /*#__PURE__*/function () {
+      function TecCompliantPopoverComponent(popoverController, router, navParams, dbService) {
+        _classCallCheck(this, TecCompliantPopoverComponent);
+
         this.popoverController = popoverController;
         this.router = router;
         this.navParams = navParams;
@@ -3820,82 +4206,111 @@
         this.taskPopUpData = JSON.parse(localStorage.getItem('taskPopUpData'));
       }
 
-      ngOnInit() {}
+      _createClass(TecCompliantPopoverComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "DismissClick",
+        value: function DismissClick() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+            return regeneratorRuntime.wrap(function _callee7$(_context7) {
+              while (1) {
+                switch (_context7.prev = _context7.next) {
+                  case 0:
+                    _context7.next = 2;
+                    return this.popoverController.dismiss();
 
-      DismissClick() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          yield this.popoverController.dismiss();
-        });
-      }
+                  case 2:
+                  case "end":
+                    return _context7.stop();
+                }
+              }
+            }, _callee7, this);
+          }));
+        }
+      }, {
+        key: "GoToRemarks",
+        value: function GoToRemarks() {
+          // tslint:disable-next-line:max-line-length
+          this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/remarks/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+        }
+      }, {
+        key: "GoToStatus",
+        value: function GoToStatus() {
+          // tslint:disable-next-line:max-line-length
+          this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/status/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+        }
+      }, {
+        key: "GoToSpareParts",
+        value: function GoToSpareParts() {
+          // tslint:disable-next-line:max-line-length
+          this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/spareparts/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+        }
+      }, {
+        key: "GoToImages",
+        value: function GoToImages() {
+          // tslint:disable-next-line:max-line-length
+          this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+        }
+      }, {
+        key: "GoToReport",
+        value: function GoToReport(type) {
+          localStorage.setItem('reportType', type); // tslint:disable-next-line:max-line-length
 
-      GoToRemarks() {
-        // tslint:disable-next-line:max-line-length
-        this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/remarks/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-      }
-
-      GoToStatus() {
-        // tslint:disable-next-line:max-line-length
-        this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/status/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-      }
-
-      GoToSpareParts() {
-        // tslint:disable-next-line:max-line-length
-        this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/spareparts/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-      }
-
-      GoToImages() {
-        // tslint:disable-next-line:max-line-length
-        this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-      }
-
-      GoToReport(type) {
-        localStorage.setItem('reportType', type); // tslint:disable-next-line:max-line-length
-
-        this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/dailyreport/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-      }
-
-      GoToServiceReport(taskReportId) {
-        console.log('hello');
-        const inputData = {
-          taskId: this.taskId,
-          taskReportId: taskReportId
-        };
-        this.dbService.onPostRequestHandler(inputData, 'Report/viewMobileServiceReport').subscribe(result => {
-          console.log(result);
-          const options = {
-            documentSize: 'A4',
-            type: 'share',
-            fileName: 'myFile.pdf'
+          this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/dailyreport/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+        }
+      }, {
+        key: "GoToServiceReport",
+        value: function GoToServiceReport(taskReportId) {
+          console.log('hello');
+          var inputData = {
+            taskId: this.taskId,
+            taskReportId: taskReportId
           };
-          cordova.plugins.pdf.htmlToPDF({
-            data: result,
-            documentSize: 'A4',
-            type: 'share',
-            fileName: 'my-pdf.pdf'
-          }, sucess => console.log('sucess: ', sucess), error => console.log('error:', error));
-        });
-      }
+          this.dbService.onPostRequestHandler(inputData, 'Report/viewMobileServiceReport').subscribe(function (result) {
+            console.log(result);
+            var options = {
+              documentSize: 'A4',
+              type: 'share',
+              fileName: 'myFile.pdf'
+            };
+            cordova.plugins.pdf.htmlToPDF({
+              data: result,
+              documentSize: 'A4',
+              type: 'share',
+              fileName: 'my-pdf.pdf'
+            }, function (sucess) {
+              return console.log('sucess: ', sucess);
+            }, function (error) {
+              return console.log('error:', error);
+            });
+          });
+        }
+      }]);
 
+      return TecCompliantPopoverComponent;
+    }();
+
+    TecCompliantPopoverComponent.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]
+      }];
     };
-
-    TecCompliantPopoverComponent.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]
-    }];
 
     TecCompliantPopoverComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-tec-compliant-popover',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./tec-compliant-popover.component.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./tec-compliant-popover.component.scss */
-      "./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.scss")).default]
+      "./src/app/technician_app/complaints/tec-compliant-popover/tec-compliant-popover.component.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]])], TecCompliantPopoverComponent);
     /***/
   },
@@ -3982,8 +4397,10 @@
     /*! @ionic-native/push/ngx */
     "./node_modules/@ionic-native/push/ngx/index.js");
 
-    let HomePage = class HomePage {
-      constructor(route, formBuilder, alertCtrl, dbService, push) {
+    var HomePage = /*#__PURE__*/function () {
+      function HomePage(route, formBuilder, alertCtrl, dbService, push) {
+        _classCallCheck(this, HomePage);
+
         this.route = route;
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
@@ -3993,104 +4410,149 @@
         this.profileData = {};
       }
 
-      ngOnInit() {
-        this.onGetDashboardDataHandler();
-        this.notification();
-      }
+      _createClass(HomePage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.onGetDashboardDataHandler();
+          this.notification();
+        }
+      }, {
+        key: "onDashboardCountClickHandler",
+        value: function onDashboardCountClickHandler(targetType) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+            var dashboardCountFilterData;
+            return regeneratorRuntime.wrap(function _callee8$(_context8) {
+              while (1) {
+                switch (_context8.prev = _context8.next) {
+                  case 0:
+                    dashboardCountFilterData = {};
+                    dashboardCountFilterData["countFilter"] = targetType;
+                    localStorage.setItem('dashboardCountFilterData', JSON.stringify(dashboardCountFilterData));
 
-      onDashboardCountClickHandler(targetType) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const dashboardCountFilterData = {};
-          dashboardCountFilterData["countFilter"] = targetType;
-          localStorage.setItem('dashboardCountFilterData', JSON.stringify(dashboardCountFilterData));
-        });
-      }
+                  case 3:
+                  case "end":
+                    return _context8.stop();
+                }
+              }
+            }, _callee8);
+          }));
+        }
+      }, {
+        key: "onGetDashboardDataHandler",
+        value: function onGetDashboardDataHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+            var _this8 = this;
 
-      onGetDashboardDataHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log('hello');
-          this.dbService.onPostRequestHandler({}, 'dashboard/onGetDashboardData').subscribe(result => {
+            return regeneratorRuntime.wrap(function _callee9$(_context9) {
+              while (1) {
+                switch (_context9.prev = _context9.next) {
+                  case 0:
+                    console.log('hello');
+                    this.dbService.onPostRequestHandler({}, 'dashboard/onGetDashboardData').subscribe(function (result) {
+                      console.log(result);
+                      _this8.dashboardData = result;
+                    });
+
+                  case 2:
+                  case "end":
+                    return _context9.stop();
+                }
+              }
+            }, _callee9, this);
+          }));
+        }
+      }, {
+        key: "onGetProfileDataHandler",
+        value: function onGetProfileDataHandler() {
+          var _this9 = this;
+
+          var inputData = {};
+          this.dbService.onPostRequestHandler(inputData, 'login/onGetLoginUserCompleteDetail').subscribe(function (result) {
             console.log(result);
-            this.dashboardData = result;
+            _this9.profileData = result["loginData"];
           });
-        });
-      }
+        }
+      }, {
+        key: "ionViewWillEnter",
+        value: function ionViewWillEnter() {
+          this.onGetProfileDataHandler();
+          this.notification();
+        }
+      }, {
+        key: "notification",
+        value: function notification() {
+          var _this10 = this;
 
-      onGetProfileDataHandler() {
-        const inputData = {};
-        this.dbService.onPostRequestHandler(inputData, 'login/onGetLoginUserCompleteDetail').subscribe(result => {
-          console.log(result);
-          this.profileData = result["loginData"];
-        });
-      }
-
-      ionViewWillEnter() {
-        this.onGetProfileDataHandler();
-        this.notification();
-      }
-
-      notification() {
-        // alert("test");
-        console.log("bhanu 12345");
-        const loginData = JSON.parse(localStorage.getItem('loginData'));
-        console.log(loginData);
-        this.push.hasPermission().then(res => {
-          if (res.isEnabled) {
-            console.log('We have permission to send push notifications');
-          } else {
-            console.log('We do not have permission to send push notifications');
-          }
-        });
-        const options = {
-          android: {
-            senderID: '590596859248'
-          },
-          ios: {
-            alert: 'true',
-            badge: true,
-            sound: true
-          },
-          windows: {},
-          browser: {
-            pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-          }
-        };
-        const pushObject = this.push.init(options);
-        pushObject.on('notification').subscribe(notification => console.log('Received a notification', notification));
-        pushObject.on('registration').subscribe(registration => {
-          console.log('Device registered', registration);
-          this.dbService.onPostRequestHandler({
-            'id': loginData.loginId,
-            'registration_id': registration.registrationId
-          }, 'task/update_token').subscribe(r => {
-            console.log(r);
+          // alert("test");
+          console.log("bhanu 12345");
+          var loginData = JSON.parse(localStorage.getItem('loginData'));
+          console.log(loginData);
+          this.push.hasPermission().then(function (res) {
+            if (res.isEnabled) {
+              console.log('We have permission to send push notifications');
+            } else {
+              console.log('We do not have permission to send push notifications');
+            }
           });
-        });
-        pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-      }
+          var options = {
+            android: {
+              senderID: '590596859248'
+            },
+            ios: {
+              alert: 'true',
+              badge: true,
+              sound: true
+            },
+            windows: {},
+            browser: {
+              pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+            }
+          };
+          var pushObject = this.push.init(options);
+          pushObject.on('notification').subscribe(function (notification) {
+            return console.log('Received a notification', notification);
+          });
+          pushObject.on('registration').subscribe(function (registration) {
+            console.log('Device registered', registration);
 
+            _this10.dbService.onPostRequestHandler({
+              'id': loginData.loginId,
+              'registration_id': registration.registrationId
+            }, 'task/update_token').subscribe(function (r) {
+              console.log(r);
+            });
+          });
+          pushObject.on('error').subscribe(function (error) {
+            return console.error('Error with Push plugin', error);
+          });
+        }
+      }]);
+
+      return HomePage;
+    }();
+
+    HomePage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }, {
+        type: _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"]
+      }];
     };
-
-    HomePage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }, {
-      type: _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"]
-    }];
 
     HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-home',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./home.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/home/home.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/home/home.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./home.page.scss */
-      "./src/app/technician_app/home/home.page.scss")).default]
+      "./src/app/technician_app/home/home.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"], _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"]])], HomePage);
     /***/
   },
@@ -4124,7 +4586,7 @@
     // The list of file replacements can be found in `angular.json`.
 
 
-    const environment = {
+    var environment = {
       production: false
     };
     /*
@@ -4187,7 +4649,9 @@
       Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
     }
 
-    Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"]).catch(err => console.log(err));
+    Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])["catch"](function (err) {
+      return console.log(err);
+    });
     /***/
   },
 
@@ -4202,7 +4666,7 @@
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! C:\Users\Admin\Documents\tricolite-app\src\main.ts */
+    /*! E:\tricolite-app\src\main.ts */
     "./src/main.ts");
     /***/
   }

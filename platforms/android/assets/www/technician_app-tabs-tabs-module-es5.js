@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["technician_app-tabs-tabs-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tabs/tabs.page.html":
@@ -63,7 +69,7 @@
     /*! ./tabs.page */
     "./src/app/technician_app/tabs/tabs.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       redirectTo: '/technicians/home',
       pathMatch: 'full'
@@ -72,11 +78,15 @@
       component: _tabs_page__WEBPACK_IMPORTED_MODULE_3__["TabsPage"],
       children: [{
         path: 'home',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | home-home-module */
-        "home-home-module").then(__webpack_require__.bind(null,
-        /*! ../home/home.module */
-        "./src/app/technician_app/home/home.module.ts")).then(m => m.HomePageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | home-home-module */
+          "home-home-module").then(__webpack_require__.bind(null,
+          /*! ../home/home.module */
+          "./src/app/technician_app/home/home.module.ts")).then(function (m) {
+            return m.HomePageModule;
+          });
+        }
       }, // ============= +++++++
       // ============= +++++++
       // ============= +++++++ Menus Inner Page Routing Start..........
@@ -84,32 +94,48 @@
       // ============= +++++++
       {
         path: 'menu',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | menu-menu-module */
-        "menu-menu-module").then(__webpack_require__.bind(null,
-        /*! ../menu/menu.module */
-        "./src/app/technician_app/menu/menu.module.ts")).then(m => m.MenuPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | menu-menu-module */
+          "menu-menu-module").then(__webpack_require__.bind(null,
+          /*! ../menu/menu.module */
+          "./src/app/technician_app/menu/menu.module.ts")).then(function (m) {
+            return m.MenuPageModule;
+          });
+        }
       }, {
         path: 'menu/profile',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | tec-profile-tec-profile-module */
-        "tec-profile-tec-profile-module").then(__webpack_require__.bind(null,
-        /*! ../tec-profile/tec-profile.module */
-        "./src/app/technician_app/tec-profile/tec-profile.module.ts")).then(m => m.TecProfilePageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | tec-profile-tec-profile-module */
+          "tec-profile-tec-profile-module").then(__webpack_require__.bind(null,
+          /*! ../tec-profile/tec-profile.module */
+          "./src/app/technician_app/tec-profile/tec-profile.module.ts")).then(function (m) {
+            return m.TecProfilePageModule;
+          });
+        }
       }, {
         path: 'menu/documents',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | tec-document-tec-document-module */
-        "tec-document-tec-document-module").then(__webpack_require__.bind(null,
-        /*! ../tec-document/tec-document.module */
-        "./src/app/technician_app/tec-document/tec-document.module.ts")).then(m => m.TecDocumentPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | tec-document-tec-document-module */
+          "tec-document-tec-document-module").then(__webpack_require__.bind(null,
+          /*! ../tec-document/tec-document.module */
+          "./src/app/technician_app/tec-document/tec-document.module.ts")).then(function (m) {
+            return m.TecDocumentPageModule;
+          });
+        }
       }, {
         path: 'menu/documents/detail/:documentId/:documentTitle',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | tech-document-detail-tech-document-detail-module */
-        "tech-document-detail-tech-document-detail-module").then(__webpack_require__.bind(null,
-        /*! ..//tech-document-detail/tech-document-detail.module */
-        "./src/app/technician_app/tech-document-detail/tech-document-detail.module.ts")).then(m => m.TechDocumentDetailModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | tech-document-detail-tech-document-detail-module */
+          "tech-document-detail-tech-document-detail-module").then(__webpack_require__.bind(null,
+          /*! ..//tech-document-detail/tech-document-detail.module */
+          "./src/app/technician_app/tech-document-detail/tech-document-detail.module.ts")).then(function (m) {
+            return m.TechDocumentDetailModule;
+          });
+        }
       }, // ============= +++++++
       // ============= +++++++
       // ============= +++++++ Menus Inner Page Routing End............
@@ -122,155 +148,239 @@
       // ============= +++++++
       {
         path: 'complaints',
-        loadChildren: () => Promise.all(
-        /*! import() | complaints-complaintlist-complaintlist-module */
-        [__webpack_require__.e("default~complaints-complaintlist-complaintlist-module~myprojects-myprojects-module~service_request-r~738493b2"), __webpack_require__.e("complaints-complaintlist-complaintlist-module")]).then(__webpack_require__.bind(null,
-        /*! ../complaints/complaintlist/complaintlist.module */
-        "./src/app/technician_app/complaints/complaintlist/complaintlist.module.ts")).then(m => m.ComplaintlistPageModule)
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | complaints-complaintlist-complaintlist-module */
+          [__webpack_require__.e("default~complaints-complaintlist-complaintlist-module~myprojects-myprojects-module~service_request-r~738493b2"), __webpack_require__.e("complaints-complaintlist-complaintlist-module")]).then(__webpack_require__.bind(null,
+          /*! ../complaints/complaintlist/complaintlist.module */
+          "./src/app/technician_app/complaints/complaintlist/complaintlist.module.ts")).then(function (m) {
+            return m.ComplaintlistPageModule;
+          });
+        }
       }, {
         path: 'commissioning',
-        loadChildren: () => Promise.all(
-        /*! import() | complaints-complaintlist-complaintlist-module */
-        [__webpack_require__.e("default~complaints-complaintlist-complaintlist-module~myprojects-myprojects-module~service_request-r~738493b2"), __webpack_require__.e("complaints-complaintlist-complaintlist-module")]).then(__webpack_require__.bind(null,
-        /*! ../complaints/complaintlist/complaintlist.module */
-        "./src/app/technician_app/complaints/complaintlist/complaintlist.module.ts")).then(m => m.ComplaintlistPageModule)
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | complaints-complaintlist-complaintlist-module */
+          [__webpack_require__.e("default~complaints-complaintlist-complaintlist-module~myprojects-myprojects-module~service_request-r~738493b2"), __webpack_require__.e("complaints-complaintlist-complaintlist-module")]).then(__webpack_require__.bind(null,
+          /*! ../complaints/complaintlist/complaintlist.module */
+          "./src/app/technician_app/complaints/complaintlist/complaintlist.module.ts")).then(function (m) {
+            return m.ComplaintlistPageModule;
+          });
+        }
       }, {
         path: 'complaints/details/:taskId',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-complaintdetail-complaintdetail-module */
-        "complaints-complaintdetail-complaintdetail-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/complaintdetail/complaintdetail.module */
-        "./src/app/technician_app/complaints/complaintdetail/complaintdetail.module.ts")).then(m => m.ComplaintdetailPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-complaintdetail-complaintdetail-module */
+          "complaints-complaintdetail-complaintdetail-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/complaintdetail/complaintdetail.module */
+          "./src/app/technician_app/complaints/complaintdetail/complaintdetail.module.ts")).then(function (m) {
+            return m.ComplaintdetailPageModule;
+          });
+        }
       }, {
         path: 'commissioning/details/:taskId',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-complaintdetail-complaintdetail-module */
-        "complaints-complaintdetail-complaintdetail-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/complaintdetail/complaintdetail.module */
-        "./src/app/technician_app/complaints/complaintdetail/complaintdetail.module.ts")).then(m => m.ComplaintdetailPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-complaintdetail-complaintdetail-module */
+          "complaints-complaintdetail-complaintdetail-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/complaintdetail/complaintdetail.module */
+          "./src/app/technician_app/complaints/complaintdetail/complaintdetail.module.ts")).then(function (m) {
+            return m.ComplaintdetailPageModule;
+          });
+        }
       }, {
         path: 'complaints/details/remarks/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-remarks-com-remarks-module */
-        "complaints-com-remarks-com-remarks-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-remarks/com-remarks.module */
-        "./src/app/technician_app/complaints/com-remarks/com-remarks.module.ts")).then(m => m.ComRemarksPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-remarks-com-remarks-module */
+          "complaints-com-remarks-com-remarks-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-remarks/com-remarks.module */
+          "./src/app/technician_app/complaints/com-remarks/com-remarks.module.ts")).then(function (m) {
+            return m.ComRemarksPageModule;
+          });
+        }
       }, {
         path: 'commissioning/details/remarks/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-remarks-com-remarks-module */
-        "complaints-com-remarks-com-remarks-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-remarks/com-remarks.module */
-        "./src/app/technician_app/complaints/com-remarks/com-remarks.module.ts")).then(m => m.ComRemarksPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-remarks-com-remarks-module */
+          "complaints-com-remarks-com-remarks-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-remarks/com-remarks.module */
+          "./src/app/technician_app/complaints/com-remarks/com-remarks.module.ts")).then(function (m) {
+            return m.ComRemarksPageModule;
+          });
+        }
       }, {
         path: 'complaints/details/status/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-changestatus-com-changestatus-module */
-        "complaints-com-changestatus-com-changestatus-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-changestatus/com-changestatus.module */
-        "./src/app/technician_app/complaints/com-changestatus/com-changestatus.module.ts")).then(m => m.ComChangestatusPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-changestatus-com-changestatus-module */
+          "complaints-com-changestatus-com-changestatus-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-changestatus/com-changestatus.module */
+          "./src/app/technician_app/complaints/com-changestatus/com-changestatus.module.ts")).then(function (m) {
+            return m.ComChangestatusPageModule;
+          });
+        }
       }, {
         path: 'commissioning/details/status/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-changestatus-com-changestatus-module */
-        "complaints-com-changestatus-com-changestatus-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-changestatus/com-changestatus.module */
-        "./src/app/technician_app/complaints/com-changestatus/com-changestatus.module.ts")).then(m => m.ComChangestatusPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-changestatus-com-changestatus-module */
+          "complaints-com-changestatus-com-changestatus-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-changestatus/com-changestatus.module */
+          "./src/app/technician_app/complaints/com-changestatus/com-changestatus.module.ts")).then(function (m) {
+            return m.ComChangestatusPageModule;
+          });
+        }
       }, {
         path: 'complaints/details/spareparts/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-spareparts-com-spareparts-module */
-        "complaints-com-spareparts-com-spareparts-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-spareparts/com-spareparts.module */
-        "./src/app/technician_app/complaints/com-spareparts/com-spareparts.module.ts")).then(m => m.ComSparepartsPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-spareparts-com-spareparts-module */
+          "complaints-com-spareparts-com-spareparts-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-spareparts/com-spareparts.module */
+          "./src/app/technician_app/complaints/com-spareparts/com-spareparts.module.ts")).then(function (m) {
+            return m.ComSparepartsPageModule;
+          });
+        }
       }, {
         path: 'commissioning/details/spareparts/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-spareparts-com-spareparts-module */
-        "complaints-com-spareparts-com-spareparts-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-spareparts/com-spareparts.module */
-        "./src/app/technician_app/complaints/com-spareparts/com-spareparts.module.ts")).then(m => m.ComSparepartsPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-spareparts-com-spareparts-module */
+          "complaints-com-spareparts-com-spareparts-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-spareparts/com-spareparts.module */
+          "./src/app/technician_app/complaints/com-spareparts/com-spareparts.module.ts")).then(function (m) {
+            return m.ComSparepartsPageModule;
+          });
+        }
       }, {
         path: 'complaints/details/spareparts/installspareparts/:taskId/:taskNo/:taskStatus',
         // tslint:disable-next-line: max-line-length
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-installspareparts-com-installspareparts-module */
-        "complaints-com-installspareparts-com-installspareparts-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-installspareparts/com-installspareparts.module */
-        "./src/app/technician_app/complaints/com-installspareparts/com-installspareparts.module.ts")).then(m => m.ComInstallsparepartsPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-installspareparts-com-installspareparts-module */
+          "complaints-com-installspareparts-com-installspareparts-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-installspareparts/com-installspareparts.module */
+          "./src/app/technician_app/complaints/com-installspareparts/com-installspareparts.module.ts")).then(function (m) {
+            return m.ComInstallsparepartsPageModule;
+          });
+        }
       }, {
         path: 'commissioning/details/spareparts/installspareparts/:taskId/:taskNo/:taskStatus',
         // tslint:disable-next-line: max-line-length
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-installspareparts-com-installspareparts-module */
-        "complaints-com-installspareparts-com-installspareparts-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-installspareparts/com-installspareparts.module */
-        "./src/app/technician_app/complaints/com-installspareparts/com-installspareparts.module.ts")).then(m => m.ComInstallsparepartsPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-installspareparts-com-installspareparts-module */
+          "complaints-com-installspareparts-com-installspareparts-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-installspareparts/com-installspareparts.module */
+          "./src/app/technician_app/complaints/com-installspareparts/com-installspareparts.module.ts")).then(function (m) {
+            return m.ComInstallsparepartsPageModule;
+          });
+        }
       }, {
         path: 'complaints/details/spareparts/installspareparts/:taskId/:taskNo/:taskStatus',
         // tslint:disable-next-line: max-line-length
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-installspareparts-com-installspareparts-module */
-        "complaints-com-installspareparts-com-installspareparts-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-installspareparts/com-installspareparts.module */
-        "./src/app/technician_app/complaints/com-installspareparts/com-installspareparts.module.ts")).then(m => m.ComInstallsparepartsPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-installspareparts-com-installspareparts-module */
+          "complaints-com-installspareparts-com-installspareparts-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-installspareparts/com-installspareparts.module */
+          "./src/app/technician_app/complaints/com-installspareparts/com-installspareparts.module.ts")).then(function (m) {
+            return m.ComInstallsparepartsPageModule;
+          });
+        }
       }, {
         path: 'commissioning/details/spareparts/installspareparts/:taskId/:taskNo/:taskStatus',
         // tslint:disable-next-line: max-line-length
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-installspareparts-com-installspareparts-module */
-        "complaints-com-installspareparts-com-installspareparts-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-installspareparts/com-installspareparts.module */
-        "./src/app/technician_app/complaints/com-installspareparts/com-installspareparts.module.ts")).then(m => m.ComInstallsparepartsPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-installspareparts-com-installspareparts-module */
+          "complaints-com-installspareparts-com-installspareparts-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-installspareparts/com-installspareparts.module */
+          "./src/app/technician_app/complaints/com-installspareparts/com-installspareparts.module.ts")).then(function (m) {
+            return m.ComInstallsparepartsPageModule;
+          });
+        }
       }, {
         path: 'complaints/details/images/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-images-com-images-module */
-        "complaints-com-images-com-images-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-images/com-images.module */
-        "./src/app/technician_app/complaints/com-images/com-images.module.ts")).then(m => m.ComImagesPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-images-com-images-module */
+          "complaints-com-images-com-images-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-images/com-images.module */
+          "./src/app/technician_app/complaints/com-images/com-images.module.ts")).then(function (m) {
+            return m.ComImagesPageModule;
+          });
+        }
       }, {
         path: 'commissioning/details/images/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-images-com-images-module */
-        "complaints-com-images-com-images-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-images/com-images.module */
-        "./src/app/technician_app/complaints/com-images/com-images.module.ts")).then(m => m.ComImagesPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-images-com-images-module */
+          "complaints-com-images-com-images-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-images/com-images.module */
+          "./src/app/technician_app/complaints/com-images/com-images.module.ts")).then(function (m) {
+            return m.ComImagesPageModule;
+          });
+        }
       }, {
         path: 'complaints/details/dailyreport/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-dailyreport-com-dailyreport-module */
-        "complaints-com-dailyreport-com-dailyreport-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-dailyreport/com-dailyreport.module */
-        "./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.module.ts")).then(m => m.ComDailyreportPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-dailyreport-com-dailyreport-module */
+          "complaints-com-dailyreport-com-dailyreport-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-dailyreport/com-dailyreport.module */
+          "./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.module.ts")).then(function (m) {
+            return m.ComDailyreportPageModule;
+          });
+        }
       }, {
         path: 'commissioning/details/dailyreport/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-com-dailyreport-com-dailyreport-module */
-        "complaints-com-dailyreport-com-dailyreport-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/com-dailyreport/com-dailyreport.module */
-        "./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.module.ts")).then(m => m.ComDailyreportPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-com-dailyreport-com-dailyreport-module */
+          "complaints-com-dailyreport-com-dailyreport-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/com-dailyreport/com-dailyreport.module */
+          "./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.module.ts")).then(function (m) {
+            return m.ComDailyreportPageModule;
+          });
+        }
       }, {
         path: 'complaints/details/image-list/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-image-list-image-list-module */
-        "complaints-image-list-image-list-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/image-list/image-list.module */
-        "./src/app/technician_app/complaints/image-list/image-list.module.ts")).then(m => m.ImageListPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-image-list-image-list-module */
+          "complaints-image-list-image-list-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/image-list/image-list.module */
+          "./src/app/technician_app/complaints/image-list/image-list.module.ts")).then(function (m) {
+            return m.ImageListPageModule;
+          });
+        }
       }, {
         path: 'commissioning/details/image-list/:taskId/:taskNo/:taskStatus',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-image-list-image-list-module */
-        "complaints-image-list-image-list-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/image-list/image-list.module */
-        "./src/app/technician_app/complaints/image-list/image-list.module.ts")).then(m => m.ImageListPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-image-list-image-list-module */
+          "complaints-image-list-image-list-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/image-list/image-list.module */
+          "./src/app/technician_app/complaints/image-list/image-list.module.ts")).then(function (m) {
+            return m.ImageListPageModule;
+          });
+        }
       }, {
         path: 'image-gallery',
-        loadChildren: () => __webpack_require__.e(
-        /*! import() | complaints-image-gallery-image-gallery-module */
-        "complaints-image-gallery-image-gallery-module").then(__webpack_require__.bind(null,
-        /*! ../complaints/image-gallery/image-gallery.module */
-        "./src/app/technician_app/complaints/image-gallery/image-gallery.module.ts")).then(m => m.ImageGalleryPageModule)
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | complaints-image-gallery-image-gallery-module */
+          "complaints-image-gallery-image-gallery-module").then(__webpack_require__.bind(null,
+          /*! ../complaints/image-gallery/image-gallery.module */
+          "./src/app/technician_app/complaints/image-gallery/image-gallery.module.ts")).then(function (m) {
+            return m.ImageGalleryPageModule;
+          });
+        }
       }, // ============= +++++++
       // ============= +++++++
       // ============= +++++++ Complaint Inner Page Routing End.......
@@ -286,7 +396,11 @@
         pathMatch: 'full'
       }]
     }];
-    let TabsPageRoutingModule = class TabsPageRoutingModule {};
+
+    var TabsPageRoutingModule = function TabsPageRoutingModule() {
+      _classCallCheck(this, TabsPageRoutingModule);
+    };
+
     TabsPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -356,7 +470,10 @@
     /*! ./tabs.page */
     "./src/app/technician_app/tabs/tabs.page.ts");
 
-    let TabsPageModule = class TabsPageModule {};
+    var TabsPageModule = function TabsPageModule() {
+      _classCallCheck(this, TabsPageModule);
+    };
+
     TabsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
       imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _tabs_routing_module__WEBPACK_IMPORTED_MODULE_5__["TabsPageRoutingModule"]],
       declarations: [_tabs_page__WEBPACK_IMPORTED_MODULE_6__["TabsPage"]]
@@ -422,41 +539,49 @@
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
 
-    let TabsPage = class TabsPage {
-      constructor(route) {
+    var TabsPage = /*#__PURE__*/function () {
+      function TabsPage(route) {
+        _classCallCheck(this, TabsPage);
+
         this.route = route;
       }
 
-      tabChanged(targetType) {
-        console.log('helloooo');
+      _createClass(TabsPage, [{
+        key: "tabChanged",
+        value: function tabChanged(targetType) {
+          console.log('helloooo');
 
-        if (targetType == 'complaint') {
-          localStorage.setItem('dashboardCountFilterData', '');
-          this.route.navigateByUrl('/technicians/complaints');
-        } else if (targetType == 'commissioning') {
-          localStorage.setItem('dashboardCountFilterData', '');
-          this.route.navigateByUrl('/technicians/commissioning');
-        } else if (targetType == 'menu') {
-          this.route.navigateByUrl('/technicians/menu');
-        } else if (targetType == 'home') {
-          this.route.navigateByUrl('/technicians/home');
+          if (targetType == 'complaint') {
+            localStorage.setItem('dashboardCountFilterData', '');
+            this.route.navigateByUrl('/technicians/complaints');
+          } else if (targetType == 'commissioning') {
+            localStorage.setItem('dashboardCountFilterData', '');
+            this.route.navigateByUrl('/technicians/commissioning');
+          } else if (targetType == 'menu') {
+            this.route.navigateByUrl('/technicians/menu');
+          } else if (targetType == 'home') {
+            this.route.navigateByUrl('/technicians/home');
+          }
         }
-      }
+      }]);
 
+      return TabsPage;
+    }();
+
+    TabsPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }];
     };
-
-    TabsPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }];
 
     TabsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-tabs',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./tabs.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tabs/tabs.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tabs/tabs.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./tabs.page.scss */
-      "./src/app/technician_app/tabs/tabs.page.scss")).default]
+      "./src/app/technician_app/tabs/tabs.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])], TabsPage);
     /***/
   }

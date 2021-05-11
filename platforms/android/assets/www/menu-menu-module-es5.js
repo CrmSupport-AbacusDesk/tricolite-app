@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["menu-menu-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/menu/menu.page.html":
@@ -63,11 +69,15 @@
     /*! ./menu.page */
     "./src/app/technician_app/menu/menu.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _menu_page__WEBPACK_IMPORTED_MODULE_3__["MenuPage"]
     }];
-    let MenuPageRoutingModule = class MenuPageRoutingModule {};
+
+    var MenuPageRoutingModule = function MenuPageRoutingModule() {
+      _classCallCheck(this, MenuPageRoutingModule);
+    };
+
     MenuPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./menu.page */
     "./src/app/technician_app/menu/menu.page.ts");
 
-    let MenuPageModule = class MenuPageModule {};
+    var MenuPageModule = function MenuPageModule() {
+      _classCallCheck(this, MenuPageModule);
+    };
+
     MenuPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _menu_routing_module__WEBPACK_IMPORTED_MODULE_5__["MenuPageRoutingModule"]],
       declarations: [_menu_page__WEBPACK_IMPORTED_MODULE_6__["MenuPage"]]
@@ -215,90 +228,126 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let MenuPage = class MenuPage {
-      constructor(router, alertCtrl, dbService) {
+    var MenuPage = /*#__PURE__*/function () {
+      function MenuPage(router, alertCtrl, dbService) {
+        _classCallCheck(this, MenuPage);
+
         this.router = router;
         this.alertCtrl = alertCtrl;
         this.dbService = dbService;
         this.profileData = {};
       }
 
-      ngOnInit() {}
+      _createClass(MenuPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "onGetProfileDataHandler",
+        value: function onGetProfileDataHandler(showLaoding) {
+          var _this = this;
 
-      onGetProfileDataHandler(showLaoding) {
-        const inputData = {};
-
-        if (showLaoding) {
-          this.dbService.presentLoader();
-        }
-
-        this.dbService.onPostRequestHandler(inputData, 'login/onGetLoginUserCompleteDetail').subscribe(result => {
-          console.log(result);
+          var inputData = {};
 
           if (showLaoding) {
-            this.dbService.dismissLoader();
+            this.dbService.presentLoader();
           }
 
-          this.profileData = result["loginData"];
-        });
-      }
+          this.dbService.onPostRequestHandler(inputData, 'login/onGetLoginUserCompleteDetail').subscribe(function (result) {
+            console.log(result);
 
-      ionViewWillEnter() {
-        this.onGetProfileDataHandler(false);
-      }
+            if (showLaoding) {
+              _this.dbService.dismissLoader();
+            }
 
-      GoToProfile() {
-        this.router.navigateByUrl('/technicians/menu/profile');
-      }
-
-      GoToDocuments() {
-        this.router.navigateByUrl('/technicians/menu/documents');
-      }
-
-      onLogoutHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const alert = yield this.alertCtrl.create({
-            header: 'Confirm',
-            message: 'Are You Sure, You Want To Logout ?',
-            buttons: [{
-              text: 'No',
-              role: 'cancel',
-              handler: () => {
-                console.log('No clicked');
-              }
-            }, {
-              text: 'Yes',
-              handler: () => {
-                console.log('Yes clicked');
-                localStorage.removeItem('loginData');
-                const routeURL = '/loginType';
-                this.router.navigate([routeURL]);
-                this.dbService.presentToast('Logout Successful!');
-              }
-            }]
+            _this.profileData = result["loginData"];
           });
-          yield alert.present();
-        });
-      }
+        }
+      }, {
+        key: "ionViewWillEnter",
+        value: function ionViewWillEnter() {
+          this.onGetProfileDataHandler(false);
+        }
+      }, {
+        key: "GoToProfile",
+        value: function GoToProfile() {
+          this.router.navigateByUrl('/technicians/menu/profile');
+        }
+      }, {
+        key: "GoToDocuments",
+        value: function GoToDocuments() {
+          this.router.navigateByUrl('/technicians/menu/documents');
+        }
+      }, {
+        key: "onLogoutHandler",
+        value: function onLogoutHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this2 = this;
 
+            var alert;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.next = 2;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Logout ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          console.log('Yes clicked');
+                          localStorage.removeItem('loginData');
+                          var routeURL = '/loginType';
+
+                          _this2.router.navigate([routeURL]);
+
+                          _this2.dbService.presentToast('Logout Successful!');
+                        }
+                      }]
+                    });
+
+                  case 2:
+                    alert = _context.sent;
+                    _context.next = 5;
+                    return alert.present();
+
+                  case 5:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }]);
+
+      return MenuPage;
+    }();
+
+    MenuPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]
+      }];
     };
-
-    MenuPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]
-    }];
 
     MenuPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-menu',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./menu.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/menu/menu.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/menu/menu.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./menu.page.scss */
-      "./src/app/technician_app/menu/menu.page.scss")).default]
+      "./src/app/technician_app/menu/menu.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_4__["DbServiceService"]])], MenuPage);
     /***/
   }

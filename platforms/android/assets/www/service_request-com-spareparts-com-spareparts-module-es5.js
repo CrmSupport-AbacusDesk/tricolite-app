@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["service_request-com-spareparts-com-spareparts-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/com-spareparts/com-spareparts.page.html":
@@ -63,11 +69,15 @@
     /*! ./com-spareparts.page */
     "./src/app/customer_app/service_request/com-spareparts/com-spareparts.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _com_spareparts_page__WEBPACK_IMPORTED_MODULE_3__["ComSparepartsPage"]
     }];
-    let ComSparepartsPageRoutingModule = class ComSparepartsPageRoutingModule {};
+
+    var ComSparepartsPageRoutingModule = function ComSparepartsPageRoutingModule() {
+      _classCallCheck(this, ComSparepartsPageRoutingModule);
+    };
+
     ComSparepartsPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -143,7 +153,10 @@
     /*! ionic-selectable */
     "./node_modules/ionic-selectable/esm2015/ionic-selectable.min.js");
 
-    let ComSparepartsPageModule = class ComSparepartsPageModule {};
+    var ComSparepartsPageModule = function ComSparepartsPageModule() {
+      _classCallCheck(this, ComSparepartsPageModule);
+    };
+
     ComSparepartsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _com_spareparts_routing_module__WEBPACK_IMPORTED_MODULE_5__["ComSparepartsPageRoutingModule"], ionic_selectable__WEBPACK_IMPORTED_MODULE_7__["IonicSelectableModule"]],
       declarations: [_com_spareparts_page__WEBPACK_IMPORTED_MODULE_6__["ComSparepartsPage"]]
@@ -227,8 +240,12 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let ComSparepartsPage = class ComSparepartsPage {
-      constructor(popoverController, router, routeParams, alertCtrl, toastCtrl, dbService) {
+    var ComSparepartsPage = /*#__PURE__*/function () {
+      function ComSparepartsPage(popoverController, router, routeParams, alertCtrl, toastCtrl, dbService) {
+        var _this = this;
+
+        _classCallCheck(this, ComSparepartsPage);
+
         this.popoverController = popoverController;
         this.router = router;
         this.routeParams = routeParams;
@@ -241,83 +258,128 @@
         this.sparePartAssignedData = [];
         this.sparePartInstalledData = [];
         this.data = {};
-        this.routeParams.params.subscribe(params => {
+        this.routeParams.params.subscribe(function (params) {
           console.log(params);
-          this.taskId = params.taskId;
-          this.taskNo = params.taskNo;
-          this.taskStatus = params.taskStatus;
-          console.log(this.taskId);
-          console.log(this.taskNo);
-          console.log(this.taskStatus);
-          this.onGetTaskSparePartDataHandler();
+          _this.taskId = params.taskId;
+          _this.taskNo = params.taskNo;
+          _this.taskStatus = params.taskStatus;
+          console.log(_this.taskId);
+          console.log(_this.taskNo);
+          console.log(_this.taskStatus);
+
+          _this.onGetTaskSparePartDataHandler();
         });
       }
 
-      ngOnInit() {}
+      _createClass(ComSparepartsPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "onGetTaskSparePartDataHandler",
+        value: function onGetTaskSparePartDataHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this2 = this;
 
-      onGetTaskSparePartDataHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const inputData = {
-            taskId: this.taskId
-          };
-          this.dbService.onPostRequestHandler(inputData, 'task/getTaskSparePartData').subscribe(result => {
-            console.log(result);
-            this.sparePartAssignedData = result["taskAssignedPartData"];
-            this.sparePartInstalledData = result["taskInstalledPartData"];
-          });
-        });
-      }
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    inputData = {
+                      taskId: this.taskId
+                    };
+                    this.dbService.onPostRequestHandler(inputData, 'task/getTaskSparePartData').subscribe(function (result) {
+                      console.log(result);
+                      _this2.sparePartAssignedData = result["taskAssignedPartData"];
+                      _this2.sparePartInstalledData = result["taskInstalledPartData"];
+                    });
 
-      presentPopover(ev) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const taskData = {
-            taskId: this.taskId,
-            taskNo: this.taskNo,
-            taskStatus: this.taskStatus
-          };
-          console.log(taskData);
-          const popover = yield this.popoverController.create({
-            component: _request_popover_request_popover_component__WEBPACK_IMPORTED_MODULE_3__["RequestPopoverComponent"],
-            event: ev,
-            translucent: true,
-            componentProps: taskData
-          });
-          return yield popover.present();
-        });
-      }
+                  case 2:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "presentPopover",
+        value: function presentPopover(ev) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var taskData, popover;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    taskData = {
+                      taskId: this.taskId,
+                      taskNo: this.taskNo,
+                      taskStatus: this.taskStatus
+                    };
+                    console.log(taskData);
+                    _context2.next = 4;
+                    return this.popoverController.create({
+                      component: _request_popover_request_popover_component__WEBPACK_IMPORTED_MODULE_3__["RequestPopoverComponent"],
+                      event: ev,
+                      translucent: true,
+                      componentProps: taskData
+                    });
 
-      GoComplaintDetail() {
-        this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/' + this.taskId);
-      }
+                  case 4:
+                    popover = _context2.sent;
+                    _context2.next = 7;
+                    return popover.present();
 
-      GoToInstallSpareParts() {
-        this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/spareparts/installspareparts/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-      }
+                  case 7:
+                    return _context2.abrupt("return", _context2.sent);
 
+                  case 8:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "GoComplaintDetail",
+        value: function GoComplaintDetail() {
+          this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/' + this.taskId);
+        }
+      }, {
+        key: "GoToInstallSpareParts",
+        value: function GoToInstallSpareParts() {
+          this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/spareparts/installspareparts/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+        }
+      }]);
+
+      return ComSparepartsPage;
+    }();
+
+    ComSparepartsPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    ComSparepartsPage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     ComSparepartsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-com-spareparts',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./com-spareparts.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/com-spareparts/com-spareparts.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/com-spareparts/com-spareparts.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./com-spareparts.page.scss */
-      "./src/app/customer_app/service_request/com-spareparts/com-spareparts.page.scss")).default]
+      "./src/app/customer_app/service_request/com-spareparts/com-spareparts.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], ComSparepartsPage);
     /***/
   }

@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["complaints-image-list-image-list-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/image-list/image-list.page.html":
@@ -63,11 +69,15 @@
     /*! ./image-list.page */
     "./src/app/technician_app/complaints/image-list/image-list.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _image_list_page__WEBPACK_IMPORTED_MODULE_3__["ImageListPage"]
     }];
-    let ImageListPageRoutingModule = class ImageListPageRoutingModule {};
+
+    var ImageListPageRoutingModule = function ImageListPageRoutingModule() {
+      _classCallCheck(this, ImageListPageRoutingModule);
+    };
+
     ImageListPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./image-list.page */
     "./src/app/technician_app/complaints/image-list/image-list.page.ts");
 
-    let ImageListPageModule = class ImageListPageModule {};
+    var ImageListPageModule = function ImageListPageModule() {
+      _classCallCheck(this, ImageListPageModule);
+    };
+
     ImageListPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _image_list_routing_module__WEBPACK_IMPORTED_MODULE_5__["ImageListPageRoutingModule"]],
       declarations: [_image_list_page__WEBPACK_IMPORTED_MODULE_6__["ImageListPage"]]
@@ -209,57 +222,70 @@
     /*! @angular/common */
     "./node_modules/@angular/common/fesm2015/common.js");
 
-    let ImageListPage = class ImageListPage {
-      constructor(router, location, routeParams) {
+    var ImageListPage = /*#__PURE__*/function () {
+      function ImageListPage(router, location, routeParams) {
+        var _this = this;
+
+        _classCallCheck(this, ImageListPage);
+
         this.router = router;
         this.location = location;
         this.routeParams = routeParams;
         this.taskId = '';
         this.taskNo = '';
         this.taskStatus = '';
-        this.routeParams.params.subscribe(params => {
+        this.routeParams.params.subscribe(function (params) {
           console.log(params);
-          this.taskId = params.taskId;
-          this.taskNo = params.taskNo;
-          this.taskStatus = params.taskStatus;
-          console.log(this.taskId);
-          console.log(this.taskNo);
-          console.log(this.taskStatus);
+          _this.taskId = params.taskId;
+          _this.taskNo = params.taskNo;
+          _this.taskStatus = params.taskStatus;
+          console.log(_this.taskId);
+          console.log(_this.taskNo);
+          console.log(_this.taskStatus);
         });
       }
 
-      ngOnInit() {}
+      _createClass(ImageListPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "GoToImageGalley",
+        value: function GoToImageGalley() {
+          this.router.navigateByUrl('/technicians/image-gallery');
+        }
+      }, {
+        key: "GoToImages",
+        value: function GoToImages() {
+          this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
+        }
+      }, {
+        key: "GoComplaintDetail",
+        value: function GoComplaintDetail() {
+          this.location.back();
+        }
+      }]);
 
-      GoToImageGalley() {
-        this.router.navigateByUrl('/technicians/image-gallery');
-      }
+      return ImageListPage;
+    }();
 
-      GoToImages() {
-        this.router.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/images/' + this.taskId + '/' + this.taskNo + '/' + this.taskStatus + '');
-      }
-
-      GoComplaintDetail() {
-        this.location.back();
-      }
-
+    ImageListPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
+      }];
     };
-
-    ImageListPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
-    }];
 
     ImageListPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-image-list',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./image-list.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/image-list/image-list.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/image-list/image-list.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./image-list.page.scss */
-      "./src/app/technician_app/complaints/image-list/image-list.page.scss")).default]
+      "./src/app/technician_app/complaints/image-list/image-list.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])], ImageListPage);
     /***/
   }

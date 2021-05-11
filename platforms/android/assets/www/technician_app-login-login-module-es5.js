@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["technician_app-login-login-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/login/login.page.html":
@@ -63,11 +69,15 @@
     /*! ./login.page */
     "./src/app/technician_app/login/login.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _login_page__WEBPACK_IMPORTED_MODULE_3__["LoginPage"]
     }];
-    let LoginPageRoutingModule = class LoginPageRoutingModule {};
+
+    var LoginPageRoutingModule = function LoginPageRoutingModule() {
+      _classCallCheck(this, LoginPageRoutingModule);
+    };
+
     LoginPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -143,7 +153,10 @@
     /*! @angular/common/http */
     "./node_modules/@angular/common/fesm2015/http.js");
 
-    let LoginPageModule = class LoginPageModule {};
+    var LoginPageModule = function LoginPageModule() {
+      _classCallCheck(this, LoginPageModule);
+    };
+
     LoginPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _login_routing_module__WEBPACK_IMPORTED_MODULE_5__["LoginPageRoutingModule"]],
       declarations: [_login_page__WEBPACK_IMPORTED_MODULE_6__["LoginPage"]]
@@ -227,8 +240,10 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let LoginPage = class LoginPage {
-      constructor(route, formBuilder, alertCtrl, dbService) {
+    var LoginPage = /*#__PURE__*/function () {
+      function LoginPage(route, formBuilder, alertCtrl, dbService) {
+        _classCallCheck(this, LoginPage);
+
         this.route = route;
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
@@ -241,70 +256,98 @@
         });
       }
 
-      ngOnInit() {}
+      _createClass(LoginPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "onSubmitLoginHandler",
+        value: function onSubmitLoginHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this = this;
 
-      onSubmitLoginHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.submitted = true;
-          console.log(this.registerForm);
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    this.submitted = true;
+                    console.log(this.registerForm);
 
-          if (this.registerForm.invalid) {
-            this.registerForm.get('userName').markAsTouched();
-            this.registerForm.get('password').markAsTouched();
-            return;
-          } else {
-            console.log('hello');
-            this.dbService.presentLoader();
-            const inputData = {
-              userName: this.data.userName,
-              password: this.data.password,
-              loginType: 'Technician'
-            };
-            this.dbService.onPostRequestHandler(inputData, 'login/onValidateLoginByUserNamePassword').subscribe(result => {
-              console.log(result);
-              this.dbService.dismissLoader();
+                    if (!this.registerForm.invalid) {
+                      _context.next = 8;
+                      break;
+                    }
 
-              if (result["status"] == 'error') {
-                this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
-              } else {
-                const loginData = {
-                  loginType: result["loginType"],
-                  loginId: result["loginId"],
-                  loginName: result["loginName"]
-                };
-                localStorage.setItem('loginData', JSON.stringify(loginData));
-                console.log(JSON.parse(localStorage.getItem('loginData')));
-                this.route.navigate(['/technicians']);
+                    this.registerForm.get('userName').markAsTouched();
+                    this.registerForm.get('password').markAsTouched();
+                    return _context.abrupt("return");
+
+                  case 8:
+                    console.log('hello');
+                    this.dbService.presentLoader();
+                    inputData = {
+                      userName: this.data.userName,
+                      password: this.data.password,
+                      loginType: 'Technician'
+                    };
+                    this.dbService.onPostRequestHandler(inputData, 'login/onValidateLoginByUserNamePassword').subscribe(function (result) {
+                      console.log(result);
+
+                      _this.dbService.dismissLoader();
+
+                      if (result["status"] == 'error') {
+                        _this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
+                      } else {
+                        var loginData = {
+                          loginType: result["loginType"],
+                          loginId: result["loginId"],
+                          loginName: result["loginName"]
+                        };
+                        localStorage.setItem('loginData', JSON.stringify(loginData));
+                        console.log(JSON.parse(localStorage.getItem('loginData')));
+
+                        _this.route.navigate(['/technicians']);
+                      }
+                    });
+
+                  case 12:
+                  case "end":
+                    return _context.stop();
+                }
               }
-            });
-          }
-        });
-      }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "f",
+        get: function get() {
+          return this.registerForm.controls;
+        }
+      }]);
 
-      get f() {
-        return this.registerForm.controls;
-      }
+      return LoginPage;
+    }();
 
+    LoginPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    LoginPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-login',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./login.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/login/login.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/login/login.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./login.page.scss */
-      "./src/app/technician_app/login/login.page.scss")).default]
+      "./src/app/technician_app/login/login.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], LoginPage);
     /***/
   }

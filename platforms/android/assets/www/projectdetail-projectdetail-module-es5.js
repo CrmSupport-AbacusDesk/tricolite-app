@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["projectdetail-projectdetail-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/projectdetail/projectdetail.page.html":
@@ -63,11 +69,15 @@
     /*! ./projectdetail.page */
     "./src/app/customer_app/projectdetail/projectdetail.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _projectdetail_page__WEBPACK_IMPORTED_MODULE_3__["ProjectdetailPage"]
     }];
-    let ProjectdetailPageRoutingModule = class ProjectdetailPageRoutingModule {};
+
+    var ProjectdetailPageRoutingModule = function ProjectdetailPageRoutingModule() {
+      _classCallCheck(this, ProjectdetailPageRoutingModule);
+    };
+
     ProjectdetailPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./projectdetail.page */
     "./src/app/customer_app/projectdetail/projectdetail.page.ts");
 
-    let ProjectdetailPageModule = class ProjectdetailPageModule {};
+    var ProjectdetailPageModule = function ProjectdetailPageModule() {
+      _classCallCheck(this, ProjectdetailPageModule);
+    };
+
     ProjectdetailPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _projectdetail_routing_module__WEBPACK_IMPORTED_MODULE_5__["ProjectdetailPageRoutingModule"]],
       declarations: [_projectdetail_page__WEBPACK_IMPORTED_MODULE_6__["ProjectdetailPage"]]
@@ -227,8 +240,10 @@
     /*! ./contactpersonmodel/contactpersonmodel.page */
     "./src/app/customer_app/projectdetail/contactpersonmodel/contactpersonmodel.page.ts");
 
-    let ProjectdetailPage = class ProjectdetailPage {
-      constructor(modalController, popoverController, route, routeParams, formBuilder, alertCtrl, dbService) {
+    var ProjectdetailPage = /*#__PURE__*/function () {
+      function ProjectdetailPage(modalController, popoverController, route, routeParams, formBuilder, alertCtrl, dbService) {
+        _classCallCheck(this, ProjectdetailPage);
+
         this.modalController = modalController;
         this.popoverController = popoverController;
         this.route = route;
@@ -249,164 +264,268 @@
         });
       }
 
-      ngOnInit() {
-        this.routeParams.params.subscribe(params => {
-          console.log(params);
-          this.projectId = params.projectId;
-          console.log(this.projectId);
-          this.onGetProjectDetail();
-        });
-      }
+      _createClass(ProjectdetailPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this = this;
 
-      onGetProjectDetail() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log('hello');
-          this.dbService.presentLoader();
-          const inputData = {
-            projectId: this.projectId
-          };
-          this.dbService.onPostRequestHandler(inputData, 'customer/getProjectList').subscribe(result => {
-            console.log(result);
-            this.dbService.dismissLoader();
-            this.projectData = result["projectData"][0];
-            console.log(this.projectData);
+          this.routeParams.params.subscribe(function (params) {
+            console.log(params);
+            _this.projectId = params.projectId;
+            console.log(_this.projectId);
+
+            _this.onGetProjectDetail();
           });
-        });
-      }
+        }
+      }, {
+        key: "onGetProjectDetail",
+        value: function onGetProjectDetail() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this2 = this;
 
-      onSaveContactDetailHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.submitted = true;
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    console.log('hello');
+                    this.dbService.presentLoader();
+                    inputData = {
+                      projectId: this.projectId
+                    };
+                    this.dbService.onPostRequestHandler(inputData, 'customer/getProjectList').subscribe(function (result) {
+                      console.log(result);
 
-          if (this.registerForm1.invalid) {
-            this.registerForm1.get('contactName').markAsTouched();
-            this.registerForm1.get('contactMobile').markAsTouched();
-            this.registerForm1.get('contactEmail').markAsTouched();
-            this.registerForm1.get('designation').markAsTouched();
-          } else {
-            const alert = yield this.alertCtrl.create({
-              header: 'Confirm',
-              message: 'Are You Sure, You Want To Save Contact ?',
-              buttons: [{
-                text: 'No',
-                role: 'cancel',
-                handler: () => {
-                  console.log('No clicked');
+                      _this2.dbService.dismissLoader();
+
+                      _this2.projectData = result["projectData"][0];
+                      console.log(_this2.projectData);
+                    });
+
+                  case 4:
+                  case "end":
+                    return _context.stop();
                 }
-              }, {
-                text: 'Yes',
-                handler: () => {
-                  console.log('Yes clicked');
-                  const contactTempData = JSON.parse(JSON.stringify(this.data));
-                  const inputData = {};
-                  inputData["projectId"] = this.projectId;
-                  inputData["contactData"] = [];
-                  inputData["contactData"].push(contactTempData);
-                  this.dbService.presentLoader();
-                  this.dbService.onPostRequestHandler(inputData, 'customer/saveProjectContact').subscribe(result => {
-                    console.log(result);
-                    this.dbService.dismissLoader();
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "onSaveContactDetailHandler",
+        value: function onSaveContactDetailHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var _this3 = this;
 
-                    if (result["status"] == 'error') {
-                      this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
-                    } else {
-                      this.data = {};
-                      this.activeTab = 2;
-                      this.onGetProjectDetail();
-                      this.dbService.presentToast('Contact Saved Successfully!');
+            var alert;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    this.submitted = true;
+
+                    if (!this.registerForm1.invalid) {
+                      _context2.next = 8;
+                      break;
                     }
-                  });
+
+                    this.registerForm1.get('contactName').markAsTouched();
+                    this.registerForm1.get('contactMobile').markAsTouched();
+                    this.registerForm1.get('contactEmail').markAsTouched();
+                    this.registerForm1.get('designation').markAsTouched();
+                    _context2.next = 13;
+                    break;
+
+                  case 8:
+                    _context2.next = 10;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Save Contact ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          console.log('Yes clicked');
+                          var contactTempData = JSON.parse(JSON.stringify(_this3.data));
+                          var inputData = {};
+                          inputData["projectId"] = _this3.projectId;
+                          inputData["contactData"] = [];
+                          inputData["contactData"].push(contactTempData);
+
+                          _this3.dbService.presentLoader();
+
+                          _this3.dbService.onPostRequestHandler(inputData, 'customer/saveProjectContact').subscribe(function (result) {
+                            console.log(result);
+
+                            _this3.dbService.dismissLoader();
+
+                            if (result["status"] == 'error') {
+                              _this3.dbService.onShowAlertMessage('Error', result["statusMessage"]);
+                            } else {
+                              _this3.data = {};
+                              _this3.activeTab = 2;
+
+                              _this3.onGetProjectDetail();
+
+                              _this3.dbService.presentToast('Contact Saved Successfully!');
+                            }
+                          });
+                        }
+                      }]
+                    });
+
+                  case 10:
+                    alert = _context2.sent;
+                    _context2.next = 13;
+                    return alert.present();
+
+                  case 13:
+                  case "end":
+                    return _context2.stop();
                 }
-              }]
-            });
-            yield alert.present();
-          }
-        });
-      }
-
-      contactPerson() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const modal = yield this.modalController.create({
-            component: _contactpersonmodel_contactpersonmodel_page__WEBPACK_IMPORTED_MODULE_6__["ContactpersonmodelPage"],
-            componentProps: {
-              projectId: this.projectId
-            }
-          });
-          this.onGetProjectDetail();
-          return yield modal.present();
-        });
-      }
-
-      deleteContactPerson(cpId, index) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log(cpId);
-          console.log(index);
-          const inputData = {};
-          inputData["cpId"] = cpId;
-          const alert = yield this.alertCtrl.create({
-            header: 'Confirm',
-            message: 'Are You Sure, You Want To Delete Contact ?',
-            buttons: [{
-              text: 'No',
-              role: 'cancel',
-              handler: () => {
-                console.log('No clicked');
               }
-            }, {
-              text: 'Yes',
-              handler: () => {
-                console.log('Yes clicked');
-                this.dbService.presentLoader();
-                this.dbService.onPostRequestHandler(inputData, 'customer/deleteContactPerson').subscribe(result => {
-                  console.log(result);
-                  this.dbService.dismissLoader();
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "contactPerson",
+        value: function contactPerson() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var modal;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    _context3.next = 2;
+                    return this.modalController.create({
+                      component: _contactpersonmodel_contactpersonmodel_page__WEBPACK_IMPORTED_MODULE_6__["ContactpersonmodelPage"],
+                      componentProps: {
+                        projectId: this.projectId
+                      }
+                    });
 
-                  if (result["status"] == 'error') {
-                    this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
-                  } else {
-                    this.data = {};
-                    this.activeTab = 2;
+                  case 2:
+                    modal = _context3.sent;
                     this.onGetProjectDetail();
-                    this.dbService.presentToast('Contact Delete Successfully!');
-                  }
-                });
+                    _context3.next = 6;
+                    return modal.present();
+
+                  case 6:
+                    return _context3.abrupt("return", _context3.sent);
+
+                  case 7:
+                  case "end":
+                    return _context3.stop();
+                }
               }
-            }]
-          });
-          yield alert.present();
-        });
-      }
+            }, _callee3, this);
+          }));
+        }
+      }, {
+        key: "deleteContactPerson",
+        value: function deleteContactPerson(cpId, index) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            var _this4 = this;
 
-      get f1() {
-        return this.registerForm1.controls;
-      }
+            var inputData, alert;
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    console.log(cpId);
+                    console.log(index);
+                    inputData = {};
+                    inputData["cpId"] = cpId;
+                    _context4.next = 6;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Delete Contact ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          console.log('Yes clicked');
 
+                          _this4.dbService.presentLoader();
+
+                          _this4.dbService.onPostRequestHandler(inputData, 'customer/deleteContactPerson').subscribe(function (result) {
+                            console.log(result);
+
+                            _this4.dbService.dismissLoader();
+
+                            if (result["status"] == 'error') {
+                              _this4.dbService.onShowAlertMessage('Error', result["statusMessage"]);
+                            } else {
+                              _this4.data = {};
+                              _this4.activeTab = 2;
+
+                              _this4.onGetProjectDetail();
+
+                              _this4.dbService.presentToast('Contact Delete Successfully!');
+                            }
+                          });
+                        }
+                      }]
+                    });
+
+                  case 6:
+                    alert = _context4.sent;
+                    _context4.next = 9;
+                    return alert.present();
+
+                  case 9:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            }, _callee4, this);
+          }));
+        }
+      }, {
+        key: "f1",
+        get: function get() {
+          return this.registerForm1.controls;
+        }
+      }]);
+
+      return ProjectdetailPage;
+    }();
+
+    ProjectdetailPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    ProjectdetailPage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     ProjectdetailPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-projectdetail',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./projectdetail.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/projectdetail/projectdetail.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/projectdetail/projectdetail.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./projectdetail.page.scss */
-      "./src/app/customer_app/projectdetail/projectdetail.page.scss")).default]
+      "./src/app/customer_app/projectdetail/projectdetail.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], ProjectdetailPage);
     /***/
   }

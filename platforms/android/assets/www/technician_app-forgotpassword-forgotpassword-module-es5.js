@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["technician_app-forgotpassword-forgotpassword-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/forgotpassword/forgotpassword.page.html":
@@ -63,11 +69,15 @@
     /*! ./forgotpassword.page */
     "./src/app/technician_app/forgotpassword/forgotpassword.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _forgotpassword_page__WEBPACK_IMPORTED_MODULE_3__["ForgotpasswordPage"]
     }];
-    let ForgotpasswordPageRoutingModule = class ForgotpasswordPageRoutingModule {};
+
+    var ForgotpasswordPageRoutingModule = function ForgotpasswordPageRoutingModule() {
+      _classCallCheck(this, ForgotpasswordPageRoutingModule);
+    };
+
     ForgotpasswordPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./forgotpassword.page */
     "./src/app/technician_app/forgotpassword/forgotpassword.page.ts");
 
-    let ForgotpasswordPageModule = class ForgotpasswordPageModule {};
+    var ForgotpasswordPageModule = function ForgotpasswordPageModule() {
+      _classCallCheck(this, ForgotpasswordPageModule);
+    };
+
     ForgotpasswordPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _forgotpassword_routing_module__WEBPACK_IMPORTED_MODULE_5__["ForgotpasswordPageRoutingModule"]],
       declarations: [_forgotpassword_page__WEBPACK_IMPORTED_MODULE_6__["ForgotpasswordPage"]]
@@ -221,8 +234,10 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let ForgotpasswordPage = class ForgotpasswordPage {
-      constructor(route, routeParams, formBuilder, alertCtrl, modalController, dbService) {
+    var ForgotpasswordPage = /*#__PURE__*/function () {
+      function ForgotpasswordPage(route, routeParams, formBuilder, alertCtrl, modalController, dbService) {
+        _classCallCheck(this, ForgotpasswordPage);
+
         this.route = route;
         this.routeParams = routeParams;
         this.formBuilder = formBuilder;
@@ -240,7 +255,7 @@
         this.isPasswordSubmitted = false;
         this.isUserLoggedIn = false;
         this.userLoggedInType = '';
-        const loginData = JSON.parse(localStorage.getItem('loginData'));
+        var loginData = JSON.parse(localStorage.getItem('loginData'));
 
         if (loginData && loginData["loginId"]) {
           this.isUserLoggedIn = true;
@@ -251,164 +266,210 @@
         console.log(this.userLoggedInType);
       }
 
-      ngOnInit() {
-        this.onSetValidationHandler();
-      }
-
-      onSetValidationHandler() {
-        this.registerForm1 = this.formBuilder.group({
-          mobile: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(10)]]
-        });
-        this.registerForm2 = this.formBuilder.group({
-          otpCode: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(4), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(4)]]
-        });
-        this.registerForm3 = this.formBuilder.group({
-          password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(5), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(20)]],
-          confirmPassword: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(5), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(20)]]
-        });
-      }
-
-      onMobileSubmitHandler() {
-        this.isMobileSubmitted = true;
-        console.log(this.registerForm1);
-
-        if (this.registerForm1.invalid) {
-          console.log('Invalid!');
-          this.registerForm1.get('mobile').markAsTouched();
-          return false;
-        } else {
-          this.dbService.presentLoader();
-          const inputData = {
-            mobileNo: this.data.mobile
-          };
-          this.dbService.onPostRequestHandler(inputData, 'login/onValidateMobileExistance').subscribe(result => {
-            console.log(result);
-            this.dbService.dismissLoader(); // tslint:disable-next-line:triple-equals
-
-            if (result["status"] == 'error') {
-              this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
-            } else {
-              this.activeStage = 2;
-              this.storedOTPCode = result["otpCode"];
-            }
+      _createClass(ForgotpasswordPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.onSetValidationHandler();
+        }
+      }, {
+        key: "onSetValidationHandler",
+        value: function onSetValidationHandler() {
+          this.registerForm1 = this.formBuilder.group({
+            mobile: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(10)]]
+          });
+          this.registerForm2 = this.formBuilder.group({
+            otpCode: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(4), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(4)]]
+          });
+          this.registerForm3 = this.formBuilder.group({
+            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(5), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(20)]],
+            confirmPassword: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(5), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(20)]]
           });
         }
-      }
+      }, {
+        key: "onMobileSubmitHandler",
+        value: function onMobileSubmitHandler() {
+          var _this = this;
 
-      onOTPSubmitHandler() {
-        this.isOTPSubmitted = true;
+          this.isMobileSubmitted = true;
+          console.log(this.registerForm1);
 
-        if (this.registerForm2.invalid) {
-          this.registerForm2.get('otpCode').markAsTouched();
-          return false;
-        } else {
-          if (this.data.otpCode == this.storedOTPCode) {
-            this.activeStage = 3;
-          } else {
-            this.isOTPWrong = true;
-          }
-        }
-      }
-
-      onPasswordSubmitHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.isPasswordSubmitted = true; // tslint:disable-next-line:triple-equals
-
-          if (this.registerForm3.invalid || this.data.password != this.data.confirmPassword) {
-            this.registerForm3.get('password').markAsTouched();
-            this.registerForm3.get('confirmPassword').markAsTouched();
-
-            if (this.data.password != this.data.confirmPassword) {
-              this.isPasswordWrong = true;
-            }
-
+          if (this.registerForm1.invalid) {
+            console.log('Invalid!');
+            this.registerForm1.get('mobile').markAsTouched();
             return false;
           } else {
-            const alert = yield this.alertCtrl.create({
-              header: 'Confirm',
-              message: 'Are You Sure, You Want To Save Password ?',
-              buttons: [{
-                text: 'No',
-                role: 'cancel',
-                handler: () => {
-                  console.log('No clicked');
-                }
-              }, {
-                text: 'Yes',
-                handler: () => {
-                  this.dbService.presentLoader();
-                  const inputData = {
-                    password: this.data.password
-                  };
-                  this.dbService.onPostRequestHandler(inputData, 'login/onUpdateLoginPassword').subscribe(result => {
-                    console.log(result);
-                    this.dbService.dismissLoader();
-                    this.dbService.onShowAlertMessage('Success', 'Password Updated');
-                    const loginData = JSON.parse(localStorage.getItem('loginData'));
+            this.dbService.presentLoader();
+            var inputData = {
+              mobileNo: this.data.mobile
+            };
+            this.dbService.onPostRequestHandler(inputData, 'login/onValidateMobileExistance').subscribe(function (result) {
+              console.log(result);
 
-                    if (loginData && loginData["loginType"] == 'Technician') {
-                      this.route.navigateByUrl('/technicians/home');
-                    }
-                  });
-                }
-              }]
+              _this.dbService.dismissLoader(); // tslint:disable-next-line:triple-equals
+
+
+              if (result["status"] == 'error') {
+                _this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
+              } else {
+                _this.activeStage = 2;
+                _this.storedOTPCode = result["otpCode"];
+              }
             });
-            yield alert.present();
           }
-        });
-      }
-
-      onGoToNextStageHandler() {
-        if (!this.data.isShowOTP) {
-          console.log(this.data.mobile);
-          console.log(this.data.mobile.length);
-
-          if (!this.data.mobile || this.data.mobile.toString().length < 10 || this.data.mobile.toString().length > 10) {
-            return false;
-          } else {}
-        } else if (this.data.isShowOTP && !this.data.isShowPassword) {
-          if (this.storedOTPCode == this.data.otp) {} else {}
-
-          this.data.isShowPassword = true;
         }
-      }
+      }, {
+        key: "onOTPSubmitHandler",
+        value: function onOTPSubmitHandler() {
+          this.isOTPSubmitted = true;
 
-      get f1() {
-        return this.registerForm1.controls;
-      }
+          if (this.registerForm2.invalid) {
+            this.registerForm2.get('otpCode').markAsTouched();
+            return false;
+          } else {
+            if (this.data.otpCode == this.storedOTPCode) {
+              this.activeStage = 3;
+            } else {
+              this.isOTPWrong = true;
+            }
+          }
+        }
+      }, {
+        key: "onPasswordSubmitHandler",
+        value: function onPasswordSubmitHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this2 = this;
 
-      get f2() {
-        return this.registerForm2.controls;
-      }
+            var alert;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    this.isPasswordSubmitted = true; // tslint:disable-next-line:triple-equals
 
-      get f3() {
-        return this.registerForm3.controls;
-      }
+                    if (!(this.registerForm3.invalid || this.data.password != this.data.confirmPassword)) {
+                      _context.next = 8;
+                      break;
+                    }
 
+                    this.registerForm3.get('password').markAsTouched();
+                    this.registerForm3.get('confirmPassword').markAsTouched();
+
+                    if (this.data.password != this.data.confirmPassword) {
+                      this.isPasswordWrong = true;
+                    }
+
+                    return _context.abrupt("return", false);
+
+                  case 8:
+                    _context.next = 10;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Save Password ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          _this2.dbService.presentLoader();
+
+                          var inputData = {
+                            password: _this2.data.password
+                          };
+
+                          _this2.dbService.onPostRequestHandler(inputData, 'login/onUpdateLoginPassword').subscribe(function (result) {
+                            console.log(result);
+
+                            _this2.dbService.dismissLoader();
+
+                            _this2.dbService.onShowAlertMessage('Success', 'Password Updated');
+
+                            var loginData = JSON.parse(localStorage.getItem('loginData'));
+
+                            if (loginData && loginData["loginType"] == 'Technician') {
+                              _this2.route.navigateByUrl('/technicians/home');
+                            }
+                          });
+                        }
+                      }]
+                    });
+
+                  case 10:
+                    alert = _context.sent;
+                    _context.next = 13;
+                    return alert.present();
+
+                  case 13:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "onGoToNextStageHandler",
+        value: function onGoToNextStageHandler() {
+          if (!this.data.isShowOTP) {
+            console.log(this.data.mobile);
+            console.log(this.data.mobile.length);
+
+            if (!this.data.mobile || this.data.mobile.toString().length < 10 || this.data.mobile.toString().length > 10) {
+              return false;
+            } else {}
+          } else if (this.data.isShowOTP && !this.data.isShowPassword) {
+            if (this.storedOTPCode == this.data.otp) {} else {}
+
+            this.data.isShowPassword = true;
+          }
+        }
+      }, {
+        key: "f1",
+        get: function get() {
+          return this.registerForm1.controls;
+        }
+      }, {
+        key: "f2",
+        get: function get() {
+          return this.registerForm2.controls;
+        }
+      }, {
+        key: "f3",
+        get: function get() {
+          return this.registerForm3.controls;
+        }
+      }]);
+
+      return ForgotpasswordPage;
+    }();
+
+    ForgotpasswordPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    ForgotpasswordPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     ForgotpasswordPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-forgotpassword',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./forgotpassword.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/forgotpassword/forgotpassword.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/forgotpassword/forgotpassword.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./forgotpassword.page.scss */
-      "./src/app/technician_app/forgotpassword/forgotpassword.page.scss")).default]
+      "./src/app/technician_app/forgotpassword/forgotpassword.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], ForgotpasswordPage);
     /***/
   }

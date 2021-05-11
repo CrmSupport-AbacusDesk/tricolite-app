@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["complaints-complaintlist-complaintlist-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/complaintlist/complaintlist.page.html":
@@ -63,11 +69,15 @@
     /*! ./complaintlist.page */
     "./src/app/technician_app/complaints/complaintlist/complaintlist.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _complaintlist_page__WEBPACK_IMPORTED_MODULE_3__["ComplaintlistPage"]
     }];
-    let ComplaintlistPageRoutingModule = class ComplaintlistPageRoutingModule {};
+
+    var ComplaintlistPageRoutingModule = function ComplaintlistPageRoutingModule() {
+      _classCallCheck(this, ComplaintlistPageRoutingModule);
+    };
+
     ComplaintlistPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./complaintlist.page */
     "./src/app/technician_app/complaints/complaintlist/complaintlist.page.ts");
 
-    let ComplaintlistPageModule = class ComplaintlistPageModule {};
+    var ComplaintlistPageModule = function ComplaintlistPageModule() {
+      _classCallCheck(this, ComplaintlistPageModule);
+    };
+
     ComplaintlistPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _complaintlist_routing_module__WEBPACK_IMPORTED_MODULE_5__["ComplaintlistPageRoutingModule"]],
       declarations: [_complaintlist_page__WEBPACK_IMPORTED_MODULE_6__["ComplaintlistPage"]]
@@ -243,8 +256,10 @@
 
     var jquery__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_8__);
 
-    let ComplaintlistPage = class ComplaintlistPage {
-      constructor(route, popoverController, formBuilder, alertCtrl, modalController, dbService) {
+    var ComplaintlistPage = /*#__PURE__*/function () {
+      function ComplaintlistPage(route, popoverController, formBuilder, alertCtrl, modalController, dbService) {
+        _classCallCheck(this, ComplaintlistPage);
+
         this.route = route;
         this.popoverController = popoverController;
         this.formBuilder = formBuilder;
@@ -265,235 +280,334 @@
         this.pageSize = 2;
       }
 
-      ngOnInit() {
-        this.onGetComplaintListHandler(true, '');
-      }
-
-      toggle() {
-        this.show = !this.show;
-
-        if (this.show) {
-          this.buttonName = 'Hide';
-        } else {
-          this.buttonName = 'Show';
+      _createClass(ComplaintlistPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.onGetComplaintListHandler(true, '');
         }
-      }
+      }, {
+        key: "toggle",
+        value: function toggle() {
+          this.show = !this.show;
 
-      onGetComplaintListHandler(showLoading, infiniteScroll) {
-        console.log('hello');
-        console.log(infiniteScroll);
-        console.log(this.route.url);
-        const inputData = {
-          start: this.currentPage,
-          pageLimit: this.pageSize
-        };
-
-        if (this.route.url == '/technicians/complaints') {
-          inputData["type"] = 'service_request';
-          this.routeTitleForView = 'Service Request';
-          localStorage.setItem('routeType', 'complaints');
+          if (this.show) {
+            this.buttonName = 'Hide';
+          } else {
+            this.buttonName = 'Show';
+          }
         }
+      }, {
+        key: "onGetComplaintListHandler",
+        value: function onGetComplaintListHandler(showLoading, infiniteScroll) {
+          var _this = this;
 
-        if (this.route.url == '/technicians/commissioning') {
-          inputData["type"] = 'commissioning';
-          this.routeTitleForView = 'Commissioning';
-          localStorage.setItem('routeType', 'commissioning');
-        }
+          console.log('hello');
+          console.log(infiniteScroll);
+          console.log(this.route.url);
+          var inputData = {
+            start: this.currentPage,
+            pageLimit: this.pageSize
+          };
 
-        if (localStorage.getItem('dashboardCountFilterData')) {
-          this.dashboardCountFilterData = JSON.parse(localStorage.getItem('dashboardCountFilterData'));
-          console.log(this.dashboardCountFilterData); // this.searchval1 = this.home.searchVal;
-        } else {
-          this.dashboardCountFilterData = '';
-        }
+          if (this.route.url == '/technicians/complaints') {
+            inputData["type"] = 'service_request';
+            this.routeTitleForView = 'Service Request';
+            localStorage.setItem('routeType', 'complaints');
+          }
 
-        this.searchData["dashboardCountFilterData"] = this.dashboardCountFilterData;
-        inputData["searchData"] = this.searchData;
-        inputData["inputSearch"] = this.data.inputSearch;
+          if (this.route.url == '/technicians/commissioning') {
+            inputData["type"] = 'commissioning';
+            this.routeTitleForView = 'Commissioning';
+            localStorage.setItem('routeType', 'commissioning');
+          }
 
-        if (showLoading) {
-          this.dbService.presentLoader();
-        }
+          if (localStorage.getItem('dashboardCountFilterData')) {
+            this.dashboardCountFilterData = JSON.parse(localStorage.getItem('dashboardCountFilterData'));
+            console.log(this.dashboardCountFilterData); // this.searchval1 = this.home.searchVal;
+          } else {
+            this.dashboardCountFilterData = '';
+          }
 
-        this.isRequestInProcess = true;
-        this.dbService.onPostRequestHandler(inputData, 'task/getTaskList').subscribe(result => {
-          console.log(result);
+          this.searchData["dashboardCountFilterData"] = this.dashboardCountFilterData;
+          inputData["searchData"] = this.searchData;
+          inputData["inputSearch"] = this.data.inputSearch;
 
           if (showLoading) {
-            setTimeout(() => {
-              this.dbService.dismissLoader();
-            }, 1000);
+            this.dbService.presentLoader();
           }
 
-          let resultData = result["taskList"];
+          this.isRequestInProcess = true;
+          this.dbService.onPostRequestHandler(inputData, 'task/getTaskList').subscribe(function (result) {
+            console.log(result);
 
-          if (!resultData || resultData == null || resultData.length == 0) {
-            resultData = [];
-            this.doCheckForMoreData = false;
-          }
+            if (showLoading) {
+              setTimeout(function () {
+                _this.dbService.dismissLoader();
+              }, 1000);
+            }
 
-          if (this.currentPage == 1) {
-            this.complaintList = resultData;
-          } else {
-            for (let index = 0; index < resultData.length; index++) {
-              const isIndex = this.complaintList.findIndex(row => row.id == resultData[index].id);
+            var resultData = result["taskList"];
 
-              if (isIndex === -1) {
-                this.complaintList.push(resultData[index]);
+            if (!resultData || resultData == null || resultData.length == 0) {
+              resultData = [];
+              _this.doCheckForMoreData = false;
+            }
+
+            if (_this.currentPage == 1) {
+              _this.complaintList = resultData;
+            } else {
+              var _loop = function _loop(index) {
+                var isIndex = _this.complaintList.findIndex(function (row) {
+                  return row.id == resultData[index].id;
+                });
+
+                if (isIndex === -1) {
+                  _this.complaintList.push(resultData[index]);
+                }
+              };
+
+              for (var index = 0; index < resultData.length; index++) {
+                _loop(index);
               }
             }
-          }
 
-          this.currentPage += 1;
+            _this.currentPage += 1;
 
-          if (infiniteScroll) {
-            infiniteScroll.target.complete();
-          }
+            if (infiniteScroll) {
+              infiniteScroll.target.complete();
+            }
 
-          setTimeout(() => {
-            this.isRequestInProcess = false;
-          }, 1000);
-        });
-      }
-
-      ionViewWillEnter() {
-        this.onUpdateCurrentPageHandler();
-        this.onGetComplaintListHandler(false, '');
-      }
-
-      onSearchClickHandler() {
-        this.isSearchOptionActive = true;
-        setTimeout(() => {
-          jquery__WEBPACK_IMPORTED_MODULE_8__('#inputSearch').focus();
-        }, 2000);
-      }
-
-      ionRefresh(event) {
-        console.log('Pull Event Triggered!');
-        setTimeout(() => {
-          console.log('Async operation has ended');
-          this.data.inputSearch = '';
-          this.searchData = {};
+            setTimeout(function () {
+              _this.isRequestInProcess = false;
+            }, 1000);
+          });
+        }
+      }, {
+        key: "ionViewWillEnter",
+        value: function ionViewWillEnter() {
           this.onUpdateCurrentPageHandler();
-          this.onGetComplaintListHandler(true, '');
-          event.target.complete();
-        }, 2000);
-      }
-
-      onUpdateCurrentPageHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          setTimeout(() => {
-            this.doCheckForMoreData = true;
-          }, 1000);
-          this.currentPage = 1;
-          this.onScrollToTopHandler();
-        });
-      }
-
-      onScrollToTopHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.content.scrollToTop();
-        });
-      }
-
-      presentModal() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const modal = yield this.modalController.create({
-            component: src_app_complaintfiltermodal_complaintfiltermodal_page__WEBPACK_IMPORTED_MODULE_6__["ComplaintfiltermodalPage"],
-            componentProps: {
-              searchData: this.searchData
-            }
-          });
-          modal.onDidDismiss().then(data => {
-            console.log(data);
-
-            if (data && data["data"] && data["data"]["data"]) {
-              console.log(data["data"]);
-              this.searchData = data["data"]["data"];
-              this.onUpdateCurrentPageHandler();
-              this.onGetComplaintListHandler(true, '');
-            }
-          });
-          return yield modal.present();
-        });
-      }
-
-      presentPopover(ev, taskId, taskNo, taskStatus) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const taskIndex = this.complaintList.findIndex(row => row.id == taskId);
-          console.log(this.complaintList[taskIndex]);
-          const taskPopUpData = {
-            taskWorkReport: this.complaintList[taskIndex].taskWorkReport,
-            taskReportCount: this.complaintList[taskIndex].taskReportCount,
-            taskInstalledPartCount: this.complaintList[taskIndex].taskInstalledPartCount
-          }; //   console.log(taskPopUpData);
-          //   console.log(ev);
-
-          localStorage.setItem('taskPopUpData', JSON.stringify(taskPopUpData));
-          const taskData = {
-            taskId: taskId,
-            taskNo: taskNo,
-            taskStatus: taskStatus,
-            taskType: this.complaintList[taskIndex].task_type
-          }; //   console.log(taskData);
-
-          const popover = yield this.popoverController.create({
-            component: _tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_7__["TecCompliantPopoverComponent"],
-            event: ev,
-            translucent: true,
-            componentProps: taskData
-          }); //   console.log(popover);
-
-          return yield popover.present();
-        });
-      }
-
-      GoComplaintDetail(taskId) {
-        localStorage.setItem('routeTitleForView', this.routeTitleForView);
-        this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/' + taskId + '');
-      }
-
-      GoComplaintDetailModulesHandler(targetPage, taskId, taskNo, taskStatus, taskType) {
-        localStorage.setItem('routeTitleForView', this.routeTitleForView);
-        localStorage.setItem('taskType', taskType);
-
-        if (targetPage == 'statusListPage') {
-          this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/status/' + taskId + '/' + taskNo + '/' + taskStatus);
+          this.onGetComplaintListHandler(false, '');
         }
-
-        if (targetPage == 'dailyWorkReportPage') {
-          localStorage.setItem('reportType', 'dailyReport');
-          this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/dailyreport/' + taskId + '/' + taskNo + '/' + taskStatus);
+      }, {
+        key: "onSearchClickHandler",
+        value: function onSearchClickHandler() {
+          this.isSearchOptionActive = true;
+          setTimeout(function () {
+            jquery__WEBPACK_IMPORTED_MODULE_8__('#inputSearch').focus();
+          }, 2000);
         }
-      }
+      }, {
+        key: "ionRefresh",
+        value: function ionRefresh(event) {
+          var _this2 = this;
 
+          console.log('Pull Event Triggered!');
+          setTimeout(function () {
+            console.log('Async operation has ended');
+            _this2.data.inputSearch = '';
+            _this2.searchData = {};
+
+            _this2.onUpdateCurrentPageHandler();
+
+            _this2.onGetComplaintListHandler(true, '');
+
+            event.target.complete();
+          }, 2000);
+        }
+      }, {
+        key: "onUpdateCurrentPageHandler",
+        value: function onUpdateCurrentPageHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this3 = this;
+
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    setTimeout(function () {
+                      _this3.doCheckForMoreData = true;
+                    }, 1000);
+                    this.currentPage = 1;
+                    this.onScrollToTopHandler();
+
+                  case 3:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "onScrollToTopHandler",
+        value: function onScrollToTopHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    this.content.scrollToTop();
+
+                  case 1:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "presentModal",
+        value: function presentModal() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var _this4 = this;
+
+            var modal;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    _context3.next = 2;
+                    return this.modalController.create({
+                      component: src_app_complaintfiltermodal_complaintfiltermodal_page__WEBPACK_IMPORTED_MODULE_6__["ComplaintfiltermodalPage"],
+                      componentProps: {
+                        searchData: this.searchData
+                      }
+                    });
+
+                  case 2:
+                    modal = _context3.sent;
+                    modal.onDidDismiss().then(function (data) {
+                      console.log(data);
+
+                      if (data && data["data"] && data["data"]["data"]) {
+                        console.log(data["data"]);
+                        _this4.searchData = data["data"]["data"];
+
+                        _this4.onUpdateCurrentPageHandler();
+
+                        _this4.onGetComplaintListHandler(true, '');
+                      }
+                    });
+                    _context3.next = 6;
+                    return modal.present();
+
+                  case 6:
+                    return _context3.abrupt("return", _context3.sent);
+
+                  case 7:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+        }
+      }, {
+        key: "presentPopover",
+        value: function presentPopover(ev, taskId, taskNo, taskStatus) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            var taskIndex, taskPopUpData, taskData, popover;
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    taskIndex = this.complaintList.findIndex(function (row) {
+                      return row.id == taskId;
+                    });
+                    console.log(this.complaintList[taskIndex]);
+                    taskPopUpData = {
+                      taskWorkReport: this.complaintList[taskIndex].taskWorkReport,
+                      taskReportCount: this.complaintList[taskIndex].taskReportCount,
+                      taskInstalledPartCount: this.complaintList[taskIndex].taskInstalledPartCount
+                    }; //   console.log(taskPopUpData);
+                    //   console.log(ev);
+
+                    localStorage.setItem('taskPopUpData', JSON.stringify(taskPopUpData));
+                    taskData = {
+                      taskId: taskId,
+                      taskNo: taskNo,
+                      taskStatus: taskStatus,
+                      taskType: this.complaintList[taskIndex].task_type
+                    }; //   console.log(taskData);
+
+                    _context4.next = 7;
+                    return this.popoverController.create({
+                      component: _tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_7__["TecCompliantPopoverComponent"],
+                      event: ev,
+                      translucent: true,
+                      componentProps: taskData
+                    });
+
+                  case 7:
+                    popover = _context4.sent;
+                    _context4.next = 10;
+                    return popover.present();
+
+                  case 10:
+                    return _context4.abrupt("return", _context4.sent);
+
+                  case 11:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            }, _callee4, this);
+          }));
+        }
+      }, {
+        key: "GoComplaintDetail",
+        value: function GoComplaintDetail(taskId) {
+          localStorage.setItem('routeTitleForView', this.routeTitleForView);
+          this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/' + taskId + '');
+        }
+      }, {
+        key: "GoComplaintDetailModulesHandler",
+        value: function GoComplaintDetailModulesHandler(targetPage, taskId, taskNo, taskStatus, taskType) {
+          localStorage.setItem('routeTitleForView', this.routeTitleForView);
+          localStorage.setItem('taskType', taskType);
+
+          if (targetPage == 'statusListPage') {
+            this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/status/' + taskId + '/' + taskNo + '/' + taskStatus);
+          }
+
+          if (targetPage == 'dailyWorkReportPage') {
+            localStorage.setItem('reportType', 'dailyReport');
+            this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType') + '/details/dailyreport/' + taskId + '/' + taskNo + '/' + taskStatus);
+          }
+        }
+      }]);
+
+      return ComplaintlistPage;
+    }();
+
+    ComplaintlistPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["PopoverController"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
 
-    ComplaintlistPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["PopoverController"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
-
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonContent"], {
-      static: false
+      "static": false
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonContent"])], ComplaintlistPage.prototype, "content", void 0);
     ComplaintlistPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-complaintlist',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./complaintlist.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/complaintlist/complaintlist.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/complaintlist/complaintlist.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./complaintlist.page.scss */
-      "./src/app/technician_app/complaints/complaintlist/complaintlist.page.scss")).default]
+      "./src/app/technician_app/complaints/complaintlist/complaintlist.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["PopoverController"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], ComplaintlistPage);
     /***/
   }

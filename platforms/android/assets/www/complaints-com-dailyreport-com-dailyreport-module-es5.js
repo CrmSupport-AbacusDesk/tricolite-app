@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["complaints-com-dailyreport-com-dailyreport-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.page.html":
@@ -63,11 +69,15 @@
     /*! ./com-dailyreport.page */
     "./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _com_dailyreport_page__WEBPACK_IMPORTED_MODULE_3__["ComDailyreportPage"]
     }];
-    let ComDailyreportPageRoutingModule = class ComDailyreportPageRoutingModule {};
+
+    var ComDailyreportPageRoutingModule = function ComDailyreportPageRoutingModule() {
+      _classCallCheck(this, ComDailyreportPageRoutingModule);
+    };
+
     ComDailyreportPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./com-dailyreport.page */
     "./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.page.ts");
 
-    let ComDailyreportPageModule = class ComDailyreportPageModule {};
+    var ComDailyreportPageModule = function ComDailyreportPageModule() {
+      _classCallCheck(this, ComDailyreportPageModule);
+    };
+
     ComDailyreportPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _com_dailyreport_routing_module__WEBPACK_IMPORTED_MODULE_5__["ComDailyreportPageRoutingModule"]],
       declarations: [_com_dailyreport_page__WEBPACK_IMPORTED_MODULE_6__["ComDailyreportPage"]]
@@ -250,8 +263,12 @@
     "./src/app/technician_app/complaints/signaturemodal/signaturemodal.page.ts"); // import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 
 
-    let ComDailyreportPage = class ComDailyreportPage {
-      constructor(popoverController, route, routeParams, formBuilder, alertCtrl, location, modalController, dbService) {
+    var ComDailyreportPage = /*#__PURE__*/function () {
+      function ComDailyreportPage(popoverController, route, routeParams, formBuilder, alertCtrl, location, modalController, dbService) {
+        var _this = this;
+
+        _classCallCheck(this, ComDailyreportPage);
+
         this.popoverController = popoverController;
         this.route = route;
         this.routeParams = routeParams;
@@ -296,15 +313,17 @@
           console.log(this.reportType);
         }
 
-        this.routeParams.params.subscribe(params => {
+        this.routeParams.params.subscribe(function (params) {
           console.log(params);
-          this.taskId = params.taskId;
-          this.taskNo = params.taskNo;
-          this.taskStatus = params.taskStatus;
-          this.onGetCheckListHandler();
-          console.log(this.taskId);
-          console.log(this.taskNo);
-          console.log(this.taskStatus);
+          _this.taskId = params.taskId;
+          _this.taskNo = params.taskNo;
+          _this.taskStatus = params.taskStatus;
+
+          _this.onGetCheckListHandler();
+
+          console.log(_this.taskId);
+          console.log(_this.taskNo);
+          console.log(_this.taskStatus);
         });
         this.registerForm1 = this.formBuilder.group({
           workDetail: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3)]],
@@ -349,508 +368,767 @@
         this.minDate = moment__WEBPACK_IMPORTED_MODULE_7__().format('YYYY-MM-DD');
       }
 
-      ngOnInit() {
-        this.onGetProjectContactHandler();
-        this.onSetDateTimeOptionHandler(); // alert(this.reportType);
-      }
+      _createClass(ComDailyreportPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.onGetProjectContactHandler();
+          this.onSetDateTimeOptionHandler(); // alert(this.reportType);
+        }
+      }, {
+        key: "onStarClickHandler",
+        value: function onStarClickHandler(rating) {
+          this.selectedRating = rating;
+        }
+      }, {
+        key: "onClickOnFgWiseCategoryHandler",
+        value: function onClickOnFgWiseCategoryHandler(index) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    console.log(this.data);
+                    this.currentActiveCheckTab = index;
+                    console.log(this.fgWisecheckList);
+                    this.fgWisecheckListCategory = this.fgWisecheckList[index].newCheckListCategory;
+                    console.log(this.data);
 
-      onStarClickHandler(rating) {
-        this.selectedRating = rating;
-      }
-
-      onClickOnFgWiseCategoryHandler(index) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log(this.data);
-          this.currentActiveCheckTab = index;
-          console.log(this.fgWisecheckList);
-          this.fgWisecheckListCategory = this.fgWisecheckList[index].newCheckListCategory;
-          console.log(this.data);
-        });
-      }
-
-      select_checklist(row) {
-        console.log(row.checked);
-      }
-
-      onSaveCheckListHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.submitted = true;
-          console.log(this.fgWisecheckListCategory[0].checkListData);
-          let count = 0;
-
-          for (let i = 0; i < this.fgWisecheckList.length; i++) {
-            let isFgAnyCategoryChecked = false;
-
-            for (let j = 0; j < this.fgWisecheckList[i].newCheckListCategory.length; j++) {
-              for (let k = 0; k < this.fgWisecheckList[i]["newCheckListCategory"][j]["checkListData"].length; k++) {
-                if (this.fgWisecheckList[i]["newCheckListCategory"][j]["checkListData"][k].checked) {
-                  console.log(this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'].length);
-                  isFgAnyCategoryChecked = true;
+                  case 5:
+                  case "end":
+                    return _context.stop();
                 }
               }
-            }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "select_checklist",
+        value: function select_checklist(row) {
+          console.log(row.checked);
+        }
+      }, {
+        key: "onSaveCheckListHandler",
+        value: function onSaveCheckListHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var _this2 = this;
 
-            if (isFgAnyCategoryChecked === true) {
-              count++;
-            }
-          }
+            var count, i, isFgAnyCategoryChecked, j, k, isContactError, errorMsg, alert;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    this.submitted = true;
+                    console.log(this.fgWisecheckListCategory[0].checkListData);
+                    count = 0;
 
-          console.log(count);
-          console.log(this.fgWisecheckList);
+                    for (i = 0; i < this.fgWisecheckList.length; i++) {
+                      isFgAnyCategoryChecked = false;
 
-          if (count == 0) {
-            this.dbService.onShowAlertMessage('Error', 'No Check List Selected!');
-            return false;
-          }
+                      for (j = 0; j < this.fgWisecheckList[i].newCheckListCategory.length; j++) {
+                        for (k = 0; k < this.fgWisecheckList[i]["newCheckListCategory"][j]["checkListData"].length; k++) {
+                          if (this.fgWisecheckList[i]["newCheckListCategory"][j]["checkListData"][k].checked) {
+                            console.log(this.fgWisecheckList[i]['newCheckListCategory'][j]['checkListData'].length);
+                            isFgAnyCategoryChecked = true;
+                          }
+                        }
+                      }
 
-          let isContactError = false;
-          let errorMsg = '';
+                      if (isFgAnyCategoryChecked === true) {
+                        count++;
+                      }
+                    }
 
-          if (!this.fgWisecheckList[this.currentActiveCheckTab].checkContactName) {
-            isContactError = true;
-            errorMsg = 'Contact Name Required!';
-          } else if (this.fgWisecheckList[this.currentActiveCheckTab].checkContactName == 'Other' && (!this.fgWisecheckList[this.currentActiveCheckTab].checkOtherContactName || !this.fgWisecheckList[this.currentActiveCheckTab].checkMobile || this.fgWisecheckList[this.currentActiveCheckTab].checkMobile.length < 10 || this.fgWisecheckList[this.currentActiveCheckTab].checkMobile.length > 10)) {
-            isContactError = true;
-            errorMsg = 'Contact Information Required!';
-          } else if (!this.fgWisecheckList[this.currentActiveCheckTab].signatureImage) {
-            isContactError = true;
-            errorMsg = 'Signature Required!';
-          }
+                    console.log(count);
+                    console.log(this.fgWisecheckList);
 
-          if (isContactError) {
-            this.dbService.onShowAlertMessage('Error', errorMsg);
-            return false;
-          }
+                    if (!(count == 0)) {
+                      _context2.next = 9;
+                      break;
+                    }
 
-          const alert = yield this.alertCtrl.create({
-            header: 'Confirm',
-            message: 'Are You Sure, You Want To Save Check List ?',
+                    this.dbService.onShowAlertMessage('Error', 'No Check List Selected!');
+                    return _context2.abrupt("return", false);
+
+                  case 9:
+                    isContactError = false;
+                    errorMsg = '';
+
+                    if (!this.fgWisecheckList[this.currentActiveCheckTab].checkContactName) {
+                      isContactError = true;
+                      errorMsg = 'Contact Name Required!';
+                    } else if (this.fgWisecheckList[this.currentActiveCheckTab].checkContactName == 'Other' && (!this.fgWisecheckList[this.currentActiveCheckTab].checkOtherContactName || !this.fgWisecheckList[this.currentActiveCheckTab].checkMobile || this.fgWisecheckList[this.currentActiveCheckTab].checkMobile.length < 10 || this.fgWisecheckList[this.currentActiveCheckTab].checkMobile.length > 10)) {
+                      isContactError = true;
+                      errorMsg = 'Contact Information Required!';
+                    } else if (!this.fgWisecheckList[this.currentActiveCheckTab].signatureImage) {
+                      isContactError = true;
+                      errorMsg = 'Signature Required!';
+                    }
+
+                    if (!isContactError) {
+                      _context2.next = 15;
+                      break;
+                    }
+
+                    this.dbService.onShowAlertMessage('Error', errorMsg);
+                    return _context2.abrupt("return", false);
+
+                  case 15:
+                    _context2.next = 17;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Save Check List ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          console.log('Yes clicked');
+                          var inputData = JSON.parse(JSON.stringify(_this2.data));
+                          inputData["taskId"] = _this2.taskId;
+                          inputData["taskNo"] = _this2.taskNo;
+                          inputData["fgWisecheckList"] = _this2.fgWisecheckList;
+                          inputData["contactName"] = _this2.fgWisecheckList[_this2.currentActiveCheckTab].checkContactName;
+                          inputData["otherContactName"] = _this2.fgWisecheckList[_this2.currentActiveCheckTab].checkOtherContactName;
+                          inputData["contactMobile"] = _this2.fgWisecheckList[_this2.currentActiveCheckTab].checkMobile;
+                          inputData["fgSelectedIndex"] = _this2.currentActiveCheckTab;
+
+                          var binaryDataSplit = _this2.fgWisecheckList[_this2.currentActiveCheckTab].signatureImage.split('base64,');
+
+                          inputData["signatureData"] = binaryDataSplit[1];
+
+                          _this2.dbService.presentLoader();
+
+                          _this2.dbService.onPostRequestHandler(inputData, 'report/onSaveTaskCheckList').subscribe(function (result) {
+                            console.log(result);
+
+                            _this2.dbService.dismissLoader();
+
+                            _this2.location.back();
+
+                            _this2.dbService.presentToast('CheckList Saved Successfully!');
+                          });
+                        }
+                      }]
+                    });
+
+                  case 17:
+                    alert = _context2.sent;
+                    _context2.next = 20;
+                    return alert.present();
+
+                  case 20:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "onSaveDailyReportHandler",
+        value: function onSaveDailyReportHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var _this3 = this;
+
+            var alert;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    console.log(this.data);
+                    this.submitted = true;
+
+                    if (this.selectedRating) {
+                      _context3.next = 5;
+                      break;
+                    }
+
+                    this.dbService.onShowAlertMessage('Error', 'Rating Required!');
+                    return _context3.abrupt("return");
+
+                  case 5:
+                    if (!(!this.data.travelExpense || !this.data.otherExpense)) {
+                      _context3.next = 11;
+                      break;
+                    }
+
+                    if (!this.data.travelExpense) {
+                      this.dbService.onShowAlertMessage('Error', 'Travel Expense Required!');
+                    }
+
+                    if (!this.data.otherExpense) {
+                      this.dbService.onShowAlertMessage('Error', 'Other Expense Required!');
+                    }
+
+                    return _context3.abrupt("return");
+
+                  case 11:
+                    console.log('hello');
+                    console.log(this.data);
+                    _context3.next = 15;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Save Report ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          console.log('Yes clicked');
+                          var inputData = JSON.parse(JSON.stringify(_this3.data));
+                          inputData["taskId"] = _this3.taskId;
+                          inputData["taskNo"] = _this3.taskNo;
+
+                          if (inputData["nextFollowUpDate"]) {
+                            inputData["nextFollowUpDate"] = moment__WEBPACK_IMPORTED_MODULE_7__(inputData["nextFollowUpDate"]).format('YYYY-MM-DD');
+                            inputData["nextFollowUpTime"] = moment__WEBPACK_IMPORTED_MODULE_7__(inputData["nextFollowUpTime"], 'H:mm A').format('H:mm');
+                          } else {
+                            inputData["nextFollowUpDate"] = '';
+                            inputData["nextFollowUpTime"] = '';
+                          }
+
+                          var binaryDataSplit = _this3.signatureImage.split('base64,');
+
+                          inputData["signatureData"] = binaryDataSplit[1];
+                          inputData["rating"] = _this3.selectedRating;
+
+                          _this3.dbService.presentLoader();
+
+                          _this3.dbService.onPostRequestHandler(inputData, 'report/onSaveDailyReportData').subscribe(function (result) {
+                            console.log(result);
+
+                            _this3.dbService.dismissLoader();
+
+                            _this3.data.status = '';
+
+                            _this3.location.back();
+
+                            console.log("hiiiiii");
+
+                            _this3.dbService.presentToast('Report Saved Successfully!');
+                          });
+                        }
+                      }]
+                    });
+
+                  case 15:
+                    alert = _context3.sent;
+                    _context3.next = 18;
+                    return alert.present();
+
+                  case 18:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+        }
+      }, {
+        key: "onSetDateTimeOptionHandler",
+        value: function onSetDateTimeOptionHandler() {
+          var _this4 = this;
+
+          this.customDatePickerOption = {
             buttons: [{
-              text: 'No',
-              role: 'cancel',
-              handler: () => {
-                console.log('No clicked');
+              text: 'Clear',
+              handler: function handler() {
+                return _this4.registerForm1.controls["nextFollowUpDate"].setValue(null);
               }
             }, {
-              text: 'Yes',
-              handler: () => {
-                console.log('Yes clicked');
-                const inputData = JSON.parse(JSON.stringify(this.data));
-                inputData["taskId"] = this.taskId;
-                inputData["taskNo"] = this.taskNo;
-                inputData["fgWisecheckList"] = this.fgWisecheckList;
-                inputData["contactName"] = this.fgWisecheckList[this.currentActiveCheckTab].checkContactName;
-                inputData["otherContactName"] = this.fgWisecheckList[this.currentActiveCheckTab].checkOtherContactName;
-                inputData["contactMobile"] = this.fgWisecheckList[this.currentActiveCheckTab].checkMobile;
-                inputData["fgSelectedIndex"] = this.currentActiveCheckTab;
-                const binaryDataSplit = this.fgWisecheckList[this.currentActiveCheckTab].signatureImage.split('base64,');
-                inputData["signatureData"] = binaryDataSplit[1];
-                this.dbService.presentLoader();
-                this.dbService.onPostRequestHandler(inputData, 'report/onSaveTaskCheckList').subscribe(result => {
-                  console.log(result);
-                  this.dbService.dismissLoader();
-                  this.location.back();
-                  this.dbService.presentToast('CheckList Saved Successfully!');
-                });
+              text: 'Cancel'
+            }, {
+              text: 'Save',
+              // tslint:disable-next-line:max-line-length
+              handler: function handler() {
+                return _this4.registerForm1.controls["nextFollowUpDate"].setValue(moment__WEBPACK_IMPORTED_MODULE_7__(_this4.data.nextFollowUpDate).format('DD-MMM-YYYY'));
               }
             }]
-          });
-          yield alert.present();
-        });
-      }
-
-      onSaveDailyReportHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log(this.data);
-          this.submitted = true;
-
-          if (!this.selectedRating) {
-            this.dbService.onShowAlertMessage('Error', 'Rating Required!');
-            return;
-          }
-
-          if (!this.data.travelExpense || !this.data.otherExpense) {
-            if (!this.data.travelExpense) {
-              this.dbService.onShowAlertMessage('Error', 'Travel Expense Required!');
-            }
-
-            if (!this.data.otherExpense) {
-              this.dbService.onShowAlertMessage('Error', 'Other Expense Required!');
-            }
-
-            return;
-          } else {
-            console.log('hello');
-            console.log(this.data);
-            const alert = yield this.alertCtrl.create({
-              header: 'Confirm',
-              message: 'Are You Sure, You Want To Save Report ?',
-              buttons: [{
-                text: 'No',
-                role: 'cancel',
-                handler: () => {
-                  console.log('No clicked');
-                }
-              }, {
-                text: 'Yes',
-                handler: () => {
-                  console.log('Yes clicked');
-                  const inputData = JSON.parse(JSON.stringify(this.data));
-                  inputData["taskId"] = this.taskId;
-                  inputData["taskNo"] = this.taskNo;
-
-                  if (inputData["nextFollowUpDate"]) {
-                    inputData["nextFollowUpDate"] = moment__WEBPACK_IMPORTED_MODULE_7__(inputData["nextFollowUpDate"]).format('YYYY-MM-DD');
-                    inputData["nextFollowUpTime"] = moment__WEBPACK_IMPORTED_MODULE_7__(inputData["nextFollowUpTime"], 'H:mm A').format('H:mm');
-                  } else {
-                    inputData["nextFollowUpDate"] = '';
-                    inputData["nextFollowUpTime"] = '';
-                  }
-
-                  const binaryDataSplit = this.signatureImage.split('base64,');
-                  inputData["signatureData"] = binaryDataSplit[1];
-                  inputData["rating"] = this.selectedRating;
-                  this.dbService.presentLoader();
-                  this.dbService.onPostRequestHandler(inputData, 'report/onSaveDailyReportData').subscribe(result => {
-                    console.log(result);
-                    this.dbService.dismissLoader();
-                    this.data.status = '';
-                    this.location.back();
-                    console.log("hiiiiii");
-                    this.dbService.presentToast('Report Saved Successfully!');
-                  });
-                }
-              }]
-            });
-            yield alert.present();
-          }
-        });
-      }
-
-      onSetDateTimeOptionHandler() {
-        this.customDatePickerOption = {
-          buttons: [{
-            text: 'Clear',
-            handler: () => this.registerForm1.controls["nextFollowUpDate"].setValue(null)
-          }, {
-            text: 'Cancel'
-          }, {
-            text: 'Save',
-            // tslint:disable-next-line:max-line-length
-            handler: () => this.registerForm1.controls["nextFollowUpDate"].setValue(moment__WEBPACK_IMPORTED_MODULE_7__(this.data.nextFollowUpDate).format('DD-MMM-YYYY'))
-          }]
-        };
-        this.customTimePickerOption = {
-          buttons: [{
-            text: 'Clear',
-            handler: () => this.registerForm1.controls["nextFollowUpTime"].setValue('')
-          }, {
-            text: 'Save',
-            handler: () => this.registerForm1.controls["nextFollowUpTime"].setValue(moment__WEBPACK_IMPORTED_MODULE_7__(this.data.nextFollowUpTime).format('h:mm A'))
-          }]
-        };
-      }
-
-      onGetProjectContactHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const inputData = {
-            taskId: this.taskId
           };
-          this.dbService.onPostRequestHandler(inputData, 'task/onGetTaskProjectAllContactList').subscribe(result => {
-            console.log(result);
-            this.contactList = result["contactList"];
-            this.contactList.push({
-              name: 'Other',
-              mobile: '',
-              email: ''
-            });
-          });
-        });
-      }
-
-      onContactChangeHandler(target) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log('hellosda');
-          console.log(this.data.contactName, this.data.checkContactName);
-
-          if (this.data.contactName == 'Other') {
-            this.data.mobile = 0;
-            this.data.email = '';
-            this.data.checkMobile = 0;
-          }
-
-          if (this.data.contactName || this.data.checkContactName) {
-            console.log('hello111');
-            console.log(target);
-            let isIndex;
-
-            if (target == 'dailyReport') {
-              isIndex = this.contactList.findIndex(row => row.name == this.data.contactName);
-            }
-
-            if (target == 'checkReport') {
-              isIndex = this.contactList.findIndex(row => row.name == this.data.checkContactName);
-            }
-
-            if (isIndex !== -1) {
-              if (target == 'dailyReport') {
-                if (this.contactList[isIndex].mobile) {
-                  this.data.mobile = this.contactList[isIndex].mobile;
-                  this.data.email = this.contactList[isIndex].email;
-                  this.data.designation = this.contactList[isIndex].designation;
-                }
+          this.customTimePickerOption = {
+            buttons: [{
+              text: 'Clear',
+              handler: function handler() {
+                return _this4.registerForm1.controls["nextFollowUpTime"].setValue('');
               }
-
-              if (target == 'checkReport') {
-                console.log(this.contactList[isIndex].mobile);
-
-                if (this.contactList[isIndex].mobile) {
-                  this.data.checkMobile = this.contactList[isIndex].mobile;
-                  this.data.checkdesignation = this.contactList[isIndex].designation;
-                }
+            }, {
+              text: 'Save',
+              handler: function handler() {
+                return _this4.registerForm1.controls["nextFollowUpTime"].setValue(moment__WEBPACK_IMPORTED_MODULE_7__(_this4.data.nextFollowUpTime).format('h:mm A'));
               }
-            }
-          } else {
-            console.log('hello123');
-            this.data.mobile = 0;
-            this.data.email = '';
-            this.data.checkMobile = 0;
-          }
-        });
-      }
-
-      onGetCheckListHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const inputData = {
-            taskId: this.taskId
+            }]
           };
-          this.dbService.onPostRequestHandler(inputData, 'task/onGetCheckList').subscribe(result => {
-            console.log(result);
-            this.fgWisecheckList = result["taskFGCheckList"];
-            this.fgWisecheckListCategory = result["taskFGCheckList"][0].newCheckListCategory;
-            this.data = result["customer_data"];
-            this.isAllCheckListSubmitted = result["isAllCheckListSubmitted"];
-            console.log(this.isAllCheckListSubmitted);
-            console.log(this.fgWisecheckListCategory);
-
-            for (let index = 0; index < this.fgWisecheckList.length; index++) {
-              if (this.fgWisecheckList[index].signatureImage) {
-                if (this.fgWisecheckList[index].signature_type == 'Other') {
-                  this.fgWisecheckList[index].checkContactName = 'Other';
-                  this.fgWisecheckList[index].checkOtherContactName = this.fgWisecheckList[index].contactName;
-                } else {
-                  this.fgWisecheckList[index].checkContactName = this.fgWisecheckList[index].contactName;
-                }
-
-                this.fgWisecheckList[index].signatureImage = this.dbService.uploadURL + this.fgWisecheckList[index].signatureImage;
-              }
-            }
-          });
-        });
-      }
-
-      onChangeWorkStatusHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const reasonNotCloserControl = this.registerForm1.get('reasonNotCloser');
-
-          if (this.data.workStatus == 'Complete') {
-            reasonNotCloserControl.setValidators([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3)]);
-          } else {
-            reasonNotCloserControl.setValidators([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3)]);
-          }
-
-          reasonNotCloserControl.updateValueAndValidity();
-        });
-      }
-
-      onNextStageHandler(stage) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.submitted = true;
-
-          if (this['registerForm' + stage + ''].invalid) {
-            if (stage == 1) {
-              this['registerForm' + stage + ''].get('workDetail').markAsTouched();
-              this['registerForm' + stage + ''].get('suggestion').markAsTouched();
-              this['registerForm' + stage + ''].get('causeFailure').markAsTouched();
-              this['registerForm' + stage + ''].get('workStatus').markAsTouched();
-              this['registerForm' + stage + ''].get('nextFollowUpDate').markAsTouched();
-              this['registerForm' + stage + ''].get('nextFollowUpTime').markAsTouched();
-              this['registerForm' + stage + ''].get('reasonNotCloser').markAsTouched();
-            } else if (stage == 2) {
-              this['registerForm' + stage + ''].get('actionPlanned').markAsTouched();
-              this['registerForm' + stage + ''].get('contactName').markAsTouched();
-              this['registerForm' + stage + ''].get('otherContactName').markAsTouched();
-              this['registerForm' + stage + ''].get('mobile').markAsTouched();
-              this['registerForm' + stage + ''].get('email').markAsTouched();
-            } else if (stage == 3) {
-              this['registerForm' + stage + ''].get('remark').markAsTouched();
-            } else if (stage == 4) {
-              this['registerForm' + stage + ''].get('travelExpense').markAsTouched();
-              this['registerForm' + stage + ''].get('otherExpense').markAsTouched();
-              this['registerForm' + stage + ''].get('expenseDetail').markAsTouched();
-            }
-
-            return;
-          } else {
-            var ckeckListCount = 0;
-            const taskData = {
-              taskId: this.taskId,
-              taskNo: this.taskNo
-            };
-            this.dbService.onPostRequestHandler(taskData, 'report/checkTaskCheckList').subscribe(result => {
-              console.log(result);
-              ckeckListCount = result['ckeckListCount'];
-            });
-            console.log(this.data);
-            console.log(ckeckListCount); // tslint:disable-next-line: max-line-length
-            // tslint:disable-next-line: max-line-length
-
-            if (stage == 1 && this.taskType == 'commissioning' && this.data.workStatus == "Close" && this.isAllCheckListSubmitted == false) {
-              this.dbService.onShowAlertMessage('Error', 'Fill FG Check List First!');
-              return; // tslint:disable-next-line:max-line-length
-            }
-
-            if (stage == 1 && (this.data.nextFollowUpDate && !this.data.nextFollowUpTime || !this.data.nextFollowUpDate && this.data.nextFollowUpTime)) {
-              this.dbService.onShowAlertMessage('Error', 'Fill FollowUp Details!');
-              return; // tslint:disable-next-line:max-line-length
-            } else if (stage == 3 && this.data.contactName == 'Other' && (!this.data.otherContactName || !this.data.mobile || !this.data.email)) {
-              this.dbService.onShowAlertMessage('Error', 'Fill Contact Details!');
-              return;
-            }
-
-            this.activeStage += 1;
-          }
-        });
-      }
-
-      onBackClickHandler(stage) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.activeStage = stage - 1;
-        });
-      }
-
-      presentPopover(ev) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const taskData = {
-            taskId: this.taskId,
-            taskNo: this.taskNo,
-            taskStatus: this.taskStatus
-          };
-          const popover = yield this.popoverController.create({
-            component: _tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_4__["TecCompliantPopoverComponent"],
-            event: ev,
-            translucent: true,
-            componentProps: taskData
-          });
-          return yield popover.present();
-        });
-      }
-
-      presentModal() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const modal = yield this.modalController.create({
-            component: _signaturemodal_signaturemodal_page__WEBPACK_IMPORTED_MODULE_9__["SignaturemodalPage"],
-            componentProps: {
-              'sigImage': this.signatureImage
-            }
-          });
-          modal.onDidDismiss().then(data => {
-            console.log(data);
-
-            if (data["data"] && data["data"]["signatureImage"]) {
-              if (this.fgWisecheckList && this.fgWisecheckList[this.currentActiveCheckTab]) {
-                this.fgWisecheckList[this.currentActiveCheckTab].signatureImage = data["data"]["signatureImage"];
-              }
-
-              this.signatureImage = data["data"]["signatureImage"];
-            }
-
-            console.log(this.signatureImage);
-          });
-          return yield modal.present();
-        });
-      }
-
-      GoComplaintDetail() {
-        this.location.back();
-      }
-
-      ionViewWillEnter() {
-        this.reportType = localStorage.getItem('reportType');
-        this.routeTitleForView = localStorage.getItem('routeTitleForView');
-        console.log(this.reportType);
-
-        if (this.reportType == 'dailyReport') {
-          this.activeStage = 1;
         }
+      }, {
+        key: "onGetProjectContactHandler",
+        value: function onGetProjectContactHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            var _this5 = this;
 
-        console.log(this.reportType);
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    inputData = {
+                      taskId: this.taskId
+                    };
+                    this.dbService.onPostRequestHandler(inputData, 'task/onGetTaskProjectAllContactList').subscribe(function (result) {
+                      console.log(result);
+                      _this5.contactList = result["contactList"];
 
-        if (this.reportType == 'checkListReport') {
-          this.activeStage = 5;
+                      _this5.contactList.push({
+                        name: 'Other',
+                        mobile: '',
+                        email: ''
+                      });
+                    });
+
+                  case 2:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            }, _callee4, this);
+          }));
+        }
+      }, {
+        key: "onContactChangeHandler",
+        value: function onContactChangeHandler(target) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            var _this6 = this;
+
+            var isIndex;
+            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+              while (1) {
+                switch (_context5.prev = _context5.next) {
+                  case 0:
+                    console.log('hellosda');
+                    console.log(this.data.contactName, this.data.checkContactName);
+
+                    if (this.data.contactName == 'Other') {
+                      this.data.mobile = 0;
+                      this.data.email = '';
+                      this.data.checkMobile = 0;
+                    }
+
+                    if (this.data.contactName || this.data.checkContactName) {
+                      console.log('hello111');
+                      console.log(target);
+
+                      if (target == 'dailyReport') {
+                        isIndex = this.contactList.findIndex(function (row) {
+                          return row.name == _this6.data.contactName;
+                        });
+                      }
+
+                      if (target == 'checkReport') {
+                        isIndex = this.contactList.findIndex(function (row) {
+                          return row.name == _this6.data.checkContactName;
+                        });
+                      }
+
+                      if (isIndex !== -1) {
+                        if (target == 'dailyReport') {
+                          if (this.contactList[isIndex].mobile) {
+                            this.data.mobile = this.contactList[isIndex].mobile;
+                            this.data.email = this.contactList[isIndex].email;
+                            this.data.designation = this.contactList[isIndex].designation;
+                          }
+                        }
+
+                        if (target == 'checkReport') {
+                          console.log(this.contactList[isIndex].mobile);
+
+                          if (this.contactList[isIndex].mobile) {
+                            this.data.checkMobile = this.contactList[isIndex].mobile;
+                            this.data.checkdesignation = this.contactList[isIndex].designation;
+                          }
+                        }
+                      }
+                    } else {
+                      console.log('hello123');
+                      this.data.mobile = 0;
+                      this.data.email = '';
+                      this.data.checkMobile = 0;
+                    }
+
+                  case 4:
+                  case "end":
+                    return _context5.stop();
+                }
+              }
+            }, _callee5, this);
+          }));
+        }
+      }, {
+        key: "onGetCheckListHandler",
+        value: function onGetCheckListHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            var _this7 = this;
+
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee6$(_context6) {
+              while (1) {
+                switch (_context6.prev = _context6.next) {
+                  case 0:
+                    inputData = {
+                      taskId: this.taskId
+                    };
+                    this.dbService.onPostRequestHandler(inputData, 'task/onGetCheckList').subscribe(function (result) {
+                      console.log(result);
+                      _this7.fgWisecheckList = result["taskFGCheckList"];
+                      _this7.fgWisecheckListCategory = result["taskFGCheckList"][0].newCheckListCategory;
+                      _this7.data = result["customer_data"];
+                      _this7.isAllCheckListSubmitted = result["isAllCheckListSubmitted"];
+                      console.log(_this7.isAllCheckListSubmitted);
+                      console.log(_this7.fgWisecheckListCategory);
+
+                      for (var index = 0; index < _this7.fgWisecheckList.length; index++) {
+                        if (_this7.fgWisecheckList[index].signatureImage) {
+                          if (_this7.fgWisecheckList[index].signature_type == 'Other') {
+                            _this7.fgWisecheckList[index].checkContactName = 'Other';
+                            _this7.fgWisecheckList[index].checkOtherContactName = _this7.fgWisecheckList[index].contactName;
+                          } else {
+                            _this7.fgWisecheckList[index].checkContactName = _this7.fgWisecheckList[index].contactName;
+                          }
+
+                          _this7.fgWisecheckList[index].signatureImage = _this7.dbService.uploadURL + _this7.fgWisecheckList[index].signatureImage;
+                        }
+                      }
+                    });
+
+                  case 2:
+                  case "end":
+                    return _context6.stop();
+                }
+              }
+            }, _callee6, this);
+          }));
+        }
+      }, {
+        key: "onChangeWorkStatusHandler",
+        value: function onChangeWorkStatusHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+            var reasonNotCloserControl;
+            return regeneratorRuntime.wrap(function _callee7$(_context7) {
+              while (1) {
+                switch (_context7.prev = _context7.next) {
+                  case 0:
+                    reasonNotCloserControl = this.registerForm1.get('reasonNotCloser');
+
+                    if (this.data.workStatus == 'Complete') {
+                      reasonNotCloserControl.setValidators([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3)]);
+                    } else {
+                      reasonNotCloserControl.setValidators([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3)]);
+                    }
+
+                    reasonNotCloserControl.updateValueAndValidity();
+
+                  case 3:
+                  case "end":
+                    return _context7.stop();
+                }
+              }
+            }, _callee7, this);
+          }));
+        }
+      }, {
+        key: "onNextStageHandler",
+        value: function onNextStageHandler(stage) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+            var ckeckListCount, taskData;
+            return regeneratorRuntime.wrap(function _callee8$(_context8) {
+              while (1) {
+                switch (_context8.prev = _context8.next) {
+                  case 0:
+                    this.submitted = true;
+
+                    if (!this['registerForm' + stage + ''].invalid) {
+                      _context8.next = 6;
+                      break;
+                    }
+
+                    if (stage == 1) {
+                      this['registerForm' + stage + ''].get('workDetail').markAsTouched();
+                      this['registerForm' + stage + ''].get('suggestion').markAsTouched();
+                      this['registerForm' + stage + ''].get('causeFailure').markAsTouched();
+                      this['registerForm' + stage + ''].get('workStatus').markAsTouched();
+                      this['registerForm' + stage + ''].get('nextFollowUpDate').markAsTouched();
+                      this['registerForm' + stage + ''].get('nextFollowUpTime').markAsTouched();
+                      this['registerForm' + stage + ''].get('reasonNotCloser').markAsTouched();
+                    } else if (stage == 2) {
+                      this['registerForm' + stage + ''].get('actionPlanned').markAsTouched();
+                      this['registerForm' + stage + ''].get('contactName').markAsTouched();
+                      this['registerForm' + stage + ''].get('otherContactName').markAsTouched();
+                      this['registerForm' + stage + ''].get('mobile').markAsTouched();
+                      this['registerForm' + stage + ''].get('email').markAsTouched();
+                    } else if (stage == 3) {
+                      this['registerForm' + stage + ''].get('remark').markAsTouched();
+                    } else if (stage == 4) {
+                      this['registerForm' + stage + ''].get('travelExpense').markAsTouched();
+                      this['registerForm' + stage + ''].get('otherExpense').markAsTouched();
+                      this['registerForm' + stage + ''].get('expenseDetail').markAsTouched();
+                    }
+
+                    return _context8.abrupt("return");
+
+                  case 6:
+                    ckeckListCount = 0;
+                    taskData = {
+                      taskId: this.taskId,
+                      taskNo: this.taskNo
+                    };
+                    this.dbService.onPostRequestHandler(taskData, 'report/checkTaskCheckList').subscribe(function (result) {
+                      console.log(result);
+                      ckeckListCount = result['ckeckListCount'];
+                    });
+                    console.log(this.data);
+                    console.log(ckeckListCount); // tslint:disable-next-line: max-line-length
+                    // tslint:disable-next-line: max-line-length
+
+                    if (!(stage == 1 && this.taskType == 'commissioning' && this.data.workStatus == "Close" && this.isAllCheckListSubmitted == false)) {
+                      _context8.next = 14;
+                      break;
+                    }
+
+                    this.dbService.onShowAlertMessage('Error', 'Fill FG Check List First!');
+                    return _context8.abrupt("return");
+
+                  case 14:
+                    if (!(stage == 1 && (this.data.nextFollowUpDate && !this.data.nextFollowUpTime || !this.data.nextFollowUpDate && this.data.nextFollowUpTime))) {
+                      _context8.next = 19;
+                      break;
+                    }
+
+                    this.dbService.onShowAlertMessage('Error', 'Fill FollowUp Details!');
+                    return _context8.abrupt("return");
+
+                  case 19:
+                    if (!(stage == 3 && this.data.contactName == 'Other' && (!this.data.otherContactName || !this.data.mobile || !this.data.email))) {
+                      _context8.next = 22;
+                      break;
+                    }
+
+                    this.dbService.onShowAlertMessage('Error', 'Fill Contact Details!');
+                    return _context8.abrupt("return");
+
+                  case 22:
+                    this.activeStage += 1;
+
+                  case 23:
+                  case "end":
+                    return _context8.stop();
+                }
+              }
+            }, _callee8, this);
+          }));
+        }
+      }, {
+        key: "onBackClickHandler",
+        value: function onBackClickHandler(stage) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+            return regeneratorRuntime.wrap(function _callee9$(_context9) {
+              while (1) {
+                switch (_context9.prev = _context9.next) {
+                  case 0:
+                    this.activeStage = stage - 1;
+
+                  case 1:
+                  case "end":
+                    return _context9.stop();
+                }
+              }
+            }, _callee9, this);
+          }));
+        }
+      }, {
+        key: "presentPopover",
+        value: function presentPopover(ev) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+            var taskData, popover;
+            return regeneratorRuntime.wrap(function _callee10$(_context10) {
+              while (1) {
+                switch (_context10.prev = _context10.next) {
+                  case 0:
+                    taskData = {
+                      taskId: this.taskId,
+                      taskNo: this.taskNo,
+                      taskStatus: this.taskStatus
+                    };
+                    _context10.next = 3;
+                    return this.popoverController.create({
+                      component: _tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_4__["TecCompliantPopoverComponent"],
+                      event: ev,
+                      translucent: true,
+                      componentProps: taskData
+                    });
+
+                  case 3:
+                    popover = _context10.sent;
+                    _context10.next = 6;
+                    return popover.present();
+
+                  case 6:
+                    return _context10.abrupt("return", _context10.sent);
+
+                  case 7:
+                  case "end":
+                    return _context10.stop();
+                }
+              }
+            }, _callee10, this);
+          }));
+        }
+      }, {
+        key: "presentModal",
+        value: function presentModal() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+            var _this8 = this;
+
+            var modal;
+            return regeneratorRuntime.wrap(function _callee11$(_context11) {
+              while (1) {
+                switch (_context11.prev = _context11.next) {
+                  case 0:
+                    _context11.next = 2;
+                    return this.modalController.create({
+                      component: _signaturemodal_signaturemodal_page__WEBPACK_IMPORTED_MODULE_9__["SignaturemodalPage"],
+                      componentProps: {
+                        'sigImage': this.signatureImage
+                      }
+                    });
+
+                  case 2:
+                    modal = _context11.sent;
+                    modal.onDidDismiss().then(function (data) {
+                      console.log(data);
+
+                      if (data["data"] && data["data"]["signatureImage"]) {
+                        if (_this8.fgWisecheckList && _this8.fgWisecheckList[_this8.currentActiveCheckTab]) {
+                          _this8.fgWisecheckList[_this8.currentActiveCheckTab].signatureImage = data["data"]["signatureImage"];
+                        }
+
+                        _this8.signatureImage = data["data"]["signatureImage"];
+                      }
+
+                      console.log(_this8.signatureImage);
+                    });
+                    _context11.next = 6;
+                    return modal.present();
+
+                  case 6:
+                    return _context11.abrupt("return", _context11.sent);
+
+                  case 7:
+                  case "end":
+                    return _context11.stop();
+                }
+              }
+            }, _callee11, this);
+          }));
+        }
+      }, {
+        key: "GoComplaintDetail",
+        value: function GoComplaintDetail() {
+          this.location.back();
+        }
+      }, {
+        key: "ionViewWillEnter",
+        value: function ionViewWillEnter() {
+          var _this9 = this;
+
+          this.reportType = localStorage.getItem('reportType');
+          this.routeTitleForView = localStorage.getItem('routeTitleForView');
           console.log(this.reportType);
-        }
 
-        this.routeParams.params.subscribe(params => {
-          console.log(params);
-          this.taskId = params.taskId;
-          this.taskNo = params.taskNo;
-          this.taskStatus = params.taskStatus;
+          if (this.reportType == 'dailyReport') {
+            this.activeStage = 1;
+          }
+
+          console.log(this.reportType);
 
           if (this.reportType == 'checkListReport') {
-            this.onGetCheckListHandler();
+            this.activeStage = 5;
+            console.log(this.reportType);
           }
 
-          console.log(this.taskId);
-          console.log(this.taskNo);
-          console.log(this.taskStatus);
-        });
-      }
+          this.routeParams.params.subscribe(function (params) {
+            console.log(params);
+            _this9.taskId = params.taskId;
+            _this9.taskNo = params.taskNo;
+            _this9.taskStatus = params.taskStatus;
 
-      get f1() {
-        return this.registerForm1.controls;
-      }
+            if (_this9.reportType == 'checkListReport') {
+              _this9.onGetCheckListHandler();
+            }
 
-      get f3() {
-        return this.registerForm3.controls;
-      }
+            console.log(_this9.taskId);
+            console.log(_this9.taskNo);
+            console.log(_this9.taskStatus);
+          });
+        }
+      }, {
+        key: "f1",
+        get: function get() {
+          return this.registerForm1.controls;
+        }
+      }, {
+        key: "f3",
+        get: function get() {
+          return this.registerForm3.controls;
+        }
+      }, {
+        key: "f4",
+        get: function get() {
+          return this.registerForm4.controls;
+        }
+      }, {
+        key: "f2",
+        get: function get() {
+          return this.registerForm2.controls;
+        }
+      }]);
 
-      get f4() {
-        return this.registerForm4.controls;
-      }
+      return ComDailyreportPage;
+    }();
 
-      get f2() {
-        return this.registerForm2.controls;
-      }
-
+    ComDailyreportPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+      }, {
+        type: _angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_6__["DbServiceService"]
+      }];
     };
-
-    ComDailyreportPage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
-    }, {
-      type: _angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_6__["DbServiceService"]
-    }];
 
     ComDailyreportPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-com-dailyreport',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./com-dailyreport.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./com-dailyreport.page.scss */
-      "./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.page.scss")).default]
+      "./src/app/technician_app/complaints/com-dailyreport/com-dailyreport.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], _angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_6__["DbServiceService"]])], ComDailyreportPage);
     /***/
   }

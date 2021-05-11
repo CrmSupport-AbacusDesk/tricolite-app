@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["home-home-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/home/home.page.html":
@@ -63,11 +69,15 @@
     /*! ./home.page */
     "./src/app/customer_app/home/home.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _home_page__WEBPACK_IMPORTED_MODULE_3__["HomePage"]
     }];
-    let HomePageRoutingModule = class HomePageRoutingModule {};
+
+    var HomePageRoutingModule = function HomePageRoutingModule() {
+      _classCallCheck(this, HomePageRoutingModule);
+    };
+
     HomePageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./home.page */
     "./src/app/customer_app/home/home.page.ts");
 
-    let HomePageModule = class HomePageModule {};
+    var HomePageModule = function HomePageModule() {
+      _classCallCheck(this, HomePageModule);
+    };
+
     HomePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _home_routing_module__WEBPACK_IMPORTED_MODULE_5__["HomePageRoutingModule"]],
       declarations: [_home_page__WEBPACK_IMPORTED_MODULE_6__["HomePage"]]
@@ -227,8 +240,10 @@
     /*! @ionic-native/push/ngx */
     "./node_modules/@ionic-native/push/ngx/index.js");
 
-    let HomePage = class HomePage {
-      constructor(router, formBuilder, alertCtrl, dbService, push) {
+    var HomePage = /*#__PURE__*/function () {
+      function HomePage(router, formBuilder, alertCtrl, dbService, push) {
+        _classCallCheck(this, HomePage);
+
         this.router = router;
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
@@ -238,146 +253,204 @@
         this.profileData = {};
       }
 
-      ngOnInit() {
-        this.notification();
-        this.onGetDashboardDataHandler();
-      }
+      _createClass(HomePage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.notification();
+          this.onGetDashboardDataHandler();
+        }
+      }, {
+        key: "onGetDashboardDataHandler",
+        value: function onGetDashboardDataHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this = this;
 
-      onGetDashboardDataHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log('hello');
-          this.dbService.onPostRequestHandler({}, 'dashboard/onGetDashboardData').subscribe(result => {
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    console.log('hello');
+                    this.dbService.onPostRequestHandler({}, 'dashboard/onGetDashboardData').subscribe(function (result) {
+                      console.log(result);
+                      _this.dashboardData = result;
+                      console.log(_this.dashboardData);
+                    });
+
+                  case 2:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "onLogoutHandler",
+        value: function onLogoutHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var _this2 = this;
+
+            var alert;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    _context2.next = 2;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Logout ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          console.log('Yes clicked');
+                          localStorage.removeItem('loginData');
+                          var routeURL = '/loginType';
+
+                          _this2.router.navigate([routeURL]);
+
+                          _this2.dbService.presentToast('Logout Successful!');
+                        }
+                      }]
+                    });
+
+                  case 2:
+                    alert = _context2.sent;
+                    _context2.next = 5;
+                    return alert.present();
+
+                  case 5:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "onGetProfileDataHandler",
+        value: function onGetProfileDataHandler() {
+          var _this3 = this;
+
+          var inputData = {};
+          this.dbService.onPostRequestHandler(inputData, 'login/onGetLoginUserCompleteDetail').subscribe(function (result) {
             console.log(result);
-            this.dashboardData = result;
-            console.log(this.dashboardData);
+            _this3.profileData = result["loginData"];
           });
-        });
-      }
+        }
+      }, {
+        key: "ionViewDidEnter",
+        value: function ionViewDidEnter() {
+          console.log('notification');
+          this.onGetDashboardDataHandler();
+          this.onGetProfileDataHandler();
+        }
+      }, {
+        key: "ionViewWillEnter",
+        value: function ionViewWillEnter() {
+          this.notification();
+        }
+      }, {
+        key: "GoToProfile",
+        value: function GoToProfile() {
+          this.router.navigateByUrl('/customer/home/profile');
+        }
+      }, {
+        key: "GoToCallRequest",
+        value: function GoToCallRequest() {
+          this.router.navigateByUrl('/customer/home/callrequest');
+        }
+      }, {
+        key: "GoToDocuments",
+        value: function GoToDocuments() {
+          this.router.navigateByUrl('/customer/home/mydocuments');
+        }
+      }, {
+        key: "notification",
+        value: function notification() {
+          var _this4 = this;
 
-      onLogoutHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const alert = yield this.alertCtrl.create({
-            header: 'Confirm',
-            message: 'Are You Sure, You Want To Logout ?',
-            buttons: [{
-              text: 'No',
-              role: 'cancel',
-              handler: () => {
-                console.log('No clicked');
-              }
-            }, {
-              text: 'Yes',
-              handler: () => {
-                console.log('Yes clicked');
-                localStorage.removeItem('loginData');
-                const routeURL = '/loginType';
-                this.router.navigate([routeURL]);
-                this.dbService.presentToast('Logout Successful!');
-              }
-            }]
+          // alert("test");
+          console.log('bhanu 12345');
+          var loginData = JSON.parse(localStorage.getItem('loginData'));
+          console.log(loginData);
+          this.push.hasPermission().then(function (res) {
+            if (res.isEnabled) {
+              console.log('We have permission to send push notifications');
+            } else {
+              console.log('We do not have permission to send push notifications');
+            }
           });
-          yield alert.present();
-        });
-      }
-
-      onGetProfileDataHandler() {
-        const inputData = {};
-        this.dbService.onPostRequestHandler(inputData, 'login/onGetLoginUserCompleteDetail').subscribe(result => {
-          console.log(result);
-          this.profileData = result["loginData"];
-        });
-      }
-
-      ionViewDidEnter() {
-        console.log('notification');
-        this.onGetDashboardDataHandler();
-        this.onGetProfileDataHandler();
-      }
-
-      ionViewWillEnter() {
-        this.notification();
-      }
-
-      GoToProfile() {
-        this.router.navigateByUrl('/customer/home/profile');
-      }
-
-      GoToCallRequest() {
-        this.router.navigateByUrl('/customer/home/callrequest');
-      }
-
-      GoToDocuments() {
-        this.router.navigateByUrl('/customer/home/mydocuments');
-      }
-
-      notification() {
-        // alert("test");
-        console.log('bhanu 12345');
-        const loginData = JSON.parse(localStorage.getItem('loginData'));
-        console.log(loginData);
-        this.push.hasPermission().then(res => {
-          if (res.isEnabled) {
-            console.log('We have permission to send push notifications');
-          } else {
-            console.log('We do not have permission to send push notifications');
-          }
-        });
-        const options = {
-          android: {
-            senderID: '590596859248'
-          },
-          ios: {
-            alert: 'true',
-            badge: true,
-            sound: true
-          },
-          windows: {},
-          browser: {
-            pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-          }
-        };
-        const pushObject = this.push.init(options);
-        pushObject.on('notification').subscribe(notification => console.log('Received a notification', notification));
-        pushObject.on('registration').subscribe(registration => {
-          console.log('Device registered', registration); // tslint:disable-next-line:max-line-length
-
-          this.dbService.onPostRequestHandler({
-            id: loginData.loginId,
-            registration_id: registration.registrationId
-          }, 'task/update_token').subscribe(r => {
-            console.log(r);
+          var options = {
+            android: {
+              senderID: '590596859248'
+            },
+            ios: {
+              alert: 'true',
+              badge: true,
+              sound: true
+            },
+            windows: {},
+            browser: {
+              pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+            }
+          };
+          var pushObject = this.push.init(options);
+          pushObject.on('notification').subscribe(function (notification) {
+            return console.log('Received a notification', notification);
           });
-        });
-        pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-      }
+          pushObject.on('registration').subscribe(function (registration) {
+            console.log('Device registered', registration); // tslint:disable-next-line:max-line-length
 
-      GoToEscalation() {
-        // console.log('hellllllooooooooo');
-        this.router.navigateByUrl('/customer/escalationdetail');
-      }
+            _this4.dbService.onPostRequestHandler({
+              id: loginData.loginId,
+              registration_id: registration.registrationId
+            }, 'task/update_token').subscribe(function (r) {
+              console.log(r);
+            });
+          });
+          pushObject.on('error').subscribe(function (error) {
+            return console.error('Error with Push plugin', error);
+          });
+        }
+      }, {
+        key: "GoToEscalation",
+        value: function GoToEscalation() {
+          // console.log('hellllllooooooooo');
+          this.router.navigateByUrl('/customer/escalationdetail');
+        }
+      }]);
 
+      return HomePage;
+    }();
+
+    HomePage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }, {
+        type: _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"]
+      }];
     };
-
-    HomePage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }, {
-      type: _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"]
-    }];
 
     HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-home',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./home.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/home/home.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/home/home.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./home.page.scss */
-      "./src/app/customer_app/home/home.page.scss")).default]
+      "./src/app/customer_app/home/home.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"], _ionic_native_push_ngx__WEBPACK_IMPORTED_MODULE_6__["Push"]])], HomePage);
     /***/
   },
@@ -426,11 +499,15 @@
     /*! ./home.page */
     "./src/app/technician_app/home/home.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _home_page__WEBPACK_IMPORTED_MODULE_3__["HomePage"]
     }];
-    let HomePageRoutingModule = class HomePageRoutingModule {};
+
+    var HomePageRoutingModule = function HomePageRoutingModule() {
+      _classCallCheck(this, HomePageRoutingModule);
+    };
+
     HomePageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -500,7 +577,10 @@
     /*! ./home.page */
     "./src/app/technician_app/home/home.page.ts");
 
-    let HomePageModule = class HomePageModule {};
+    var HomePageModule = function HomePageModule() {
+      _classCallCheck(this, HomePageModule);
+    };
+
     HomePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _home_routing_module__WEBPACK_IMPORTED_MODULE_5__["HomePageRoutingModule"]],
       declarations: [_home_page__WEBPACK_IMPORTED_MODULE_6__["HomePage"]]

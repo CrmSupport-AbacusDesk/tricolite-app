@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["complaints-complaintdetail-complaintdetail-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/complaintdetail/complaintdetail.page.html":
@@ -63,11 +69,15 @@
     /*! ./complaintdetail.page */
     "./src/app/technician_app/complaints/complaintdetail/complaintdetail.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _complaintdetail_page__WEBPACK_IMPORTED_MODULE_3__["ComplaintdetailPage"]
     }];
-    let ComplaintdetailPageRoutingModule = class ComplaintdetailPageRoutingModule {};
+
+    var ComplaintdetailPageRoutingModule = function ComplaintdetailPageRoutingModule() {
+      _classCallCheck(this, ComplaintdetailPageRoutingModule);
+    };
+
     ComplaintdetailPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./complaintdetail.page */
     "./src/app/technician_app/complaints/complaintdetail/complaintdetail.page.ts");
 
-    let ComplaintdetailPageModule = class ComplaintdetailPageModule {};
+    var ComplaintdetailPageModule = function ComplaintdetailPageModule() {
+      _classCallCheck(this, ComplaintdetailPageModule);
+    };
+
     ComplaintdetailPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _complaintdetail_routing_module__WEBPACK_IMPORTED_MODULE_5__["ComplaintdetailPageRoutingModule"]],
       declarations: [_complaintdetail_page__WEBPACK_IMPORTED_MODULE_6__["ComplaintdetailPage"]]
@@ -227,8 +240,10 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let ComplaintdetailPage = class ComplaintdetailPage {
-      constructor(popoverController, route, routeParams, formBuilder, alertCtrl, dbService) {
+    var ComplaintdetailPage = /*#__PURE__*/function () {
+      function ComplaintdetailPage(popoverController, route, routeParams, formBuilder, alertCtrl, dbService) {
+        _classCallCheck(this, ComplaintdetailPage);
+
         this.popoverController = popoverController;
         this.route = route;
         this.routeParams = routeParams;
@@ -241,89 +256,148 @@
         this.routeTitleForView = localStorage.getItem('routeTitleForView');
       }
 
-      ngOnInit() {
-        this.routeParams.params.subscribe(params => {
-          console.log(params);
-          this.taskId = params.taskId;
-          console.log(this.taskId);
-          this.onGetTaskDetail();
-        });
-      }
+      _createClass(ComplaintdetailPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this = this;
 
-      onGetTaskDetail() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log('hello');
-          this.dbService.presentLoader();
-          const inputData = {
-            taskId: this.taskId
-          };
-          this.dbService.onPostRequestHandler(inputData, 'task/onTaskDetail').subscribe(result => {
-            console.log(result);
-            this.dbService.dismissLoader();
-            this.taskDetail = result;
-            console.log(this.taskDetail);
-            console.log(this.taskDetail.taskData.status);
+          this.routeParams.params.subscribe(function (params) {
+            console.log(params);
+            _this.taskId = params.taskId;
+            console.log(_this.taskId);
+
+            _this.onGetTaskDetail();
           });
-        });
-      }
+        }
+      }, {
+        key: "onGetTaskDetail",
+        value: function onGetTaskDetail() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this2 = this;
 
-      presentPopover(ev) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log(this.taskDetail.taskData);
-          const taskPopUpData = {
-            taskWorkReport: this.taskDetail.taskWorkReport,
-            taskReportCount: this.taskDetail.taskReportCount,
-            taskInstalledPartCount: this.taskDetail.taskInstalledPartCount
-          };
-          localStorage.setItem('taskPopUpData', JSON.stringify(taskPopUpData));
-          console.log(this.taskDetail.taskData);
-          const taskData = {
-            taskId: this.taskId,
-            taskNo: this.taskDetail.taskData.task_no,
-            taskStatus: this.taskDetail.taskData.status,
-            taskType: this.taskDetail.taskData.task_type
-          };
-          console.log(taskData);
-          const popover = yield this.popoverController.create({
-            component: _tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_3__["TecCompliantPopoverComponent"],
-            event: ev,
-            translucent: true,
-            componentProps: taskData
-          });
-          return yield popover.present();
-        });
-      }
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    console.log('hello');
+                    this.dbService.presentLoader();
+                    inputData = {
+                      taskId: this.taskId
+                    };
+                    this.dbService.onPostRequestHandler(inputData, 'task/onTaskDetail').subscribe(function (result) {
+                      console.log(result);
 
-      onGoToListPageHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType'));
-        });
-      }
+                      _this2.dbService.dismissLoader();
 
+                      _this2.taskDetail = result;
+                      console.log(_this2.taskDetail);
+                      console.log(_this2.taskDetail.taskData.status);
+                    });
+
+                  case 4:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "presentPopover",
+        value: function presentPopover(ev) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var taskPopUpData, taskData, popover;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    console.log(this.taskDetail.taskData);
+                    taskPopUpData = {
+                      taskWorkReport: this.taskDetail.taskWorkReport,
+                      taskReportCount: this.taskDetail.taskReportCount,
+                      taskInstalledPartCount: this.taskDetail.taskInstalledPartCount
+                    };
+                    localStorage.setItem('taskPopUpData', JSON.stringify(taskPopUpData));
+                    console.log(this.taskDetail.taskData);
+                    taskData = {
+                      taskId: this.taskId,
+                      taskNo: this.taskDetail.taskData.task_no,
+                      taskStatus: this.taskDetail.taskData.status,
+                      taskType: this.taskDetail.taskData.task_type
+                    };
+                    console.log(taskData);
+                    _context2.next = 8;
+                    return this.popoverController.create({
+                      component: _tec_compliant_popover_tec_compliant_popover_component__WEBPACK_IMPORTED_MODULE_3__["TecCompliantPopoverComponent"],
+                      event: ev,
+                      translucent: true,
+                      componentProps: taskData
+                    });
+
+                  case 8:
+                    popover = _context2.sent;
+                    _context2.next = 11;
+                    return popover.present();
+
+                  case 11:
+                    return _context2.abrupt("return", _context2.sent);
+
+                  case 12:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "onGoToListPageHandler",
+        value: function onGoToListPageHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    this.route.navigateByUrl('/technicians/' + localStorage.getItem('routeType'));
+
+                  case 1:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+        }
+      }]);
+
+      return ComplaintdetailPage;
+    }();
+
+    ComplaintdetailPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_6__["DbServiceService"]
+      }];
     };
-
-    ComplaintdetailPage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_6__["DbServiceService"]
-    }];
 
     ComplaintdetailPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-complaintdetail',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./complaintdetail.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/complaintdetail/complaintdetail.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/complaints/complaintdetail/complaintdetail.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./complaintdetail.page.scss */
-      "./src/app/technician_app/complaints/complaintdetail/complaintdetail.page.scss")).default]
+      "./src/app/technician_app/complaints/complaintdetail/complaintdetail.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_6__["DbServiceService"]])], ComplaintdetailPage);
     /***/
   }

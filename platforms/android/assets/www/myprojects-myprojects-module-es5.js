@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["myprojects-myprojects-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/myprojects/myprojects.page.html":
@@ -63,11 +69,15 @@
     /*! ./myprojects.page */
     "./src/app/customer_app/myprojects/myprojects.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _myprojects_page__WEBPACK_IMPORTED_MODULE_3__["MyprojectsPage"]
     }];
-    let MyprojectsPageRoutingModule = class MyprojectsPageRoutingModule {};
+
+    var MyprojectsPageRoutingModule = function MyprojectsPageRoutingModule() {
+      _classCallCheck(this, MyprojectsPageRoutingModule);
+    };
+
     MyprojectsPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./myprojects.page */
     "./src/app/customer_app/myprojects/myprojects.page.ts");
 
-    let MyprojectsPageModule = class MyprojectsPageModule {};
+    var MyprojectsPageModule = function MyprojectsPageModule() {
+      _classCallCheck(this, MyprojectsPageModule);
+    };
+
     MyprojectsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _myprojects_routing_module__WEBPACK_IMPORTED_MODULE_5__["MyprojectsPageRoutingModule"]],
       declarations: [_myprojects_page__WEBPACK_IMPORTED_MODULE_6__["MyprojectsPage"]]
@@ -231,8 +244,10 @@
 
     var jquery__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_6__);
 
-    let MyprojectsPage = class MyprojectsPage {
-      constructor(router, formBuilder, alertCtrl, dbService) {
+    var MyprojectsPage = /*#__PURE__*/function () {
+      function MyprojectsPage(router, formBuilder, alertCtrl, dbService) {
+        _classCallCheck(this, MyprojectsPage);
+
         this.router = router;
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
@@ -247,120 +262,180 @@
         this.pageSize = 10;
       }
 
-      ngOnInit() {
-        this.onGetProjectListHandler(true, '');
-      }
+      _createClass(MyprojectsPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.onGetProjectListHandler(true, '');
+        }
+      }, {
+        key: "onSearchClickHandler",
+        value: function onSearchClickHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    this.isSearchOptionActive = true;
+                    setTimeout(function () {
+                      jquery__WEBPACK_IMPORTED_MODULE_6__('#searchData').focus();
+                    }, 2000);
 
-      onSearchClickHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.isSearchOptionActive = true;
-          setTimeout(() => {
-            jquery__WEBPACK_IMPORTED_MODULE_6__('#searchData').focus();
-          }, 2000);
-        });
-      }
-
-      onGetProjectListHandler(showLoading, infiniteScroll) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log('hello');
-          const inputData = {
-            start: this.currentPage,
-            pageLimit: this.pageSize
-          };
-          inputData["searchData"] = this.data.searchData;
-
-          if (showLoading) {
-            this.dbService.presentLoader();
-          }
-
-          this.isRequestInProcess = true;
-          this.dbService.onPostRequestHandler(inputData, 'customer/getProjectList').subscribe(result => {
-            console.log(result);
-
-            if (showLoading) {
-              setTimeout(() => {
-                this.dbService.dismissLoader();
-              }, 2000);
-            }
-
-            let resultData = result["projectData"];
-            console.log(resultData);
-
-            if (!resultData || resultData == null || resultData.length == 0) {
-              resultData = [];
-              this.doCheckForMoreData = false;
-            }
-
-            if (this.currentPage == 1) {
-              this.projectList = resultData;
-            } else {
-              for (let index = 0; index < resultData.length; index++) {
-                const isIndex = this.projectList.findIndex(row => row.id == resultData[index].id);
-
-                if (isIndex === -1) {
-                  this.projectList.push(resultData[index]);
+                  case 2:
+                  case "end":
+                    return _context.stop();
                 }
               }
-            }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "onGetProjectListHandler",
+        value: function onGetProjectListHandler(showLoading, infiniteScroll) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var _this = this;
 
-            this.currentPage += 1;
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    console.log('hello');
+                    inputData = {
+                      start: this.currentPage,
+                      pageLimit: this.pageSize
+                    };
+                    inputData["searchData"] = this.data.searchData;
 
-            if (infiniteScroll) {
-              infiniteScroll.target.complete();
-            }
+                    if (showLoading) {
+                      this.dbService.presentLoader();
+                    }
 
-            setTimeout(() => {
-              this.isRequestInProcess = false;
-            }, 1000);
-          });
-        });
-      }
+                    this.isRequestInProcess = true;
+                    this.dbService.onPostRequestHandler(inputData, 'customer/getProjectList').subscribe(function (result) {
+                      console.log(result);
 
-      ionRefresh(event) {
-        console.log('Pull Event Triggered!');
-        setTimeout(() => {
-          console.log('Async operation has ended');
-          this.data.searchData = '';
-          this.searchData = {};
-          this.onUpdateCurrentPageHandler();
-          this.onGetProjectListHandler(true, '');
-          event.target.complete();
-        }, 2000);
-      }
+                      if (showLoading) {
+                        setTimeout(function () {
+                          _this.dbService.dismissLoader();
+                        }, 2000);
+                      }
 
-      onUpdateCurrentPageHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          setTimeout(() => {
-            this.doCheckForMoreData = true;
-          }, 1000);
-          this.currentPage = 1;
-        });
-      }
+                      var resultData = result["projectData"];
+                      console.log(resultData);
 
-      GoToDetail(projectId) {
-        this.router.navigateByUrl('/customer/projects/detail/' + projectId);
-      }
+                      if (!resultData || resultData == null || resultData.length == 0) {
+                        resultData = [];
+                        _this.doCheckForMoreData = false;
+                      }
 
+                      if (_this.currentPage == 1) {
+                        _this.projectList = resultData;
+                      } else {
+                        var _loop = function _loop(index) {
+                          var isIndex = _this.projectList.findIndex(function (row) {
+                            return row.id == resultData[index].id;
+                          });
+
+                          if (isIndex === -1) {
+                            _this.projectList.push(resultData[index]);
+                          }
+                        };
+
+                        for (var index = 0; index < resultData.length; index++) {
+                          _loop(index);
+                        }
+                      }
+
+                      _this.currentPage += 1;
+
+                      if (infiniteScroll) {
+                        infiniteScroll.target.complete();
+                      }
+
+                      setTimeout(function () {
+                        _this.isRequestInProcess = false;
+                      }, 1000);
+                    });
+
+                  case 6:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "ionRefresh",
+        value: function ionRefresh(event) {
+          var _this2 = this;
+
+          console.log('Pull Event Triggered!');
+          setTimeout(function () {
+            console.log('Async operation has ended');
+            _this2.data.searchData = '';
+            _this2.searchData = {};
+
+            _this2.onUpdateCurrentPageHandler();
+
+            _this2.onGetProjectListHandler(true, '');
+
+            event.target.complete();
+          }, 2000);
+        }
+      }, {
+        key: "onUpdateCurrentPageHandler",
+        value: function onUpdateCurrentPageHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var _this3 = this;
+
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    setTimeout(function () {
+                      _this3.doCheckForMoreData = true;
+                    }, 1000);
+                    this.currentPage = 1;
+
+                  case 2:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+        }
+      }, {
+        key: "GoToDetail",
+        value: function GoToDetail(projectId) {
+          this.router.navigateByUrl('/customer/projects/detail/' + projectId);
+        }
+      }]);
+
+      return MyprojectsPage;
+    }();
+
+    MyprojectsPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    MyprojectsPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     MyprojectsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-myprojects',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./myprojects.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/myprojects/myprojects.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/myprojects/myprojects.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./myprojects.page.scss */
-      "./src/app/customer_app/myprojects/myprojects.page.scss")).default]
+      "./src/app/customer_app/myprojects/myprojects.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], MyprojectsPage);
     /***/
   }

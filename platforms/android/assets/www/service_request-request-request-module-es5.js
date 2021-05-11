@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["service_request-request-request-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request/request.page.html":
@@ -63,11 +69,15 @@
     /*! ./request.page */
     "./src/app/customer_app/service_request/request/request.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _request_page__WEBPACK_IMPORTED_MODULE_3__["RequestPage"]
     }];
-    let RequestPageRoutingModule = class RequestPageRoutingModule {};
+
+    var RequestPageRoutingModule = function RequestPageRoutingModule() {
+      _classCallCheck(this, RequestPageRoutingModule);
+    };
+
     RequestPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./request.page */
     "./src/app/customer_app/service_request/request/request.page.ts");
 
-    let RequestPageModule = class RequestPageModule {};
+    var RequestPageModule = function RequestPageModule() {
+      _classCallCheck(this, RequestPageModule);
+    };
+
     RequestPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _request_routing_module__WEBPACK_IMPORTED_MODULE_5__["RequestPageRoutingModule"]],
       declarations: [_request_page__WEBPACK_IMPORTED_MODULE_6__["RequestPage"]]
@@ -237,8 +250,10 @@
 
     var jquery__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_7__);
 
-    let RequestPage = class RequestPage {
-      constructor(route, formBuilder, alertCtrl, modalController, dbService) {
+    var RequestPage = /*#__PURE__*/function () {
+      function RequestPage(route, formBuilder, alertCtrl, modalController, dbService) {
+        _classCallCheck(this, RequestPage);
+
         this.route = route;
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
@@ -258,180 +273,260 @@
         this.pageSize = 5;
       }
 
-      ngOnInit() {
-        setTimeout(() => {
-          this.onGetComplaintListHandler(true, '');
-        }, 1000);
-      }
+      _createClass(RequestPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this = this;
 
-      toggle() {
-        this.show = !this.show;
-
-        if (this.show) {
-          this.buttonName = 'Hide';
-        } else {
-          this.buttonName = 'Show';
+          setTimeout(function () {
+            _this.onGetComplaintListHandler(true, '');
+          }, 1000);
         }
-      }
+      }, {
+        key: "toggle",
+        value: function toggle() {
+          this.show = !this.show;
 
-      onGetComplaintListHandler(showLoading, infiniteScroll) {
-        console.log('hello');
-        console.log(this.route.url);
-        const inputData = {
-          start: this.currentPage,
-          pageLimit: this.pageSize
-        };
-        const loginData = JSON.parse(localStorage.getItem('loginData'));
-        inputData["searchData"] = this.searchData;
-        inputData["inputSearch"] = this.data.inputSearch;
-        inputData["customerId"] = loginData["loginId"];
-
-        if (showLoading) {
-          this.dbService.presentLoader();
+          if (this.show) {
+            this.buttonName = 'Hide';
+          } else {
+            this.buttonName = 'Show';
+          }
         }
+      }, {
+        key: "onGetComplaintListHandler",
+        value: function onGetComplaintListHandler(showLoading, infiniteScroll) {
+          var _this2 = this;
 
-        this.dbService.onPostRequestHandler(inputData, 'task/getTaskList').subscribe(result => {
-          console.log(result);
+          console.log('hello');
+          console.log(this.route.url);
+          var inputData = {
+            start: this.currentPage,
+            pageLimit: this.pageSize
+          };
+          var loginData = JSON.parse(localStorage.getItem('loginData'));
+          inputData["searchData"] = this.searchData;
+          inputData["inputSearch"] = this.data.inputSearch;
+          inputData["customerId"] = loginData["loginId"];
 
           if (showLoading) {
-            setTimeout(() => {
-              this.dbService.dismissLoader();
-            }, 2000);
+            this.dbService.presentLoader();
           }
 
-          let resultData = result["taskList"];
+          this.dbService.onPostRequestHandler(inputData, 'task/getTaskList').subscribe(function (result) {
+            console.log(result);
 
-          if (!resultData || resultData == null || resultData.length == 0) {
-            resultData = [];
-            this.doCheckForMoreData = false;
-          }
+            if (showLoading) {
+              setTimeout(function () {
+                _this2.dbService.dismissLoader();
+              }, 2000);
+            }
 
-          if (this.currentPage == 1) {
-            this.complaintList = resultData;
-            console.log(this.complaintList);
-          } else {
-            for (let index = 0; index < resultData.length; index++) {
-              const isIndex = this.complaintList.findIndex(row => row.id == resultData[index].id);
+            var resultData = result["taskList"];
 
-              if (isIndex === -1) {
-                this.complaintList.push(resultData[index]);
+            if (!resultData || resultData == null || resultData.length == 0) {
+              resultData = [];
+              _this2.doCheckForMoreData = false;
+            }
+
+            if (_this2.currentPage == 1) {
+              _this2.complaintList = resultData;
+              console.log(_this2.complaintList);
+            } else {
+              var _loop = function _loop(index) {
+                var isIndex = _this2.complaintList.findIndex(function (row) {
+                  return row.id == resultData[index].id;
+                });
+
+                if (isIndex === -1) {
+                  _this2.complaintList.push(resultData[index]);
+                }
+              };
+
+              for (var index = 0; index < resultData.length; index++) {
+                _loop(index);
               }
+
+              console.log(_this2.complaintList);
             }
 
-            console.log(this.complaintList);
-          }
+            _this2.currentPage += 1;
 
-          this.currentPage += 1;
+            if (infiniteScroll) {
+              infiniteScroll.target.complete();
+            }
 
-          if (infiniteScroll) {
-            infiniteScroll.target.complete();
-          }
-
-          setTimeout(() => {
-            this.isRequestInProcess = false;
-          }, 1000);
-        });
-      }
-
-      ionViewWillEnter() {
-        this.onUpdateCurrentPageHandler();
-        this.onGetComplaintListHandler(false, '');
-      }
-
-      onSearchClickHandler() {
-        this.isSearchOptionActive = true;
-        setTimeout(() => {
-          jquery__WEBPACK_IMPORTED_MODULE_7__('#inputSearch').focus();
-        }, 2000);
-      }
-
-      ionRefresh(event) {
-        console.log('Pull Event Triggered!');
-        setTimeout(() => {
-          console.log('Async operation has ended');
-          this.data.inputSearch = '';
-          this.searchData = {};
+            setTimeout(function () {
+              _this2.isRequestInProcess = false;
+            }, 1000);
+          });
+        }
+      }, {
+        key: "ionViewWillEnter",
+        value: function ionViewWillEnter() {
           this.onUpdateCurrentPageHandler();
-          this.onGetComplaintListHandler(true, '');
-          event.target.complete();
-        }, 2000);
-      }
+          this.onGetComplaintListHandler(false, '');
+        }
+      }, {
+        key: "onSearchClickHandler",
+        value: function onSearchClickHandler() {
+          this.isSearchOptionActive = true;
+          setTimeout(function () {
+            jquery__WEBPACK_IMPORTED_MODULE_7__('#inputSearch').focus();
+          }, 2000);
+        }
+      }, {
+        key: "ionRefresh",
+        value: function ionRefresh(event) {
+          var _this3 = this;
 
-      onUpdateCurrentPageHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          setTimeout(() => {
-            this.doCheckForMoreData = true;
-          }, 1000);
-          this.currentPage = 1;
-          this.onScrollToTopHandler();
-        });
-      }
+          console.log('Pull Event Triggered!');
+          setTimeout(function () {
+            console.log('Async operation has ended');
+            _this3.data.inputSearch = '';
+            _this3.searchData = {};
 
-      onScrollToTopHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          this.content.scrollToTop();
-        });
-      }
+            _this3.onUpdateCurrentPageHandler();
 
-      presentModal() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const modal = yield this.modalController.create({
-            component: src_app_complaintfiltermodal_complaintfiltermodal_page__WEBPACK_IMPORTED_MODULE_6__["ComplaintfiltermodalPage"],
-            componentProps: {
-              searchData: this.searchData
-            }
-          });
-          modal.onDidDismiss().then(data => {
-            console.log(data);
+            _this3.onGetComplaintListHandler(true, '');
 
-            if (data && data["data"] && data["data"]["data"]) {
-              console.log(data["data"]);
-              this.searchData = data["data"]["data"];
-              this.onUpdateCurrentPageHandler();
-              this.onGetComplaintListHandler(true, '');
-            }
-          });
-          return yield modal.present();
-        });
-      }
+            event.target.complete();
+          }, 2000);
+        }
+      }, {
+        key: "onUpdateCurrentPageHandler",
+        value: function onUpdateCurrentPageHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this4 = this;
 
-      GoComplaintDetail(taskId) {
-        this.route.navigateByUrl('/customer/request/detail/' + taskId + '');
-      }
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    setTimeout(function () {
+                      _this4.doCheckForMoreData = true;
+                    }, 1000);
+                    this.currentPage = 1;
+                    this.onScrollToTopHandler();
 
-      AddServiceRequest() {
-        this.route.navigateByUrl('/customer/request/addrequest');
-      }
+                  case 3:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "onScrollToTopHandler",
+        value: function onScrollToTopHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    this.content.scrollToTop();
 
-      GiveYourFeedBack(taskId, userId) {
-        this.route.navigateByUrl('/customer/request/giveyourfeedback/' + taskId + '/' + userId + '');
-      }
+                  case 1:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "presentModal",
+        value: function presentModal() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var _this5 = this;
 
+            var modal;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    _context3.next = 2;
+                    return this.modalController.create({
+                      component: src_app_complaintfiltermodal_complaintfiltermodal_page__WEBPACK_IMPORTED_MODULE_6__["ComplaintfiltermodalPage"],
+                      componentProps: {
+                        searchData: this.searchData
+                      }
+                    });
+
+                  case 2:
+                    modal = _context3.sent;
+                    modal.onDidDismiss().then(function (data) {
+                      console.log(data);
+
+                      if (data && data["data"] && data["data"]["data"]) {
+                        console.log(data["data"]);
+                        _this5.searchData = data["data"]["data"];
+
+                        _this5.onUpdateCurrentPageHandler();
+
+                        _this5.onGetComplaintListHandler(true, '');
+                      }
+                    });
+                    _context3.next = 6;
+                    return modal.present();
+
+                  case 6:
+                    return _context3.abrupt("return", _context3.sent);
+
+                  case 7:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+        }
+      }, {
+        key: "GoComplaintDetail",
+        value: function GoComplaintDetail(taskId) {
+          this.route.navigateByUrl('/customer/request/detail/' + taskId + '');
+        }
+      }, {
+        key: "AddServiceRequest",
+        value: function AddServiceRequest() {
+          this.route.navigateByUrl('/customer/request/addrequest');
+        }
+      }, {
+        key: "GiveYourFeedBack",
+        value: function GiveYourFeedBack(taskId, userId) {
+          this.route.navigateByUrl('/customer/request/giveyourfeedback/' + taskId + '/' + userId + '');
+        }
+      }]);
+
+      return RequestPage;
+    }();
+
+    RequestPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
 
-    RequestPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
-
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonContent"], {
-      static: false
+      "static": false
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonContent"])], RequestPage.prototype, "content", void 0);
     RequestPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-request',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./request.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request/request.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/request/request.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./request.page.scss */
-      "./src/app/customer_app/service_request/request/request.page.scss")).default]
+      "./src/app/customer_app/service_request/request/request.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], RequestPage);
     /***/
   }

@@ -3363,7 +3363,7 @@
         readyList.then(fn) // Wrap jQuery.readyException in a function so that the lookup
         // happens at the time of error handling instead of callback
         // registration.
-        .catch(function (error) {
+        ["catch"](function (error) {
           jQuery.readyException(error);
         });
         return this;
@@ -5657,10 +5657,10 @@
 
 
       function finalPropName(name) {
-        var final = jQuery.cssProps[name] || vendorProps[name];
+        var _final = jQuery.cssProps[name] || vendorProps[name];
 
-        if (final) {
-          return final;
+        if (_final) {
+          return _final;
         }
 
         if (name in emptyStyle) {
@@ -7980,7 +7980,7 @@
 
               if (conv !== true) {
                 // Unless errors are allowed to bubble, catch and return them
-                if (conv && s.throws) {
+                if (conv && s["throws"]) {
                   response = conv(response);
                 } else {
                   try {

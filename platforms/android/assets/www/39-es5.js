@@ -1,3 +1,15 @@
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[39], {
   /***/
   "./node_modules/@ionic/core/dist/esm/ion-modal-ios.entry.js":
@@ -77,10 +89,10 @@
      */
 
 
-    const iosEnterAnimation = baseEl => {
-      const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var iosEnterAnimation = function iosEnterAnimation(baseEl) {
+      var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
       backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 0.4);
       wrapperAnimation.addElement(baseEl.querySelector('.modal-wrapper')).beforeStyles({
         'opacity': 1
@@ -145,12 +157,12 @@
      */
 
 
-    const iosLeaveAnimation = baseEl => {
-      const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperEl = baseEl.querySelector('.modal-wrapper');
-      const wrapperElRect = wrapperEl.getBoundingClientRect();
+    var iosLeaveAnimation = function iosLeaveAnimation(baseEl) {
+      var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var wrapperEl = baseEl.querySelector('.modal-wrapper');
+      var wrapperElRect = wrapperEl.getBoundingClientRect();
       backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.4, 0.0);
       wrapperAnimation.addElement(wrapperEl).beforeStyles({
         'opacity': 1
@@ -162,10 +174,10 @@
      */
 
 
-    const mdEnterAnimation = baseEl => {
-      const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var mdEnterAnimation = function mdEnterAnimation(baseEl) {
+      var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
       backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 0.32);
       wrapperAnimation.addElement(baseEl.querySelector('.modal-wrapper')).keyframes([{
         offset: 0,
@@ -183,11 +195,11 @@
      */
 
 
-    const mdLeaveAnimation = baseEl => {
-      const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperEl = baseEl.querySelector('.modal-wrapper');
+    var mdLeaveAnimation = function mdLeaveAnimation(baseEl) {
+      var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var wrapperEl = baseEl.querySelector('.modal-wrapper');
       backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.32, 0.0);
       wrapperAnimation.addElement(wrapperEl).keyframes([{
         offset: 0,
@@ -201,8 +213,12 @@
       return baseAnimation.addElement(baseEl).easing('cubic-bezier(0.47,0,0.745,0.715)').duration(200).addAnimation([backdropAnimation, wrapperAnimation]);
     };
 
-    const Modal = class {
-      constructor(hostRef) {
+    var Modal = /*#__PURE__*/function () {
+      function Modal(hostRef) {
+        var _this = this;
+
+        _classCallCheck(this, Modal);
+
         Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
         this.presented = false;
         this.mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
@@ -227,22 +243,23 @@
 
         this.animated = true;
 
-        this.onBackdropTap = () => {
-          this.dismiss(undefined, _overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["B"]);
+        this.onBackdropTap = function () {
+          _this.dismiss(undefined, _overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["B"]);
         };
 
-        this.onDismiss = ev => {
+        this.onDismiss = function (ev) {
           ev.stopPropagation();
           ev.preventDefault();
-          this.dismiss();
+
+          _this.dismiss();
         };
 
-        this.onLifecycle = modalEvent => {
-          const el = this.usersElement;
-          const name = LIFECYCLE_MAP[modalEvent.type];
+        this.onLifecycle = function (modalEvent) {
+          var el = _this.usersElement;
+          var name = LIFECYCLE_MAP[modalEvent.type];
 
           if (el && name) {
-            const ev = new CustomEvent(name, {
+            var ev = new CustomEvent(name, {
               bubbles: false,
               cancelable: false,
               detail: modalEvent.detail
@@ -262,97 +279,169 @@
        */
 
 
-      async present() {
-        if (this.presented) {
-          return;
-        }
+      _createClass(Modal, [{
+        key: "present",
+        value: function () {
+          var _present = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var container, componentProps;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    if (!this.presented) {
+                      _context.next = 2;
+                      break;
+                    }
 
-        const container = this.el.querySelector(".modal-wrapper");
+                    return _context.abrupt("return");
 
-        if (!container) {
-          throw new Error('container is undefined');
-        }
+                  case 2:
+                    container = this.el.querySelector(".modal-wrapper");
 
-        const componentProps = Object.assign(Object.assign({}, this.componentProps), {
-          modal: this.el
-        });
-        this.usersElement = await Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_7__["a"])(this.delegate, container, this.component, ['ion-page'], componentProps);
-        await Object(_index_4d91f03a_js__WEBPACK_IMPORTED_MODULE_8__["d"])(this.usersElement);
-        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this, 'modalEnter', iosEnterAnimation, mdEnterAnimation);
-      }
-      /**
-       * Dismiss the modal overlay after it has been presented.
-       *
-       * @param data Any data to emit in the dismiss events.
-       * @param role The role of the element that is dismissing the modal. For example, 'cancel' or 'backdrop'.
-       */
+                    if (container) {
+                      _context.next = 5;
+                      break;
+                    }
 
+                    throw new Error('container is undefined');
 
-      async dismiss(data, role) {
-        const dismissed = await Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'modalLeave', iosLeaveAnimation, mdLeaveAnimation);
+                  case 5:
+                    componentProps = Object.assign(Object.assign({}, this.componentProps), {
+                      modal: this.el
+                    });
+                    _context.next = 8;
+                    return Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_7__["a"])(this.delegate, container, this.component, ['ion-page'], componentProps);
 
-        if (dismissed) {
-          await Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_7__["d"])(this.delegate, this.usersElement);
-        }
+                  case 8:
+                    this.usersElement = _context.sent;
+                    _context.next = 11;
+                    return Object(_index_4d91f03a_js__WEBPACK_IMPORTED_MODULE_8__["d"])(this.usersElement);
 
-        return dismissed;
-      }
-      /**
-       * Returns a promise that resolves when the modal did dismiss.
-       */
+                  case 11:
+                    return _context.abrupt("return", Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this, 'modalEnter', iosEnterAnimation, mdEnterAnimation));
 
+                  case 12:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
 
-      onDidDismiss() {
-        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionModalDidDismiss');
-      }
-      /**
-       * Returns a promise that resolves when the modal will dismiss.
-       */
-
-
-      onWillDismiss() {
-        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionModalWillDismiss');
-      }
-
-      render() {
-        const mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          "no-router": true,
-          "aria-modal": "true",
-          class: Object.assign({
-            [mode]: true
-          }, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.cssClass)),
-          style: {
-            zIndex: "".concat(20000 + this.overlayIndex)
-          },
-          onIonBackdropTap: this.onBackdropTap,
-          onIonDismiss: this.onDismiss,
-          onIonModalDidPresent: this.onLifecycle,
-          onIonModalWillPresent: this.onLifecycle,
-          onIonModalWillDismiss: this.onLifecycle,
-          onIonModalDidDismiss: this.onLifecycle
-        }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", {
-          visible: this.showBackdrop,
-          tappable: this.backdropDismiss
-        }), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          role: "dialog",
-          class: {
-            ["modal-wrapper"]: true,
-            [mode]: true
+          function present() {
+            return _present.apply(this, arguments);
           }
-        }));
-      }
 
-      get el() {
-        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
-      }
+          return present;
+        }()
+        /**
+         * Dismiss the modal overlay after it has been presented.
+         *
+         * @param data Any data to emit in the dismiss events.
+         * @param role The role of the element that is dismissing the modal. For example, 'cancel' or 'backdrop'.
+         */
 
-      static get style() {
-        return ".sc-ion-modal-ios-h{--width:100%;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--overflow:hidden;--border-radius:0;--border-width:0;--border-style:none;--border-color:transparent;--background:var(--ion-background-color,#fff);--box-shadow:none;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;contain:strict}.overlay-hidden.sc-ion-modal-ios-h{display:none}.modal-wrapper.sc-ion-modal-ios{border-radius:var(--border-radius);width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:var(--overflow);z-index:10}\@media only screen and (min-width:768px) and (min-height:600px){.sc-ion-modal-ios-h{--width:600px;--height:500px;--ion-safe-area-top:0px;--ion-safe-area-bottom:0px;--ion-safe-area-right:0px;--ion-safe-area-left:0px}}\@media only screen and (min-width:768px) and (min-height:768px){.sc-ion-modal-ios-h{--width:600px;--height:600px}}\@media only screen and (min-width:768px) and (min-height:600px){.sc-ion-modal-ios-h{--border-radius:10px}}.modal-wrapper.sc-ion-modal-ios{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}";
-      }
+      }, {
+        key: "dismiss",
+        value: function () {
+          var _dismiss = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(data, role) {
+            var dismissed;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    _context2.next = 2;
+                    return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'modalLeave', iosLeaveAnimation, mdLeaveAnimation);
 
-    };
-    const LIFECYCLE_MAP = {
+                  case 2:
+                    dismissed = _context2.sent;
+
+                    if (!dismissed) {
+                      _context2.next = 6;
+                      break;
+                    }
+
+                    _context2.next = 6;
+                    return Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_7__["d"])(this.delegate, this.usersElement);
+
+                  case 6:
+                    return _context2.abrupt("return", dismissed);
+
+                  case 7:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+
+          function dismiss(_x, _x2) {
+            return _dismiss.apply(this, arguments);
+          }
+
+          return dismiss;
+        }()
+        /**
+         * Returns a promise that resolves when the modal did dismiss.
+         */
+
+      }, {
+        key: "onDidDismiss",
+        value: function onDidDismiss() {
+          return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionModalDidDismiss');
+        }
+        /**
+         * Returns a promise that resolves when the modal will dismiss.
+         */
+
+      }, {
+        key: "onWillDismiss",
+        value: function onWillDismiss() {
+          return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionModalWillDismiss');
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          var _class;
+
+          var mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+          return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+            "no-router": true,
+            "aria-modal": "true",
+            "class": Object.assign(_defineProperty({}, mode, true), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.cssClass)),
+            style: {
+              zIndex: "".concat(20000 + this.overlayIndex)
+            },
+            onIonBackdropTap: this.onBackdropTap,
+            onIonDismiss: this.onDismiss,
+            onIonModalDidPresent: this.onLifecycle,
+            onIonModalWillPresent: this.onLifecycle,
+            onIonModalWillDismiss: this.onLifecycle,
+            onIonModalDidDismiss: this.onLifecycle
+          }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", {
+            visible: this.showBackdrop,
+            tappable: this.backdropDismiss
+          }), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            role: "dialog",
+            "class": (_class = {}, _defineProperty(_class, "modal-wrapper", true), _defineProperty(_class, mode, true), _class)
+          }));
+        }
+      }, {
+        key: "el",
+        get: function get() {
+          return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
+        }
+      }], [{
+        key: "style",
+        get: function get() {
+          return ".sc-ion-modal-ios-h{--width:100%;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--overflow:hidden;--border-radius:0;--border-width:0;--border-style:none;--border-color:transparent;--background:var(--ion-background-color,#fff);--box-shadow:none;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;contain:strict}.overlay-hidden.sc-ion-modal-ios-h{display:none}.modal-wrapper.sc-ion-modal-ios{border-radius:var(--border-radius);width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:var(--overflow);z-index:10}\@media only screen and (min-width:768px) and (min-height:600px){.sc-ion-modal-ios-h{--width:600px;--height:500px;--ion-safe-area-top:0px;--ion-safe-area-bottom:0px;--ion-safe-area-right:0px;--ion-safe-area-left:0px}}\@media only screen and (min-width:768px) and (min-height:768px){.sc-ion-modal-ios-h{--width:600px;--height:600px}}\@media only screen and (min-width:768px) and (min-height:600px){.sc-ion-modal-ios-h{--border-radius:10px}}.modal-wrapper.sc-ion-modal-ios{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}";
+        }
+      }]);
+
+      return Modal;
+    }();
+
+    var LIFECYCLE_MAP = {
       'ionModalDidPresent': 'ionViewDidEnter',
       'ionModalWillPresent': 'ionViewWillEnter',
       'ionModalWillDismiss': 'ionViewWillLeave',

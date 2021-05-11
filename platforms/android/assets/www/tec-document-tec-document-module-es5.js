@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["tec-document-tec-document-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tec-document/tec-document.page.html":
@@ -63,11 +69,15 @@
     /*! ./tec-document.page */
     "./src/app/technician_app/tec-document/tec-document.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _tec_document_page__WEBPACK_IMPORTED_MODULE_3__["TecDocumentPage"]
     }];
-    let TecDocumentPageRoutingModule = class TecDocumentPageRoutingModule {};
+
+    var TecDocumentPageRoutingModule = function TecDocumentPageRoutingModule() {
+      _classCallCheck(this, TecDocumentPageRoutingModule);
+    };
+
     TecDocumentPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./tec-document.page */
     "./src/app/technician_app/tec-document/tec-document.page.ts");
 
-    let TecDocumentPageModule = class TecDocumentPageModule {};
+    var TecDocumentPageModule = function TecDocumentPageModule() {
+      _classCallCheck(this, TecDocumentPageModule);
+    };
+
     TecDocumentPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _tec_document_routing_module__WEBPACK_IMPORTED_MODULE_5__["TecDocumentPageRoutingModule"]],
       declarations: [_tec_document_page__WEBPACK_IMPORTED_MODULE_6__["TecDocumentPage"]]
@@ -221,8 +234,10 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let TecDocumentPage = class TecDocumentPage {
-      constructor(route, formBuilder, alertCtrl, dbService) {
+    var TecDocumentPage = /*#__PURE__*/function () {
+      function TecDocumentPage(route, formBuilder, alertCtrl, dbService) {
+        _classCallCheck(this, TecDocumentPage);
+
         this.route = route;
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
@@ -235,94 +250,137 @@
         this.currentActiveTab = 1;
       }
 
-      ngOnInit() {
-        this.onGetDocumentList();
-      }
+      _createClass(TecDocumentPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.onGetDocumentList();
+        }
+      }, {
+        key: "onViewImageHandler",
+        value: function onViewImageHandler(index) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var imagePath;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master') {
+                      imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
+                      console.log(imagePath);
+                    } else {
+                      imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
+                      console.log(imagePath);
+                    }
 
-      onViewImageHandler(index) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          let imagePath;
+                    window.open(imagePath, '_blank'); //  this.photoViewer.show(imagePath);
 
-          if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master') {
-            imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
-            console.log(imagePath);
-          } else {
-            imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
-            console.log(imagePath);
-          }
+                  case 2:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "onGetImageDataHandler",
+        value: function onGetImageDataHandler(documentId, documentTitle, Doctype) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var _this = this;
 
-          window.open(imagePath, '_blank'); //  this.photoViewer.show(imagePath);
-        });
-      }
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    inputData = {
+                      documentId: documentId,
+                      documentTitle: documentTitle,
+                      doc_type: Doctype
+                    };
+                    this.dbService.presentLoader();
+                    this.dbService.onPostRequestHandler(inputData, 'task/getDocumentAllList').subscribe(function (result) {
+                      console.log(result);
 
-      onGetImageDataHandler(documentId, documentTitle, Doctype) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const inputData = {
-            documentId: documentId,
-            documentTitle: documentTitle,
-            doc_type: Doctype
-          };
+                      _this.dbService.dismissLoader();
+
+                      _this.documentImageData = result["documentImageData"];
+
+                      _this.onViewImageHandler(0);
+                    });
+
+                  case 3:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "onGetDocumentList",
+        value: function onGetDocumentList() {
+          var _this2 = this;
+
           this.dbService.presentLoader();
-          this.dbService.onPostRequestHandler(inputData, 'task/getDocumentAllList').subscribe(result => {
+          var inputData = {};
+          this.dbService.onPostRequestHandler(inputData, 'task/getDocumentList').subscribe(function (result) {
             console.log(result);
-            this.dbService.dismissLoader();
-            this.documentImageData = result["documentImageData"];
-            this.onViewImageHandler(0);
+
+            _this2.dbService.dismissLoader();
+
+            if (result["status"] == 'error') {
+              _this2.dbService.onShowAlertMessage('Error', result["statusMessage"]);
+            } else {
+              _this2.documentList = result["documentList"];
+              _this2.masterDocList = result["customer_doc_in_technician"];
+            }
           });
-        });
-      }
+        }
+      }, {
+        key: "onGetDocumentList1",
+        value: function onGetDocumentList1() {
+          var _this3 = this;
 
-      onGetDocumentList() {
-        this.dbService.presentLoader();
-        const inputData = {};
-        this.dbService.onPostRequestHandler(inputData, 'task/getDocumentList').subscribe(result => {
-          console.log(result);
-          this.dbService.dismissLoader();
+          this.dbService.presentLoader();
+          var inputData = {};
+          this.dbService.onPostRequestHandler(inputData, 'task/getDocumentList').subscribe(function (result) {
+            console.log(result);
 
-          if (result["status"] == 'error') {
-            this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
-          } else {
-            this.documentList = result["documentList"];
-            this.masterDocList = result["customer_doc_in_technician"];
-          }
-        });
-      }
+            _this3.dbService.dismissLoader();
 
-      onGetDocumentList1() {
-        this.dbService.presentLoader();
-        const inputData = {};
-        this.dbService.onPostRequestHandler(inputData, 'task/getDocumentList').subscribe(result => {
-          console.log(result);
-          this.dbService.dismissLoader();
+            if (result["status"] == 'error') {
+              _this3.dbService.onShowAlertMessage('Error', result["statusMessage"]);
+            } else {
+              _this3.documentList1 = result["customer_doc_in_technician"];
+            }
+          });
+        }
+      }]);
 
-          if (result["status"] == 'error') {
-            this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
-          } else {
-            this.documentList1 = result["customer_doc_in_technician"];
-          }
-        });
-      }
+      return TecDocumentPage;
+    }();
 
+    TecDocumentPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    TecDocumentPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     TecDocumentPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-tec-document',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./tec-document.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tec-document/tec-document.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tec-document/tec-document.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./tec-document.page.scss */
-      "./src/app/technician_app/tec-document/tec-document.page.scss")).default]
+      "./src/app/technician_app/tec-document/tec-document.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], TecDocumentPage);
     /***/
   }

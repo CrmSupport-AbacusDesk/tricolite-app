@@ -1,3 +1,23 @@
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[22], {
   /***/
   "./node_modules/@ionic/core/dist/esm/ion-datetime_3-ios.entry.js":
@@ -79,28 +99,28 @@
      */
 
 
-    const getDateValue = (date, format) => {
-      const getValue = getValueFromFormat(date, format);
+    var getDateValue = function getDateValue(date, format) {
+      var getValue = getValueFromFormat(date, format);
 
       if (getValue !== undefined) {
         return getValue;
       }
 
-      const defaultDate = parseDate(new Date().toISOString());
+      var defaultDate = parseDate(new Date().toISOString());
       return getValueFromFormat(defaultDate, format);
     };
 
-    const renderDatetime = (template, value, locale) => {
+    var renderDatetime = function renderDatetime(template, value, locale) {
       if (value === undefined) {
         return undefined;
       }
 
-      const tokens = [];
-      let hasText = false;
-      FORMAT_KEYS.forEach((format, index) => {
+      var tokens = [];
+      var hasText = false;
+      FORMAT_KEYS.forEach(function (format, index) {
         if (template.indexOf(format.f) > -1) {
-          const token = '{' + index + '}';
-          const text = renderTextFormat(format.f, value[format.k], value, locale);
+          var token = '{' + index + '}';
+          var text = renderTextFormat(format.f, value[format.k], value, locale);
 
           if (!hasText && text !== undefined && value[format.k] != null) {
             hasText = true;
@@ -115,14 +135,14 @@
         return undefined;
       }
 
-      for (let i = 0; i < tokens.length; i += 2) {
+      for (var i = 0; i < tokens.length; i += 2) {
         template = template.replace(tokens[i], tokens[i + 1]);
       }
 
       return template;
     };
 
-    const renderTextFormat = (format, value, date, locale) => {
+    var renderTextFormat = function renderTextFormat(format, value, date, locale) {
       if (format === FORMAT_DDDD || format === FORMAT_DDD) {
         try {
           value = new Date(date.year, date.month - 1, date.day).getDay();
@@ -183,8 +203,8 @@
       return value.toString();
     };
 
-    const dateValueRange = (format, min, max) => {
-      const opts = [];
+    var dateValueRange = function dateValueRange(format, min, max) {
+      var opts = [];
 
       if (format === FORMAT_YYYY || format === FORMAT_YY) {
         // year
@@ -192,33 +212,33 @@
           throw new Error('min and max year is undefined');
         }
 
-        for (let i = max.year; i >= min.year; i--) {
+        for (var i = max.year; i >= min.year; i--) {
           opts.push(i);
         }
       } else if (format === FORMAT_MMMM || format === FORMAT_MMM || format === FORMAT_MM || format === FORMAT_M || format === FORMAT_hh || format === FORMAT_h) {
         // month or 12-hour
-        for (let i = 1; i < 13; i++) {
-          opts.push(i);
+        for (var _i = 1; _i < 13; _i++) {
+          opts.push(_i);
         }
       } else if (format === FORMAT_DDDD || format === FORMAT_DDD || format === FORMAT_DD || format === FORMAT_D) {
         // day
-        for (let i = 1; i < 32; i++) {
-          opts.push(i);
+        for (var _i2 = 1; _i2 < 32; _i2++) {
+          opts.push(_i2);
         }
       } else if (format === FORMAT_HH || format === FORMAT_H) {
         // 24-hour
-        for (let i = 0; i < 24; i++) {
-          opts.push(i);
+        for (var _i3 = 0; _i3 < 24; _i3++) {
+          opts.push(_i3);
         }
       } else if (format === FORMAT_mm || format === FORMAT_m) {
         // minutes
-        for (let i = 0; i < 60; i++) {
-          opts.push(i);
+        for (var _i4 = 0; _i4 < 60; _i4++) {
+          opts.push(_i4);
         }
       } else if (format === FORMAT_ss || format === FORMAT_s) {
         // seconds
-        for (let i = 0; i < 60; i++) {
-          opts.push(i);
+        for (var _i5 = 0; _i5 < 60; _i5++) {
+          opts.push(_i5);
         }
       } else if (format === FORMAT_A || format === FORMAT_a) {
         // AM/PM
@@ -228,29 +248,31 @@
       return opts;
     };
 
-    const dateSortValue = (year, month, day, hour = 0, minute = 0) => {
+    var dateSortValue = function dateSortValue(year, month, day) {
+      var hour = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+      var minute = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
       return parseInt("1".concat(fourDigit(year)).concat(twoDigit(month)).concat(twoDigit(day)).concat(twoDigit(hour)).concat(twoDigit(minute)), 10);
     };
 
-    const dateDataSortValue = data => {
+    var dateDataSortValue = function dateDataSortValue(data) {
       return dateSortValue(data.year, data.month, data.day, data.hour, data.minute);
     };
 
-    const daysInMonth = (month, year) => {
+    var daysInMonth = function daysInMonth(month, year) {
       return month === 4 || month === 6 || month === 9 || month === 11 ? 30 : month === 2 ? isLeapYear(year) ? 29 : 28 : 31;
     };
 
-    const isLeapYear = year => {
+    var isLeapYear = function isLeapYear(year) {
       return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
     };
 
-    const ISO_8601_REGEXP = /^(\d{4}|[+\-]\d{6})(?:-(\d{2})(?:-(\d{2}))?)?(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/;
-    const TIME_REGEXP = /^((\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/;
+    var ISO_8601_REGEXP = /^(\d{4}|[+\-]\d{6})(?:-(\d{2})(?:-(\d{2}))?)?(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/;
+    var TIME_REGEXP = /^((\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/;
 
-    const parseDate = val => {
+    var parseDate = function parseDate(val) {
       // manually parse IS0 cuz Date.parse cannot be trusted
       // ISO 8601 format: 1994-12-15T13:47:20Z
-      let parse = null;
+      var parse = null;
 
       if (val != null && val !== '') {
         // try parsing for just time first, HH:MM
@@ -272,11 +294,11 @@
       } // ensure all the parse values exist with at least 0
 
 
-      for (let i = 1; i < 8; i++) {
+      for (var i = 1; i < 8; i++) {
         parse[i] = parse[i] !== undefined ? parseInt(parse[i], 10) : undefined;
       }
 
-      let tzOffset = 0;
+      var tzOffset = 0;
 
       if (parse[9] && parse[10]) {
         // hours
@@ -301,7 +323,7 @@
         minute: parse[5],
         second: parse[6],
         millisecond: parse[7],
-        tzOffset
+        tzOffset: tzOffset
       };
     };
     /**
@@ -312,7 +334,9 @@
      */
 
 
-    const getLocalDateTime = (dateString = '') => {
+    var getLocalDateTime = function getLocalDateTime() {
+      var dateString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
       /**
        * If user passed in undefined
        * or null, convert it to the
@@ -335,13 +359,13 @@
         dateString += ' ';
       }
 
-      const date = typeof dateString === 'string' && dateString.length > 0 ? new Date(dateString) : new Date();
+      var date = typeof dateString === 'string' && dateString.length > 0 ? new Date(dateString) : new Date();
       return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
     };
 
-    const updateDate = (existingData, newData) => {
+    var updateDate = function updateDate(existingData, newData) {
       if (!newData || typeof newData === 'string') {
-        const localDateTime = getLocalDateTime(newData);
+        var localDateTime = getLocalDateTime(newData);
 
         if (!Number.isNaN(localDateTime.getTime())) {
           newData = localDateTime.toISOString();
@@ -369,7 +393,8 @@
           // to the existing DatetimeData values
 
 
-          for (const key of Object.keys(newData)) {
+          for (var _i6 = 0, _Object$keys = Object.keys(newData); _i6 < _Object$keys.length; _i6++) {
+            var key = _Object$keys[_i6];
             existingData[key] = newData[key].value;
           }
 
@@ -389,7 +414,7 @@
         console.warn("Error parsing date: \"".concat(newData, "\". Please provide a valid ISO 8601 datetime format: https://www.w3.org/TR/NOTE-datetime"));
       } else {
         // blank data, clear everything out
-        for (const k in existingData) {
+        for (var k in existingData) {
           if (existingData.hasOwnProperty(k)) {
             delete existingData[k];
           }
@@ -399,17 +424,19 @@
       return false;
     };
 
-    const parseTemplate = template => {
-      const formats = [];
+    var parseTemplate = function parseTemplate(template) {
+      var formats = [];
       template = template.replace(/[^\w\s]/gi, ' ');
-      FORMAT_KEYS.forEach(format => {
+      FORMAT_KEYS.forEach(function (format) {
         if (format.f.length > 1 && template.indexOf(format.f) > -1 && template.indexOf(format.f + format.f.charAt(0)) < 0) {
           template = template.replace(format.f, ' ' + format.f + ' ');
         }
       });
-      const words = template.split(' ').filter(w => w.length > 0);
-      words.forEach((word, i) => {
-        FORMAT_KEYS.forEach(format => {
+      var words = template.split(' ').filter(function (w) {
+        return w.length > 0;
+      });
+      words.forEach(function (word, i) {
+        FORMAT_KEYS.forEach(function (format) {
           if (word === format.f) {
             if (word === FORMAT_A || word === FORMAT_a) {
               // this format is an am/pm format, so it's an "a" or "A"
@@ -428,7 +455,7 @@
       return formats;
     };
 
-    const getValueFromFormat = (date, format) => {
+    var getValueFromFormat = function getValueFromFormat(date, format) {
       if (format === FORMAT_A || format === FORMAT_a) {
         return date.hour < 12 ? 'am' : 'pm';
       }
@@ -440,8 +467,8 @@
       return date[convertFormatToKey(format)];
     };
 
-    const convertFormatToKey = format => {
-      for (const k in FORMAT_KEYS) {
+    var convertFormatToKey = function convertFormatToKey(format) {
+      for (var k in FORMAT_KEYS) {
         if (FORMAT_KEYS[k].f === format) {
           return FORMAT_KEYS[k].k;
         }
@@ -450,9 +477,9 @@
       return undefined;
     };
 
-    const convertDataToISO = data => {
+    var convertDataToISO = function convertDataToISO(data) {
       // https://www.w3.org/TR/NOTE-datetime
-      let rtn = '';
+      var rtn = '';
 
       if (data.year !== undefined) {
         // YYYY
@@ -508,7 +535,7 @@
      */
 
 
-    const convertToArrayOfStrings = (input, type) => {
+    var convertToArrayOfStrings = function convertToArrayOfStrings(input, type) {
       if (input == null) {
         return undefined;
       }
@@ -519,11 +546,13 @@
         input = input.replace(/\[|\]/g, '').split(',');
       }
 
-      let values;
+      var values;
 
       if (Array.isArray(input)) {
         // trim up each string value
-        values = input.map(val => val.toString().trim());
+        values = input.map(function (val) {
+          return val.toString().trim();
+        });
       }
 
       if (values === undefined || values.length === 0) {
@@ -538,18 +567,20 @@
      */
 
 
-    const convertToArrayOfNumbers = (input, type) => {
+    var convertToArrayOfNumbers = function convertToArrayOfNumbers(input, type) {
       if (typeof input === 'string') {
         // convert the string to an array of strings
         // auto remove any whitespace and [] characters
         input = input.replace(/\[|\]|\s/g, '').split(',');
       }
 
-      let values;
+      var values;
 
       if (Array.isArray(input)) {
         // ensure each value is an actual number in the returned array
-        values = input.map(num => parseInt(num, 10)).filter(isFinite);
+        values = input.map(function (num) {
+          return parseInt(num, 10);
+        }).filter(isFinite);
       } else {
         values = [input];
       }
@@ -561,39 +592,39 @@
       return values;
     };
 
-    const twoDigit = val => {
+    var twoDigit = function twoDigit(val) {
       return ('0' + (val !== undefined ? Math.abs(val) : '0')).slice(-2);
     };
 
-    const threeDigit = val => {
+    var threeDigit = function threeDigit(val) {
       return ('00' + (val !== undefined ? Math.abs(val) : '0')).slice(-3);
     };
 
-    const fourDigit = val => {
+    var fourDigit = function fourDigit(val) {
       return ('000' + (val !== undefined ? Math.abs(val) : '0')).slice(-4);
     };
 
-    const FORMAT_YYYY = 'YYYY';
-    const FORMAT_YY = 'YY';
-    const FORMAT_MMMM = 'MMMM';
-    const FORMAT_MMM = 'MMM';
-    const FORMAT_MM = 'MM';
-    const FORMAT_M = 'M';
-    const FORMAT_DDDD = 'DDDD';
-    const FORMAT_DDD = 'DDD';
-    const FORMAT_DD = 'DD';
-    const FORMAT_D = 'D';
-    const FORMAT_HH = 'HH';
-    const FORMAT_H = 'H';
-    const FORMAT_hh = 'hh';
-    const FORMAT_h = 'h';
-    const FORMAT_mm = 'mm';
-    const FORMAT_m = 'm';
-    const FORMAT_ss = 'ss';
-    const FORMAT_s = 's';
-    const FORMAT_A = 'A';
-    const FORMAT_a = 'a';
-    const FORMAT_KEYS = [{
+    var FORMAT_YYYY = 'YYYY';
+    var FORMAT_YY = 'YY';
+    var FORMAT_MMMM = 'MMMM';
+    var FORMAT_MMM = 'MMM';
+    var FORMAT_MM = 'MM';
+    var FORMAT_M = 'M';
+    var FORMAT_DDDD = 'DDDD';
+    var FORMAT_DDD = 'DDD';
+    var FORMAT_DD = 'DD';
+    var FORMAT_D = 'D';
+    var FORMAT_HH = 'HH';
+    var FORMAT_H = 'H';
+    var FORMAT_hh = 'hh';
+    var FORMAT_h = 'h';
+    var FORMAT_mm = 'mm';
+    var FORMAT_m = 'm';
+    var FORMAT_ss = 'ss';
+    var FORMAT_s = 's';
+    var FORMAT_A = 'A';
+    var FORMAT_a = 'a';
+    var FORMAT_KEYS = [{
       f: FORMAT_YYYY,
       k: 'year'
     }, {
@@ -654,13 +685,18 @@
       f: FORMAT_a,
       k: 'ampm'
     }];
-    const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const DAY_SHORT_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const MONTH_SHORT_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const VALID_AMPM_PREFIX = [FORMAT_hh, FORMAT_h, FORMAT_mm, FORMAT_m, FORMAT_ss, FORMAT_s];
-    const Datetime = class {
-      constructor(hostRef) {
+    var DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var DAY_SHORT_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var MONTH_SHORT_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var VALID_AMPM_PREFIX = [FORMAT_hh, FORMAT_h, FORMAT_mm, FORMAT_m, FORMAT_ss, FORMAT_s];
+
+    var Datetime = /*#__PURE__*/function () {
+      function Datetime(hostRef) {
+        var _this = this;
+
+        _classCallCheck(this, Datetime);
+
         Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
         this.inputId = "ion-dt-".concat(datetimeIds++);
         this.locale = {};
@@ -703,17 +739,18 @@
 
         this.doneText = 'Done';
 
-        this.onClick = () => {
-          this.setFocus();
-          this.open();
+        this.onClick = function () {
+          _this.setFocus();
+
+          _this.open();
         };
 
-        this.onFocus = () => {
-          this.ionFocus.emit();
+        this.onFocus = function () {
+          _this.ionFocus.emit();
         };
 
-        this.onBlur = () => {
-          this.ionBlur.emit();
+        this.onBlur = function () {
+          _this.ionBlur.emit();
         };
 
         this.ionCancel = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionCancel", 7);
@@ -723,406 +760,513 @@
         this.ionStyle = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionStyle", 7);
       }
 
-      disabledChanged() {
-        this.emitStyle();
-      }
-      /**
-       * Update the datetime value when the value changes
-       */
-
-
-      valueChanged() {
-        this.updateDatetimeValue(this.value);
-        this.emitStyle();
-        this.ionChange.emit({
-          value: this.value
-        });
-      }
-
-      componentWillLoad() {
-        // first see if locale names were provided in the inputs
-        // then check to see if they're in the config
-        // if neither were provided then it will use default English names
-        this.locale = {
-          // this.locale[type] = convertToArrayOfStrings((this[type] ? this[type] : this.config.get(type), type);
-          monthNames: convertToArrayOfStrings(this.monthNames, 'monthNames'),
-          monthShortNames: convertToArrayOfStrings(this.monthShortNames, 'monthShortNames'),
-          dayNames: convertToArrayOfStrings(this.dayNames, 'dayNames'),
-          dayShortNames: convertToArrayOfStrings(this.dayShortNames, 'dayShortNames')
-        };
-        this.updateDatetimeValue(this.value);
-        this.emitStyle();
-      }
-      /**
-       * Opens the datetime overlay.
-       */
-
-
-      async open() {
-        if (this.disabled || this.isExpanded) {
-          return;
+      _createClass(Datetime, [{
+        key: "disabledChanged",
+        value: function disabledChanged() {
+          this.emitStyle();
         }
+        /**
+         * Update the datetime value when the value changes
+         */
 
-        const pickerOptions = this.generatePickerOptions();
-        const picker = await _overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["p"].create(pickerOptions);
-        this.isExpanded = true;
-        picker.onDidDismiss().then(() => {
-          this.isExpanded = false;
-          this.setFocus();
-        });
-        picker.addEventListener('ionPickerColChange', async event => {
-          const data = event.detail;
-          const colSelectedIndex = data.selectedIndex;
-          const colOptions = data.options;
-          const changeData = {};
-          changeData[data.name] = {
-            value: colOptions[colSelectedIndex].value
+      }, {
+        key: "valueChanged",
+        value: function valueChanged() {
+          this.updateDatetimeValue(this.value);
+          this.emitStyle();
+          this.ionChange.emit({
+            value: this.value
+          });
+        }
+      }, {
+        key: "componentWillLoad",
+        value: function componentWillLoad() {
+          // first see if locale names were provided in the inputs
+          // then check to see if they're in the config
+          // if neither were provided then it will use default English names
+          this.locale = {
+            // this.locale[type] = convertToArrayOfStrings((this[type] ? this[type] : this.config.get(type), type);
+            monthNames: convertToArrayOfStrings(this.monthNames, 'monthNames'),
+            monthShortNames: convertToArrayOfStrings(this.monthShortNames, 'monthShortNames'),
+            dayNames: convertToArrayOfStrings(this.dayNames, 'dayNames'),
+            dayShortNames: convertToArrayOfStrings(this.dayShortNames, 'dayShortNames')
           };
-          this.updateDatetimeValue(changeData);
-          picker.columns = this.generateColumns();
-        });
-        await picker.present();
-      }
-
-      emitStyle() {
-        this.ionStyle.emit({
-          'interactive': true,
-          'datetime': true,
-          'has-placeholder': this.placeholder != null,
-          'has-value': this.hasValue(),
-          'interactive-disabled': this.disabled
-        });
-      }
-
-      updateDatetimeValue(value) {
-        updateDate(this.datetimeValue, value);
-      }
-
-      generatePickerOptions() {
-        const mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        const pickerOptions = Object.assign(Object.assign({
-          mode
-        }, this.pickerOptions), {
-          columns: this.generateColumns()
-        }); // If the user has not passed in picker buttons,
-        // add a cancel and ok button to the picker
-
-        const buttons = pickerOptions.buttons;
-
-        if (!buttons || buttons.length === 0) {
-          pickerOptions.buttons = [{
-            text: this.cancelText,
-            role: 'cancel',
-            handler: () => {
-              this.updateDatetimeValue(this.value);
-              this.ionCancel.emit();
-            }
-          }, {
-            text: this.doneText,
-            handler: data => {
-              this.updateDatetimeValue(data);
-              /**
-               * Prevent convertDataToISO from doing any
-               * kind of transformation based on timezone
-               * This cancels out any change it attempts to make
-               *
-               * Important: Take the timezone offset based on
-               * the date that is currently selected, otherwise
-               * there can be 1 hr difference when dealing w/ DST
-               */
-
-              const date = new Date(convertDataToISO(this.datetimeValue));
-              this.datetimeValue.tzOffset = date.getTimezoneOffset() * -1;
-              this.value = convertDataToISO(this.datetimeValue);
-            }
-          }];
+          this.updateDatetimeValue(this.value);
+          this.emitStyle();
         }
+        /**
+         * Opens the datetime overlay.
+         */
 
-        return pickerOptions;
-      }
+      }, {
+        key: "open",
+        value: function () {
+          var _open = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var _this2 = this;
 
-      generateColumns() {
-        // if a picker format wasn't provided, then fallback
-        // to use the display format
-        let template = this.pickerFormat || this.displayFormat || DEFAULT_FORMAT;
+            var pickerOptions, picker;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    if (!(this.disabled || this.isExpanded)) {
+                      _context2.next = 2;
+                      break;
+                    }
 
-        if (template.length === 0) {
-          return [];
-        } // make sure we've got up to date sizing information
+                    return _context2.abrupt("return");
+
+                  case 2:
+                    pickerOptions = this.generatePickerOptions();
+                    _context2.next = 5;
+                    return _overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["p"].create(pickerOptions);
+
+                  case 5:
+                    picker = _context2.sent;
+                    this.isExpanded = true;
+                    picker.onDidDismiss().then(function () {
+                      _this2.isExpanded = false;
+
+                      _this2.setFocus();
+                    });
+                    picker.addEventListener('ionPickerColChange', /*#__PURE__*/function () {
+                      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+                        var data, colSelectedIndex, colOptions, changeData;
+                        return regeneratorRuntime.wrap(function _callee$(_context) {
+                          while (1) {
+                            switch (_context.prev = _context.next) {
+                              case 0:
+                                data = event.detail;
+                                colSelectedIndex = data.selectedIndex;
+                                colOptions = data.options;
+                                changeData = {};
+                                changeData[data.name] = {
+                                  value: colOptions[colSelectedIndex].value
+                                };
+
+                                _this2.updateDatetimeValue(changeData);
+
+                                picker.columns = _this2.generateColumns();
+
+                              case 7:
+                              case "end":
+                                return _context.stop();
+                            }
+                          }
+                        }, _callee);
+                      }));
+
+                      return function (_x) {
+                        return _ref.apply(this, arguments);
+                      };
+                    }());
+                    _context2.next = 11;
+                    return picker.present();
+
+                  case 11:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+
+          function open() {
+            return _open.apply(this, arguments);
+          }
+
+          return open;
+        }()
+      }, {
+        key: "emitStyle",
+        value: function emitStyle() {
+          this.ionStyle.emit({
+            'interactive': true,
+            'datetime': true,
+            'has-placeholder': this.placeholder != null,
+            'has-value': this.hasValue(),
+            'interactive-disabled': this.disabled
+          });
+        }
+      }, {
+        key: "updateDatetimeValue",
+        value: function updateDatetimeValue(value) {
+          updateDate(this.datetimeValue, value);
+        }
+      }, {
+        key: "generatePickerOptions",
+        value: function generatePickerOptions() {
+          var _this3 = this;
+
+          var mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+          var pickerOptions = Object.assign(Object.assign({
+            mode: mode
+          }, this.pickerOptions), {
+            columns: this.generateColumns()
+          }); // If the user has not passed in picker buttons,
+          // add a cancel and ok button to the picker
+
+          var buttons = pickerOptions.buttons;
+
+          if (!buttons || buttons.length === 0) {
+            pickerOptions.buttons = [{
+              text: this.cancelText,
+              role: 'cancel',
+              handler: function handler() {
+                _this3.updateDatetimeValue(_this3.value);
+
+                _this3.ionCancel.emit();
+              }
+            }, {
+              text: this.doneText,
+              handler: function handler(data) {
+                _this3.updateDatetimeValue(data);
+                /**
+                 * Prevent convertDataToISO from doing any
+                 * kind of transformation based on timezone
+                 * This cancels out any change it attempts to make
+                 *
+                 * Important: Take the timezone offset based on
+                 * the date that is currently selected, otherwise
+                 * there can be 1 hr difference when dealing w/ DST
+                 */
 
 
-        this.calcMinMax(); // does not support selecting by day name
-        // automatically remove any day name formats
+                var date = new Date(convertDataToISO(_this3.datetimeValue));
+                _this3.datetimeValue.tzOffset = date.getTimezoneOffset() * -1;
+                _this3.value = convertDataToISO(_this3.datetimeValue);
+              }
+            }];
+          }
 
-        template = template.replace('DDDD', '{~}').replace('DDD', '{~}');
+          return pickerOptions;
+        }
+      }, {
+        key: "generateColumns",
+        value: function generateColumns() {
+          var _this4 = this;
 
-        if (template.indexOf('D') === -1) {
-          // there is not a day in the template
-          // replace the day name with a numeric one if it exists
-          template = template.replace('{~}', 'D');
-        } // make sure no day name replacer is left in the string
+          // if a picker format wasn't provided, then fallback
+          // to use the display format
+          var template = this.pickerFormat || this.displayFormat || DEFAULT_FORMAT;
+
+          if (template.length === 0) {
+            return [];
+          } // make sure we've got up to date sizing information
 
 
-        template = template.replace(/{~}/g, ''); // parse apart the given template into an array of "formats"
+          this.calcMinMax(); // does not support selecting by day name
+          // automatically remove any day name formats
 
-        const columns = parseTemplate(template).map(format => {
-          // loop through each format in the template
-          // create a new picker column to build up with data
-          const key = convertFormatToKey(format);
-          let values; // check if they have exact values to use for this date part
-          // otherwise use the default date part values
+          template = template.replace('DDDD', '{~}').replace('DDD', '{~}');
 
-          const self = this;
-          values = self[key + 'Values'] ? convertToArrayOfNumbers(self[key + 'Values'], key) : dateValueRange(format, this.datetimeMin, this.datetimeMax);
-          const colOptions = values.map(val => {
+          if (template.indexOf('D') === -1) {
+            // there is not a day in the template
+            // replace the day name with a numeric one if it exists
+            template = template.replace('{~}', 'D');
+          } // make sure no day name replacer is left in the string
+
+
+          template = template.replace(/{~}/g, ''); // parse apart the given template into an array of "formats"
+
+          var columns = parseTemplate(template).map(function (format) {
+            // loop through each format in the template
+            // create a new picker column to build up with data
+            var key = convertFormatToKey(format);
+            var values; // check if they have exact values to use for this date part
+            // otherwise use the default date part values
+
+            var self = _this4;
+            values = self[key + 'Values'] ? convertToArrayOfNumbers(self[key + 'Values'], key) : dateValueRange(format, _this4.datetimeMin, _this4.datetimeMax);
+            var colOptions = values.map(function (val) {
+              return {
+                value: val,
+                text: renderTextFormat(format, val, undefined, _this4.locale)
+              };
+            }); // cool, we've loaded up the columns with options
+            // preselect the option for this column
+
+            var optValue = getDateValue(_this4.datetimeValue, format);
+            var selectedIndex = colOptions.findIndex(function (opt) {
+              return opt.value === optValue;
+            });
             return {
-              value: val,
-              text: renderTextFormat(format, val, undefined, this.locale)
+              name: key,
+              selectedIndex: selectedIndex >= 0 ? selectedIndex : 0,
+              options: colOptions
             };
-          }); // cool, we've loaded up the columns with options
-          // preselect the option for this column
+          }); // Normalize min/max
 
-          const optValue = getDateValue(this.datetimeValue, format);
-          const selectedIndex = colOptions.findIndex(opt => opt.value === optValue);
-          return {
-            name: key,
-            selectedIndex: selectedIndex >= 0 ? selectedIndex : 0,
-            options: colOptions
-          };
-        }); // Normalize min/max
+          var min = this.datetimeMin;
+          var max = this.datetimeMax;
+          ['month', 'day', 'hour', 'minute'].filter(function (name) {
+            return !columns.find(function (column) {
+              return column.name === name;
+            });
+          }).forEach(function (name) {
+            min[name] = 0;
+            max[name] = 0;
+          });
+          return this.validateColumns(divyColumns(columns));
+        }
+      }, {
+        key: "validateColumns",
+        value: function validateColumns(columns) {
+          var today = new Date();
+          var minCompareVal = dateDataSortValue(this.datetimeMin);
+          var maxCompareVal = dateDataSortValue(this.datetimeMax);
+          var yearCol = columns.find(function (c) {
+            return c.name === 'year';
+          });
+          var selectedYear = today.getFullYear();
 
-        const min = this.datetimeMin;
-        const max = this.datetimeMax;
-        ['month', 'day', 'hour', 'minute'].filter(name => !columns.find(column => column.name === name)).forEach(name => {
-          min[name] = 0;
-          max[name] = 0;
-        });
-        return this.validateColumns(divyColumns(columns));
-      }
+          if (yearCol) {
+            // default to the first value if the current year doesn't exist in the options
+            if (!yearCol.options.find(function (col) {
+              return col.value === today.getFullYear();
+            })) {
+              selectedYear = yearCol.options[0].value;
+            }
 
-      validateColumns(columns) {
-        const today = new Date();
-        const minCompareVal = dateDataSortValue(this.datetimeMin);
-        const maxCompareVal = dateDataSortValue(this.datetimeMax);
-        const yearCol = columns.find(c => c.name === 'year');
-        let selectedYear = today.getFullYear();
+            var selectedIndex = yearCol.selectedIndex;
 
-        if (yearCol) {
-          // default to the first value if the current year doesn't exist in the options
-          if (!yearCol.options.find(col => col.value === today.getFullYear())) {
-            selectedYear = yearCol.options[0].value;
+            if (selectedIndex !== undefined) {
+              var yearOpt = yearCol.options[selectedIndex];
+
+              if (yearOpt) {
+                // they have a selected year value
+                selectedYear = yearOpt.value;
+              }
+            }
           }
 
-          const selectedIndex = yearCol.selectedIndex;
+          var selectedMonth = this.validateColumn(columns, 'month', 1, minCompareVal, maxCompareVal, [selectedYear, 0, 0, 0, 0], [selectedYear, 12, 31, 23, 59]);
+          var numDaysInMonth = daysInMonth(selectedMonth, selectedYear);
+          var selectedDay = this.validateColumn(columns, 'day', 2, minCompareVal, maxCompareVal, [selectedYear, selectedMonth, 0, 0, 0], [selectedYear, selectedMonth, numDaysInMonth, 23, 59]);
+          var selectedHour = this.validateColumn(columns, 'hour', 3, minCompareVal, maxCompareVal, [selectedYear, selectedMonth, selectedDay, 0, 0], [selectedYear, selectedMonth, selectedDay, 23, 59]);
+          this.validateColumn(columns, 'minute', 4, minCompareVal, maxCompareVal, [selectedYear, selectedMonth, selectedDay, selectedHour, 0], [selectedYear, selectedMonth, selectedDay, selectedHour, 59]);
+          return columns;
+        }
+      }, {
+        key: "calcMinMax",
+        value: function calcMinMax() {
+          var todaysYear = new Date().getFullYear();
 
-          if (selectedIndex !== undefined) {
-            const yearOpt = yearCol.options[selectedIndex];
+          if (this.yearValues !== undefined) {
+            var years = convertToArrayOfNumbers(this.yearValues, 'year');
 
-            if (yearOpt) {
-              // they have a selected year value
-              selectedYear = yearOpt.value;
+            if (this.min === undefined) {
+              this.min = Math.min.apply(Math, _toConsumableArray(years)).toString();
+            }
+
+            if (this.max === undefined) {
+              this.max = Math.max.apply(Math, _toConsumableArray(years)).toString();
+            }
+          } else {
+            if (this.min === undefined) {
+              this.min = (todaysYear - 100).toString();
+            }
+
+            if (this.max === undefined) {
+              this.max = todaysYear.toString();
+            }
+          }
+
+          var min = this.datetimeMin = parseDate(this.min);
+          var max = this.datetimeMax = parseDate(this.max);
+          min.year = min.year || todaysYear;
+          max.year = max.year || todaysYear;
+          min.month = min.month || 1;
+          max.month = max.month || 12;
+          min.day = min.day || 1;
+          max.day = max.day || 31;
+          min.hour = min.hour || 0;
+          max.hour = max.hour || 23;
+          min.minute = min.minute || 0;
+          max.minute = max.minute || 59;
+          min.second = min.second || 0;
+          max.second = max.second || 59; // Ensure min/max constraints
+
+          if (min.year > max.year) {
+            console.error('min.year > max.year');
+            min.year = max.year - 100;
+          }
+
+          if (min.year === max.year) {
+            if (min.month > max.month) {
+              console.error('min.month > max.month');
+              min.month = 1;
+            } else if (min.month === max.month && min.day > max.day) {
+              console.error('min.day > max.day');
+              min.day = 1;
             }
           }
         }
+      }, {
+        key: "validateColumn",
+        value: function validateColumn(columns, name, index, min, max, lowerBounds, upperBounds) {
+          var column = columns.find(function (c) {
+            return c.name === name;
+          });
 
-        const selectedMonth = this.validateColumn(columns, 'month', 1, minCompareVal, maxCompareVal, [selectedYear, 0, 0, 0, 0], [selectedYear, 12, 31, 23, 59]);
-        const numDaysInMonth = daysInMonth(selectedMonth, selectedYear);
-        const selectedDay = this.validateColumn(columns, 'day', 2, minCompareVal, maxCompareVal, [selectedYear, selectedMonth, 0, 0, 0], [selectedYear, selectedMonth, numDaysInMonth, 23, 59]);
-        const selectedHour = this.validateColumn(columns, 'hour', 3, minCompareVal, maxCompareVal, [selectedYear, selectedMonth, selectedDay, 0, 0], [selectedYear, selectedMonth, selectedDay, 23, 59]);
-        this.validateColumn(columns, 'minute', 4, minCompareVal, maxCompareVal, [selectedYear, selectedMonth, selectedDay, selectedHour, 0], [selectedYear, selectedMonth, selectedDay, selectedHour, 59]);
-        return columns;
-      }
-
-      calcMinMax() {
-        const todaysYear = new Date().getFullYear();
-
-        if (this.yearValues !== undefined) {
-          const years = convertToArrayOfNumbers(this.yearValues, 'year');
-
-          if (this.min === undefined) {
-            this.min = Math.min(...years).toString();
+          if (!column) {
+            return 0;
           }
 
-          if (this.max === undefined) {
-            this.max = Math.max(...years).toString();
+          var lb = lowerBounds.slice();
+          var ub = upperBounds.slice();
+          var options = column.options;
+          var indexMin = options.length - 1;
+          var indexMax = 0;
+
+          for (var i = 0; i < options.length; i++) {
+            var opts = options[i];
+            var value = opts.value;
+            lb[index] = opts.value;
+            ub[index] = opts.value;
+            var disabled = opts.disabled = value < lowerBounds[index] || value > upperBounds[index] || dateSortValue(ub[0], ub[1], ub[2], ub[3], ub[4]) < min || dateSortValue(lb[0], lb[1], lb[2], lb[3], lb[4]) > max;
+
+            if (!disabled) {
+              indexMin = Math.min(indexMin, i);
+              indexMax = Math.max(indexMax, i);
+            }
           }
-        } else {
-          if (this.min === undefined) {
-            this.min = (todaysYear - 100).toString();
+
+          var selectedIndex = column.selectedIndex = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(indexMin, column.selectedIndex, indexMax);
+          var opt = column.options[selectedIndex];
+
+          if (opt) {
+            return opt.value;
           }
 
-          if (this.max === undefined) {
-            this.max = todaysYear.toString();
-          }
-        }
-
-        const min = this.datetimeMin = parseDate(this.min);
-        const max = this.datetimeMax = parseDate(this.max);
-        min.year = min.year || todaysYear;
-        max.year = max.year || todaysYear;
-        min.month = min.month || 1;
-        max.month = max.month || 12;
-        min.day = min.day || 1;
-        max.day = max.day || 31;
-        min.hour = min.hour || 0;
-        max.hour = max.hour || 23;
-        min.minute = min.minute || 0;
-        max.minute = max.minute || 59;
-        min.second = min.second || 0;
-        max.second = max.second || 59; // Ensure min/max constraints
-
-        if (min.year > max.year) {
-          console.error('min.year > max.year');
-          min.year = max.year - 100;
-        }
-
-        if (min.year === max.year) {
-          if (min.month > max.month) {
-            console.error('min.month > max.month');
-            min.month = 1;
-          } else if (min.month === max.month && min.day > max.day) {
-            console.error('min.day > max.day');
-            min.day = 1;
-          }
-        }
-      }
-
-      validateColumn(columns, name, index, min, max, lowerBounds, upperBounds) {
-        const column = columns.find(c => c.name === name);
-
-        if (!column) {
           return 0;
         }
+      }, {
+        key: "text",
+        get: function get() {
+          // create the text of the formatted data
+          var template = this.displayFormat || this.pickerFormat || DEFAULT_FORMAT;
 
-        const lb = lowerBounds.slice();
-        const ub = upperBounds.slice();
-        const options = column.options;
-        let indexMin = options.length - 1;
-        let indexMax = 0;
+          if (this.value === undefined || this.value === null || this.value.length === 0) {
+            return;
+          }
 
-        for (let i = 0; i < options.length; i++) {
-          const opts = options[i];
-          const value = opts.value;
-          lb[index] = opts.value;
-          ub[index] = opts.value;
-          const disabled = opts.disabled = value < lowerBounds[index] || value > upperBounds[index] || dateSortValue(ub[0], ub[1], ub[2], ub[3], ub[4]) < min || dateSortValue(lb[0], lb[1], lb[2], lb[3], lb[4]) > max;
-
-          if (!disabled) {
-            indexMin = Math.min(indexMin, i);
-            indexMax = Math.max(indexMax, i);
+          return renderDatetime(template, this.datetimeValue, this.locale);
+        }
+      }, {
+        key: "hasValue",
+        value: function hasValue() {
+          return this.text !== undefined;
+        }
+      }, {
+        key: "setFocus",
+        value: function setFocus() {
+          if (this.buttonEl) {
+            this.buttonEl.focus();
           }
         }
+      }, {
+        key: "render",
+        value: function render() {
+          var _class,
+              _this5 = this;
 
-        const selectedIndex = column.selectedIndex = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(indexMin, column.selectedIndex, indexMax);
-        const opt = column.options[selectedIndex];
+          var inputId = this.inputId,
+              text = this.text,
+              disabled = this.disabled,
+              readonly = this.readonly,
+              isExpanded = this.isExpanded,
+              el = this.el,
+              placeholder = this.placeholder;
+          var mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+          var labelId = inputId + '-lbl';
+          var label = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
+          var addPlaceholderClass = text === undefined && placeholder != null ? true : false; // If selected text has been passed in, use that first
+          // otherwise use the placeholder
 
-        if (opt) {
-          return opt.value;
-        }
+          var datetimeText = text === undefined ? placeholder != null ? placeholder : '' : text;
 
-        return 0;
-      }
-
-      get text() {
-        // create the text of the formatted data
-        const template = this.displayFormat || this.pickerFormat || DEFAULT_FORMAT;
-
-        if (this.value === undefined || this.value === null || this.value.length === 0) {
-          return;
-        }
-
-        return renderDatetime(template, this.datetimeValue, this.locale);
-      }
-
-      hasValue() {
-        return this.text !== undefined;
-      }
-
-      setFocus() {
-        if (this.buttonEl) {
-          this.buttonEl.focus();
-        }
-      }
-
-      render() {
-        const {
-          inputId,
-          text,
-          disabled,
-          readonly,
-          isExpanded,
-          el,
-          placeholder
-        } = this;
-        const mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        const labelId = inputId + '-lbl';
-        const label = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
-        const addPlaceholderClass = text === undefined && placeholder != null ? true : false; // If selected text has been passed in, use that first
-        // otherwise use the placeholder
-
-        const datetimeText = text === undefined ? placeholder != null ? placeholder : '' : text;
-
-        if (label) {
-          label.id = labelId;
-        }
-
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["a"])(true, el, this.name, this.value, this.disabled);
-        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          onClick: this.onClick,
-          role: "combobox",
-          "aria-disabled": disabled ? 'true' : null,
-          "aria-expanded": "".concat(isExpanded),
-          "aria-haspopup": "true",
-          "aria-labelledby": labelId,
-          class: {
-            [mode]: true,
-            'datetime-disabled': disabled,
-            'datetime-readonly': readonly,
-            'datetime-placeholder': addPlaceholderClass,
-            'in-item': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_5__["h"])('ion-item', el)
+          if (label) {
+            label.id = labelId;
           }
-        }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "datetime-text"
-        }, datetimeText), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
-          type: "button",
-          onFocus: this.onFocus,
-          onBlur: this.onBlur,
-          disabled: this.disabled,
-          ref: btnEl => this.buttonEl = btnEl
-        }));
-      }
 
-      get el() {
-        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
-      }
+          Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["a"])(true, el, this.name, this.value, this.disabled);
+          return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+            onClick: this.onClick,
+            role: "combobox",
+            "aria-disabled": disabled ? 'true' : null,
+            "aria-expanded": "".concat(isExpanded),
+            "aria-haspopup": "true",
+            "aria-labelledby": labelId,
+            "class": (_class = {}, _defineProperty(_class, mode, true), _defineProperty(_class, 'datetime-disabled', disabled), _defineProperty(_class, 'datetime-readonly', readonly), _defineProperty(_class, 'datetime-placeholder', addPlaceholderClass), _defineProperty(_class, 'in-item', Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_5__["h"])('ion-item', el)), _class)
+          }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "datetime-text"
+          }, datetimeText), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
+            type: "button",
+            onFocus: this.onFocus,
+            onBlur: this.onBlur,
+            disabled: this.disabled,
+            ref: function ref(btnEl) {
+              return _this5.buttonEl = btnEl;
+            }
+          }));
+        }
+      }, {
+        key: "el",
+        get: function get() {
+          return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
+        }
+      }], [{
+        key: "watchers",
+        get: function get() {
+          return {
+            "disabled": ["disabledChanged"],
+            "value": ["valueChanged"]
+          };
+        }
+      }, {
+        key: "style",
+        get: function get() {
+          return ":host{padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);display:-ms-flexbox;display:flex;position:relative;min-width:16px;min-height:1.2em;font-family:var(--ion-font-family,inherit);text-overflow:ellipsis;white-space:nowrap;overflow:hidden;z-index:2}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}:host(.in-item){position:static}:host(.datetime-placeholder){color:var(--placeholder-color)}:host(.datetime-disabled){opacity:.3;pointer-events:none}:host(.datetime-readonly){pointer-events:none}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.datetime-text{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;-ms-flex:1;flex:1;min-height:inherit;direction:ltr;overflow:inherit}:host-context([dir=rtl]) .datetime-text,[dir=rtl] .datetime-text{direction:rtl}:host{--placeholder-color:var(--ion-color-step-400,#999);--padding-top:10px;--padding-end:8px;--padding-bottom:10px;--padding-start:16px}";
+        }
+      }]);
 
-      static get watchers() {
-        return {
-          "disabled": ["disabledChanged"],
-          "value": ["valueChanged"]
-        };
-      }
+      return Datetime;
+    }();
 
-      static get style() {
-        return ":host{padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);display:-ms-flexbox;display:flex;position:relative;min-width:16px;min-height:1.2em;font-family:var(--ion-font-family,inherit);text-overflow:ellipsis;white-space:nowrap;overflow:hidden;z-index:2}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}:host(.in-item){position:static}:host(.datetime-placeholder){color:var(--placeholder-color)}:host(.datetime-disabled){opacity:.3;pointer-events:none}:host(.datetime-readonly){pointer-events:none}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.datetime-text{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;-ms-flex:1;flex:1;min-height:inherit;direction:ltr;overflow:inherit}:host-context([dir=rtl]) .datetime-text,[dir=rtl] .datetime-text{direction:rtl}:host{--placeholder-color:var(--ion-color-step-400,#999);--padding-top:10px;--padding-end:8px;--padding-bottom:10px;--padding-start:16px}";
-      }
+    var divyColumns = function divyColumns(columns) {
+      var columnsWidth = [];
+      var col;
+      var width;
 
-    };
-
-    const divyColumns = columns => {
-      const columnsWidth = [];
-      let col;
-      let width;
-
-      for (let i = 0; i < columns.length; i++) {
+      for (var i = 0; i < columns.length; i++) {
         col = columns[i];
         columnsWidth.push(0);
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
-        for (const option of col.options) {
-          width = option.text.length;
+        try {
+          for (var _iterator = col.options[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var option = _step.value;
+            width = option.text.length;
 
-          if (width > columnsWidth[i]) {
-            columnsWidth[i] = width;
+            if (width > columnsWidth[i]) {
+              columnsWidth[i] = width;
+            }
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+              _iterator["return"]();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
           }
         }
       }
@@ -1143,16 +1287,16 @@
       return columns;
     };
 
-    const DEFAULT_FORMAT = 'MMM D, YYYY';
-    let datetimeIds = 0;
+    var DEFAULT_FORMAT = 'MMM D, YYYY';
+    var datetimeIds = 0;
     /**
      * iOS Picker Enter Animation
      */
 
-    const iosEnterAnimation = baseEl => {
-      const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var iosEnterAnimation = function iosEnterAnimation(baseEl) {
+      var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
       backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 0.26);
       wrapperAnimation.addElement(baseEl.querySelector('.picker-wrapper')).fromTo('transform', 'translateY(100%)', 'translateY(0%)');
       return baseAnimation.addElement(baseEl).easing('cubic-bezier(.36,.66,.04,1)').duration(400).addAnimation([backdropAnimation, wrapperAnimation]);
@@ -1162,17 +1306,21 @@
      */
 
 
-    const iosLeaveAnimation = baseEl => {
-      const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var iosLeaveAnimation = function iosLeaveAnimation(baseEl) {
+      var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+      var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
       backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.26, 0.01);
       wrapperAnimation.addElement(baseEl.querySelector('.picker-wrapper')).fromTo('transform', 'translateY(0%)', 'translateY(100%)');
       return baseAnimation.addElement(baseEl).easing('cubic-bezier(.36,.66,.04,1)').duration(400).addAnimation([backdropAnimation, wrapperAnimation]);
     };
 
-    const Picker = class {
-      constructor(hostRef) {
+    var Picker = /*#__PURE__*/function () {
+      function Picker(hostRef) {
+        var _this6 = this;
+
+        _classCallCheck(this, Picker);
+
         Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
         this.mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
         this.presented = false;
@@ -1212,13 +1360,15 @@
 
         this.animated = true;
 
-        this.onBackdropTap = () => {
-          const cancelBtn = this.buttons.find(b => b.role === 'cancel');
+        this.onBackdropTap = function () {
+          var cancelBtn = _this6.buttons.find(function (b) {
+            return b.role === 'cancel';
+          });
 
           if (cancelBtn) {
-            this.buttonClick(cancelBtn);
+            _this6.buttonClick(cancelBtn);
           } else {
-            this.dismiss();
+            _this6.dismiss();
           }
         };
 
@@ -1233,151 +1383,197 @@
        */
 
 
-      async present() {
-        await Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["e"])(this, 'pickerEnter', iosEnterAnimation, iosEnterAnimation, undefined);
+      _createClass(Picker, [{
+        key: "present",
+        value: function () {
+          var _present = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var _this7 = this;
 
-        if (this.duration > 0) {
-          this.durationTimeout = setTimeout(() => this.dismiss(), this.duration);
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    _context3.next = 2;
+                    return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["e"])(this, 'pickerEnter', iosEnterAnimation, iosEnterAnimation, undefined);
+
+                  case 2:
+                    if (this.duration > 0) {
+                      this.durationTimeout = setTimeout(function () {
+                        return _this7.dismiss();
+                      }, this.duration);
+                    }
+
+                  case 3:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+
+          function present() {
+            return _present.apply(this, arguments);
+          }
+
+          return present;
+        }()
+        /**
+         * Dismiss the picker overlay after it has been presented.
+         *
+         * @param data Any data to emit in the dismiss events.
+         * @param role The role of the element that is dismissing the picker.
+         * This can be useful in a button handler for determining which button was
+         * clicked to dismiss the picker.
+         * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
+         */
+
+      }, {
+        key: "dismiss",
+        value: function dismiss(data, role) {
+          if (this.durationTimeout) {
+            clearTimeout(this.durationTimeout);
+          }
+
+          return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["f"])(this, data, role, 'pickerLeave', iosLeaveAnimation, iosLeaveAnimation);
         }
-      }
-      /**
-       * Dismiss the picker overlay after it has been presented.
-       *
-       * @param data Any data to emit in the dismiss events.
-       * @param role The role of the element that is dismissing the picker.
-       * This can be useful in a button handler for determining which button was
-       * clicked to dismiss the picker.
-       * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
-       */
+        /**
+         * Returns a promise that resolves when the picker did dismiss.
+         */
 
-
-      dismiss(data, role) {
-        if (this.durationTimeout) {
-          clearTimeout(this.durationTimeout);
+      }, {
+        key: "onDidDismiss",
+        value: function onDidDismiss() {
+          return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["g"])(this.el, 'ionPickerDidDismiss');
         }
+        /**
+         * Returns a promise that resolves when the picker will dismiss.
+         */
 
-        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["f"])(this, data, role, 'pickerLeave', iosLeaveAnimation, iosLeaveAnimation);
-      }
-      /**
-       * Returns a promise that resolves when the picker did dismiss.
-       */
-
-
-      onDidDismiss() {
-        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["g"])(this.el, 'ionPickerDidDismiss');
-      }
-      /**
-       * Returns a promise that resolves when the picker will dismiss.
-       */
-
-
-      onWillDismiss() {
-        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["g"])(this.el, 'ionPickerWillDismiss');
-      }
-      /**
-       * Get the column that matches the specified name.
-       *
-       * @param name The name of the column.
-       */
-
-
-      getColumn(name) {
-        return Promise.resolve(this.columns.find(column => column.name === name));
-      }
-
-      buttonClick(button) {
-        // if (this.disabled) {
-        //   return;
-        // }
-        // keep the time of the most recent button click
-        // a handler has been provided, execute it
-        // pass the handler the values from the inputs
-        const shouldDismiss = Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["s"])(button.handler, this.getSelected()) !== false;
-
-        if (shouldDismiss) {
-          return this.dismiss();
+      }, {
+        key: "onWillDismiss",
+        value: function onWillDismiss() {
+          return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["g"])(this.el, 'ionPickerWillDismiss');
         }
+        /**
+         * Get the column that matches the specified name.
+         *
+         * @param name The name of the column.
+         */
 
-        return Promise.resolve(false);
-      }
+      }, {
+        key: "getColumn",
+        value: function getColumn(name) {
+          return Promise.resolve(this.columns.find(function (column) {
+            return column.name === name;
+          }));
+        }
+      }, {
+        key: "buttonClick",
+        value: function buttonClick(button) {
+          // if (this.disabled) {
+          //   return;
+          // }
+          // keep the time of the most recent button click
+          // a handler has been provided, execute it
+          // pass the handler the values from the inputs
+          var shouldDismiss = Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_4__["s"])(button.handler, this.getSelected()) !== false;
 
-      getSelected() {
-        const selected = {};
-        this.columns.forEach((col, index) => {
-          const selectedColumn = col.selectedIndex !== undefined ? col.options[col.selectedIndex] : undefined;
-          selected[col.name] = {
-            text: selectedColumn ? selectedColumn.text : undefined,
-            value: selectedColumn ? selectedColumn.value : undefined,
-            columnIndex: index
-          };
-        });
-        return selected;
-      }
+          if (shouldDismiss) {
+            return this.dismiss();
+          }
 
-      render() {
-        const mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          "aria-modal": "true",
-          class: Object.assign({
-            [mode]: true,
-            // Used internally for styling
-            ["picker-".concat(mode)]: true
-          }, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.cssClass)),
-          style: {
-            zIndex: "".concat(20000 + this.overlayIndex)
-          },
-          onIonBackdropTap: this.onBackdropTap
-        }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", {
-          visible: this.showBackdrop,
-          tappable: this.backdropDismiss
-        }), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "picker-wrapper",
-          role: "dialog"
-        }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "picker-toolbar"
-        }, this.buttons.map(b => Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: buttonWrapperClass(b)
-        }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
-          type: "button",
-          onClick: () => this.buttonClick(b),
-          class: buttonClass(b)
-        }, b.text)))), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "picker-columns"
-        }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "picker-above-highlight"
-        }), this.presented && this.columns.map(c => Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-picker-column", {
-          col: c
-        })), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "picker-below-highlight"
-        }))));
-      }
+          return Promise.resolve(false);
+        }
+      }, {
+        key: "getSelected",
+        value: function getSelected() {
+          var selected = {};
+          this.columns.forEach(function (col, index) {
+            var selectedColumn = col.selectedIndex !== undefined ? col.options[col.selectedIndex] : undefined;
+            selected[col.name] = {
+              text: selectedColumn ? selectedColumn.text : undefined,
+              value: selectedColumn ? selectedColumn.value : undefined,
+              columnIndex: index
+            };
+          });
+          return selected;
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          var _Object$assign,
+              _this8 = this;
 
-      get el() {
-        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
-      }
+          var mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+          return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+            "aria-modal": "true",
+            "class": Object.assign((_Object$assign = {}, _defineProperty(_Object$assign, mode, true), _defineProperty(_Object$assign, "picker-".concat(mode), true), _Object$assign), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.cssClass)),
+            style: {
+              zIndex: "".concat(20000 + this.overlayIndex)
+            },
+            onIonBackdropTap: this.onBackdropTap
+          }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", {
+            visible: this.showBackdrop,
+            tappable: this.backdropDismiss
+          }), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "picker-wrapper",
+            role: "dialog"
+          }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "picker-toolbar"
+          }, this.buttons.map(function (b) {
+            return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+              "class": buttonWrapperClass(b)
+            }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
+              type: "button",
+              onClick: function onClick() {
+                return _this8.buttonClick(b);
+              },
+              "class": buttonClass(b)
+            }, b.text));
+          })), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "picker-columns"
+          }, Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "picker-above-highlight"
+          }), this.presented && this.columns.map(function (c) {
+            return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-picker-column", {
+              col: c
+            });
+          }), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "picker-below-highlight"
+          }))));
+        }
+      }, {
+        key: "el",
+        get: function get() {
+          return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
+        }
+      }], [{
+        key: "style",
+        get: function get() {
+          return ".sc-ion-picker-ios-h{--border-radius:0;--border-style:solid;--min-width:auto;--width:100%;--max-width:500px;--min-height:auto;--max-height:auto;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;left:0;top:0;display:block;position:absolute;width:100%;height:100%;font-family:var(--ion-font-family,inherit);contain:strict;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:1001}[dir=rtl].sc-ion-picker-ios-h, [dir=rtl] .sc-ion-picker-ios-h{left:unset;right:unset;right:0}.overlay-hidden.sc-ion-picker-ios-h{display:none}.picker-wrapper.sc-ion-picker-ios{border-radius:var(--border-radius);left:0;right:0;bottom:0;margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0);display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);contain:strict;overflow:hidden;z-index:10}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.picker-wrapper.sc-ion-picker-ios{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}.picker-toolbar.sc-ion-picker-ios{width:100%;background:transparent;contain:strict;z-index:1}.picker-button.sc-ion-picker-ios{border:0;font-family:inherit}.picker-button.sc-ion-picker-ios:active, .picker-button.sc-ion-picker-ios:focus{outline:none}.picker-columns.sc-ion-picker-ios{display:-ms-flexbox;display:flex;position:relative;-ms-flex-pack:center;justify-content:center;margin-bottom:var(--ion-safe-area-bottom,0);contain:strict;direction:ltr;overflow:hidden}.picker-above-highlight.sc-ion-picker-ios, .picker-below-highlight.sc-ion-picker-ios{display:none;pointer-events:none}.sc-ion-picker-ios-h{--background:var(--ion-background-color,#fff);--border-width:1px 0 0;--border-color:var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-250,#c8c7cc)));--height:260px;color:var(--ion-item-color,var(--ion-text-color,#000))}.picker-toolbar.sc-ion-picker-ios{display:-ms-flexbox;display:flex;height:44px;border-bottom:.55px solid var(--border-color)}.picker-toolbar-button.sc-ion-picker-ios{-ms-flex:1;flex:1;text-align:end}.picker-toolbar-button.sc-ion-picker-ios:last-child .picker-button.sc-ion-picker-ios{font-weight:600}.picker-toolbar-button.sc-ion-picker-ios:first-child{font-weight:400;text-align:start}.picker-button.sc-ion-picker-ios, .picker-button.activated.sc-ion-picker-ios{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:1em;padding-right:1em;padding-top:0;padding-bottom:0;height:44px;background:transparent;color:var(--ion-color-primary,#3880ff);font-size:16px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.picker-button.sc-ion-picker-ios, .picker-button.activated.sc-ion-picker-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:1em;padding-inline-start:1em;-webkit-padding-end:1em;padding-inline-end:1em}}.picker-columns.sc-ion-picker-ios{height:215px;-webkit-perspective:1000px;perspective:1000px}.picker-above-highlight.sc-ion-picker-ios{left:0;top:0;-webkit-transform:translateZ(90px);transform:translateZ(90px);display:block;position:absolute;width:100%;height:81px;border-bottom:1px solid var(--border-color);background:-webkit-gradient(linear,left top,left bottom,color-stop(20%,var(--background,var(--ion-background-color,#fff))),to(rgba(var(--background-rgb,var(--ion-background-color-rgb,255,255,255)),.8)));background:linear-gradient(180deg,var(--background,var(--ion-background-color,#fff)) 20%,rgba(var(--background-rgb,var(--ion-background-color-rgb,255,255,255)),.8));z-index:10}[dir=rtl].sc-ion-picker-ios-h .picker-above-highlight.sc-ion-picker-ios, [dir=rtl] .sc-ion-picker-ios-h .picker-above-highlight.sc-ion-picker-ios, [dir=rtl].sc-ion-picker-ios .picker-above-highlight.sc-ion-picker-ios{left:unset;right:unset;right:0}.picker-below-highlight.sc-ion-picker-ios{left:0;top:115px;-webkit-transform:translateZ(90px);transform:translateZ(90px);display:block;position:absolute;width:100%;height:119px;border-top:1px solid var(--border-color);background:-webkit-gradient(linear,left bottom,left top,color-stop(30%,var(--background,var(--ion-background-color,#fff))),to(rgba(var(--background-rgb,var(--ion-background-color-rgb,255,255,255)),.8)));background:linear-gradient(0deg,var(--background,var(--ion-background-color,#fff)) 30%,rgba(var(--background-rgb,var(--ion-background-color-rgb,255,255,255)),.8));z-index:11}[dir=rtl].sc-ion-picker-ios-h .picker-below-highlight.sc-ion-picker-ios, [dir=rtl] .sc-ion-picker-ios-h .picker-below-highlight.sc-ion-picker-ios, [dir=rtl].sc-ion-picker-ios .picker-below-highlight.sc-ion-picker-ios{left:unset;right:unset;right:0}";
+        }
+      }]);
 
-      static get style() {
-        return ".sc-ion-picker-ios-h{--border-radius:0;--border-style:solid;--min-width:auto;--width:100%;--max-width:500px;--min-height:auto;--max-height:auto;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;left:0;top:0;display:block;position:absolute;width:100%;height:100%;font-family:var(--ion-font-family,inherit);contain:strict;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:1001}[dir=rtl].sc-ion-picker-ios-h, [dir=rtl] .sc-ion-picker-ios-h{left:unset;right:unset;right:0}.overlay-hidden.sc-ion-picker-ios-h{display:none}.picker-wrapper.sc-ion-picker-ios{border-radius:var(--border-radius);left:0;right:0;bottom:0;margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0);display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);contain:strict;overflow:hidden;z-index:10}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.picker-wrapper.sc-ion-picker-ios{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}.picker-toolbar.sc-ion-picker-ios{width:100%;background:transparent;contain:strict;z-index:1}.picker-button.sc-ion-picker-ios{border:0;font-family:inherit}.picker-button.sc-ion-picker-ios:active, .picker-button.sc-ion-picker-ios:focus{outline:none}.picker-columns.sc-ion-picker-ios{display:-ms-flexbox;display:flex;position:relative;-ms-flex-pack:center;justify-content:center;margin-bottom:var(--ion-safe-area-bottom,0);contain:strict;direction:ltr;overflow:hidden}.picker-above-highlight.sc-ion-picker-ios, .picker-below-highlight.sc-ion-picker-ios{display:none;pointer-events:none}.sc-ion-picker-ios-h{--background:var(--ion-background-color,#fff);--border-width:1px 0 0;--border-color:var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-250,#c8c7cc)));--height:260px;color:var(--ion-item-color,var(--ion-text-color,#000))}.picker-toolbar.sc-ion-picker-ios{display:-ms-flexbox;display:flex;height:44px;border-bottom:.55px solid var(--border-color)}.picker-toolbar-button.sc-ion-picker-ios{-ms-flex:1;flex:1;text-align:end}.picker-toolbar-button.sc-ion-picker-ios:last-child .picker-button.sc-ion-picker-ios{font-weight:600}.picker-toolbar-button.sc-ion-picker-ios:first-child{font-weight:400;text-align:start}.picker-button.sc-ion-picker-ios, .picker-button.activated.sc-ion-picker-ios{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:1em;padding-right:1em;padding-top:0;padding-bottom:0;height:44px;background:transparent;color:var(--ion-color-primary,#3880ff);font-size:16px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.picker-button.sc-ion-picker-ios, .picker-button.activated.sc-ion-picker-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:1em;padding-inline-start:1em;-webkit-padding-end:1em;padding-inline-end:1em}}.picker-columns.sc-ion-picker-ios{height:215px;-webkit-perspective:1000px;perspective:1000px}.picker-above-highlight.sc-ion-picker-ios{left:0;top:0;-webkit-transform:translateZ(90px);transform:translateZ(90px);display:block;position:absolute;width:100%;height:81px;border-bottom:1px solid var(--border-color);background:-webkit-gradient(linear,left top,left bottom,color-stop(20%,var(--background,var(--ion-background-color,#fff))),to(rgba(var(--background-rgb,var(--ion-background-color-rgb,255,255,255)),.8)));background:linear-gradient(180deg,var(--background,var(--ion-background-color,#fff)) 20%,rgba(var(--background-rgb,var(--ion-background-color-rgb,255,255,255)),.8));z-index:10}[dir=rtl].sc-ion-picker-ios-h .picker-above-highlight.sc-ion-picker-ios, [dir=rtl] .sc-ion-picker-ios-h .picker-above-highlight.sc-ion-picker-ios, [dir=rtl].sc-ion-picker-ios .picker-above-highlight.sc-ion-picker-ios{left:unset;right:unset;right:0}.picker-below-highlight.sc-ion-picker-ios{left:0;top:115px;-webkit-transform:translateZ(90px);transform:translateZ(90px);display:block;position:absolute;width:100%;height:119px;border-top:1px solid var(--border-color);background:-webkit-gradient(linear,left bottom,left top,color-stop(30%,var(--background,var(--ion-background-color,#fff))),to(rgba(var(--background-rgb,var(--ion-background-color-rgb,255,255,255)),.8)));background:linear-gradient(0deg,var(--background,var(--ion-background-color,#fff)) 30%,rgba(var(--background-rgb,var(--ion-background-color-rgb,255,255,255)),.8));z-index:11}[dir=rtl].sc-ion-picker-ios-h .picker-below-highlight.sc-ion-picker-ios, [dir=rtl] .sc-ion-picker-ios-h .picker-below-highlight.sc-ion-picker-ios, [dir=rtl].sc-ion-picker-ios .picker-below-highlight.sc-ion-picker-ios{left:unset;right:unset;right:0}";
-      }
+      return Picker;
+    }();
 
+    var buttonWrapperClass = function buttonWrapperClass(button) {
+      var _ref2;
+
+      return _ref2 = {}, _defineProperty(_ref2, "picker-toolbar-".concat(button.role), button.role !== undefined), _defineProperty(_ref2, 'picker-toolbar-button', true), _ref2;
     };
 
-    const buttonWrapperClass = button => {
-      return {
-        ["picker-toolbar-".concat(button.role)]: button.role !== undefined,
-        'picker-toolbar-button': true
-      };
-    };
-
-    const buttonClass = button => {
+    var buttonClass = function buttonClass(button) {
       return Object.assign({
         'picker-button': true,
         'ion-activatable': true
       }, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_5__["g"])(button.cssClass));
     };
 
-    const PickerColumnCmp = class {
-      constructor(hostRef) {
+    var PickerColumnCmp = /*#__PURE__*/function () {
+      function PickerColumnCmp(hostRef) {
+        _classCallCheck(this, PickerColumnCmp);
+
         Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
         this.optHeight = 0;
         this.rotateFactor = 0;
@@ -1388,367 +1584,425 @@
         this.ionPickerColChange = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this, "ionPickerColChange", 7);
       }
 
-      colChanged() {
-        this.refresh();
-      }
-
-      async connectedCallback() {
-        let pickerRotateFactor = 0;
-        let pickerScaleFactor = 0.81;
-        const mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-
-        if (mode === 'ios') {
-          pickerRotateFactor = -0.46;
-          pickerScaleFactor = 1;
+      _createClass(PickerColumnCmp, [{
+        key: "colChanged",
+        value: function colChanged() {
+          this.refresh();
         }
+      }, {
+        key: "connectedCallback",
+        value: function () {
+          var _connectedCallback = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            var _this9 = this;
 
-        this.rotateFactor = pickerRotateFactor;
-        this.scaleFactor = pickerScaleFactor;
-        this.gesture = (await Promise.resolve().then(__webpack_require__.bind(null,
-        /*! ./index-624eea58.js */
-        "./node_modules/@ionic/core/dist/esm/index-624eea58.js"))).createGesture({
-          el: this.el,
-          gestureName: 'picker-swipe',
-          gesturePriority: 100,
-          threshold: 0,
-          onStart: ev => this.onStart(ev),
-          onMove: ev => this.onMove(ev),
-          onEnd: ev => this.onEnd(ev)
-        });
-        this.gesture.setDisabled(false);
-        this.tmrId = setTimeout(() => {
-          this.noAnimate = false;
-          this.refresh(true);
-        }, 250);
-      }
+            var pickerRotateFactor, pickerScaleFactor, mode;
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    pickerRotateFactor = 0;
+                    pickerScaleFactor = 0.81;
+                    mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
 
-      componentDidLoad() {
-        const colEl = this.optsEl;
+                    if (mode === 'ios') {
+                      pickerRotateFactor = -0.46;
+                      pickerScaleFactor = 1;
+                    }
 
-        if (colEl) {
-          // DOM READ
-          // We perfom a DOM read over a rendered item, this needs to happen after the first render
-          this.optHeight = colEl.firstElementChild ? colEl.firstElementChild.clientHeight : 0;
-        }
+                    this.rotateFactor = pickerRotateFactor;
+                    this.scaleFactor = pickerScaleFactor;
+                    _context4.next = 8;
+                    return Promise.resolve().then(__webpack_require__.bind(null,
+                    /*! ./index-624eea58.js */
+                    "./node_modules/@ionic/core/dist/esm/index-624eea58.js"));
 
-        this.refresh();
-      }
+                  case 8:
+                    this.gesture = _context4.sent.createGesture({
+                      el: this.el,
+                      gestureName: 'picker-swipe',
+                      gesturePriority: 100,
+                      threshold: 0,
+                      onStart: function onStart(ev) {
+                        return _this9.onStart(ev);
+                      },
+                      onMove: function onMove(ev) {
+                        return _this9.onMove(ev);
+                      },
+                      onEnd: function onEnd(ev) {
+                        return _this9.onEnd(ev);
+                      }
+                    });
+                    this.gesture.setDisabled(false);
+                    this.tmrId = setTimeout(function () {
+                      _this9.noAnimate = false;
 
-      disconnectedCallback() {
-        cancelAnimationFrame(this.rafId);
-        clearTimeout(this.tmrId);
+                      _this9.refresh(true);
+                    }, 250);
 
-        if (this.gesture) {
-          this.gesture.destroy();
-          this.gesture = undefined;
-        }
-      }
+                  case 11:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            }, _callee4, this);
+          }));
 
-      emitColChange() {
-        this.ionPickerColChange.emit(this.col);
-      }
-
-      setSelected(selectedIndex, duration) {
-        // if there is a selected index, then figure out it's y position
-        // if there isn't a selected index, then just use the top y position
-        const y = selectedIndex > -1 ? -(selectedIndex * this.optHeight) : 0;
-        this.velocity = 0; // set what y position we're at
-
-        cancelAnimationFrame(this.rafId);
-        this.update(y, duration, true);
-        this.emitColChange();
-      }
-
-      update(y, duration, saveY) {
-        if (!this.optsEl) {
-          return;
-        } // ensure we've got a good round number :)
-
-
-        let translateY = 0;
-        let translateZ = 0;
-        const {
-          col,
-          rotateFactor
-        } = this;
-        const selectedIndex = col.selectedIndex = this.indexForY(-y);
-        const durationStr = duration === 0 ? '' : duration + 'ms';
-        const scaleStr = "scale(".concat(this.scaleFactor, ")");
-        const children = this.optsEl.children;
-
-        for (let i = 0; i < children.length; i++) {
-          const button = children[i];
-          const opt = col.options[i];
-          const optOffset = i * this.optHeight + y;
-          let transform = '';
-
-          if (rotateFactor !== 0) {
-            const rotateX = optOffset * rotateFactor;
-
-            if (Math.abs(rotateX) <= 90) {
-              translateY = 0;
-              translateZ = 90;
-              transform = "rotateX(".concat(rotateX, "deg) ");
-            } else {
-              translateY = -9999;
-            }
-          } else {
-            translateZ = 0;
-            translateY = optOffset;
+          function connectedCallback() {
+            return _connectedCallback.apply(this, arguments);
           }
 
-          const selected = selectedIndex === i;
-          transform += "translate3d(0px,".concat(translateY, "px,").concat(translateZ, "px) ");
+          return connectedCallback;
+        }()
+      }, {
+        key: "componentDidLoad",
+        value: function componentDidLoad() {
+          var colEl = this.optsEl;
 
-          if (this.scaleFactor !== 1 && !selected) {
-            transform += scaleStr;
-          } // Update transition duration
+          if (colEl) {
+            // DOM READ
+            // We perfom a DOM read over a rendered item, this needs to happen after the first render
+            this.optHeight = colEl.firstElementChild ? colEl.firstElementChild.clientHeight : 0;
+          }
 
+          this.refresh();
+        }
+      }, {
+        key: "disconnectedCallback",
+        value: function disconnectedCallback() {
+          cancelAnimationFrame(this.rafId);
+          clearTimeout(this.tmrId);
 
-          if (this.noAnimate) {
-            opt.duration = 0;
-            button.style.transitionDuration = '';
-          } else if (duration !== opt.duration) {
-            opt.duration = duration;
-            button.style.transitionDuration = durationStr;
-          } // Update transform
-
-
-          if (transform !== opt.transform) {
-            opt.transform = transform;
-            button.style.transform = transform;
-          } // Update selected item
-
-
-          if (selected !== opt.selected) {
-            opt.selected = selected;
-
-            if (selected) {
-              button.classList.add(PICKER_OPT_SELECTED);
-            } else {
-              button.classList.remove(PICKER_OPT_SELECTED);
-            }
+          if (this.gesture) {
+            this.gesture.destroy();
+            this.gesture = undefined;
           }
         }
-
-        this.col.prevSelected = selectedIndex;
-
-        if (saveY) {
-          this.y = y;
+      }, {
+        key: "emitColChange",
+        value: function emitColChange() {
+          this.ionPickerColChange.emit(this.col);
         }
+      }, {
+        key: "setSelected",
+        value: function setSelected(selectedIndex, duration) {
+          // if there is a selected index, then figure out it's y position
+          // if there isn't a selected index, then just use the top y position
+          var y = selectedIndex > -1 ? -(selectedIndex * this.optHeight) : 0;
+          this.velocity = 0; // set what y position we're at
 
-        if (this.lastIndex !== selectedIndex) {
-          // have not set a last index yet
-          Object(_haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_6__["b"])();
-          this.lastIndex = selectedIndex;
+          cancelAnimationFrame(this.rafId);
+          this.update(y, duration, true);
+          this.emitColChange();
         }
-      }
+      }, {
+        key: "update",
+        value: function update(y, duration, saveY) {
+          if (!this.optsEl) {
+            return;
+          } // ensure we've got a good round number :)
 
-      decelerate() {
-        if (this.velocity !== 0) {
-          // still decelerating
-          this.velocity *= DECELERATION_FRICTION; // do not let it go slower than a velocity of 1
 
-          this.velocity = this.velocity > 0 ? Math.max(this.velocity, 1) : Math.min(this.velocity, -1);
-          let y = this.y + this.velocity;
+          var translateY = 0;
+          var translateZ = 0;
+          var col = this.col,
+              rotateFactor = this.rotateFactor;
+          var selectedIndex = col.selectedIndex = this.indexForY(-y);
+          var durationStr = duration === 0 ? '' : duration + 'ms';
+          var scaleStr = "scale(".concat(this.scaleFactor, ")");
+          var children = this.optsEl.children;
+
+          for (var i = 0; i < children.length; i++) {
+            var button = children[i];
+            var opt = col.options[i];
+            var optOffset = i * this.optHeight + y;
+            var transform = '';
+
+            if (rotateFactor !== 0) {
+              var rotateX = optOffset * rotateFactor;
+
+              if (Math.abs(rotateX) <= 90) {
+                translateY = 0;
+                translateZ = 90;
+                transform = "rotateX(".concat(rotateX, "deg) ");
+              } else {
+                translateY = -9999;
+              }
+            } else {
+              translateZ = 0;
+              translateY = optOffset;
+            }
+
+            var selected = selectedIndex === i;
+            transform += "translate3d(0px,".concat(translateY, "px,").concat(translateZ, "px) ");
+
+            if (this.scaleFactor !== 1 && !selected) {
+              transform += scaleStr;
+            } // Update transition duration
+
+
+            if (this.noAnimate) {
+              opt.duration = 0;
+              button.style.transitionDuration = '';
+            } else if (duration !== opt.duration) {
+              opt.duration = duration;
+              button.style.transitionDuration = durationStr;
+            } // Update transform
+
+
+            if (transform !== opt.transform) {
+              opt.transform = transform;
+              button.style.transform = transform;
+            } // Update selected item
+
+
+            if (selected !== opt.selected) {
+              opt.selected = selected;
+
+              if (selected) {
+                button.classList.add(PICKER_OPT_SELECTED);
+              } else {
+                button.classList.remove(PICKER_OPT_SELECTED);
+              }
+            }
+          }
+
+          this.col.prevSelected = selectedIndex;
+
+          if (saveY) {
+            this.y = y;
+          }
+
+          if (this.lastIndex !== selectedIndex) {
+            // have not set a last index yet
+            Object(_haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_6__["b"])();
+            this.lastIndex = selectedIndex;
+          }
+        }
+      }, {
+        key: "decelerate",
+        value: function decelerate() {
+          var _this10 = this;
+
+          if (this.velocity !== 0) {
+            // still decelerating
+            this.velocity *= DECELERATION_FRICTION; // do not let it go slower than a velocity of 1
+
+            this.velocity = this.velocity > 0 ? Math.max(this.velocity, 1) : Math.min(this.velocity, -1);
+            var y = this.y + this.velocity;
+
+            if (y > this.minY) {
+              // whoops, it's trying to scroll up farther than the options we have!
+              y = this.minY;
+              this.velocity = 0;
+            } else if (y < this.maxY) {
+              // gahh, it's trying to scroll down farther than we can!
+              y = this.maxY;
+              this.velocity = 0;
+            }
+
+            this.update(y, 0, true);
+            var notLockedIn = Math.round(y) % this.optHeight !== 0 || Math.abs(this.velocity) > 1;
+
+            if (notLockedIn) {
+              // isn't locked in yet, keep decelerating until it is
+              this.rafId = requestAnimationFrame(function () {
+                return _this10.decelerate();
+              });
+            } else {
+              this.velocity = 0;
+              this.emitColChange();
+            }
+          } else if (this.y % this.optHeight !== 0) {
+            // needs to still get locked into a position so options line up
+            var currentPos = Math.abs(this.y % this.optHeight); // create a velocity in the direction it needs to scroll
+
+            this.velocity = currentPos > this.optHeight / 2 ? 1 : -1;
+            this.decelerate();
+          }
+        }
+      }, {
+        key: "indexForY",
+        value: function indexForY(y) {
+          return Math.min(Math.max(Math.abs(Math.round(y / this.optHeight)), 0), this.col.options.length - 1);
+        } // TODO should this check disabled?
+
+      }, {
+        key: "onStart",
+        value: function onStart(detail) {
+          // We have to prevent default in order to block scrolling under the picker
+          // but we DO NOT have to stop propagation, since we still want
+          // some "click" events to capture
+          detail.event.preventDefault();
+          detail.event.stopPropagation(); // reset everything
+
+          cancelAnimationFrame(this.rafId);
+          var options = this.col.options;
+          var minY = options.length - 1;
+          var maxY = 0;
+
+          for (var i = 0; i < options.length; i++) {
+            if (!options[i].disabled) {
+              minY = Math.min(minY, i);
+              maxY = Math.max(maxY, i);
+            }
+          }
+
+          this.minY = -(minY * this.optHeight);
+          this.maxY = -(maxY * this.optHeight);
+        }
+      }, {
+        key: "onMove",
+        value: function onMove(detail) {
+          detail.event.preventDefault();
+          detail.event.stopPropagation(); // update the scroll position relative to pointer start position
+
+          var y = this.y + detail.deltaY;
 
           if (y > this.minY) {
-            // whoops, it's trying to scroll up farther than the options we have!
-            y = this.minY;
-            this.velocity = 0;
+            // scrolling up higher than scroll area
+            y = Math.pow(y, 0.8);
+            this.bounceFrom = y;
           } else if (y < this.maxY) {
-            // gahh, it's trying to scroll down farther than we can!
-            y = this.maxY;
-            this.velocity = 0;
-          }
-
-          this.update(y, 0, true);
-          const notLockedIn = Math.round(y) % this.optHeight !== 0 || Math.abs(this.velocity) > 1;
-
-          if (notLockedIn) {
-            // isn't locked in yet, keep decelerating until it is
-            this.rafId = requestAnimationFrame(() => this.decelerate());
+            // scrolling down below scroll area
+            y += Math.pow(this.maxY - y, 0.9);
+            this.bounceFrom = y;
           } else {
-            this.velocity = 0;
+            this.bounceFrom = 0;
+          }
+
+          this.update(y, 0, false);
+        }
+      }, {
+        key: "onEnd",
+        value: function onEnd(detail) {
+          if (this.bounceFrom > 0) {
+            // bounce back up
+            this.update(this.minY, 100, true);
             this.emitColChange();
+            return;
+          } else if (this.bounceFrom < 0) {
+            // bounce back down
+            this.update(this.maxY, 100, true);
+            this.emitColChange();
+            return;
           }
-        } else if (this.y % this.optHeight !== 0) {
-          // needs to still get locked into a position so options line up
-          const currentPos = Math.abs(this.y % this.optHeight); // create a velocity in the direction it needs to scroll
 
-          this.velocity = currentPos > this.optHeight / 2 ? 1 : -1;
-          this.decelerate();
-        }
-      }
+          this.velocity = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(-MAX_PICKER_SPEED, detail.velocityY * 23, MAX_PICKER_SPEED);
 
-      indexForY(y) {
-        return Math.min(Math.max(Math.abs(Math.round(y / this.optHeight)), 0), this.col.options.length - 1);
-      } // TODO should this check disabled?
+          if (this.velocity === 0 && detail.deltaY === 0) {
+            var opt = detail.event.target.closest('.picker-opt');
 
-
-      onStart(detail) {
-        // We have to prevent default in order to block scrolling under the picker
-        // but we DO NOT have to stop propagation, since we still want
-        // some "click" events to capture
-        detail.event.preventDefault();
-        detail.event.stopPropagation(); // reset everything
-
-        cancelAnimationFrame(this.rafId);
-        const options = this.col.options;
-        let minY = options.length - 1;
-        let maxY = 0;
-
-        for (let i = 0; i < options.length; i++) {
-          if (!options[i].disabled) {
-            minY = Math.min(minY, i);
-            maxY = Math.max(maxY, i);
+            if (opt && opt.hasAttribute('opt-index')) {
+              this.setSelected(parseInt(opt.getAttribute('opt-index'), 10), TRANSITION_DURATION);
+            }
+          } else {
+            this.y += detail.deltaY;
+            this.decelerate();
           }
         }
+      }, {
+        key: "refresh",
+        value: function refresh(forceRefresh) {
+          var min = this.col.options.length - 1;
+          var max = 0;
+          var options = this.col.options;
 
-        this.minY = -(minY * this.optHeight);
-        this.maxY = -(maxY * this.optHeight);
-      }
-
-      onMove(detail) {
-        detail.event.preventDefault();
-        detail.event.stopPropagation(); // update the scroll position relative to pointer start position
-
-        let y = this.y + detail.deltaY;
-
-        if (y > this.minY) {
-          // scrolling up higher than scroll area
-          y = Math.pow(y, 0.8);
-          this.bounceFrom = y;
-        } else if (y < this.maxY) {
-          // scrolling down below scroll area
-          y += Math.pow(this.maxY - y, 0.9);
-          this.bounceFrom = y;
-        } else {
-          this.bounceFrom = 0;
-        }
-
-        this.update(y, 0, false);
-      }
-
-      onEnd(detail) {
-        if (this.bounceFrom > 0) {
-          // bounce back up
-          this.update(this.minY, 100, true);
-          this.emitColChange();
-          return;
-        } else if (this.bounceFrom < 0) {
-          // bounce back down
-          this.update(this.maxY, 100, true);
-          this.emitColChange();
-          return;
-        }
-
-        this.velocity = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(-MAX_PICKER_SPEED, detail.velocityY * 23, MAX_PICKER_SPEED);
-
-        if (this.velocity === 0 && detail.deltaY === 0) {
-          const opt = detail.event.target.closest('.picker-opt');
-
-          if (opt && opt.hasAttribute('opt-index')) {
-            this.setSelected(parseInt(opt.getAttribute('opt-index'), 10), TRANSITION_DURATION);
+          for (var i = 0; i < options.length; i++) {
+            if (!options[i].disabled) {
+              min = Math.min(min, i);
+              max = Math.max(max, i);
+            }
           }
-        } else {
-          this.y += detail.deltaY;
-          this.decelerate();
-        }
-      }
+          /**
+           * Only update selected value if column has a
+           * velocity of 0. If it does not, then the
+           * column is animating might land on
+           * a value different than the value at
+           * selectedIndex
+           */
 
-      refresh(forceRefresh) {
-        let min = this.col.options.length - 1;
-        let max = 0;
-        const options = this.col.options;
 
-        for (let i = 0; i < options.length; i++) {
-          if (!options[i].disabled) {
-            min = Math.min(min, i);
-            max = Math.max(max, i);
+          if (this.velocity !== 0) {
+            return;
+          }
+
+          var selectedIndex = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(min, this.col.selectedIndex || 0, max);
+
+          if (this.col.prevSelected !== selectedIndex || forceRefresh) {
+            var y = selectedIndex * this.optHeight * -1;
+            this.velocity = 0;
+            this.update(y, TRANSITION_DURATION, true);
           }
         }
-        /**
-         * Only update selected value if column has a
-         * velocity of 0. If it does not, then the
-         * column is animating might land on
-         * a value different than the value at
-         * selectedIndex
-         */
+      }, {
+        key: "render",
+        value: function render() {
+          var _class2,
+              _this11 = this;
 
-
-        if (this.velocity !== 0) {
-          return;
+          var col = this.col;
+          var Button = 'button';
+          var mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
+          return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+            "class": (_class2 = {}, _defineProperty(_class2, mode, true), _defineProperty(_class2, 'picker-col', true), _defineProperty(_class2, 'picker-opts-left', this.col.align === 'left'), _defineProperty(_class2, 'picker-opts-right', this.col.align === 'right'), _class2),
+            style: {
+              'max-width': this.col.columnWidth
+            }
+          }, col.prefix && Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "picker-prefix",
+            style: {
+              width: col.prefixWidth
+            }
+          }, col.prefix), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "picker-opts",
+            style: {
+              maxWidth: col.optionsWidth
+            },
+            ref: function ref(el) {
+              return _this11.optsEl = el;
+            }
+          }, col.options.map(function (o, index) {
+            return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(Button, {
+              type: "button",
+              "class": {
+                'picker-opt': true,
+                'picker-opt-disabled': !!o.disabled
+              },
+              "opt-index": index
+            }, o.text);
+          })), col.suffix && Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "picker-suffix",
+            style: {
+              width: col.suffixWidth
+            }
+          }, col.suffix));
         }
-
-        const selectedIndex = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(min, this.col.selectedIndex || 0, max);
-
-        if (this.col.prevSelected !== selectedIndex || forceRefresh) {
-          const y = selectedIndex * this.optHeight * -1;
-          this.velocity = 0;
-          this.update(y, TRANSITION_DURATION, true);
+      }, {
+        key: "el",
+        get: function get() {
+          return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
         }
-      }
+      }], [{
+        key: "watchers",
+        get: function get() {
+          return {
+            "col": ["colChanged"]
+          };
+        }
+      }, {
+        key: "style",
+        get: function get() {
+          return ".picker-col{display:-ms-flexbox;display:flex;position:relative;-ms-flex:1;flex:1;-ms-flex-pack:center;justify-content:center;height:100%;-webkit-box-sizing:content-box;box-sizing:content-box;contain:content}.picker-opts{position:relative;-ms-flex:1;flex:1;max-width:100%}.picker-opt{left:0;top:0;display:block;position:absolute;width:100%;border:0;text-align:center;text-overflow:ellipsis;white-space:nowrap;contain:strict;overflow:hidden;will-change:transform}:host-context([dir=rtl]) .picker-opt,[dir=rtl] .picker-opt{left:unset;right:unset;right:0}.picker-opt.picker-opt-disabled{pointer-events:none}.picker-opt-disabled{opacity:0}.picker-opts-left{-ms-flex-pack:start;justify-content:flex-start}.picker-opts-right{-ms-flex-pack:end;justify-content:flex-end}.picker-opt:active,.picker-opt:focus{outline:none}.picker-prefix{text-align:end}.picker-prefix,.picker-suffix{position:relative;-ms-flex:1;flex:1;white-space:nowrap}.picker-suffix{text-align:start}.picker-col{padding-left:4px;padding-right:4px;padding-top:0;padding-bottom:0;-webkit-transform-style:preserve-3d;transform-style:preserve-3d}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.picker-col{padding-left:unset;padding-right:unset;-webkit-padding-start:4px;padding-inline-start:4px;-webkit-padding-end:4px;padding-inline-end:4px}}.picker-opts,.picker-prefix,.picker-suffix{top:77px;pointer-events:none}.picker-opt,.picker-opts,.picker-prefix,.picker-suffix{-webkit-transform-style:preserve-3d;transform-style:preserve-3d;color:inherit;font-size:20px;line-height:42px}.picker-opt{padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;-webkit-transform-origin:center center;transform-origin:center center;height:46px;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;background:transparent;-webkit-backface-visibility:hidden;backface-visibility:hidden;pointer-events:auto}:host-context([dir=rtl]) .picker-opt,[dir=rtl] .picker-opt{-webkit-transform-origin:calc(100% - center) center;transform-origin:calc(100% - center) center}";
+        }
+      }]);
 
-      render() {
-        const col = this.col;
-        const Button = 'button';
-        const mode = Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this);
-        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-          class: {
-            [mode]: true,
-            'picker-col': true,
-            'picker-opts-left': this.col.align === 'left',
-            'picker-opts-right': this.col.align === 'right'
-          },
-          style: {
-            'max-width': this.col.columnWidth
-          }
-        }, col.prefix && Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "picker-prefix",
-          style: {
-            width: col.prefixWidth
-          }
-        }, col.prefix), Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "picker-opts",
-          style: {
-            maxWidth: col.optionsWidth
-          },
-          ref: el => this.optsEl = el
-        }, col.options.map((o, index) => Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])(Button, {
-          type: "button",
-          class: {
-            'picker-opt': true,
-            'picker-opt-disabled': !!o.disabled
-          },
-          "opt-index": index
-        }, o.text))), col.suffix && Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-          class: "picker-suffix",
-          style: {
-            width: col.suffixWidth
-          }
-        }, col.suffix));
-      }
+      return PickerColumnCmp;
+    }();
 
-      get el() {
-        return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
-      }
-
-      static get watchers() {
-        return {
-          "col": ["colChanged"]
-        };
-      }
-
-      static get style() {
-        return ".picker-col{display:-ms-flexbox;display:flex;position:relative;-ms-flex:1;flex:1;-ms-flex-pack:center;justify-content:center;height:100%;-webkit-box-sizing:content-box;box-sizing:content-box;contain:content}.picker-opts{position:relative;-ms-flex:1;flex:1;max-width:100%}.picker-opt{left:0;top:0;display:block;position:absolute;width:100%;border:0;text-align:center;text-overflow:ellipsis;white-space:nowrap;contain:strict;overflow:hidden;will-change:transform}:host-context([dir=rtl]) .picker-opt,[dir=rtl] .picker-opt{left:unset;right:unset;right:0}.picker-opt.picker-opt-disabled{pointer-events:none}.picker-opt-disabled{opacity:0}.picker-opts-left{-ms-flex-pack:start;justify-content:flex-start}.picker-opts-right{-ms-flex-pack:end;justify-content:flex-end}.picker-opt:active,.picker-opt:focus{outline:none}.picker-prefix{text-align:end}.picker-prefix,.picker-suffix{position:relative;-ms-flex:1;flex:1;white-space:nowrap}.picker-suffix{text-align:start}.picker-col{padding-left:4px;padding-right:4px;padding-top:0;padding-bottom:0;-webkit-transform-style:preserve-3d;transform-style:preserve-3d}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.picker-col{padding-left:unset;padding-right:unset;-webkit-padding-start:4px;padding-inline-start:4px;-webkit-padding-end:4px;padding-inline-end:4px}}.picker-opts,.picker-prefix,.picker-suffix{top:77px;pointer-events:none}.picker-opt,.picker-opts,.picker-prefix,.picker-suffix{-webkit-transform-style:preserve-3d;transform-style:preserve-3d;color:inherit;font-size:20px;line-height:42px}.picker-opt{padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;-webkit-transform-origin:center center;transform-origin:center center;height:46px;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;background:transparent;-webkit-backface-visibility:hidden;backface-visibility:hidden;pointer-events:auto}:host-context([dir=rtl]) .picker-opt,[dir=rtl] .picker-opt{-webkit-transform-origin:calc(100% - center) center;transform-origin:calc(100% - center) center}";
-      }
-
-    };
-    const PICKER_OPT_SELECTED = 'picker-opt-selected';
-    const DECELERATION_FRICTION = 0.97;
-    const MAX_PICKER_SPEED = 90;
-    const TRANSITION_DURATION = 150;
+    var PICKER_OPT_SELECTED = 'picker-opt-selected';
+    var DECELERATION_FRICTION = 0.97;
+    var MAX_PICKER_SPEED = 90;
+    var TRANSITION_DURATION = 150;
     /***/
   }
 }]);

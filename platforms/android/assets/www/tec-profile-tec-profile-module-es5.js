@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["tec-profile-tec-profile-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tec-profile/tec-profile.page.html":
@@ -63,11 +69,15 @@
     /*! ./tec-profile.page */
     "./src/app/technician_app/tec-profile/tec-profile.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _tec_profile_page__WEBPACK_IMPORTED_MODULE_3__["TecProfilePage"]
     }];
-    let TecProfilePageRoutingModule = class TecProfilePageRoutingModule {};
+
+    var TecProfilePageRoutingModule = function TecProfilePageRoutingModule() {
+      _classCallCheck(this, TecProfilePageRoutingModule);
+    };
+
     TecProfilePageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./tec-profile.page */
     "./src/app/technician_app/tec-profile/tec-profile.page.ts");
 
-    let TecProfilePageModule = class TecProfilePageModule {};
+    var TecProfilePageModule = function TecProfilePageModule() {
+      _classCallCheck(this, TecProfilePageModule);
+    };
+
     TecProfilePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _tec_profile_routing_module__WEBPACK_IMPORTED_MODULE_5__["TecProfilePageRoutingModule"]],
       declarations: [_tec_profile_page__WEBPACK_IMPORTED_MODULE_6__["TecProfilePage"]]
@@ -245,8 +258,10 @@
     /*! @ionic-native/photo-viewer/ngx */
     "./node_modules/@ionic-native/photo-viewer/ngx/index.js");
 
-    let TecProfilePage = class TecProfilePage {
-      constructor(actionCtrl, router, routeParams, alertCtrl, toastCtrl, diagnostic, camera, imagePicker, base64, photoViewer, dbService) {
+    var TecProfilePage = /*#__PURE__*/function () {
+      function TecProfilePage(actionCtrl, router, routeParams, alertCtrl, toastCtrl, diagnostic, camera, imagePicker, base64, photoViewer, dbService) {
+        _classCallCheck(this, TecProfilePage);
+
         this.actionCtrl = actionCtrl;
         this.router = router;
         this.routeParams = routeParams;
@@ -263,173 +278,259 @@
         this.onGetProfileDataHandler();
       }
 
-      ngOnInit() {}
+      _createClass(TecProfilePage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "onSaveImageDataHandler",
+        value: function onSaveImageDataHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this = this;
 
-      onSaveImageDataHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          let uploadData;
+            var uploadData, j, binaryDataSplit, inputData;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    for (j = 0; j < this.imageData.length; j++) {
+                      binaryDataSplit = this.imageData[j].image.split('base64,');
+                      uploadData = binaryDataSplit[1];
+                      console.log(uploadData);
+                    }
 
-          for (let j = 0; j < this.imageData.length; j++) {
-            const binaryDataSplit = this.imageData[j].image.split('base64,');
-            uploadData = binaryDataSplit[1];
-            console.log(uploadData);
-          }
+                    inputData = {
+                      uploadData: uploadData
+                    };
+                    console.log(inputData);
+                    this.dbService.presentLoader();
+                    this.dbService.onPostRequestHandler(inputData, 'login/onSaveProfileImagesData').subscribe(function (result) {
+                      console.log(result);
 
-          const inputData = {
-            uploadData: uploadData
-          };
-          console.log(inputData);
-          this.dbService.presentLoader();
-          this.dbService.onPostRequestHandler(inputData, 'login/onSaveProfileImagesData').subscribe(result => {
-            console.log(result);
-            this.dbService.dismissLoader();
-            this.dbService.presentToast('Profile Updated Successfully!');
-            this.onGetProfileDataHandler();
-          });
-        });
-      }
+                      _this.dbService.dismissLoader();
 
-      takePhotograph() {
-        const successCallback = isAvailable => {
-          this.camera.getPicture({
-            quality: 40,
-            targetWidth: 600,
-            targetHeight: 600,
-            destinationType: this.camera.DestinationType.DATA_URL
-          }).then(data => {
-            this.imageData = [];
-            this.imageData.push({
-              image: 'data:image/jpeg;base64,' + data
-            });
-            console.log(this.imageData);
-            this.onSaveImageDataHandler();
-          });
-        };
+                      _this.dbService.presentToast('Profile Updated Successfully!');
 
-        const errorCallback = e => {
-          console.log(e);
-        };
+                      _this.onGetProfileDataHandler();
+                    });
 
-        this.diagnostic.requestCameraAuthorization().then(successCallback).catch(errorCallback);
-      }
-
-      selectImageFromGallery() {
-        const successCallback = isAvailable => {
-          console.log(isAvailable);
-          const options = {
-            maximumImagesCount: 1,
-            DATA_URI: 1,
-            quality: 40
-          };
-          this.imageData = [];
-          this.imagePicker.getPictures(options).then(results => {
-            let imageCount = 1;
-
-            for (var i = 0; i < results.length; i++) {
-              this.base64.encodeFile(results[i]).then(base64File => {
-                console.log(base64File);
-                this.imageData.push({
-                  image: base64File
-                });
-                console.log(this.imageData);
-
-                if (imageCount == results.length) {
-                  this.onSaveImageDataHandler();
+                  case 5:
+                  case "end":
+                    return _context.stop();
                 }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "takePhotograph",
+        value: function takePhotograph() {
+          var _this2 = this;
 
-                imageCount++;
-              }, err => {
-                console.log(err);
+          var successCallback = function successCallback(isAvailable) {
+            _this2.camera.getPicture({
+              quality: 40,
+              targetWidth: 600,
+              targetHeight: 600,
+              destinationType: _this2.camera.DestinationType.DATA_URL
+            }).then(function (data) {
+              _this2.imageData = [];
+
+              _this2.imageData.push({
+                image: 'data:image/jpeg;base64,' + data
               });
-            }
-          }, err => {});
-        };
 
-        const errorCallback = e => {
-          console.log(e);
-        };
+              console.log(_this2.imageData);
 
-        this.diagnostic.requestCameraAuthorization().then(successCallback).catch(errorCallback);
-      }
+              _this2.onSaveImageDataHandler();
+            });
+          };
 
-      presentActionSheet() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const actionSheet = yield this.actionCtrl.create({
-            header: 'Select image from',
-            buttons: [{
-              text: 'Camera',
-              icon: 'camera',
-              handler: () => {
-                console.log('Camera Clicked');
-                this.takePhotograph();
+          var errorCallback = function errorCallback(e) {
+            console.log(e);
+          };
+
+          this.diagnostic.requestCameraAuthorization().then(successCallback)["catch"](errorCallback);
+        }
+      }, {
+        key: "selectImageFromGallery",
+        value: function selectImageFromGallery() {
+          var _this3 = this;
+
+          var successCallback = function successCallback(isAvailable) {
+            console.log(isAvailable);
+            var options = {
+              maximumImagesCount: 1,
+              DATA_URI: 1,
+              quality: 40
+            };
+            _this3.imageData = [];
+
+            _this3.imagePicker.getPictures(options).then(function (results) {
+              var imageCount = 1;
+
+              for (var i = 0; i < results.length; i++) {
+                _this3.base64.encodeFile(results[i]).then(function (base64File) {
+                  console.log(base64File);
+
+                  _this3.imageData.push({
+                    image: base64File
+                  });
+
+                  console.log(_this3.imageData);
+
+                  if (imageCount == results.length) {
+                    _this3.onSaveImageDataHandler();
+                  }
+
+                  imageCount++;
+                }, function (err) {
+                  console.log(err);
+                });
               }
-            }, {
-              text: 'Gallery',
-              icon: 'image',
-              handler: () => {
-                console.log('Gallery Clicked');
-                this.selectImageFromGallery();
+            }, function (err) {});
+          };
+
+          var errorCallback = function errorCallback(e) {
+            console.log(e);
+          };
+
+          this.diagnostic.requestCameraAuthorization().then(successCallback)["catch"](errorCallback);
+        }
+      }, {
+        key: "presentActionSheet",
+        value: function presentActionSheet() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var _this4 = this;
+
+            var actionSheet;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    _context2.next = 2;
+                    return this.actionCtrl.create({
+                      header: 'Select image from',
+                      buttons: [{
+                        text: 'Camera',
+                        icon: 'camera',
+                        handler: function handler() {
+                          console.log('Camera Clicked');
+
+                          _this4.takePhotograph();
+                        }
+                      }, {
+                        text: 'Gallery',
+                        icon: 'image',
+                        handler: function handler() {
+                          console.log('Gallery Clicked');
+
+                          _this4.selectImageFromGallery();
+                        }
+                      }]
+                    });
+
+                  case 2:
+                    actionSheet = _context2.sent;
+                    _context2.next = 5;
+                    return actionSheet.present();
+
+                  case 5:
+                  case "end":
+                    return _context2.stop();
+                }
               }
-            }]
-          });
-          yield actionSheet.present();
-        });
-      }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "onGetProfileDataHandler",
+        value: function onGetProfileDataHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var _this5 = this;
 
-      onGetProfileDataHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const inputData = {};
-          this.dbService.presentLoader();
-          this.dbService.onPostRequestHandler(inputData, 'login/onGetLoginUserCompleteDetail').subscribe(result => {
-            console.log(result);
-            this.dbService.dismissLoader();
-            this.profileData = result["loginData"];
-          });
-        });
-      }
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    inputData = {};
+                    this.dbService.presentLoader();
+                    this.dbService.onPostRequestHandler(inputData, 'login/onGetLoginUserCompleteDetail').subscribe(function (result) {
+                      console.log(result);
 
-      onViewImageHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const imagePath = this.dbService.userDocURL + this.profileData.image_url;
-          console.log(imagePath);
-          this.photoViewer.show(imagePath);
-        });
-      }
+                      _this5.dbService.dismissLoader();
 
+                      _this5.profileData = result["loginData"];
+                    });
+
+                  case 3:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+        }
+      }, {
+        key: "onViewImageHandler",
+        value: function onViewImageHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            var imagePath;
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    imagePath = this.dbService.userDocURL + this.profileData.image_url;
+                    console.log(imagePath);
+                    this.photoViewer.show(imagePath);
+
+                  case 3:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            }, _callee4, this);
+          }));
+        }
+      }]);
+
+      return TecProfilePage;
+    }();
+
+    TecProfilePage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
+      }, {
+        type: _ionic_native_diagnostic_ngx__WEBPACK_IMPORTED_MODULE_4__["Diagnostic"]
+      }, {
+        type: _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_5__["Camera"]
+      }, {
+        type: _ionic_native_image_picker_ngx__WEBPACK_IMPORTED_MODULE_6__["ImagePicker"]
+      }, {
+        type: _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_7__["Base64"]
+      }, {
+        type: _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_9__["PhotoViewer"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_8__["DbServiceService"]
+      }];
     };
-
-    TecProfilePage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
-    }, {
-      type: _ionic_native_diagnostic_ngx__WEBPACK_IMPORTED_MODULE_4__["Diagnostic"]
-    }, {
-      type: _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_5__["Camera"]
-    }, {
-      type: _ionic_native_image_picker_ngx__WEBPACK_IMPORTED_MODULE_6__["ImagePicker"]
-    }, {
-      type: _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_7__["Base64"]
-    }, {
-      type: _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_9__["PhotoViewer"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_8__["DbServiceService"]
-    }];
 
     TecProfilePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-tec-profile',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./tec-profile.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tec-profile/tec-profile.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/technician_app/tec-profile/tec-profile.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./tec-profile.page.scss */
-      "./src/app/technician_app/tec-profile/tec-profile.page.scss")).default]
+      "./src/app/technician_app/tec-profile/tec-profile.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"], _ionic_native_diagnostic_ngx__WEBPACK_IMPORTED_MODULE_4__["Diagnostic"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_5__["Camera"], _ionic_native_image_picker_ngx__WEBPACK_IMPORTED_MODULE_6__["ImagePicker"], _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_7__["Base64"], _ionic_native_photo_viewer_ngx__WEBPACK_IMPORTED_MODULE_9__["PhotoViewer"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_8__["DbServiceService"]])], TecProfilePage);
     /***/
   }

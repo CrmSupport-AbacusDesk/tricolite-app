@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["callrequest-callrequest-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/callrequest/callrequest.page.html":
@@ -63,11 +69,15 @@
     /*! ./callrequest.page */
     "./src/app/customer_app/callrequest/callrequest.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _callrequest_page__WEBPACK_IMPORTED_MODULE_3__["CallrequestPage"]
     }];
-    let CallrequestPageRoutingModule = class CallrequestPageRoutingModule {};
+
+    var CallrequestPageRoutingModule = function CallrequestPageRoutingModule() {
+      _classCallCheck(this, CallrequestPageRoutingModule);
+    };
+
     CallrequestPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./callrequest.page */
     "./src/app/customer_app/callrequest/callrequest.page.ts");
 
-    let CallrequestPageModule = class CallrequestPageModule {};
+    var CallrequestPageModule = function CallrequestPageModule() {
+      _classCallCheck(this, CallrequestPageModule);
+    };
+
     CallrequestPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], _callrequest_routing_module__WEBPACK_IMPORTED_MODULE_5__["CallrequestPageRoutingModule"]],
       declarations: [_callrequest_page__WEBPACK_IMPORTED_MODULE_6__["CallrequestPage"]]
@@ -231,8 +244,10 @@
 
     var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
 
-    let CallrequestPage = class CallrequestPage {
-      constructor(route, formBuilder, alertCtrl, modalController, dbService) {
+    var CallrequestPage = /*#__PURE__*/function () {
+      function CallrequestPage(route, formBuilder, alertCtrl, modalController, dbService) {
+        _classCallCheck(this, CallrequestPage);
+
         this.route = route;
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
@@ -251,109 +266,180 @@
         });
       }
 
-      ngOnInit() {
-        this.onGetAllContactListHandler();
-      }
+      _createClass(CallrequestPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.onGetAllContactListHandler();
+        }
+      }, {
+        key: "onChangeContactHandler",
+        value: function onChangeContactHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this = this;
 
-      onChangeContactHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const contactIndex = this.contactData.findIndex(row => row.name == this.data.contactName);
+            var contactIndex;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    contactIndex = this.contactData.findIndex(function (row) {
+                      return row.name == _this.data.contactName;
+                    });
 
-          if (contactIndex !== -1) {
-            this.data.mobile = this.contactData[contactIndex].mobile;
-          }
-        });
-      }
+                    if (contactIndex !== -1) {
+                      this.data.mobile = this.contactData[contactIndex].mobile;
+                    }
 
-      getMobilelength(number) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          return number.toString().length == 10;
-        });
-      }
-
-      onSaveCallRequestHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          console.log(this.data);
-          this.submitted = true;
-
-          if (this.registerForm1.invalid) {
-            this.registerForm1.get('contactName').markAsTouched();
-            this.registerForm1.get('mobile').markAsTouched();
-            this.registerForm1.get('suitableDate').markAsTouched();
-            this.registerForm1.get('suitableTime').markAsTouched();
-            return;
-          } else {
-            console.log('hello');
-            console.log(this.data);
-            const alert = yield this.alertCtrl.create({
-              header: 'Confirm',
-              message: 'Are You Sure, You Want To Save Call Request ?',
-              buttons: [{
-                text: 'No',
-                role: 'cancel',
-                handler: () => {
-                  console.log('No clicked');
+                  case 2:
+                  case "end":
+                    return _context.stop();
                 }
-              }, {
-                text: 'Yes',
-                handler: () => {
-                  console.log('Yes clicked');
-                  const inputData = JSON.parse(JSON.stringify(this.data));
-                  inputData["suitableDate"] = moment__WEBPACK_IMPORTED_MODULE_6__(inputData["suitableDate"]).format('YYYY-MM-DD');
-                  inputData["suitableTime"] = moment__WEBPACK_IMPORTED_MODULE_6__(inputData["suitableTime"], 'H:mm A').format('H:mm');
-                  inputData["suitableDateTime"] = inputData["suitableDate"] + ' ' + inputData["suitableTime"];
-                  this.dbService.presentLoader();
-                  this.dbService.onPostRequestHandler(inputData, 'customer/onSaveCallRequestData').subscribe(result => {
-                    console.log(result);
-                    this.dbService.dismissLoader();
-                    this.data.status = '';
-                    this.route.navigate(['/customer/home']);
-                    this.dbService.presentToast('Call Request Saved Successfully!');
-                  });
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "getMobilelength",
+        value: function getMobilelength(number) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    return _context2.abrupt("return", number.toString().length == 10);
+
+                  case 1:
+                  case "end":
+                    return _context2.stop();
                 }
-              }]
-            });
-            yield alert.present();
-          }
-        });
-      }
+              }
+            }, _callee2);
+          }));
+        }
+      }, {
+        key: "onSaveCallRequestHandler",
+        value: function onSaveCallRequestHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var _this2 = this;
 
-      onGetAllContactListHandler() {
-        const inputData = {};
-        this.dbService.presentLoader();
-        this.dbService.onPostRequestHandler(inputData, 'customer/getCustomerContactHandler').subscribe(result => {
-          console.log(result);
-          this.dbService.dismissLoader();
-          this.contactData = result["contactData"];
-        });
-      }
+            var alert;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    console.log(this.data);
+                    this.submitted = true;
 
-      get f1() {
-        return this.registerForm1.controls;
-      }
+                    if (!this.registerForm1.invalid) {
+                      _context3.next = 10;
+                      break;
+                    }
 
+                    this.registerForm1.get('contactName').markAsTouched();
+                    this.registerForm1.get('mobile').markAsTouched();
+                    this.registerForm1.get('suitableDate').markAsTouched();
+                    this.registerForm1.get('suitableTime').markAsTouched();
+                    return _context3.abrupt("return");
+
+                  case 10:
+                    console.log('hello');
+                    console.log(this.data);
+                    _context3.next = 14;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Save Call Request ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          console.log('Yes clicked');
+                          var inputData = JSON.parse(JSON.stringify(_this2.data));
+                          inputData["suitableDate"] = moment__WEBPACK_IMPORTED_MODULE_6__(inputData["suitableDate"]).format('YYYY-MM-DD');
+                          inputData["suitableTime"] = moment__WEBPACK_IMPORTED_MODULE_6__(inputData["suitableTime"], 'H:mm A').format('H:mm');
+                          inputData["suitableDateTime"] = inputData["suitableDate"] + ' ' + inputData["suitableTime"];
+
+                          _this2.dbService.presentLoader();
+
+                          _this2.dbService.onPostRequestHandler(inputData, 'customer/onSaveCallRequestData').subscribe(function (result) {
+                            console.log(result);
+
+                            _this2.dbService.dismissLoader();
+
+                            _this2.data.status = '';
+
+                            _this2.route.navigate(['/customer/home']);
+
+                            _this2.dbService.presentToast('Call Request Saved Successfully!');
+                          });
+                        }
+                      }]
+                    });
+
+                  case 14:
+                    alert = _context3.sent;
+                    _context3.next = 17;
+                    return alert.present();
+
+                  case 17:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+        }
+      }, {
+        key: "onGetAllContactListHandler",
+        value: function onGetAllContactListHandler() {
+          var _this3 = this;
+
+          var inputData = {};
+          this.dbService.presentLoader();
+          this.dbService.onPostRequestHandler(inputData, 'customer/getCustomerContactHandler').subscribe(function (result) {
+            console.log(result);
+
+            _this3.dbService.dismissLoader();
+
+            _this3.contactData = result["contactData"];
+          });
+        }
+      }, {
+        key: "f1",
+        get: function get() {
+          return this.registerForm1.controls;
+        }
+      }]);
+
+      return CallrequestPage;
+    }();
+
+    CallrequestPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    CallrequestPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     CallrequestPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-callrequest',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./callrequest.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/callrequest/callrequest.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/callrequest/callrequest.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./callrequest.page.scss */
-      "./src/app/customer_app/callrequest/callrequest.page.scss")).default]
+      "./src/app/customer_app/callrequest/callrequest.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], CallrequestPage);
     /***/
   }

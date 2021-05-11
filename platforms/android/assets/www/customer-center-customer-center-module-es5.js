@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["customer-center-customer-center-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customer-center/customer-center.page.html":
@@ -63,11 +69,15 @@
     /*! ./customer-center.page */
     "./src/app/customer_app/customer-center/customer-center.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _customer_center_page__WEBPACK_IMPORTED_MODULE_3__["CustomerCenterPage"]
     }];
-    let CustomerCenterPageRoutingModule = class CustomerCenterPageRoutingModule {};
+
+    var CustomerCenterPageRoutingModule = function CustomerCenterPageRoutingModule() {
+      _classCallCheck(this, CustomerCenterPageRoutingModule);
+    };
+
     CustomerCenterPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./customer-center.page */
     "./src/app/customer_app/customer-center/customer-center.page.ts");
 
-    let CustomerCenterPageModule = class CustomerCenterPageModule {};
+    var CustomerCenterPageModule = function CustomerCenterPageModule() {
+      _classCallCheck(this, CustomerCenterPageModule);
+    };
+
     CustomerCenterPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _customer_center_routing_module__WEBPACK_IMPORTED_MODULE_5__["CustomerCenterPageRoutingModule"]],
       declarations: [_customer_center_page__WEBPACK_IMPORTED_MODULE_6__["CustomerCenterPage"]]
@@ -197,20 +210,27 @@
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
-    let CustomerCenterPage = class CustomerCenterPage {
-      constructor() {}
+    var CustomerCenterPage = /*#__PURE__*/function () {
+      function CustomerCenterPage() {
+        _classCallCheck(this, CustomerCenterPage);
+      }
 
-      ngOnInit() {}
+      _createClass(CustomerCenterPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }]);
 
-    };
+      return CustomerCenterPage;
+    }();
+
     CustomerCenterPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-customer-center',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./customer-center.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customer-center/customer-center.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customer-center/customer-center.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./customer-center.page.scss */
-      "./src/app/customer_app/customer-center/customer-center.page.scss")).default]
+      "./src/app/customer_app/customer-center/customer-center.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], CustomerCenterPage);
     /***/
   }

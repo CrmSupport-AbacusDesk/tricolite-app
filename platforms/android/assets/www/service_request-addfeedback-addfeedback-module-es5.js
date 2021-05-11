@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["service_request-addfeedback-addfeedback-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/addfeedback/addfeedback.page.html":
@@ -63,11 +69,15 @@
     /*! ./addfeedback.page */
     "./src/app/customer_app/service_request/addfeedback/addfeedback.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _addfeedback_page__WEBPACK_IMPORTED_MODULE_3__["AddfeedbackPage"]
     }];
-    let AddfeedbackPageRoutingModule = class AddfeedbackPageRoutingModule {};
+
+    var AddfeedbackPageRoutingModule = function AddfeedbackPageRoutingModule() {
+      _classCallCheck(this, AddfeedbackPageRoutingModule);
+    };
+
     AddfeedbackPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./addfeedback.page */
     "./src/app/customer_app/service_request/addfeedback/addfeedback.page.ts");
 
-    let AddfeedbackPageModule = class AddfeedbackPageModule {};
+    var AddfeedbackPageModule = function AddfeedbackPageModule() {
+      _classCallCheck(this, AddfeedbackPageModule);
+    };
+
     AddfeedbackPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _addfeedback_routing_module__WEBPACK_IMPORTED_MODULE_5__["AddfeedbackPageRoutingModule"]],
       declarations: [_addfeedback_page__WEBPACK_IMPORTED_MODULE_6__["AddfeedbackPage"]]
@@ -221,8 +234,12 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let AddfeedbackPage = class AddfeedbackPage {
-      constructor(popoverController, route, routeParams, formBuilder, alertCtrl, modalController, dbService) {
+    var AddfeedbackPage = /*#__PURE__*/function () {
+      function AddfeedbackPage(popoverController, route, routeParams, formBuilder, alertCtrl, modalController, dbService) {
+        var _this = this;
+
+        _classCallCheck(this, AddfeedbackPage);
+
         this.popoverController = popoverController;
         this.route = route;
         this.routeParams = routeParams;
@@ -236,118 +253,170 @@
         this.userData = {};
         this.taskData = {};
         this.selectedRating = '';
-        this.routeParams.params.subscribe(params => {
+        this.routeParams.params.subscribe(function (params) {
           console.log(params);
-          this.taskId = params.taskId;
-          this.userId = params.userId;
-          this.onGetUserDetailHandler();
-          this.onGetTaskDetailHandler();
-          console.log(this.taskId);
-          console.log(this.userId);
+          _this.taskId = params.taskId;
+          _this.userId = params.userId;
+
+          _this.onGetUserDetailHandler();
+
+          _this.onGetTaskDetailHandler();
+
+          console.log(_this.taskId);
+          console.log(_this.userId);
         });
       }
 
-      ngOnInit() {}
+      _createClass(AddfeedbackPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "onGetUserDetailHandler",
+        value: function onGetUserDetailHandler() {
+          var _this2 = this;
 
-      onGetUserDetailHandler() {
-        this.dbService.presentLoader();
-        const inputData = {
-          userId: this.userId
-        };
-        this.dbService.onPostRequestHandler(inputData, 'login/onGetTechnicianDetail').subscribe(result => {
-          console.log(result);
-          this.dbService.dismissLoader();
-          this.userData = result["userData"];
-        });
-      }
+          this.dbService.presentLoader();
+          var inputData = {
+            userId: this.userId
+          };
+          this.dbService.onPostRequestHandler(inputData, 'login/onGetTechnicianDetail').subscribe(function (result) {
+            console.log(result);
 
-      onStarClickHandler(rating) {
-        this.selectedRating = rating;
-      }
+            _this2.dbService.dismissLoader();
 
-      onSaveFeedbackHandler() {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          if (!this.selectedRating) {
-            this.dbService.onShowAlertMessage('Error', 'Rating Required!');
-            return;
-          }
-
-          if (!this.data.description) {
-            this.dbService.onShowAlertMessage('Error', 'Description Required!');
-            return;
-          }
-
-          console.log('hello');
-          console.log(this.data);
-          const alert = yield this.alertCtrl.create({
-            header: 'Confirm',
-            message: 'Are You Sure, You Want To Save Feedback ?',
-            buttons: [{
-              text: 'No',
-              role: 'cancel',
-              handler: () => {
-                console.log('No clicked');
-              }
-            }, {
-              text: 'Yes',
-              handler: () => {
-                console.log('Yes clicked');
-                const inputData = {
-                  taskId: this.taskId
-                };
-                inputData["rating"] = this.selectedRating;
-                inputData["description"] = this.data.description;
-                this.dbService.presentLoader();
-                this.dbService.onPostRequestHandler(inputData, 'customer/saveFeedbackData').subscribe(result => {
-                  console.log(result);
-                  this.dbService.dismissLoader();
-                  this.data.status = '';
-                  this.route.navigate(['/customer/request']);
-                  this.dbService.presentToast('Feedback Saved Successfully!');
-                });
-              }
-            }]
+            _this2.userData = result["userData"];
           });
-          yield alert.present();
-        });
-      }
+        }
+      }, {
+        key: "onStarClickHandler",
+        value: function onStarClickHandler(rating) {
+          this.selectedRating = rating;
+        }
+      }, {
+        key: "onSaveFeedbackHandler",
+        value: function onSaveFeedbackHandler() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this3 = this;
 
-      onGetTaskDetailHandler() {
-        const inputData = {
-          taskId: this.taskId
-        };
-        this.dbService.onPostRequestHandler(inputData, 'task/onGetFeedbackTaskData').subscribe(result => {
-          console.log(result);
-          this.taskData = result["taskData"];
-        });
-      }
+            var alert;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    if (this.selectedRating) {
+                      _context.next = 3;
+                      break;
+                    }
 
+                    this.dbService.onShowAlertMessage('Error', 'Rating Required!');
+                    return _context.abrupt("return");
+
+                  case 3:
+                    if (this.data.description) {
+                      _context.next = 6;
+                      break;
+                    }
+
+                    this.dbService.onShowAlertMessage('Error', 'Description Required!');
+                    return _context.abrupt("return");
+
+                  case 6:
+                    console.log('hello');
+                    console.log(this.data);
+                    _context.next = 10;
+                    return this.alertCtrl.create({
+                      header: 'Confirm',
+                      message: 'Are You Sure, You Want To Save Feedback ?',
+                      buttons: [{
+                        text: 'No',
+                        role: 'cancel',
+                        handler: function handler() {
+                          console.log('No clicked');
+                        }
+                      }, {
+                        text: 'Yes',
+                        handler: function handler() {
+                          console.log('Yes clicked');
+                          var inputData = {
+                            taskId: _this3.taskId
+                          };
+                          inputData["rating"] = _this3.selectedRating;
+                          inputData["description"] = _this3.data.description;
+
+                          _this3.dbService.presentLoader();
+
+                          _this3.dbService.onPostRequestHandler(inputData, 'customer/saveFeedbackData').subscribe(function (result) {
+                            console.log(result);
+
+                            _this3.dbService.dismissLoader();
+
+                            _this3.data.status = '';
+
+                            _this3.route.navigate(['/customer/request']);
+
+                            _this3.dbService.presentToast('Feedback Saved Successfully!');
+                          });
+                        }
+                      }]
+                    });
+
+                  case 10:
+                    alert = _context.sent;
+                    _context.next = 13;
+                    return alert.present();
+
+                  case 13:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "onGetTaskDetailHandler",
+        value: function onGetTaskDetailHandler() {
+          var _this4 = this;
+
+          var inputData = {
+            taskId: this.taskId
+          };
+          this.dbService.onPostRequestHandler(inputData, 'task/onGetFeedbackTaskData').subscribe(function (result) {
+            console.log(result);
+            _this4.taskData = result["taskData"];
+          });
+        }
+      }]);
+
+      return AddfeedbackPage;
+    }();
+
+    AddfeedbackPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    AddfeedbackPage.ctorParameters = () => [{
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
-    }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     AddfeedbackPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-addfeedback',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./addfeedback.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/addfeedback/addfeedback.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/service_request/addfeedback/addfeedback.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./addfeedback.page.scss */
-      "./src/app/customer_app/service_request/addfeedback/addfeedback.page.scss")).default]
+      "./src/app/customer_app/service_request/addfeedback/addfeedback.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], AddfeedbackPage);
     /***/
   }

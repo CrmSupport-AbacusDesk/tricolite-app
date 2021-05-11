@@ -1,3 +1,9 @@
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["customerdocuments-customerdocuments-module"], {
   /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customerdocuments/customerdocuments.page.html":
@@ -63,11 +69,15 @@
     /*! ./customerdocuments.page */
     "./src/app/customer_app/customerdocuments/customerdocuments.page.ts");
 
-    const routes = [{
+    var routes = [{
       path: '',
       component: _customerdocuments_page__WEBPACK_IMPORTED_MODULE_3__["CustomerdocumentsPage"]
     }];
-    let CustomerdocumentsPageRoutingModule = class CustomerdocumentsPageRoutingModule {};
+
+    var CustomerdocumentsPageRoutingModule = function CustomerdocumentsPageRoutingModule() {
+      _classCallCheck(this, CustomerdocumentsPageRoutingModule);
+    };
+
     CustomerdocumentsPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
@@ -137,7 +147,10 @@
     /*! ./customerdocuments.page */
     "./src/app/customer_app/customerdocuments/customerdocuments.page.ts");
 
-    let CustomerdocumentsPageModule = class CustomerdocumentsPageModule {};
+    var CustomerdocumentsPageModule = function CustomerdocumentsPageModule() {
+      _classCallCheck(this, CustomerdocumentsPageModule);
+    };
+
     CustomerdocumentsPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _customerdocuments_routing_module__WEBPACK_IMPORTED_MODULE_5__["CustomerdocumentsPageRoutingModule"]],
       declarations: [_customerdocuments_page__WEBPACK_IMPORTED_MODULE_6__["CustomerdocumentsPage"]]
@@ -221,8 +234,10 @@
     /*! src/app/db-service.service */
     "./src/app/db-service.service.ts");
 
-    let CustomerdocumentsPage = class CustomerdocumentsPage {
-      constructor(route, formBuilder, alertCtrl, dbService) {
+    var CustomerdocumentsPage = /*#__PURE__*/function () {
+      function CustomerdocumentsPage(route, formBuilder, alertCtrl, dbService) {
+        _classCallCheck(this, CustomerdocumentsPage);
+
         this.route = route;
         this.formBuilder = formBuilder;
         this.alertCtrl = alertCtrl;
@@ -234,87 +249,126 @@
         this.currentActiveTab = 1;
       }
 
-      ngOnInit() {
-        this.onGetDocumentList();
-      }
+      _createClass(CustomerdocumentsPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.onGetDocumentList();
+        }
+      }, {
+        key: "onGetDocumentList",
+        value: function onGetDocumentList() {
+          var _this = this;
 
-      onGetDocumentList() {
-        this.dbService.presentLoader();
-        const inputData = {};
-        this.isRequestInProcess = true;
-        this.dbService.onPostRequestHandler(inputData, 'task/getDocumentList').subscribe(result => {
-          console.log(result);
-          this.dbService.dismissLoader();
-
-          if (result["status"] == 'error') {
-            this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
-          } else {
-            this.documentList = result["documentList"];
-            this.masterDocList = result["masterDocList"];
-            console.log(this.documentList);
-            console.log(this.masterDocList);
-          }
-
-          this.isRequestInProcess = false;
-        });
-      }
-
-      onGetImageDataHandler(documentId, documentTitle) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          const inputData = {
-            documentId: documentId,
-            documentTitle: documentTitle
-          };
           this.dbService.presentLoader();
-          this.dbService.onPostRequestHandler(inputData, 'task/getDocumentAllList').subscribe(result => {
+          var inputData = {};
+          this.isRequestInProcess = true;
+          this.dbService.onPostRequestHandler(inputData, 'task/getDocumentList').subscribe(function (result) {
             console.log(result);
-            this.dbService.dismissLoader();
-            this.documentImageData = result["documentImageData"];
-            this.onViewImageHandler(0);
-          });
-        });
-      }
 
-      onViewImageHandler(index) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
-          let imagePath;
+            _this.dbService.dismissLoader();
 
-          if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master') {
-            if (this.documentImageData[index]['document_type'] == 'URL') {
-              imagePath = this.documentImageData[index].document_url;
+            if (result["status"] == 'error') {
+              _this.dbService.onShowAlertMessage('Error', result["statusMessage"]);
             } else {
-              imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
-              console.log(imagePath);
+              _this.documentList = result["documentList"];
+              _this.masterDocList = result["masterDocList"];
+              console.log(_this.documentList);
+              console.log(_this.masterDocList);
             }
-          } else {
-            imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
-            console.log(imagePath);
-          }
 
-          window.open(imagePath, '_blank'); //  this.photoViewer.show(imagePath);
-        });
-      }
+            _this.isRequestInProcess = false;
+          });
+        }
+      }, {
+        key: "onGetImageDataHandler",
+        value: function onGetImageDataHandler(documentId, documentTitle) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this2 = this;
 
+            var inputData;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    inputData = {
+                      documentId: documentId,
+                      documentTitle: documentTitle
+                    };
+                    this.dbService.presentLoader();
+                    this.dbService.onPostRequestHandler(inputData, 'task/getDocumentAllList').subscribe(function (result) {
+                      console.log(result);
+
+                      _this2.dbService.dismissLoader();
+
+                      _this2.documentImageData = result["documentImageData"];
+
+                      _this2.onViewImageHandler(0);
+                    });
+
+                  case 3:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+        }
+      }, {
+        key: "onViewImageHandler",
+        value: function onViewImageHandler(index) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var imagePath;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    if (this.documentImageData[index].uploadFolderName && this.documentImageData[index].uploadFolderName == 'master') {
+                      if (this.documentImageData[index]['document_type'] == 'URL') {
+                        imagePath = this.documentImageData[index].document_url;
+                      } else {
+                        imagePath = this.dbService.masterDocURL + this.documentImageData[index].document_url;
+                        console.log(imagePath);
+                      }
+                    } else {
+                      imagePath = this.dbService.customerDocURL + this.documentImageData[index].document_url;
+                      console.log(imagePath);
+                    }
+
+                    window.open(imagePath, '_blank'); //  this.photoViewer.show(imagePath);
+
+                  case 2:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }]);
+
+      return CustomerdocumentsPage;
+    }();
+
+    CustomerdocumentsPage.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
+      }];
     };
-
-    CustomerdocumentsPage.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-    }, {
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]
-    }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
-    }, {
-      type: src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]
-    }];
 
     CustomerdocumentsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-customerdocuments',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./customerdocuments.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customerdocuments/customerdocuments.page.html")).default,
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/customer_app/customerdocuments/customerdocuments.page.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./customerdocuments.page.scss */
-      "./src/app/customer_app/customerdocuments/customerdocuments.page.scss")).default]
+      "./src/app/customer_app/customerdocuments/customerdocuments.page.scss"))["default"]]
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"], src_app_db_service_service__WEBPACK_IMPORTED_MODULE_5__["DbServiceService"]])], CustomerdocumentsPage);
     /***/
   }

@@ -51,16 +51,16 @@ export class RegistrationPage implements OnInit {
         name: ['', [Validators.required, Validators.minLength(5)]],
         designation: ['', [Validators.required, Validators.minLength(5)]],
         superiorName: ['', [Validators.required, Validators.minLength(5)]],
-        email: ['', [Validators.email]],
+        email: ['', [Validators.required,Validators.email]],
         companyName: ['', [Validators.required, Validators.minLength(5)]],
-        so_no: ['', [Validators.required, Validators.minLength(5)]],
+        so_no: ['', [Validators.required]],
         
-        fg_no: ['', [Validators.required, Validators.minLength(5)]],
+        fg_no: ['', [ Validators.required]],
         projectName: ['', [Validators.required, Validators.minLength(5)]],
-        superioremail: ['', [Validators.email]],
+        superioremail: ['', [Validators.required,Validators.email]],
         username: ['', [Validators.required, Validators.minLength(5)]],                
         password: ['', [Validators.required, Validators.minLength(5)]],
-        landlineNo: ['', [ Validators.minLength(10), Validators.maxLength(10)]],
+        landlineNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       });
       
       this.registerForm2 = this.formBuilder.group({
@@ -93,7 +93,12 @@ export class RegistrationPage implements OnInit {
       
       this.submitted = true;
       
-      
+ 
+
+  // if (this.registerForm1.invalid ) {
+
+  //     return;
+  // }
       
       
       
@@ -176,6 +181,7 @@ export class RegistrationPage implements OnInit {
         
       }
     }
+    soerror:any=[];
     async onSonoHandler(){
       const inputData = {
         so_no: this.data.so_no,
@@ -186,9 +192,8 @@ export class RegistrationPage implements OnInit {
         console.log(result);
         this.fgList = result[`fg`];
         console.log(this.fgList);
-        
-        
-        
+        this.soerror = result[`msg`]
+      
         
       });
     }
