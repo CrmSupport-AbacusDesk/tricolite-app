@@ -34,6 +34,7 @@ export class DbServiceService {
     public upload_url: any = 'http://phpstack-83335-1824762.cloudwaysapps.com/api/uploads/Task_Doc/';
     
 
+    counterArray:any={};
 
     
     public backButton = 0;
@@ -115,28 +116,68 @@ export class DbServiceService {
             }
             return true;
         }
-        
+    
+        // count_list(requestData,fn) {
+        //     const headers = new HttpHeaders();
+        //     headers.append('Accept', 'application/json');
+        //     headers.append('Content-Type', 'application/json' );
+            
+        //     const loginData = JSON.parse(localStorage.getItem('loginData'));
+        //     fn='login/onValidateLoginById'
+            
+        //     console.log(loginData);
+        //     if (loginData) {
+                
+        //         requestData[`loginId`] = loginData[`loginId`];
+        //         requestData[`loginName`] = loginData[`loginName`];
+        //         requestData[`loginType`] = loginData[`loginType`];
+        //         requestData[`login_blocked`] = loginData[`login_blocked`];
+        //         return this.http.post(this.serverURL + 'login/onValidateLoginById', JSON.stringify(requestData),);
+
+        //     }
+        // }
         
         onPostRequestHandler(requestData, fn) {
-            
             const headers = new HttpHeaders();
             headers.append('Accept', 'application/json');
             headers.append('Content-Type', 'application/json' );
             
             const loginData = JSON.parse(localStorage.getItem('loginData'));
-            
             console.log(loginData);
+          
             if (loginData) {
                 
                 requestData[`loginId`] = loginData[`loginId`];
                 requestData[`loginName`] = loginData[`loginName`];
                 requestData[`loginType`] = loginData[`loginType`];
-            }
+                requestData[`login_blocked`] = loginData[`login_blocked`];
+console.log(requestData[`login_blocked`]);
+
             
+           
             console.log(requestData);
-            
+            this.http.post(this.serverURL + 'login/onValidateLoginById', JSON.stringify(requestData), {headers: headers})
+            .subscribe(res=>{
+              console.log(res);
+
+this.counterArray=res['loginData']['login_blocked']
+console.log(this.counterArray);
+
+              if ( this.counterArray == '1') {
+                localStorage.removeItem('loginData');
+    
+                const routeURL = '/loginType';
+                this.route.navigate([routeURL]);
+    
+                // this.dbService.presentToast('Your account has been deactivated!');
+    
+                        }
+            //   resolve(res);
+            }, (err) => {
+            //   reject(err);
+            });
             return this.http.post(this.serverURL + fn, JSON.stringify(requestData), {headers: headers});
         }
-        
+    }
     }
     

@@ -159,7 +159,7 @@
                                             <ion-input formControlName="so_no" [(ngModel)]="data.so_no" (keyup) = "onSonoHandler()" autocomplete="nope"></ion-input>
                                             <ion-text *ngIf="submitted && f1.so_no.errors" class="cs-error">
     
-                                                <span *ngIf="!f1.so_no.errors.required">SO NO Invalid</span>
+                                                <span *ngIf="f1.so_no.errors.required">SO NO Invalid</span>
                 
                                         </ion-text>
                                                                       
@@ -167,7 +167,11 @@
                                         </ion-item>  <ion-item  >
                                             <ion-label position="floating">Fg no.</ion-label>
                                             <ion-input formControlName="fg_no" [(ngModel)]="data.fg_no" (keyup) = "onfgHandler()" autocomplete="nope"></ion-input>
-                                           
+                                            <!-- <ion-text *ngIf="submitted && f1.fg_no.errors" class="cs-error">
+    
+                                                <span *ngIf="f1.fg_no.errors">SO NO Invalid</span>
+                
+                                        </ion-text> -->
                                                                           
 
                                         </ion-item> 

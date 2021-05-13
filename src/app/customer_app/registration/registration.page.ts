@@ -182,6 +182,8 @@ export class RegistrationPage implements OnInit {
       }
     }
     soerror:any=[];
+    fgerror:any=[];
+
     async onSonoHandler(){
       const inputData = {
         so_no: this.data.so_no,
@@ -218,9 +220,13 @@ export class RegistrationPage implements OnInit {
         console.log(result);
         this.soList = result[`fg`];
         console.log( this.soList);
+        if(result[`msg`]=="notExist"){
+        this.fgerror = result[`msg`]
+        console.log(this.fgerror);
         
+        }
         this.data.so_no=this.soList.so_no
-        console.log(this.data.so_no);
+        console.log(this.fgerror);
         
       });
     }

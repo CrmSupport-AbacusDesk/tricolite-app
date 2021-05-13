@@ -62,6 +62,17 @@ export class HomePage implements OnInit {
           console.log(result);
 
           this.profileData = result[`loginData`];
+          console.log(this.profileData.login_blocked);
+            
+          if ( this.profileData.login_blocked == '1') {
+            localStorage.removeItem('loginData');
+
+            const routeURL = '/loginType';
+            this.route.navigate([routeURL]);
+
+            this.dbService.presentToast('Your account has been deactivated!');
+
+                    }
     });
  }
 

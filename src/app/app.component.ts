@@ -74,7 +74,8 @@ export class AppComponent {
                             loginType: result[`loginType`],
                             loginId: result[`loginId`],
                             loginName: result[`loginName`],
-                            loginStatus: result[`loginStatus`]
+                            loginStatus: result[`loginStatus`],
+                            login_blocked:result['loginData']['login_blocked']
                           };
 
                           localStorage.setItem('loginData', JSON.stringify(updatedLoginData));
@@ -88,6 +89,15 @@ export class AppComponent {
 
                               this.route.navigate(['/customer']);
                           }
+                          if ( loginData[`login_blocked`] == '1') {
+                            localStorage.removeItem('loginData');
+                
+                            const routeURL = '/loginType';
+                            this.route.navigate([routeURL]);
+                
+                            // this.dbService.presentToast('Your account has been deactivated!');
+                
+                                    }
                     }
 
 

@@ -20,6 +20,7 @@ export class HomePage implements OnInit {
               private formBuilder: FormBuilder,
               public alertCtrl: AlertController,
               public dbService: DbServiceService,
+              private route: Router,
               public push: Push) {
 
      }
@@ -88,8 +89,10 @@ export class HomePage implements OnInit {
         this.dbService.onPostRequestHandler(inputData, 'login/onGetLoginUserCompleteDetail').subscribe((result) => {
 
             console.log(result);
-
+              this.dbService.presentToast('Login Successful!');
+            
             this.profileData = result[`loginData`];
+           
         });
     }
 
