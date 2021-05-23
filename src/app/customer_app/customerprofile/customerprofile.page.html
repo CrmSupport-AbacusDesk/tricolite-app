@@ -41,13 +41,17 @@
             <div class="my_profile" padding>
                 
                 <div class="information">
-                    <div class="figure">
+                    <div class="figure"*ngIf="profileData.landline_no!=''">
                         <img src="assets/icon/pr_call.svg" alt="">
                         <h1>+91 {{profileData.landline_no}}</h1>
                     </div>
+                    <div class="figure"*ngIf="profileData.landline_no==''">
+                        <img src="assets/icon/pr_call.svg" alt="">
+                        <h1>+91 {{profileData.contact_mobile}}</h1>
+                    </div>
                     <div class="figure">
                         <img src="assets/icon/pr_email.svg" alt="">
-                        <a>{{profileData.email}}</a>
+                        <a style="font-size:3vw">{{profileData.email}}</a>
                     </div>
                     <div class="figure">
                         <img src="assets/icon/pr_address.svg" alt="">
@@ -78,7 +82,9 @@
                         
                         <div *ngFor = "let row of contactData" class="p-info mt10">
                             <div class="cs-left">
-                                <h1><i class="material-icons">person</i>{{row.name}} ({{row.designation}})</h1>
+                                <h1><i class="material-icons">person</i>{{row.name}}<h1 *ngIf="row.designation">({{row.designation}}) </h1>
+                            </h1>
+                                
                                 <ion-text><i class="material-icons">mail</i>{{row.email}}</ion-text>
                             </div>
                             <div class="cs-right">

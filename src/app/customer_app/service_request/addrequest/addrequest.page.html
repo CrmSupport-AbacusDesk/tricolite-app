@@ -72,8 +72,7 @@
                                 
                                 
                                 <ion-item [ngClass]="submitted && f1.project.errors && f1.project.errors.required ? 'has-error' : (f1.project.errors && !f1.project.errors.required ? 'has-text' : '')" class="cs-select">
-                                    
-                                    <ion-label>Project</ion-label>
+                                    <ion-label style="font-size:14px">Project</ion-label>
                                     
                                     <ionic-selectable
                                     [(ngModel)]="data.project"
@@ -159,7 +158,7 @@
 
             <div class="cs-right mt20">
                 <div class="common_form inner_page">
-                    <div class="heading"><h1>Engineer Visiting Date & Time</h1></div>
+                    <div class="heading"><h1>Preffered Engineer Visit</h1></div>
                     <div class="dflex">
                         <ion-item [ngClass]="submitted && f1.visitDate.errors && f1.visitDate.errors.required ? 'has-error' : (f1.visitDate.errors && !f1.visitDate.errors.required ? 'has-text' : '')" class="date-time mb0 mr10">
                             <ion-label>Date</ion-label>
@@ -193,8 +192,12 @@
                 </div>
                 <div class="cs-checkbox">
                     <ion-list>
+
+                        
                         <ion-item *ngFor="let row of contactList">
-                            <ion-label>{{row.name}} ({{row.designation}})</ion-label>
+                            <ion-label>{{row.name}} <span *ngIf="row.designation">({{row.designation}} )</span></ion-label>
+                            
+
                             <ion-checkbox [(ngModel)]="row.checked" formControlName="contactName" slot="start" color="success"></ion-checkbox>
                         </ion-item>
                     </ion-list>

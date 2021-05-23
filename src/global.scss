@@ -3204,7 +3204,7 @@ ion-button
                     color: #4976f2;
                     padding-right: 10px;
                 }
-
+                
                 &.after-img
                 {
                     &:after {
@@ -3344,7 +3344,13 @@ ion-button
         }
         
         
-        
+        .item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+            white-space: nowrap !important;
+            overflow: inherit !important;
+            white-space: normal !important;
+            font-size: 14px;
+            line-height: 20px;
+        }
         
         
         

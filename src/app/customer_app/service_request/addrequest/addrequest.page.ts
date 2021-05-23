@@ -335,7 +335,7 @@ export class AddrequestPage implements OnInit {
   }
 
 
-
+contact:any;
   async onGetProjectContactHandler() {
 
     const inputData = {
@@ -346,7 +346,11 @@ export class AddrequestPage implements OnInit {
 
           console.log(result);
           this.contactList = result[`contactList`];
+          for (let index = 0; index < this.contactList.length; index++) {
+this.contact=this.contactList[index].name+' '
 
+
+          }
     });
   }
 

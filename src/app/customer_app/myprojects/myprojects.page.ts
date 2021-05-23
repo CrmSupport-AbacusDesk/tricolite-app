@@ -62,7 +62,7 @@ export class MyprojectsPage implements OnInit {
         this.dbService.presentLoader();
       }
       
-      this.isRequestInProcess = true;
+      // this.isRequestInProcess = true;
       
       this.dbService.onPostRequestHandler(inputData, 'customer/getProjectList').subscribe((result) => {
         
