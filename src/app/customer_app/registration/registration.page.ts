@@ -61,6 +61,8 @@ export class RegistrationPage implements OnInit {
         username: ['', [Validators.required, Validators.minLength(5)]],                
         password: ['', [Validators.required, Validators.minLength(5)]],
         landlineNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+        superiorNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+
       });
       
       this.registerForm2 = this.formBuilder.group({
@@ -279,6 +281,8 @@ export class RegistrationPage implements OnInit {
           this['registerForm' + stage + ''].get('email').markAsTouched();
           // this['registerForm' + stage + ''].get('mobile').markAsTouched();
           this['registerForm' + stage + ''].get('landlineNo').markAsTouched();
+          this['registerForm' + stage + ''].get('superiorNo').markAsTouched();
+
           this['registerForm' + stage + ''].get('superiorName').markAsTouched();
           this['registerForm' + stage + ''].get('superioremail').markAsTouched();
           this['registerForm' + stage + ''].get('so_no').markAsTouched();
